@@ -15,4 +15,4 @@ A map of the Internet.
 
 	$ npm test
 
-[![Build Status](https://travis-ci.org/GalacticOrg/galactic.svg?branch=master)](https://travis-ci.org/GalacticOrg/galactic)
+[![Build Status](https://travis-ci.org/SFDevLabs/galactic.svg?branch=master)](https://travis-ci.org/SFDevLabs/galactic)
