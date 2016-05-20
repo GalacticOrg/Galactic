@@ -1,3 +1,4 @@
+'use strict';
 
 /**
  * Module dependencies.
@@ -37,14 +38,14 @@ module.exports = function (app, passport) {
   // Static files middleware
   app.use(express.static(config.root + '/public'));
 
+
+
   // Use winston on production
-  var log;
+  let log;
   if (env !== 'development') {
     log = {
       stream: {
-        write: function (message, encoding) {
-          winston.info(message);
-        }
+        write: message => winston.info(message)
       }
     };
   } else {
@@ -118,6 +119,8 @@ module.exports = function (app, passport) {
     // This could be moved to view-helpers :-)
     app.use(function (req, res, next){
       res.locals.csrf_token = req.csrfToken();
+      //Our live loading bundle from webpack-dev-server
+      res.locals.bundle_js = (env==='development')?'http://localhost:8090/app/js/bundle.js':'/js/bundle.js';
       next();
     });
   }

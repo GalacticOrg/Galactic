@@ -8,6 +8,17 @@
     <title>{{ title }} | {{ pkg.name }}</title>
     <meta name="keywords" content="{{ pkg.keywords.join(',') }}">
     <meta name="description" content="{{ pkg.description }}">
+    <meta property="csrf" id="csrf" content="{{ csrf_token }}">
+
+
+    {# Opengraph tags #}
+    <meta property="fb:app_id" content="">
+    <meta property="og:title" content=pkg.name + ' - ' + title>
+    <meta property="og:description" content=pkg.description>
+    <meta property="og:url" content="">
+    <meta property="og:site_name" content="Galactic">
+    <meta property="fb:admins" content="">
+
 
     {% block head %}
 
