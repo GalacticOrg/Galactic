@@ -120,7 +120,7 @@ module.exports = function (app, passport) {
     app.use(function (req, res, next){
       res.locals.csrf_token = req.csrfToken();
       //Our live loading bundle from webpack-dev-server
-      res.locals.bundle_js = (env==='development')?'http://localhost:8090/app/js/bundle.js':'/js/bundle.js';
+      res.locals.bundle_js = (env==='development')?'http://localhost:8090/app/js':'/js';
       next();
     });
   }
