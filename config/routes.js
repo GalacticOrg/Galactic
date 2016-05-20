@@ -16,6 +16,7 @@ module.exports = function (app, passport) {
   app.get('/user', pages.user);
   app.get('/result', pages.result);
   app.get('/connect', pages.connect);
+  app.get('/firehose', pages.firehose);
 
   /**
    * Error handling

@@ -23,6 +23,11 @@ module.exports = {
           'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
           './app/frontend/User.react.jsx' // Your appʼs entry point
       ]:'./app/frontend/User.react.jsx',
+      "firehose.js": env==='development'?[
+          'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
+          'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
+          './app/frontend/Firehose.react.jsx' // Your appʼs entry point
+      ]:'./app/frontend/Firehose.react.jsx',
     },
     output: {
         filename: '[name]',
