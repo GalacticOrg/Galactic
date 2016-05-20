@@ -3,7 +3,7 @@
   "description": "A map of the Intenret",
   "version": "0.0.1",
   "author": {
-    "name": "Jeff Jenkins"
+    "name": "@jeffj & @mceoin"
   },
   "engines": {
     "node": ">=6.x"
@@ -50,7 +50,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/GalacticOrg/galactic.git"
+    "url": "git://github.com/SFDevLabs/galactic.git"
+
   },
   "keywords": [
     "Graph"

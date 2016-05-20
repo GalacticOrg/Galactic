@@ -5,7 +5,7 @@ A map of the Internet.
 
 ## Usage
 
-    $ git clone https://github.com/GalacticOrg/galactic.git
+    $ git clone https://github.com/SFDevLabs/galactic.git
     $ cd galactic
     $ npm install
     $ cp .env.example .env
