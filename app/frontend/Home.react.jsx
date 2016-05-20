@@ -1,10 +1,20 @@
+/**
+ * Copyright (c) 2016, Galactic
+*/
 
 import ReactDOM from "react-dom";
 import React from "react";
 
-class Home extends React.Component {
+export default class Home extends React.Component {
   render() {
-    return (<div>Home</div>);
+    return (<div>
+      <h1>Home</h1>
+      <a href="connect">/Connect</a>
+      <br/>
+      <a href="result">/Result</a>
+      <br/>
+      <a href="user">/User</a>
+    </div>);
   }
 }
 
