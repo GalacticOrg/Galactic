@@ -15,4 +15,7 @@ A map of the Internet.
 
 	$ npm test
 
-[![Build Status](https://travis-ci.org/SFDevLabs/galactic.svg?branch=master)](https://travis-ci.org/SFDevLabs/galactic)
+###Master
+[ ![Codeship Status for SFDevLabs/galactic](https://codeship.com/projects/e11ce800-0103-0134-bf1e-2e7e86e65593/status?branch=master)](https://codeship.com/projects/153417)
+##Master
+[ ![Codeship Status for SFDevLabs/galactic](https://codeship.com/projects/e11ce800-0103-0134-bf1e-2e7e86e65593/status?branch=development)](https://codeship.com/projects/153417)
