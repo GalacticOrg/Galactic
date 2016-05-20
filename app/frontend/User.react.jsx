@@ -3,10 +3,14 @@
 */
 import ReactDOM from "react-dom";
 import React from "react";
+import Navbar from "./components/Navbar.react.jsx"
 
-export default class User extends React.Component {
+class User extends React.Component {
   render() {
-    return (<div>User</div>);
+    return (<div>
+      User
+      <Navbar />
+    </div>);
   }
 }
 
