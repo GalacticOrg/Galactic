@@ -10,3 +10,9 @@ A map of the Internet.
     $ npm install
     $ cp .env.example .env
     $ npm start
+
+# Tests
+
+	$ npm test
+
+[![Build Status](https://travis-ci.org/GalacticOrg/galactic.svg?branch=master)](https://travis-ci.org/GalacticOrg/galactic)

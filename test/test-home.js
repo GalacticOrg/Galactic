@@ -6,7 +6,7 @@
 
 const test = require('tape');
 const request = require('supertest');
-const app  = equire('supertest').app;
+const app = require('../server').app
 
 test('Home page', t => {
   request(app)
