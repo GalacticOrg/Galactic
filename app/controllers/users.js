@@ -7,7 +7,7 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const utils = {
-  error: (m)=> m
+  errors: (m)=> m
 }//require('../../lib/utils');
 
 /**
@@ -49,7 +49,7 @@ exports.authCallback = login;
  */
 
 exports.login = function (req, res) {
-  res.render('users/login', {
+  res.render('auth/login', {
     title: 'Login'
   });
 };
@@ -59,7 +59,7 @@ exports.login = function (req, res) {
  */
 
 exports.signup = function (req, res) {
-  res.render('users/signup', {
+  res.render('auth/signup', {
     title: 'Sign up',
     user: new User()
   });
@@ -98,7 +98,7 @@ function login (req, res) {
  */
 
 exports.pwReset = function (req, res) {
-  res.render('users/reset', {
+  res.render('auth/reset', {
     title: 'Password Reset',
   });
 };
@@ -115,19 +115,19 @@ exports.pwResetSubmit = function (req, res) {
     options.criteria ={email:email}
     User.load(options, function(err, user){
       if(!user){
-        res.render('users/reset', {
+        res.render('auth/reset', {
           title: 'Password Reset',
           errors: utils.errors('Sorry! We cannot find that email.')
         });
       } else {
         user.resetPassword(function(err){
           if (err){
-           res.render('users/reset', {
+           res.render('auth/reset', {
               title: 'Password Reset',
               errors: utils.errors(err.errors || err.message)
             });
           } else {
-            res.render('users/reset', {
+            res.render('auth/reset', {
               title: 'Password Reset',
               success: utils.errors('Check your email for a password reset link')
             });
@@ -136,7 +136,7 @@ exports.pwResetSubmit = function (req, res) {
       }
     })
   }else{
-    res.render('users/reset', {
+    res.render('auth/reset', {
       errors: utils.errors('Please enter an email.'),
       title: 'Password Reset'
     });
@@ -158,7 +158,7 @@ exports.pwResetLink = function (req, res) {
       req.flash('error', 'Link is not valid or expired')
       res.redirect('/pwreset')
     } else{
-      res.render('users/resetlink', {
+      res.render('auth/resetlink', {
         title: 'Set New Password',
         token: token
       });

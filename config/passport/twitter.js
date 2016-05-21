@@ -6,7 +6,7 @@
 
 const mongoose = require('mongoose');
 const TwitterStrategy = require('passport-twitter').Strategy;
-const config = require('../config');
+const config = require('../../config');
 const User = mongoose.model('User');
 
 /**
@@ -16,7 +16,8 @@ const User = mongoose.model('User');
 module.exports = new TwitterStrategy({
     consumerKey: config.twitter.clientID,
     consumerSecret: config.twitter.clientSecret,
-    callbackURL: config.twitter.callbackURL
+    callbackURL: config.twitter.callbackURL,
+    includeEmail: true
   },
   function (accessToken, refreshToken, profile, done) {
     const options = {

@@ -22,6 +22,11 @@ module.exports = function (app, passport) {
   /**
    * Error handling
    */
+ // user routes
+  app.get('/login', users.login);
+  app.get('/signup', users.signup);
+  app.get('/logout', users.logout);
+  app.post('/users', users.create);
   app.post('/users/session',
    passport.authenticate('local', {
      failureRedirect: '/login',
