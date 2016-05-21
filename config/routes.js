@@ -5,6 +5,7 @@
  */
 
 const pages = require('../app/controllers/pages');
+const users = require('../app/users');
 
 /**
  * Expose
@@ -21,6 +22,21 @@ module.exports = function (app, passport) {
   /**
    * Error handling
    */
+  app.post('/users/session',
+   passport.authenticate('local', {
+     failureRedirect: '/login',
+     failureFlash: 'Invalid email or password.'
+   }), users.session);
+
+   app.get('/auth/twitter',
+     passport.authenticate('twitter', {
+       failureRedirect: '/login'
+     }), users.signin);
+
+   app.get('/auth/twitter/callback',
+     passport.authenticate('twitter', {
+       failureRedirect: '/login'
+     }), users.authCallback);
 
   app.use(function (err, req, res, next) {
     // treat as 404
