@@ -117,11 +117,14 @@ body {
   body .glyphicon.glyphicon-search {
     font-size: 20px; }
   body .resultNodeCard {
-    margin-top: 50px; }
+    margin-top: 50px;
+    background-color: beige;
+    height: 100px;
+    padding-top: 20px;
+    color: #555;
+    font-family: "Helvetica Neue", "Lucida Grande", "Arial"; }
     body .resultNodeCard .resultFont {
-      font-size: 18px;
-      color: #555;
-      font-family: "Helvetica Neue", "Lucida Grande", "Arial"; }
+      font-size: 18px; }
   body .resultsSection {
     margin-top: 50px; }
     body .resultsSection .connectionCard {

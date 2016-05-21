@@ -147,10 +147,16 @@ body {
 
   .resultNodeCard {
     margin-top: 50px;
+    background-color: beige;
+    height: 100px;
+    padding-top: 20px;
+    color: #555;
+    font-family: "Helvetica Neue", "Lucida Grande", "Arial";
     .resultFont {
       font-size: 18px;
-      color: #555;
-      font-family: "Helvetica Neue", "Lucida Grande", "Arial";
+    }
+    .resultInfo {
+
     }
   }
 
@@ -165,7 +171,6 @@ body {
       padding-left: 15px;
       padding-top: 10px;
     }
-
     .connectionCard:hover{
       background-color: #ECE9E9;
     }
