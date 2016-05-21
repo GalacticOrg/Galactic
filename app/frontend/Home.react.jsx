@@ -12,7 +12,6 @@ class Home extends React.Component {
     return (<div>
       <Navbar />
       <h1>Home</h1>
-      <LoginSignupModal />
       <a href="connect">/Connect</a>
       <br/>
       <a href="result">/Result</a>

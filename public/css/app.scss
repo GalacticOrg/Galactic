@@ -1,5 +1,15 @@
 body {
   margin-top: 50px;
+  .top-twenty {
+    margin-top: 20px;
+  }
+  .marginAuto {
+    margin: auto;
+    display: block;
+  }
+  .displayBlock {
+    display: block;
+  }
   .navbar {
     .connect-icon-box {
       margin-right: 10px;
@@ -16,7 +26,35 @@ body {
       height: auto;
     }
   }
+  .loginModalHeader{
+    background-color: #f0f0f0;
+  }
+  .modalHeaderIcon {
+    display: block;
+    margin: auto;
+    max-width: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .explanatoryModalText{
+    font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+    font-size: 16px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    color: rgba(0,0,0,.6);
+  }
   .twitterModalLogo {
     width: 100px;
+  }
+  .loginModalFooter {
+    margin: auto;
+  }
+  .permissionsText {
+    font-size: 10px;
+    text-align: left;
+    margin: auto;
+    color: #b3b3b1;
+    font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+    font-size: 14px;
   }
 }

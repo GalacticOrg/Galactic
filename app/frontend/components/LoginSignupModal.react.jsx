@@ -25,24 +25,28 @@ export default class LoginSignupModal extends React.Component {
   constructModal() {
     return (
       <Modal show={this.state.showModal} onHide={this.close}>
-        <Modal.Header closeButton>
-          <Modal.Title>Sign up / Sign in</Modal.Title>
+        <Modal.Header closeButton className="loginModalHeader">
+          <img className="modalHeaderIcon" src="/img/galactic-logo-full.png" />
         </Modal.Header>
         <Modal.Body>
-          <img className="twitterModalLogo" src="/img/twitter_520x520.png" />
-          <button
-            className="btn btn-primary"
-            onClick={this.open}
-          >
-            Login With Twitter
-          </button>
+          <div>
+            <p className="explanatoryModalText">Sign in to Galactic to connect ideas together and to access a new way of exploring the Internet.</p>
+          </div>
+          <div>
+            <img className="twitterModalLogo marginAuto" src="/img/twitter_520x520.png" />
+          </div>
+          <div>
+            <button
+              className="btn btn-primary marginAuto"
+              onClick={this.open}
+            >
+              Login With Twitter
+            </button>
+          </div>
         </Modal.Body>
-        <Modal.Footer>
-          <button
-            onClick={this.close}
-            className="btn btn-primary">
-            Close
-          </button>
+        <Modal.Footer className="top-twenty">
+          <p className="permissionsText">By signing up with Twitter, we’ll start you off with a network by automatically importing any followers/followees or friends already on Galactic. Also, we’ll never post to Twitter without your permission.
+          </p>
         </Modal.Footer>
       </Modal>
     )
@@ -51,15 +55,10 @@ export default class LoginSignupModal extends React.Component {
   render() {
 
     return (
-      <div>
+      <span>
         {this.constructModal()}
-        <button
-          className="btn btn-primary"
-          onClick={this.open}
-        >
-          Launch Login Modal
-        </button>
-      </div>
+        <button type="button" onClick={this.open} className="btn btn-default navbar-btn user-icon-box"><img className="user-icon" src="/img/most-beautiful-example-user.jpeg" /></button>
+      </span>
     );
   }
 };

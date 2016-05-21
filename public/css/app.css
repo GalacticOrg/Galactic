@@ -1,5 +1,12 @@
 body {
   margin-top: 50px; }
+  body .top-twenty {
+    margin-top: 20px; }
+  body .marginAuto {
+    margin: auto;
+    display: block; }
+  body .displayBlock {
+    display: block; }
   body .navbar .connect-icon-box {
     margin-right: 10px; }
   body .navbar .connect-icon {
@@ -10,7 +17,30 @@ body {
   body .navbar .user-icon {
     width: 20px;
     height: auto; }
+  body .loginModalHeader {
+    background-color: #f0f0f0; }
+  body .modalHeaderIcon {
+    display: block;
+    margin: auto;
+    max-width: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px; }
+  body .explanatoryModalText {
+    font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+    font-size: 16px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    color: rgba(0, 0, 0, 0.6); }
   body .twitterModalLogo {
     width: 100px; }
+  body .loginModalFooter {
+    margin: auto; }
+  body .permissionsText {
+    font-size: 10px;
+    text-align: left;
+    margin: auto;
+    color: #b3b3b1;
+    font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+    font-size: 14px; }
 
 /*# sourceMappingURL=app.css.map */
