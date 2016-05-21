@@ -10,6 +10,10 @@ body {
   .displayBlock {
     display: block;
   }
+
+  /**************************/
+  /** NAVBAR SECTION **/
+  /**************************/
   .navbar {
     .connect-icon-box {
       margin-right: 10px;
@@ -26,6 +30,13 @@ body {
       height: auto;
     }
   }
+  /**************************/
+  /** END NAVBAR SECTION **/
+  /**************************/
+
+  /**************************/
+  /** LOGIN MODAL SECTION **/
+  /**************************/
   .loginModalHeader {
     background-color: #f0f0f0;
   }
@@ -83,4 +94,51 @@ body {
     font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
     font-size: 14px;
   }
+  /**************************/
+  /** END LOGIN MODAL SECTION **/
+  /**************************/
+
+  /**************************/
+  /** HOMEPAGE SECTION **/
+  /**************************/
+  .homepageBannerIcon {
+    display: block;
+    margin: auto;
+    margin-top: 150px;
+    max-width: 350px;
+  }
+  .homepageUrlSearchForm {
+    display: block;
+    margin: auto;
+    margin-top: 75px;
+    max-width: 700px;
+  }
+  .homepageUrlSearchInputGroup {
+    margin: auto;
+    width: 600px;
+    max-width: 700px;
+    border-right: none;
+  }
+  .homepageUrlSearchBox {
+    width: 640px;
+    height: 43px;
+    border-right: none;
+  }
+  .homepageUrlSearchIconBox {
+    height: 43px;
+    width: 52px;
+    background-color: white;
+    border-left: none;
+  }
+  .homepageUrlSearchIconBox:hover{
+    background-color: #66AD57;
+  }
+  .glyphicon.glyphicon-search {
+    font-size: 20px;
+  }
+
+  /**************************/
+  /** END HOMEPAGE SECTION **/
+  /**************************/
+
 }

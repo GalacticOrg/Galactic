@@ -1,5 +1,23 @@
 body {
-  margin-top: 50px; }
+  margin-top: 50px;
+  /**************************/
+  /** NAVBAR SECTION **/
+  /**************************/
+  /**************************/
+  /** END NAVBAR SECTION **/
+  /**************************/
+  /**************************/
+  /** LOGIN MODAL SECTION **/
+  /**************************/
+  /**************************/
+  /** END LOGIN MODAL SECTION **/
+  /**************************/
+  /**************************/
+  /** HOMEPAGE SECTION **/
+  /**************************/
+  /**************************/
+  /** END HOMEPAGE SECTION **/
+  /**************************/ }
   body .top-twenty {
     margin-top: 20px; }
   body .marginAuto {
@@ -64,5 +82,33 @@ body {
     color: #b3b3b1;
     font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
     font-size: 14px; }
+  body .homepageBannerIcon {
+    display: block;
+    margin: auto;
+    margin-top: 150px;
+    max-width: 350px; }
+  body .homepageUrlSearchForm {
+    display: block;
+    margin: auto;
+    margin-top: 75px;
+    max-width: 700px; }
+  body .homepageUrlSearchInputGroup {
+    margin: auto;
+    width: 600px;
+    max-width: 700px;
+    border-right: none; }
+  body .homepageUrlSearchBox {
+    width: 640px;
+    height: 43px;
+    border-right: none; }
+  body .homepageUrlSearchIconBox {
+    height: 43px;
+    width: 52px;
+    background-color: white;
+    border-left: none; }
+  body .homepageUrlSearchIconBox:hover {
+    background-color: #66AD57; }
+  body .glyphicon.glyphicon-search {
+    font-size: 20px; }
 
 /*# sourceMappingURL=app.css.map */

@@ -15,7 +15,6 @@ export default class Navbar extends React.Component {
         </div>
         <div className="navbar-header pull-right">
           <a href="connect"><button type="button" className="btn btn-default navbar-btn connect-icon-box"><img className="connect-icon" src="/img/galactic-icon-logo.png" /></button></a>
-          <a href="logout"><button type="button" className="btn btn-default navbar-btn connect-icon-box">Logout</button></a>
           <LoginSignupModal />
         </div>
       </div>
