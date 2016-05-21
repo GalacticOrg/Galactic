@@ -3,7 +3,7 @@
 */
 import ReactDOM from "react-dom";
 import React from "react";
-import Navbar from "./components/Navbar.react.jsx"
+import Navbar from "./components/Navbar.react"
 import { Grid, Row, Col, InputGroup, Glyphicon } from "react-bootstrap"
 
 class Result extends React.Component {
