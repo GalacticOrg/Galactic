@@ -5,7 +5,7 @@
  */
 
 const pages = require('../app/controllers/pages');
-const users = require('../app/users');
+const users = require('../app/controllers/users');
 
 /**
  * Expose
