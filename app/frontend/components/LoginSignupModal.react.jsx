@@ -30,17 +30,13 @@ export default class LoginSignupModal extends React.Component {
         </Modal.Header>
         <Modal.Body>
           <div>
-            <p className="explanatoryModalText">Sign in to Galactic to connect ideas together and to access a new way of exploring the Internet.</p>
-          </div>
-          <div>
-            <img className="twitterModalLogo marginAuto" src="/img/twitter_520x520.png" />
+            <p className="explanatoryModalText">Sign in to Galactic to connect ideas together and access a new way of exploring the Internet.</p>
           </div>
           <div>
             <button
-              className="btn btn-primary marginAuto"
+              className="loginButtonTwitter"
               onClick={this.open}
-            >
-              Login With Twitter
+            ><img className="loginButtonTwitterIcon" src="/img/TwitterLogo_white.png" /><span className="loginButtonText">Continue with Twitter</span>
             </button>
           </div>
         </Modal.Body>

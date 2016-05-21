@@ -31,8 +31,29 @@ body {
     margin-top: 12px;
     margin-bottom: 12px;
     color: rgba(0, 0, 0, 0.6); }
-  body .twitterModalLogo {
-    width: 100px; }
+  body .loginButtonTwitter {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+    background-color: #55acee;
+    width: 100%;
+    text-align: left; }
+  body .loginButtonTwitter:hover {
+    background-color: #006DAA; }
+  body .loginButtonTwitter:active {
+    outline: none;
+    border: none; }
+  body .loginButtonTwitterIcon {
+    font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+    font-size: 20px;
+    width: 32px;
+    margin-left: 14px; }
+  body .loginButtonText {
+    margin-left: 14px;
+    font-size: 14px;
+    color: white; }
   body .loginModalFooter {
     margin: auto; }
   body .permissionsText {
