@@ -26,19 +26,16 @@ export default class LoginSignupModal extends React.Component {
     return (
       <Modal show={this.state.showModal} onHide={this.close}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Sign up / Sign in</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <img className="twitterModalLogo" src="/img/twitter_520x520.png" />
           <button
             className="btn btn-primary"
             onClick={this.open}
           >
             Login With Twitter
           </button>
-
-
-
-
         </Modal.Body>
         <Modal.Footer>
           <button

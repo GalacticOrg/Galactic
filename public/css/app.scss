@@ -1,4 +1,5 @@
 body {
+  margin-top: 50px;
   .navbar {
     .connect-icon-box {
       margin-right: 10px;
@@ -14,5 +15,8 @@ body {
       width: 20px;
       height: auto;
     }
+  }
+  .twitterModalLogo {
+    width: 100px;
   }
 }
