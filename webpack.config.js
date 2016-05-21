@@ -6,28 +6,28 @@ module.exports = {
       "home.js": env==='development'?[
           'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
           'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-          './app/frontend/Home.react.jsx' // Your appʼs entry point
-      ]:'./app/frontend/Home.react.jsx',
+          './app/frontend/Home.react' // Your appʼs entry point
+      ]:'./app/frontend/Home.react.js',
       "connect.js": env==='development'?[
           'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
           'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-          './app/frontend/Connect.react.jsx' // Your appʼs entry point
-      ]:'./app/frontend/Connect.react.jsx',
-      "result.js": env==='development'?[
+          './app/frontend/Connect.react' // Your appʼs entry point
+      ]:'./app/frontend/Connect.react',
+      "result": env==='development'?[
           'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
           'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-          './app/frontend/Result.react.jsx' // Your appʼs entry point
-      ]:'./app/frontend/Result.react.jsx',
-      "user.js": env==='development'?[
+          './app/frontend/Result.react' // Your appʼs entry point
+      ]:'./app/frontend/Result.react',
+      "user": env==='development'?[
           'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
           'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-          './app/frontend/User.react.jsx' // Your appʼs entry point
-      ]:'./app/frontend/User.react.jsx',
-      "firehose.js": env==='development'?[
+          './app/frontend/User.react' // Your appʼs entry point
+      ]:'./app/frontend/User.react',
+      "firehose": env==='development'?[
           'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
           'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-          './app/frontend/Firehose.react.jsx' // Your appʼs entry point
-      ]:'./app/frontend/Firehose.react.jsx',
+          './app/frontend/Firehose.react' // Your appʼs entry point
+      ]:'./app/frontend/Firehose.react',
     },
     output: {
         filename: '[name]',
