@@ -3,7 +3,7 @@
 */
 import ReactDOM from "react-dom";
 import React from "react";
-import Navbar from "./components/Navbar.react.jsx"
+import Navbar from "./components/Navbar.react"
 
 class User extends React.Component {
   render() {

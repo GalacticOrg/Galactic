@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Navbar from "../components/Navbar.react.jsx"
-import LoginSignupModal from "../components/LoginSignupModal.react.jsx"
+import Navbar from "../components/Navbar.react"
+import LoginSignupModal from "../components/LoginSignupModal.react"
 import { FormGroup, FormControl, Button, InputGroup, Glyphicon } from "react-bootstrap"
 
 class Home extends Component {

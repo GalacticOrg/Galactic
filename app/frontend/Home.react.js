@@ -4,12 +4,16 @@
 
 import ReactDOM from "react-dom";
 import React from "react";
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import homeApp from './reducers'
 import Home from './containers/Home.react'
 
-let store = createStore(homeApp)
+import thunkMiddleware from 'redux-thunk'
+let store = createStore(
+  homeApp,
+  applyMiddleware(thunkMiddleware, createLogger())
+)
 
 ReactDOM.render(
   (<Provider store={store}>
