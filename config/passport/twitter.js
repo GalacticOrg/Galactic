@@ -21,7 +21,7 @@ module.exports = new TwitterStrategy({
   },
   function (accessToken, refreshToken, profile, done) {
     const options = {
-      criteria: { 'twitter.id': profile.id }
+      criteria: { "twitter_id": profile.id }
     };
     User.load(options, function (err, user) {
       if (err) return done(err);
@@ -30,6 +30,7 @@ module.exports = new TwitterStrategy({
           name: profile.displayName,
           username: profile.username,
           provider: 'twitter',
+          twitter_id: profile.id,
           twitter: profile._json
         });
         user.save(function (err) {

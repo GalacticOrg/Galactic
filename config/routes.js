@@ -7,6 +7,8 @@
 const pages = require('../app/controllers/pages');
 const users = require('../app/controllers/users');
 
+const auth = require('./middlewares/authorization');
+
 /**
  * Expose
  */

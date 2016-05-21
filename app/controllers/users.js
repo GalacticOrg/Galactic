@@ -49,6 +49,11 @@ exports.authCallback = login;
  */
 
 exports.login = function (req, res) {
+
+  if (req.isAuthenticated()){
+    return res.redirect('/')
+  }
+
   res.render('auth/login', {
     title: 'Login'
   });
