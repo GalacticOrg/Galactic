@@ -36,7 +36,7 @@ module.exports = {
     },
     module: {
         loaders: [
-           { test: /\.jsx$/, exclude: /node_modules/, loader: "babel-loader"}
+           { test: [/\.jsx$/, /\.js$/], exclude: /node_modules/, loader: "babel-loader"}
         ]
     },
     devtool: env==='development'?'source-map':null,
