@@ -17,6 +17,12 @@ body {
   /**************************/
   /**************************/
   /** END HOMEPAGE SECTION **/
+  /**************************/
+  /**************************/
+  /** RESULT PAGE SECTION **/
+  /**************************/
+  /**************************/
+  /** END RESULT PAGE SECTION **/
   /**************************/ }
   body .top-twenty {
     margin-top: 20px; }
@@ -110,5 +116,23 @@ body {
     background-color: #66AD57; }
   body .glyphicon.glyphicon-search {
     font-size: 20px; }
+  body .resultNodeCard {
+    margin-top: 50px; }
+    body .resultNodeCard .resultFont {
+      font-size: 18px;
+      color: #555;
+      font-family: "Helvetica Neue", "Lucida Grande", "Arial"; }
+  body .resultsSection {
+    margin-top: 50px; }
+    body .resultsSection .connectionCard {
+      margin-bottom: 10px;
+      height: 36px;
+      color: #555;
+      font-size: 13px;
+      font-family: "Helvetica Neue", "Lucida Grande", "Arial";
+      padding-left: 15px;
+      padding-top: 10px; }
+    body .resultsSection .connectionCard:hover {
+      background-color: #ECE9E9; }
 
 /*# sourceMappingURL=app.css.map */

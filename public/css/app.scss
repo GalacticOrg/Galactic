@@ -141,4 +141,39 @@ body {
   /** END HOMEPAGE SECTION **/
   /**************************/
 
+  /**************************/
+  /** RESULT PAGE SECTION **/
+  /**************************/
+
+  .resultNodeCard {
+    margin-top: 50px;
+    .resultFont {
+      font-size: 18px;
+      color: #555;
+      font-family: "Helvetica Neue", "Lucida Grande", "Arial";
+    }
+  }
+
+  .resultsSection {
+    margin-top: 50px;
+    .connectionCard {
+      margin-bottom: 10px;
+      height: 36px;
+      color: #555;
+      font-size: 13px;
+      font-family: "Helvetica Neue", "Lucida Grande", "Arial";
+      padding-left: 15px;
+      padding-top: 10px;
+    }
+
+    .connectionCard:hover{
+      background-color: #ECE9E9;
+    }
+  }
+
+
+  /**************************/
+  /** END RESULT PAGE SECTION **/
+  /**************************/
+
 }
