@@ -4,7 +4,7 @@
 
 import React from "react";
 
-import LoginSignupModal from "./LoginSignupModal.react.jsx"
+import LoginSignupModal from "./LoginSignupModal.react"
 
 export default class Navbar extends React.Component {
   render() {
