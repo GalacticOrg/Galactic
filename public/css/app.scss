@@ -52,6 +52,9 @@ body {
     background-color: #55acee;
     width: 100%;
     text-align: left;
+    padding-left: 24px;
+    color: white;
+    height: 6rem;
   }
   .loginButtonTwitter:hover {
     background-color: #006DAA;
@@ -67,9 +70,7 @@ body {
     margin-left: 14px;
   }
   .loginButtonText{
-    margin-left: 14px;
     font-size: 14px;
-    color: white;
   }
   .loginModalFooter {
     margin: auto;

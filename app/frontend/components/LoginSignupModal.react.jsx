@@ -9,7 +9,7 @@ export default class LoginSignupModal extends React.Component {
 
   constructor(props) {
      super(props);
-     this.state = {count: props.initialCount};
+     this.state = {showModal: false};
      this.close = this.close.bind(this);
      this.open = this.open.bind(this);
    }
@@ -33,11 +33,17 @@ export default class LoginSignupModal extends React.Component {
             <p className="explanatoryModalText">Sign in to Galactic to connect ideas together and access a new way of exploring the Internet.</p>
           </div>
           <div>
-            <button
-              className="loginButtonTwitter"
-              onClick={this.open}
-            ><img className="loginButtonTwitterIcon" src="/img/TwitterLogo_white.png" /><span className="loginButtonText">Continue with Twitter</span>
-            </button>
+            <form action="/auth/twitter" method="GET">
+              <button
+                className="loginButtonTwitter"
+                type="submit"
+              >
+                <i style={{fontSize:"3rem", marginRight:"20px", verticalAlign: "-5px"}} className="fa fa-twitter" aria-hidden="true"></i>
+                <span className="loginButtonText">
+                  Continue with Twitter
+                </span>
+              </button>
+          </form>
           </div>
         </Modal.Body>
         <Modal.Footer className="top-twenty">

@@ -39,7 +39,10 @@ body {
     border: none;
     background-color: #55acee;
     width: 100%;
-    text-align: left; }
+    text-align: left;
+    padding-left: 24px;
+    color: white;
+    height: 6rem; }
   body .loginButtonTwitter:hover {
     background-color: #006DAA; }
   body .loginButtonTwitter:active {
@@ -51,9 +54,7 @@ body {
     width: 32px;
     margin-left: 14px; }
   body .loginButtonText {
-    margin-left: 14px;
-    font-size: 14px;
-    color: white; }
+    font-size: 14px; }
   body .loginModalFooter {
     margin: auto; }
   body .permissionsText {
