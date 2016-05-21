@@ -4,10 +4,14 @@
 
 import ReactDOM from "react-dom";
 import React from "react";
+import Navbar from "./components/Navbar.react.jsx"
 
-export default class Connect extends React.Component {
+class Connect extends React.Component {
   render() {
-    return (<div>Connect</div>);
+    return (<div>
+      <Navbar />
+      Connect
+    </div>);
   }
 }
 
