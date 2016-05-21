@@ -17,7 +17,7 @@ class Firehose extends React.Component {
       <br/>
       <a href="user">/User</a>
       <br/>
-      <a href="user">/Firehose</a>
+      <a href="firehose">/Firehose</a>
     </div>);
   }
 }

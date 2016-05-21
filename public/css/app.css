@@ -1,3 +1,12 @@
-
+body .navbar .connect-icon-box {
+  margin-right: 10px; }
+body .navbar .connect-icon {
+  width: 20px;
+  height: auto; }
+body .navbar .user-icon-box {
+  margin-right: 20px; }
+body .navbar .user-icon {
+  width: 20px;
+  height: auto; }
 
 /*# sourceMappingURL=app.css.map */
