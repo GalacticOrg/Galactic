@@ -5,12 +5,14 @@
 import ReactDOM from "react-dom";
 import React from "react";
 import Navbar from "./components/Navbar.react.jsx"
+import LoginSignupModal from "./components/LoginSignupModal.react.jsx"
 
 class Home extends React.Component {
   render() {
     return (<div>
       <Navbar />
       <h1>Home</h1>
+      <LoginSignupModal />
       <a href="connect">/Connect</a>
       <br/>
       <a href="result">/Result</a>
