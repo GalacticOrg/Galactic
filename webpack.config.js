@@ -13,12 +13,12 @@ module.exports = {
           'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
           './app/frontend/Connect.react' // Your appʼs entry point
       ]:'./app/frontend/Connect.react',
-      "result": env==='development'?[
+      "result.js": env==='development'?[
           'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
           'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
           './app/frontend/Result.react' // Your appʼs entry point
       ]:'./app/frontend/Result.react',
-      "user": env==='development'?[
+      "user.js": env==='development'?[
           'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
           'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
           './app/frontend/User.react' // Your appʼs entry point

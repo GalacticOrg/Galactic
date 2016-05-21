@@ -12,7 +12,7 @@ import Home from './containers/Home.react'
 import thunkMiddleware from 'redux-thunk'
 let store = createStore(
   homeApp,
-  applyMiddleware(thunkMiddleware, createLogger())
+  applyMiddleware(thunkMiddleware)
 )
 
 ReactDOM.render(
