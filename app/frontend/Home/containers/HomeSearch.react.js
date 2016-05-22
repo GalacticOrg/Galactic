@@ -35,7 +35,7 @@ class Home extends Component {
   }
 
   render() {
-    const { title, id, dispatch } = this.props
+    const { id, dispatch } = this.props
     const { searchInput } = this.state
 
     return (<div>
@@ -53,6 +53,7 @@ class Home extends Component {
               </a>
               </span>
           </div>
+          {id}
         </div>
       </div>
     </div>);
