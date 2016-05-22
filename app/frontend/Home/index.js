@@ -7,6 +7,7 @@ import React from "react";
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import homeApp from './reducers'
+
 import Home from './containers/HomeSearch.react'
 
 import thunkMiddleware from 'redux-thunk'

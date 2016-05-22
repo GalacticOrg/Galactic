@@ -24,7 +24,7 @@ function receiveErr(err) {
   }
 }
 
-export function postSearch(q) {
+export function getSearch(q) {
   return dispatch => {
     dispatch(requestSearchResult(q))
     return Get(
@@ -35,9 +35,3 @@ export function postSearch(q) {
     )
   }
 }
-
-// if (err || !res.ok) {
-//   alert('Oh no! error');
-// } else {
-//   alert('yay got ' + JSON.stringify(res.body));
-// }

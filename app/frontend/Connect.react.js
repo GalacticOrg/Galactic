@@ -9,7 +9,7 @@ import Navbar from "./components/Navbar.react"
 class Connect extends React.Component {
   render() {
     return (<div>
-      <Navbar />
+
       <div style={{backgroundColor: '#f0f0f0', paddingBottom: '20px'}}>
         <div className="container">
           <div className="row pageTitle" >
