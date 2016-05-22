@@ -1,4 +1,4 @@
-import { Get } from "./Api"
+import { Get } from "../../lib/Api"
 export const POST_URL_SEARCH = 'POST_URL_SEARCH'
 export const RECEIVE_URL_SEARCH = 'RECEIVE_URL_SEARCH'
 export const RECEIVE_URL_ERROR = 'RECEIVE_URL_ERROR'
@@ -23,8 +23,6 @@ function receiveErr(err) {
     err
   }
 }
-
-
 
 export function postSearch(q) {
   return dispatch => {
