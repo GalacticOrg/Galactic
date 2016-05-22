@@ -1,8 +1,7 @@
 /**
+ * app/frontend/Home/index.js
  * Copyright (c) 2016, Galactic
 */
-// Connect Index File
-
 
 import ReactDOM from "react-dom";
 import React from "react";

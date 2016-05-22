@@ -1,4 +1,9 @@
-import { RECEIVE_USER_DATA } from './userActions'
+/**
+ * app/frontend/components/users/reducers/index.js
+ * Copyright (c) 2016, Galactic
+*/
+
+import { RECEIVE_USER_DATA } from '../actions'
 const userResult = (state = {loading: true}, action) => {
   switch (action.type) {
     case RECEIVE_USER_DATA:

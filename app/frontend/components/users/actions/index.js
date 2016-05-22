@@ -1,4 +1,9 @@
-import { Get } from "../lib/Api"
+/**
+ * app/frontend/components/users/actions/index.js
+ * Copyright (c) 2016, Galactic
+*/
+
+import { Get } from "../../../lib/Api"
 export const GET_USER_DATA = 'GET_USER_DATA'
 export const RECEIVE_USER_DATA = 'RECEIVE_USER_DATA'
 export const RECEIVE_USER_ERROR = 'RECEIVE_USER_ERROR'

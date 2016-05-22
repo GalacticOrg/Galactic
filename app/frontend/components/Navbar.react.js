@@ -4,7 +4,7 @@
 
 import React from "react";
 import LoginSignupModal from "./LoginSignupModal.react"
-import { getProfile } from '../lib/userActions'
+import { getProfile } from './users/actions'
 import { connect } from 'react-redux'
 
 class Navbar extends React.Component {
