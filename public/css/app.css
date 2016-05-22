@@ -127,7 +127,6 @@ body {
     body .resultNodeCard .resultNodeHyperlinkText {
       font-size: 12px; }
     body .resultNodeCard .resultNodeAddConnectionBox {
-      border: none;
       margin-bottom: 8px; }
     body .resultNodeCard .resultNodeAddConnectionBox:hover {
       background-color: orange; }
