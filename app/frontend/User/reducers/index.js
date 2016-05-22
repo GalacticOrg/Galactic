@@ -6,8 +6,8 @@
 import { combineReducers } from 'redux';
 import userResult from '../../components/users/reducers'
 
-const connectApp = combineReducers({
+const userApp = combineReducers({
   userResult
 })
 
-export default connectApp
+export default userApp

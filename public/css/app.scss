@@ -14,7 +14,7 @@ body {
   .pageTitle {
     font-family: "Open Sans","Helvetica Neue",sans-serif;
     font-size: 18px;
-    margin-top: 30px;
+    margin-top: 20px;
   }
   /**************************/
   /** NAVBAR SECTION **/
@@ -233,5 +233,15 @@ body {
   }
   /**************************/
   /** END CONNECT PAGE SECTION **/
+  /**************************/
+
+  /**************************/
+  /** USER PAGE SECTION **/
+  /**************************/
+  .connectionLiElement {
+    margin-bottom: 5px;
+  }
+  /**************************/
+  /** END USER PAGE SECTION **/
   /**************************/
 }

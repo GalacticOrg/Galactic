@@ -2,12 +2,12 @@
  * Copyright (c) 2016, Galactic
 */
 
-import React from "react";
+import React, { Component } from 'react'
 import LoginSignupModal from "./LoginSignupModal.react"
 import { getProfile } from './users/actions'
 import { connect } from 'react-redux'
 
-class Navbar extends React.Component {
+class Navbar extends Component {
 
   componentWillMount() {
     const { dispatch } = this.props;
@@ -38,7 +38,6 @@ class Navbar extends React.Component {
                 <img className="user-icon"
                   src={user.twitter.profile_image_url_https} />
               </a>
-
             )}
         </div>
       </div>
