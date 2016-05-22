@@ -1,4 +1,5 @@
 body {
+  font-family: "Open Sans","Helvetica Neue",sans-serif;
   margin-top: 50px;
   .top-twenty {
     margin-top: 20px;
@@ -10,7 +11,11 @@ body {
   .displayBlock {
     display: block;
   }
-
+  .pageTitle {
+    font-family: "Open Sans","Helvetica Neue",sans-serif;
+    font-size: 18px;
+    margin-top: 30px;
+  }
   /**************************/
   /** NAVBAR SECTION **/
   /**************************/
@@ -216,9 +221,18 @@ body {
     }
   }
 
-
   /**************************/
   /** END RESULT PAGE SECTION **/
   /**************************/
 
+  /**************************/
+  /** CONNECT PAGE SECTION **/
+  /**************************/
+  .connectFirstNode {
+    margin-top: 50px;
+    height: 150px;
+  }
+  /**************************/
+  /** END CONNECT PAGE SECTION **/
+  /**************************/
 }

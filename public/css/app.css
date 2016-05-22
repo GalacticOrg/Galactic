@@ -1,4 +1,5 @@
 body {
+  font-family: "Open Sans","Helvetica Neue",sans-serif;
   margin-top: 50px;
   /**************************/
   /** NAVBAR SECTION **/
@@ -23,6 +24,12 @@ body {
   /**************************/
   /**************************/
   /** END RESULT PAGE SECTION **/
+  /**************************/
+  /**************************/
+  /** CONNECT PAGE SECTION **/
+  /**************************/
+  /**************************/
+  /** END CONNECT PAGE SECTION **/
   /**************************/ }
   body .top-twenty {
     margin-top: 20px; }
@@ -31,6 +38,10 @@ body {
     display: block; }
   body .displayBlock {
     display: block; }
+  body .pageTitle {
+    font-family: "Open Sans","Helvetica Neue",sans-serif;
+    font-size: 18px;
+    margin-top: 30px; }
   body .navbar .connect-icon-box {
     margin-right: 10px; }
   body .navbar .connect-icon {
@@ -163,5 +174,8 @@ body {
       margin-left: 8px; }
   body .resultsSection .connectionCard:hover .connectionCardInfo {
     display: block; }
+  body .connectFirstNode {
+    margin-top: 50px;
+    height: 150px; }
 
 /*# sourceMappingURL=app.css.map */

@@ -49,7 +49,7 @@ class Home extends Component {
           <div className="homepageUrlFormGroup form-group">
             <span className="homepageUrlSearchInputGroup input-group">
               <input onChange={this._onChange} onKeyDown={this._onKeyDown} value={searchInput} type="search" className="homepageUrlSearchBox form-control" />
-              <a onClick={this._onSubmit} href="javascript:void(0)" className=" homepageUrlSearchIconBox input-group-addon">
+              <a onClick={this._onSubmit} href="/result" className=" homepageUrlSearchIconBox input-group-addon">
                 <i className="fa fa-search" />
               </a>
               </span>
