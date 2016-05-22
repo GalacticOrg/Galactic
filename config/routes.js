@@ -6,7 +6,7 @@
 
 const pages = require('../app/controllers/pages');
 const users = require('../app/controllers/users');
-const nodeCrud = require('../app/crudApi/nodeCrud');
+const entityCrud = require('../app/crudApi/entityCrud');
 const searchUrlCrud = require('../app/crudApi/searchUrlCrud');
 const userCrud = require('../app/crudApi/userCrud');
 
@@ -21,8 +21,8 @@ const auth = require('./middlewares/authorization');
 module.exports = function (app, passport) {
 
   // API Node
-  app.param('id', nodeCrud.load);
-  app.get('/api/node/:id', nodeCrud.getNodeController)
+  app.param('id', entityCrud.load);
+  app.get('/api/entity/:id', entityCrud.getEntityController)
 
   // API User
   const userPath = '/api/users'
@@ -31,7 +31,7 @@ module.exports = function (app, passport) {
 
   app.get('/', pages.home);
   app.get('/user', pages.user);
-  app.get('/result', pages.result);
+  app.get('/node', pages.result);
   app.get('/connect', pages.connect);
   app.get('/firehose', pages.firehose);
 

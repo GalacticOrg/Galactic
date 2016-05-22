@@ -14,7 +14,19 @@ exports.load = function (req, res, next, id){
   // });
 };
 
-exports.getNodeController = function (req, res) {
+exports.getEntityController = function (req, res) {
+  //var node = req.node
+
+  res.send({id: 123, title: 'I rulz'});
+
+  // if (!article) {
+  //   res.status(404).send(utils.errsForApi('Article not found!!'));
+  // } else if (article) {
+  //   res.send(article);
+  // }
+};
+
+exports.createEntityController = function (req, res) {
   //var node = req.node
 
   res.send({id: 123, title: 'I rulz'});
