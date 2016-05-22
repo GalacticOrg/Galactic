@@ -9,7 +9,7 @@ import Navbar from "./components/Navbar.react"
 class Firehose extends React.Component {
   render() {
     return (<div>
-      <Navbar />
+
       <h1>Firehose</h1>
       <a href="connect">/Connect</a>
       <br/>

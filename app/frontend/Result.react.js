@@ -9,7 +9,6 @@ import { Grid, Row, Col, InputGroup, Glyphicon } from "react-bootstrap"
 class Result extends React.Component {
   render() {
     return (<div>
-      <Navbar />
 
       <Grid className="resultNodeCard">
         <Row className="show-grid">
