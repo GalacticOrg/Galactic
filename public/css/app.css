@@ -118,24 +118,51 @@ body {
     font-size: 20px; }
   body .resultNodeCard {
     margin-top: 50px;
-    background-color: beige;
-    height: 100px;
+    height: 150px;
     padding-top: 20px;
     color: #555;
     font-family: "Helvetica Neue", "Lucida Grande", "Arial"; }
     body .resultNodeCard .resultFont {
       font-size: 18px; }
-  body .resultsSection {
-    margin-top: 50px; }
-    body .resultsSection .connectionCard {
-      margin-bottom: 10px;
-      height: 36px;
-      color: #555;
-      font-size: 13px;
-      font-family: "Helvetica Neue", "Lucida Grande", "Arial";
-      padding-left: 15px;
-      padding-top: 10px; }
-    body .resultsSection .connectionCard:hover {
-      background-color: #ECE9E9; }
+    body .resultNodeCard .resultNodeHyperlinkText {
+      font-size: 12px; }
+    body .resultNodeCard .resultNodeAddConnectionBox {
+      border: none;
+      margin-bottom: 8px; }
+    body .resultNodeCard .resultNodeAddConnectionBox:hover {
+      background-color: orange; }
+    body .resultNodeCard .resultNodeAddConnectionImg {
+      height: 50px; }
+    body .resultNodeCard .resultNodeAddConnectionImg:hover {
+      background-color: orange; }
+    body .resultNodeCard .connectorIconBox {
+      margin-right: 5px; }
+    body .resultNodeCard .connectorIcon {
+      width: 20px; }
+  body .resultsSection .connectionCard {
+    display: block;
+    margin-bottom: 10px;
+    height: 36px;
+    color: #555;
+    font-size: 13px;
+    font-family: "Helvetica Neue", "Lucida Grande", "Arial";
+    padding-left: 15px;
+    padding-top: 10px; }
+  body .resultsSection a {
+    color: inherit; }
+  body .resultsSection img {
+    margin-top: -5px;
+    width: 15px; }
+  body .resultsSection .connectionCard:hover {
+    background-color: #ECE9E9; }
+  body .resultsSection .connectionCardText {
+    float: left; }
+  body .resultsSection .connectionCardInfo {
+    float: right;
+    display: none; }
+    body .resultsSection .connectionCardInfo .connectionCardInfoElement {
+      margin-left: 8px; }
+  body .resultsSection .connectionCard:hover .connectionCardInfo {
+    display: block; }
 
 /*# sourceMappingURL=app.css.map */

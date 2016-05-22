@@ -147,22 +147,43 @@ body {
 
   .resultNodeCard {
     margin-top: 50px;
-    background-color: beige;
-    height: 100px;
+    height: 150px;
     padding-top: 20px;
     color: #555;
     font-family: "Helvetica Neue", "Lucida Grande", "Arial";
     .resultFont {
       font-size: 18px;
     }
+    .resultNodeHyperlinkText{
+      font-size: 12px;
+    }
     .resultInfo {
+    }
+    .resultNodeAddConnectionBox {
+      border: none;
+      margin-bottom: 8px;
+    }
+    .resultNodeAddConnectionBox:hover {
+      background-color: orange;
+    }
 
+    .resultNodeAddConnectionImg {
+      height: 50px;
+    }
+    .resultNodeAddConnectionImg:hover {
+      background-color: orange;
+    }
+    .connectorIconBox {
+      margin-right: 5px;
+    }
+    .connectorIcon {
+      width: 20px;
     }
   }
 
   .resultsSection {
-    margin-top: 50px;
     .connectionCard {
+      display: block;
       margin-bottom: 10px;
       height: 36px;
       color: #555;
@@ -171,8 +192,28 @@ body {
       padding-left: 15px;
       padding-top: 10px;
     }
+    a { color: inherit; }
+    img {
+      margin-top: -5px;
+      width: 15px;
+    }
     .connectionCard:hover{
       background-color: #ECE9E9;
+    }
+    .connectionCardText {
+      float: left;
+    }
+    .connectionCardInfo {
+      float: right;
+      display: none;
+      .connectionCardInfoElement {
+        margin-left: 8px;
+      }
+    }
+    .connectionCard:hover{
+      .connectionCardInfo{
+        display: block;
+      }
     }
   }
 
