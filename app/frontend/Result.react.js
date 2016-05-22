@@ -21,7 +21,7 @@ class Result extends React.Component {
           <Col className="resultInfo" xs={3} md={3}>
             <div>
               <div>
-               <a href="/connect"><button type="button" className="btn btn-default resultNodeAddConnectionBox"><img className="resultNodeAddConnectionImg" src="/img/galactic-icon-logo.png" /></button></a>
+               <a href="/connect"><button type="button" className="btn btn-default resultNodeAddConnectionBox">Add Connection</button></a>
               </div>
               <div>
                 <span className="connectorIconBox"><img className="connectorIcon" src="/img/most-beautiful-example-user.jpeg" /></span>
