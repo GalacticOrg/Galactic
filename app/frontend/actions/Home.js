@@ -18,7 +18,6 @@ function receiveSearchResult(result) {
 }
 
 function receiveErr(err) {
-  console.log(err, 'error');
   return {
     type: RECEIVE_URL_ERROR,
     err
@@ -31,10 +30,10 @@ export function postSearch(q) {
   return dispatch => {
     dispatch(requestSearchResult(q))
     return Get(
-        '/node',
-        {},
+        '/api/urlsearch',
+        {q},
         (err, res)=>dispatch(receiveErr(err)),
-        (err, res)=>dispatch(receiveSearchResult(q))
+        (err, res)=>dispatch(receiveSearchResult(res.body))
     )
   }
 }
