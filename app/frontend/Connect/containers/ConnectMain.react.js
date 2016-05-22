@@ -1,15 +1,16 @@
 /**
  * Copyright (c) 2016, Galactic
 */
-
+import React, { Component } from 'react'
 import ReactDOM from "react-dom";
-import React from "react";
-import Navbar from "./components/Navbar.react"
+import Navbar from "../../components/Navbar.react"
 
-class Connect extends React.Component {
+export default class Connect extends Component {
   render() {
-    return (<div>
+    const { dispatch } = this.props
 
+    return (<div>
+      <Navbar dispatch={dispatch} />
       <div style={{backgroundColor: '#f0f0f0', paddingBottom: '20px'}}>
         <div className="container">
           <div className="row pageTitle" >
@@ -46,7 +47,7 @@ class Connect extends React.Component {
   }
 }
 
-ReactDOM.render(
-  (<Connect />),
-  document.getElementById('app')
-);
+// ReactDOM.render(
+//   (<Connect />),
+//   document.getElementById('app')
+// );

@@ -1,26 +1,26 @@
 /**
  * Copyright (c) 2016, Galactic
 */
-// Home Index File
+// Connect Index File
 
 
 import ReactDOM from "react-dom";
 import React from "react";
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import homeApp from './reducers'
+import connectApp from './reducers'
 
-import Home from './containers/HomeSearch.react'
+import Connect from './containers/ConnectMain.react'
 
 import thunkMiddleware from 'redux-thunk'
 let store = createStore(
-  homeApp,
+  connectApp,
   applyMiddleware(thunkMiddleware)
 )
 
 ReactDOM.render(
   (<Provider store={store}>
-    <Home />
+    <Connect />
   </Provider>),
   document.getElementById('app')
 );

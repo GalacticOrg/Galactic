@@ -11,8 +11,8 @@ module.exports = {
       "connect.js": env==='development'?[
           'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
           'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-          './app/frontend/Connect.react' // Your appʼs entry point
-      ]:'./app/frontend/Connect.react',
+          './app/frontend/Connect/' // Your appʼs entry point
+      ]:'./app/frontend/Connect/',
       "result.js": env==='development'?[
           'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
           'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors

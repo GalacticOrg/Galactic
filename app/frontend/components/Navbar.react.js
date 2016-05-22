@@ -14,7 +14,7 @@ class Navbar extends React.Component {
     dispatch(getProfile());
   }
 
-  render() {
+  render() { debugger
     const { user, success, loading } = this.props;
     if (loading) return null;
 
