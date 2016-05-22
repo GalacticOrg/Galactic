@@ -2,10 +2,11 @@ import { combineReducers } from 'redux';
 
 const urlSearch = (state = "", action) => {
   switch (action.type) {
-    case 'URL_INPUT':
+    case 'RECEIVE_URL_SEARCH':
       return action
     default:
       return state
+
   }
 }
 
