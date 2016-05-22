@@ -1,14 +1,18 @@
 /**
- * Copyright (c) 2016, Galactic
+  * app/frontend/User/containers/UserMain.react.js
+  * Copyright (c) 2016, Galactic
 */
+import React, { Component } from 'react'
 import ReactDOM from "react-dom";
-import React from "react";
-import Navbar from "./components/Navbar.react"
+import Navbar from "../../components/Navbar.react"
 
-class User extends React.Component {
+export default class User extends Component {
   render() {
+    const { dispatch } = this.props
+
     return (<div>
-       <div style={{backgroundColor: '#f0f0f0', paddingBottom: '20px'}}>
+      <Navbar dispatch={dispatch} />
+      <div style={{backgroundColor: '#f0f0f0', paddingBottom: '20px'}}>
         <div className="container">
           <div className="row pageTitle" >
             <div className="col-md-3 col-md-offset-1">&#47;@mceoin</div>
@@ -96,8 +100,3 @@ class User extends React.Component {
     </div>);
   }
 }
-
-ReactDOM.render(
-  (<User />),
-  document.getElementById('app')
-);

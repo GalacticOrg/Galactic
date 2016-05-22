@@ -1,5 +1,6 @@
 /**
- * Copyright (c) 2016, Galactic
+  * app/frontend/Connect/containers/ConnectMain.react.js
+  * Copyright (c) 2016, Galactic
 */
 import React, { Component } from 'react'
 import ReactDOM from "react-dom";
@@ -46,8 +47,3 @@ export default class Connect extends Component {
     </div>);
   }
 }
-
-// ReactDOM.render(
-//   (<Connect />),
-//   document.getElementById('app')
-// );

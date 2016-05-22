@@ -21,7 +21,7 @@ module.exports = {
       "user.js": env==='development'?[
           'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
           'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-          './app/frontend/User.react' // Your appʼs entry point
+          './app/frontend/User/' // Your appʼs entry point
       ]:'./app/frontend/User.react',
       "firehose": env==='development'?[
           'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
