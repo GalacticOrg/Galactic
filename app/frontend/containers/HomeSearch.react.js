@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Navbar from "../../components/Navbar.react"
+import Navbar from "../components/Navbar.react"
+import LoginSignupModal from "../components/LoginSignupModal.react"
 import { FormGroup, FormControl, Button, InputGroup, Glyphicon } from "react-bootstrap"
-import { getSearch } from '../actions'
+import { postSearch } from '../actions/Home'
 
 const ENTER_KEY_CODE = 13;
 
@@ -31,15 +32,15 @@ class Home extends Component {
 
   _onSubmit() {
     const { dispatch } = this.props;
-    dispatch(getSearch(this.state.searchInput));
+    dispatch(postSearch(this.state.searchInput));
   }
 
   render() {
-    const { title, id, dispatch } = this.props
+    const { title, id } = this.props
     const { searchInput } = this.state
 
     return (<div>
-      <Navbar dispatch={dispatch} />
+      <Navbar />
       <div>
         <img className="homepageBannerIcon" src="/img/galactic-font-logo.png" />
       </div>
@@ -48,12 +49,13 @@ class Home extends Component {
           <div className="homepageUrlFormGroup form-group">
             <span className="homepageUrlSearchInputGroup input-group">
               <input onChange={this._onChange} onKeyDown={this._onKeyDown} value={searchInput} type="search" className="homepageUrlSearchBox form-control" />
-              <a onClick={this._onSubmit} href="/result" className=" homepageUrlSearchIconBox input-group-addon">
+              <a onClick={this._onSubmit} href="javascript:void(0)" className=" homepageUrlSearchIconBox input-group-addon">
                 <i className="fa fa-search" />
               </a>
               </span>
           </div>
         </div>
+        {title} {id}
       </div>
     </div>);
   }

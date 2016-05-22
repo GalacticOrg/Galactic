@@ -4,6 +4,7 @@
 
 import React from "react";
 import { Modal} from "react-bootstrap"
+import { getProfile } from '../lib/userActions'
 
 export default class LoginSignupModal extends React.Component {
 
@@ -55,11 +56,15 @@ export default class LoginSignupModal extends React.Component {
   }
 
   render() {
-
     return (
       <span>
         {this.constructModal()}
-        <button type="button" onClick={this.open} className="btn btn-default navbar-btn user-icon-box"><img className="user-icon" src="/img/most-beautiful-example-user.jpeg" /></button>
+        <button
+          type="button"
+          onClick={this.open}
+          className="btn btn-default navbar-btn user-icon-box">
+            Login
+        </button>
       </span>
     );
   }

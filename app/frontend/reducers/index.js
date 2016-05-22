@@ -1,6 +1,4 @@
 import { combineReducers } from 'redux';
-import userResult from '../../lib/userReducer'
-
 
 const urlResult = (state = {}, action) => {
   switch (action.type) {
@@ -12,8 +10,7 @@ const urlResult = (state = {}, action) => {
 }
 
 const homeApp = combineReducers({
-  urlResult,
-  userResult
+  urlResult
 })
 
 export default homeApp
