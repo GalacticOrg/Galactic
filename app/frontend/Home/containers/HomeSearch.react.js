@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Navbar from "../components/Navbar.react"
-import LoginSignupModal from "../components/LoginSignupModal.react"
+import Navbar from "../../components/Navbar.react"
+import LoginSignupModal from "../../components/LoginSignupModal.react"
 import { FormGroup, FormControl, Button, InputGroup, Glyphicon } from "react-bootstrap"
-import { postSearch } from '../actions/Home'
+import { postSearch } from '../actions'
 
 const ENTER_KEY_CODE = 13;
 
@@ -55,7 +55,6 @@ class Home extends Component {
               </span>
           </div>
         </div>
-        {title} {id}
       </div>
     </div>);
   }
