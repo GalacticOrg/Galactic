@@ -4,7 +4,6 @@
 
 import React from "react";
 import { Modal} from "react-bootstrap"
-import { getProfile } from './users/actions'
 
 export default class LoginSignupModal extends React.Component {
 
