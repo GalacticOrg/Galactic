@@ -13,16 +13,32 @@ class Connect extends React.Component {
       <div style={{backgroundColor: '#f0f0f0', paddingBottom: '20px'}}>
         <div className="container">
           <div className="row pageTitle" >
-            <div className="col-md-3 col-md-offset-1">/Connect</div>
+            <div className="col-md-3 col-md-offset-1">&#47;Connect</div>
           </div>
         </div>
       </div>
       <div className="container">
-        <div className="row connectFirstNode">
+        <div className="row connectionForm">
           <div>
-            <div className="col-md-3 col-md-offset-1">.col-md-3</div>
-            <div className="col-md-3">.col-md-3</div>
-            <div className="col-md-3">.col-md-3</div>
+            <div className="col-md-9 col-md-offset-1" style={{marginBottom: '15px', fontWeight: 'bold'}}>Connection two URLs together:</div>
+            <div className="col-md-9 col-md-offset-1" style={{border: 'dashed 1px'}}>
+              <form role="form" style={{ marginTop: '20px', marginBottom: '20px'}}>
+                <div class="form-group">
+                  <label for="connectionNodeA">URL A</label>
+                  <br />
+                  <input type="url" class="form-control" id="connectionNodeA" style={{width: '100%'}}/>
+                  <br />
+                </div>
+                <hr />
+                <div class="form-group">
+                  <label for="connectionNodeB">URL B</label>
+                  <br />
+                  <input type="url" class="form-control" id="connectionNodeB" style={{width: '100%'}}/>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-default" style={{backgroundColor: 'orange', marginTop: '20px'}}>Connect</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

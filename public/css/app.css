@@ -174,8 +174,7 @@ body {
       margin-left: 8px; }
   body .resultsSection .connectionCard:hover .connectionCardInfo {
     display: block; }
-  body .connectFirstNode {
-    margin-top: 50px;
-    height: 150px; }
+  body .connectionForm {
+    margin-top: 50px; }
 
 /*# sourceMappingURL=app.css.map */
