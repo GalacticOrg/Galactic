@@ -36,7 +36,7 @@ class Home extends Component {
   }
 
   render() {
-    const { urlSearch } = this.props
+    const { title, id } = this.props
     const { searchInput } = this.state
 
     return (<div>
@@ -55,16 +55,18 @@ class Home extends Component {
               </span>
           </div>
         </div>
-        {urlSearch.result}
+        {title} {id}
       </div>
     </div>);
   }
 }
 
 function mapStateToProps(state) {
-  const { urlSearch } = state
+  const { title, id } = state.urlResult
   return {
-    urlSearch
+    title,
+    id
   }
 }
+
 export default connect(mapStateToProps)(Home)

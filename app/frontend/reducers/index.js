@@ -1,17 +1,16 @@
 import { combineReducers } from 'redux';
 
-const urlSearch = (state = "", action) => {
+const urlResult = (state = {}, action) => {
   switch (action.type) {
     case 'RECEIVE_URL_SEARCH':
-      return action
+      return action.result
     default:
       return state
-
   }
 }
 
 const homeApp = combineReducers({
-  urlSearch
+  urlResult
 })
 
 export default homeApp
