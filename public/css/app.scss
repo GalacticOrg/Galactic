@@ -127,7 +127,13 @@ body {
   .homepageUrlSearchBox {
     width: 640px;
     height: 43px;
-    border-right: none;
+    outline: none;
+  }
+  .form-control{
+    outline: none;
+  }
+  .form-control:active{
+    outline: none;
   }
   .homepageUrlSearchIconBox {
     height: 43px;
