@@ -7,7 +7,7 @@ import { combineReducers } from 'redux';
 import userResult from '../../components/users/reducers'
 
 
-const urlResult = (state = {}, action) => {
+const urlResult = (state = { isURL: null, node: null }, action) => {
   switch (action.type) {
     case 'RECEIVE_URL_SEARCH':
       return action.result

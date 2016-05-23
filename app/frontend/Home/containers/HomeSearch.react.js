@@ -35,8 +35,16 @@ class Home extends Component {
   }
 
   render() {
-    const { id, dispatch } = this.props
+    const { node, isURL, dispatch } = this.props
     const { searchInput } = this.state
+    let result = null;
+    if (node){
+
+      const {canonicalURL } = node
+
+      result = <div>{canonicalURL}--{isURL?'is a URl':'not a URL'}</div>
+
+    }
 
     return (<div>
       <Navbar dispatch={dispatch} />
@@ -53,7 +61,7 @@ class Home extends Component {
               </a>
               </span>
           </div>
-          {id}
+          {result}
         </div>
       </div>
     </div>);
@@ -61,10 +69,12 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
-  const { title, id } = state.urlResult
+  debugger
+  const { node, isURL } = state.urlResult;
+
   return {
-    title,
-    id
+    node,
+    isURL
   }
 }
 

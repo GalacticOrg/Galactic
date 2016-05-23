@@ -10,23 +10,21 @@ const Schema = mongoose.Schema;
 /**
  * Article Schema
  */
-const ArticleSchema = new Schema({
-  canonicalLink: {type : String, default : null},
-  queryLink: {type : String, default : null},
+const EntitySchema = new Schema({
+  canonicalURL: {type : String, default : null},
 });
 
 /**
  * Validations
  */
 
-// ArticleSchema.path('title').required(true, 'Article title cannot be blank');
-// ArticleSchema.path('text').required(true, 'Article text cannot be blank');
+EntitySchema.path('canonicalURL').required(true, 'Entity canonicalURL cannot be blank');
 
 /**
  * Methods
  */
 
-ArticleSchema.methods = {
+EntitySchema.methods = {
 
 
 };
@@ -35,7 +33,7 @@ ArticleSchema.methods = {
  * Statics
  */
 
-ArticleSchema.statics = {
+EntitySchema.statics = {
 
   /**
    * Find article by id [Required]
@@ -73,4 +71,4 @@ ArticleSchema.statics = {
   }
 };
 
-mongoose.model('Entity', ArticleSchema);
+mongoose.model('Entity', EntitySchema);
