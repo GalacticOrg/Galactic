@@ -5,13 +5,12 @@
 import React, { Component } from 'react'
 import ReactDOM from "react-dom";
 import Navbar from "../../components/Navbar.react"
+import InputURL from "../../components/inputURL.react"
 
 export default class Connect extends Component {
   render() {
-    const { dispatch } = this.props
-
     return (<div>
-      <Navbar dispatch={dispatch} />
+      <Navbar />
       <div style={{backgroundColor: '#f0f0f0', paddingBottom: '20px'}}>
         <div className="container">
           <div className="row pageTitle" >
@@ -21,14 +20,15 @@ export default class Connect extends Component {
       </div>
       <div className="container">
         <div className="row connectionForm">
+
           <div>
             <div className="col-md-9 col-md-offset-1" style={{marginBottom: '15px', fontWeight: 'bold'}}>Connection two URLs together:</div>
             <div className="col-md-9 col-md-offset-1" style={{border: 'dashed 1px'}}>
-              <form role="form" style={{ marginTop: '20px', marginBottom: '20px'}}>
+              <div role="form" style={{ marginTop: '20px', marginBottom: '20px'}}>
                 <div class="form-group">
                   <label for="connectionNodeA">URL A</label>
                   <br />
-                  <input type="url" class="form-control" id="connectionNodeA" style={{width: '100%'}}/>
+                  <InputURL />
                   <br />
                 </div>
                 <hr />
@@ -39,7 +39,7 @@ export default class Connect extends Component {
                 </div>
                 <br />
                 <button type="submit" class="btn btn-default" style={{backgroundColor: 'orange', marginTop: '20px'}}>Connect</button>
-              </form>
+              </div>
             </div>
           </div>
         </div>
