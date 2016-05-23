@@ -9,9 +9,6 @@ const users = require('../app/controllers/users');
 const entityCrud = require('../app/crudApi/entityCrud');
 const searchUrlCrud = require('../app/crudApi/searchUrlCrud');
 const userCrud = require('../app/crudApi/userCrud');
-
-
-
 const auth = require('./middlewares/authorization');
 
 /**
@@ -23,6 +20,10 @@ module.exports = function (app, passport) {
   // API Node
   app.param('id', entityCrud.load);
   app.get('/api/entity/:id', entityCrud.getEntityController)
+
+  //API searchUrl
+
+  app.get('/api/searchurl', searchUrlCrud.getSearchController)
 
   // API User
   const userPath = '/api/users'

@@ -28,7 +28,7 @@ export function getSearch(q) {
   return dispatch => {
     dispatch(requestSearchResult(q))
     return Get(
-        '/api/urlsearch',
+        '/api/searchurl',
         {q},
         (err, res)=>dispatch(receiveErr(err)),
         (err, res)=>dispatch(receiveSearchResult(res.body))
