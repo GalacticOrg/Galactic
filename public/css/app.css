@@ -124,17 +124,21 @@ body {
     width: 640px;
     height: 43px;
     outline: none; }
-  body .form-control {
-    outline: none; }
-  body .form-control:active {
-    outline: none; }
   body .homepageUrlSearchIconBox {
     height: 43px;
     width: 52px;
     background-color: white;
     border-left: none; }
+  body .homepageUrlSearchBox {
+    outline: none;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important; }
   body .homepageUrlSearchIconBox:hover {
-    background-color: #66AD57; }
+    background-color: #66AD57;
+    margin-left: 5px;
+    margin-right: 5px;
+    outline: red; }
   body .glyphicon.glyphicon-search {
     font-size: 20px; }
   body .resultNodeCard {

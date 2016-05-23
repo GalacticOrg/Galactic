@@ -129,20 +129,23 @@ body {
     height: 43px;
     outline: none;
   }
-  .form-control{
-    outline: none;
-  }
-  .form-control:active{
-    outline: none;
-  }
   .homepageUrlSearchIconBox {
     height: 43px;
     width: 52px;
     background-color: white;
     border-left: none;
   }
-  .homepageUrlSearchIconBox:hover{
+  .homepageUrlSearchBox {
+    outline: none;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+  .homepageUrlSearchIconBox:hover {
     background-color: #66AD57;
+    margin-left: 5px;
+    margin-right: 5px;
+    outline: red;
   }
   .glyphicon.glyphicon-search {
     font-size: 20px;

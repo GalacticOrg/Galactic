@@ -26,7 +26,7 @@ class Navbar extends Component {
         <div className="navbar-header pull-right">
           <a href="connect">
             <button type="button" className="btn btn-default navbar-btn connect-icon-box">
-              <img className="connect-icon" src="/img/galactic-icon-logo.png" /></button>
+              Add Connection</button>
           </a>
           {!success?
             <LoginSignupModal />:
