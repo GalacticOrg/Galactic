@@ -11,27 +11,6 @@ const extract = require('../../lib/extract')
 const utils = require('../../lib/utils')
 const URLParse = extract.URLParse;
 
-
-
-
-// exports.getSearchController = function (req, res) {
-//   const url = extract.URLParse(req.query.q);
-//   if (url){
-//     Entity.findOne({canonicalURL: url}, function(err,  node){
-//       const isURL = true;
-//       res.send({
-//         node,
-//         isURL
-//       });
-//     });
-//   } else{
-//     res.send({
-//       isURL: false,
-//       node: {}
-//     });
-//   }
-// };
-
 /**
  * Create
  */
