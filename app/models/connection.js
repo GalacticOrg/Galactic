@@ -17,15 +17,16 @@ const Connection = mongoose.model('Connection');
 /**
  * Create anSREF from two existing nodes;
  */
-exports.createEdge = function(idOne, idTwo, userId, cb){
-	const id = new Connection({})._id;
+exports.createEdge = function(_idOne, _idTwo, _userId, cb){
+	const _id = new Connection({})._id;
 	let params = {
-			_idOne: idOne,
-			_idTwo: idTwo,
+			_idOne,
+			_idTwo,
 			_createdAt : new Date().getTime(),
-			_id: id,
-			_userId: userId
+			_id,
+			_userId
 	}
+	console.log(params)
 
 	db.cypher(
 		{
@@ -39,36 +40,36 @@ exports.createEdge = function(idOne, idTwo, userId, cb){
 const createSREFQ = [
   'MATCH (PageOne:page {id:{_idOne}})',
   'MATCH (PageTwo:page {id:{_idTwo}})',
-  'CREATE PageOne-[Link:sref {id:{_id}, userId:{_userId} } ]->PageTwo',
+  'CREATE PageOne-[Link:userEdge {id:{_id}, userId:{_userId} } ]->PageTwo',
   'RETURN PageOne, Link, PageTwo'].join('\n');
 
 
 /**
  * Create a node from a MongoId;
  */
-exports.createNode = function(id, cb){
+exports.createNode = function(_id, cb){
 	db.cypher({
 	      query: createNodeQ,
 	      params: {
-	          _id: id
+	          _id
 	      },
 	  },
 	  cb);
 };
 //createNode Query
 const createNodeQ = [
-  'CREATE (Page:page {_id:{_id}})',
+  'CREATE (Page:page {id:{_id}})',
   'RETURN Page'].join('\n');
 
 
 /**
  * load a node from a MongoId;
  */
-exports.getNode = function(id, cb){
+ exports.getNode = function(_id, cb){
 	db.cypher({
 	      query: getNodeQ,
 	      params: {
-	          _id: id
+	          _id
 	      },
 	  }, function(err, results){
 
@@ -77,22 +78,22 @@ exports.getNode = function(id, cb){
 	  		return cb(err, null)
 	  	}
 
-      cb(err,
-			_.chain(results)
-		  	 .filter(function(r, i){return r.Link._fromId === r.PageOne._id})
-		  	 .map(function(r){return srefParser(r)})
-		  	 .value(),
-			_.chain(results)
-		  	 .filter(function(r, i){return r.Link._toId === r.PageOne._id})
-		  	 .map(function(r){return inboundSrefParser(r)})
-		  	 .value()
-       )
+      cb(err)
+			// _.chain(results)
+		  // 	 .filter(function(r, i){return r.Link._fromId === r.PageOne._id})
+		  // 	 .map(function(r){return srefParser(r)})
+		  // 	 .value(),
+			// _.chain(results)
+		  // 	 .filter(function(r, i){return r.Link._toId === r.PageOne._id})
+		  // 	 .map(function(r){return inboundSrefParser(r)})
+		  // 	 .value()
+      //  )
 	  });
 };
 
 //get Node Query
 const getNodeQ = [
-  'MATCH (PageOne:page {_id:{_id}})-[Link]-(PageTwo)',
+  'MATCH (PageOne:page {id:{_id}})-[Link]-(PageTwo)',
   'RETURN PageOne, Link, PageTwo'].join('\n');
 
 /**
@@ -100,18 +101,18 @@ const getNodeQ = [
  * @r     {obj} Neo4j object
  * @return {obj}    cb  a callback for the data.
  */
-const srefParser = function(r){
-  const pageID = r.PageTwo.properties._id; //Get the other articles uid
-  const link = r.Link.properties; //Get the link properties
-  const textIndex = link.textIndexFrom;//Get the text index
-  const paragraphIndex = link.pIndexFrom; //Get the p index
-  return {
-    _id: link._id,
-    index: textIndex,
-    paragraphIndex: paragraphIndex,
-    sref: pageID,
-  }
-}
+// const srefParser = function(r){
+//   const pageID = r.PageTwo.properties._id; //Get the other articles uid
+//   const link = r.Link.properties; //Get the link properties
+//   const textIndex = link.textIndexFrom;//Get the text index
+//   const paragraphIndex = link.pIndexFrom; //Get the p index
+//   return {
+//     _id: link._id,
+//     index: textIndex,
+//     paragraphIndex: paragraphIndex,
+//     sref: pageID,
+//   }
+// }
 
 /**
  * @name   inboundSrefParser

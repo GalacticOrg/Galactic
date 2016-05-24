@@ -14,20 +14,22 @@ export default class Connect extends Component {
 
   constructor() {
      super();
-
-     this._onSearchResultA = this._onSearchResultA.bind(this);
-     this._onSearchResultB = this._onSearchResultB.bind(this);
      this._onSubmit = this._onSubmit.bind(this);
-
      this.state = {
-       nodeA: null,
-       nodeB: null,
        initalSearch: this._getQueryString().url
      };
   }
 
   render() {
+    debugger
     const {initalSearch } = this.state
+    const { fromNode, toNode } = this.props
+
+
+    const diabled = !(
+      toNode && fromNode && fromNode.node && toNode.node &&//lots of type checks before
+      fromNode.node._id !== toNode.node._id );  //Checking  to see if the id are equal
+
     return (<div>
       <Navbar />
       <div style={{backgroundColor: '#f0f0f0', paddingBottom: '20px'}}>
@@ -49,7 +51,7 @@ export default class Connect extends Component {
                   <InputURL
                     initalValue = {initalSearch}
                     receivedSearchResult={this._onSearchResultA}
-                    id='a' />
+                    id='fromNode' />
                   <br />
                 </div>
                 <hr />
@@ -58,11 +60,11 @@ export default class Connect extends Component {
                   <br />
                   <InputURL
                     receivedSearchResult={this._onSearchResultB}
-                    id='b'/>
+                    id='toNode'
+                    />
                 </div>
                 <br />
-                {this.state.nodeA} -- {this.state.nodeB}
-                <button onClick={this._onSubmit} type="submit" className="btn btn-default" style={{backgroundColor: 'orange', marginTop: '20px'}}>Connect</button>
+                <button disabled={diabled} onClick={this._onSubmit} type="submit" className="btn btn-default" style={{backgroundColor: 'orange', marginTop: '20px'}}>Connect</button>
               </div>
             </div>
           </div>
@@ -71,24 +73,10 @@ export default class Connect extends Component {
     </div>);
   }
 
-  _onSearchResultA(data){
-    const {node, isURL} = data
-    this.setState({
-      nodeA: node._id
-    })
-  }
-
-  _onSearchResultB(data){
-    const {node, isURL} = data
-    this.setState({
-      nodeB: node._id
-    })
-  }
   _onSubmit(data){
-    const { dispatch } = this.props;
-    const {nodeA, nodeB} = this.state;
-    if (nodeA!==nodeB){
-      dispatch(postConnection(nodeA, nodeB));
+    const { dispatch, fromNode, toNode } = this.props;
+    if ( fromNode && toNode && fromNode.node._id !== toNode.node._id ){
+      dispatch(postConnection(fromNode.node._id, toNode.node._id));
     }
   }
 
@@ -106,10 +94,11 @@ export default class Connect extends Component {
 }
 
 function mapStateToProps(state) {
-  const { a, b } = state.inputURLResult
+  const { fromNode, toNode } = state.inputURLResult
+
   return {
-    a,
-    b
+    fromNode,
+    toNode
   }
 }
 
