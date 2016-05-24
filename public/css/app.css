@@ -123,8 +123,8 @@ body {
     padding-left: 40px;
     display: block;
     margin: auto;
-    margin-top: 100px;
-    max-width: 350px; }
+    margin-top: 150px;
+    max-width: 225px; }
   body .homepageBannerIcon {
     padding-left: 40px;
     display: block;
@@ -145,20 +145,27 @@ body {
       border-color: blue; }
     body .homepageUrlSearchInputGroup.is-not-url > * {
       border-color: red; }
-    body .homepageUrlSearchInputGroup .homepageUrlSearchBox {
-      width: 640px;
-      height: 43px;
-      outline: none; }
     body .homepageUrlSearchInputGroup .homepageUrlSearchIconBox {
       height: 43px;
       width: 52px;
       background-color: white;
       border-left: none; }
     body .homepageUrlSearchInputGroup .homepageUrlSearchBox {
+      padding-left: 15px;
+      width: 640px;
+      height: 43px;
       outline: none;
       -webkit-box-shadow: none !important;
       -moz-box-shadow: none !important;
       box-shadow: none !important; }
+    body .homepageUrlSearchInputGroup .homepageUrlSearchBox::-webkit-input-placeholder {
+      color: #d2d4dc; }
+    body .homepageUrlSearchInputGroup .homepageUrlSearchBox:-moz-placeholder {
+      color: #d2d4dc; }
+    body .homepageUrlSearchInputGroup .homepageUrlSearchBox::-moz-placeholder {
+      color: #d2d4dc; }
+    body .homepageUrlSearchInputGroup .homepageUrlSearchBox:-ms-input-placeholder {
+      color: #d2d4dc; }
     body .homepageUrlSearchInputGroup .glyphicon.glyphicon-search {
       font-size: 20px; }
   body .resultNodeCard {
