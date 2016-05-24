@@ -16,6 +16,14 @@ body {
     font-size: 18px;
     margin-top: 20px;
   }
+  .noUnderline {
+    text-decoration: none;
+    color: blue;
+  }
+  .noUnderline:hover {
+    text-decoration: none;
+    color: orange;
+  }
   /**************************/
   /** NAVBAR SECTION **/
   /**************************/
@@ -143,6 +151,9 @@ body {
     margin-top: 50px;
     max-width: 700px;
   }
+  .homepageUrlFormGroup{
+    margin-bottom: 0px;
+  }
   .homepageUrlSearchInputGroup {
     margin: auto;
     width: 600px;
@@ -164,35 +175,37 @@ body {
   .homepageUrlSearchIconBox:hover {
   }
 
-    .homepageUrlSearchBox {
-      padding-left: 15px;
-      width: 640px;
-      height: 43px;
-      outline: none;
-      -webkit-box-shadow: none !important;
-      -moz-box-shadow: none !important;
-      box-shadow: none !important;
-    }
-
-    .homepageUrlSearchBox::-webkit-input-placeholder {
-      color:  #d2d4dc;
-    }
-    .homepageUrlSearchBox:-moz-placeholder {
-      color:  #d2d4dc;
-    }
-    .homepageUrlSearchBox::-moz-placeholder {
-      color:  #d2d4dc;
-    }
-    .homepageUrlSearchBox:-ms-input-placeholder {
-      color:  #d2d4dc;
-    }
-
-    .glyphicon.glyphicon-search {
-      font-size: 20px;
-    }
+  .homepageUrlSearchBox {
+    font-size: 17px;
+    padding-left: 15px;
+    width: 640px;
+    height: 43px;
+    outline: none;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
   }
 
+  .homepageUrlSearchBox::-webkit-input-placeholder {
+    color:  #d2d4dc;
+  }
+  .homepageUrlSearchBox:-moz-placeholder {
+    color:  #d2d4dc;
+  }
+  .homepageUrlSearchBox::-moz-placeholder {
+    color:  #d2d4dc;
+  }
+  .homepageUrlSearchBox:-ms-input-placeholder {
+    color:  #d2d4dc;
+  }
+  .InputUrlHelperText {
+    /*left blank*/
+  }
 
+  .glyphicon.glyphicon-search {
+    font-size: 20px;
+  }
+  }
 
   /**************************/
   /** END HOMEPAGE SECTION **/

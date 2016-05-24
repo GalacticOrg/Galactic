@@ -47,18 +47,20 @@ class InputURL extends React.Component {
       else if(isURL===false) urlClass = 'is-not-url';
     }
 
-    if (node){
-      const { canonicalLink, title, isConnected, _id, faviconCDN } = node;
-      result = (
-        <div>
-          <img src={faviconCDN}/> {title}
-        </div>
-      )
-    }
+    // if (node){
+    //   const { canonicalLink, title, isConnected, _id, faviconCDN } = node;
+    //   result = (
+    //     <div style={{
+    //       marginLeft: '20px'
+    //     }}>
+    //       <img className="nodeImg" src={faviconCDN}/> <span>{title}</span>
+    //     </div>
+    //   )
+    // }
 
     return (
       <div className="homepageUrlSearchForm">
-        <div className="homepageUrlFormGroup form-group">
+        <div className="form-group homepageUrlFormGroup">
           <span
             className={[
               'homepageUrlSearchInputGroup',

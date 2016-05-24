@@ -32,9 +32,10 @@ class Home extends Component {
       existingPage = <p>Visit the existing page <a href={"/node/"+node._id}>here</a></p>
     else if (isURL) {
       const url = node.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"");
-      existingPage = ( <p>Looks like that page is waiting for a smart person to
-          <a href={"/connect?url="+url}>here</a>  Who could that person be???
-        </p>);
+      existingPage = (
+        <div className="col-md-8 col-md-offset-2" style={{paddingLeft: '0px', paddingRight: '0px', marginTop: '5px', fontStyle: 'italic'}}><span>Uh oh! Looks like {node.queryLink} isn't connected to anything on Galactic yet. Hook a URL up and <a href={"/connect?url="+url} style={{fontWeight: 'bold'}} className="noUnderline">connect it to similar content</a>.
+        </span></div>
+      );
     }
 
     return (<div>
@@ -43,16 +44,16 @@ class Home extends Component {
         <img className="homepageGalacticIcon" src="/img/constellation_2.png"/>
         <img className="homepageBannerIcon" src="/img/galactic-font-logo.png" />
       </div>
-      <div>
-      <InputURL receivedSearchResult={this._onSearchResult} id='result'/>
-      <div className="col-md-6 col-md-offset-3">
-          {existingPage}
-      </div>
+      <div className="container" style={{minHeight: '140px'}}>
+        <InputURL receivedSearchResult={this._onSearchResult} id='result' className="row"/>
+        <div className="InputUrlHelperText row">
+            {existingPage}
+        </div>
       </div>
       <div className="container">
         <div className="row">
           <div className="col-md-10 col-md-offset-1" style={{marginBottom: '15px', fontWeight: 'bold'}}>
-            <ol style={{position:'inherit', display: 'block', margin: 'auto', textAlign: 'center', marginTop: '10px'}} className="indicators">
+            <ol style={{position:'inherit', display: 'block', margin: 'auto', textAlign: 'center'}} className="indicators">
               <div style={{
                 display: 'block',
                 margin: 'auto',
