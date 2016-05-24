@@ -33,7 +33,7 @@ export function postConnection(aId, bId) {
     dispatch(requestConnectionResult())
     return Post(
         '/api/connections',
-        {aId, bId},
+        {fromId, toId},
         (err, res)=>dispatch(receiveErr(err)),
         (err, res)=>dispatch(receiveConnectionResult(res.body))
     )

@@ -14,17 +14,20 @@ export default class Connect extends Component {
 
   constructor() {
      super();
+
      this._onSearchResultA = this._onSearchResultA.bind(this);
      this._onSearchResultB = this._onSearchResultB.bind(this);
      this._onSubmit = this._onSubmit.bind(this);
 
      this.state = {
        nodeA: null,
-       nodeB: null
+       nodeB: null,
+       initalSearch: this._getQueryString().url
      };
   }
 
   render() {
+    const {initalSearch } = this.state
     return (<div>
       <Navbar />
       <div style={{backgroundColor: '#f0f0f0', paddingBottom: '20px'}}>
@@ -44,7 +47,7 @@ export default class Connect extends Component {
                 <div className="form-group">
                   <label for="connectionNodeA">URL A</label>
                   <br />
-                  <InputURL receivedSearchResult={this._onSearchResultA}/>
+                  <InputURL receivedSearchResult={this._onSearchResultA} initalValue={initalSearch} />
                   <br />
                 </div>
                 <hr />
@@ -83,6 +86,17 @@ export default class Connect extends Component {
     if (nodeA!==nodeB){
       dispatch(postConnection(nodeA, nodeB));
     }
+  }
+
+  _getQueryString() {
+    let result = {}, queryString = location.search.slice(1),
+        re = /([^&=]+)=([^&]*)/g, m;
+
+    while (m = re.exec(queryString)) {
+      result[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+    }
+
+    return result;
   }
 
 }

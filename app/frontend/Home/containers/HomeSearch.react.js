@@ -25,10 +25,15 @@ export default class Home extends Component {
     const { messageIndex, node, isURL } = this.state;
 
     let existingPage = null;
+    debugger
     if (node && node.isConnected)
       existingPage = <p>Visit the existing page <a href={"/node/"+node._id}>here</a></p>
-    else if (isURL)
-      existingPage = <p>Looks like that page is waiting for a smart person to <a href={"/connect?id="+node._id}>here</a>  Who could that person be???</p>;
+    else if (isURL) {
+      const url = node.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"");
+      existingPage = ( <p>Looks like that page is waiting for a smart person to
+          <a href={"/connect?url="+url}>here</a>  Who could that person be???
+        </p>);
+    }
 
     return (<div>
       <Navbar />

@@ -14,15 +14,29 @@ class InputURL extends React.Component {
 
   constructor(){
     super()
-    this.state={searchInput:'', uid:Math.random()};
+    this.state={
+      searchInput:'',
+      uid:Math.random()*Math.pow(10, 17)
+    };
+
     this._onChange = this._onChange.bind(this);
     this._onSubmit = this._onSubmit.bind(this);
     this._onKeyDown = this._onKeyDown.bind(this);
+    this._dispatch = this._dispatch.bind(this);
+  }
+
+  componentWillMount(nextProps){
+    const { initalValue } = this.props;
+    this.setState({
+      searchInput:initalValue
+    })
+    if (initalValue) this._dispatch(initalValue);
   }
 
   componentWillReceiveProps(nextProps){
     const { receivedSearchResult } = this.props
-    if (receivedSearchResult) receivedSearchResult(nextProps[this.state.uid]);
+    const result = nextProps[this.state.uid]
+    if (receivedSearchResult && result) receivedSearchResult(result);
   }
 
   render() {
@@ -59,7 +73,13 @@ class InputURL extends React.Component {
               urlClass
             ].join(' ')}
           >
-            <input onBlur={this._onSubmit} onChange={this._onChange} onKeyDown={this._onKeyDown} value={searchInput} type="search" className="homepageUrlSearchBox form-control" />
+            <input
+              onBlur={this._onSubmit}
+              onChange={this._onChange}
+              onKeyDown={this._onKeyDown}
+              value={searchInput}
+              type="search"
+              className="homepageUrlSearchBox form-control" />
             <a onClick={this._onSubmit} href="javascript:void(0)" className=" homepageUrlSearchIconBox input-group-addon">
               <i className="fa fa-search" />
             </a>
@@ -83,12 +103,16 @@ class InputURL extends React.Component {
     }
   }
 
-  _onSubmit() {
-     if (this.state.searchInput.length>0){
-       const { dispatch } = this.props;
-       this.state.uid;
-       dispatch(getSearch(this.state.searchInput, this.state.uid));
-     }
+  _dispatch(searchInput) {
+    const { dispatch } = this.props;
+    dispatch(getSearch(searchInput, this.state.uid));
+  }
+
+  _onSubmit(){
+    const {searchInput} = this.state;
+    if (searchInput.length > 0){
+      this._dispatch(searchInput)
+    }
   }
 };
 

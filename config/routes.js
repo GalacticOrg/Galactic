@@ -6,8 +6,8 @@
 
 const pages = require('../app/controllers/pages');
 const users = require('../app/controllers/users');
+const edgeCrud = require('../app/crudApi/edgeCrud');
 const entityCrud = require('../app/crudApi/entityCrud');
-const searchUrlCrud = require('../app/crudApi/searchUrlCrud');
 const userCrud = require('../app/crudApi/userCrud');
 const auth = require('./middlewares/authorization');
 
@@ -18,12 +18,12 @@ const auth = require('./middlewares/authorization');
 module.exports = function (app, passport) {
 
   // API Node
-  app.param('id', entityCrud.load);
-  app.get('/api/entity/:id', entityCrud.getCreateEdgeController)
+  app.param('id', edgeCrud.load);
+  app.post('/api/connection', edgeCrud.postCreateEdgeController)
 
   //API searchUrl
 
-  app.get('/api/searchurl', searchUrlCrud.getSearchController)
+  app.get('/api/searchurl', entityCrud.getSearchController)
 
   // API User
   const userPath = '/api/users'
