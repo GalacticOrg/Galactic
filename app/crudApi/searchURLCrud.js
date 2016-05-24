@@ -12,8 +12,9 @@ const utils = require('../../lib/utils')
 const URLParse = extract.URLParse;
 const Connection = require('../models/connection');
 
+
 /**
- * Create
+ * Search for Node and Scrape Page
  */
 exports.getSearchController = function (req, res) {
   const q = req.query.q
@@ -36,7 +37,7 @@ exports.getSearchController = function (req, res) {
       pageExtractor,
       pageExtractorDBSearch,
       pageSaver,
-      connectionCreator
+      nodeCreator
   ], function(err, url, resultDB, extractedPageData){
       //Handle the end
       if (err && err.status === 404){
@@ -141,7 +142,7 @@ const pageSaver = function(url, resultDB, extractedPageData, cb){
  * @param  {object}      result
  * @param  {Function}    cb  a callback for the data.
  */
-const connectionCreator = function(url, resultDB, extractedPageData, cb){
+const nodeCreator = function(url, resultDB, extractedPageData, cb){
   if (extractedPageData){
     Connection.createNode(
       resultDB._id,

@@ -7,17 +7,31 @@ exports.load = function (req, res, next, id){
   next();
 };
 
-exports.getEntityController = function (req, res) {
+/**
+ * Create Connection
+ */
+exports.getCreateConnectionController = function (req, res) {
 
-  res.send({id: 123, title: 'I rulz'});
-};
+  const body = req.body;
+  const idFrom = body.idFrom;
+  const idTo = body.idTo;
+  const id  = req.user.id
 
-exports.createEntityController = function (req, res) {
-
-
-  entityOne = new Entity({url: 'https://newrepublic.com/article/133622/elizabeth-warrens-next-crusade'});
-
-  entityTwo = new Entity({url: 'https://newrepublic.com/article/133625/hillary-clinton-know-attack-donald-trump'});
-
-
+  Connection.createSREF(
+    idFrom,
+    idTo,
+    userId,
+    function(err, result){
+      if (!err) {
+        // const parsedSREF = srefParser(result[0]);
+        //
+        // var object = article.toJSON();
+        // object.sref = sref;
+        //
+        // object.sref.push(parsedSREF);
+        res.send(result);
+      } else {
+        res.status(400).send(utils.errsForApi(err.errors || err));
+      }
+  })
 };
