@@ -15,25 +15,27 @@ class Home extends Component {
     else if (isURL) {
       const url = node.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"");
       existingPage = (
-        <div className="col-md-8 col-md-offset-2" style={{paddingLeft: '0px', paddingRight: '0px', marginTop: '5px', fontStyle: 'italic'}}><span>Uh oh! Looks like {node.queryLink} isn't connected on Galactic yet. <a href={"/connect?url="+url} style={{fontWeight: 'bold'}} className="noUnderline">Connect it to similar content</a>.
+        <div className="col-md-8 col-md-offset-3" style={{paddingLeft: '0px', paddingRight: '0px', marginTop: '5px', fontStyle: 'italic'}}><span>Uh oh! Looks like {node.queryLink} isn't connected on Galactic yet. <a href={"/connect?url="+url} style={{fontWeight: 'bold'}} className="noUnderline">Connect it to similar content</a>.
         </span></div>
       );
     }
 
-    return (<div>
-      <Navbar />
+    return (
       <div>
-        <img className="homepageGalacticIcon" src="/img/constellation_2.png"/>
-        <img className="homepageBannerIcon" src="/img/galactic-font-logo.png" />
-      </div>
-      <div className="container" style={{minHeight: '140px'}}>
-        <InputURL receivedSearchResult={this._onSearchResult} id='result' className="row"/>
-        <div className="InputUrlHelperText row">
-            {existingPage}
+        <Navbar />
+        <div>
+          <img className="homepageGalacticIcon" src="/img/constellation_2.png"/>
+          <img className="homepageBannerIcon" src="/img/galactic-font-logo.png" />
         </div>
+        <div className="container" style={{minHeight: '140px'}}>
+          <InputURL receivedSearchResult={this._onSearchResult} id='result' className="row"/>
+          <div className="InputUrlHelperText row">
+              {existingPage}
+          </div>
+        </div>
+        <InfoModal />
       </div>
-      <InfoModal />
-    </div>);
+    );
   }
 
   _changeMessage(i){
