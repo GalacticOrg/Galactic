@@ -39,14 +39,17 @@ exports.getSearchController = function (req, res) {
       nodeCreator
   ], function(err, url, resultDB, extractedPageData){
       //Handle the end
-      if (err && err.status === 404){
+      if (err &&
+          (err.status === 404 || err.code )
+      ) {
+        console.log(err, 'getSearchController isURL = flase')
         res.send({
            node : null,
            isURL: false
         });
       } else if (err) {
         const status = err.status || 500;
-        console.log(err, status)
+        console.log(err, status,  'getSearchController err')
         res.status(status).json(err);
       } else {
         let payload = {
