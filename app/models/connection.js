@@ -78,7 +78,7 @@ const createNodeQ = [
 	  		return cb(err, null)
 	  	}
 
-      cb(err)
+      cb(err, results);
 			// _.chain(results)
 		  // 	 .filter(function(r, i){return r.Link._fromId === r.PageOne._id})
 		  // 	 .map(function(r){return srefParser(r)})
