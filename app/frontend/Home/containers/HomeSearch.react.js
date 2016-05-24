@@ -54,12 +54,12 @@ class Home extends Component {
       <div>
         <div className="homepageUrlSearchForm">
           <div className="homepageUrlFormGroup form-group">
-            <span className=" input-group homepageUrlSearchInputGroup">
-              <input onChange={this._onChange} onKeyDown={this._onKeyDown} value={searchInput} type="search" className="form-control homepageUrlSearchBox"/>
-              <a onClick={this._onSubmit} value={searchInput} href="/result" className=" homepageUrlSearchIconBox input-group-addon">
+            <span className="homepageUrlSearchInputGroup input-group">
+              <input onChange={this._onChange} onKeyDown={this._onKeyDown} value={searchInput} type="search" className="homepageUrlSearchBox form-control" style={{outline:'none'}}/>
+              <a onClick={this._onSubmit} href="/result" className=" homepageUrlSearchIconBox input-group-addon">
                 <i className="fa fa-search" />
               </a>
-            </span>
+              </span>
           </div>
           {result}
         </div>

@@ -5,9 +5,11 @@
 
 import { combineReducers } from 'redux';
 import userResult from '../../components/users/reducers'
+import inputURLResult from '../../components/inputURL/reducers'
 
 const connectApp = combineReducers({
-  userResult
+  userResult,
+  inputURLResult
 })
 
 export default connectApp
