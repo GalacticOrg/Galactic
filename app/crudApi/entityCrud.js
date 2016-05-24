@@ -13,7 +13,31 @@ const URLParse = extract.URLParse;
 const Connection = require('../models/connection');
 
 /**
- * Search for Node and Scrape Page
+ * Load
+ */
+exports.load = function (req, res, next, id){
+  Entity.load(id, function (err, entity) {
+    if (!entity || (err && err.message==='Cast to ObjectId failed')) return  res.status(404).send(utils.errsForApi('Page not found'));
+    if (err) return  res.status(500).send( utils.errsForApi(err.errors || err) );
+    req.entity = entity;
+
+    Connection.getNode(entity._id, function(err, edges){
+      req.edges = edges
+      next();
+    })
+
+  });
+};
+
+
+/**
+* Search API for Nodes
+ */
+exports.getEntityController = function (req, res) {
+
+}
+/**
+ * Search API for Node and Scrape Page
  */
 exports.getSearchController = function (req, res) {
   const q = req.query.q

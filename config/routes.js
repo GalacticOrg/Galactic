@@ -32,7 +32,7 @@ module.exports = function (app, passport) {
 
   app.get('/', pages.home);
   app.get('/user', pages.user);
-  app.get('/node/:id', pages.result);
+  app.get('/node/:id', pages.node);
   app.get('/connect', pages.connect);
   app.get('/firehose', pages.firehose);
 
