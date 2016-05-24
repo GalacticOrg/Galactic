@@ -42,3 +42,11 @@ export function getSearch(q, uid) {
     )
   }
 }
+
+export function resetSearch(uid) {
+  return {
+    type: RECEIVE_URL_SEARCH,
+    null,
+    uid
+  }
+}

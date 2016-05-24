@@ -5,21 +5,29 @@
 import React from "react";
 import { Modal} from "react-bootstrap"
 import { connect } from 'react-redux'
-import { getSearch } from './inputURL/actions'
+import { getSearch, resetSearch } from './inputURL/actions'
+import _ from 'lodash'
+
 
 const ENTER_KEY_CODE = 13;
 
 
 class InputURL extends React.Component {
 
+
   constructor(){
     super()
+    debugger
     this.state = { searchInput:'' };
     this._onChange = this._onChange.bind(this);
     this._onSubmit = this._onSubmit.bind(this);
     this._onKeyDown = this._onKeyDown.bind(this);
-    this._dispatch = this._dispatch.bind(this);
+    this._search = this._search.bind(this);
+    this._reset = this._reset.bind(this);
+    this._submitWithDelay = _.debounce(this._submitWithDelay, 1000);
   }
+
+
 
   componentWillMount(nextProps){
     const { initalValue, id} = this.props;
@@ -28,7 +36,7 @@ class InputURL extends React.Component {
       this.setState({
         searchInput:initalValue
       });
-      this._dispatch(initalValue);
+      this._search(initalValue);
     }
   }
 
@@ -69,7 +77,6 @@ class InputURL extends React.Component {
             ].join(' ')}
           >
             <input
-              onBlur={this._onSubmit}
               onChange={this._onChange}
               onKeyDown={this._onKeyDown}
               value={searchInput}
@@ -91,6 +98,7 @@ class InputURL extends React.Component {
     this.setState({
       searchInput: e.target.value
     })
+    this._submitWithDelay()
   }
 
   _onKeyDown(e) {
@@ -99,17 +107,30 @@ class InputURL extends React.Component {
     }
   }
 
-  _dispatch(searchInput) {
-    const { dispatch } = this.props;
-    dispatch(getSearch(searchInput, this.uid));
+  _submitWithDelay(e) {
+    this._onSubmit()
   }
 
   _onSubmit(){
     const {searchInput} = this.state;
     if (searchInput.length > 0){
-      this._dispatch(searchInput)
+      this._search(searchInput)
+    } else{
+      this._reset()
     }
   }
+
+  _search(searchInput) {
+    const { dispatch } = this.props;
+    dispatch(getSearch(searchInput, this.uid));
+  }
+
+  _reset(searchInput) {
+    const { dispatch } = this.props;
+    dispatch(resetSearch(this.uid));
+  }
+
+
 };
 
 function mapStateToProps(state) {
