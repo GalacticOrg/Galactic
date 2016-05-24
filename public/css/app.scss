@@ -106,27 +106,26 @@ body {
   /**************************/
   /** HOMEPAGE SECTION **/
   /**************************/
-  .indicators li{
+  .indicators li {
     display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin: 1px;
+    width: 12px;
+    height: 12px;
     text-indent: -999px;
     cursor: pointer;
-    background-color: #000\9;
-    background-color: rgba(0,0,0,0);
-    border: 1px solid #fff;
+    background-color: blue;
+    border: 1px solid black;
     border-radius: 10px;
   }
 
   .indicators .active {
-      width: 12px;
-      height: 12px;
-      margin: 0;
-      background-color: #fff;
+    width: 12px;
+    height: 12px;
+    margin: 0;
+    background-color: red;
   }
 
   .homepageBannerIcon {
+    padding-left: 40px;
     display: block;
     margin: auto;
     margin-top: 150px;

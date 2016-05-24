@@ -9,10 +9,13 @@ export default class Home extends Component {
      this.state = {
        messageIndex: 1,
        messages:[
-         'a','b', 'c'
-       ]
-     };
-   }
+         'Galactic helps you see',
+         'Sometimes, it helps you sleep',
+         'If in doubt, listen to the greeks'
+      ]
+    };
+  }
+
   render() {
     let messageIndex = this.state.messageIndex;
     return (<div>
@@ -23,11 +26,16 @@ export default class Home extends Component {
       <div>
       <InputURL />
       </div>
-      <div >
-        {this.state.messages[messageIndex]}
-        <ol style={{backgroundColor:'#6699FF', position:'inherit'}}className="indicators">
-          {this.state.messages.map((d, i)=>(<li className={messageIndex==i?'active':''}></li>))}
-        </ol>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-10 col-md-offset-1" style={{marginBottom: '15px', fontWeight: 'bold'}}>
+            <ol style={{position:'inherit', display: 'block', margin: 'auto', textAlign: 'center', marginTop: '10px'}} className="indicators">
+              <div style={{display: 'block', margin: 'auto', textAlign: 'center', marginBottom: '3px'}}>{this.state.messages[messageIndex]}
+              </div>
+              {this.state.messages.map((d, i)=>(<li className={messageIndex==i?'active liElement':'liElement'} style={{marginLeft: '3px'}}></li>))}
+            </ol>
+          </div>
+        </div>
       </div>
     </div>);
   }
