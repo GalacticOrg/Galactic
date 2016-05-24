@@ -21,8 +21,9 @@ class InfoModal extends Component {
   render() {
     const that = this;
     const { messageIndex } = this.state;
+
     return (
-      <div className="container">
+      <div className="infoModal container">
         <div className="row">
           <div className="col-md-10 col-md-offset-1" style={{marginBottom: '15px', fontWeight: 'bold'}}>
             <ol style={{position:'inherit', display: 'block', margin: 'auto', textAlign: 'center'}} className="indicators">
