@@ -11,9 +11,9 @@ class Home extends Component {
        node: null,
        messageIndex: 1,
        messages:[
-         'Galactic is a map of the Internet, made by people like you.',
+         'Galactic is a crowdsourced map of the Internet.',
          'Use Galactic to search for similar URLs online. Learn more.',
-         'Help improve Galactic by making connections for others to discover!',
+         'Help improve Galactic by connecting similar content or websites!',
          'Already a fan? Help Spread Galactic!',
          'Need Ideas? See what&#39;s similar to "DonaldTrump.com"'
       ]
@@ -28,7 +28,6 @@ class Home extends Component {
 
 
     let existingPage = null;
-    debugger
     if (node && node.isConnected)
       existingPage = <p>Visit the existing page <a href={"/node/"+node._id}>here</a></p>
     else if (isURL) {

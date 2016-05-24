@@ -72,7 +72,8 @@ class InputURL extends React.Component {
               onKeyDown={this._onKeyDown}
               value={searchInput}
               type="search"
-              className="homepageUrlSearchBox form-control" />
+              placeholder="paste URL to search"
+              className="form-control homepageUrlSearchBox" />
             <a onClick={this._onSubmit} href="javascript:void(0)" className=" homepageUrlSearchIconBox input-group-addon">
               <i className="fa fa-search" />
             </a>
