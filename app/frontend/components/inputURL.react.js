@@ -17,7 +17,6 @@ class InputURL extends React.Component {
 
   constructor(){
     super()
-    debugger
     this.state = { searchInput:'' };
     this._onChange = this._onChange.bind(this);
     this._onSubmit = this._onSubmit.bind(this);
@@ -54,11 +53,9 @@ class InputURL extends React.Component {
       let isURL = search.isURL
       if (isURL===true) {
         urlClass = 'is-url'
-        iconState = 'fa fa-plus'
       }
       else if (isURL===false) {
         urlClass = 'is-not-url';
-        iconState = 'fa fa-times'
       }
     }
 
@@ -88,7 +85,7 @@ class InputURL extends React.Component {
               onKeyDown={this._onKeyDown}
               value={searchInput}
               type="search"
-              placeholder="paste URL to search"
+              placeholder="Paste a link to search"
               className="form-control homepageUrlSearchBox" />
             <a onClick={this._onSubmit} href="javascript:void(0)" className=" homepageUrlSearchIconBox input-group-addon">
               <i className={iconState} />
