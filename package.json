@@ -6,10 +6,10 @@
     "name": "@jeffj & @mceoin"
   },
   "engines": {
-    "node": ">=6.x"
+    "node": ">=6.2.X"
   },
   "scripts": {
-    "start": "npm run webpack & npm run sass & NODE_ENV=development ./node_modules/.bin/nodemon server.js",
+    "start": "npm run webpack & npm run sass & NODE_ENV=development ./node_modules/.bin/nodemon --harmony server.js",
     "webpack": "NODE_ENV=development webpack-dev-server --port 8090",
     "sass": "sass --watch public/css/app.scss:public/css/app.css",
     "test": "tape test/test-*.js",

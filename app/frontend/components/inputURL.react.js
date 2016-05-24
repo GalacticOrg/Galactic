@@ -40,27 +40,50 @@ class InputURL extends React.Component {
 
   render() {
     const { searchInput } = this.state
-    let result = null;
     const { node, isURL, dispatch } = this.props
 
-
+    let result = null;
     if (node){
+      const { canonicalLink, title, isConnected, _id, faviconCDN} = node;
+      const existingPage = true? //replace me with isConnected boolean
+        <p><hr/>Visit the existing page <a href={"/node/"+_id}>here</a></p>:
+        null;
+      result = <div>
+        <img src={faviconCDN}/>
+        {title} -- {canonicalLink}
+        {existingPage}
+      </div>
 
-      const {canonicalURL } = node
 
-      result = <div>{canonicalURL}--{isURL?'is a URl':'not a URL'}</div>
+    } else if (isURL) {
+      result = (
+        <div>
+          <p>Looks like we dont have this page.</p>
+          <p>Why dont you <a href={"/connect"}>connect it</a> </p>
+        </div>
+      )
 
     }
+
+    let urlClass = '';//set the url for the function
+    if (isURL===true) urlClass = 'is-url'
+    else if(isURL===false) urlClass = 'is-not-url';
 
     return (
       <div className="homepageUrlSearchForm">
         <div className="homepageUrlFormGroup form-group">
-          <span className="homepageUrlSearchInputGroup input-group">
+          <span
+            className={[
+              'homepageUrlSearchInputGroup',
+              'input-group',
+              urlClass
+            ].join(' ')}
+          >
             <input onChange={this._onChange} onKeyDown={this._onKeyDown} value={searchInput} type="search" className="homepageUrlSearchBox form-control" />
             <a onClick={this._onSubmit} href="javascript:void(0)" className=" homepageUrlSearchIconBox input-group-addon">
               <i className="fa fa-search" />
             </a>
-            </span>
+          </span>
         </div>
         {result}
       </div>

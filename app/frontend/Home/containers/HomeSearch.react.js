@@ -4,8 +4,8 @@ import InputURL from "../../components/inputURL.react"
 
 export default class Home extends Component {
 
-  constructor(props) {
-     super(props);
+  constructor() {
+     super();
      this.state = {
        messageIndex: 1,
        messages:[
@@ -18,6 +18,7 @@ export default class Home extends Component {
 
   render() {
     let messageIndex = this.state.messageIndex;
+    const that = this;
     return (<div>
       <Navbar />
       <div>
@@ -32,11 +33,22 @@ export default class Home extends Component {
             <ol style={{position:'inherit', display: 'block', margin: 'auto', textAlign: 'center', marginTop: '10px'}} className="indicators">
               <div style={{display: 'block', margin: 'auto', textAlign: 'center', marginBottom: '3px'}}>{this.state.messages[messageIndex]}
               </div>
-              {this.state.messages.map((d, i)=>(<li className={messageIndex==i?'active liElement':'liElement'} style={{marginLeft: '3px'}}></li>))}
+              {this.state.messages.map((d, i)=>(
+                <a href="javascript:void(0)" key={i} onClick={that.changeMessage.bind(that, i)}>
+                  <li className={messageIndex==i?'active liElement':'liElement'} style={{marginLeft: '3px'}}></li>
+                </a>
+              )
+            )}
             </ol>
           </div>
         </div>
       </div>
     </div>);
+  }
+
+  changeMessage(i){
+    this.setState({
+      messageIndex: i
+    })
   }
 }
