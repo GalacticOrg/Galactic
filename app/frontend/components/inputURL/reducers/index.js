@@ -4,13 +4,15 @@
 */
 import { RECEIVE_URL_SEARCH } from '../actions'
 
-const inputURLResult = (state = { isURL: null, node: null }, action) => {
+export default function inputURLResult (state = {}, action) {
   switch (action.type) {
     case RECEIVE_URL_SEARCH:
-      return action.result
+      return Object.assign({},
+        state,
+        {
+          [action.uid]: action.result
+        });
     default:
       return state
   }
 }
-
-export default inputURLResult

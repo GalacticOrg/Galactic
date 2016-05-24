@@ -19,7 +19,7 @@ module.exports = function (app, passport) {
 
   // API Node
   app.param('id', entityCrud.load);
-  app.get('/api/entity/:id', entityCrud.getCreateConnectionController)
+  app.get('/api/entity/:id', entityCrud.getCreateEdgeController)
 
   //API searchUrl
 

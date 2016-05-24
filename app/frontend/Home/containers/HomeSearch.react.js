@@ -6,7 +6,9 @@ export default class Home extends Component {
 
   constructor() {
      super();
+     this._onSearchResult = this._onSearchResult.bind(this);
      this.state = {
+       node: null,
        messageIndex: 1,
        messages:[
          'Galactic is a map of the Internet, made by people like you.',
@@ -19,8 +21,15 @@ export default class Home extends Component {
   }
 
   render() {
-    let messageIndex = this.state.messageIndex;
     const that = this;
+    const { messageIndex, node, isURL } = this.state;
+
+    let existingPage = null;
+    if (node && node.isConnected)
+      existingPage = <p>Visit the existing page <a href={"/node/"+node._id}>here</a></p>
+    else if (isURL)
+      existingPage = <p>Looks like that page is waiting for a smart person to <a href={"/connect?id="+node._id}>here</a>  Who could that person be???</p>;
+
     return (<div>
       <Navbar />
       <div>
@@ -28,7 +37,10 @@ export default class Home extends Component {
         <img className="homepageBannerIcon" src="/img/galactic-font-logo.png" />
       </div>
       <div>
-      <InputURL />
+      <InputURL receivedSearchResult={this._onSearchResult}/>
+      <div className="col-md-6 col-md-offset-3">
+          {existingPage}
+      </div>
       </div>
       <div className="container">
         <div className="row">
@@ -47,8 +59,9 @@ export default class Home extends Component {
               {this.state.messages[messageIndex]}
               </div>
               {this.state.messages.map((d, i)=>(
-                <a href="javascript:void(0)" key={i} onClick={that.changeMessage.bind(that, i)}>
-                  <li className={messageIndex==i?'active':''} style={{marginLeft: '3px'}}></li>
+                <a href="javascript:void(0)" key={i} onClick={that._changeMessage.bind(that, i)}>
+                  <li className={messageIndex==i?'active liElement':'liElement'} style={{marginLeft: '3px'}}></li>
+
                 </a>
               )
             )}
@@ -59,7 +72,15 @@ export default class Home extends Component {
     </div>);
   }
 
-  changeMessage(i){
+  _onSearchResult(data){
+    const {node, isURL} = data
+    this.setState({
+      node,
+      isURL
+    })
+  }
+
+  _changeMessage(i){
     this.setState({
       messageIndex: i
     })

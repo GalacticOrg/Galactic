@@ -17,7 +17,7 @@ const Connection = mongoose.model('Connection');
 /**
  * Create anSREF from two existing nodes;
  */
-exports.createSREF = function(idOne, idTwo, userId, cb){
+exports.createEdge = function(idOne, idTwo, userId, cb){
 	const id = new Connection({})._id;
 	let params = {
 			_idOne: idOne,
@@ -64,36 +64,36 @@ const createNodeQ = [
 /**
  * load a node from a MongoId;
  */
-// exports.getNode = function(id, cb){
-// 	db.cypher({
-// 	      query: getNodeQ,
-// 	      params: {
-// 	          _id: id
-// 	      },
-// 	  }, function(err, results){
-//
-// 	  	if (err) {
-// 	  	  console.log(err, 'getNode')
-// 	  		return cb(err, null)
-// 	  	}
-//
-//       cb(err,
-// 			_.chain(results)
-// 		  	 .filter(function(r, i){return r.Link._fromId === r.PageOne._id})
-// 		  	 .map(function(r){return srefParser(r)})
-// 		  	 .value(),
-// 			_.chain(results)
-// 		  	 .filter(function(r, i){return r.Link._toId === r.PageOne._id})
-// 		  	 .map(function(r){return inboundSrefParser(r)})
-// 		  	 .value()
-//        )
-// 	  });
-// };
+exports.getNode = function(id, cb){
+	db.cypher({
+	      query: getNodeQ,
+	      params: {
+	          _id: id
+	      },
+	  }, function(err, results){
+
+	  	if (err) {
+	  	  console.log(err, 'getNode')
+	  		return cb(err, null)
+	  	}
+
+      cb(err,
+			_.chain(results)
+		  	 .filter(function(r, i){return r.Link._fromId === r.PageOne._id})
+		  	 .map(function(r){return srefParser(r)})
+		  	 .value(),
+			_.chain(results)
+		  	 .filter(function(r, i){return r.Link._toId === r.PageOne._id})
+		  	 .map(function(r){return inboundSrefParser(r)})
+		  	 .value()
+       )
+	  });
+};
 
 //get Node Query
-// const getNodeQ = [
-//   'MATCH (PageOne:page {_id:{_id}})-[Link]-(PageTwo)',
-//   'RETURN PageOne, Link, PageTwo'].join('\n');
+const getNodeQ = [
+  'MATCH (PageOne:page {_id:{_id}})-[Link]-(PageTwo)',
+  'RETURN PageOne, Link, PageTwo'].join('\n');
 
 /**
  * @name   srefParser

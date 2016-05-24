@@ -15,10 +15,11 @@ function requestSearchResult(urlInput) {
   }
 }
 
-function receiveSearchResult(result) {
+function receiveSearchResult(result, uid) {
   return {
     type: RECEIVE_URL_SEARCH,
-    result
+    result,
+    uid
   }
 }
 
@@ -29,14 +30,15 @@ function receiveErr(err) {
   }
 }
 
-export function getSearch(q) {
+export function getSearch(q, uid) {
+
   return dispatch => {
     dispatch(requestSearchResult(q))
     return Get(
         '/api/searchurl',
         {q},
         (err, res)=>dispatch(receiveErr(err)),
-        (err, res)=>dispatch(receiveSearchResult(res.body))
+        (err, res)=>dispatch(receiveSearchResult(res.body, uid))
     )
   }
 }

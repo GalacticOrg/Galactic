@@ -4,10 +4,26 @@
 */
 import React, { Component } from 'react'
 import ReactDOM from "react-dom";
+import { connect } from 'react-redux'
+import { postConnection } from '../actions'
+
 import Navbar from "../../components/Navbar.react"
 import InputURL from "../../components/inputURL.react"
 
 export default class Connect extends Component {
+
+  constructor() {
+     super();
+     this._onSearchResultA = this._onSearchResultA.bind(this);
+     this._onSearchResultB = this._onSearchResultB.bind(this);
+     this._onSubmit = this._onSubmit.bind(this);
+
+     this.state = {
+       nodeA: null,
+       nodeB: null
+     };
+  }
+
   render() {
     return (<div>
       <Navbar />
@@ -28,17 +44,18 @@ export default class Connect extends Component {
                 <div className="form-group">
                   <label for="connectionNodeA">URL A</label>
                   <br />
-                  <InputURL />
+                  <InputURL receivedSearchResult={this._onSearchResultA}/>
                   <br />
                 </div>
                 <hr />
                 <div className="form-group">
                   <label for="connectionNodeB">URL B</label>
                   <br />
-                  <input type="url" className="form-control" id="connectionNodeB" style={{width: '100%'}}/>
+                  <InputURL receivedSearchResult={this._onSearchResultB}/>
                 </div>
                 <br />
-                <button type="submit" className="btn btn-default" style={{backgroundColor: 'orange', marginTop: '20px'}}>Connect</button>
+                {this.state.nodeA} -- {this.state.nodeB}
+                <button onClick={this._onSubmit} type="submit" className="btn btn-default" style={{backgroundColor: 'orange', marginTop: '20px'}}>Connect</button>
               </div>
             </div>
           </div>
@@ -46,4 +63,35 @@ export default class Connect extends Component {
       </div>
     </div>);
   }
+
+  _onSearchResultA(data){
+    const {node, isURL} = data
+    this.setState({
+      nodeA: node._id
+    })
+  }
+
+  _onSearchResultB(data){
+    const {node, isURL} = data
+    this.setState({
+      nodeB: node._id
+    })
+  }
+  _onSubmit(data){
+    const { dispatch } = this.props;
+    const {nodeA, nodeB} = this.state;
+    if (nodeA!==nodeB){
+      dispatch(postConnection(nodeA, nodeB));
+    }
+  }
+
 }
+
+function mapStateToProps(state) {
+  const { } = state;
+  return {
+    //....
+  }
+}
+
+export default connect(mapStateToProps)(Connect)

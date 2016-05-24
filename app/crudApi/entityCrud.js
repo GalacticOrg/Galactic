@@ -10,14 +10,14 @@ exports.load = function (req, res, next, id){
 /**
  * Create Connection
  */
-exports.getCreateConnectionController = function (req, res) {
+exports.getCreateEdgeController = function (req, res) {
 
   const body = req.body;
   const idFrom = body.idFrom;
   const idTo = body.idTo;
   const id  = req.user.id
 
-  Connection.createSREF(
+  Connection.createEdge(
     idFrom,
     idTo,
     userId,

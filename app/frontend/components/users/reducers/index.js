@@ -4,7 +4,8 @@
 */
 
 import { RECEIVE_USER_DATA } from '../actions'
-const userResult = (state = {loading: true}, action) => {
+
+export default function userResult (state = {loading: true}, action) {
   switch (action.type) {
     case RECEIVE_USER_DATA:
       return action.result
@@ -12,4 +13,3 @@ const userResult = (state = {loading: true}, action) => {
       return state
   }
 }
-export default userResult

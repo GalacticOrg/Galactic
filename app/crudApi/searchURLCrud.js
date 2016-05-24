@@ -22,15 +22,15 @@ exports.getSearchController = function (req, res) {
 
   async.waterfall([
       function(cb){
-        var url = URLParse(q)
+        var url = URLParse(q);
         if (url){
-           cb(null, url)
+           cb(null, url);
         } else {
           cb({
             status: 200,
             isURL: false,
             node: null
-          })
+          });
         }
       },
       pageDBSearch,
