@@ -10,6 +10,7 @@ const async = require('async')
 const extract = require('../../lib/extract')
 const utils = require('../../lib/utils')
 const URLParse = extract.URLParse;
+const Connection = require('../models/connection');
 
 /**
  * Create
@@ -35,6 +36,7 @@ exports.getSearchController = function (req, res) {
       pageExtractor,
       pageExtractorDBSearch,
       pageSaver,
+      connectionCreator
   ], function(err, url, resultDB, extractedPageData){
       //Handle the end
       if (err && err.status === 404){
@@ -129,6 +131,24 @@ const pageSaver = function(url, resultDB, extractedPageData, cb){
       cb(err, url, savedResultDB, extractedPageData);
     });
   } else {
+    cb(null, url, resultDB, extractedPageData);
+  }
+}
+
+/**
+ * @name   Creates a connection
+ * @desc   Saves the db to the article
+ * @param  {object}      result
+ * @param  {Function}    cb  a callback for the data.
+ */
+const connectionCreator = function(url, resultDB, extractedPageData, cb){
+  if (extractedPageData){
+    Connection.createNode(
+      resultDB._id,
+      function (err, results) {
+        cb(err, url, resultDB, extractedPageData);
+    });
+  } else{
     cb(null, url, resultDB, extractedPageData);
   }
 }

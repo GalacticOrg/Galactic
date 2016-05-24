@@ -3,18 +3,59 @@
 
 A map of the Internet.
 
-## Usage
+# Install
 
-    $ git clone https://github.com/SFDevLabs/galactic.git
-    $ cd galactic
-    $ npm install
-    $ cp .env.example .env
-    $ npm start
+ - Start MongoDb
+ - Start Neo4J
+ 
+Create config file:
+ 
+```
+cp .env.example .env
+```
 
+Install:
+
+```
+$ git clone https://github.com/SFDevLabs/galactic.git
+$ cd galactic
+$ npm install
+```
+
+Run:
+
+```
+$ npm start
+```
 # Tests
 Run test with:
 
 	$ npm test
+	
+#Handy Neo4j Commands
+
+Scrub the Neo4J DB:
+
+``` Neo4j
+MATCH (pageOne)-[Link]-(PageTwo), (pageUnconnected)
+DELETE pageOne, Link, PageTwo, pageUnconnected
+RETURN pageRemander
+```
+
+See all connections:
+
+``` Neo4j
+MATCH (pageOne)-[Link]-(PageTwo), pageUnconnected
+RETURN pageOne, Link, PageTwo, pageUnconnected
+```
+
+See all unconnected nodes:
+
+``` Neo4j
+MATCH pageUnconnected
+RETURN pageUnconnected
+```
+
 
 See the continuous integration on codeship:
 ###Master
