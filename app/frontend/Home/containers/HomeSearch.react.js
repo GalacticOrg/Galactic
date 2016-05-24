@@ -13,6 +13,13 @@ export default class Home extends Component {
       <div>
       <InputURL />
       </div>
+      <div style={{backgroundColor:'#6699FF'}}>
+        <ol className="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" className="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1" className=""></li>
+              <li data-target="#carousel-example-generic" data-slide-to="2" className=""></li>
+        </ol>
+      </div>
     </div>);
   }
 }

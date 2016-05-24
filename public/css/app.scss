@@ -106,6 +106,26 @@ body {
   /**************************/
   /** HOMEPAGE SECTION **/
   /**************************/
+  .indicators li{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 1px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #000\9;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid #fff;
+    border-radius: 10px;
+  }
+
+  .indicators .active {
+      width: 12px;
+      height: 12px;
+      margin: 0;
+      background-color: #fff;
+  }
+
   .homepageBannerIcon {
     display: block;
     margin: auto;
@@ -123,33 +143,41 @@ body {
     width: 600px;
     max-width: 700px;
     border-right: none;
+    &.is-url > *{
+      border-color: blue;
+    }
+    &.is-not-url > *{
+      border-color: red;
+    }
+    .homepageUrlSearchBox {
+      width: 640px;
+      height: 43px;
+      outline: none;
+    }
+    .homepageUrlSearchIconBox {
+      height: 43px;
+      width: 52px;
+      background-color: white;
+      border-left: none;
+    }
+    .homepageUrlSearchBox {
+      outline: none;
+      -webkit-box-shadow: none !important;
+      -moz-box-shadow: none !important;
+      box-shadow: none !important;
+    }
+    .homepageUrlSearchIconBox:hover {
+      background-color: #66AD57;
+      margin-left: 5px;
+      margin-right: 5px;
+      outline: red;
+    }
+    .glyphicon.glyphicon-search {
+      font-size: 20px;
+    }
   }
-  .homepageUrlSearchBox {
-    width: 640px;
-    height: 43px;
-    outline: none;
-  }
-  .homepageUrlSearchIconBox {
-    height: 43px;
-    width: 52px;
-    background-color: white;
-    border-left: none;
-  }
-  .homepageUrlSearchBox {
-    outline: none;
-    -webkit-box-shadow: none !important;
-    -moz-box-shadow: none !important;
-    box-shadow: none !important;
-  }
-  .homepageUrlSearchIconBox:hover {
-    background-color: #66AD57;
-    margin-left: 5px;
-    margin-right: 5px;
-    outline: red;
-  }
-  .glyphicon.glyphicon-search {
-    font-size: 20px;
-  }
+
+
 
   /**************************/
   /** END HOMEPAGE SECTION **/

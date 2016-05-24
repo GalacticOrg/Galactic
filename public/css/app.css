@@ -105,6 +105,22 @@ body {
     color: #b3b3b1;
     font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
     font-size: 14px; }
+  body .indicators li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 1px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #000 \9;
+    background-color: transparent;
+    border: 1px solid #fff;
+    border-radius: 10px; }
+  body .indicators .active {
+    width: 12px;
+    height: 12px;
+    margin: 0;
+    background-color: #fff; }
   body .homepageBannerIcon {
     display: block;
     margin: auto;
@@ -120,27 +136,31 @@ body {
     width: 600px;
     max-width: 700px;
     border-right: none; }
-  body .homepageUrlSearchBox {
-    width: 640px;
-    height: 43px;
-    outline: none; }
-  body .homepageUrlSearchIconBox {
-    height: 43px;
-    width: 52px;
-    background-color: white;
-    border-left: none; }
-  body .homepageUrlSearchBox {
-    outline: none;
-    -webkit-box-shadow: none !important;
-    -moz-box-shadow: none !important;
-    box-shadow: none !important; }
-  body .homepageUrlSearchIconBox:hover {
-    background-color: #66AD57;
-    margin-left: 5px;
-    margin-right: 5px;
-    outline: red; }
-  body .glyphicon.glyphicon-search {
-    font-size: 20px; }
+    body .homepageUrlSearchInputGroup.is-url > * {
+      border-color: blue; }
+    body .homepageUrlSearchInputGroup.is-not-url > * {
+      border-color: red; }
+    body .homepageUrlSearchInputGroup .homepageUrlSearchBox {
+      width: 640px;
+      height: 43px;
+      outline: none; }
+    body .homepageUrlSearchInputGroup .homepageUrlSearchIconBox {
+      height: 43px;
+      width: 52px;
+      background-color: white;
+      border-left: none; }
+    body .homepageUrlSearchInputGroup .homepageUrlSearchBox {
+      outline: none;
+      -webkit-box-shadow: none !important;
+      -moz-box-shadow: none !important;
+      box-shadow: none !important; }
+    body .homepageUrlSearchInputGroup .homepageUrlSearchIconBox:hover {
+      background-color: #66AD57;
+      margin-left: 5px;
+      margin-right: 5px;
+      outline: red; }
+    body .homepageUrlSearchInputGroup .glyphicon.glyphicon-search {
+      font-size: 20px; }
   body .resultNodeCard {
     margin-top: 50px;
     height: 150px;
