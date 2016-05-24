@@ -22,6 +22,7 @@ export default class Home extends Component {
     return (<div>
       <Navbar />
       <div>
+        <img className="homepageGalacticIcon" src="/img/constellation_2.png"/>
         <img className="homepageBannerIcon" src="/img/galactic-font-logo.png" />
       </div>
       <div>

@@ -22,7 +22,7 @@ export default class Connect extends Component {
         <div className="row connectionForm">
 
           <div>
-            <div className="col-md-9 col-md-offset-1" style={{marginBottom: '15px', fontWeight: 'bold'}}>Connection two URLs together:</div>
+            <div className="col-md-9 col-md-offset-1" style={{marginBottom: '15px', fontWeight: 'bold'}}>Connect two URLs together:</div>
             <div className="col-md-9 col-md-offset-1" style={{border: 'dashed 1px'}}>
               <div role="form" style={{ marginTop: '20px', marginBottom: '20px'}}>
                 <div className="form-group">
