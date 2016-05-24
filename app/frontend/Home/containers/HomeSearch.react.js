@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Navbar from "../../components/Navbar.react"
 import InputURL from "../../components/inputURL.react"
 
-export default class Home extends Component {
+class Home extends Component {
 
   constructor() {
      super();
-     this._onSearchResult = this._onSearchResult.bind(this);
      this.state = {
        node: null,
        messageIndex: 1,
@@ -22,7 +22,10 @@ export default class Home extends Component {
 
   render() {
     const that = this;
-    const { messageIndex, node, isURL } = this.state;
+    const { messageIndex } = this.state;
+
+    const { node, isURL } = this.props;
+
 
     let existingPage = null;
     debugger
@@ -42,7 +45,7 @@ export default class Home extends Component {
         <img className="homepageBannerIcon" src="/img/galactic-font-logo.png" />
       </div>
       <div>
-      <InputURL receivedSearchResult={this._onSearchResult}/>
+      <InputURL receivedSearchResult={this._onSearchResult} id='result'/>
       <div className="col-md-6 col-md-offset-3">
           {existingPage}
       </div>
@@ -77,17 +80,24 @@ export default class Home extends Component {
     </div>);
   }
 
-  _onSearchResult(data){
-    const {node, isURL} = data
-    this.setState({
-      node,
-      isURL
-    })
-  }
-
   _changeMessage(i){
     this.setState({
       messageIndex: i
     })
   }
 }
+
+function mapStateToProps(state) {
+  const result = state.inputURLResult.result
+  if (result){
+    const { node, isURL } = result;
+    return {
+      node, isURL
+    }
+  }
+  else{
+    return {}
+  }
+}
+
+export default connect(mapStateToProps)(Home)

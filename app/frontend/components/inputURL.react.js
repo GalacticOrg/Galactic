@@ -14,11 +14,7 @@ class InputURL extends React.Component {
 
   constructor(){
     super()
-    this.state={
-      searchInput:'',
-      uid:Math.random()*Math.pow(10, 17)
-    };
-
+    this.state = { searchInput:'' };
     this._onChange = this._onChange.bind(this);
     this._onSubmit = this._onSubmit.bind(this);
     this._onKeyDown = this._onKeyDown.bind(this);
@@ -26,23 +22,20 @@ class InputURL extends React.Component {
   }
 
   componentWillMount(nextProps){
-    const { initalValue } = this.props;
-    this.setState({
-      searchInput:initalValue
-    })
-    if (initalValue) this._dispatch(initalValue);
-  }
-
-  componentWillReceiveProps(nextProps){
-    const { receivedSearchResult } = this.props
-    const result = nextProps[this.state.uid]
-    if (receivedSearchResult && result) receivedSearchResult(result);
+    const { initalValue, id} = this.props;
+    this.uid = id?id:Math.random()*Math.pow(10, 17);
+    if (initalValue){
+      this.setState({
+        searchInput:initalValue
+      });
+      this._dispatch(initalValue);
+    }
   }
 
   render() {
     const { searchInput } = this.state
     const { dispatch } = this.props
-    const search = this.props[this.state.uid]
+    const search = this.props[this.uid]
 
     let result = null;
     let node = null;
@@ -105,7 +98,7 @@ class InputURL extends React.Component {
 
   _dispatch(searchInput) {
     const { dispatch } = this.props;
-    dispatch(getSearch(searchInput, this.state.uid));
+    dispatch(getSearch(searchInput, this.uid));
   }
 
   _onSubmit(){

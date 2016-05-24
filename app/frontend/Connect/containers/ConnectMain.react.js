@@ -39,7 +39,6 @@ export default class Connect extends Component {
       </div>
       <div className="container">
         <div className="row connectionForm">
-
           <div>
             <div className="col-md-9 col-md-offset-1" style={{marginBottom: '15px', fontWeight: 'bold'}}>Connect two URLs together:</div>
             <div className="col-md-9 col-md-offset-1" style={{border: 'dashed 1px'}}>
@@ -47,14 +46,19 @@ export default class Connect extends Component {
                 <div className="form-group">
                   <label for="connectionNodeA">URL A</label>
                   <br />
-                  <InputURL receivedSearchResult={this._onSearchResultA} initalValue={initalSearch} />
+                  <InputURL
+                    initalValue = {initalSearch}
+                    receivedSearchResult={this._onSearchResultA}
+                    id='a' />
                   <br />
                 </div>
                 <hr />
                 <div className="form-group">
                   <label for="connectionNodeB">URL B</label>
                   <br />
-                  <InputURL receivedSearchResult={this._onSearchResultB}/>
+                  <InputURL
+                    receivedSearchResult={this._onSearchResultB}
+                    id='b'/>
                 </div>
                 <br />
                 {this.state.nodeA} -- {this.state.nodeB}
@@ -102,9 +106,10 @@ export default class Connect extends Component {
 }
 
 function mapStateToProps(state) {
-  const { } = state;
+  const { a, b } = state.inputURLResult
   return {
-    //....
+    a,
+    b
   }
 }
 
