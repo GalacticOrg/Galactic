@@ -19,7 +19,7 @@ module.exports = function (app, passport) {
 
   // API Node
   app.param('id', edgeCrud.load);
-  app.post('/api/connection', edgeCrud.postCreateEdgeController)
+  app.post('/api/connect', auth.requiresLogin, edgeCrud.postCreateEdgeController)
 
   //API searchUrl
 

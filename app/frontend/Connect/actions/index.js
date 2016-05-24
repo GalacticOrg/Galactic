@@ -28,11 +28,11 @@ function receiveErr(err) {
   }
 }
 
-export function postConnection(aId, bId) {
+export function postConnection(fromId, toId) {
   return dispatch => {
     dispatch(requestConnectionResult())
     return Post(
-        '/api/connections',
+        '/api/connect',
         {fromId, toId},
         (err, res)=>dispatch(receiveErr(err)),
         (err, res)=>dispatch(receiveConnectionResult(res.body))

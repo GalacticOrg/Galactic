@@ -23,6 +23,7 @@ export function Post(url, data = {}, errHandle, cb){
   return request
   .post(url)
   .send({'_csrf': csrfToken})
+  .send(data)
   .timeout(TIMEOUT)
   .set('Accept', 'application/json')
   .end(handler(errHandle, cb))
