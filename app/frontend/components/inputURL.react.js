@@ -3,14 +3,13 @@
 */
 
 import React from "react";
-import { Modal} from "react-bootstrap"
+import Loader from 'react-loader';
+import { Modal} from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { getSearch, resetSearch } from './inputURL/actions'
 import _ from 'lodash'
 
-
 const ENTER_KEY_CODE = 13;
-
 
 class InputURL extends React.Component {
 
@@ -46,11 +45,13 @@ class InputURL extends React.Component {
 
     let result = null;
     let node = null;
+    let loading = false;
     let urlClass = '';
     let iconState = 'fa fa-search'
     if (search){
       node = search.node
-      let isURL = search.isURL
+      const isURL = search.isURL
+      loading = search.loading?true:false;
       if (isURL===true) {
         urlClass = 'is-url'
       }
@@ -58,17 +59,6 @@ class InputURL extends React.Component {
         urlClass = 'is-not-url';
       }
     }
-
-    // if (node){
-    //   const { canonicalLink, title, isConnected, _id, faviconCDN } = node;
-    //   result = (
-    //     <div style={{
-    //       marginLeft: '20px'
-    //     }}>
-    //       <img className="nodeImg" src={faviconCDN}/> <span>{title}</span>
-    //     </div>
-    //   )
-    // }
 
     return (
       <div className="homepageUrlSearchForm">
@@ -87,7 +77,8 @@ class InputURL extends React.Component {
               type="search"
               placeholder="Paste a link to search"
               className="form-control homepageUrlSearchBox" />
-            <a onClick={this._onSubmit} href="javascript:void(0)" className=" homepageUrlSearchIconBox input-group-addon">
+            {loading?<Loader left={'91%'} scale={0.55} />:null}
+            <a tabIndex="-1" onClick={this._onSubmit} href="javascript:void(0)" className=" homepageUrlSearchIconBox input-group-addon">
               <i className={iconState} />
             </a>
           </span>

@@ -98,8 +98,7 @@ exports.getSearchController = function (req, res) {
   ], function(err, url, resultDB, extractedPageData){
       //Handle the end
       if (err &&
-          (err.status === 404 || err.code )
-      ) {
+         (err.status === 404 || err.code )) {
         console.log(err, 'getSearchController isURL = flase')
         res.send({
            node : null,
@@ -114,7 +113,6 @@ exports.getSearchController = function (req, res) {
            node : resultDB.toObject(),
            isURL: true
         };
-        payload.node.imageLoading = true;
         res.send(payload);
       }
   });
