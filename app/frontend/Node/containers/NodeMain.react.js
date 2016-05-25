@@ -18,11 +18,20 @@ class NodeMain extends Component {
       return <div>Loader Bar goes here.</div>
     }
 
-    const { _id, title, edges, queryLink, canonicalLink  } = nodeResult
+
+    if (nodeResult.imageCDN && nodeResult.imageCDN.url){
+      console.log(nodeResult.imageCDN.url)
+    } else {
+      nodeResult.imageCDN = {}
+      nodeResult.imageCDN.url = "/img/document.jpg"
+    }
+
+    const { _id, title, edges, queryLink, canonicalLink, description, imageCDN } = nodeResult
 
     const nodeEdges = edges.map(function(edge, i){
-      return <Col className="connectionCard" xsOffset={1} xs={10} mdOffset={1} md={10}>
-        <a href={'/node/'+edge.entity._id} title={edge.entity.canonicalLink}><div className="connectionCardText">{edge.entity.queryLink}</div></a>
+
+      return <Col className="connectionCard" xsOffset={1} xs={8} mdOffset={1} md={8}>
+        <a href={'/node/'+edge.entity._id} title={edge.entity.canonicalLink} className="noUnderline"><div className="connectionCardText">{edge.entity.queryLink}</div></a>
         <div className="connectionCardInfo">
           <a href={'/@'+edge.user.username}><span className="connectionCardInfoElement" title={'first connector: @'+edge.user.username}><img className="connectorIcon" src="/img/user_tim.jpeg" /></span></a>
           <a href={'/node/'+edge.entity._id}><Glyphicon className="connectionCardInfoElement" glyph="cd" bsStyle="success" title="8 connections"/></a>
@@ -40,6 +49,10 @@ class NodeMain extends Component {
             {title}
             <br />
             <a href={canonicalLink} className="noUnderline"><span className="resultNodeHyperlinkText">{queryLink}</span></a>
+            <br />
+            <span>{description}</span>
+            <br />
+            <span><img src={imageCDN.url} style={{height: '30px'}} /></span>
           </Col>
           <Col className="resultInfo" xs={3} md={3}>
             <div>
@@ -66,7 +79,7 @@ class NodeMain extends Component {
 
       <Grid className="resultsSection">
         <Row>
-          <Col xsOffset={1} xs={10} mdOffset={1} md={10} style={{fontWeight: 'bold', marginBottom: '10px'}}>Connections:</Col>
+          <Col xsOffset={1} xs={10} mdOffset={1} md={10} style={{fontWeight: 'bold', marginBottom: '15px'}}>Connections:</Col>
           </Row>
         <Row className="show-grid">
           {nodeEdges}

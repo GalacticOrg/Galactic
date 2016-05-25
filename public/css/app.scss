@@ -137,73 +137,73 @@ body {
     margin-top: 150px;
     max-width: 225px;
   }
-  .homepageBannerIcon {
-    padding-left: 40px;
-    display: block;
-    margin: auto;
-    /*margin-top: 350px;*/
-    max-width: 350px;
-  }
-  .homepageUrlSearchForm {
-    display: block;
-    margin: auto;
-    margin-top: 50px;
-    max-width: 700px;
-  }
-  .homepageUrlFormGroup{
-    margin-bottom: 0px;
-  }
-  .homepageUrlSearchInputGroup {
-    margin: auto;
-    width: 600px;
-    max-width: 700px;
-    border-right: none;
-    &.is-url > *{
-      border-color: blue;
+    .homepageBannerIcon {
+      padding-left: 40px;
+      display: block;
+      margin: auto;
+      /*margin-top: 350px;*/
+      max-width: 350px;
     }
-    &.is-not-url > *{
-      border-color: red;
-  }
+    .homepageUrlSearchForm {
+      display: block;
+      margin: auto;
+      margin-top: 50px;
+      max-width: 700px;
+    }
+    .homepageUrlFormGroup{
+      margin-bottom: 0px;
+    }
+    .homepageUrlSearchInputGroup {
+      margin: auto;
+      width: 600px;
+      max-width: 700px;
+      border-right: none;
+      &.is-url > *{
+        border-color: blue;
+      }
+      &.is-not-url > *{
+        border-color: red;
+    }
 
-  .homepageUrlSearchIconBox {
-    height: 43px;
-    width: 52px;
-    background-color: white;
-    border-left: none;
-  }
-  .homepageUrlSearchIconBox:hover {
-  }
+    .homepageUrlSearchIconBox {
+      height: 43px;
+      width: 52px;
+      background-color: white;
+      border-left: none;
+    }
+    .homepageUrlSearchIconBox:hover {
+    }
 
-  .homepageUrlSearchBox {
-    font-size: 17px;
-    padding-left: 15px;
-    width: 640px;
-    height: 43px;
-    outline: none;
-    -webkit-box-shadow: none !important;
-    -moz-box-shadow: none !important;
-    box-shadow: none !important;
-  }
+    .homepageUrlSearchBox {
+      font-size: 17px;
+      padding-left: 15px;
+      width: 640px;
+      height: 43px;
+      outline: none;
+      -webkit-box-shadow: none !important;
+      -moz-box-shadow: none !important;
+      box-shadow: none !important;
+    }
 
-  .homepageUrlSearchBox::-webkit-input-placeholder {
-    color:  #d2d4dc;
-  }
-  .homepageUrlSearchBox:-moz-placeholder {
-    color:  #d2d4dc;
-  }
-  .homepageUrlSearchBox::-moz-placeholder {
-    color:  #d2d4dc;
-  }
-  .homepageUrlSearchBox:-ms-input-placeholder {
-    color:  #d2d4dc;
-  }
-  .InputUrlHelperText {
-    /*left blank*/
-  }
+    .homepageUrlSearchBox::-webkit-input-placeholder {
+      color:  #d2d4dc;
+    }
+    .homepageUrlSearchBox:-moz-placeholder {
+      color:  #d2d4dc;
+    }
+    .homepageUrlSearchBox::-moz-placeholder {
+      color:  #d2d4dc;
+    }
+    .homepageUrlSearchBox:-ms-input-placeholder {
+      color:  #d2d4dc;
+    }
+    .InputUrlHelperText {
+      /*left blank*/
+    }
 
-  .glyphicon.glyphicon-search {
-    font-size: 20px;
-  }
+    .glyphicon.glyphicon-search {
+      font-size: 20px;
+    }
   }
 
   /**************************/
@@ -252,12 +252,11 @@ body {
   .resultsSection {
     .connectionCard {
       display: block;
-      height: 52px;
+      height: 40px;
       color: #555;
       font-size: 14px;
       font-family: "Helvetica Neue", "Lucida Grande", "Arial";
       padding-left: 15px;
-      padding-top: 6px;
     }
     a { color: inherit; }
     img {
@@ -271,15 +270,15 @@ body {
 
     }
     .connectionCardInfo {
-      /*display: none;*/
+      display: none;
       .connectionCardInfoElement {
-        margin-top: 4px;
+        margin-top: 0px;
         margin-right: 8px;
       }
     }
     .connectionCard:hover{
       .connectionCardInfo{
-        /*display: block;*/
+        display: block;
       }
     }
   }
