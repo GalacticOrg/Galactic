@@ -18,23 +18,28 @@ class NodeMain extends Component {
       return <div>Loader Bar goes here.</div>
     }
 
-    const { _id, title, edges } = nodeResult
+    const { _id, title, edges, queryLink, canonicalLink  } = nodeResult
 
     const nodeEdges = edges.map(function(edge, i){
-      return <span>{edge.entity.canonicalLink}</span>
+      return <Col className="connectionCard" xsOffset={1} xs={10} mdOffset={1} md={10}>
+        <a href={'/node/'+edge.entity._id} title={edge.entity.canonicalLink}><div className="connectionCardText">{edge.entity.queryLink}</div></a>
+        <div className="connectionCardInfo">
+          <a href={'/@'+edge.user.username}><span className="connectionCardInfoElement" title={'first connector: @'+edge.user.username}><img className="connectorIcon" src="/img/user_tim.jpeg" /></span></a>
+          <a href={'/node/'+edge.entity._id}><Glyphicon className="connectionCardInfoElement" glyph="cd" bsStyle="success" title="8 connections"/></a>
+          <a href={'/node/'+edge.entity._id} title={edge.entity.canonicalLink}><Glyphicon className="connectionCardInfoElement" glyph="link" bsStyle=" connectionCardInfoElementsuccess"/></a>
+          </div>
+        </Col>
     })
 
     return (
     <div>
       <Navbar />
-      <div>{_id}</div>
-      <div>{nodeEdges}</div>
       <Grid className="resultNodeCard">
         <Row className="show-grid">
           <Col className="resultFont" mdOffset={1} xsOffset={1} xs={6} md={6}>
-            Galactic.com
+            {title}
             <br />
-            <a href="#"><span className="resultNodeHyperlinkText">http:&#47;&#47;galactic.com</span></a>
+            <a href={canonicalLink} className="noUnderline"><span className="resultNodeHyperlinkText">{queryLink}</span></a>
           </Col>
           <Col className="resultInfo" xs={3} md={3}>
             <div>
@@ -60,23 +65,11 @@ class NodeMain extends Component {
       <hr />
 
       <Grid className="resultsSection">
+        <Row>
+          <Col xsOffset={1} xs={10} mdOffset={1} md={10} style={{fontWeight: 'bold', marginBottom: '10px'}}>Connections:</Col>
+          </Row>
         <Row className="show-grid">
-          <Col className="connectionCard" mdOffset={1} xsOffset={1} xs={4} md={3}>
-            <a href="/node/duckduckgo.com" title="galactic.com/node/duckduckgo.com"><div className="connectionCardText">DuckDuckGo
-            </div></a>
-            <div className="connectionCardInfo">
-              <a href="http://duckduckgo.com" title="http://duckduckgo.com"><Glyphicon className="connectionCardInfoElement" glyph="link" bsStyle=" connectionCardInfoElementsuccess"/></a>
-              <a href="/node/duckduckgo.com"><Glyphicon className="connectionCardInfoElement" glyph="cd" bsStyle="success" title="8 connections"/></a>
-              <a href="/@timoreilly"><span className="connectionCardInfoElement" title="connector: @timoreilly"><img className="connectorIcon" src="/img/user_tim.jpeg" /></span></a>
-            </div>
-          </Col>
-          <Col className="connectionCard" xs={4} md={3} mdOffset={0} xsOffset={1}><span className="connectionCardText">Google</span></Col>
-          <Col className="connectionCard" xs={4} md={3} mdOffset={0} xsOffset={1}><span className="connectionCardText">Pinterest</span></Col>
-        </Row>
-        <Row className="show-grid">
-          <Col className="connectionCard" mdOffset={1} xsOffset={1} xs={4} md={3}><span className="connectionCardText">StumbleUpon</span></Col>
-          <Col className="connectionCard" xs={4} md={3} mdOffset={0} xsOffset={1}><span className="connectionCardText">Wikipedia</span></Col>
-          <Col className="connectionCard" xs={4} md={3} mdOffset={0} xsOffset={1}><span className="connectionCardText">SitesLike</span></Col>
+          {nodeEdges}
         </Row>
       </Grid>
     </div>);

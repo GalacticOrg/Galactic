@@ -202,13 +202,12 @@ body {
       width: 20px; }
   body .resultsSection .connectionCard {
     display: block;
-    margin-bottom: 10px;
-    height: 36px;
+    height: 52px;
     color: #555;
-    font-size: 13px;
+    font-size: 14px;
     font-family: "Helvetica Neue", "Lucida Grande", "Arial";
     padding-left: 15px;
-    padding-top: 10px; }
+    padding-top: 6px; }
   body .resultsSection a {
     color: inherit; }
   body .resultsSection img {
@@ -216,15 +215,13 @@ body {
     width: 15px; }
   body .resultsSection .connectionCard:hover {
     background-color: #ECE9E9; }
-  body .resultsSection .connectionCardText {
-    float: left; }
   body .resultsSection .connectionCardInfo {
-    float: right;
-    display: none; }
+    /*display: none;*/ }
     body .resultsSection .connectionCardInfo .connectionCardInfoElement {
-      margin-left: 8px; }
+      margin-top: 4px;
+      margin-right: 8px; }
   body .resultsSection .connectionCard:hover .connectionCardInfo {
-    display: block; }
+    /*display: block;*/ }
   body .connectionForm {
     margin-top: 50px; }
   body .connectionLiElement {
