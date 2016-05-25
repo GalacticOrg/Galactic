@@ -5,6 +5,7 @@
 
 const mongoose = require('mongoose')
 const Entity = mongoose.model('Entity');
+const User = mongoose.model('User');
 const _ = require('lodash');
 const async = require('async')
 const extract = require('../../lib/extract')
@@ -13,7 +14,64 @@ const URLParse = extract.URLParse;
 const Connection = require('../models/connection');
 
 /**
- * Search for Node and Scrape Page
+ * Load
+ */
+exports.load = function (req, res, next, id){
+  Entity.load(id, function (err, entity) {
+    if (!entity || (err && err.message==='Cast to ObjectId failed')) return  res.status(404).send(utils.errsForApi('Page not found'));
+    if (err) return  res.status(500).send( utils.errsForApi(err.errors || err) );
+    req.entity = entity;
+    Connection.getNode(entity._id, function(err, edges){
+      req.edges = edges
+      next();
+    })
+
+  });
+};
+
+
+/**
+* Search API for Nodes
+ */
+exports.getEntityController = function (req, res) {
+  const entity = req.entity
+  const edges = req.edges
+  if (!entity) {
+    res.status(404).send(utils.errsForApi('Node not found!!'));
+  } else {
+    const object = entity.toJSON();
+    //object.edges = edges;
+    const entityIds = _.map(edges, '_idNode')
+    const userIds = _.map(edges, '_idUser')
+
+
+    Entity.find(
+      { _id: {$in: entityIds }},
+      '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
+    .exec(function(err, entities){
+
+
+      User.find(
+        { _id: {$in: userIds }},
+        'name username'
+      )
+      .exec(function(err, users){
+
+
+        object.edges = edges.map(function(edge, i){
+          return {
+            entity: _.find(entities, { id: edge._idNode}),
+            user: _.find(users, { id: edge._idUser})
+          }
+        });
+        res.send(object);
+      })
+    })
+
+  }
+}
+/**
+ * Search API for Node and Scrape Page
  */
 exports.getSearchController = function (req, res) {
   const q = req.query.q
@@ -140,7 +198,7 @@ const pageSaver = function(url, resultDB, extractedPageData, cb){
 
 /**
  * @name   Creates a connection
- * @desc   Saves the db to the article
+ * @desc   Saves the db to the entity
  * @param  {object}      result
  * @param  {Function}    cb  a callback for the data.
  */

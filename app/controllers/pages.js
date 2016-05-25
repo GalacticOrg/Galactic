@@ -15,9 +15,9 @@ exports.connect = function (req, res) {
   });
 };
 
-exports.result = function (req, res) {
-  res.render('result/index', {
-    title: 'Result'
+exports.node = function (req, res) {
+  res.render('node/index', {
+    title: 'Node'
   });
 };
 

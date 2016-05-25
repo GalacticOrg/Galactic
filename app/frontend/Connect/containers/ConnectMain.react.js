@@ -21,7 +21,6 @@ export default class Connect extends Component {
   }
 
   render() {
-    debugger
     const {initalSearch } = this.state
     const { fromNode, toNode } = this.props
 

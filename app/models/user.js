@@ -22,6 +22,7 @@ const oAuthTypes = [
 
 const UserSchema = new Schema({
   name: { type: String, default: '' },
+  faviconCDN: { type: String, default: '' },
   email: { type: String, default: '' },
   username: { type: String, default: '' },
   provider: { type: String, default: '' },
@@ -179,7 +180,6 @@ UserSchema.statics = {
    */
 
   load: function (options, cb) {
-    options.select = options.select || 'name username';
     return this.findOne(options.criteria)
       .select(options.select)
       .exec(cb);
