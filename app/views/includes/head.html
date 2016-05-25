@@ -10,7 +10,6 @@
     <meta name="description" content="{{ pkg.description }}">
     <meta property="csrf" id="csrf" content="{{ csrf_token }}">
 
-
     {# Opengraph tags #}
     <meta property="fb:app_id" content="">
     <meta property="og:title" content=pkg.name + ' - ' + title>
@@ -21,7 +20,7 @@
 
 
     {% block head %}
-
+    <link rel="icon" href="/favicon.ico">
     <link href="/css/vendor/bootstrap.min.css" rel="stylesheet">
     <link href="/css/vendor/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/app.css">

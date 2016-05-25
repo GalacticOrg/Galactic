@@ -44,6 +44,7 @@
     "passport": "~0.3.2",
     "passport-local": "~1.0.0",
     "react-bootstrap": "^0.29.4",
+    "react-loader": "^2.4.0",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
