@@ -3,14 +3,13 @@
 */
 
 import React from "react";
-import { Modal} from "react-bootstrap"
+import Loader from 'react-loader';
+import { Modal} from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { getSearch, resetSearch } from './inputURL/actions'
 import _ from 'lodash'
 
-
 const ENTER_KEY_CODE = 13;
-
 
 class InputURL extends React.Component {
 
@@ -58,17 +57,6 @@ class InputURL extends React.Component {
         urlClass = 'is-not-url';
       }
     }
-
-    // if (node){
-    //   const { canonicalLink, title, isConnected, _id, faviconCDN } = node;
-    //   result = (
-    //     <div style={{
-    //       marginLeft: '20px'
-    //     }}>
-    //       <img className="nodeImg" src={faviconCDN}/> <span>{title}</span>
-    //     </div>
-    //   )
-    // }
 
     return (
       <div className="homepageUrlSearchForm">
