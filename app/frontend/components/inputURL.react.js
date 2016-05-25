@@ -13,7 +13,6 @@ const ENTER_KEY_CODE = 13;
 
 class InputURL extends React.Component {
 
-
   constructor(){
     super()
     this.state = { searchInput:'' };
@@ -25,18 +24,17 @@ class InputURL extends React.Component {
     this._submitWithDelay = _.debounce(this._submitWithDelay, 1000);
   }
 
-
-
   componentWillMount(nextProps){
-    const { initalValue, id} = this.props;
+    const { setValue, id} = this.props;
     this.uid = id?id:Math.random()*Math.pow(10, 17);
-    if (initalValue){
-      this.setState({
-        searchInput:initalValue
-      });
-      this._search(initalValue);
-    }
+    if (setValue) this._setValue(setValue)
   }
+
+  componentWillReceiveProps(nextProps){
+    const { reset } = nextProps[this.uid];
+    if (reset) this.setState({searchInput:''})
+  }
+
 
   render() {
     const { searchInput } = this.state
@@ -88,6 +86,14 @@ class InputURL extends React.Component {
     );
   }
 
+  _setValue(setValue){
+    this.setState({
+      searchInput:setValue
+    });
+    if (setValue.length>0) this._search(setValue);
+  }
+
+
   _onChange(e) {
     e.preventDefault()
     this.setState({
@@ -109,6 +115,7 @@ class InputURL extends React.Component {
   _onSubmit(){
     const {searchInput} = this.state;
     if (searchInput.length > 0){
+      this._submitWithDelay.cancel() //cancel the delayed submit.
       this._search(searchInput)
     } else{
       this._reset()
@@ -117,7 +124,10 @@ class InputURL extends React.Component {
 
   _search(searchInput) {
     const { dispatch } = this.props;
-    dispatch(getSearch(searchInput, this.uid));
+    if (this.lastSearch !== searchInput){
+      this.lastSearch = searchInput;
+      dispatch(getSearch(searchInput, this.uid));
+    }
   }
 
   _reset(searchInput) {

@@ -9,6 +9,8 @@ import { postConnection } from '../actions'
 
 import Navbar from "../../components/Navbar.react"
 import InputURL from "../../components/inputURL.react"
+import { resetSearch } from "../../components/inputURL/actions"
+
 
 export default class Connect extends Component {
 
@@ -22,13 +24,28 @@ export default class Connect extends Component {
 
   render() {
     const {initalSearch } = this.state
-    const { fromNode, toNode } = this.props
-
+    const { fromNode, toNode, success, edgeId, entities } = this.props
 
     const diabled = !(
       toNode && fromNode && fromNode.node && toNode.node &&//lots of type checks before
       fromNode.node._id !== toNode.node._id );  //Checking  to see if the id are equal
 
+    let connection = null;
+    let toInput = null;
+    let fromInput = initalSearch;
+    if (success && entities){
+      const {from, to} = entities
+      connection = (
+      <div>
+        Success a connection from
+        <a href={"/node/"+from._id}> {from.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
+        to
+        <a href={"/node/"+to._id}> {to.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
+        has been made.
+      </div> )
+      toInput = ''
+      fromInput = ''
+    }
     return (<div>
       <Navbar />
       <div style={{backgroundColor: '#f0f0f0', paddingBottom: '20px'}}>
@@ -48,7 +65,7 @@ export default class Connect extends Component {
                   <label for="connectionNodeA">URL A</label>
                   <br />
                   <InputURL
-                    initalValue = {initalSearch}
+                    setValue = {fromInput}
                     receivedSearchResult={this._onSearchResultA}
                     id='fromNode' />
                   <br />
@@ -68,6 +85,7 @@ export default class Connect extends Component {
             </div>
           </div>
         </div>
+        {connection}
       </div>
     </div>);
   }
@@ -77,6 +95,8 @@ export default class Connect extends Component {
     if ( fromNode && toNode && fromNode.node._id !== toNode.node._id ){
       dispatch(postConnection(fromNode.node._id, toNode.node._id));
     }
+    dispatch(resetSearch('toNode'))
+    dispatch(resetSearch('fromNode'))
   }
 
   _getQueryString() {
@@ -94,10 +114,13 @@ export default class Connect extends Component {
 
 function mapStateToProps(state) {
   const { fromNode, toNode } = state.inputURLResult
-
+  const { success, edgeId, entities } = state.connectionsResult;
   return {
     fromNode,
-    toNode
+    toNode,
+    edgeId,
+    success,
+    entities
   }
 }
 

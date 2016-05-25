@@ -34,6 +34,7 @@ export function postConnection(fromId, toId) {
     return Post(
         '/api/connect',
         {fromId, toId},
+        POST_CONNECTION_DATA,
         (err, res)=>dispatch(receiveErr(err)),
         (err, res)=>dispatch(receiveConnectionResult(res.body))
     )
