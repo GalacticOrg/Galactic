@@ -35,6 +35,7 @@ export function getNode(id) {
     return Get(
         '/api/node/'+id,
         {},
+        GET_NODE_DATA,
         (err, res)=>dispatch(receiveErr(err)),
         (err, res)=>dispatch(receiveNodeResult(res.body))
     )

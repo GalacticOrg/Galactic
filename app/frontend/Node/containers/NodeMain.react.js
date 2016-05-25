@@ -6,9 +6,10 @@ import { Grid, Row, Col, InputGroup, Glyphicon } from "react-bootstrap"
 import { getNode } from "../actions/index"
 
 class NodeMain extends Component {
+
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(getNode('57450d031d985377e0876846'))
+    dispatch(getNode(window.location.pathname.replace('/node/',''))) //@todo include this in the page
   }
   render() {
 
@@ -30,7 +31,7 @@ class NodeMain extends Component {
 
     const nodeEdges = edges.map(function(edge, i){
 
-      return <Col className="connectionCard" xsOffset={1} xs={8} mdOffset={1} md={8}>
+      return <Col key={i} className="connectionCard" xsOffset={1} xs={8} mdOffset={1} md={8}>
         <a href={'/node/'+edge.entity._id} title={edge.entity.canonicalLink} className="noUnderline"><div className="connectionCardText">{edge.entity.queryLink}</div></a>
         <div className="connectionCardInfo">
           <a href={'/@'+edge.user.username}><span className="connectionCardInfoElement" title={'first connector: @'+edge.user.username}><img className="connectorIcon" src="/img/user_tim.jpeg" /></span></a>
@@ -57,7 +58,7 @@ class NodeMain extends Component {
           <Col className="resultInfo" xs={3} md={3}>
             <div>
               <div>
-               <a href="/connect"><button type="button" className="btn btn-default resultNodeAddConnectionBox">Add Connection</button></a>
+               <a href={"/connect?url="+canonicalLink}><button type="button" className="btn btn-default resultNodeAddConnectionBox">Connect This Site</button></a>
               </div>
               <div>
                 <span className="connectorIconBox"><img className="connectorIcon" src="/img/most-beautiful-example-user.jpeg" /></span>
