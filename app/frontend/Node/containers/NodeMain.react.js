@@ -3,12 +3,32 @@ import { connect } from 'react-redux'
 import Navbar from "../../components/Navbar.react"
 import { Grid, Row, Col, InputGroup, Glyphicon } from "react-bootstrap"
 
-class NodeMain extends Component {
+import { getNode } from "../actions/index"
 
+class NodeMain extends Component {
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(getNode('57450d031d985377e0876846'))
+  }
   render() {
+
+    const { nodeResult } = this.props
+
+    if (!nodeResult || Object.keys(nodeResult).length==0) {
+      return <div>Loader Bar goes here.</div>
+    }
+
+    const { _id, title, edges } = nodeResult
+
+    const nodeEdges = edges.map(function(edge, i){
+      return <span>{edge.entity.canonicalLink}</span>
+    })
+
     return (
     <div>
       <Navbar />
+      <div>{_id}</div>
+      <div>{nodeEdges}</div>
       <Grid className="resultNodeCard">
         <Row className="show-grid">
           <Col className="resultFont" mdOffset={1} xsOffset={1} xs={6} md={6}>
@@ -65,9 +85,9 @@ class NodeMain extends Component {
 }
 
 function mapStateToProps(state) {
-  const {result} = state;
+  const { nodeResult } = state;
   return {
-
+    nodeResult
   }
 }
 

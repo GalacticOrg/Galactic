@@ -2,6 +2,7 @@
 const mongoose = require('mongoose')
 const Entity = mongoose.model('Entity');
 const Edge = require('../models/connection');
+const utils = require('../../lib/utils')
 
 exports.load = function (req, res, next, id){
   req.id = id;
@@ -22,6 +23,8 @@ exports.postCreateEdgeController = function (req, res) {
     toId,
     userId,
     function(err, resultEdge){
+      console.log(resultEdge, "resultEdge")
+      console.log(err, "error")
       if (!err) {
         Entity.update(
            { _id: {$in: [fromId, toId]}},
@@ -32,7 +35,7 @@ exports.postCreateEdgeController = function (req, res) {
                 res.status(400).send(utils.errsForApi(err.errors || err));
               }
               res.send({
-                _id: resultEdge[0].Link.properties.id,
+                _id: resultEdge._id,
                 success: true
               });
           });

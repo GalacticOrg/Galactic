@@ -49,11 +49,10 @@ body {
     font-size: 18px;
     margin-top: 20px; }
   body .noUnderline {
-    text-decoration: none;
-    color: blue; }
+    text-decoration: none; }
   body .noUnderline:hover {
     text-decoration: none;
-    color: orange; }
+    color: blue; }
   body .navbar .connect-icon-box {
     margin-right: 10px; }
   body .navbar .connect-icon {

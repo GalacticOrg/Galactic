@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Timer from "../../components/timer.react"
 
 class InfoModal extends Component {
 
@@ -9,11 +10,11 @@ class InfoModal extends Component {
        node: null,
        messageIndex: 1,
        messages:[
-         'Galactic is a crowdsourced map of the Internet.',
-         'Use Galactic to search for related content online. Learn more.',
-         'Help improve Galactic by connecting similar content or websites!',
-         'Already a fan? Help Spread Galactic!',
-         'Need Ideas? See what&#39;s similar to "DonaldTrump.com"'
+         <span>Galactic is a crowdsourced map of the Internet.</span>,
+         <span>Use Galactic to search for related content online. <a href="#" className='noUnderline'>Learn more</a>.</span>,
+         <span>Help improve Galactic by connecting similar content or websites!</span>,
+         <span>Already a fan? <a className='noUnderline' href='#'>Help Spread Galactic!</a></span>,
+         <span>Need Ideas? See what&#39;s similar to <a href='#' className='noUnderline'>DonaldTrump.com</a></span>
       ]
     };
   }
@@ -47,6 +48,9 @@ class InfoModal extends Component {
               )
             )}
             </ol>
+
+            {messageIndex==2?<Timer />:null}
+
           </div>
         </div>
       </div>
