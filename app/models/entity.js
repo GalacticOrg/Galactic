@@ -72,7 +72,7 @@ EntitySchema.statics = {
    */
 
   load: function (id, cb) {
-    this.findOne({ _id : id })
+    this.findOne({ _id : id }, '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
       .populate('user', 'name email username')
       .populate('comments.user', 'name email username')
       .exec(cb);

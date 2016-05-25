@@ -18,12 +18,12 @@ const auth = require('./middlewares/authorization');
 module.exports = function (app, passport) {
 
   // API Node
-  app.param('id', edgeCrud.load);
   app.post('/api/connect', auth.requiresLogin, edgeCrud.postCreateEdgeController)
 
   //API searchUrl
-
+  app.param('id', entityCrud.load);
   app.get('/api/searchurl', entityCrud.getSearchController)
+  app.get('/api/node/:id', entityCrud.getEntityController)
 
   // API User
   const userPath = '/api/users'

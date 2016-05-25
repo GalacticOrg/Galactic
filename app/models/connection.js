@@ -38,8 +38,8 @@ exports.createEdge = function(_idOne, _idTwo, _userId, cb){
 };
 //createSREF Query
 const createSREFQ = [
-  'MATCH (PageOne:page {id:{_idOne}})',
-  'MATCH (PageTwo:page {id:{_idTwo}})',
+  'MATCH (PageOne {id:{_idOne}})',
+  'MATCH (PageTwo {id:{_idTwo}})',
   'CREATE PageOne-[Link:userEdge {id:{_id}, userId:{_userId} } ]->PageTwo',
   'RETURN PageOne, Link, PageTwo'].join('\n');
 
@@ -58,7 +58,7 @@ exports.createNode = function(_id, cb){
 };
 //createNode Query
 const createNodeQ = [
-  'CREATE (Page:page {id:{_id}})',
+  'CREATE (Page {id:{_id}})',
   'RETURN Page'].join('\n');
 
 
@@ -78,7 +78,10 @@ const createNodeQ = [
 	  		return cb(err, null)
 	  	}
 
-      cb(err, results);
+
+      cb(err,
+				results.map(function(r){return srefParser(r)})
+			);
 			// _.chain(results)
 		  // 	 .filter(function(r, i){return r.Link._fromId === r.PageOne._id})
 		  // 	 .map(function(r){return srefParser(r)})
@@ -93,26 +96,24 @@ const createNodeQ = [
 
 //get Node Query
 const getNodeQ = [
-  'MATCH (PageOne:page {id:{_id}})-[Link]-(PageTwo)',
-  'RETURN PageOne, Link, PageTwo'].join('\n');
+  'MATCH ({id:{_id}})-[Edge:userEdge]-(Node)',
+  'RETURN Edge, Node'].join('\n');
 
 /**
  * @name   srefParser
  * @r     {obj} Neo4j object
  * @return {obj}    cb  a callback for the data.
  */
-// const srefParser = function(r){
-//   const pageID = r.PageTwo.properties._id; //Get the other articles uid
-//   const link = r.Link.properties; //Get the link properties
-//   const textIndex = link.textIndexFrom;//Get the text index
-//   const paragraphIndex = link.pIndexFrom; //Get the p index
-//   return {
-//     _id: link._id,
-//     index: textIndex,
-//     paragraphIndex: paragraphIndex,
-//     sref: pageID,
-//   }
-// }
+const srefParser = function(r){
+  const _idNode = r.Node.properties.id; //Get the other articles uid
+  const _idLink = r.Edge.properties.id; //Get the link properties
+	const _idUser = r.Edge.properties.userId; //Get the link properties
+  return {
+  	_idLink,
+		_idNode,
+		_idUser
+  }
+}
 
 /**
  * @name   inboundSrefParser
