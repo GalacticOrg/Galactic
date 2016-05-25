@@ -26,8 +26,7 @@ exports.createEdge = function(_idOne, _idTwo, _userId, cb){
 			_id,
 			_userId
 	}
-	console.log(params)
-
+  console.log("creating Edge")
 	db.cypher(
 		{
 			params: params,
@@ -40,7 +39,7 @@ exports.createEdge = function(_idOne, _idTwo, _userId, cb){
 const createSREFQ = [
   'MATCH (PageOne {id:{_idOne}})',
   'MATCH (PageTwo {id:{_idTwo}})',
-  'CREATE PageOne-[Link:userEdge {id:{_id}, userId:{_userId} } ]->PageTwo',
+  'CREATE (PageOne)-[Link:userEdge {id:{_id}, userId:{_userId} } ]-> (PageTwo)',
   'RETURN PageOne, Link, PageTwo'].join('\n');
 
 
