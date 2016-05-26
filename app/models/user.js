@@ -181,7 +181,7 @@ UserSchema.statics = {
    */
 
   load: function (options, cb) {
-    return this.findOne(options.criteria)
+    return this.findOne(options.criteria, 'name username twitter')
       .select(options.select)
       .exec(cb);
   }
