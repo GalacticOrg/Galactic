@@ -11,7 +11,7 @@ export default class Connection extends Component {
         <a href={"/@"+username}>{"@"+username}</a> connected&nbsp;
         <a href={'/node/'+nodeFrom._id}>{nodeFrom.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,'')}</a> to&nbsp;
         <a href={'/node/'+nodeTo._id}>{nodeTo.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,'')}</a>&nbsp;
-        <span className="muted" style={{fontSize:'.9em'}}>{time}</span>
+        - <span className="text-muted" style={{fontSize:'.85em'}}>{time}</span>
       </li>)
   }
 }

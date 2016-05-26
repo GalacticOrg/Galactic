@@ -93,7 +93,7 @@ class InputURL extends React.Component {
               type="search"
               placeholder="Paste a link to search"
               className="form-control homepageUrlSearchBox" style={homepageUrlSearchBox} />
-            {loading?<Loader left={'91%'} scale={0.55} />:null}
+            {loading?<Loader left={'87%'} scale={0.55} />:null}
             <a tabIndex="-1" onClick={this._onSubmit} href="javascript:void(0)" className=" homepageUrlSearchIconBox input-group-addon">
               <i className={iconState} />
             </a>

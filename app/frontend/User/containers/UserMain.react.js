@@ -21,7 +21,7 @@ class User extends Component {
   }
 
   render() {
-    const { dispatch, userEdgeResult, result, profile } = this.props
+    const { dispatch, result, profile } = this.props
 
     if (!result) {
       return (

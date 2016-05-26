@@ -5,6 +5,7 @@
 import React, { Component } from 'react'
 import ReactDOM from "react-dom";
 import { connect } from 'react-redux'
+import { Alert } from 'react-bootstrap';
 import { postConnection } from '../actions'
 
 import Navbar from "../../components/Navbar.react"
@@ -24,7 +25,7 @@ export default class Connect extends Component {
 
   render() {
     const {initalSearch } = this.state
-    const { fromNode, toNode, success, edgeId, entities } = this.props
+    const { fromNode, toNode, success, edgeId, entities, errors } = this.props
 
     const diabled = !(
       toNode && fromNode && fromNode.node && toNode.node &&//lots of type checks before
@@ -33,6 +34,7 @@ export default class Connect extends Component {
     let connection = null;
     let toInput = null;
     let fromInput = initalSearch;
+    let errMessage = null;
     if (success && entities){
       const {from, to} = entities
       connection = (
@@ -43,9 +45,14 @@ export default class Connect extends Component {
       </div> )
       toInput = ''
       fromInput = ''
+    } else if (errors && errors.length>0) {
+      errMessage = (<ul className="col-md-offset-3 col-md-6">
+        {errors.map(m=><Alert bsStyle={'warning'} >{m}</Alert>)}
+      </ul>)
     }
     return (<div>
       <Navbar />
+      {errMessage}
       <div className="container">
         <div className="row connectionForm">
           <div>
@@ -107,13 +114,14 @@ export default class Connect extends Component {
 
 function mapStateToProps(state) {
   const { fromNode, toNode } = state.inputURLResult
-  const { success, edgeId, entities } = state.connectionsResult;
+  const { success, edgeId, entities, errors } = state.connectionsResult;
   return {
     fromNode,
     toNode,
     edgeId,
     success,
-    entities
+    entities,
+    errors
   }
 }
 

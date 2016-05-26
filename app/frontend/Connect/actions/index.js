@@ -21,10 +21,11 @@ function receiveConnectionResult(result) {
   }
 }
 
-function receiveErr(err) {
+function receiveErr(err, res) {
+  const response = err.response.body
   return {
     type: RECEIVE_CONNECTION_ERROR,
-    err
+    response
   }
 }
 
@@ -35,7 +36,7 @@ export function postConnection(fromId, toId) {
         '/api/connect',
         {fromId, toId},
         POST_CONNECTION_DATA,
-        (err, res)=>dispatch(receiveErr(err)),
+        (err, res)=>dispatch(receiveErr(err, res)),
         (err, res)=>dispatch(receiveConnectionResult(res.body))
     )
   }
