@@ -42,7 +42,7 @@ class User extends Component {
         nodeTo={edge.nodeTo}
         nodeFrom={edge.nodeFrom}
         user={profile}
-        creaedAt={edge.createdAt}/>)
+        createdAt={edge.createdAt}/>)
     )
 
     return (<div>
