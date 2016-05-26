@@ -26,7 +26,14 @@ export default class LoginSignupModal extends React.Component {
     return (
       <Modal show={this.state.showModal} onHide={this.close}>
         <Modal.Header closeButton className="loginModalHeader">
-          <img className="modalHeaderIcon" src="/img/galactic-logo-full.png" />
+          <img src="/img/galactic-font-logo.png"
+            style={{
+              display: 'block',
+              margin: 'auto',
+              width: '250px',
+              marginTop: '20px',
+              marginBottom: '20px',
+            }}/>
         </Modal.Header>
         <Modal.Body>
           <div>

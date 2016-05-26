@@ -19,7 +19,7 @@ class Navbar extends Component {
     if (loading) return null;
 
     return (
-      <div className="navbar navbar-default navbar-fixed-top">
+      <div className="navbar navbar-default navbar-fixed-top" style={{backgroundColor: '#F6F6EF'}}>
         <div className="navbar-header pull-left">
           <a className="navbar-brand" href="/">GALACTIC</a>
         </div>

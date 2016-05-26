@@ -8,13 +8,13 @@ class InfoModal extends Component {
      this.state = {
       secondsElapsed: 0,
       node: null,
-       messageIndex: 1,
-       messages:[
+      messageIndex: 0,
+      messages:[
          <span>Galactic is a crowdsourced map of the Internet.</span>,
          <span>Use Galactic to search for related content online. <a href="#" className='noUnderline'>Learn more</a>.</span>,
          <span>Help improve Galactic by connecting similar content or websites!</span>,
-         <span>Already a fan? <a className='noUnderline' href='#'>Help Spread Galactic!</a></span>,
-         <span>Need Ideas? See what&#39;s similar to <a href='#' className='noUnderline'>DonaldTrump.com</a></span>
+         <span>Need Ideas? See what&#39;s similar to <a href='#' className='noUnderline'>DonaldTrump.com</a></span>,
+         <span>Already a fan? <a href="#">Share the love</a>.</span>
       ]
     };
     this.tick = this.tick.bind(this)
@@ -51,7 +51,7 @@ class InfoModal extends Component {
               {this.state.messages.map((d, i)=>(
                 <a href="javascript:void(0)" key={i} onClick={
                   that._changeMessage.bind(that, i)}>
-                  <li className={messageIndex==i?'active liElement infoModalButton':'liElement infoModalButton'} style={{marginLeft: '3px'}}></li>
+                  <li className={messageIndex==i?'active':''} style={{marginLeft: '3px'}}></li>
                 </a>
               )
             )}
@@ -72,7 +72,7 @@ class InfoModal extends Component {
   tick() {
     if (this.state.secondsElapsed === 3){
       let newMessageIndex = this.state.messageIndex + 1
-      if (newMessageIndex >= 5){
+      if (newMessageIndex >= this.state.messages.length -1) {
         newMessageIndex = 0;
       }
       this.setState({

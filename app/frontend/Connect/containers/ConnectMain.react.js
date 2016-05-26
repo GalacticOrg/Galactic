@@ -48,17 +48,10 @@ export default class Connect extends Component {
     }
     return (<div>
       <Navbar />
-      <div style={{backgroundColor: '#f0f0f0', paddingBottom: '20px'}}>
-        <div className="container">
-          <div className="row pageTitle" >
-            <div className="col-md-3 col-md-offset-1">&#47;Connect</div>
-          </div>
-        </div>
-      </div>
       <div className="container">
         <div className="row connectionForm">
           <div>
-            <div className="col-md-9 col-md-offset-1" style={{marginBottom: '15px', fontWeight: 'bold'}}>Connect two URLs together:</div>
+            <div className="col-md-9 col-md-offset-1" style={{marginTop: '20px',marginBottom: '15px', fontWeight: 'bold'}}>Connect two URLs together:</div>
             <div className="col-md-9 col-md-offset-1" style={{border: 'dashed 1px'}}>
               <div role="form" style={{ marginTop: '20px', marginBottom: '20px'}}>
                 <div className="form-group">

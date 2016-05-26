@@ -64,12 +64,6 @@ body {
     height: auto; }
   body .loginModalHeader {
     background-color: #f0f0f0; }
-  body .modalHeaderIcon {
-    display: block;
-    margin: auto;
-    max-width: 200px;
-    margin-top: 20px;
-    margin-bottom: 20px; }
   body .explanatoryModalText {
     font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
     font-size: 16px;
@@ -123,17 +117,11 @@ body {
     height: 8px;
     margin: 0;
     background-color: #646464; }
-  body .homepageGalacticIcon {
-    padding-left: 40px;
-    display: block;
-    margin: auto;
-    margin-top: 100px;
-    max-width: 225px; }
   body .homepageBannerIcon {
     padding-left: 40px;
     display: block;
     margin: auto;
-    /*margin-top: 350px;*/
+    margin-top: 150px;
     max-width: 350px; }
   body .homepageUrlSearchForm {
     display: block;

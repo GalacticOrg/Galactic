@@ -11,11 +11,11 @@ class Home extends Component {
 
     let existingPage = null;
     if (node && node.isConnected)
-      existingPage = <p>Visit the existing page <a href={"/node/"+node._id}>here</a></p>
+      existingPage = <div className="col-md-8 col-md-offset-3 col-xs-offset-1" style={{paddingLeft: '0px', paddingRight: '0px', marginTop: '5px', fontStyle: 'italic'}}><span>Visit the existing page <a href={"/node/"+node._id}>here</a></span></div>
     else if (isURL) {
       const url = node.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"");
       existingPage = (
-        <div className="col-md-8 col-md-offset-3" style={{paddingLeft: '0px', paddingRight: '0px', marginTop: '5px', fontStyle: 'italic'}}><span>Uh oh! Looks like {node.queryLink} isn't connected on Galactic yet. <a href={"/connect?url="+url} style={{fontWeight: 'bold'}} className="noUnderline">Connect it to similar content</a>.
+        <div className="col-md-8 col-md-offset-3 col-xs-offset-1" style={{paddingLeft: '0px', paddingRight: '0px', marginTop: '5px', fontStyle: 'italic'}}><span>Uh oh! Looks like {node.queryLink} isn't connected on Galactic yet. <a href={"/connect?url="+url} style={{fontWeight: 'bold'}} className="noUnderline">Connect it to similar content</a>.
         </span></div>
       );
     }
@@ -24,7 +24,6 @@ class Home extends Component {
       <div>
         <Navbar />
         <div>
-          <img className="homepageGalacticIcon" src="/img/constellation_2.png"/>
           <img className="homepageBannerIcon" src="/img/galactic-font-logo.png" />
         </div>
         <div className="container" style={{minHeight: '140px'}}>
