@@ -40,9 +40,9 @@ class NodeMain extends Component {
       return <Col className="connectionCard" xsOffset={1} xs={9} mdOffset={1} md={8}>
         <div>
           <a href={'/node/'+edge.entity._id} title={edge.entity.canonicalLink} className="noUnderline"><span style={{fontSize: '14px', lineHeight: '14pt'}}>{edge.entity.title}</span></a>
-          <a href={'/node/'+edge.entity._id}><span style={{color: 'grey', marginLeft: '5px', fontSize: '12px', lineHeight: '14pt'}}>({sourceURL.host})</span></a>
+          <span style={{color: 'grey', marginLeft: '5px', fontSize: '12px', lineHeight: '14pt'}}>(<a href={'/node/'+edge.entity._id}>{sourceURL.host}</a>)</span>
         </div>
-        <div style={{marginTop: '-3px', color: 'grey', fontSize: '12px'}}>
+        <div style={{marginTop: '-3px', color: 'grey', fontSize: '11px'}}>
           <span title={'galactic.wiki/@'+edge.user.username} >By <a href={'/@'+edge.user.username}>@{edge.user.username}</a></span>
           <span> | {getRandomInt(0,20)} edges</span>
         </div>

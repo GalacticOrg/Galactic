@@ -24,7 +24,7 @@ class InfoModal extends Component {
     const { messageIndex } = this.state;
 
     return (
-      <div className="infoModal container">
+      <div id="infoModal" className="container">
         <div className="row">
           <div className="col-md-10 col-md-offset-1" style={{marginBottom: '15px', fontWeight: 'bold'}}>
             <ol style={{position:'inherit', display: 'block', margin: 'auto', textAlign: 'center'}} className="indicators">
@@ -41,15 +41,16 @@ class InfoModal extends Component {
               {this.state.messages[messageIndex]}
               </div>
               {this.state.messages.map((d, i)=>(
-                <a href="javascript:void(0)" key={i} onClick={that._changeMessage.bind(that, i)}>
-                  <li className={messageIndex==i?'active liElement':'liElement'} style={{marginLeft: '3px'}}></li>
+                <a href="javascript:void(0)" key={i} onClick={
+                  that._changeMessage.bind(that, i, console.log('log'))}>
+                  <li className={messageIndex==i?'active liElement infoModalButton':'liElement infoModalButton'} style={{marginLeft: '3px'}}></li>
 
                 </a>
               )
             )}
             </ol>
 
-            {messageIndex==2?<Timer />:null}
+            <Timer />
 
           </div>
         </div>
