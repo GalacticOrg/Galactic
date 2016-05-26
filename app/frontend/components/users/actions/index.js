@@ -34,6 +34,7 @@ export function getProfile() {
     return Get(
         '/api/users/profile',
         {},
+        GET_USER_DATA,
         (err, res)=>dispatch(receiveErr(err)),
         (err, res)=>dispatch(receiveUserResult(res.body))
     )
