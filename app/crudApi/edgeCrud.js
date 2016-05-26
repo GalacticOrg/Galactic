@@ -113,7 +113,7 @@ exports.postCreateEdgeController = function (req, res) {
                 'title _id faviconCDN canonicalLink description')
                 .exec(function(err, entityResult){
                   if (err) return res.status(400).send(utils.errsForApi(err.errors || err));
-
+                  console.log(resultEdge, 'resultEdge')
                   res.send({
                     edgeId: resultEdge[0].Link.properties.id,
                     success: true,
