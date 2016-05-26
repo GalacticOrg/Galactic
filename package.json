@@ -13,7 +13,7 @@
     "webpack": "NODE_ENV=development webpack-dev-server --port 8090",
     "sass": "sass --watch public/css/app.scss:public/css/app.css",
     "test": "tape test/test-*.js",
-    "build": "webpack --optimize-minimize",
+    "build": "NODE_ENV=production webpack --optimize-minimize",
     "prod": "NODE_ENV=production ROOT_URL=http://localhost:3000 node server"
   },
   "dependencies": {
