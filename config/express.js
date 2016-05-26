@@ -54,7 +54,7 @@ module.exports = function (app, passport) {
 
   // Don't log during tests
   // Logging middleware
-  //if (env !== 'test') app.use(morgan(log));
+  if (env !== 'test') app.use(morgan(log));
 
   // set views path and default layout
   app.set('views', config.root + '/app/views');
