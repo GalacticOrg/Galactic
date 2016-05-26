@@ -11,29 +11,65 @@ class Home extends Component {
 
     let existingPage = null;
     if (node && node.isConnected)
-      existingPage = <div className="col-md-8 col-md-offset-3 col-xs-offset-1" style={{paddingLeft: '0px', paddingRight: '0px', marginTop: '5px', fontStyle: 'italic'}}><span>Visit the existing page <a href={"/node/"+node._id}>here</a></span></div>
+      existingPage = <div
+      className={[
+              'col-xs-8',
+              'col-xs-offset-2',
+              'col-sm-8',
+              'col-sm-offset-2',
+              'col-md-8',
+              'col-md-offset-2',
+            ]}
+      style={{
+        marginTop: '5px',
+        fontStyle: 'italic'}}
+      ><span>Visit the existing page <a href={"/node/"+node._id}>here</a></span>
+      </div>
     else if (isURL) {
       const url = node.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"");
       existingPage = (
-        <div className="col-md-8 col-md-offset-3 col-xs-offset-1" style={{paddingLeft: '0px', paddingRight: '0px', marginTop: '5px', fontStyle: 'italic'}}><span>Uh oh! Looks like {node.queryLink} isn't connected on Galactic yet. <a href={"/connect?url="+url} style={{fontWeight: 'bold'}} className="noUnderline">Connect it to similar content</a>.
-        </span></div>
+        <div className={[
+              'col-xs-8',
+              'col-xs-offset-2',
+              'col-sm-8',
+              'col-sm-offset-2',
+              'col-md-8',
+              'col-md-offset-2',
+            ]} style={{marginTop: '5px', fontStyle: 'italic'}}>
+          <span>Uh oh! Looks like {node.queryLink} isn't connected on Galactic yet. <a href={"/connect?url="+url} style={{fontWeight: 'bold'}} className="noUnderline">Connect it to similar content</a>.</span>
+        </div>
       );
     }
 
     return (
       <div>
         <Navbar />
-        <div>
-          <img className="homepageBannerIcon" src="/img/galactic-font-logo.png" />
-        </div>
-        <div className="container" style={{minHeight: '140px'}}>
-          <InputURL receivedSearchResult={this._onSearchResult} id='result' className="row"/>
-          <div className="InputUrlHelperText row">
-              {existingPage}
+        <div className="container">
+          <div className="row">
+            <div>
+              <img className={[
+                'col-xs-8',
+                'col-xs-offset-2',
+                'col-sm-8',
+                'col-sm-offset-2',
+                'col-md-8',
+                'col-md-offset-2',
+                 ]} style={{marginTop: '150px', maxWidth: '350px', display: 'block', marginLeft: 'auto', marginRight: 'auto'}} src='/img/galactic-font-logo.png' />
+            </div>
           </div>
-
+          <div className='row'>
+            <InputURL receivedSearchResult={this._onSearchResult} id='result'/>
+            <div className={[
+              'col-xs-8',
+              'col-xs-offset-2',
+              'col-sm-8',
+              'col-sm-offset-2',
+              'col-md-8',
+              'col-md-offset-2',
+            ].join(' ')}>{existingPage}</div>
+          </div>
+          <InfoModal />
         </div>
-        <InfoModal />
       </div>
     );
   }

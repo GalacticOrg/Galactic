@@ -11,6 +11,18 @@ import _ from 'lodash'
 
 const ENTER_KEY_CODE = 13;
 
+const homepageUrlSearchForm = {
+  display: 'block',
+  margin: 'auto',
+  marginTop: '50px',
+}
+
+const homepageUrlSearchBox = {
+  fontSize: '17px',
+  height: '43px',
+  outline: 'none',
+}
+
 class InputURL extends React.Component {
 
   constructor(){
@@ -60,12 +72,18 @@ class InputURL extends React.Component {
     }
 
     return (
-      <div className="homepageUrlSearchForm">
-        <div className="form-group homepageUrlFormGroup">
+      <div style={homepageUrlSearchForm}>
+        <div className="form-group">
           <span
             className={[
               'homepageUrlSearchInputGroup',
               'input-group',
+              'col-xs-10',
+              'col-xs-offset-1',
+              'col-sm-10',
+              'col-sm-offset-1',
+              'col-md-8',
+              'col-md-offset-2',
               urlClass
             ].join(' ')}
           >
@@ -75,7 +93,7 @@ class InputURL extends React.Component {
               value={searchInput}
               type="search"
               placeholder="Paste a link to search"
-              className="form-control homepageUrlSearchBox" />
+              className="form-control homepageUrlSearchBox" style={homepageUrlSearchBox} />
             {loading?<Loader left={'91%'} scale={0.55} />:null}
             <a tabIndex="-1" onClick={this._onSubmit} href="javascript:void(0)" className=" homepageUrlSearchIconBox input-group-addon">
               <i className={iconState} />

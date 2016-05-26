@@ -122,26 +122,11 @@ body {
     margin: 0;
     background-color: rgba(100,100,100,1);
   }
-    .homepageBannerIcon {
-      padding-left: 40px;
-      display: block;
-      margin: auto;
-      margin-top: 150px;
-      max-width: 350px;
-    }
-    .homepageUrlSearchForm {
-      display: block;
-      margin: auto;
-      margin-top: 50px;
-      max-width: 700px;
-    }
+
     .homepageUrlFormGroup{
       margin-bottom: 0px;
     }
     .homepageUrlSearchInputGroup {
-      margin: auto;
-      width: 600px;
-      max-width: 700px;
       border-right: none;
       &.is-url > *{
         border-color: blue;
@@ -160,11 +145,6 @@ body {
     }
 
     .homepageUrlSearchBox {
-      font-size: 17px;
-      padding-left: 15px;
-      width: 640px;
-      height: 43px;
-      outline: none;
       -webkit-box-shadow: none !important;
       -moz-box-shadow: none !important;
       box-shadow: none !important;
@@ -181,9 +161,6 @@ body {
     }
     .homepageUrlSearchBox:-ms-input-placeholder {
       color:  #d2d4dc;
-    }
-    .InputUrlHelperText {
-      /*left blank*/
     }
 
     .glyphicon.glyphicon-search {
