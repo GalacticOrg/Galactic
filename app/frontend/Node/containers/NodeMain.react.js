@@ -41,7 +41,7 @@ class NodeMain extends Component {
 
       const entity = edge.entity
       const user = edge.user
-      return <Col className="connectionCard" xsOffset={1} xs={9} mdOffset={1} md={8}>
+      return <Col key={i} className="connectionCard" xsOffset={1} xs={9} mdOffset={1} md={8}>
         <div>
           <a href={'/node/'+edge.entity._id} title={edge.entity.canonicalLink} className="noUnderline"><span style={{fontSize: '14px', lineHeight: '14pt'}}>{edge.entity.title}</span></a>
           <span style={{color: 'grey', marginLeft: '5px', fontSize: '12px', lineHeight: '14pt'}}>(<a href={'/node/'+edge.entity._id}>{sourceURL.host}</a>)</span>
@@ -88,7 +88,7 @@ class NodeMain extends Component {
       </Grid>
     </div>);
   }
-  
+
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   }

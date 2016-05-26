@@ -20,10 +20,14 @@ module.exports = function (app, passport) {
   // API Node
   app.post('/api/connect', auth.requiresLogin, edgeCrud.postCreateEdgeController)
 
-  //API searchUrl
+  //API entityUrl
   app.param('id', entityCrud.load);
   app.get('/api/searchurl', entityCrud.getSearchController)
   app.get('/api/node/:id', entityCrud.getEntityController)
+
+  //API entityUrl
+  app.param('user', edgeCrud.load);
+  app.get('/api/edges/users/:user', edgeCrud.getEdgeController)
 
   // API User
   const userPath = '/api/users'
@@ -31,7 +35,7 @@ module.exports = function (app, passport) {
   app.get(profilePath, userCrud.getReadControllerProfile);
 
   app.get('/', pages.home);
-  app.get('/user', pages.user);
+  app.get('/@:user', pages.user);
   app.get('/node/:id', pages.node);
   app.get('/connect', pages.connect);
   app.get('/firehose', pages.firehose);

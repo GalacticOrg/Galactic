@@ -1,20 +1,53 @@
 'use strict';
 const mongoose = require('mongoose')
 const Entity = mongoose.model('Entity');
+const User = mongoose.model('User');
 const Edge = require('../models/edge');
 const utils = require('../../lib/utils')
 const _ = require('lodash');
 
-exports.load = function (req, res, next, id){
-  req.id = id;
-  next();
+exports.load = function (req, res, next, username){
+  const options = {
+    criteria: { username : username }
+  };
+  User.load(options, function (err, user) {
+    if (err && err.name == 'CastError' || !user){
+      return res.status(404).send( utils.errsForApi('Not Found') )
+    } else if (err) {
+      return res.status(500).send( utils.errsForApi(err) )
+    }
+    req.profile = user;
+    const id = user._id
+    Edge.getUserEdges(id, function(err, edges){
+      req.userEdges=edges;
+      next();
+    })
+
+  });
 };
 
 /**
  * * Get Edges API
  */
  exports.getEdgeController = function (req, res) {
-   //
+   const edges = req.userEdges;
+   const entityIds = _.map(edges, '_idNodeFrom').concat(_.map(edges, '_idNodeTo'))
+
+   Entity.find(
+       { _id: {$in: entityIds }},
+       '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
+     .exec(function(err, entities){
+
+       const object = edges.map(function(edge, i){
+         console.log()
+         return {
+           nodeFrom :  _.find(entities, { id: edge._idNodeFrom}),
+           nodeTo : _.find(entities, { id: edge._idNodeTo}),
+           createdAt: edge.createdAt
+         }
+       })
+       res.send(object)
+     });
  }
 
 

@@ -39,7 +39,7 @@ exports.createEdge = function(_idOne, _idTwo, _userId, cb){
 const createSREFQ = [
   'MATCH (PageOne {id:{_idOne}})',
   'MATCH (PageTwo {id:{_idTwo}})',
-  'CREATE (PageOne)-[Link:userEdge {id:{_id}, userId:{_userId} } ]-> (PageTwo)',
+  'CREATE (PageOne)-[Link:userEdge {id:{_id}, userId:{_userId}, createdAt:{_createdAt} } ]-> (PageTwo)',
   'RETURN PageOne, Link, PageTwo'].join('\n');
 
 
@@ -64,7 +64,7 @@ const createNodeQ = [
 /**
  * load a node from a MongoId;
  */
- exports.getNode = function(_id, cb){
+exports.getNode = function(_id, cb){
 	db.cypher({
 	      query: getNodeQ,
 	      params: {
@@ -72,45 +72,38 @@ const createNodeQ = [
 	      },
 	  }, function(err, results){
 
-	  	if (err) {
-	  	  console.log(err, 'getNode')
-	  		return cb(err, null)
-	  	}
+		if (err) {
+		  console.log(err, 'getNode')
+			return cb(err, null)
+		}
 
-
-      cb(err,
-				results.map(function(r){return srefParser(r)})
-			);
-			// _.chain(results)
-		  // 	 .filter(function(r, i){return r.Link._fromId === r.PageOne._id})
-		  // 	 .map(function(r){return srefParser(r)})
-		  // 	 .value(),
-			// _.chain(results)
-		  // 	 .filter(function(r, i){return r.Link._toId === r.PageOne._id})
-		  // 	 .map(function(r){return inboundSrefParser(r)})
-		  // 	 .value()
-      //  )
-	  });
+	  cb(err,
+			results.map(function(r){return getNodeParser(r)})
+		);
+	});
 };
 
 //get Node Query
 const getNodeQ = [
-  'MATCH ({id:{_id}})-[Edge:userEdge]-(Node)',
-  'RETURN Edge, Node'].join('\n');
+  'MATCH ({id:{_id}})-[edge:userEdge]-(nodeTo)',
+  'RETURN edge, nodeTo'].join('\n');
 
 /**
  * @name   srefParser
  * @r     {obj} Neo4j object
  * @return {obj}    cb  a callback for the data.
  */
-const srefParser = function(r){
-  const _idNode = r.Node.properties.id; //Get the other articles uid
-  const _idLink = r.Edge.properties.id; //Get the link properties
-	const _idUser = r.Edge.properties.userId; //Get the link properties
+const getNodeParser = function(r){
+  const _idNode = r.nodeTo.properties.id; //Get the other articles uid
+  const _idLink = r.edge.properties.id; //Get the link properties
+	const _idUser = r.edge.properties.userId; //Get the link properties
+	const createdAt = r.edge.properties.createdAt; //Get the link properties
+
   return {
   	_idLink,
 		_idNode,
-		_idUser
+		_idUser,
+		createdAt
   }
 }
 
@@ -139,49 +132,49 @@ const srefParser = function(r){
 
 
 /**
- * load a multiple nodes from a MongoId;
+ * load a list of edges best
  */
-// exports.getNodes = function(ids, cb){
-//
-//
-// 	const getMultipleNodesQ = ['MATCH (pageOne)-[Link]->(pageTwo)',
-// 		'WHERE pageOne._id IN {_id}',
-// 		'RETURN pageOne, pageTwo, Link'].join('\n');
-//
-// 	// getMultipleNodesQ.push(returnString)
-// 	// getMultipleNodesQ = getMultipleNodesQ.join('\n');
-//
-//
-// 	db.cypher({
-// 	      query: getMultipleNodesQ,
-// 	      params: {
-// 	      	_id:ids
-// 	      },
-// 	  },
-// 	  function(err, results){
-//
-// 	  	if (err) {
-// 	  	  console.log(err)
-// 	  		return cb(err, null)
-// 	  	}
-//
-//       cb(err,
-// 		  	_.map(ids, function(id){
-// 		  		return _.chain(results)
-// 		  		.filter(function(r){
-// 		  			return id == r.pageOne.properties._id ||
-// 		  			 id == r.pageTwo.properties._id
-// 		  		})
-// 		  		.map(function(r){
-// 		  			return resultsParser(r, id)
-// 		  		})
-// 		  		.uniq()
-// 		  		.value()
-// 		  	})
-//        )
-// 	  });
-// };
+exports.getUserEdges = function(_id, cb){
 
+	db.cypher({
+	      query: getMultipleEdgesQ,
+	      params: {
+	      	_id
+	      },
+	  },
+	  function(err, results){
+
+	  	if (err) {
+	  	  console.log(err, 'getUserEdges')
+	  		return cb(err, null)
+	  	}
+
+      cb(err, results.map(function(r){return getUserEdgeParser(r)})
+       )
+	  });
+};
+const getMultipleEdgesQ = ['MATCH (nodeFrom)-[edge]->(nodeTo)',
+	'WHERE edge.userId IN {_id}',
+	'RETURN nodeFrom, edge, nodeTo'].join('\n');
+
+/**
+ * @name   srefParser
+ * @r     {obj} Neo4j object
+ * @return {obj}    cb  a callback for the data.
+ */
+const getUserEdgeParser = function(r){
+  const _idNodeFrom = r.nodeFrom.properties.id; //Get the other articles uid
+	const _idNodeTo = r.nodeTo.properties.id; //Get the other articles uid
+  const _idLink = r.edge.properties.id; //Get the link uid
+	const createdAt = r.edge.properties.createdAt; //Get the link properties
+
+  return {
+  	_idNodeFrom,
+		_idNodeTo,
+		_idLink,
+		createdAt
+  }
+}
 
 /**
  * @name   srefParser

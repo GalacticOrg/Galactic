@@ -5,53 +5,70 @@
 import React, { Component } from 'react'
 import ReactDOM from "react-dom";
 import Navbar from "../../components/Navbar.react"
+import Connection from "../../components/Connection.react"
+
 import { connect } from 'react-redux'
+import { getUserEdges } from "../actions/index"
+
 
 class User extends Component {
-  render() {
-    const { dispatch, user, success } = this.props
 
-    if (user) {
-      const { name, twitter: { description, profile_image_url_https }
-      } = user;
+  componentWillMount() {
+    const { dispatch } = this.props;
+    dispatch(getUserEdges(window.location.pathname.replace('/@',''))) //@todo include this in the page
+  }
+
+  render() {
+    const { dispatch, userEdgeResult, userResult } = this.props
+
+    if (!userResult.loading) {
+      const { user:{ name, twitter: { description }
+    } } = userResult;
+
     } else { return <Navbar dispatch={dispatch} /> }
 
+    const user = userResult.user
+    const username = user.username;
+    const profile_image_url_https = userResult.user.twitter.profile_image_url_https
+
+
+    const connections = userEdgeResult.map(function(edge, i){
+      debugger
+      return <Connection key={i} nodeTo={edge.nodeTo} nodeFrom={edge.nodeFrom} user={user} />
+    })
 
     return (<div>
       <Navbar dispatch={dispatch} />
       <div style={{backgroundColor: '#f0f0f0', paddingBottom: '20px'}}>
         <div className="container">
           <div className="row pageTitle" >
-            <div className="col-md-3 col-md-offset-1">&#47;{"@"+user.username}</div>
+            <div className="col-md-3 col-md-offset-1">&#47;{"@"+username}</div>
           </div>
         </div>
       </div>
+
       <div className="container">
         <div className="row" style={{marginTop: '20px'}}>
           <div className="col-md-5 col-md-offset-1">
             <div style={{float: 'left'}}>
-              <img style={{padding: '1px', border: '2px solid black'}} src={user.twitter.profile_image_url_https} />
+              <img style={{padding: '1px', border: '2px solid black'}} src={profile_image_url_https} />
               </div>
             <div style={{float: 'left', marginLeft: '20px'}}>
               <div style={{fontSize: '20px'}}>{name}</div>
-              <a href={'https://twitter.com/@'+user.username} style={{textDecoration: 'none', color: 'inherit'}}><div style={{fontSize: '16px', textDecoration: 'none', color: 'inherit'}}>{'@'+user.username}</div></a>
+              <a href={'https://twitter.com/@'+username} style={{textDecoration: 'none', color: 'inherit'}}><div style={{fontSize: '16px', textDecoration: 'none', color: 'inherit'}}>{'@'+username}</div></a>
               <div style={{marginTop: '2px'}}>287 connections</div>
             </div>
           </div>
         </div>
       </div>
       <hr />
+
       <div className="container">
         <div className="row">
           <div className="col-md-9 col-md-offset-1" style={{marginTop: '15px'}}>
             <p>Connections:</p>
             <ul>
-              <li className="connectionLiElement"><a href="#">{"@"+user.username}</a> connected <a href="#">nautil.us/issue/9/time/how-music-hijacks-our-perception-of-time</a> to <a href="#">medium.com/@tristanharris/how-technology-hijacks-peoples-minds-from-a-magician-and-google-s-design-ethicist</a></li>
-              <li className="connectionLiElement"><a href="#">{"@"+user.username}</a> connected <a href="#">landapart.com</a> to <a href="#">hipcamp.com</a></li>
-              <li className="connectionLiElement"><a href="#">{"@"+user.username}</a> connected <a href="#">hipcamp.com</a> to <a href="#">reserveamerica.com</a></li>
-              <li className="connectionLiElement"><a href="#">{"@"+user.username}</a> connected <a href="#">dropbox.com</a> to <a href="#">box.net</a></li>
-              <li className="connectionLiElement"><a href="#">{"@"+user.username}</a> connected <a href="#">svbtle.com</a> to <a href="#">medium.com</a></li>
-              <li className="connectionLiElement"><a href="#">{"@"+user.username}</a> connected <a href="#">medium.com</a> to <a href="#">tumblr.com</a></li>
+              {connections}
             </ul>
           </div>
         </div>
@@ -62,10 +79,10 @@ class User extends Component {
 
 
 function mapStateToProps(state) {
-  const { user, success } = state.userResult
+  const { userEdgeResult, userResult } = state
   return {
-    success,
-    user
+    userEdgeResult,
+    userResult
   }
 }
 

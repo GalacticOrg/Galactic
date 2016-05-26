@@ -5,9 +5,21 @@
 
 import { combineReducers } from 'redux';
 import userResult from '../../components/users/reducers'
+import { RECEIVE_USER_EDGE_DATA } from '../actions'
+
+
+const userEdgeResult = (state = {}, action) => {
+  switch (action.type) {
+    case RECEIVE_USER_EDGE_DATA:
+      return action.result
+    default:
+      return state
+  }
+}
 
 const userApp = combineReducers({
-  userResult
+  userResult,
+  userEdgeResult
 })
 
 export default userApp
