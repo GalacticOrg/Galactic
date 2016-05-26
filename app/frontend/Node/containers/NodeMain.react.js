@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Loader from 'react-loader';
 import Navbar from "../../components/Navbar.react"
 import { Grid, Row, Col, InputGroup, Glyphicon } from "react-bootstrap"
 import { getNode } from "../actions/index"
@@ -17,7 +18,8 @@ class NodeMain extends Component {
     if (!nodeResult || Object.keys(nodeResult).length==0) {
       return (
       <div>
-        <Navbar/>Loader Bar goes here.
+        <Navbar/>
+        <Loader top={'30%'} />
       </div>)
     }
 

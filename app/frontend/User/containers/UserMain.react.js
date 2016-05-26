@@ -4,6 +4,8 @@
 */
 import React, { Component } from 'react'
 import ReactDOM from "react-dom";
+import Loader from 'react-loader';
+
 import Navbar from "../../components/Navbar.react"
 import Connection from "../../components/Connection.react"
 
@@ -25,7 +27,13 @@ class User extends Component {
       const { user:{ name, twitter: { description }
     } } = userResult;
 
-    } else { return <Navbar dispatch={dispatch} /> }
+  } else { return (
+        <div>
+          <Navbar dispatch={dispatch} />
+          <Loader top={'30%'} />
+        </div>
+      )
+    }
 
     const user = userResult.user
     const username = user.username;
