@@ -51,8 +51,7 @@ body {
   body .noUnderline {
     text-decoration: none; }
   body .noUnderline:hover {
-    text-decoration: none;
-    color: blue; }
+    text-decoration: none; }
   body .navbar .connect-icon-box {
     margin-right: 10px; }
   body .navbar .connect-icon {
@@ -128,7 +127,7 @@ body {
     padding-left: 40px;
     display: block;
     margin: auto;
-    margin-top: 150px;
+    margin-top: 100px;
     max-width: 225px; }
   body .homepageBannerIcon {
     padding-left: 40px;
@@ -179,8 +178,7 @@ body {
     body .homepageUrlSearchInputGroup .glyphicon.glyphicon-search {
       font-size: 20px; }
   body .resultNodeCard {
-    margin-top: 50px;
-    height: 150px;
+    margin-top: 20px;
     padding-top: 20px;
     color: #555;
     font-family: "Helvetica Neue", "Lucida Grande", "Arial"; }
@@ -215,12 +213,12 @@ body {
   body .resultsSection .connectionCard:hover {
     background-color: #ECE9E9; }
   body .resultsSection .connectionCardInfo {
-    display: none; }
+    /*display: none;*/ }
     body .resultsSection .connectionCardInfo .connectionCardInfoElement {
       margin-top: 0px;
       margin-right: 8px; }
   body .resultsSection .connectionCard:hover .connectionCardInfo {
-    display: block; }
+    /*display: block;*/ }
   body .connectionForm {
     margin-top: 50px; }
   body .connectionLiElement {

@@ -21,7 +21,6 @@ body {
   }
   .noUnderline:hover {
     text-decoration: none;
-    color: blue;
   }
   /**************************/
   /** NAVBAR SECTION **/
@@ -134,7 +133,7 @@ body {
     padding-left: 40px;
     display: block;
     margin: auto;
-    margin-top: 150px;
+    margin-top: 100px;
     max-width: 225px;
   }
     .homepageBannerIcon {
@@ -215,8 +214,7 @@ body {
   /**************************/
 
   .resultNodeCard {
-    margin-top: 50px;
-    height: 150px;
+    margin-top: 20px;
     padding-top: 20px;
     color: #555;
     font-family: "Helvetica Neue", "Lucida Grande", "Arial";
@@ -270,7 +268,7 @@ body {
 
     }
     .connectionCardInfo {
-      display: none;
+      /*display: none;*/
       .connectionCardInfoElement {
         margin-top: 0px;
         margin-right: 8px;
@@ -278,7 +276,7 @@ body {
     }
     .connectionCard:hover{
       .connectionCardInfo{
-        display: block;
+        /*display: block;*/
       }
     }
   }

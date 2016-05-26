@@ -29,9 +29,14 @@ class NodeMain extends Component {
     const { _id, title, edges, queryLink, canonicalLink, description, imageCDN } = nodeResult
 
     const nodeEdges = edges.map(function(edge, i){
+      let sourceURL=document.createElement('a')
+      sourceURL.href=edge.entity.canonicalLink
 
-      return <Col className="connectionCard" xsOffset={1} xs={8} mdOffset={1} md={8}>
-        <a href={'/node/'+edge.entity._id} title={edge.entity.canonicalLink} className="noUnderline"><div className="connectionCardText">{edge.entity.queryLink}</div></a>
+      return <Col className="connectionCard" xsOffset={1} xs={9} mdOffset={1} md={8}>
+        <div>
+          <a href={'/node/'+edge.entity._id} title={edge.entity.canonicalLink} className="noUnderline"><span style={{fontSize: '14px'}}>{edge.entity.title}</span></a>
+          <a href={'/node/'+edge.entity._id}><span style={{color: 'grey', marginLeft: '5px', fontSize: '12px', lineHeight: '14pt'}}>({sourceURL.host})</span></a>
+        </div>
         <div className="connectionCardInfo">
           <a href={'/@'+edge.user.username}><span className="connectionCardInfoElement" title={'first connector: @'+edge.user.username}><img className="connectorIcon" src="/img/user_tim.jpeg" /></span></a>
           <a href={'/node/'+edge.entity._id}><Glyphicon className="connectionCardInfoElement" glyph="cd" bsStyle="success" title="8 connections"/></a>
@@ -50,25 +55,12 @@ class NodeMain extends Component {
             <br />
             <a href={canonicalLink} className="noUnderline"><span className="resultNodeHyperlinkText">{queryLink}</span></a>
             <br />
-            <span>{description}</span>
-            <br />
-            <span><img src={imageCDN.url} style={{height: '30px'}} /></span>
+            <span><img src={imageCDN.url} style={{marginTop: '5px', height: '30px'}} /></span>
           </Col>
           <Col className="resultInfo" xs={3} md={3}>
             <div>
               <div>
                <a href="/connect"><button type="button" className="btn btn-default resultNodeAddConnectionBox">Add Connection</button></a>
-              </div>
-              <div>
-                <span className="connectorIconBox"><img className="connectorIcon" src="/img/most-beautiful-example-user.jpeg" /></span>
-                <span className="connectorIconBox"><img className="connectorIcon" src="/img/user_tim.jpeg" /></span>
-                <span className="connectorIconBox"><img className="connectorIcon" src="/img/user_jackson.jpg" /></span>
-                <span className="connectorIconBox"><img className="connectorIcon" src="/img/user_alyraz.jpeg" /></span>
-                <span className="connectorIconBox"><img className="connectorIcon" src="/img/user_jeff.jpg" /></span>
-              </div>
-              <div>
-                <span className="connectorIconBox"><img className="connectorIcon" src="/img/user_jehan.jpeg" /></span>
-                <span className="connectorIconBox"><img className="connectorIcon" src="/img/user_alan.png" /></span>
               </div>
             </div>
           </Col>
