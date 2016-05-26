@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Navbar from "../../components/Navbar.react"
 import { Grid, Row, Col, InputGroup, Glyphicon } from "react-bootstrap"
-
 import { getNode } from "../actions/index"
 
 class NodeMain extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
     const { dispatch } = this.props;
     dispatch(getNode(window.location.pathname.replace('/node/',''))) //@todo include this in the page
   }
@@ -24,7 +23,7 @@ class NodeMain extends Component {
 
     const { edges, imageCDN, title, canonicalLink, description } = nodeResult
 
-    const prettyLink = canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"");
+    const prettyLink = canonicalLink.replace(/^(http:\/\/|https:\/\/)/,'');
 
     let documentImage = (<span><img src="/img/document.jpg" style={{height: '30px'}} /></span>)
     if (imageCDN && imageCDN.url){
