@@ -36,11 +36,22 @@ module.exports = function (app, passport) {
   const profilePath = userPath + '/profile';
   app.get(profilePath, userCrud.getReadControllerProfile);
 
+  //Static Routes App
   app.get('/', pages.home);
   app.get('/@:user', pages.user);
   app.get('/node/:id', pages.node);
   app.get('/connect', pages.connect);
   app.get('/firehose', pages.firehose);
+
+  //Static Routes for pages
+  app.get('/analytics', pages.analytics);
+  app.get('/about', pages.about);
+  app.get('/terms', pages.terms);
+  app.get('/privacy', pages.privacy);
+  app.get('/fivehundred', pages.fivehundred);
+
+
+
 
   /**
    * Error handling
@@ -73,7 +84,7 @@ module.exports = function (app, passport) {
       || (~err.message.indexOf('Cast to ObjectId failed')))) {
       return next();
     }
-    console.error(err.stack);
+    console.error('ERROR: Message', err.message, 'Stack Trace', err.stack);
     // error page
     res.status(500).render('500', { error: err.stack });
   });
