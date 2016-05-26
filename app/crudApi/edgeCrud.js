@@ -1,7 +1,7 @@
 'use strict';
 const mongoose = require('mongoose')
 const Entity = mongoose.model('Entity');
-const Edge = require('../models/connection');
+const Edge = require('../models/edge');
 const utils = require('../../lib/utils')
 const _ = require('lodash');
 
@@ -11,7 +11,15 @@ exports.load = function (req, res, next, id){
 };
 
 /**
- * Create Connection
+ * * Get Edges API
+ */
+ exports.getEdgeController = function (req, res) {
+   //
+ }
+
+
+/**
+ * * Create Edges API
  */
 exports.postCreateEdgeController = function (req, res) {
   const body = req.body;
