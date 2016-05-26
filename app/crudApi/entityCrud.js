@@ -11,7 +11,7 @@ const async = require('async')
 const extract = require('../../lib/extract')
 const utils = require('../../lib/utils')
 const URLParse = extract.URLParse;
-const Connection = require('../models/connection');
+const Edge = require('../models/edge');
 
 /**
  * Load
@@ -21,7 +21,7 @@ exports.load = function (req, res, next, id){
     if (!entity || (err && err.message==='Cast to ObjectId failed')) return  res.status(404).send(utils.errsForApi('Page not found'));
     if (err) return  res.status(500).send( utils.errsForApi(err.errors || err) );
     req.entity = entity;
-    Connection.getNode(entity._id, function(err, edges){
+    Edge.getNode(entity._id, function(err, edges){
       req.edges = edges
       next();
     })
@@ -31,7 +31,7 @@ exports.load = function (req, res, next, id){
 
 
 /**
-* Search API for Nodes
+* Entity API for Nodes
  */
 exports.getEntityController = function (req, res) {
   const entity = req.entity
@@ -202,7 +202,7 @@ const pageSaver = function(url, resultDB, extractedPageData, cb){
  */
 const nodeCreator = function(url, resultDB, extractedPageData, cb){
   if (extractedPageData){
-    Connection.createNode(
+    Edge.createNode(
       resultDB._id,
       function (err, results) {
         cb(err, url, resultDB, extractedPageData);

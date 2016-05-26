@@ -16,27 +16,31 @@ class NodeMain extends Component {
     const { nodeResult } = this.props
 
     if (!nodeResult || Object.keys(nodeResult).length==0) {
-      return <div>Loader Bar goes here.</div>
+      return (
+      <div>
+        <Navbar/>Loader Bar goes here.
+      </div>)
+    }
+
+    const { edges, imageCDN, title, canonicalLink, description } = nodeResult
+
+    const prettyLink = canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"");
+
+    let documentImage = (<span><img src="/img/document.jpg" style={{height: '30px'}} /></span>)
+    if (imageCDN && imageCDN.url){
+      documentImage = (<span><img src={imageCDN.url} style={{height: '30px'}} /></span>)
     }
 
 
-    if (nodeResult.imageCDN && nodeResult.imageCDN.url){
-      console.log(nodeResult.imageCDN.url)
-    } else {
-      nodeResult.imageCDN = {}
-      nodeResult.imageCDN.url = "/img/document.jpg"
-    }
 
-    const { _id, title, edges, queryLink, canonicalLink, description, imageCDN } = nodeResult
-
+    const that =this;
     const nodeEdges = edges.map(function(edge, i){
+
       let sourceURL=document.createElement('a')
       sourceURL.href=edge.entity.canonicalLink
-      function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min)) + min;
-      }
 
-
+      const entity = edge.entity
+      const user = edge.user
       return <Col className="connectionCard" xsOffset={1} xs={9} mdOffset={1} md={8}>
         <div>
           <a href={'/node/'+edge.entity._id} title={edge.entity.canonicalLink} className="noUnderline"><span style={{fontSize: '14px', lineHeight: '14pt'}}>{edge.entity.title}</span></a>
@@ -44,7 +48,7 @@ class NodeMain extends Component {
         </div>
         <div style={{marginTop: '-3px', color: 'grey', fontSize: '11px'}}>
           <span title={'galactic.wiki/@'+edge.user.username} >By <a href={'/@'+edge.user.username}>@{edge.user.username}</a></span>
-          <span> | {getRandomInt(0,20)} edges</span>
+          <span> | {that.getRandomInt(0,20)} edges</span>
         </div>
       </Col>
     })
@@ -57,9 +61,10 @@ class NodeMain extends Component {
           <Col className="resultFont" mdOffset={1} xsOffset={1} xs={6} md={6}>
             {title}
             <br />
-            <a href={canonicalLink} className="noUnderline"><span className="resultNodeHyperlinkText">{queryLink}</span></a>
+            <a href={canonicalLink} className="noUnderline"><span className="resultNodeHyperlinkText">{prettyLink}</span></a>
             <br />
-            <span><img src={imageCDN.url} style={{marginTop: '5px', height: '30px'}} /></span>
+            {documentImage}
+            <br />
           </Col>
           <Col className="resultInfo" xs={3} md={3}>
             <div>
@@ -82,6 +87,10 @@ class NodeMain extends Component {
         </Row>
       </Grid>
     </div>);
+  }
+  
+  getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
   }
 
 }
