@@ -21,13 +21,10 @@ class User extends Component {
   }
 
   render() {
-    const { dispatch, userEdgeResult, userResult } = this.props
+    const { dispatch, userEdgeResult, result, profile } = this.props
 
-    if (!userResult.loading) {
-      const { user:{ name, twitter: { description }
-    } } = userResult;
-
-  } else { return (
+    if (!result) {
+      return (
         <div>
           <Navbar dispatch={dispatch} />
           <Loader top={'30%'} />
@@ -35,15 +32,18 @@ class User extends Component {
       )
     }
 
-    const user = userResult.user
-    const username = user.username;
-    const profile_image_url_https = userResult.user.twitter.profile_image_url_https
+    const username = profile.username;
+    const profile_image_url_https = profile.twitter.profile_image_url_https
 
 
-    const connections = userEdgeResult.map(function(edge, i){
-      debugger
-      return <Connection key={i} nodeTo={edge.nodeTo} nodeFrom={edge.nodeFrom} user={user} />
-    })
+    const connections = result.map((edge, i)=> (
+      <Connection
+        key={i}
+        nodeTo={edge.nodeTo}
+        nodeFrom={edge.nodeFrom}
+        user={profile}
+        creaedAt={edge.createdAt}/>)
+    )
 
     return (<div>
       <Navbar dispatch={dispatch} />
@@ -87,9 +87,10 @@ class User extends Component {
 
 
 function mapStateToProps(state) {
-  const { userEdgeResult, userResult } = state
+  const { userEdgeResult:{ result, profile }, userResult } = state
   return {
-    userEdgeResult,
+    result,
+    profile,
     userResult
   }
 }

@@ -27,26 +27,28 @@ exports.load = function (req, res, next, username){
 };
 
 /**
- * * Get Edges API
+ * * Get User Edges API
  */
- exports.getEdgeController = function (req, res) {
+ exports.getUserEdgeController = function (req, res) {
    const edges = req.userEdges;
    const entityIds = _.map(edges, '_idNodeFrom').concat(_.map(edges, '_idNodeTo'))
-
+   const profile = req.profile;
    Entity.find(
        { _id: {$in: entityIds }},
        '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
      .exec(function(err, entities){
 
-       const object = edges.map(function(edge, i){
-         console.log()
+       const result = edges.map(function(edge, i){
          return {
            nodeFrom :  _.find(entities, { id: edge._idNodeFrom}),
            nodeTo : _.find(entities, { id: edge._idNodeTo}),
            createdAt: edge.createdAt
          }
        })
-       res.send(object)
+       res.send({
+         result,
+         profile
+       })
      });
  }
 

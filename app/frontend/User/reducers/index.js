@@ -11,7 +11,11 @@ import { RECEIVE_USER_EDGE_DATA } from '../actions'
 const userEdgeResult = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_USER_EDGE_DATA:
-      return action.result
+      const {result, profile} = action
+      return {
+        result,
+        profile
+      }
     default:
       return state
   }

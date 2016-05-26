@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import { postConnection } from '../actions'
 
 import Navbar from "../../components/Navbar.react"
-import InputURL from "../../components/inputURL.react"
+import InputURL from "../../components/InputURL.react"
 import { resetSearch } from "../../components/inputURL/actions"
 
 

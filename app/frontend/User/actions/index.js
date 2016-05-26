@@ -15,10 +15,12 @@ function requestUserEdgeResult() {
   }
 }
 
-function receiveUserEdgeResult(result) {
+function receiveUserEdgeResult(data) {
+  const {result, profile} = data;
   return {
     type: RECEIVE_USER_EDGE_DATA,
-    result
+    result,
+    profile
   }
 }
 

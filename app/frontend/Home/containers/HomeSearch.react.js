@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Navbar from "../../components/Navbar.react"
-import InputURL from "../../components/inputURL.react"
+import InputURL from "../../components/InputURL.react"
 import InfoModal from "./InfoModal.react"
 
 class Home extends Component {
@@ -31,6 +31,7 @@ class Home extends Component {
           <div className="InputUrlHelperText row">
               {existingPage}
           </div>
+
         </div>
         <InfoModal />
       </div>
