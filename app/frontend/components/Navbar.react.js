@@ -33,7 +33,7 @@ class Navbar extends Component {
             (
               <a
                 type="button"
-                href="/user"
+                href={'/@'+user.username}
                 className="btn btn-default navbar-btn user-icon-box">
                 <img className="user-icon"
                   src={user.twitter.profile_image_url_https} />
