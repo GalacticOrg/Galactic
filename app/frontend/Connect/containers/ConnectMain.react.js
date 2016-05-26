@@ -36,7 +36,7 @@ export default class Connect extends Component {
     if (success && entities){
       const {from, to} = entities
       connection = (
-      <div>
+      <div className="col-xs-10 col-xs-offset 1 col-sm-10 col-sm-offset 1 col-md-10 col-md-offset-1">
         <a href={"/node/"+from._id}> {from.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
         is now connected to
         <a href={"/node/"+to._id}> {to.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
@@ -49,8 +49,10 @@ export default class Connect extends Component {
       <div className="container">
         <div className="row connectionForm">
           <div>
-            <div className="col-md-9 col-md-offset-1" style={{marginTop: '20px',marginBottom: '15px', fontWeight: 'bold'}}>Connect two URLs together:</div>
-            <div className="col-md-9 col-md-offset-1" style={{border: 'dashed 1px'}}>
+            <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1"
+              style={{marginTop: '20px',marginBottom: '15px', fontWeight: 'bold'}}>Connect two URLs together:</div>
+            <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1"
+              style={{border: 'dashed 1px'}}>
               <div role="form" style={{ marginTop: '20px', marginBottom: '20px'}}>
                 <div className="form-group">
                   <label for="connectionNodeA">URL A</label>

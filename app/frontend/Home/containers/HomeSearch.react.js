@@ -36,7 +36,7 @@ class Home extends Component {
               'col-md-8',
               'col-md-offset-2',
             ]} style={{marginTop: '5px', fontStyle: 'italic'}}>
-          <span>Uh oh! Looks like {node.queryLink} isn't connected on Galactic yet. <a href={"/connect?url="+url} style={{fontWeight: 'bold'}} className="noUnderline">Connect it to similar content</a>.</span>
+          <span>Looks like {node.queryLink} isn't connected to anything on Galactic yet. <a href={"/connect?url="+url} style={{fontWeight: 'bold'}} className="noUnderline">Connect it to similar content</a>.</span>
         </div>
       );
     }
