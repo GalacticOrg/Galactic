@@ -210,15 +210,6 @@ body {
   body .resultsSection img {
     margin-top: -5px;
     width: 15px; }
-  body .resultsSection .connectionCard:hover {
-    background-color: #ECE9E9; }
-  body .resultsSection .connectionCardInfo {
-    /*display: none;*/ }
-    body .resultsSection .connectionCardInfo .connectionCardInfoElement {
-      margin-top: 0px;
-      margin-right: 8px; }
-  body .resultsSection .connectionCard:hover .connectionCardInfo {
-    /*display: block;*/ }
   body .connectionForm {
     margin-top: 50px; }
   body .connectionLiElement {

@@ -32,18 +32,21 @@ class NodeMain extends Component {
     const nodeEdges = edges.map(function(edge, i){
       let sourceURL=document.createElement('a')
       sourceURL.href=edge.entity.canonicalLink
+      function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+      }
+
 
       return <Col className="connectionCard" xsOffset={1} xs={9} mdOffset={1} md={8}>
         <div>
-          <a href={'/node/'+edge.entity._id} title={edge.entity.canonicalLink} className="noUnderline"><span style={{fontSize: '14px'}}>{edge.entity.title}</span></a>
+          <a href={'/node/'+edge.entity._id} title={edge.entity.canonicalLink} className="noUnderline"><span style={{fontSize: '14px', lineHeight: '14pt'}}>{edge.entity.title}</span></a>
           <a href={'/node/'+edge.entity._id}><span style={{color: 'grey', marginLeft: '5px', fontSize: '12px', lineHeight: '14pt'}}>({sourceURL.host})</span></a>
         </div>
-        <div className="connectionCardInfo">
-          <a href={'/@'+edge.user.username}><span className="connectionCardInfoElement" title={'first connector: @'+edge.user.username}><img className="connectorIcon" src="/img/user_tim.jpeg" /></span></a>
-          <a href={'/node/'+edge.entity._id}><Glyphicon className="connectionCardInfoElement" glyph="cd" bsStyle="success" title="8 connections"/></a>
-          <a href={'/node/'+edge.entity._id} title={edge.entity.canonicalLink}><Glyphicon className="connectionCardInfoElement" glyph="link" bsStyle=" connectionCardInfoElementsuccess"/></a>
-          </div>
-        </Col>
+        <div style={{marginTop: '-3px', color: 'grey', fontSize: '12px'}}>
+          <span title={'galactic.wiki/@'+edge.user.username} >By <a href={'/@'+edge.user.username}>@{edge.user.username}</a></span>
+          <span> | {getRandomInt(0,20)} edges</span>
+        </div>
+      </Col>
     })
 
     return (
