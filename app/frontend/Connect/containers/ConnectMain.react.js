@@ -37,11 +37,9 @@ export default class Connect extends Component {
       const {from, to} = entities
       connection = (
       <div>
-        Success a connection from
         <a href={"/node/"+from._id}> {from.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
-        to
+        is now connected to
         <a href={"/node/"+to._id}> {to.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
-        has been made.
       </div> )
       toInput = ''
       fromInput = ''
