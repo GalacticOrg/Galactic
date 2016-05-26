@@ -9,7 +9,7 @@ module.exports = {
   twitter: {
     clientID: process.env.TWITTER_CLIENT_KEY,
     clientSecret: process.env.TWITTER_CLIENT_SECRET,
-    callbackURL: 'http://localhost:3000/auth/twitter/callback',
+    callbackURL: ( process.env.ROOT_URL || 'http://localhost:3000' )+'/auth/twitter/callback',
     scope: [
       'email',
       'user_about_me',
