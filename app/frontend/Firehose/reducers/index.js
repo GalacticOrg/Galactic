@@ -8,7 +8,7 @@ import userResult from '../../components/users/reducers'
 import { RECEIVE_FIREHOSE_DATA } from '../actions'
 
 
-const firehoseResult = (state = {}, action) => {
+const firehoseResult = (state = null, action) => {
   switch (action.type) {
     case RECEIVE_FIREHOSE_DATA:
       return action.result

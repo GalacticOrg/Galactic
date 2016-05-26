@@ -23,11 +23,8 @@ class User extends Component {
   render() {
     const { dispatch, firehoseResult, userResult } = this.props
 
-    if (!userResult.loading) {
-      const { user:{ name, twitter: { description }
-    } } = userResult;
-
-  } else { return (
+    if (!firehoseResult){
+      return (
         <div>
           <Navbar dispatch={dispatch} />
           <Loader top={'30%'} />
@@ -35,8 +32,6 @@ class User extends Component {
       )
     }
 
-    const user = userResult.user
-    const profile_image_url_https = userResult.user.twitter.profile_image_url_https
 
 
     const connections = firehoseResult.map((edge, i)=> (
@@ -44,7 +39,7 @@ class User extends Component {
         key={i}
         nodeTo={edge.nodeTo}
         nodeFrom={edge.nodeFrom}
-        user={user}
+        user={edge.user}
         createdAt={edge.createdAt} />)
     )
 

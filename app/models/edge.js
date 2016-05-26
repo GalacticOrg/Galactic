@@ -26,7 +26,6 @@ exports.createEdge = function(_idOne, _idTwo, _userId, cb){
 			_id,
 			_userId
 	}
-  console.log("creating Edge")
 	db.cypher(
 		{
 			params: params,
@@ -165,13 +164,15 @@ const getUserEdgesQ = ['MATCH (nodeFrom)-[edge]->(nodeTo)',
 const getEdgeParser = function(r){
   const _idNodeFrom = r.nodeFrom.properties.id; //Get the other articles uid
 	const _idNodeTo = r.nodeTo.properties.id; //Get the other articles uid
-  const _idLink = r.edge.properties.id; //Get the link uid
+  const _idLink = r.edge.properties.id;
+	const _idUser = r.edge.properties.userId; //Get the link uid
 	const createdAt = r.edge.properties.createdAt; //Get the link properties
 
   return {
   	_idNodeFrom,
 		_idNodeTo,
 		_idLink,
+		_idUser,
 		createdAt
   }
 }
