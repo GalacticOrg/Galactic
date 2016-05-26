@@ -31,10 +31,11 @@ class InputURL extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    const { reset } = nextProps[this.uid];
-    if (reset) this.setState({searchInput:''})
+    if (nextProps[this.uid]){
+      const { reset } = nextProps[this.uid];
+      if (reset) this.setState({searchInput:''})
+    }
   }
-
 
   render() {
     const { searchInput } = this.state
