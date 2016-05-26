@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Timer from "../../components/timer.react"
 
 class InfoModal extends Component {
 
   constructor() {
      super();
      this.state = {
-       node: null,
+      secondsElapsed: 0,
+      node: null,
        messageIndex: 1,
        messages:[
          <span>Galactic is a crowdsourced map of the Internet.</span>,
@@ -17,11 +17,19 @@ class InfoModal extends Component {
          <span>Need Ideas? See what&#39;s similar to <a href='#' className='noUnderline'>DonaldTrump.com</a></span>
       ]
     };
+    this.tick = this.tick.bind(this)
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(this.tick, 1000);
+  }
+  componentWillUnmount(){
+    window.clearInterval(this.interval)
   }
 
   render() {
     const that = this;
-    const { messageIndex } = this.state;
+    const { messageIndex, secondsElapsed } = this.state;
 
     return (
       <div id="infoModal" className="container">
@@ -42,16 +50,12 @@ class InfoModal extends Component {
               </div>
               {this.state.messages.map((d, i)=>(
                 <a href="javascript:void(0)" key={i} onClick={
-                  that._changeMessage.bind(that, i, console.log('log'))}>
+                  that._changeMessage.bind(that, i)}>
                   <li className={messageIndex==i?'active liElement infoModalButton':'liElement infoModalButton'} style={{marginLeft: '3px'}}></li>
-
                 </a>
               )
             )}
             </ol>
-
-            <Timer />
-
           </div>
         </div>
       </div>
@@ -60,9 +64,26 @@ class InfoModal extends Component {
 
   _changeMessage(i){
     this.setState({
-      messageIndex: i
+      messageIndex: i,
+      secondsElapsed: 0
     })
   }
+
+  tick() {
+    if (this.state.secondsElapsed === 3){
+      let newMessageIndex = this.state.messageIndex + 1
+      if (newMessageIndex >= 5){
+        newMessageIndex = 0;
+      }
+      this.setState({
+        secondsElapsed: 0,
+        messageIndex: newMessageIndex
+      })
+    } else {
+      this.setState({secondsElapsed: this.state.secondsElapsed + 1});
+    }
+  }
+
 }
 
 function mapStateToProps(state) {
