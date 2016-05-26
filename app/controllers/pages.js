@@ -10,7 +10,7 @@ exports.home = function (req, res) {
 };
 
 exports.connect = function (req, res) {
-  res.render('Connect/index', {
+  res.render('connect/index', {
     title: 'Connect'
   });
 };
