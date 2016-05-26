@@ -132,12 +132,12 @@ const getNodeParser = function(r){
 
 
 /**
- * load a list of edges best
+ * load a list of edges by User
  */
 exports.getUserEdges = function(_id, cb){
 
 	db.cypher({
-	      query: getMultipleEdgesQ,
+	      query: getUserEdgesQ,
 	      params: {
 	      	_id
 	      },
@@ -149,11 +149,11 @@ exports.getUserEdges = function(_id, cb){
 	  		return cb(err, null)
 	  	}
 
-      cb(err, results.map(function(r){return getUserEdgeParser(r)})
+      cb(err, results.map(function(r){return getEdgeParser(r)})
        )
 	  });
 };
-const getMultipleEdgesQ = ['MATCH (nodeFrom)-[edge]->(nodeTo)',
+const getUserEdgesQ = ['MATCH (nodeFrom)-[edge]->(nodeTo)',
 	'WHERE edge.userId IN {_id}',
 	'RETURN nodeFrom, edge, nodeTo'].join('\n');
 
@@ -162,7 +162,7 @@ const getMultipleEdgesQ = ['MATCH (nodeFrom)-[edge]->(nodeTo)',
  * @r     {obj} Neo4j object
  * @return {obj}    cb  a callback for the data.
  */
-const getUserEdgeParser = function(r){
+const getEdgeParser = function(r){
   const _idNodeFrom = r.nodeFrom.properties.id; //Get the other articles uid
 	const _idNodeTo = r.nodeTo.properties.id; //Get the other articles uid
   const _idLink = r.edge.properties.id; //Get the link uid
@@ -175,6 +175,34 @@ const getUserEdgeParser = function(r){
 		createdAt
   }
 }
+
+/**
+ * load a list of edges
+ */
+exports.getEdges = function(_limit, cb){
+
+	db.cypher({
+	      query: getEdgesQ,
+	      params: {
+	      	_limit
+	      },
+	  },
+	  function(err, results){
+
+	  	if (err) {
+	  	  console.log(err, 'getUserEdges')
+	  		return cb(err, null)
+	  	}
+
+      cb(err,
+				results.map(function(r){return getEdgeParser(r)})
+       )
+	  });
+};
+const getEdgesQ = ['MATCH (nodeFrom)-[edge]->(nodeTo)',
+	'RETURN nodeFrom, edge, nodeTo',
+	'ORDER BY edge.createdAt',
+	'LIMIT {_limit}'].join('\n');
 
 /**
  * @name   srefParser

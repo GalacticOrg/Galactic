@@ -17,17 +17,19 @@ const auth = require('./middlewares/authorization');
 
 module.exports = function (app, passport) {
 
-  // API Node
-  app.post('/api/connect', auth.requiresLogin, edgeCrud.postCreateEdgeController)
 
-  //API entityUrl
+
+  //API Entity
   app.param('id', entityCrud.load);
   app.get('/api/searchurl', entityCrud.getSearchController)
   app.get('/api/node/:id', entityCrud.getEntityController)
 
-  //API entityUrl
+  //API edge
   app.param('user', edgeCrud.load);
-  app.get('/api/edges/users/:user', edgeCrud.getEdgeController)
+  app.get('/api/edges/users/:user', edgeCrud.getUserEdgeController)
+  app.get('/api/edges/firehose', edgeCrud.getEdgeController)
+  app.post('/api/connect', auth.requiresLogin, edgeCrud.postCreateEdgeController)
+
 
   // API User
   const userPath = '/api/users'

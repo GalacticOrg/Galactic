@@ -50,6 +50,30 @@ exports.load = function (req, res, next, username){
      });
  }
 
+ /**
+  * * Get Edges API
+  */
+  exports.getEdgeController = function (req, res) {
+    Edge.getEdges(35, function(err, edges){
+      const entityIds = _.map(edges, '_idNodeFrom').concat(_.map(edges, '_idNodeTo'))
+      Entity.find(
+        { _id: {$in: entityIds }},
+        '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
+      .exec(function(err, entities){
+
+        const object = edges.map(function(edge, i){
+          console.log()
+          return {
+            nodeFrom :  _.find(entities, { id: edge._idNodeFrom}),
+            nodeTo : _.find(entities, { id: edge._idNodeTo}),
+            createdAt: edge.createdAt
+          }
+        })
+        res.send(object)
+      });
+    })
+  }
+
 
 /**
  * * Create Edges API
