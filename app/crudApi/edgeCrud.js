@@ -94,9 +94,9 @@ exports.postCreateEdgeController = function (req, res) {
     toId,
     userId,
     function(err, resultEdge){
-      if (err) {
+      if (err || resultEdge.length==0) {
         console.log(err, "postCreateEdgeController")
-        res.status(400).send(utils.errsForApi(err.errors || err));
+        return res.status(400).send(utils.errsForApi(err.errors || err));
       } else {
         Entity.update(
            { _id: {$in: [fromId, toId]}},
