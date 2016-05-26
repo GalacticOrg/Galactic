@@ -24,7 +24,7 @@ class Navbar extends Component {
           <a className="navbar-brand" href="/">GALACTIC</a>
         </div>
         <div className="navbar-header pull-right">
-          <a href="connect">
+          <a href="/connect">
             <button type="button" className="btn btn-default navbar-btn connect-icon-box">
               Add Connection</button>
           </a>
