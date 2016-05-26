@@ -36,7 +36,7 @@ export default class Connect extends Component {
     if (success && entities){
       const {from, to} = entities
       connection = (
-      <div className="col-xs-10 col-xs-offset 1 col-sm-10 col-sm-offset 1 col-md-10 col-md-offset-1">
+      <div className="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset 1 col-md-10 col-md-offset-1">
         <a href={"/node/"+from._id}> {from.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
         is now connected to
         <a href={"/node/"+to._id}> {to.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
