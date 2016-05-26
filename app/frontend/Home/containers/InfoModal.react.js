@@ -10,6 +10,7 @@ class InfoModal extends Component {
       node: null,
       messageIndex: 0,
       messages:[
+         <span>Bored? try putting your lips around our <a href="/firehose">Firehose</a>!</span>,
          <span>Galactic is a crowdsourced map of the Internet.</span>,
          <span>Use Galactic to search for related content online. <a href="#" className='noUnderline'>Learn more</a>.</span>,
          <span>Help improve Galactic by connecting similar content or websites!</span>,
