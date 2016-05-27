@@ -35,14 +35,14 @@ class InputURL extends React.Component {
     this._onKeyDown = this._onKeyDown.bind(this);
     this._search = this._search.bind(this);
     this._reset = this._reset.bind(this);
-    this._submitWithDelay = _.debounce(this._submitWithDelay, 1000);
+    this._submitWithDelay = _.debounce(this._submitWithDelay, 700);
   }
 
   componentWillMount(nextProps){
     const { setValue, id} = this.props;
     this.uid = id?id:Math.random()*Math.pow(10, 17);
     if (setValue) this._setValue(setValue)
-    if (this.props.hasSearchButton) this.urlValidIconStyle = Object.assign(this.urlValidIconStyle,{right:40});
+    if (this.props.hasSearchButton) this.urlValidIconStyle = Object.assign(this.urlValidIconStyle,{right:45});
   }
 
   componentWillReceiveProps(nextProps){
@@ -59,18 +59,23 @@ class InputURL extends React.Component {
 
     let result = null;
     let node = null;
-    let status = null;
     let urlClass = '';
-    let iconState = 'fa fa-search'
+
+    let status = null;
+
+    let iconState = 'fa fa-search';
+
     if (search){
-      node = search.node
-      const isURL = search.isURL
-      status = search.loading?(
-        <div style={this.urlValidIconStyle} >
-          <Loader scale={0.55} />
-          <i className="fa fa-check-circle" style={{margin: '14px'}}  />
-        </div>
-      ):null;
+
+      const {isURL, loading, node} = search;
+
+      if (loading) status = <div>
+        <Loader scale={0.55} />
+        <span style={{ padding: '5px', margin: '14px', display: 'inline-block'}}  />
+      </div>
+      else status = <i className="fa fa-check-circle" style={{margin: '14px'}}  />,
+      iconState = 'fa fa-search-plus';
+
       if (isURL===true) {
         urlClass = 'is-url'
       }
@@ -83,7 +88,7 @@ class InputURL extends React.Component {
         onClick={this._onSubmit}
         href="javascript:void(0)"
         className="input-group-addon">
-        <i className={iconState} />
+        <i style={{fontSize:'1.4em'}} className={iconState} />
       </a>
     ):null;
     return (
@@ -107,13 +112,13 @@ class InputURL extends React.Component {
               type="search"
               placeholder={placeholder}
               className="form-control" style={homepageUrlSearchBox} />
+            <div  style={this.urlValidIconStyle} >
             {status}
+            </div>
             {searchButton}
-
           </span>
         </div>
         {result}
-
       </div>
     );
   }
