@@ -122,9 +122,9 @@ body {
   body .homepageUrlSearchInputGroup {
     border-right: none; }
     body .homepageUrlSearchInputGroup.is-url > * {
-      border-color: blue; }
+      border-color: #008000; }
     body .homepageUrlSearchInputGroup.is-not-url > * {
-      border-color: red; }
+      border-color: #FF0000; }
     body .homepageUrlSearchInputGroup .homepageUrlSearchIconBox {
       height: 43px;
       width: 52px;

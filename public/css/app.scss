@@ -1,3 +1,6 @@
+$success-green: #008000;
+$failure-red: #FF0000;
+
 body {
   font-family: "Open Sans","Helvetica Neue",sans-serif;
   margin-top: 50px;
@@ -129,10 +132,10 @@ body {
     .homepageUrlSearchInputGroup {
       border-right: none;
       &.is-url > *{
-        border-color: blue;
+        border-color: $success-green;
       }
       &.is-not-url > *{
-        border-color: red;
+        border-color: $failure-red;
     }
 
     .homepageUrlSearchIconBox {
