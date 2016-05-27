@@ -1,6 +1,6 @@
 /**
  * app/frontend/components/users/reducers/index.js
- * Copyright (c) 2016, Galactic
+ * Copyright (c) 2016, WikiWeb
 */
 
 import { RECEIVE_USER_DATA } from '../actions'

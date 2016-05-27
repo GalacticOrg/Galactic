@@ -36,7 +36,7 @@ class Home extends Component {
               'col-md-8',
               'col-md-offset-2',
             ]} style={{marginTop: '5px', fontStyle: 'italic'}}>
-          <span>Looks like {node.queryLink} isn't connected to anything on Galactic yet. <a href={"/connect?url="+url} style={{fontWeight: 'bold'}} className="noUnderline">Connect it to similar content</a>.</span>
+          <span>Looks like {node.queryLink} isn't connected to anything on the WikiWeb yet. <a href={"/connect?url="+url} style={{fontWeight: 'bold'}} className="noUnderline">Connect it to similar content</a>.</span>
         </div>
       );
     }
@@ -54,7 +54,7 @@ class Home extends Component {
                 'col-sm-offset-2',
                 'col-md-8',
                 'col-md-offset-2',
-                 ]} style={{marginTop: '150px', maxWidth: '350px', display: 'block', marginLeft: 'auto', marginRight: 'auto'}} src='/img/galactic-font-logo.png' />
+                 ]} style={{marginTop: '150px', maxWidth: '350px', display: 'block', marginLeft: 'auto', marginRight: 'auto'}} src='/img/WikiWeb.png' />
             </div>
           </div>
           <div className='row'>

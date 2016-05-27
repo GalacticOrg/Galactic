@@ -1,6 +1,6 @@
 /**
   * app/frontend/Connect/containers/ConnectMain.react.js
-  * Copyright (c) 2016, Galactic
+  * Copyright (c) 2016, WikiWeb
 */
 import React, { Component } from 'react'
 import ReactDOM from "react-dom";

@@ -1,6 +1,6 @@
 /**
  * app/frontend/components/inputURL/reducers/index.js
- * Copyright (c) 2016, Galactic
+ * Copyright (c) 2016, WikiWeb
 */
 import { RECEIVE_URL_SEARCH, POST_URL_SEARCH, RESET_URL_SEARCH } from '../actions'
 

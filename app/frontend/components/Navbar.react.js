@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2016, Galactic
+ * Copyright (c) 2016, WikiWeb
 */
 
 import React, { Component } from 'react'
@@ -21,7 +21,7 @@ class Navbar extends Component {
     return (
       <div className="navbar navbar-default navbar-fixed-top" style={{backgroundColor: '#F6F6EF'}}>
         <div className="navbar-header pull-left">
-          <a className="navbar-brand" href="/">GALACTIC</a>
+          <a className="navbar-brand" href="/">WikiWeb</a>
         </div>
         <div className="navbar-header pull-right">
           <a href="/connect">

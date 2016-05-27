@@ -57,7 +57,7 @@ class NodeMain extends Component {
           </span>
         </div>
         <div style={edgeUserStyle}>
-          <span title={'galactic.wiki/@'+edge.user.username} >
+          <span title={'wikiweb.co/@'+edge.user.username} >
             By <a href={'/@'+edge.user.username}>@{edge.user.username}</a>
           </span>
           <span> | {that.getRandomInt(0,20)} edges</span>

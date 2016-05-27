@@ -1,6 +1,6 @@
 /**
  * app/frontend/User/index.js
- * Copyright (c) 2016, Galactic
+ * Copyright (c) 2016, WikiWeb
 */
 
 import ReactDOM from "react-dom";

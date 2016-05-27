@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2016, Galactic
+ * Copyright (c) 2016, WikiWeb
 */
 
 import React from "react";
@@ -26,7 +26,7 @@ export default class LoginSignupModal extends React.Component {
     return (
       <Modal show={this.state.showModal} onHide={this.close}>
         <Modal.Header closeButton className="loginModalHeader">
-          <img src="/img/galactic-font-logo.png"
+          <img src="/img/WikiWeb.png"
             style={{
               display: 'block',
               margin: 'auto',
@@ -37,7 +37,7 @@ export default class LoginSignupModal extends React.Component {
         </Modal.Header>
         <Modal.Body>
           <div>
-            <p className="explanatoryModalText">Sign in to Galactic to connect ideas together and access a new way of exploring the Internet.</p>
+            <p className="explanatoryModalText">Sign in to WikiWeb to connect ideas together and access a new way of exploring the Internet.</p>
           </div>
           <div>
             <form action="/auth/twitter" method="GET">
@@ -54,7 +54,7 @@ export default class LoginSignupModal extends React.Component {
           </div>
         </Modal.Body>
         <Modal.Footer className="top-twenty">
-          <p className="permissionsText">By signing up with Twitter, we’ll start you off with a network by automatically importing any followers/followees or friends already on Galactic. Also, we’ll never post to Twitter without your permission.
+          <p className="permissionsText">By signing up with Twitter, we’ll start you off with a network by automatically importing any followers/followees or friends already on WikiWeb. Also, we’ll never post to Twitter without your permission.
           </p>
         </Modal.Footer>
       </Modal>

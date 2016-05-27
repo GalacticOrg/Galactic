@@ -1,6 +1,6 @@
 /**
  * app/frontend/components/inputURL/actions/index.js
- * Copyright (c) 2016, Galactic
+ * Copyright (c) 2016, WikiWeb
 */
 
 import { Get } from "../../../lib/Api"
