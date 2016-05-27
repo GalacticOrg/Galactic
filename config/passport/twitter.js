@@ -27,8 +27,7 @@ module.exports = new TwitterStrategy({
     };
     User.load(options, function (err, user) {
       if (err) return done(err);
-      console.log(user)
-      return
+
       if (!user) {
         let user = new User({
           name: profile.displayName,
