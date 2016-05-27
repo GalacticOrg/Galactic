@@ -58,7 +58,7 @@ class Home extends Component {
             </div>
           </div>
           <div className='row'>
-            <InputURL receivedSearchResult={this._onSearchResult} id='result'/>
+            <InputURL hasSearchButton={true} receivedSearchResult={this._onSearchResult} id='result'/>
             <div className={[
               'col-xs-8',
               'col-xs-offset-2',

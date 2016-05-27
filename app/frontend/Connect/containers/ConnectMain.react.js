@@ -126,3 +126,4 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(Connect)
+//"Paste a link to search"
