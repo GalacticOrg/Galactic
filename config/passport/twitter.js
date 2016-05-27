@@ -19,7 +19,7 @@ module.exports = new TwitterStrategy({
     consumerKey: config.twitter.clientID,
     consumerSecret: config.twitter.clientSecret,
     callbackURL: config.twitter.callbackURL,
-    includeEmail: true
+    includeEmail: true,
   },
   function (accessToken, refreshToken, profile, done) {
     const options = {
@@ -27,8 +27,8 @@ module.exports = new TwitterStrategy({
     };
     User.load(options, function (err, user) {
       if (err) return done(err);
-
-
+      console.log(user)
+      return
       if (!user) {
         let user = new User({
           name: profile.displayName,
