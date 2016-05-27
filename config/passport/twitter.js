@@ -32,7 +32,7 @@ module.exports = new TwitterStrategy({
         let user = new User({
           name: profile.displayName,
           username: profile.username,
-          email: profile.email,
+          email: profile._json.email,
           provider: 'twitter',
           twitter_id: profile.id,
           twitter: profile._json
