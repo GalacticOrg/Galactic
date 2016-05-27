@@ -227,9 +227,6 @@ const saveEntityToDB = function(result, cb){
     entity._id,
     function(err, results){
       entity.imageCDN = results[0];
-      // if (results[1]===null){
-      //   entity.favicon = null
-      // }
       entity.faviconCDN = results[1];
       entity.save(function(err){
         if(err){

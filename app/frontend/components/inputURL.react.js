@@ -23,8 +23,6 @@ const homepageUrlSearchBox = {
   outline: 'none',
 }
 
-
-
 class InputURL extends React.Component {
 
   constructor(){
@@ -42,11 +40,7 @@ class InputURL extends React.Component {
     const { setValue, id} = this.props;
     this.uid = id?id:Math.random()*Math.pow(10, 17);
     if (setValue) this._setValue(setValue)
-    const that = this.props.hasSearchButton
-
-    if (this.props.hasSearchButton) Object.assign(that.urlValidIconStyle,{right:35});
-
-
+    if (this.props.hasSearchButton) this.urlValidIconStyle = Object.assign(this.urlValidIconStyle,{right:40});
   }
 
   componentWillReceiveProps(nextProps){
@@ -63,13 +57,18 @@ class InputURL extends React.Component {
 
     let result = null;
     let node = null;
-    let loading = false;
+    let status = null;
     let urlClass = '';
     let iconState = 'fa fa-search'
     if (search){
       node = search.node
       const isURL = search.isURL
-      loading = search.loading?true:false;
+      status = search.loading?(
+        <div style={this.urlValidIconStyle} >
+          <Loader scale={0.55} />
+          <i className="fa fa-check-circle" style={{margin: '14px'}}  />
+        </div>
+      ):null;
       if (isURL===true) {
         urlClass = 'is-url'
       }
@@ -106,10 +105,7 @@ class InputURL extends React.Component {
               type="search"
               placeholder={placeholder}
               className="form-control" style={homepageUrlSearchBox} />
-            <div style={this.urlValidIcon } >
-              <Loader scale={0.55} />
-              <i className="fa fa-check-circle" style={{margin: '14px'}}  />
-            </div>
+            {status}
             {searchButton}
 
           </span>
