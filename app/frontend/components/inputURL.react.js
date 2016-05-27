@@ -23,6 +23,8 @@ const homepageUrlSearchBox = {
   outline: 'none',
 }
 
+
+
 class InputURL extends React.Component {
 
   constructor(){
@@ -40,6 +42,11 @@ class InputURL extends React.Component {
     const { setValue, id} = this.props;
     this.uid = id?id:Math.random()*Math.pow(10, 17);
     if (setValue) this._setValue(setValue)
+    const that = this.props.hasSearchButton
+
+    if (this.props.hasSearchButton) Object.assign(that.urlValidIconStyle,{right:35});
+
+
   }
 
   componentWillReceiveProps(nextProps){
@@ -51,7 +58,7 @@ class InputURL extends React.Component {
 
   render() {
     const { searchInput } = this.state
-    const { dispatch } = this.props
+    const { dispatch, hasSearchButton, placeholder } = this.props
     const search = this.props[this.uid]
 
     let result = null;
@@ -70,13 +77,19 @@ class InputURL extends React.Component {
         urlClass = 'is-not-url';
       }
     }
-
+    const searchButton = hasSearchButton?(
+      <a tabIndex="-1"
+        onClick={this._onSubmit}
+        href="javascript:void(0)"
+        className="input-group-addon">
+        <i className={iconState} />
+      </a>
+    ):null;
     return (
       <div style={homepageUrlSearchForm}>
         <div className="form-group">
           <span
             className={[
-              'homepageUrlSearchInputGroup',
               'input-group',
               'col-xs-12',
               'col-sm-10',
@@ -91,15 +104,18 @@ class InputURL extends React.Component {
               onKeyDown={this._onKeyDown}
               value={searchInput}
               type="search"
-              placeholder="Paste a link to search"
-              className="form-control homepageUrlSearchBox" style={homepageUrlSearchBox} />
-            {loading?<Loader left={'87%'} scale={0.55} />:null}
-            <a tabIndex="-1" onClick={this._onSubmit} href="javascript:void(0)" className=" homepageUrlSearchIconBox input-group-addon">
-              <i className={iconState} />
-            </a>
+              placeholder={placeholder}
+              className="form-control" style={homepageUrlSearchBox} />
+            <div style={this.urlValidIcon } >
+              <Loader scale={0.55} />
+              <i className="fa fa-check-circle" style={{margin: '14px'}}  />
+            </div>
+            {searchButton}
+
           </span>
         </div>
         {result}
+
       </div>
     );
   }
@@ -153,6 +169,11 @@ class InputURL extends React.Component {
     dispatch(resetSearch(this.uid));
   }
 
+  urlValidIconStyle = {
+    position: 'absolute',
+    zIndex: 3,
+    right: 0
+  }
 
 };
 
