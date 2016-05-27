@@ -12,10 +12,10 @@ class InfoModal extends Component {
       messages:[
          <span>Bored? Try putting your lips around our <a href="/firehose" className=" noUnderline">Firehose</a>!</span>,
          <span>Galactic is a crowdsourced map of the Internet.</span>,
-         <span>Use Galactic to search for related content online. <a href="#" className='noUnderline'>Learn more</a>.</span>,
+         <span>Use Galactic to search for related content online. <a href="/about" className='noUnderline'>Learn more</a>.</span>,
          <span>Help improve Galactic by connecting similar content or websites!</span>,
-         <span>Need Ideas? See what&#39;s similar to <a href='#' className='noUnderline'>DonaldTrump.com</a></span>,
-         <span>Already a fan? <a href="#">Share the love</a>.</span>
+         // <span>Need Ideas? See what&#39;s similar to <a href='#' className='noUnderline'>DonaldTrump.com</a></span>,
+         // <span>Already a fan? <a href="#">Share the love</a>.</span>
       ]
     };
     this.tick = this.tick.bind(this)
