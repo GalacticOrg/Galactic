@@ -46,7 +46,7 @@ class Home extends Component {
         <Navbar />
         <div className="container">
           <div className="row">
-            <div>
+            <div style={{height: '65px'}}>
               <img className={[
                 'col-xs-8',
                 'col-xs-offset-2',
@@ -54,7 +54,7 @@ class Home extends Component {
                 'col-sm-offset-2',
                 'col-md-8',
                 'col-md-offset-2',
-                 ]} style={{marginTop: '150px', maxWidth: '350px', display: 'block', marginLeft: 'auto', marginRight: 'auto'}} src='/img/WikiWeb.png' />
+                 ]} style={{marginTop: '150px', height: '65px', display: 'block', marginLeft: 'auto', marginRight: 'auto'}} src='/img/WikiWeb.png' />
             </div>
           </div>
           <div className='row'>
