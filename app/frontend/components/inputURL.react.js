@@ -15,6 +15,8 @@ const homepageUrlSearchForm = {
   display: 'block',
   margin: 'auto',
   marginTop: '50px',
+  paddingLeft: '20px',
+  paddingRight: '20px'
 }
 
 const homepageUrlSearchBox = {
