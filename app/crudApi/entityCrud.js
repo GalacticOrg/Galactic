@@ -79,7 +79,9 @@ exports.getSearchController = function (req, res) {
 
   async.waterfall([
       function(cb){
-        var url = URLParse(q);
+        var url = URLParse(
+          q.replace(/^\s+|\s+$/g,'') //trim off trailing
+        );
         if (url){
            cb(null, url);
         } else {

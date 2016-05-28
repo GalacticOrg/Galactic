@@ -4,7 +4,7 @@
 
 import React from "react";
 import Loader from 'react-loader';
-import { Modal} from 'react-bootstrap'
+import { Modal, OverlayTrigger, Popover} from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { getSearch, resetSearch } from './inputURL/actions'
 import _ from 'lodash'
@@ -23,6 +23,15 @@ const homepageUrlSearchBox = {
   fontSize: '17px',
   height: '43px',
   outline: 'none',
+}
+
+const buttonStyle = {
+  padding: 0,
+  margin: 12,
+  backgroundColor: 'rgba(255, 255, 255, 0)',
+  border: 'none',
+  height: 0,
+  outline: 'none'
 }
 
 class InputURL extends React.Component {
@@ -52,15 +61,31 @@ class InputURL extends React.Component {
     }
   }
 
+  makePopover(status, text, title){
+   const popover =
+      <Popover
+        id={this.uid}
+        title={title?title:''}>
+        {text}
+      </Popover>
+   return <OverlayTrigger
+     trigger="focus"
+     placement="top"
+
+     overlay={popover}>
+     <button style={buttonStyle} >{status}</button>
+   </OverlayTrigger>
+  }
+
   render() {
     const { searchInput } = this.state
     const { dispatch, hasSearchButton, placeholder } = this.props
     const search = this.props[this.uid]
-
+    const statusStyle = {margin: '0'}
     let result = null;
     let node = null;
-    let urlClass = '';
-
+    let hrefSubmit = "javascript:void(0)";
+    let searchDisabled = false;
     let status = null;
 
     let iconState = 'fa fa-search';
@@ -69,28 +94,47 @@ class InputURL extends React.Component {
 
       const {isURL, loading, node} = search;
 
-      if (loading) status = <div>
+
+
+      if (loading) status = (<div>
         <Loader scale={0.55} />
         <span style={{ padding: '5px', margin: '14px', display: 'inline-block'}}  />
-      </div>
-      else status = <i className="fa fa-check-circle" style={{margin: '14px'}}  />,
-      iconState = 'fa fa-search-plus';
+      </div>)
+      else if (isURL)
+        status = this.makePopover(
+          <i className="fa fa-check-circle is-url" style={statusStyle} />,
+          'text',
+          'title');
+      else
+        status = this.makePopover(
+          <i className="fa fa-times-circle-o is-not-url" style={statusStyle} />,
+          'text',
+          'title'),
+        searchDisabled = true;
+      if (node && !node.isConnected)
+      iconState = 'fa fa-search-plus',
+      hrefSubmit = '/connect?url='+ node.canonicalLink;
+      else if (node)
+      hrefSubmit = '/node/'+ node._id;
 
-      if (isURL===true) {
-        urlClass = 'is-url'
-      }
-      else if (isURL===false) {
-        urlClass = 'is-not-url';
-      }
+
+      // if (isURL===true) {
+      //   urlClass = 'is-url'
+      // }
+      // else if (isURL===false) {
+      //   urlClass = 'is-not-url';
+      // }
     }
     const searchButton = hasSearchButton?(
       <a tabIndex="-1"
         onClick={this._onSubmit}
-        href="javascript:void(0)"
-        className="input-group-addon">
+        href={hrefSubmit}
+        className="input-group-addon"
+        disabled={searchDisabled} >
         <i style={{fontSize:'1.4em'}} className={iconState} />
       </a>
     ):null;
+
     return (
       <div style={homepageUrlSearchForm}>
         <div className="form-group">
@@ -101,8 +145,7 @@ class InputURL extends React.Component {
               'col-sm-10',
               'col-sm-offset-1',
               'col-md-8',
-              'col-md-offset-2',
-              urlClass
+              'col-md-offset-2'
             ].join(' ')}
           >
             <input
@@ -113,7 +156,7 @@ class InputURL extends React.Component {
               placeholder={placeholder}
               className="form-control" style={homepageUrlSearchBox} />
             <div  style={this.urlValidIconStyle} >
-            {status}
+              {status}
             </div>
             {searchButton}
           </span>

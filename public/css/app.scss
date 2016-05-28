@@ -126,50 +126,53 @@ body {
     background-color: rgba(100,100,100,1);
   }
 
-    .homepageUrlFormGroup{
-      margin-bottom: 0px;
-    }
-    .homepageUrlSearchInputGroup {
-      border-right: none;
-      &.is-url > *{
-        border-color: $success-green;
-      }
-      &.is-not-url > *{
-        border-color: $failure-red;
-    }
-
-    .homepageUrlSearchIconBox {
-      height: 43px;
-      width: 52px;
-      background-color: white;
-      border-left: none;
-    }
-    .homepageUrlSearchIconBox:hover {
-    }
-
-    .homepageUrlSearchBox {
-      -webkit-box-shadow: none !important;
-      -moz-box-shadow: none !important;
-      box-shadow: none !important;
-    }
-
-    .homepageUrlSearchBox::-webkit-input-placeholder {
-      color:  #d2d4dc;
-    }
-    .homepageUrlSearchBox:-moz-placeholder {
-      color:  #d2d4dc;
-    }
-    .homepageUrlSearchBox::-moz-placeholder {
-      color:  #d2d4dc;
-    }
-    .homepageUrlSearchBox:-ms-input-placeholder {
-      color:  #d2d4dc;
-    }
-
-    .glyphicon.glyphicon-search {
-      font-size: 20px;
-    }
+  .is-url{
+    border-color: $success-green;
   }
+  .is-not-url{
+    color: $failure-red;
+  }
+
+    // .homepageUrlFormGroup{
+    //   margin-bottom: 0px;
+    // }
+    // .homepageUrlSearchInputGroup {
+    //   border-right: none;
+    //
+    // }
+
+  //   .homepageUrlSearchIconBox {
+  //     height: 43px;
+  //     width: 52px;
+  //     background-color: white;
+  //     border-left: none;
+  //   }
+  //   .homepageUrlSearchIconBox:hover {
+  //   }
+  //
+  //   .homepageUrlSearchBox {
+  //     -webkit-box-shadow: none !important;
+  //     -moz-box-shadow: none !important;
+  //     box-shadow: none !important;
+  //   }
+  //
+  //   .homepageUrlSearchBox::-webkit-input-placeholder {
+  //     color:  #d2d4dc;
+  //   }
+  //   .homepageUrlSearchBox:-moz-placeholder {
+  //     color:  #d2d4dc;
+  //   }
+  //   .homepageUrlSearchBox::-moz-placeholder {
+  //     color:  #d2d4dc;
+  //   }
+  //   .homepageUrlSearchBox:-ms-input-placeholder {
+  //     color:  #d2d4dc;
+  //   }
+  //
+  //   .glyphicon.glyphicon-search {
+  //     font-size: 20px;
+  //   }
+  // }
 
   /**************************/
   /** END HOMEPAGE SECTION **/
