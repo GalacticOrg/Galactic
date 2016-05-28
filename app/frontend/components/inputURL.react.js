@@ -51,7 +51,8 @@ class InputURL extends React.Component {
     const { setValue, id} = this.props;
     this.uid = id?id:Math.random()*Math.pow(10, 17);
     if (setValue) this._setValue(setValue)
-    if (this.props.hasSearchButton) this.urlValidIconStyle = Object.assign(this.urlValidIconStyle,{right:45});
+    if (this.props.hasSearchButton)
+      this.urlValidIconStyle = Object.assign(this.urlValidIconStyle,{right:45});
   }
 
   componentWillReceiveProps(nextProps){
@@ -81,15 +82,12 @@ class InputURL extends React.Component {
     const { searchInput } = this.state
     const { dispatch, hasSearchButton, placeholder } = this.props
     const search = this.props[this.uid]
-    const statusStyle = {margin: '0'}
     let result = null;
     let node = null;
-    let hrefSubmit = "javascript:void(0)";
-    let searchDisabled = {};
+
+    // Begin Status Icon
+    const statusStyle = {margin: '0'}
     let status = null;
-
-    let iconState = 'fa fa-search';
-
     if (search){
 
       const {isURL, loading, node} = search;
@@ -107,16 +105,21 @@ class InputURL extends React.Component {
         status = this.makePopover(
           <i className="fa fa-times-circle-o is-not-url" style={statusStyle} />,
           'text',
-          'title'),
-        searchDisabled = {cursor:'not-allowed'};
+          'title');
+        // searchDisabled = {cursor:'not-allowed'};
 
-      if (node && !node.isConnected)
-      iconState = 'fa fa-search-plus',
-      hrefSubmit = '/connect?url='+ node.canonicalLink;
-      else if (node)
-      hrefSubmit = '/node/'+ node._id;
-
+      // if (node && !node.isConnected)
+      // iconState = 'fa fa-search-plus';
+      // hrefSubmit = '/connect?url='+ node.canonicalLink;
+      // else if (node)
+      // hrefSubmit = '/node/'+ node._id;
     }
+    // End of Status Icon
+
+    // Search Button
+    let hrefSubmit = "javascript:void(0)";
+    let iconState = 'fa fa-search';
+    let searchDisabled = {};
     const searchButton = hasSearchButton?(
       <a tabIndex="-1"
         onClick={this._onSubmit}
