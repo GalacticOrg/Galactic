@@ -85,7 +85,7 @@ class InputURL extends React.Component {
     let result = null;
     let node = null;
     let hrefSubmit = "javascript:void(0)";
-    let searchDisabled = false;
+    let searchDisabled = {};
     let status = null;
 
     let iconState = 'fa fa-search';
@@ -108,7 +108,7 @@ class InputURL extends React.Component {
           <i className="fa fa-times-circle-o is-not-url" style={statusStyle} />,
           'text',
           'title'),
-        searchDisabled = true;
+        searchDisabled = {cursor:'not-allowed'};
 
       if (node && !node.isConnected)
       iconState = 'fa fa-search-plus',
@@ -122,7 +122,7 @@ class InputURL extends React.Component {
         onClick={this._onSubmit}
         href={hrefSubmit}
         className="input-group-addon"
-        disabled={searchDisabled} >
+        style={searchDisabled} >
         <i style={{fontSize:'1.4em'}} className={iconState} />
       </a>
     ):null;
@@ -146,7 +146,8 @@ class InputURL extends React.Component {
               value={searchInput}
               type="search"
               placeholder={placeholder}
-              className="form-control" style={homepageUrlSearchBox} />
+              className="form-control"
+              style={homepageUrlSearchBox} />
             <div  style={this.urlValidIconStyle} >
               {status}
             </div>
