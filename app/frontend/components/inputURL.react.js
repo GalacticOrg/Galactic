@@ -27,7 +27,7 @@ const homepageUrlSearchBox = {
 
 const buttonStyle = {
   padding: 0,
-  margin: 12,
+  margin: '12px',
   backgroundColor: 'rgba(255, 255, 255, 0)',
   border: 'none',
   height: 0,
@@ -94,8 +94,6 @@ class InputURL extends React.Component {
 
       const {isURL, loading, node} = search;
 
-
-
       if (loading) status = (<div>
         <Loader scale={0.55} />
         <span style={{ padding: '5px', margin: '14px', display: 'inline-block'}}  />
@@ -105,25 +103,19 @@ class InputURL extends React.Component {
           <i className="fa fa-check-circle is-url" style={statusStyle} />,
           'text',
           'title');
-      else
+      else if (isURL==false)
         status = this.makePopover(
           <i className="fa fa-times-circle-o is-not-url" style={statusStyle} />,
           'text',
           'title'),
         searchDisabled = true;
+
       if (node && !node.isConnected)
       iconState = 'fa fa-search-plus',
       hrefSubmit = '/connect?url='+ node.canonicalLink;
       else if (node)
       hrefSubmit = '/node/'+ node._id;
 
-
-      // if (isURL===true) {
-      //   urlClass = 'is-url'
-      // }
-      // else if (isURL===false) {
-      //   urlClass = 'is-not-url';
-      // }
     }
     const searchButton = hasSearchButton?(
       <a tabIndex="-1"

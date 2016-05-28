@@ -118,7 +118,7 @@ body {
     margin: 0;
     background-color: #646464; }
   body .is-url {
-    border-color: #008000; }
+    color: #008000; }
   body .is-not-url {
     color: #FF0000; }
   body .resultNodeCard {
