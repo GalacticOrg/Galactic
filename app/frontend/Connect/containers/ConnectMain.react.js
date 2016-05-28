@@ -9,7 +9,7 @@ import { Alert } from 'react-bootstrap';
 import { postConnection } from '../actions'
 
 import Navbar from "../../components/Navbar.react"
-import InputURL from "../../components/InputURL.react"
+import InputURL from "../../components/inputURL/"
 import { resetSearch } from "../../components/inputURL/actions"
 
 

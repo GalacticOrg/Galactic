@@ -6,8 +6,10 @@ import React from "react";
 import Loader from 'react-loader';
 import { Modal, OverlayTrigger, Popover} from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { getSearch, resetSearch } from './inputURL/actions'
+import { getSearch, resetSearch } from './actions'
 import _ from 'lodash'
+import StatusIcon from './StatusIcon.react'
+import InputButton from './InputButton.react'
 
 const ENTER_KEY_CODE = 13;
 
@@ -26,16 +28,15 @@ const homepageUrlSearchBox = {
 }
 
 const buttonStyle = {
-  padding: 0,
+  padding: '0px',
   margin: '12px',
   backgroundColor: 'rgba(255, 255, 255, 0)',
   border: 'none',
-  height: 0,
+  height: '0px',
   outline: 'none'
 }
 
 class InputURL extends React.Component {
-
   constructor(){
     super()
     this.state = { searchInput:'' };
@@ -81,16 +82,15 @@ class InputURL extends React.Component {
   render() {
     const { searchInput } = this.state
     const { dispatch, hasSearchButton, placeholder } = this.props
-    const search = this.props[this.uid]
-    let result = null;
-    let node = null;
+    const search = this.props[this.uid]?this.props[this.uid]:{}
+    const {isURL=null, loading=null, node=null} = search;
+
+    // let result = null;
+    // let node = null;
 
     // Begin Status Icon
-    const statusStyle = {margin: '0'}
+    const statusStyle = {margin: '0px'}
     let status = null;
-    if (search){
-
-      const {isURL, loading, node} = search;
 
       if (loading) status = (<div>
         <Loader scale={0.55} />
@@ -106,28 +106,16 @@ class InputURL extends React.Component {
           <i className="fa fa-times-circle-o is-not-url" style={statusStyle} />,
           'text',
           'title');
-        // searchDisabled = {cursor:'not-allowed'};
-
-      // if (node && !node.isConnected)
-      // iconState = 'fa fa-search-plus';
-      // hrefSubmit = '/connect?url='+ node.canonicalLink;
-      // else if (node)
-      // hrefSubmit = '/node/'+ node._id;
-    }
     // End of Status Icon
 
     // Search Button
-    let hrefSubmit = "javascript:void(0)";
-    let iconState = 'fa fa-search';
-    let searchDisabled = {};
-    const searchButton = hasSearchButton?(
-      <a tabIndex="-1"
-        onClick={this._onSubmit}
-        href={hrefSubmit}
-        className="input-group-addon"
-        style={searchDisabled} >
-        <i style={{fontSize:'1.4em'}} className={iconState} />
-      </a>
+    const inputButton = hasSearchButton?(
+      <InputButton
+        onSubmit = {this._onSubmit}
+        disabled = {isURL === false}
+        iconState = {this._getIcon(node)}
+        href = {this._getHref(node)}
+       />
     ):null;
 
     return (
@@ -152,15 +140,34 @@ class InputURL extends React.Component {
               className="form-control"
               style={homepageUrlSearchBox} />
             <div  style={this.urlValidIconStyle} >
+              <StatusIcon />
               {status}
             </div>
-            {searchButton}
+            {inputButton}
           </span>
         </div>
-        {result}
       </div>
     );
   }
+
+  _getHref(node){
+    let href = ''
+    if (node && node.isConnected) {
+      href = '/node/'+ node._id;
+    } else if (node && !node.isConnected && node.canonicalLink) {
+      href = '/connect?url='+ node.canonicalLink;
+    }
+    return href
+  }
+
+  _getIcon(node){
+    let icon = 'fa fa-search'
+    if (node && !node.isConnected) {
+      icon = 'fa fa-search-plus'
+    }
+    return icon
+  }
+
 
   _setValue(setValue){
     this.setState({
@@ -214,7 +221,7 @@ class InputURL extends React.Component {
   urlValidIconStyle = {
     position: 'absolute',
     zIndex: 3,
-    right: 0
+    right: '0px'
   }
 
 };
