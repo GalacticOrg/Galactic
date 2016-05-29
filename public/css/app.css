@@ -26,6 +26,18 @@ body {
   /** END RESULT PAGE SECTION **/
   /**************************/
   /**************************/
+  /** INPUT BUTTON COMPONENT  **/
+  /**************************/
+  /**************************/
+  /**  INPUT BUTTON PAGE SECTION **/
+  /**************************/
+  /**************************/
+  /** STATUS BUTTON COMPONENT  **/
+  /**************************/
+  /**************************/
+  /** END CONNECT PAGE SECTION **/
+  /**************************/
+  /**************************/
   /** CONNECT PAGE SECTION **/
   /**************************/
   /**************************/
@@ -154,6 +166,10 @@ body {
   body .resultsSection img {
     margin-top: -5px;
     width: 15px; }
+  body .input-button a:focus {
+    outline: none; }
+  body .status-icon:focus {
+    outline: none; }
   body .connectionForm {
     margin-top: 50px; }
   body .connectionLiElement {
