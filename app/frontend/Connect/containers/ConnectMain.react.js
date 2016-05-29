@@ -57,10 +57,17 @@ export default class Connect extends Component {
     let toInput = null;
     let fromInput = initalSearch;
     let errMessage = null;
+
+    const connectionSuccessMessage ={
+        marginTop: '20px',
+        fontFamily: "DDG_ProximaNova, DDG_ProximaNova_UI_0, DDG_ProximaNova_UI_1, DDG_ProximaNova_UI_2, DDG_ProximaNova_UI_3, DDG_ProximaNova_UI_4, DDG_ProximaNova_UI_5, DDG_ProximaNova_UI_6, 'Proxima Nova', 'Helvetica Neue', Helvetica, 'Segoe UI', 'Nimbus Sans L', 'Liberation Sans', 'Open Sans', FreeSans, Arial, sans-serif",
+        fontSize: '1.25em'
+    }
+
     if (success && entities){
       const {from, to} = entities
       connection = (
-      <div className="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset 1 col-md-10 col-md-offset-1" style={{marginTop: '20px'}}>
+      <div className="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset 1 col-md-10 col-md-offset-1" style={connectionSuccessMessage}>
         <a href={"/node/"+from._id}> {from.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
         is now connected to
         <a href={"/node/"+to._id}> {to.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
