@@ -30,8 +30,7 @@ class Home extends Component {
             ]}
       style={{
         marginTop: '5px',
-        fontStyle: 'italic'}}
-      ><span>Visit the existing page <a href={"/node/"+node._id}>here</a></span>
+        fontStyle: 'italic'}}>
       </div>
     else if (isURL) {
       const url = node.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"");
@@ -44,7 +43,6 @@ class Home extends Component {
               'col-md-8',
               'col-md-offset-2',
             ]} style={{marginTop: '5px', fontStyle: 'italic'}}>
-          <span>Looks like {node.queryLink} isn't connected to anything on the WikiWeb yet. <a href={"/connect?url="+url} style={{fontWeight: 'bold'}} className="noUnderline">Connect it to similar content</a>.</span>
         </div>
       );
     }
