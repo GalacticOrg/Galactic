@@ -105,17 +105,7 @@ class InputURL extends React.Component {
 
 
     return (
-      <div className="form-group">
-        <span
-          className={[
-            'input-group',
-            'col-xs-12',
-            'col-sm-10',
-            'col-sm-offset-1',
-            'col-md-8',
-            'col-md-offset-2'
-          ].join(' ')}
-        >
+        <span className="input-group">
           <input
             onChange={this._onChange}
             onKeyDown={this._onKeyDown}
@@ -133,7 +123,6 @@ class InputURL extends React.Component {
           {inputButton}
           {isURL===false?<div style={errorTextStyle}>URL does not exist</div>:null}
         </span>
-      </div>
     );
   }
 
