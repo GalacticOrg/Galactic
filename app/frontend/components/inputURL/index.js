@@ -119,7 +119,10 @@ class InputURL extends React.Component {
               className="form-control"
               style={homePageUrlSearchInputBox} />
             <div  style={this.urlValidIconStyle} >
-              <StatusIcon loading={loading} />
+              <StatusIcon
+                loading={loading}
+                close={this._reset}
+                hasText={node!==null} />
             </div>
             {inputButton}
           </span>
@@ -129,7 +132,7 @@ class InputURL extends React.Component {
   }
 
   _getHref(node){
-    let href = ''
+    let href = 'javascript:void(0)'
     if (node && node.isConnected) {
       href = '/node/'+ node._id;
     } else if (node && !node.isConnected && node.canonicalLink) {
@@ -141,7 +144,7 @@ class InputURL extends React.Component {
   _getIcon(node){
     let icon = 'fa fa-search'
     if (node && !node.isConnected) {
-      icon = 'fa fa-search-plus'
+      icon = 'fa fa-plus'
     }
     return icon
   }
@@ -193,6 +196,7 @@ class InputURL extends React.Component {
 
   _reset(searchInput) {
     const { dispatch } = this.props;
+    this.lastSearch='';
     dispatch(resetSearch(this.uid));
   }
 

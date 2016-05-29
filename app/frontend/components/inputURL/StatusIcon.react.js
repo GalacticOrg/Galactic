@@ -4,19 +4,19 @@
 
 import React, { Component, PropTypes } from 'react'
 import Loader from 'react-loader';
-const statusStyle = {margin: '0px', padding: '.5em 6px', fontSize:'1.5em',color:'#BDBDBD'}
+const statusStyle = {margin: '0px', padding: '.5em 8px', fontSize:'1.5em',color:'#BDBDBD'}
 
 export default class StatusIcon extends Component {
 
   render() {
-      const { loading = false } = this.props;
+      const { loading = false, close, hasText } = this.props;
       let status = null;
       if (loading) status = (<div>
         <Loader scale={0.55} />
         <span style={{ padding: '5px', margin: '14px', display: 'inline-block'}}  />
         </div>);
-      else
-        status = <i className="fa fa-times" style={statusStyle} />;
+      else if (hasText)
+        status = <i className="fa fa-times" style={statusStyle} onClick={close} />;
 
     return (
       status
@@ -26,4 +26,6 @@ export default class StatusIcon extends Component {
 
 StatusIcon.propTypes = {
   loading: PropTypes.bool,
+  close: PropTypes.func,
+  hasText: PropTypes.bool.isRequired
 }

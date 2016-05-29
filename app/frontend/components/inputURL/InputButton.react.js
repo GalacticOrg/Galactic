@@ -7,7 +7,7 @@ import React, { Component, PropTypes } from 'react'
 export default class InputButton extends Component {
 
   render() {
-    const { onSubmit, iconState, href } = this.props
+    const { onSubmit, iconState, href='javascript:void(0)' } = this.props
     return (
       <a tabIndex="-1"
         onClick={onSubmit}
