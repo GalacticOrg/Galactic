@@ -23,7 +23,7 @@ const homePageUrlSearchInputBox = {
   fontSize: '20px',
   height: '47px',
   outline: 'none !important',
-  paddingRight: '30px',
+  paddingRight: '32px',
   boxShadow: 'none',
   WebkitBoxShadow: 'none',
   borderColor: 'rgb(197, 197, 197)',
