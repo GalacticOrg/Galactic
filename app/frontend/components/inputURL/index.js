@@ -21,10 +21,14 @@ const homepageUrlSearchForm = {
 }
 
 const homePageUrlSearchInputBox = {
-  fontSize: '17px',
-  height: '43px',
-  outline: 'none',
-  paddingRight: '30px'
+  fontSize: '20px',
+  height: '44px',
+  outline: 'none !important',
+  paddingRight: '30px',
+  borderRight: '0px',
+  boxShadow: 'none',
+  WebkitBoxShadow: 'none',
+  borderColor: 'rgb(197, 197, 197)'
 }
 
 const buttonStyle = {
