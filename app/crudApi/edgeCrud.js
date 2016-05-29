@@ -94,9 +94,12 @@ exports.postCreateEdgeController = function (req, res) {
     toId,
     userId,
     function(err, resultEdge){
-      if (err || resultEdge.length==0) {
+      if (err) {
         console.log(err, "postCreateEdgeController")
-        return res.status(400).send(utils.errsForApi(err.errors || err));
+        return res.status(500).send(utils.errsForApi(err.errors || err));
+      } else if(resultEdge.length==0){
+        console.log(resultEdge, "postCreateEdgeController No Edge")
+        return res.status(500).send(utils.errsForApi('No Edge Created'));
       } else {
         Entity.update(
            { _id: {$in: [fromId, toId]}},
@@ -113,7 +116,6 @@ exports.postCreateEdgeController = function (req, res) {
                 'title _id faviconCDN canonicalLink description')
                 .exec(function(err, entityResult){
                   if (err) return res.status(400).send(utils.errsForApi(err.errors || err));
-                  console.log(resultEdge, 'resultEdge')
                   res.send({
                     edgeId: resultEdge[0].Link.properties.id,
                     success: true,

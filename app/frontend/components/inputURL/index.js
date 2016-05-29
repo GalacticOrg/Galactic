@@ -90,18 +90,19 @@ class InputURL extends React.Component {
     const {isURL=null, loading=false, node=null} = search;
 
     //preventing flicker
-    let iconState = this._getIcon(node);
-    let buttonIsURL = isURL;
-    // if (loading && this.lastSearch) {
-    //   buttonIsURL = this.lastSearch.isURL;
-    //   iconState = this._getIcon(this.lastSearch.node);
+    //let iconState =
+    //let buttonIsURL = isURL;
+    // if (loading && this.lastSearchObject) {
+    //   buttonIsURL = this.lastSearchObject.isURL;
+    //   iconState = this._getIcon(this.lastSearchObject.node);
     // }
+
     // Search Button
     const inputButton = hasSearchButton?(
       <InputButton
         onSubmit = {this._onSubmit}
-        disabled = {buttonIsURL === false}
-        iconState = {iconState}
+        disabled = {isURL === false}
+        iconState = {this._getIcon(node)}
         href = {this._getHref(node)}
        />
     ):null;
@@ -187,9 +188,9 @@ class InputURL extends React.Component {
 
   _search(searchInput) {
     const { dispatch } = this.props;
-    if (this.lastSearch !== searchInput){
-      this.lastSearch = searchInput;
-      this.lastSearch=this.props[this.uid];
+    if (this.lastSearchInput !== searchInput){
+      this.lastSearchInput = searchInput;
+      this.lastSearchObject=this.props[this.uid];
       dispatch(getSearch(searchInput, this.uid));
     }
   }

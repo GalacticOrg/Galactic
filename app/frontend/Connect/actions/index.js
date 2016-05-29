@@ -22,7 +22,7 @@ function receiveConnectionResult(result) {
 }
 
 function receiveErr(err, res) {
-  const response = err.response.body
+  const response = err.response?err.response.body:['Opps, Something Went Wrong.  Try Again.']
   return {
     type: RECEIVE_CONNECTION_ERROR,
     response
