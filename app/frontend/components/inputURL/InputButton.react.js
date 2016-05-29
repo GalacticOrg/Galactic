@@ -24,7 +24,7 @@ export default class InputButton extends Component {
   render() {
     const { onSubmit, iconState, href='javascript:void(0)' } = this.props
     return (
-      <div className="input-group-addon" style={{
+      <div className="input-group-addon input-button" style={{
         backgroundColor: 'white',
         padding: '0px',
         paddingRight: '3px',

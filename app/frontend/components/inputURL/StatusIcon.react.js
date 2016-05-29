@@ -16,7 +16,7 @@ export default class StatusIcon extends Component {
         <span style={{ padding: '5px', margin: '14px', display: 'inline-block'}}  />
         </div>);
       else if (hasReset)
-        status = (<a
+        status = (<a className="status-icon"
           tabIndex="-1"
           href="javascript:void(0)">
           <i className="fa fa-times" style={statusStyle} onClick={close} />
