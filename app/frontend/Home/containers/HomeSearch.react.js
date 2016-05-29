@@ -54,23 +54,23 @@ class Home extends Component {
         <Navbar />
         <div className="container">
           <div className="row">
-            <div style={{height: '65px'}}>
-              <img className={[
-                'col-xs-8',
-                'col-xs-offset-2',
-                'col-sm-8',
-                'col-sm-offset-2',
-                'col-md-8',
-                'col-md-offset-2',
-                 ]} style={{marginTop: '150px', height: '65px', display: 'block', marginLeft: 'auto', marginRight: 'auto'}} src='/img/WikiWeb.png' />
+            <div className="text-center" style={{height: '65px', margin: '150px 0 50px'}}>
+              <img src='/img/WikiWeb.png' />
             </div>
           </div>
           <div className='row'>
-            <div style={homepageUrlSearchForm}>
+            <div
+              className={
+              ['col-xs-12',
+              'col-sm-10',
+              'col-sm-offset-1',
+              'col-md-8',
+              'col-md-offset-2'].join(' ')
+              }>
               <InputURL
                 hasSearchButton={true}
                 receivedSearchResult={this._onSearchResult}
-                id='result'/>              
+                id='result'/>
             </div>
             <div className={[
               'col-xs-8',
