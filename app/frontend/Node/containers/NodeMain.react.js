@@ -53,7 +53,7 @@ class NodeMain extends Component {
               </span>
           </a>
           <span style={edgeEntityStyle}>
-            <a href={'/node/'+edge.entity._id}>{sourceURL.host}</a>
+            <a href={'/node/'+edge.entity._id}>({sourceURL.host})</a>
           </span>
         </div>
         <div style={edgeUserStyle}>
