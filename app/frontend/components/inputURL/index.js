@@ -10,16 +10,7 @@ import _ from 'lodash'
 import StatusIcon from './StatusIcon.react'
 import InputButton from './InputButton.react'
 
-
 const ENTER_KEY_CODE = 13;
-
-const homepageUrlSearchForm = {
-  display: 'block',
-  margin: 'auto',
-  marginTop: '50px',
-  paddingLeft: '20px',
-  paddingRight: '20px'
-}
 
 const errorTextStyle = {
   position: 'absolute',
@@ -33,10 +24,10 @@ const homePageUrlSearchInputBox = {
   height: '47px',
   outline: 'none !important',
   paddingRight: '30px',
-  borderRight: '0px',
   boxShadow: 'none',
   WebkitBoxShadow: 'none',
-  borderColor: 'rgb(197, 197, 197)'
+  borderColor: 'rgb(197, 197, 197)',
+  borderRight: 'none'
 }
 
 const buttonStyle = {
@@ -66,7 +57,7 @@ class InputURL extends React.Component {
     if (setValue) this._setValue(setValue)
     if (this.props.hasSearchButton)
       this.urlValidIconStyle = Object.assign(
-        this.urlValidIconStyle, {right:'42px'}
+        this.urlValidIconStyle, {right:'56px'}
       );
   }
 
@@ -110,39 +101,28 @@ class InputURL extends React.Component {
         href = {this._getHref(node)}
        />
     ):null;
+    if (!hasSearchButton) Object.assign(homePageUrlSearchInputBox, {borderRight: 'inital', borderRadius:'0px'})
+
 
     return (
-      <div style={homepageUrlSearchForm}>
-        <div className="form-group">
-          <span
-            className={[
-              'input-group',
-              'col-xs-12',
-              'col-sm-10',
-              'col-sm-offset-1',
-              'col-md-8',
-              'col-md-offset-2'
-            ].join(' ')}
-          >
-            <input
-              onChange={this._onChange}
-              onKeyDown={this._onKeyDown}
-              value={searchInput}
-              type="search"
-              placeholder={placeholder}
-              className="form-control"
-              style={homePageUrlSearchInputBox} />
-            <div  style={this.urlValidIconStyle} >
-              <StatusIcon
-                loading={loading}
-                close={this._reset}
-                hasReset={isURL===false || node!==null} />
-            </div>
-            {inputButton}
-            {isURL===false?<div style={errorTextStyle}>URL does not exist</div>:null}
-          </span>
-        </div>
-      </div>
+        <span className="input-group" style={{width: '100%'}}>
+          <input
+            onChange={this._onChange}
+            onKeyDown={this._onKeyDown}
+            value={searchInput}
+            type="search"
+            placeholder={placeholder}
+            className="form-control"
+            style={homePageUrlSearchInputBox} />
+          <div  style={this.urlValidIconStyle} >
+            <StatusIcon
+              loading={loading}
+              close={this._reset}
+              hasReset={isURL===false || node!==null} />
+          </div>
+          {inputButton}
+          {isURL===false?<div style={errorTextStyle}>URL does not exist</div>:null}
+        </span>
     );
   }
 

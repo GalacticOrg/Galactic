@@ -4,6 +4,14 @@ import Navbar from "../../components/Navbar.react"
 import InputURL from "../../components/inputURL/"
 import InfoModal from "./InfoModal.react"
 
+const homepageUrlSearchForm = {
+  display: 'block',
+  margin: 'auto',
+  marginTop: '50px',
+  paddingLeft: '20px',
+  paddingRight: '20px'
+}
+
 class Home extends Component {
 
   render() {
@@ -46,19 +54,24 @@ class Home extends Component {
         <Navbar />
         <div className="container">
           <div className="row">
-            <div style={{height: '65px'}}>
-              <img className={[
-                'col-xs-8',
-                'col-xs-offset-2',
-                'col-sm-8',
-                'col-sm-offset-2',
-                'col-md-8',
-                'col-md-offset-2',
-                 ]} style={{marginTop: '150px', height: '65px', display: 'block', marginLeft: 'auto', marginRight: 'auto'}} src='/img/WikiWeb.png' />
+            <div className="text-center" style={{height: '65px', margin: '150px 0 50px'}}>
+              <img src='/img/WikiWeb.png' />
             </div>
           </div>
           <div className='row'>
-            <InputURL hasSearchButton={true} receivedSearchResult={this._onSearchResult} id='result'/>
+            <div
+              className={
+              ['col-xs-12',
+              'col-sm-10',
+              'col-sm-offset-1',
+              'col-md-8',
+              'col-md-offset-2'].join(' ')
+              }>
+              <InputURL
+                hasSearchButton={true}
+                receivedSearchResult={this._onSearchResult}
+                id='result'/>
+            </div>
             <div className={[
               'col-xs-8',
               'col-xs-offset-2',

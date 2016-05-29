@@ -12,6 +12,8 @@ import Navbar from "../../components/Navbar.react"
 import InputURL from "../../components/inputURL/"
 import { resetSearch } from "../../components/inputURL/actions"
 
+const spacerStyle = { marginBottom: '50px'}
+const formStyle = { padding: '60px 15px 40px', border: 'dashed 1px'}
 
 export default class Connect extends Component {
 
@@ -29,7 +31,8 @@ export default class Connect extends Component {
 
 
     const fromNodeExists =  (fromNode!==undefined && fromNode.node!==undefined);
-    const toNodeStyle =  fromNodeExists?null:{opacity:'.1', pointerEvents: 'none'};
+    const toNodeStyle =  fromNodeExists?{}:{opacity:'.1', pointerEvents: 'none'};
+    Object.assign(toNodeStyle, spacerStyle)
     const toNodeExists =  (toNode!==undefined  && toNode.node!==undefined );
 
     const equalURL = (toNodeExists && fromNodeExists &&
@@ -58,11 +61,9 @@ export default class Connect extends Component {
       const {from, to} = entities
       connection = (
       <div className="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset 1 col-md-10 col-md-offset-1" style={{marginTop: '20px'}}>
-        <ul>
-          <li><a href={"/node/"+from._id}> {from.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
+        <a href={"/node/"+from._id}> {from.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
         is now connected to
-        <a href={"/node/"+to._id}> {to.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a></li>
-        </ul>
+        <a href={"/node/"+to._id}> {to.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
       </div> )
       toInput = ''
       fromInput = ''
@@ -75,26 +76,20 @@ export default class Connect extends Component {
       <Navbar />
       {errMessage}
       <div className="container">
-        <div className="row connectionForm">
-          <div>
+        <div className="row">
             <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1"
               style={{marginTop: '20px',marginBottom: '15px', fontWeight: 'bold'}}>Connect two URLs together:</div>
             <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1"
-              style={{border: 'dashed 1px'}}>
-              <div role="form" style={{ marginTop: '20px', marginBottom: '20px'}}>
-
-                <div className="form-group">
-
+              style={formStyle}>
+                <div style={spacerStyle} className="form-group">
                   <InputURL
                     setValue = {fromInput}
                     receivedSearchResult={this._onSearchResultA}
                     id='fromNode'
                     placeholder={'Paste a URL'} />
-                  <br />
                 </div>
                 <hr />
-
-                <div className="form-group" style={toNodeStyle} >
+                <div style={toNodeStyle} className="form-group" >
                   <InputURL
                     receivedSearchResult={this._onSearchResultB}
                     id='toNode'
@@ -102,7 +97,6 @@ export default class Connect extends Component {
                     />
                   {equalURL?<div style={{color:'red'}}>Please enter two different URLs</div>:null}
                 </div>
-                <br />
 
                 <button
                   disabled={diabled}
@@ -110,10 +104,8 @@ export default class Connect extends Component {
                   type="submit"
                   className="btn btn-default"
                   style={connectStyle}>Connect</button>
-
-              </div>
             </div>
-          </div>
+
         </div>
         {connection}
       </div>

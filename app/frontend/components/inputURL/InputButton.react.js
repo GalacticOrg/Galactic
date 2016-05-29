@@ -29,7 +29,9 @@ export default class InputButton extends Component {
         padding: '0px',
         paddingRight: '3px',
         paddingBottom: '1px',
-        borderColor: 'rgb(197, 197, 197)'
+        borderColor: 'rgb(197, 197, 197)',
+        borderLeft: 'none',
+        borderRadiusRight: '4px'
       }}>
         <a tabIndex="-1"
           onClick={onSubmit}
