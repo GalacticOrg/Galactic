@@ -105,7 +105,7 @@ class InputURL extends React.Component {
 
 
     return (
-        <span className="input-group">
+        <span className="input-group" style={{width: '100%'}}>
           <input
             onChange={this._onChange}
             onKeyDown={this._onKeyDown}
