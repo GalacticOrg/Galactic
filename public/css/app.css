@@ -156,7 +156,7 @@ body {
       width: 20px; }
   body .resultsSection .connectionCard {
     display: block;
-    height: 40px;
+    margin-bottom: 7px;
     color: #555;
     font-size: 14px;
     font-family: "Helvetica Neue", "Lucida Grande", "Arial";
