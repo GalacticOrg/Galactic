@@ -57,7 +57,7 @@ class InputURL extends React.Component {
     if (setValue) this._setValue(setValue)
     if (this.props.hasSearchButton)
       this.urlValidIconStyle = Object.assign(
-        this.urlValidIconStyle, {right:'42px'}
+        this.urlValidIconStyle, {right:'56px'}
       );
   }
 
