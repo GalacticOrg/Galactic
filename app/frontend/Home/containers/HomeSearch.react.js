@@ -4,6 +4,14 @@ import Navbar from "../../components/Navbar.react"
 import InputURL from "../../components/inputURL/"
 import InfoModal from "./InfoModal.react"
 
+const homepageUrlSearchForm = {
+  display: 'block',
+  margin: 'auto',
+  marginTop: '50px',
+  paddingLeft: '20px',
+  paddingRight: '20px'
+}
+
 class Home extends Component {
 
   render() {
@@ -58,7 +66,12 @@ class Home extends Component {
             </div>
           </div>
           <div className='row'>
-            <InputURL hasSearchButton={true} receivedSearchResult={this._onSearchResult} id='result'/>
+            <div style={homepageUrlSearchForm}>
+              <InputURL
+                hasSearchButton={true}
+                receivedSearchResult={this._onSearchResult}
+                id='result'/>              
+            </div>
             <div className={[
               'col-xs-8',
               'col-xs-offset-2',
