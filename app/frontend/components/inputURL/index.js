@@ -3,7 +3,6 @@
 */
 
 import React from "react";
-import Loader from 'react-loader';
 import { Modal, OverlayTrigger, Popover} from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { getSearch, resetSearch } from './actions'
@@ -88,26 +87,6 @@ class InputURL extends React.Component {
     // let result = null;
     // let node = null;
 
-    // Begin Status Icon
-    const statusStyle = {margin: '0px'}
-    let status = null;
-
-      if (loading) status = (<div>
-        <Loader scale={0.55} />
-        <span style={{ padding: '5px', margin: '14px', display: 'inline-block'}}  />
-      </div>)
-      else if (isURL)
-        status = this.makePopover(
-          <i className="fa fa-check-circle is-url" style={statusStyle} />,
-          'text',
-          'title');
-      else if (isURL==false)
-        status = this.makePopover(
-          <i className="fa fa-times-circle-o is-not-url" style={statusStyle} />,
-          'text',
-          'title');
-    // End of Status Icon
-
     // Search Button
     const inputButton = hasSearchButton?(
       <InputButton
@@ -141,7 +120,6 @@ class InputURL extends React.Component {
               style={homepageUrlSearchBox} />
             <div  style={this.urlValidIconStyle} >
               <StatusIcon />
-              {status}
             </div>
             {inputButton}
           </span>
