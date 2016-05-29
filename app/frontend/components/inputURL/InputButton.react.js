@@ -12,14 +12,13 @@ export default class InputButton extends Component {
       <div className="input-group-addon" style={{
         backgroundColor: 'white',
         padding: '0px',
-        paddingBottom: '1px',
-        paddingLeft: '2px',
-        paddingRight: '2px'
+        paddingRight: '3px',
+        paddingBottom: '1.5px',
+        borderColor: 'rgb(197, 197, 197)'
       }}>
         <a tabIndex="-1"
           onClick={onSubmit}
           href={href}
-          // className="input-group-addon"
           style={this.isDisabled()} >
           <i style={{fontSize:'1.4em'}}
              className={iconState}/>
@@ -40,6 +39,16 @@ export default class InputButton extends Component {
       color: 'white'
     };
     if (this.props.disabled) {
+      disabled = {
+        paddingTop: '9px', //directly related to height of container (gap should be 2px)
+        paddingBottom: '8px', //directly related to height of container (gap should be 2px)
+        paddingLeft: '18px',
+        paddingRight: '18px',
+        backgroundColor: '#FF0000', //$error-green
+        border: '1px solid #FF0000', //$error-green
+        borderRadius: '3px',
+        color: 'white'
+      }
       disabled.cursor = 'not-allowed';
     }
     return disabled
