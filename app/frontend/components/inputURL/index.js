@@ -24,7 +24,7 @@ const homePageUrlSearchInputBox = {
   fontSize: '17px',
   height: '43px',
   outline: 'none',
-  paddingRight: '25px'
+  paddingRight: '30px'
 }
 
 const buttonStyle = {
@@ -53,7 +53,9 @@ class InputURL extends React.Component {
     this.uid = id?id:Math.random()*Math.pow(10, 17);
     if (setValue) this._setValue(setValue)
     if (this.props.hasSearchButton)
-      this.urlValidIconStyle = Object.assign(this.urlValidIconStyle,{right:45});
+      this.urlValidIconStyle = Object.assign(
+        this.urlValidIconStyle, {right:'42px'}
+      );
   }
 
   componentWillReceiveProps(nextProps){
@@ -144,7 +146,7 @@ class InputURL extends React.Component {
   _getIcon(node){
     let icon = 'fa fa-search'
     if (node && !node.isConnected) {
-      icon = 'fa fa-plus'
+      icon = 'fa fa-search-plus'
     }
     return icon
   }

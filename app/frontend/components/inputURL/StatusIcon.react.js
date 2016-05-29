@@ -4,7 +4,7 @@
 
 import React, { Component, PropTypes } from 'react'
 import Loader from 'react-loader';
-const statusStyle = {margin: '0px', padding: '.5em 8px', fontSize:'1.5em',color:'#BDBDBD'}
+const statusStyle = {margin: '0px', padding: '.5em 10px', fontSize:'1.5em',color:'#BDBDBD'}
 
 export default class StatusIcon extends Component {
 
