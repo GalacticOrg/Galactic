@@ -10,6 +10,7 @@ import _ from 'lodash'
 import StatusIcon from './StatusIcon.react'
 import InputButton from './InputButton.react'
 
+
 const ENTER_KEY_CODE = 13;
 
 const homepageUrlSearchForm = {
@@ -18,6 +19,13 @@ const homepageUrlSearchForm = {
   marginTop: '50px',
   paddingLeft: '20px',
   paddingRight: '20px'
+}
+
+const errorTextStyle = {
+  position: 'absolute',
+  left: '12px',
+  bottom: '-1.5em',
+  color:'red'
 }
 
 const homePageUrlSearchInputBox = {
@@ -128,9 +136,10 @@ class InputURL extends React.Component {
               <StatusIcon
                 loading={loading}
                 close={this._reset}
-                hasText={node!==null} />
+                hasReset={isURL===false || node!==null} />
             </div>
             {inputButton}
+            {isURL===false?<div style={errorTextStyle}>URL does not exist</div>:null}
           </span>
         </div>
       </div>

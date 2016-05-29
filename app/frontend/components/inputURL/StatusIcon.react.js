@@ -9,14 +9,18 @@ const statusStyle = {margin: '0px', padding: '.5em 10px', fontSize:'1.5em',color
 export default class StatusIcon extends Component {
 
   render() {
-      const { loading = false, close, hasText } = this.props;
+      const { loading = false, close, hasReset } = this.props;
       let status = null;
       if (loading) status = (<div>
         <Loader scale={0.55} />
         <span style={{ padding: '5px', margin: '14px', display: 'inline-block'}}  />
         </div>);
-      else if (hasText)
-        status = <a href="javascript:void(0)"><i className="fa fa-times" style={statusStyle} onClick={close} /> </a>;
+      else if (hasReset)
+        status = (<a
+          tabIndex="-1"
+          href="javascript:void(0)">
+          <i className="fa fa-times" style={statusStyle} onClick={close} />
+      </a>);
 
     return (
       status
@@ -27,5 +31,5 @@ export default class StatusIcon extends Component {
 StatusIcon.propTypes = {
   loading: PropTypes.bool,
   close: PropTypes.func,
-  hasText: PropTypes.bool.isRequired
+  hasReset: PropTypes.bool.isRequired
 }
