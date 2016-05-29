@@ -6,6 +6,21 @@ import React, { Component, PropTypes } from 'react'
 
 export default class InputButton extends Component {
 
+  constructor () {
+    super()
+    this.state = {
+      isHovering: false
+    };
+  }
+
+  handleMouseOver () { // GOOD: set this.state.isHovering to false on mouse leave
+    this.setState({ isHovering: true });
+  }
+
+  handleMouseOut () { // GOOD: set this.state.isHovering to false on mouse leave
+    this.setState({ isHovering: false });
+  }
+
   render() {
     const { onSubmit, iconState, href='javascript:void(0)' } = this.props
     return (
@@ -19,7 +34,10 @@ export default class InputButton extends Component {
         <a tabIndex="-1"
           onClick={onSubmit}
           href={href}
-          style={this.buttonState()} >
+          style={this.buttonState()}
+          onMouseOver={this.handleMouseOver.bind(this)}
+          onMouseOut={this.handleMouseOut.bind(this)}
+          >
           <i style={{fontSize:'1.4em'}}
              className={iconState}/>
         </a>
@@ -28,7 +46,7 @@ export default class InputButton extends Component {
   }
 
   buttonState(){
-    let buttonState = {
+    let buttonStyle = {
       paddingTop: '9px', //directly related to height of container (gap should be 2px)
       paddingBottom: '8px', //directly related to height of container (gap should be 2px)
       paddingLeft: '18px',
@@ -36,24 +54,31 @@ export default class InputButton extends Component {
       backgroundColor: 'white',
       border: '1px solid white',
       borderRadius: '3px',
-      color: 'grey'
+      color: 'grey',
+      WebkitFontSmoothing: 'antialiased',
     }
     if (this.props.iconState === "fa fa-search" && this.props.href !== 'javascript:void(0)'){ // BRITTLE
-      buttonState.backgroundColor = '#66AD57'; //$success-green
-      buttonState.border = '1px solid #66AD57'; //$success-orange
-      buttonState.color = 'white';
+      buttonStyle.backgroundColor = '#66AD57'; //$success-green
+      buttonStyle.border = '1px solid #66AD57'; //$success-green
+      buttonStyle.color = 'white';
     } else if (this.props.iconState === 'fa fa-search-plus'){ // BRITTLE
-      buttonState.backgroundColor = 'orange'; //$connection-orange
-      buttonState.border = '1px solid orange'; //$connection-orange
-      buttonState.color = 'white';
+      buttonStyle.backgroundColor = '#ff9900'; //$connection-orange
+      buttonStyle.border = '1px solid #ff9900'; //$connection-orange
+      buttonStyle.color = 'white';
     }
     if (this.props.disabled){
-      buttonState.cursor = 'not-allowed';
-      buttonState.backgroundColor = '#FF0000'; //$error-red;
-      buttonState.border = '1px solid #FF0000'; //$error-red
-      buttonState.color = 'white';
+      buttonStyle.cursor = 'not-allowed';
+      buttonStyle.backgroundColor = '#FF0000'; //$error-red;
+      buttonStyle.border = '1px solid #FF0000'; //$error-red
+      buttonStyle.color = 'white';
     }
-    return buttonState;
+    if (this.state.isHovering === true){ // SUPER BRITTLE!
+      if (buttonStyle.backgroundColor === '#ff9900') //$connection-orange
+        buttonStyle.backgroundColor = '#e68a00' //$connection-orange-layover
+      else if (buttonStyle.backgroundColor === '#66AD57') //$success-green
+        buttonStyle.backgroundColor = '#599a4c' //$success-layover
+    }
+    return buttonStyle;
   }
 
 };
