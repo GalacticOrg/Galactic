@@ -13,11 +13,11 @@ export default class InputButton extends Component {
     };
   }
 
-  handleMouseOver () { // GOOD: set this.state.isHovering to false on mouse leave
+  handleMouseOver () {
     this.setState({ isHovering: true });
   }
 
-  handleMouseOut () { // GOOD: set this.state.isHovering to false on mouse leave
+  handleMouseOut () {
     this.setState({ isHovering: false });
   }
 
@@ -59,11 +59,11 @@ export default class InputButton extends Component {
       color: 'grey',
       WebkitFontSmoothing: 'antialiased',
     }
-    if (this.props.iconState === "fa fa-search" && this.props.href !== 'javascript:void(0)'){ // BRITTLE
+    if (this.props.iconState === "fa fa-search" && this.props.href !== 'javascript:void(0)'){ // @todo BRITTLE
       buttonStyle.backgroundColor = '#66AD57'; //$success-green
       buttonStyle.border = '1px solid #66AD57'; //$success-green
       buttonStyle.color = 'white';
-    } else if (this.props.iconState === 'fa fa-search-plus'){ // BRITTLE
+    } else if (this.props.iconState === 'fa fa-search-plus'){ // @todo BRITTLE
       buttonStyle.backgroundColor = '#ff9900'; //$connection-orange
       buttonStyle.border = '1px solid #ff9900'; //$connection-orange
       buttonStyle.color = 'white';
@@ -74,7 +74,7 @@ export default class InputButton extends Component {
       buttonStyle.border = '1px solid #FF0000'; //$error-red
       buttonStyle.color = 'white';
     }
-    if (this.state.isHovering === true){ // SUPER BRITTLE!
+    if (this.state.isHovering === true){ // @todo SUPER BRITTLE!
       if (buttonStyle.backgroundColor === '#ff9900') //$connection-orange
         buttonStyle.backgroundColor = '#e68a00' //$connection-orange-layover
       else if (buttonStyle.backgroundColor === '#66AD57') //$success-green

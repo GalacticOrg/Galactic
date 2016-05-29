@@ -89,15 +89,19 @@ class InputURL extends React.Component {
     const search = this.props[this.uid]?this.props[this.uid]:{}
     const {isURL=null, loading=false, node=null} = search;
 
-    // let result = null;
-    // let node = null;
-
+    //preventing flicker
+    let iconState = this._getIcon(node);
+    let buttonIsURL = isURL;
+    // if (loading && this.lastSearch) {
+    //   buttonIsURL = this.lastSearch.isURL;
+    //   iconState = this._getIcon(this.lastSearch.node);
+    // }
     // Search Button
     const inputButton = hasSearchButton?(
       <InputButton
         onSubmit = {this._onSubmit}
-        disabled = {isURL === false}
-        iconState = {this._getIcon(node)}
+        disabled = {buttonIsURL === false}
+        iconState = {iconState}
         href = {this._getHref(node)}
        />
     ):null;
@@ -136,7 +140,7 @@ class InputURL extends React.Component {
     return href
   }
 
-  _getIcon(node){
+  _getIcon(node){ //@todo move into inputbutton.
     let icon = 'fa fa-search'
     if (node && !node.isConnected) {
       icon = 'fa fa-search-plus'
@@ -185,6 +189,7 @@ class InputURL extends React.Component {
     const { dispatch } = this.props;
     if (this.lastSearch !== searchInput){
       this.lastSearch = searchInput;
+      this.lastSearch=this.props[this.uid];
       dispatch(getSearch(searchInput, this.uid));
     }
   }
