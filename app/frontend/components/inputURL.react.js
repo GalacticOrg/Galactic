@@ -21,7 +21,6 @@ const homepageUrlSearchForm = {
 
 const homepageUrlSearchBox = {
   fontSize: '17px',
-  height: '43px',
   outline: 'none',
 }
 

@@ -13,9 +13,7 @@ class InfoModal extends Component {
          <span>Bored? Try putting your lips around our <a href="/firehose" className=" noUnderline">Firehose</a>!</span>,
          <span>WikiWeb is a crowdsourced map of the Internet.</span>,
          <span>Use the WikiWeb to search for related content online. <a href="/about" className='noUnderline'>Learn more</a>.</span>,
-         <span>Help improve the WikiWeb by connecting similar content or websites!</span>,
-         // <span>Need Ideas? See what&#39;s similar to <a href='#' className='noUnderline'>DonaldTrump.com</a></span>,
-         // <span>Already a fan? <a href="#">Share the love</a>.</span>
+         <span>To improve the WikiWeb, <a href="/connect" className='noUnderline'>connect</a> similar content or websites!</span>
       ]
     };
     this.tick = this.tick.bind(this)
@@ -71,7 +69,7 @@ class InfoModal extends Component {
   tick() {
     if (this.state.secondsElapsed === 3){
       let newMessageIndex = this.state.messageIndex + 1
-      if (newMessageIndex >= this.state.messages.length -1) {
+      if (newMessageIndex >= this.state.messages.length) {
         newMessageIndex = 0;
       }
       this.setState({
