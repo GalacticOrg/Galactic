@@ -3,12 +3,11 @@
 */
 
 import React from "react";
+import Loader from 'react-loader';
 import { Modal, OverlayTrigger, Popover} from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { getSearch, resetSearch } from './actions'
+import { getSearch, resetSearch } from './inputURL/actions'
 import _ from 'lodash'
-import StatusIcon from './StatusIcon.react'
-import InputButton from './InputButton.react'
 
 const ENTER_KEY_CODE = 13;
 
@@ -20,23 +19,23 @@ const homepageUrlSearchForm = {
   paddingRight: '20px'
 }
 
-const homePageUrlSearchInputBox = {
+const homepageUrlSearchBox = {
   fontSize: '17px',
   height: '43px',
   outline: 'none',
-  paddingRight: '25px'
 }
 
 const buttonStyle = {
-  padding: '0px',
+  padding: 0,
   margin: '12px',
   backgroundColor: 'rgba(255, 255, 255, 0)',
   border: 'none',
-  height: '0px',
+  height: 0,
   outline: 'none'
 }
 
 class InputURL extends React.Component {
+
   constructor(){
     super()
     this.state = { searchInput:'' };
@@ -52,8 +51,7 @@ class InputURL extends React.Component {
     const { setValue, id} = this.props;
     this.uid = id?id:Math.random()*Math.pow(10, 17);
     if (setValue) this._setValue(setValue)
-    if (this.props.hasSearchButton)
-      this.urlValidIconStyle = Object.assign(this.urlValidIconStyle,{right:45});
+    if (this.props.hasSearchButton) this.urlValidIconStyle = Object.assign(this.urlValidIconStyle,{right:45});
   }
 
   componentWillReceiveProps(nextProps){
@@ -73,6 +71,7 @@ class InputURL extends React.Component {
    return <OverlayTrigger
      trigger="focus"
      placement="top"
+
      overlay={popover}>
      <button style={buttonStyle} >{status}</button>
    </OverlayTrigger>
@@ -81,20 +80,51 @@ class InputURL extends React.Component {
   render() {
     const { searchInput } = this.state
     const { dispatch, hasSearchButton, placeholder } = this.props
-    const search = this.props[this.uid]?this.props[this.uid]:{}
-    const {isURL=null, loading=false, node=null} = search;
+    const search = this.props[this.uid]
+    const statusStyle = {margin: '0'}
+    let result = null;
+    let node = null;
+    let hrefSubmit = "javascript:void(0)";
+    let searchDisabled = {};
+    let status = null;
 
-    // let result = null;
-    // let node = null;
+    let iconState = 'fa fa-search';
 
-    // Search Button
-    const inputButton = hasSearchButton?(
-      <InputButton
-        onSubmit = {this._onSubmit}
-        disabled = {isURL === false}
-        iconState = {this._getIcon(node)}
-        href = {this._getHref(node)}
-       />
+    if (search){
+
+      const {isURL, loading, node} = search;
+
+      if (loading) status = (<div>
+        <Loader scale={0.55} />
+        <span style={{ padding: '5px', margin: '14px', display: 'inline-block'}}  />
+      </div>)
+      else if (isURL)
+        status = this.makePopover(
+          <i className="fa fa-check-circle is-url" style={statusStyle} />,
+          'text',
+          'title');
+      else if (isURL==false)
+        status = this.makePopover(
+          <i className="fa fa-times-circle-o is-not-url" style={statusStyle} />,
+          'text',
+          'title'),
+        searchDisabled = {cursor:'not-allowed'};
+
+      if (node && !node.isConnected)
+      iconState = 'fa fa-search-plus',
+      hrefSubmit = '/connect?url='+ node.canonicalLink;
+      else if (node)
+      hrefSubmit = '/node/'+ node._id;
+
+    }
+    const searchButton = hasSearchButton?(
+      <a tabIndex="-1"
+        onClick={this._onSubmit}
+        href={hrefSubmit}
+        className="input-group-addon"
+        style={searchDisabled} >
+        <i style={{fontSize:'1.4em'}} className={iconState} />
+      </a>
     ):null;
 
     return (
@@ -117,35 +147,17 @@ class InputURL extends React.Component {
               type="search"
               placeholder={placeholder}
               className="form-control"
-              style={homePageUrlSearchInputBox} />
+              style={homepageUrlSearchBox} />
             <div  style={this.urlValidIconStyle} >
-              <StatusIcon loading={loading} />
+              {status}
             </div>
-            {inputButton}
+            {searchButton}
           </span>
         </div>
+        {result}
       </div>
     );
   }
-
-  _getHref(node){
-    let href = ''
-    if (node && node.isConnected) {
-      href = '/node/'+ node._id;
-    } else if (node && !node.isConnected && node.canonicalLink) {
-      href = '/connect?url='+ node.canonicalLink;
-    }
-    return href
-  }
-
-  _getIcon(node){
-    let icon = 'fa fa-search'
-    if (node && !node.isConnected) {
-      icon = 'fa fa-search-plus'
-    }
-    return icon
-  }
-
 
   _setValue(setValue){
     this.setState({
@@ -199,7 +211,7 @@ class InputURL extends React.Component {
   urlValidIconStyle = {
     position: 'absolute',
     zIndex: 3,
-    right: '0px'
+    right: 0
   }
 
 };
