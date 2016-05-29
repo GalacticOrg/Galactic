@@ -66,6 +66,7 @@ class Home extends Component {
               'col-md-offset-2'].join(' ')
               }>
               <InputURL
+                placeholder="Paste URL to search"
                 hasSearchButton={true}
                 receivedSearchResult={this._onSearchResult}
                 id='result'/>

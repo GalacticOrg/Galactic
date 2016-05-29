@@ -10,10 +10,10 @@ class InfoModal extends Component {
       node: null,
       messageIndex: 0,
       messages:[
-         <span>Bored? Try putting your lips around our <a href="/firehose" className=" noUnderline">Firehose</a>!</span>,
          <span>WikiWeb is a crowdsourced map of the Internet.</span>,
          <span>Use the WikiWeb to search for related content online. <a href="/about" className='noUnderline'>Learn more</a>.</span>,
-         <span>To improve the WikiWeb, <a href="/connect" className='noUnderline'>connect</a> similar content or websites!</span>
+         <span>To improve the WikiWeb, <a href="/connect" className='noUnderline'>connect</a> similar content or websites!</span>,
+         <span>Bored? Try putting your lips around our <a href="/firehose" className=" noUnderline">Firehose</a>!</span>,
       ]
     };
     this.tick = this.tick.bind(this)
