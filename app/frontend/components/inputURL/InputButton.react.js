@@ -13,13 +13,13 @@ export default class InputButton extends Component {
         backgroundColor: 'white',
         padding: '0px',
         paddingRight: '3px',
-        paddingBottom: '1.5px',
+        paddingBottom: '1px',
         borderColor: 'rgb(197, 197, 197)'
       }}>
         <a tabIndex="-1"
           onClick={onSubmit}
           href={href}
-          style={this.isDisabled()} >
+          style={this.buttonState()} >
           <i style={{fontSize:'1.4em'}}
              className={iconState}/>
         </a>
@@ -27,31 +27,33 @@ export default class InputButton extends Component {
     )
   }
 
-  isDisabled() {
-    let disabled = {
+  buttonState(){
+    let buttonState = {
       paddingTop: '9px', //directly related to height of container (gap should be 2px)
       paddingBottom: '8px', //directly related to height of container (gap should be 2px)
       paddingLeft: '18px',
       paddingRight: '18px',
-      backgroundColor: '#66AD57', //$success-green
-      border: '1px solid #66AD57', //$success-green
+      backgroundColor: 'white',
+      border: '1px solid white',
       borderRadius: '3px',
-      color: 'white'
-    };
-    if (this.props.disabled) {
-      disabled = {
-        paddingTop: '9px', //directly related to height of container (gap should be 2px)
-        paddingBottom: '8px', //directly related to height of container (gap should be 2px)
-        paddingLeft: '18px',
-        paddingRight: '18px',
-        backgroundColor: '#FF0000', //$error-green
-        border: '1px solid #FF0000', //$error-green
-        borderRadius: '3px',
-        color: 'white'
-      }
-      disabled.cursor = 'not-allowed';
+      color: 'grey'
     }
-    return disabled
+    if (this.props.iconState === "fa fa-search" && this.props.href !== 'javascript:void(0)'){ // BRITTLE
+      buttonState.backgroundColor = '#66AD57'; //$success-green
+      buttonState.border = '1px solid #66AD57'; //$success-orange
+      buttonState.color = 'white';
+    } else if (this.props.iconState === 'fa fa-search-plus'){ // BRITTLE
+      buttonState.backgroundColor = 'orange'; //$connection-orange
+      buttonState.border = '1px solid orange'; //$connection-orange
+      buttonState.color = 'white';
+    }
+    if (this.props.disabled){
+      buttonState.cursor = 'not-allowed';
+      buttonState.backgroundColor = '#FF0000'; //$error-red;
+      buttonState.border = '1px solid #FF0000'; //$error-red
+      buttonState.color = 'white';
+    }
+    return buttonState;
   }
 
 };
