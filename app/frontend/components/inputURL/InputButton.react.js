@@ -34,7 +34,7 @@ InputButton.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   iconState: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
-  href: PropTypes.string,
+  href: PropTypes.string
 }
 
 InputButton.getDefaultProps = {

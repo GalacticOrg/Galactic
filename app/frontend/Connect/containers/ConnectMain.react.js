@@ -27,9 +27,28 @@ export default class Connect extends Component {
     const {initalSearch } = this.state
     const { fromNode, toNode, success, edgeId, entities, errors } = this.props
 
+
+    const fromNodeExists =  (fromNode!==undefined && fromNode.node!==undefined);
+    const toNodeStyle =  fromNodeExists?null:{opacity:'.1', pointerEvents: 'none'};
+    const toNodeExists =  (toNode!==undefined  && toNode.node!==undefined );
+
+    const equalURL = (toNodeExists && fromNodeExists &&
+    fromNode.node._id === toNode.node._id)
+
     const diabled = !(
-      toNode && fromNode && fromNode.node && toNode.node &&//lots of type checks before
-      fromNode.node._id !== toNode.node._id );  //Checking  to see if the id are equal
+      toNodeExists && fromNodeExists &&//lots of type checks before
+       fromNode.node._id !== toNode.node._id);  //Checking  to see if the id are equal
+
+
+    const connectStyle = diabled?
+      {backgroundColor:'#eee'}:
+      {backgroundColor: 'orange', border:'none'};
+    Object.assign(connectStyle,
+      {
+       marginLeft: 'calc(50% - 50px)',
+       width: '100px'
+     }
+   );
 
     let connection = null;
     let toInput = null;
@@ -63,26 +82,35 @@ export default class Connect extends Component {
             <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1"
               style={{border: 'dashed 1px'}}>
               <div role="form" style={{ marginTop: '20px', marginBottom: '20px'}}>
+
                 <div className="form-group">
-                  <label for="connectionNodeA">URL A</label>
-                  <br />
+
                   <InputURL
                     setValue = {fromInput}
                     receivedSearchResult={this._onSearchResultA}
-                    id='fromNode' />
+                    id='fromNode'
+                    placeholder={'Paste a URL'} />
                   <br />
                 </div>
                 <hr />
-                <div className="form-group">
-                  <label for="connectionNodeB">URL B</label>
-                  <br />
+
+                <div className="form-group" style={toNodeStyle} >
                   <InputURL
                     receivedSearchResult={this._onSearchResultB}
                     id='toNode'
+                    placeholder={'Paste another URL'}
                     />
+                  {equalURL?<div style={{color:'red'}}>Please enter two different URLs</div>:null}
                 </div>
                 <br />
-                <button disabled={diabled} onClick={this._onSubmit} type="submit" className="btn btn-default" style={{backgroundColor: 'orange', marginTop: '20px'}}>Connect</button>
+
+                <button
+                  disabled={diabled}
+                  onClick={this._onSubmit}
+                  type="submit"
+                  className="btn btn-default"
+                  style={connectStyle}>Connect</button>
+
               </div>
             </div>
           </div>
