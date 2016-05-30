@@ -2,7 +2,6 @@ $success-green: #66AD57;
 $success-green-overlay: #5B9E4D;
 $failure-red: #FF0000;
 
-
 body {
   font-family: "Open Sans","Helvetica Neue",sans-serif;
   margin-top: 50px;
@@ -180,17 +179,12 @@ body {
   .resultsSection {
     .connectionCard {
       display: block;
-      margin-bottom: 7px;
       color: #555;
       font-size: 14px;
       font-family: "Helvetica Neue", "Lucida Grande", "Arial";
-      padding-left: 15px;
+      margin-bottom: 10px;
     }
     a { color: inherit; }
-    img {
-      margin-top: -5px;
-      width: 15px;
-    }
   }
 
 

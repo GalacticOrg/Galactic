@@ -5,9 +5,10 @@ import Navbar from "../../components/Navbar.react"
 import { Grid, Row, Col, InputGroup, Glyphicon } from "react-bootstrap"
 import { getNode } from "../actions/index"
 
-const edgeEntityStyle = {color: 'grey', marginLeft: '5px', fontSize: '12px', lineHeight: '14pt'}
-const edgeEntityTitle = {fontSize: '14px', lineHeight: '14pt'}
-const edgeUserStyle = {marginTop: '-3px', color: 'grey', fontSize: '11px'}
+const edgeEntityStyle = {color: 'grey', marginLeft: '5px', fontSize: '12px'}
+const edgeEntityTitle = {fontSize: '15px', fontWeight: 'bold'}
+const edgeEntityDescription = {fontSize: '13px'}
+const edgeUserStyle = {fontSize: '13x'}
 
 class NodeMain extends Component {
 
@@ -37,30 +38,46 @@ class NodeMain extends Component {
     }
 
     const nodeEdges = edges.map(function(edge, i){
-
       let sourceURL=document.createElement('a')
       sourceURL.href=edge.entity.canonicalLink
 
+      let edgeImg = null;
+
+      if (edge.entity.imageCDN.url){
+        edgeImg = edge.entity.imageCDN.url;
+      } else {
+        edgeImg = 'http://i.imgur.com/LuieUNb.jpg'
+      }
+
       const entity = edge.entity
       const user = edge.user
-      return <Col key={i} className="connectionCard" xsOffset={1} xs={9} mdOffset={1} md={8}>
-        <div>
-          <a href={'/node/'+edge.entity._id}
-            title={edge.entity.canonicalLink}
-            className="noUnderline">
-              <span style={edgeEntityTitle}>
-                {edge.entity.title}
+      return <Col key={i} className="connectionCard" xsOffset={1} xs={9} mdOffset={1} md={7}>
+        <div style={{display: 'block'}}>
+          <div style={{float: 'left', height: '100%', width: '50px'}}>
+            <img src={edgeImg} style={{maxWidth: '50px'}} />
+          </div>
+          <div style={{marginLeft: '60px'}}>
+            <div>
+              <a href={'/node/'+edge.entity._id}
+              title={edge.entity.canonicalLink}
+              className="noUnderline">
+                <span style={edgeEntityTitle}>{edge.entity.title}</span>
+              </a>
+              <span style={edgeEntityStyle}><a href={sourceURL.href}>({sourceURL.host})</a></span>
+            </div>
+            <div>
+              <span style={edgeEntityDescription}>{edge.entity.description}</span>
+            </div>
+            <div style={edgeUserStyle}>
+              <span title={'wikiweb.co/@'+edge.user.username}>Connected by
+              <a href={'/@'+edge.user.username} style={{marginLeft: '5px', marginRight: '5px'}}>
+                <img src={edge.user.twitter.profile_image_url} style={{height:'15px', width: '15px'}} />
+              </a>
+              <a href={'/@'+edge.user.username}>@{edge.user.username}</a>
               </span>
-          </a>
-          <span style={edgeEntityStyle}>
-            <a href={'/node/'+edge.entity._id}>({sourceURL.host})</a>
-          </span>
-        </div>
-        <div style={edgeUserStyle}>
-          <span title={'wikiweb.co/@'+edge.user.username} >
-            By <a href={'/@'+edge.user.username}>@{edge.user.username}</a>
-          </span>
-          <span> | {that.getRandomInt(0,20)} edges</span>
+              <span> | {that.getRandomInt(0,20)} edges</span>
+            </div>
+          </div>
         </div>
       </Col>
     })
@@ -106,7 +123,7 @@ class NodeMain extends Component {
             xs={10}
             mdOffset={1}
             md={10}
-            style={{fontWeight: 'bold', marginBottom: '15px'}}>
+            style={{fontSize: '17px', fontWeight: 'bold', marginBottom: '15px'}}>
               Connections:
             </Col>
           </Row>

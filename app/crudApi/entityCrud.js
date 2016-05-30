@@ -53,7 +53,7 @@ exports.getEntityController = function (req, res) {
 
       User.find(
         { _id: {$in: userIds }},
-        'name username'
+        'name username twitter'
       )
       .exec(function(err, users){
 
