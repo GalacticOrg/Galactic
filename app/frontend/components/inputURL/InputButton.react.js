@@ -22,7 +22,7 @@ export default class InputButton extends Component {
   }
 
   render() {
-    const { onSubmit, iconState, href='javascript:void(0)' } = this.props
+    const { onSubmit, href='javascript:void(0)' } = this.props
     return (
       <div className="input-group-addon input-button" style={{
         backgroundColor: 'white',
@@ -41,7 +41,7 @@ export default class InputButton extends Component {
           onMouseOut={this.handleMouseOut.bind(this)}
           >
           <i style={{fontSize:'1.4em'}}
-             className={iconState}/>
+             className="fa fa-search"/>
         </a>
       </div>
     )
@@ -58,36 +58,41 @@ export default class InputButton extends Component {
       borderRadius: '3px',
       color: 'grey',
       WebkitFontSmoothing: 'antialiased',
+      backgroundColor: '#66AD57',
+      border: '1px solid #66AD57',
+      color: 'white'
     }
-    if (this.props.iconState === "fa fa-search" && this.props.href !== 'javascript:void(0)'){ // @todo BRITTLE
-      buttonStyle.backgroundColor = '#66AD57'; //$success-green
-      buttonStyle.border = '1px solid #66AD57'; //$success-green
-      buttonStyle.color = 'white';
-    } else if (this.props.iconState === 'fa fa-search-plus'){ // @todo BRITTLE
-      buttonStyle.backgroundColor = '#ff9900'; //$connection-orange
-      buttonStyle.border = '1px solid #ff9900'; //$connection-orange
-      buttonStyle.color = 'white';
-    }
-    if (this.props.disabled){
+
+    // if (this.props.iconState === "fa fa-search" && this.props.href !== 'javascript:void(0)'){ // @todo BRITTLE
+    //   buttonStyle.backgroundColor = '#66AD57'; //$success-green
+    //   buttonStyle.border = '1px solid #66AD57'; //$success-green
+    //   buttonStyle.color = 'white';
+    // } else if (this.props.iconState === 'fa fa-search-plus'){ // @todo BRITTLE
+    //   buttonStyle.backgroundColor = '#ff9900'; //$connection-orange
+    //   buttonStyle.border = '1px solid #ff9900'; //$connection-orange
+    //   buttonStyle.color = 'white';
+    // }
+
+    if ( this.props.disabled ){
       buttonStyle.cursor = 'not-allowed';
       buttonStyle.backgroundColor = '#FF0000'; //$error-red;
       buttonStyle.border = '1px solid #FF0000'; //$error-red
       buttonStyle.color = 'white';
     }
-    if (this.state.isHovering === true){ // @todo SUPER BRITTLE!
+
+    if ( this.state.isHovering === true ) { // @todo SUPER BRITTLE!
       if (buttonStyle.backgroundColor === '#ff9900') //$connection-orange
         buttonStyle.backgroundColor = '#e68a00' //$connection-orange-layover
       else if (buttonStyle.backgroundColor === '#66AD57') //$success-green
         buttonStyle.backgroundColor = '#599a4c' //$success-layover
     }
+
     return buttonStyle;
   }
-
 };
 
 InputButton.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  iconState: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   href: PropTypes.string
 }
