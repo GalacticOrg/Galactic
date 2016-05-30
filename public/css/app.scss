@@ -176,16 +176,9 @@ body {
     }
   }
 
+
+
   .resultsSection {
-    .connectionCard {
-      padding-top: 5px;
-      padding-bottom: 5px;
-      display: block;
-      color: #555;
-      font-size: 14px;
-      font-family: "Helvetica Neue", "Lucida Grande", "Arial";
-      margin-bottom: 15px;
-    }
     .connectionCard:hover {
       background-color: #F6F6EF;
     }
@@ -193,6 +186,16 @@ body {
   }
 
 
+
+  .connectionCard {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: block;
+    color: #555;
+    font-size: 14px;
+    font-family: "Helvetica Neue", "Lucida Grande", "Arial";
+    margin-bottom: 15px;
+  }
 
 
   /**************************/

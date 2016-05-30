@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Navbar from "../../components/Navbar.react"
 import InputURL from "../../components/inputURL/"
-import InfoModal from "./InfoModal.react"
-//import Connection from "../../components/Connection.react"
 import EntityItem from "../../components/EntityItem.react"
 
 const inputKey = 'homeResult';
@@ -29,44 +27,21 @@ class Home extends Component {
 
     const connections = firehoseResult?
     firehoseResult.map(function(edge, i){
-      return <EntityItem
-        key={i}
-        edge={edge}
-      />
+      return <div key={i} style={{backgroundColor:'#eee', borderRadius:'4px', padding:'4px', margin: '10px'}}>
+        <EntityItem
+          entity={edge.nodeFrom}
+          user={edge.user}
+        />
+        <EntityItem
+          entity={edge.nodeTo}
+          user={edge.user}
+        />
+      </div>
     }):null;
 
 
 
 
-    // let existingPage = null;
-    // if (node && node.isConnected)
-    //   existingPage = <div
-    //   className={[
-    //           'col-xs-8',
-    //           'col-xs-offset-2',
-    //           'col-sm-8',
-    //           'col-sm-offset-2',
-    //           'col-md-8',
-    //           'col-md-offset-2',
-    //         ]}
-    //   style={{
-    //     marginTop: '5px',
-    //     fontStyle: 'italic'}}>
-    //   </div>
-    // else if (isURL) {
-    //   const url = node.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"");
-    //   existingPage = (
-    //     <div className={[
-    //           'col-xs-8',
-    //           'col-xs-offset-2',
-    //           'col-sm-8',
-    //           'col-sm-offset-2',
-    //           'col-md-8',
-    //           'col-md-offset-2',
-    //         ]} style={{marginTop: '5px', fontStyle: 'italic'}}>
-    //     </div>
-    //   );
-    // }
 
     return (
       <div>
@@ -87,14 +62,25 @@ class Home extends Component {
               'col-md-offset-2'].join(' ')
               }>
               <InputURL
-                placeholder="Paste URL to search"
+                placeholder="Enter a URL to search"
                 hasSearchButton={true}
                 receivedSearchResult={this._onSearchResult}
                 id={inputKey}/>
             </div>
           </div>
-          <InfoModal />
-          {connections}
+          <div className='row'>
+            <div style={{marginTop:'100px'}}
+              className={
+              ['col-xs-12',
+              'col-sm-10',
+              'col-sm-offset-1',
+              'col-md-8',
+              'col-md-offset-2'].join(' ')
+              }>
+              <h4>Recently Made Connections:</h4>
+              {connections}
+            </div>
+          </div>
         </div>
       </div>
     );

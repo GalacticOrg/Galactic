@@ -7,6 +7,7 @@ const edgeUserStyle = {fontSize: '13x'}
 export default class EntityItem extends Component {
 
   render() {
+    debugger
 
     const { entity, user } = this.props;
 

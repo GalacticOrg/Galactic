@@ -154,7 +154,11 @@ body {
       margin-right: 5px; }
     body .resultNodeCard .connectorIcon {
       width: 20px; }
-  body .resultsSection .connectionCard {
+  body .resultsSection .connectionCard:hover {
+    background-color: #F6F6EF; }
+  body .resultsSection a:hover {
+    color: blue; }
+  body .connectionCard {
     padding-top: 5px;
     padding-bottom: 5px;
     display: block;
@@ -162,10 +166,6 @@ body {
     font-size: 14px;
     font-family: "Helvetica Neue", "Lucida Grande", "Arial";
     margin-bottom: 15px; }
-  body .resultsSection .connectionCard:hover {
-    background-color: #F6F6EF; }
-  body .resultsSection a:hover {
-    color: blue; }
   body .input-button a:focus {
     outline: none; }
   body .status-icon:focus {

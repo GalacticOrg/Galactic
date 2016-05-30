@@ -39,10 +39,10 @@ class NodeMain extends Component {
     const nodeEdges = edges.map(function(edge, i){
 
       return <EntityItem
-        key={i}
-        entity={edge.entity}
-        user={edge.user}
-      />
+          key={i}
+          entity={edge.entity}
+          user={edge.user}
+        />
     })
 
     const emptyMessage = nodeEdges.length==0?
