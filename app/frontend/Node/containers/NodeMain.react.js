@@ -45,8 +45,8 @@ class NodeMain extends Component {
 
       let edgeImg = null;
 
-      if (edge.entity.imageCDN.url){
-        edgeImg = edge.entity.imageCDN.url;
+      if (edge.entity.faviconCDN){
+        edgeImg = edge.entity.faviconCDN;
       } else {
         edgeImg = 'http://i.imgur.com/LuieUNb.jpg'
       }
@@ -55,10 +55,10 @@ class NodeMain extends Component {
       const user = edge.user
       return <Col key={i} className="connectionCard" xsOffset={1} xs={9} mdOffset={1} md={7}>
         <div style={{display: 'block'}}>
-          <div style={{float: 'left', height: '100%', width: '50px'}}>
-            <img src={edgeImg} style={{maxWidth: '50px'}} />
+          <div style={{float: 'left'}}>
+            <img src={edgeImg} style={{width: '25px'}}/>
           </div>
-          <div style={{marginLeft: '60px'}}>
+          <div style={{marginLeft: '35px'}}>
             <div>
               <a href={'/node/'+edge.entity._id}
               title={edge.entity.canonicalLink}
@@ -104,41 +104,34 @@ class NodeMain extends Component {
                 xsOffset={1}
                 xs={6}
                 md={6}>
-            {title}
+            Connections for {title}
             <br />
             {documentImage}&nbsp;<a href={canonicalLink} className="noUnderline">
               <span className="resultNodeHyperlinkText">{prettyLink}</span>
             </a>
           </Col>
-          <Col className="resultInfo" xs={3} md={3}>
-            <div>
-              <div>
-               <a href={connectHref}>
-                   <button
-                     type="button"
-                     className="btn btn-default resultNodeAddConnectionBox">
-                     Connect This Site
-                   </button>
-                 </a>
-              </div>
-            </div>
-          </Col>
         </Row>
-      </Grid>
-
-      <hr />
-
-      <Grid className="resultsSection">
         <Row>
           <Col
             xsOffset={1}
             xs={10}
             mdOffset={1}
             md={10}
-            style={{fontSize: '17px', fontWeight: 'bold', marginBottom: '15px'}}>
-              Connections:
+            style={{fontSize: '17px', fontWeight: 'bold', marginTop: '5px'}}>
+              <a href={connectHref}>
+                 <button
+                   type="button"
+                   className="btn btn-default resultNodeAddConnectionBox">
+                   Add a connection
+                 </button>
+               </a>
             </Col>
           </Row>
+      </Grid>
+
+      <hr />
+
+      <Grid className="resultsSection">
         <Row className="show-grid">
           {nodeEdges}
         </Row>
