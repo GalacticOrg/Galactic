@@ -45,9 +45,11 @@ class NodeMain extends Component {
 
       let edgeImg = null;
 
-      if (edge.entity.faviconCDN){
-        edgeImg = edge.entity.faviconCDN;
-      } else {
+      if (edge.entity.imageCDN.url){
+        edgeImg = edge.entity.imageCDN.url;
+      } else if (edge.entity.faviconCDN){
+          edgeImg = edge.entity.faviconCDN;
+        } else {
         edgeImg = 'http://i.imgur.com/LuieUNb.jpg'
       }
 
@@ -56,9 +58,9 @@ class NodeMain extends Component {
       return <Col key={i} className="connectionCard" xsOffset={1} xs={9} mdOffset={1} md={7}>
         <div style={{display: 'block'}}>
           <div style={{float: 'left'}}>
-            <img src={edgeImg} style={{width: '25px'}}/>
+            <img src={edgeImg} style={{width: '50px'}}/>
           </div>
-          <div style={{marginLeft: '35px'}}>
+          <div style={{marginLeft: '60px'}}>
             <div>
               <a href={'/node/'+edge.entity._id}
               title={edge.entity.canonicalLink}
