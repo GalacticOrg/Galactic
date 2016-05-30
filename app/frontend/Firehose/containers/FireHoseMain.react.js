@@ -17,7 +17,7 @@ class User extends Component {
 
   componentWillMount() {
     const { dispatch } = this.props;
-    dispatch(getFirehose('jeffj'))
+    dispatch(getFirehose())
   }
 
   render() {
