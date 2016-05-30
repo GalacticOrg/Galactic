@@ -63,17 +63,7 @@ export default class InputButton extends Component {
       color: 'white'
     }
 
-    // if (this.props.iconState === "fa fa-search" && this.props.href !== 'javascript:void(0)'){ // @todo BRITTLE
-    //   buttonStyle.backgroundColor = '#66AD57'; //$success-green
-    //   buttonStyle.border = '1px solid #66AD57'; //$success-green
-    //   buttonStyle.color = 'white';
-    // } else if (this.props.iconState === 'fa fa-search-plus'){ // @todo BRITTLE
-    //   buttonStyle.backgroundColor = '#ff9900'; //$connection-orange
-    //   buttonStyle.border = '1px solid #ff9900'; //$connection-orange
-    //   buttonStyle.color = 'white';
-    // }
-
-    if ( this.props.disabled ){
+    if ( this.props.disabled ) {
       buttonStyle.cursor = 'not-allowed';
       buttonStyle.backgroundColor = '#FF0000'; //$error-red;
       buttonStyle.border = '1px solid #FF0000'; //$error-red

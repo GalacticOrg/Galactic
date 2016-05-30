@@ -161,8 +161,6 @@ body {
     font-size: 14px;
     font-family: "Helvetica Neue", "Lucida Grande", "Arial";
     padding-left: 15px; }
-  body .resultsSection a {
-    color: inherit; }
   body .resultsSection img {
     margin-top: -5px;
     width: 15px; }

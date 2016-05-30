@@ -29,6 +29,8 @@ class NodeMain extends Component {
 
     const { edges, faviconCDN, title, canonicalLink, description } = nodeResult
 
+    const connectHref = "/connect?url="+canonicalLink
+
     const prettyLink = canonicalLink.replace(/^(http:\/\/|https:\/\/)/,'');
 
     let documentImage = (<span><img src="/img/document.jpg" style={{height: '30px'}} /></span>)
@@ -37,7 +39,6 @@ class NodeMain extends Component {
     }
 
     const nodeEdges = edges.map(function(edge, i){
-
       let sourceURL=document.createElement('a')
       sourceURL.href=edge.entity.canonicalLink
 
@@ -65,6 +66,16 @@ class NodeMain extends Component {
       </Col>
     })
 
+    const emptyMessage = nodeEdges.length==0?
+    <div>
+      <h3>Shucks! There are no connection on this site <i>yet</i>.</h3>
+      <p>
+        You should be the first to&nbsp;
+        <b><a href={connectHref}>create one</a>.</b>
+      </p>
+    </div>
+    :null;
+
     return (
     <div>
       <Navbar />
@@ -84,7 +95,7 @@ class NodeMain extends Component {
           <Col className="resultInfo" xs={3} md={3}>
             <div>
               <div>
-               <a href={"/connect?url="+canonicalLink}>
+               <a href={connectHref}>
                    <button
                      type="button"
                      className="btn btn-default resultNodeAddConnectionBox">
@@ -113,8 +124,12 @@ class NodeMain extends Component {
         <Row className="show-grid">
           {nodeEdges}
         </Row>
+        <div style={{margin:'50px'}}>
+          {emptyMessage}
+        </div>
       </Grid>
-    </div>);
+    </div>
+  );
   }
 
   getRandomInt(min, max) {

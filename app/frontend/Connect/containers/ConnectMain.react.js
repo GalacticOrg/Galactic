@@ -25,6 +25,12 @@ export default class Connect extends Component {
      };
   }
 
+  componentWillReceiveProps(newProps){
+    if (newProps.success && newProps.entities && newProps.entities.from){
+      window.location="/node/"+newProps.entities.from._id;
+    }
+  }
+
   render() {
     const {initalSearch } = this.state
     const { fromNode, toNode, success, edgeId, entities, errors } = this.props
@@ -64,21 +70,24 @@ export default class Connect extends Component {
         fontSize: '1.25em'
     }
 
-    if (success && entities){
-      const {from, to} = entities
-      connection = (
-      <div className="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset 1 col-md-10 col-md-offset-1" style={connectionSuccessMessage}>
-        <a href={"/node/"+from._id}> {from.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
-        is now connected to
-        <a href={"/node/"+to._id}> {to.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
-      </div> )
-      toInput = ''
-      fromInput = ''
-    } else if (errors && errors.length>0) {
+    // if (success && entities){
+    //   const {from, to} = entities
+    //   connection = (
+    //   <div className="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset 1 col-md-10 col-md-offset-1" style={connectionSuccessMessage}>
+    //     <a href={"/node/"+from._id}> {from.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
+    //     is now connected to
+    //     <a href={"/node/"+to._id}> {to.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
+    //   </div> )
+    //   toInput = ''
+    //   fromInput = ''
+    // }
+
+     if (errors && errors.length>0) {
       errMessage = (<ul className="col-md-offset-3 col-md-6">
         {errors.map(m=><Alert bsStyle={'warning'} >{m}</Alert>)}
       </ul>)
     }
+
     return (<div>
       <Navbar />
       {errMessage}
