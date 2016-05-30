@@ -157,7 +157,7 @@ const getUserEdgesQ = ['MATCH (nodeFrom)-[edge]->(nodeTo)',
 	'RETURN nodeFrom, edge, nodeTo'].join('\n');
 
 /**
- * @name   srefParser
+ * @name   getEdgeParser
  * @r     {obj} Neo4j object
  * @return {obj}    cb  a callback for the data.
  */
@@ -202,7 +202,7 @@ exports.getEdges = function(_limit, cb){
 };
 const getEdgesQ = ['MATCH (nodeFrom)-[edge]->(nodeTo)',
 	'RETURN nodeFrom, edge, nodeTo',
-	'ORDER BY edge.createdAt',
+	'ORDER BY edge.createdAt DESC',
 	'LIMIT {_limit}'].join('\n');
 
 /**

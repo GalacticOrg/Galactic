@@ -3,7 +3,9 @@ import { connect } from 'react-redux'
 import Navbar from "../../components/Navbar.react"
 import InputURL from "../../components/inputURL/"
 import InfoModal from "./InfoModal.react"
+import Connection from "../../components/Connection.react"
 
+const inputKey = 'homeResult';
 const homepageUrlSearchForm = {
   display: 'block',
   margin: 'auto',
@@ -12,40 +14,57 @@ const homepageUrlSearchForm = {
   paddingRight: '20px'
 }
 
+import { getFirehose } from "../actions/index"
+
 class Home extends Component {
 
-  render() {
-    const { node, isURL } = this.props;
+  componentWillMount() {
+    const { dispatch } = this.props;
+    dispatch(getFirehose())
+  }
 
-    let existingPage = null;
-    if (node && node.isConnected)
-      existingPage = <div
-      className={[
-              'col-xs-8',
-              'col-xs-offset-2',
-              'col-sm-8',
-              'col-sm-offset-2',
-              'col-md-8',
-              'col-md-offset-2',
-            ]}
-      style={{
-        marginTop: '5px',
-        fontStyle: 'italic'}}>
-      </div>
-    else if (isURL) {
-      const url = node.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"");
-      existingPage = (
-        <div className={[
-              'col-xs-8',
-              'col-xs-offset-2',
-              'col-sm-8',
-              'col-sm-offset-2',
-              'col-md-8',
-              'col-md-offset-2',
-            ]} style={{marginTop: '5px', fontStyle: 'italic'}}>
-        </div>
-      );
-    }
+  render() {
+    const { node, isURL, firehoseResult, dispatch } = this.props;
+
+    const connections = firehoseResult?
+    firehoseResult.map((edge, i)=> (
+      <Connection
+        key={i}
+        nodeTo={edge.nodeTo}
+        nodeFrom={edge.nodeFrom}
+        user={edge.user}
+        createdAt={edge.createdAt} />)
+    ):null;
+
+    // let existingPage = null;
+    // if (node && node.isConnected)
+    //   existingPage = <div
+    //   className={[
+    //           'col-xs-8',
+    //           'col-xs-offset-2',
+    //           'col-sm-8',
+    //           'col-sm-offset-2',
+    //           'col-md-8',
+    //           'col-md-offset-2',
+    //         ]}
+    //   style={{
+    //     marginTop: '5px',
+    //     fontStyle: 'italic'}}>
+    //   </div>
+    // else if (isURL) {
+    //   const url = node.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"");
+    //   existingPage = (
+    //     <div className={[
+    //           'col-xs-8',
+    //           'col-xs-offset-2',
+    //           'col-sm-8',
+    //           'col-sm-offset-2',
+    //           'col-md-8',
+    //           'col-md-offset-2',
+    //         ]} style={{marginTop: '5px', fontStyle: 'italic'}}>
+    //     </div>
+    //   );
+    // }
 
     return (
       <div>
@@ -69,18 +88,11 @@ class Home extends Component {
                 placeholder="Paste URL to search"
                 hasSearchButton={true}
                 receivedSearchResult={this._onSearchResult}
-                id='result'/>
+                id={inputKey}/>
             </div>
-            <div className={[
-              'col-xs-8',
-              'col-xs-offset-2',
-              'col-sm-8',
-              'col-sm-offset-2',
-              'col-md-8',
-              'col-md-offset-2',
-            ].join(' ')}>{existingPage}</div>
           </div>
           <InfoModal />
+          {connections}
         </div>
       </div>
     );
@@ -94,16 +106,16 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
-  const result = state.inputURLResult.result
-  if (result){
-    const { node, isURL } = result;
-    return {
-      node, isURL
-    }
+  const { firehoseResult, inputURLResult} = state
+
+  let object = { firehoseResult }
+
+  if (  inputURLResult && inputURLResult[inputKey] ){
+    const { node, isURL } = inputURLResult[inputKey];
+    Object.assign(object, { node, isURL });
   }
-  else{
-    return {}
-  }
+
+  return object
 }
 
 export default connect(mapStateToProps)(Home)

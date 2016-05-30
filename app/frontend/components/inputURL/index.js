@@ -102,7 +102,6 @@ class InputURL extends React.Component {
       <InputButton
         onSubmit = {this._onSubmit}
         disabled = {isURL === false}
-        iconState = {this._getIcon(node)}
         href = {this._getHref(node)}
        />
     ):null;
@@ -133,21 +132,19 @@ class InputURL extends React.Component {
 
   _getHref(node){
     let href = 'javascript:void(0)'
-    if (node && node.isConnected) {
+    if (node) {
       href = '/node/'+ node._id;
-    } else if (node && !node.isConnected && node.canonicalLink) {
-      href = '/connect?url='+ node.canonicalLink;
     }
     return href
   }
 
-  _getIcon(node){ //@todo move into inputbutton.
-    let icon = 'fa fa-search'
-    if (node && !node.isConnected) {
-      icon = 'fa fa-search-plus'
-    }
-    return icon
-  }
+  // _getIcon(node){ //@todo move into inputbutton.
+  //   let icon = 'fa fa-search'
+  //   if (node && !node.isConnected) {
+  //     icon = 'fa fa-search-plus'
+  //   }
+  //   return icon
+  // }
 
 
   _setValue(setValue){

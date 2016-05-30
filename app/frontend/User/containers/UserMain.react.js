@@ -69,6 +69,7 @@ class User extends Component {
           </div>
         </div>
       </div>
+
       <hr />
 
       <div className="container">
