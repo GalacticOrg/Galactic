@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import Navbar from "../../components/Navbar.react"
 import InputURL from "../../components/inputURL/"
 import InfoModal from "./InfoModal.react"
-import Connection from "../../components/Connection.react"
+//import Connection from "../../components/Connection.react"
+import EntityItem from "../../components/EntityItem.react"
 
 const inputKey = 'homeResult';
 const homepageUrlSearchForm = {
@@ -27,14 +28,15 @@ class Home extends Component {
     const { node, isURL, firehoseResult, dispatch } = this.props;
 
     const connections = firehoseResult?
-    firehoseResult.map((edge, i)=> (
-      <Connection
+    firehoseResult.map(function(edge, i){
+      return <EntityItem
         key={i}
-        nodeTo={edge.nodeTo}
-        nodeFrom={edge.nodeFrom}
-        user={edge.user}
-        createdAt={edge.createdAt} />)
-    ):null;
+        edge={edge}
+      />
+    }):null;
+
+
+
 
     // let existingPage = null;
     // if (node && node.isConnected)

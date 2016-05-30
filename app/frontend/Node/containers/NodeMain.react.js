@@ -38,12 +38,11 @@ class NodeMain extends Component {
 
     const nodeEdges = edges.map(function(edge, i){
 
-
-
       return <EntityItem
         key={i}
-        edge={edge}
-        />
+        entity={edge.entity}
+        user={edge.user}
+      />
     })
 
     const emptyMessage = nodeEdges.length==0?
@@ -66,7 +65,6 @@ class NodeMain extends Component {
                 xsOffset={1}
                 xs={6}
                 md={6}>
-            Connections for {title}
             <br />
             {documentImage}&nbsp;<a href={canonicalLink} className="noUnderline">
               <span className="resultNodeHyperlinkText">{prettyLink}</span>
