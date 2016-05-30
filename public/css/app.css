@@ -162,8 +162,6 @@ body {
     font-size: 14px;
     font-family: "Helvetica Neue", "Lucida Grande", "Arial";
     margin-bottom: 15px; }
-  body .resultsSection a {
-    color: inherit; }
   body .resultsSection .connectionCard:hover {
     background-color: #F6F6EF; }
   body .resultsSection a:hover {
