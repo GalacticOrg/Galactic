@@ -4,7 +4,7 @@ import Loader from 'react-loader';
 import Navbar from "../../components/Navbar.react"
 import EntityItem from "../../components/EntityItem.react"
 
-import { Grid, Row, Col, InputGroup, Glyphicon } from "react-bootstrap"
+import { Tooltip, OverlayTrigger, Grid, Row, Col, InputGroup, Glyphicon } from "react-bootstrap"
 import { getNode } from "../actions/index"
 
 class NodeMain extends Component {
@@ -44,12 +44,21 @@ class NodeMain extends Component {
         />
     })
 
+    const tooltip = (
+      <Tooltip id="emptyNodeTooltip" className="wikiweb-tooltip">When you connect two URLs together, you are helping to grow the WikiWeb since other people can find those connections later.</Tooltip>
+    );
+
     const emptyMessage = nodeEdges.length==0?
     <div>
       <h3>Shucks! There are no connections to this site <i>yet</i>.</h3>
       <p>
         You chould be the first to&nbsp;
-        <b><a href={connectHref}>create one</a></b>. <sup><span className="fa fa-info-circle" style={{color: '#337ab7'}}></span></sup>
+        <b><a href={connectHref}>create one</a></b>.
+          <OverlayTrigger placement="top" overlay={tooltip}>
+            <sup>
+            <span className="fa fa-info-circle" style={{color: '#337ab7'}}></span>
+            </sup>
+          </OverlayTrigger>
       </p>
     </div>
     :null;
