@@ -142,7 +142,7 @@ body {
   /**************************/
 
   /**************************/
-  /** RESULT PAGE SECTION **/
+  /** NODE PAGE SECTION **/
   /**************************/
 
   .resultNodeCard {
@@ -189,6 +189,10 @@ body {
     a:hover { color: blue; }
   }
 
+  .highlight-first >div:first-child{
+    border: 2px solid #dff0d8;
+  }
+
 
 
   .connectionCard {
@@ -203,7 +207,7 @@ body {
 
 
   /**************************/
-  /** END RESULT PAGE SECTION **/
+  /** END RESULT NODE SECTION **/
   /**************************/
 
   /**************************/

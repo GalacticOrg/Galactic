@@ -14,6 +14,7 @@ import { resetSearch } from "../../components/inputURL/actions"
 
 const spacerStyle = { marginBottom: '50px'}
 const formStyle = { padding: '60px 15px 40px', border: 'dashed 1px'}
+const responsiveClasses = ['col-xs-12','col-sm-10', 'col-sm-offset-1', 'col-md-10', 'col-md-offset-1'].join(' ')
 
 export default class Connect extends Component {
 
@@ -27,7 +28,7 @@ export default class Connect extends Component {
 
   componentWillReceiveProps(newProps){
     if (newProps.success && newProps.entities && newProps.entities.from){
-      window.location="/node/"+newProps.entities.from._id;
+      window.location='/node/'+newProps.entities.from._id+'?message=true';
     }
   }
 
@@ -87,15 +88,14 @@ export default class Connect extends Component {
         {errors.map(m=><Alert bsStyle={'warning'} >{m}</Alert>)}
       </ul>)
     }
-
     return (<div>
       <Navbar />
       {errMessage}
       <div className="container">
         <div className="row">
-            <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1"
+            <div className={responsiveClasses}
               style={{marginTop: '20px',marginBottom: '15px', fontWeight: 'bold'}}>Connect two URLs together:</div>
-            <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1"
+            <div className={responsiveClasses}
               style={formStyle}>
                 <div style={spacerStyle} className="form-group">
                   <InputURL
@@ -132,9 +132,9 @@ export default class Connect extends Component {
     const { dispatch, fromNode, toNode } = this.props;
     if ( fromNode && toNode && fromNode.node._id !== toNode.node._id ){
       dispatch(postConnection(fromNode.node._id, toNode.node._id));
+      // dispatch(resetSearch('toNode'));  /we do the rediect insead.
+      // dispatch(resetSearch('fromNode'));
     }
-    dispatch(resetSearch('toNode'))
-    dispatch(resetSearch('fromNode'))
   }
 
   _getQueryString() {

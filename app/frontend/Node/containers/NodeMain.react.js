@@ -3,19 +3,34 @@ import { connect } from 'react-redux'
 import Loader from 'react-loader';
 import Navbar from "../../components/Navbar.react"
 import EntityItem from "../../components/EntityItem.react"
+import { Alert, Tooltip, OverlayTrigger  } from "react-bootstrap"
 
-import { Tooltip, OverlayTrigger, Grid, Row, Col, InputGroup, Glyphicon } from "react-bootstrap"
 import { getNode } from "../actions/index"
+const responsiveClasses = [
+        'col-xs-12','col-sm-10',
+        'col-sm-offset-1',
+        'col-md-10',
+        'col-md-offset-1'].join(' ')
 
 class NodeMain extends Component {
+
+  constructor() {
+     super();
+     this.handleAlertDismiss = this.handleAlertDismiss.bind(this)
+     const messageFlag = window.location.search.search((/message=true/))
+     this.state = {
+       messageFlag: messageFlag!=-1?true:false
+     }
+  }
 
   componentWillMount() {
     const { dispatch } = this.props;
     dispatch(getNode(window.location.pathname.replace('/node/',''))) //@todo include this in the page
+
   }
   render() {
-    const that =this;
     const { nodeResult } = this.props
+    const { messageFlag } = this.state
 
     if (!nodeResult || Object.keys(nodeResult).length==0) {
       return (
@@ -42,7 +57,7 @@ class NodeMain extends Component {
           entity={edge.entity}
           user={edge.user}
         />
-    })
+    });
 
     const tooltip = (
       <Tooltip id="emptyNodeTooltip" className="wikiweb-tooltip">When you connect two URLs together, you are helping to grow the WikiWeb since other people can find those connections later.</Tooltip>
@@ -66,25 +81,19 @@ class NodeMain extends Component {
     return (
     <div>
       <Navbar />
-      <Grid className="resultNodeCard">
-        <Row className="show-grid">
-          <Col className="resultFont"
-                mdOffset={1}
-                xsOffset={1}
-                xs={6}
-                md={6}>
+      <div className={responsiveClasses+' row resultNodeCard'}>
+        <div className="show-grid">
+          <div className="resultFont">
             <br />
-            {documentImage}&nbsp;<a href={canonicalLink} className="noUnderline">
-              <span className="resultNodeHyperlinkText">{prettyLink}</span>
+            <h3>{title}</h3>
+            {documentImage}
+            &nbsp;<a href={canonicalLink} className="noUnderline">
+            <span className="resultNodeHyperlinkText">{prettyLink}</span>
             </a>
-          </Col>
-        </Row>
-        <Row>
-          <Col
-            xsOffset={1}
-            xs={10}
-            mdOffset={1}
-            md={10}
+          </div>
+        </div>
+        <div>
+          <div
             style={{fontSize: '17px', fontWeight: 'bold', marginTop: '5px'}}>
               <a href={connectHref}>
                  <button
@@ -93,22 +102,33 @@ class NodeMain extends Component {
                    Add a connection
                  </button>
                </a>
-            </Col>
-          </Row>
-      </Grid>
+            </div>
+          </div>
+          <hr />
+      </div>
 
-      <hr />
-
-      <Grid className="resultsSection">
-        <Row className="show-grid">
+      <div className={responsiveClasses + ' row resultsSection'}>
+        {messageFlag?
+          <Alert bsStyle="success" onDismiss={this.handleAlertDismiss}>
+            <h4>You added a new Connection</h4>
+            <p>You Others can now see your connection.  What is a connection you ask?</p>
+          </Alert>
+         :null}
+        <div className={messageFlag?'highlight-first':''}>
           {nodeEdges}
-        </Row>
+        </div>
         <div style={{margin:'50px'}}>
           {emptyMessage}
         </div>
-      </Grid>
+      </div>
     </div>
   );
+  }
+
+  handleAlertDismiss(){
+    this.setState({
+      messageFlag:false
+    })
   }
 
 }

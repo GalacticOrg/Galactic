@@ -26,10 +26,10 @@ body {
   /** END HOMEPAGE SECTION **/
   /**************************/
   /**************************/
-  /** RESULT PAGE SECTION **/
+  /** NODE PAGE SECTION **/
   /**************************/
   /**************************/
-  /** END RESULT PAGE SECTION **/
+  /** END RESULT NODE SECTION **/
   /**************************/
   /**************************/
   /** INPUT BUTTON COMPONENT  **/
@@ -165,6 +165,8 @@ body {
     background-color: #F6F6EF; }
   body .resultsSection a:hover {
     color: blue; }
+  body .highlight-first > div:first-child {
+    border: 2px solid #dff0d8; }
   body .connectionCard {
     padding-top: 5px;
     padding-bottom: 5px;
