@@ -26,7 +26,7 @@ class Home extends Component {
   render() {
     const { node, isURL, firehoseResult, dispatch } = this.props;
 
-    const connections = false?
+    const connections = firehoseResult?
     firehoseResult.map(function(edge, i){
       return (
         <div
