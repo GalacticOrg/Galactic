@@ -27,7 +27,7 @@ class User extends Component {
       return (
         <div>
           <Navbar dispatch={dispatch} />
-          <Loader top={'30%'} />
+          <Loader top="30%" />
         </div>
       )
     }

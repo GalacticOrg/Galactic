@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Loader from 'react-loader';
 import Navbar from "../../components/Navbar.react"
 import InputURL from "../../components/inputURL/"
 import EntityItem from "../../components/EntityItem.react"
@@ -25,7 +26,7 @@ class Home extends Component {
   render() {
     const { node, isURL, firehoseResult, dispatch } = this.props;
 
-    const connections = firehoseResult?
+    const connections = false?
     firehoseResult.map(function(edge, i){
       return (
         <div
@@ -43,7 +44,7 @@ class Home extends Component {
             user={edge.user}
           />
         </div>)
-    }):null;
+    }):<Loader top="100px"/>;
 
 
 
