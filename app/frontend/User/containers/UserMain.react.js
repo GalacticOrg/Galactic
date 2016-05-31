@@ -7,7 +7,7 @@ import ReactDOM from "react-dom";
 import Loader from 'react-loader';
 
 import Navbar from "../../components/Navbar.react"
-import Connection from "../../components/Connection.react"
+import EntityItem from "../../components/EntityItem.react"
 
 import { connect } from 'react-redux'
 import { getUserEdges } from "../actions/index"
@@ -36,14 +36,23 @@ class User extends Component {
     const profile_image_url_https = profile.twitter.profile_image_url_https
 
 
-    const connections = result.map((edge, i)=> (
-      <Connection
+    const connections = result.map(function(edge, i){
+      return (<div
         key={i}
-        nodeTo={edge.nodeTo}
-        nodeFrom={edge.nodeFrom}
-        user={profile}
-        createdAt={edge.createdAt}/>)
-    )
+        style={{backgroundColor:'#eee',
+                borderRadius:'4px',
+                padding:'4px',
+                margin: '10px'}}>
+        <EntityItem
+            entity={edge.nodeFrom}
+            user={profile}
+          />
+          <EntityItem
+              entity={edge.nodeTo}
+              user={profile}
+            />
+      </div>)
+    });
 
     return (<div>
       <Navbar dispatch={dispatch} />

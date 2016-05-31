@@ -8,7 +8,7 @@ import userResult from '../../components/users/reducers'
 import { RECEIVE_USER_EDGE_DATA } from '../actions'
 
 
-const userEdgeResult = (state = {}, action) => {
+const userEdgeResult = (state = {result:null, profile:null}, action) => {
   switch (action.type) {
     case RECEIVE_USER_EDGE_DATA:
       const {result, profile} = action

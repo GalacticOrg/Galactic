@@ -7,7 +7,6 @@ const edgeUserStyle = {fontSize: '13x'}
 export default class EntityItem extends Component {
 
   render() {
-
     const { entity, user } = this.props;
 
     let edgeImg = null;
@@ -74,3 +73,5 @@ export default class EntityItem extends Component {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 }
+
+EntityItem

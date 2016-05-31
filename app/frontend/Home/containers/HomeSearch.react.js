@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Loader from 'react-loader';
 import Navbar from "../../components/Navbar.react"
 import InputURL from "../../components/inputURL/"
 import EntityItem from "../../components/EntityItem.react"
@@ -27,17 +28,23 @@ class Home extends Component {
 
     const connections = firehoseResult?
     firehoseResult.map(function(edge, i){
-      return <div key={i} style={{backgroundColor:'#eee', borderRadius:'4px', padding:'4px', margin: '10px'}}>
-        <EntityItem
-          entity={edge.nodeFrom}
-          user={edge.user}
-        />
-        <EntityItem
-          entity={edge.nodeTo}
-          user={edge.user}
-        />
-      </div>
-    }):null;
+      return (
+        <div
+          key={i}
+          style={{backgroundColor:'#eee',
+                  borderRadius:'4px',
+                  padding:'4px',
+                  margin: '10px'}}>
+          <EntityItem
+            entity={edge.nodeFrom}
+            user={edge.user}
+          />
+          <EntityItem
+            entity={edge.nodeTo}
+            user={edge.user}
+          />
+        </div>)
+    }):<Loader top="100px"/>;
 
 
 

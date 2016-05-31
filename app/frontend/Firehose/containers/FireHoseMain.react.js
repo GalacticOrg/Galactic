@@ -7,7 +7,7 @@ import ReactDOM from "react-dom";
 import Loader from 'react-loader';
 
 import Navbar from "../../components/Navbar.react"
-import Connection from "../../components/Connection.react"
+import EntityItem from "../../components/EntityItem.react"
 
 import { connect } from 'react-redux'
 import { getFirehose } from "../actions/index"
@@ -27,21 +27,31 @@ class User extends Component {
       return (
         <div>
           <Navbar dispatch={dispatch} />
-          <Loader top={'30%'} />
+          <Loader top="30%" />
         </div>
       )
     }
 
 
-
-    const connections = firehoseResult.map((edge, i)=> (
-      <Connection
-        key={i}
-        nodeTo={edge.nodeTo}
-        nodeFrom={edge.nodeFrom}
-        user={edge.user}
-        createdAt={edge.createdAt} />)
-    )
+    const connections = firehoseResult?
+    firehoseResult.map(function(edge, i){
+      return (
+        <div
+          key={i}
+          style={{backgroundColor:'#eee',
+                  borderRadius:'4px',
+                  padding:'4px',
+                  margin: '10px'}}>
+          <EntityItem
+            entity={edge.nodeFrom}
+            user={edge.user}
+          />
+          <EntityItem
+            entity={edge.nodeTo}
+            user={edge.user}
+          />
+        </div>)
+    }):null;
 
     return (<div>
       <Navbar dispatch={dispatch} />
