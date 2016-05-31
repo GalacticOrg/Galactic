@@ -7,7 +7,6 @@ const edgeUserStyle = {fontSize: '13x'}
 export default class EntityItem extends Component {
 
   render() {
-    debugger
 
     const { entity, user } = this.props;
 
@@ -20,8 +19,23 @@ export default class EntityItem extends Component {
       edgeImg = 'http://i.imgur.com/LuieUNb.jpg'
     }
 
+    let edgeTitle = ''
+    if (entity.title.length > 100){
+      edgeTitle = entity.description.slice(0,100)+"..."
+    } else {
+      edgeTitle = entity.title
+    }
+
+    let edgeDescription = ''
+    if (entity.description.length > 280){
+      edgeDescription = entity.description.slice(0,280)+"..."
+    } else {
+      edgeDescription = entity.description
+    }
+
     let sourceURL=document.createElement('a')
     sourceURL.href=entity.canonicalLink
+
     return (
       <div className="connectionCard" xsOffset={1} xs={9} mdOffset={1} md={7}>
         <div style={{display: 'block'}}>
@@ -33,14 +47,14 @@ export default class EntityItem extends Component {
               <a href={'/node/'+entity._id}
               title={entity.canonicalLink}
               className="noUnderline">
-                <span style={edgeEntityTitle}>{entity.title}</span>
+                <span style={edgeEntityTitle}>{edgeTitle}</span>
               </a>
               <span style={edgeEntityStyle}>
                 <a href={sourceURL.href} target="_blank" >({sourceURL.host})</a>
               </span>
             </div>
             <div>
-              <span style={edgeEntityDescription}>{entity.description}</span>
+              <span style={edgeEntityDescription}>{edgeDescription}</span>
             </div>
             <div style={edgeUserStyle}>
               <span title={user.username}>Connected by
