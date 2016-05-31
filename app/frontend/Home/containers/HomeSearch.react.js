@@ -27,16 +27,22 @@ class Home extends Component {
 
     const connections = firehoseResult?
     firehoseResult.map(function(edge, i){
-      return <div key={i} style={{backgroundColor:'#eee', borderRadius:'4px', padding:'4px', margin: '10px'}}>
-        <EntityItem
-          entity={edge.nodeFrom}
-          user={edge.user}
-        />
-        <EntityItem
-          entity={edge.nodeTo}
-          user={edge.user}
-        />
-      </div>
+      return (
+        <div
+          key={i}
+          style={{backgroundColor:'#eee',
+                  borderRadius:'4px',
+                  padding:'4px',
+                  margin: '10px'}}>
+          <EntityItem
+            entity={edge.nodeFrom}
+            user={edge.user}
+          />
+          <EntityItem
+            entity={edge.nodeTo}
+            user={edge.user}
+          />
+        </div>)
     }):null;
 
 

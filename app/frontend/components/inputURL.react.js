@@ -87,8 +87,6 @@ class InputURL extends React.Component {
     let searchDisabled = {};
     let status = null;
 
-    let iconState = 'fa fa-search';
-
     if (search){
 
       const {isURL, loading, node} = search;
@@ -110,7 +108,6 @@ class InputURL extends React.Component {
         searchDisabled = {cursor:'not-allowed'};
 
       if (node && !node.isConnected)
-      iconState = 'fa fa-search-plus',
       hrefSubmit = '/connect?url='+ node.canonicalLink;
       else if (node)
       hrefSubmit = '/node/'+ node._id;
@@ -122,7 +119,7 @@ class InputURL extends React.Component {
         href={hrefSubmit}
         className="input-group-addon"
         style={searchDisabled} >
-        <i style={{fontSize:'1.4em'}} className={iconState} />
+        <i style={{fontSize:'1.4em'}} className='fa fa-search' />
       </a>
     ):null;
 
