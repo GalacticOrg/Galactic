@@ -47,10 +47,10 @@ class NodeMain extends Component {
 
     const emptyMessage = nodeEdges.length==0?
     <div>
-      <h3>Shucks! There are no connection on this site <i>yet</i>.</h3>
+      <h3>Shucks! There are no connections to this site <i>yet</i>.</h3>
       <p>
-        You should be the first to&nbsp;
-        <b><a href={connectHref}>create one</a>.</b>
+        You chould be the first to&nbsp;
+        <b><a href={connectHref}>create one</a></b>. <sup><span className="fa fa-info-circle" style={{color: '#337ab7'}}></span></sup>
       </p>
     </div>
     :null;
