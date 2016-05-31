@@ -48,6 +48,7 @@ export default class InputButton extends Component {
   }
 
   buttonState(){
+    const { isURL } = this.props;
     let buttonStyle = {
       paddingTop: '9px', //directly related to height of container (gap should be 2px)
       paddingBottom: '8px', //directly related to height of container (gap should be 2px)
@@ -58,25 +59,27 @@ export default class InputButton extends Component {
       borderRadius: '3px',
       color: 'grey',
       WebkitFontSmoothing: 'antialiased',
-      backgroundColor: '#66AD57',
-      border: '1px solid #66AD57',
-      color: 'white'
     }
 
-    if ( this.props.disabled ) {
+    if (isURL===true){
+      buttonStyle.backgroundColor = '#66AD57'; //$error-red;
+      buttonStyle.border = '1px solid #66AD57'; //$error-red
+      buttonStyle.color = '#FFF';
+    }else if (isURL===false){
       buttonStyle.cursor = 'not-allowed';
       buttonStyle.backgroundColor = '#FF0000'; //$error-red;
       buttonStyle.border = '1px solid #FF0000'; //$error-red
-      buttonStyle.color = 'white';
+      buttonStyle.color = '#FFF';
     }
 
     if ( this.state.isHovering === true ) { // @todo SUPER BRITTLE!
-      if (buttonStyle.backgroundColor === '#ff9900') //$connection-orange
-        buttonStyle.backgroundColor = '#e68a00' //$connection-orange-layover
-      else if (buttonStyle.backgroundColor === '#66AD57') //$success-green
+      if (isURL===false){
+          //noopp
+      } else {
+        buttonStyle.color = '#FFF',
         buttonStyle.backgroundColor = '#599a4c' //$success-layover
+      }
     }
-
     return buttonStyle;
   }
 };
@@ -84,10 +87,12 @@ export default class InputButton extends Component {
 InputButton.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
-  href: PropTypes.string
+  href: PropTypes.string,
+  isURL: PropTypes.bool
 }
 
 InputButton.getDefaultProps = {
   disabled: false,
-  href: 'javascript:void(0)'
+  href: 'javascript:void(0)',
+  isURL: null
 }

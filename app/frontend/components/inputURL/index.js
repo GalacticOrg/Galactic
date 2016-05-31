@@ -101,7 +101,7 @@ class InputURL extends React.Component {
     const inputButton = hasSearchButton?(
       <InputButton
         onSubmit = {this._onSubmit}
-        disabled = {isURL === false}
+        isURL = {isURL}
         href = {this._getHref(node)}
        />
     ):null;
