@@ -110,8 +110,8 @@ class NodeMain extends Component {
       <div className={responsiveClasses + ' row resultsSection'}>
         {messageFlag?
           <Alert bsStyle="success" onDismiss={this.handleAlertDismiss}>
-            <h4>You added a new Connection</h4>
-            <p>You Others can now see your connection.  What is a connection you ask?</p>
+            <h4>You added a new Connection!</h4>
+            <p>Every connection on the WikiWeb makes it that much more useful for the next person. "From little things, big things grow."</p>
           </Alert>
          :null}
         <div className={messageFlag?'highlight-first':''}>
