@@ -9,7 +9,9 @@ import { Alert, Tooltip, OverlayTrigger} from 'react-bootstrap'
 import { postConnection } from '../actions'
 
 import Navbar from "../../components/Navbar.react"
+import EntityItemTitleHost from "../../components/EntityItemTitleHost.react"
 import InputURL from "../../components/inputURL/"
+
 import { resetSearch } from "../../components/inputURL/actions"
 
 const spacerStyle = { marginBottom: '50px'}
@@ -57,8 +59,7 @@ export default class Connect extends Component {
       {
        marginLeft: 'calc(50% - 50px)',
        width: '100px'
-     }
-   );
+     });
 
     let connection = null;
     let toInput = null;
@@ -71,18 +72,6 @@ export default class Connect extends Component {
         fontSize: '1.25em'
     }
 
-    // if (success && entities){
-    //   const {from, to} = entities
-    //   connection = (
-    //   <div className="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset 1 col-md-10 col-md-offset-1" style={connectionSuccessMessage}>
-    //     <a href={"/node/"+from._id}> {from.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
-    //     is now connected to
-    //     <a href={"/node/"+to._id}> {to.canonicalLink.replace(/^(http:\/\/|https:\/\/)/,"")} </a>
-    //   </div> )
-    //   toInput = ''
-    //   fromInput = ''
-    // }
-
      if (errors && errors.length>0) {
       errMessage = (<ul className="col-md-offset-3 col-md-6">
         {errors.map(m=><Alert bsStyle={'warning'} >{m}</Alert>)}
@@ -92,6 +81,30 @@ export default class Connect extends Component {
     const tooltip = (
       <Tooltip id="connectPageTooltip">The purpose of connections is to create a thread between similar content for others to find later. Some people connect music videos, others connect articles they have read online. What will you connect?</Tooltip>
     );
+
+    let nodeFromEntityTitle = null
+    if (fromNode && fromNode.isURL){
+      const {title, _id, canonicalLink, faviconCDN} = fromNode.node
+      nodeFromEntityTitle = (
+      <EntityItemTitleHost
+        title={title}
+        id={_id}
+        canonicalLink={canonicalLink}
+        faviconCDN={faviconCDN?faviconCDN:'/img/document.png'} />
+      )
+    }
+
+    let nodeToEntityTitle = null
+    if (toNode && toNode.isURL){
+      const {title, _id, canonicalLink, faviconCDN} = toNode.node
+      nodeToEntityTitle = (
+        <EntityItemTitleHost
+          title={title}
+          id={_id}
+          canonicalLink={canonicalLink}
+          faviconCDN={faviconCDN?faviconCDN:'/img/document.png'} />
+      )
+    }
 
     return (<div>
       <Navbar />
@@ -108,6 +121,9 @@ export default class Connect extends Component {
             </div>
             <div className={responsiveClasses}
               style={formStyle}>
+                <div style={{height:'25px'}}>
+                  {nodeFromEntityTitle}
+                </div>
                 <div style={spacerStyle} className="form-group">
                   <InputURL
                     setValue = {fromInput}
@@ -116,6 +132,9 @@ export default class Connect extends Component {
                     placeholder={'Paste a URL'} />
                 </div>
                 <hr />
+                <div style={{height:'25px'}}>
+                  {nodeToEntityTitle}
+                </div>
                 <div style={toNodeStyle} className="form-group" >
                   <InputURL
                     receivedSearchResult={this._onSearchResultB}

@@ -166,13 +166,11 @@ class InputURL extends React.Component {
   _onKeyDown(e) {
     const search = this.props[this.uid];
     if (e.keyCode === ENTER_KEY_CODE) {
-
       if (search && search.isURL){
         window.location = this._getHref(search.node);
       } else{
         this._onSubmit();
       }
-
     }
   }
 
