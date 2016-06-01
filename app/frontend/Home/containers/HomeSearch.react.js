@@ -29,11 +29,11 @@ class Home extends Component {
 
     const connections = firehoseResult?
     firehoseResult.map(function(edge, i){
-      const { user, nodeFrom, nodeTo } = edge;
+      const { user, nodeFrom, nodeTo, createdAt } = edge;
       return (
         <div
           key={i}
-          style={{backgroundColor:'#eee',
+          style={{backgroundColor:'rgb(246, 246, 239)',
                   borderRadius:'4px',
                   padding:'4px',
                   margin: '10px'}}>
@@ -45,10 +45,7 @@ class Home extends Component {
               description={nodeFrom.description}
               id={nodeFrom._id}
             />
-            <EdgeConnection
-              username={user.username}
-              profileImageUrl={user.twitter.profile_image_url}
-            />
+            <div style={{borderTop: "1px solid #eee"}}></div>
             <EntityItem
               imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
               faviconCDN={nodeTo.faviconCDN?nodeTo.faviconCDN:''}
@@ -57,6 +54,11 @@ class Home extends Component {
               description={nodeTo.description}
               id={nodeTo._id}
              />
+            <EdgeConnection
+              username={user.username}
+              profileImageUrl={user.twitter.profile_image_url}
+              createdAt={Number(createdAt)}
+            />
         </div>)
     }):<Loader top="100px"/>;
 
@@ -66,10 +68,16 @@ class Home extends Component {
         <div className="container">
           <div className="row">
             <div className="text-center" style={{margin: '100px 0 30px'}}>
-              <div style={{height: '120px'}}><b><span style={{fontFamily: "'Ovo', serif",fontSize: '102px'}}>WikiWeb</span></b></div>
-              <div style={{fontFamily: "'Ovo', serif", fontSize: '18px', marginLeft: '15px'}}><span>WikiWeb is a hub for connected content on the web.
-                <sup><a href="/about"><span className="fa fa-info-circle" style={{color: '#337ab7'}}></span></a></sup>
-              </span></div>
+              <div style={{height: '120px'}}><b><span style={{fontFamily: "'Ovo', serif",fontSize: '82px'}}>WikiWeb</span></b></div>
+              <div style={{fontFamily: "'Ovo', serif", fontSize: '18px', marginLeft: '15px'}}>
+                <span>WikiWeb is a hub for connected content on the web.
+                  <sup>
+                    <a href="/about">
+                      <span className="fa fa-info-circle" style={{color: '#337ab7'}} />
+                    </a>
+                  </sup>
+                </span>
+              </div>
             </div>
           </div>
           <div className='row' style={{marginTop: '10px'}}>

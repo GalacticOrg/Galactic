@@ -54,11 +54,12 @@ class NodeMain extends Component {
     }
 
     const nodeEdges = edges.map(function(edge, i){
-      const { user, entity } = edge;
+      const { user, entity, createdAt } = edge;
       const edgeComponent =(
       <EdgeConnection
         username={user.username}
         profileImageUrl={user.twitter.profile_image_url}
+        createdAt={Number(createdAt)}
         />
       )
 
@@ -97,18 +98,29 @@ class NodeMain extends Component {
     </div>
     :null;
 
+    let descriptionClipped = ''
+    if (description.length > 200){
+      descriptionClipped = description.slice(0,200)+"..."
+    } else {
+      descriptionClipped = description
+    }
+
     return (
     <div>
-      <Navbar />
+    <Navbar />
+    <div className="container">
       <div className={responsiveClasses+' row resultNodeCard'}>
         <div className="show-grid">
           <div className="resultFont">
             <br />
             <h3>{title}</h3>
-            {documentImage}
-            &nbsp;<a href={canonicalLink} className="noUnderline">
-            <span className="resultNodeHyperlinkText">{prettyLink}</span>
-            </a>
+            <div>
+              {documentImage}
+              &nbsp;<a href={canonicalLink} className="noUnderline">
+              <span className="resultNodeHyperlinkText">{prettyLink}</span>
+              </a>
+            </div>
+            <div style={{fontSize:'14px'}}>{descriptionClipped}</div>
           </div>
         </div>
         <div>
@@ -130,7 +142,7 @@ class NodeMain extends Component {
         {messageFlag?
           <Alert bsStyle="success" onDismiss={this.handleAlertDismiss}>
             <h4>You added a new Connection!</h4>
-            <p>Every connection on the WikiWeb makes it that much more useful for the next person. "From little things, big things grow."</p>
+            <p>Every connection on the WikiWeb makes it that much more useful for the next person.</p>
           </Alert>
          :null}
         <div className={messageFlag?'highlight-first':''}>
@@ -140,6 +152,7 @@ class NodeMain extends Component {
           {emptyMessage}
         </div>
       </div>
+    </div>
     </div>
   );
   }

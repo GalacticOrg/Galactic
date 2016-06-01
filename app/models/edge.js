@@ -153,6 +153,8 @@ exports.getUserEdges = function(_id, cb){
 	  });
 };
 const getUserEdgesQ = ['MATCH (nodeFrom)-[edge]->(nodeTo)',
+	'WITH edge, nodeFrom, nodeTo',
+	'ORDER BY edge.createdAt DESC',
 	'WHERE edge.userId IN {_id}',
 	'RETURN nodeFrom, edge, nodeTo'].join('\n');
 

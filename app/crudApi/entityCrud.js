@@ -61,7 +61,8 @@ exports.getEntityController = function (req, res) {
         object.edges = edges.map(function(edge, i){
           return {
             entity: _.find(entities, { id: edge._idNode}),
-            user: _.find(users, { id: edge._idUser})
+            user: _.find(users, { id: edge._idUser}),
+            createdAt: edge.createdAt
           }
         });
         res.send(object);

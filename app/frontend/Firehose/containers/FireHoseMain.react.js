@@ -36,7 +36,7 @@ class User extends Component {
 
     const connections = firehoseResult?
     firehoseResult.map(function(edge, i){
-      const { user, nodeFrom, nodeTo } = edge;
+      const { user, nodeFrom, nodeTo, createdAt } = edge;
       return (
         <div
           key={i}
@@ -52,10 +52,6 @@ class User extends Component {
             description={nodeFrom.description}
             id={nodeFrom._id}
           />
-          <EdgeConnection
-            username={user.username}
-            profileImageUrl={user.twitter.profile_image_url}
-            />
           <EntityItem
             imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
             faviconCDN={nodeTo.faviconCDN?nodeTo.faviconCDN:''}
@@ -64,6 +60,11 @@ class User extends Component {
             description={nodeTo.description}
             id={nodeTo._id}
           />
+          <EdgeConnection
+            username={user.username}
+            profileImageUrl={user.twitter.profile_image_url}
+            createdAt={Number(createdAt)}
+            />
         </div>)
     }):null;
 
