@@ -38,7 +38,7 @@ class User extends Component {
 
 
     const connections = result.map(function(edge, i){
-      const { nodeFrom, nodeTo } = edge;
+      const { nodeFrom, nodeTo, createdAt } = edge;
       return (
         <div
           key={i}
@@ -53,6 +53,7 @@ class User extends Component {
             title={nodeFrom.title}
             description={nodeFrom.description}
             id={nodeFrom._id}
+            createdAt={Number(createdAt)}
           />
           <EdgeConnection
             username={profile.username}

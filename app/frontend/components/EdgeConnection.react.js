@@ -1,13 +1,10 @@
 import React, { Component, PropTypes } from 'react'
-const edgeEntityStyle = {color: 'grey', marginLeft: '5px', fontSize: '12px'}
-const edgeEntityTitle = {fontSize: '15px', fontWeight: 'bold'}
-const edgeEntityDescription = {fontSize: '13px'}
 const edgeUserStyle = {fontSize: '13x'}
 
 export default class EdgeConnection extends Component {
 
   render() {
-    const { username, profileImageUrl } = this.props;
+    const { username, profileImageUrl, createdAt } = this.props;
 
     return (
       <div style={edgeUserStyle}>
@@ -18,6 +15,7 @@ export default class EdgeConnection extends Component {
         <a href={'/@'+username}>@{username}</a>
         </span>
         <span> | {Math.floor(Math.random() * (10 - 10)) + 10} edges</span>
+        <span> | {createdAt?Date(createdAt).toLocaleString():null}</span>
       </div>
     )
   }
@@ -25,5 +23,6 @@ export default class EdgeConnection extends Component {
 
 EdgeConnection.propTypes = {
   username: PropTypes.string.isRequired,
-  profileImageUrl:  PropTypes.string.isRequired
+  profileImageUrl:  PropTypes.string.isRequired,
+  createdAt: PropTypes.number
 }

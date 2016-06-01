@@ -54,11 +54,12 @@ class NodeMain extends Component {
     }
 
     const nodeEdges = edges.map(function(edge, i){
-      const { user, entity } = edge;
+      const { user, entity, createdAt } = edge;
       const edgeComponent =(
       <EdgeConnection
         username={user.username}
         profileImageUrl={user.twitter.profile_image_url}
+        createdAt={Number(createdAt)}
         />
       )
 

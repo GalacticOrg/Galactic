@@ -19,6 +19,10 @@ exports.load = function (req, res, next, username){
     req.profile = user;
     const id = user._id
     Edge.getUserEdges(id, function(err, edges){
+      if (err) {
+        console.log(err, "getUserEdges")
+        return res.status(500).send(utils.errsForApi(err.errors || err));
+      }
       req.userEdges=edges;
       next();
     })
@@ -38,6 +42,11 @@ exports.load = function (req, res, next, username){
        '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
      .exec(function(err, entities){
 
+       if (err) {
+         console.log(err, "Entity Find")
+         return res.status(500).send(utils.errsForApi(err.errors || err));
+       }
+
        const result = edges.map(function(edge, i){
          return {
            nodeFrom :  _.find(entities, { id: edge._idNodeFrom}),
@@ -45,6 +54,7 @@ exports.load = function (req, res, next, username){
            createdAt: edge.createdAt
          }
        })
+       
        res.send({
          result,
          profile
