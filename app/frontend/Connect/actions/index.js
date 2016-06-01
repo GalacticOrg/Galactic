@@ -1,5 +1,5 @@
 /**
- * app/frontend/components/users/actions/index.js
+ * app/frontend/components/connect/actions/index.js
  * Copyright (c) 2016, WikiWeb
 */
 

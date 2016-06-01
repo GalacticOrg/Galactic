@@ -118,7 +118,7 @@ class NodeMain extends Component {
                  <button
                    type="button"
                    className="btn btn-default resultNodeAddConnectionBox">
-                   Add a connection
+                   Add a new connection
                  </button>
                </a>
             </div>
