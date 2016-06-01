@@ -50,12 +50,11 @@ export default class InputButton extends Component {
   buttonState(){
     const { isURL } = this.props;
     let buttonStyle = {
-      paddingTop: '9px', //directly related to height of container (gap should be 2px)
-      paddingBottom: '8px', //directly related to height of container (gap should be 2px)
+      paddingTop: '10px', //directly related to height of container (gap should be 2px)
+      paddingBottom: '9px', //directly related to height of container (gap should be 2px)
       paddingLeft: '18px',
       paddingRight: '18px',
       backgroundColor: 'white',
-      border: '1px solid white',
       borderRadius: '3px',
       color: 'grey',
       WebkitFontSmoothing: 'antialiased',
@@ -63,12 +62,10 @@ export default class InputButton extends Component {
 
     if (isURL===true){
       buttonStyle.backgroundColor = '#66AD57'; //$error-red;
-      buttonStyle.border = '1px solid #66AD57'; //$error-red
       buttonStyle.color = '#FFF';
     }else if (isURL===false){
       buttonStyle.cursor = 'not-allowed';
       buttonStyle.backgroundColor = '#FF0000'; //$error-red;
-      buttonStyle.border = '1px solid #FF0000'; //$error-red
       buttonStyle.color = '#FFF';
     }
 
