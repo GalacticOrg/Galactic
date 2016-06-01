@@ -14,7 +14,7 @@ export default class EntityItem extends Component {
     } else if (faviconCDN){
       edgeImg = faviconCDN;
     } else {
-      edgeImg = 'http://i.imgur.com/LuieUNb.jpg'
+      edgeImg = '/img/document.png'
     }
 
     let edgeTitle = ''
