@@ -48,7 +48,7 @@ class NodeMain extends Component {
 
     const prettyLink = canonicalLink.replace(/^(http:\/\/|https:\/\/)/,'');
 
-    let documentImage = (<span><img src="/img/document.jpg" style={{height: '30px'}} /></span>)
+    let documentImage = (<span><img src="/img/document.png" style={{height: '30px'}} /></span>)
     if (faviconCDN){
       documentImage = (<span><img src={faviconCDN} style={{width: '16px'}} /></span>)
     }
@@ -108,7 +108,7 @@ class NodeMain extends Component {
     return (
     <div>
     <Navbar />
-    <div className="container">   
+    <div className="container">
       <div className={responsiveClasses+' row resultNodeCard'}>
         <div className="show-grid">
           <div className="resultFont">
