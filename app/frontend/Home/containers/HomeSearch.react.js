@@ -36,6 +36,7 @@ class Home extends Component {
           style={{backgroundColor:'rgb(246, 246, 239)',
                   borderRadius:'4px',
                   padding:'4px',
+                  paddingLeft: '6px',
                   margin: '10px'}}>
             <EntityItem
               imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
@@ -45,7 +46,7 @@ class Home extends Component {
               description={nodeFrom.description}
               id={nodeFrom._id}
             />
-            <div style={{borderTop: "1px solid #eee"}}></div>
+            <div style={{borderLeft: "2px solid orange", marginLeft: '23px', height: '50px', marginTop:'-12px', marginBottom: '-5px'}}></div>
             <EntityItem
               imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
               faviconCDN={nodeTo.faviconCDN?nodeTo.faviconCDN:''}
