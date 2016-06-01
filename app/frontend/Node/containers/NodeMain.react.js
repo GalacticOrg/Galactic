@@ -98,18 +98,29 @@ class NodeMain extends Component {
     </div>
     :null;
 
+    let descriptionClipped = ''
+    if (description.length > 200){
+      descriptionClipped = description.slice(0,200)+"..."
+    } else {
+      descriptionClipped = description
+    }
+
     return (
     <div>
-      <Navbar />
+    <Navbar />
+    <div className="container">   
       <div className={responsiveClasses+' row resultNodeCard'}>
         <div className="show-grid">
           <div className="resultFont">
             <br />
             <h3>{title}</h3>
-            {documentImage}
-            &nbsp;<a href={canonicalLink} className="noUnderline">
-            <span className="resultNodeHyperlinkText">{prettyLink}</span>
-            </a>
+            <div>
+              {documentImage}
+              &nbsp;<a href={canonicalLink} className="noUnderline">
+              <span className="resultNodeHyperlinkText">{prettyLink}</span>
+              </a>
+            </div>
+            <div style={{fontSize:'14px'}}>{descriptionClipped}</div>
           </div>
         </div>
         <div>
@@ -141,6 +152,7 @@ class NodeMain extends Component {
           {emptyMessage}
         </div>
       </div>
+    </div>
     </div>
   );
   }

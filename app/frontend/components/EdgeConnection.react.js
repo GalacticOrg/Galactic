@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-const edgeUserStyle = {fontSize: '13x'}
+const edgeUserStyle = {fontSize: '13x', marginBottom:'.5em'}
 
 export default class EdgeConnection extends Component {
 
@@ -15,7 +15,7 @@ export default class EdgeConnection extends Component {
         <a href={'/@'+username}>@{username}</a>
         </span>
         <span> | {Math.floor(Math.random() * (10 - 10)) + 10} edges</span>
-        <span> | {createdAt?Date(createdAt).toLocaleString():null}</span>
+        <span> | {createdAt?new Date(createdAt).toLocaleString():null}</span>
       </div>
     )
   }
