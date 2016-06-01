@@ -42,10 +42,13 @@ class User extends Component {
       return (
         <div
           key={i}
-          style={{backgroundColor:'#eee',
+          style={{backgroundColor:'rgb(249, 248, 241)',
                   borderRadius:'4px',
                   padding:'4px',
-                  margin: '10px'}}>
+                  paddingLeft: '6px',
+                  margin: '10px',
+                  border: '1px #eee solid',
+                }}>
           <EntityItem
             imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
             faviconCDN={nodeFrom.faviconCDN?nodeFrom.faviconCDN:''}
@@ -55,11 +58,7 @@ class User extends Component {
             id={nodeFrom._id}
             createdAt={Number(createdAt)}
           />
-          <EdgeConnection
-            username={profile.username}
-            profileImageUrl={profile.twitter.profile_image_url}
-            createdAt={Number(createdAt)}
-            />
+          <div style={{borderLeft: "2px solid orange", marginLeft: '23px', height: '50px', marginTop:'-12px', marginBottom: '-5px'}}></div>
           <EntityItem
             imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
             faviconCDN={nodeTo.faviconCDN?nodeTo.faviconCDN:''}
@@ -67,7 +66,13 @@ class User extends Component {
             title={nodeTo.title}
             description={nodeTo.description}
             id={nodeTo._id}
-          />
+            createdAt={Number(createdAt)}
+           />
+          <EdgeConnection
+            username={profile.username}
+            profileImageUrl={profile.twitter.profile_image_url}
+            createdAt={Number(createdAt)}
+            />
         </div>)
     });
 
@@ -102,7 +107,7 @@ class User extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-9 col-md-offset-1" style={{marginTop: '15px'}}>
-            <p>Connections:</p>
+            <p><b>@{username}'s Connections:</b></p>
             <ul>
               {connections}
             </ul>

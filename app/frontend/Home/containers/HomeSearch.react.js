@@ -47,6 +47,7 @@ class Home extends Component {
               title={nodeFrom.title}
               description={nodeFrom.description}
               id={nodeFrom._id}
+              createdAt={Number(createdAt)}
             />
             <div style={{borderLeft: "2px solid orange", marginLeft: '23px', height: '50px', marginTop:'-12px', marginBottom: '-5px'}}></div>
             <EntityItem
@@ -56,6 +57,7 @@ class Home extends Component {
               title={nodeTo.title}
               description={nodeTo.description}
               id={nodeTo._id}
+              createdAt={Number(createdAt)}
              />
             <EdgeConnection
               username={user.username}
