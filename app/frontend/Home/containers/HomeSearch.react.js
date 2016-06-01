@@ -37,26 +37,26 @@ class Home extends Component {
                   borderRadius:'4px',
                   padding:'4px',
                   margin: '10px'}}>
-          <EntityItem
-            imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
-            faviconCDN={nodeFrom.faviconCDN?nodeFrom.faviconCDN:''}
-            canonicalLink={nodeFrom.canonicalLink}
-            title={nodeFrom.title}
-            description={nodeFrom.description}
-            id={nodeFrom._id}
-          />
-          <EdgeConnection
-            username={user.username}
-            profileImageUrl={user.twitter.profile_image_url}
+            <EntityItem
+              imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
+              faviconCDN={nodeFrom.faviconCDN?nodeFrom.faviconCDN:''}
+              canonicalLink={nodeFrom.canonicalLink}
+              title={nodeFrom.title}
+              description={nodeFrom.description}
+              id={nodeFrom._id}
             />
-          <EntityItem
-            imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
-            faviconCDN={nodeTo.faviconCDN?nodeTo.faviconCDN:''}
-            canonicalLink={nodeTo.canonicalLink}
-            title={nodeTo.title}
-            description={nodeTo.description}
-            id={nodeTo._id}
-          />
+            <EdgeConnection
+              username={user.username}
+              profileImageUrl={user.twitter.profile_image_url}
+            />
+            <EntityItem
+              imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
+              faviconCDN={nodeTo.faviconCDN?nodeTo.faviconCDN:''}
+              canonicalLink={nodeTo.canonicalLink}
+              title={nodeTo.title}
+              description={nodeTo.description}
+              id={nodeTo._id}
+             />
         </div>)
     }):<Loader top="100px"/>;
 

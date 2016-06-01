@@ -155,7 +155,7 @@ body {
       margin-right: 5px; }
     body .resultNodeCard .connectorIcon {
       width: 20px; }
-  body .resultsSection .connectionCard:hover {
+  body .resultsSection .connectionCardHover:hover {
     background-color: #F6F6EF; }
   body .resultsSection a:hover {
     color: blue; }

@@ -8,6 +8,7 @@ import Loader from 'react-loader';
 
 import Navbar from "../../components/Navbar.react"
 import EntityItem from "../../components/EntityItem.react"
+import EdgeConnection from "../../components/EdgeConnection.react"
 
 import { connect } from 'react-redux'
 import { getFirehose } from "../actions/index"
@@ -35,6 +36,7 @@ class User extends Component {
 
     const connections = firehoseResult?
     firehoseResult.map(function(edge, i){
+      const { user, nodeFrom, nodeTo } = edge;
       return (
         <div
           key={i}
@@ -43,12 +45,24 @@ class User extends Component {
                   padding:'4px',
                   margin: '10px'}}>
           <EntityItem
-            entity={edge.nodeFrom}
-            user={edge.user}
+            imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
+            faviconCDN={nodeFrom.faviconCDN?nodeFrom.faviconCDN:''}
+            canonicalLink={nodeFrom.canonicalLink}
+            title={nodeFrom.title}
+            description={nodeFrom.description}
+            id={nodeFrom._id}
           />
+          <EdgeConnection
+            username={user.username}
+            profileImageUrl={user.twitter.profile_image_url}
+            />
           <EntityItem
-            entity={edge.nodeTo}
-            user={edge.user}
+            imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
+            faviconCDN={nodeTo.faviconCDN?nodeTo.faviconCDN:''}
+            canonicalLink={nodeTo.canonicalLink}
+            title={nodeTo.title}
+            description={nodeTo.description}
+            id={nodeTo._id}
           />
         </div>)
     }):null;

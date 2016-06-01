@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import Loader from 'react-loader';
 import Navbar from "../../components/Navbar.react"
 import EntityItem from "../../components/EntityItem.react"
+import EdgeConnection from "../../components/EdgeConnection.react"
+
 import { Alert, Tooltip, OverlayTrigger  } from "react-bootstrap"
 
 import { getNode } from "../actions/index"
@@ -52,11 +54,24 @@ class NodeMain extends Component {
     }
 
     const nodeEdges = edges.map(function(edge, i){
-      return <EntityItem
-          key={i}
-          entity={edge.entity}
-          user={edge.user}
+      const { user, entity } = edge;
+
+      return <div
+          className="connectionCardHover"
+          key={i}>
+        <EntityItem
+          imageCDN={entity.imageCDN.url?entity.imageCDN.url:''}
+          faviconCDN={entity.faviconCDN?entity.faviconCDN:''}
+          canonicalLink={entity.canonicalLink}
+          title={entity.title}
+          description={entity.description}
+          id={entity._id}
         />
+        <EdgeConnection
+          username={user.username}
+          profileImageUrl={user.twitter.profile_image_url}
+          />
+      </div>
     });
 
     const tooltip = (
