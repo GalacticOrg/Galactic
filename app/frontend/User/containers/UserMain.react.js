@@ -58,6 +58,7 @@ class User extends Component {
           <EdgeConnection
             username={profile.username}
             profileImageUrl={profile.twitter.profile_image_url}
+            createdAt={Number(createdAt)}
             />
           <EntityItem
             imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
