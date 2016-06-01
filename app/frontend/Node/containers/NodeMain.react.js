@@ -55,6 +55,12 @@ class NodeMain extends Component {
 
     const nodeEdges = edges.map(function(edge, i){
       const { user, entity } = edge;
+      const edgeComponent =(
+      <EdgeConnection
+        username={user.username}
+        profileImageUrl={user.twitter.profile_image_url}
+        />
+      )
 
       return <div
           className="connectionCardHover"
@@ -66,11 +72,9 @@ class NodeMain extends Component {
           title={entity.title}
           description={entity.description}
           id={entity._id}
+          edge={edgeComponent}
         />
-        <EdgeConnection
-          username={user.username}
-          profileImageUrl={user.twitter.profile_image_url}
-          />
+
       </div>
     });
 
