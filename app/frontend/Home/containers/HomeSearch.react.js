@@ -55,11 +55,14 @@ class Home extends Component {
         <Navbar />
         <div className="container">
           <div className="row">
-            <div className="text-center" style={{height: '65px', margin: '150px 0 50px'}}>
-              <img src='/img/WikiWeb.png' />
+            <div className="text-center" style={{margin: '100px 0 30px'}}>
+              <div style={{height: '120px'}}><b><span style={{fontFamily: "'Ovo', serif",fontSize: '102px'}}>WikiWeb</span></b></div>
+              <div style={{fontFamily: "'Ovo', serif", fontSize: '18px', marginLeft: '15px'}}><span>WikiWeb is a hub for connected content on the web.
+                <sup><a href="/about"><span className="fa fa-info-circle" style={{color: '#337ab7'}}></span></a></sup>
+              </span></div>
             </div>
           </div>
-          <div className='row'>
+          <div className='row' style={{marginTop: '10px'}}>
             <div
               className={
               ['col-xs-12',
@@ -76,7 +79,7 @@ class Home extends Component {
             </div>
           </div>
           <div className='row'>
-            <div style={{marginTop:'100px'}}
+            <div style={{marginTop:'80px'}}
               className={
               ['col-xs-12',
               'col-sm-10',
@@ -84,6 +87,7 @@ class Home extends Component {
               'col-md-8',
               'col-md-offset-2'].join(' ')
               }>
+              <hr />
               <h4>Recently Made Connections:</h4>
               {connections}
             </div>
