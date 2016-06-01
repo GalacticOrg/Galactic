@@ -31,7 +31,7 @@ export default class EntityItem extends Component {
           <div style={{float: 'left', maxHeight:'50px', overflow:'hidden'}}>
             <img src={edgeImg} style={{width: '50px' }}/>
           </div>
-          <div style={{marginLeft: '60px'}}>
+          <div style={{marginLeft: '60px', minHeight:'4em'}}>
               <EntityItemTitleHost
                 title={title}
                 id={id}
