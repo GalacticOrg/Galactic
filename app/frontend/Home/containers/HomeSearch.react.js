@@ -33,11 +33,13 @@ class Home extends Component {
       return (
         <div
           key={i}
-          style={{backgroundColor:'rgb(246, 246, 239)',
+          style={{backgroundColor:'rgb(249, 248, 241)',
                   borderRadius:'4px',
                   padding:'4px',
                   paddingLeft: '6px',
-                  margin: '10px'}}>
+                  margin: '10px',
+                  border: '1px #eee solid',
+                }}>
             <EntityItem
               imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
               faviconCDN={nodeFrom.faviconCDN?nodeFrom.faviconCDN:''}
