@@ -26,8 +26,8 @@ export default class EntityItem extends Component {
     }
 
     let edgeDescription = ''
-    if (entity.description.length > 280){
-      edgeDescription = entity.description.slice(0,280)+"..."
+    if (entity.description.length > 200){
+      edgeDescription = entity.description.slice(0,200)+"..."
     } else {
       edgeDescription = entity.description
     }

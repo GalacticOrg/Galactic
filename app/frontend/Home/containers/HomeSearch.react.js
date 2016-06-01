@@ -75,7 +75,8 @@ class Home extends Component {
                 placeholder="Enter a URL to search"
                 hasSearchButton={true}
                 receivedSearchResult={this._onSearchResult}
-                id={inputKey}/>
+                id={inputKey}
+                />
             </div>
           </div>
           <div className='row'>
