@@ -1,9 +1,3 @@
-.wikiweb-tooltip + .tooltip > .tooltip-inner {
-  background-color: #F6F6EF; }
-
-.wikiweb-tooltip + .tooltip > .tooltip-arrow {
-  border-bottom-color: #F6F6EF; }
-
 body {
   font-family: "Open Sans","Helvetica Neue",sans-serif;
   margin-top: 50px;

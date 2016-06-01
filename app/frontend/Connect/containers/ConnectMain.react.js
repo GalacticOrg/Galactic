@@ -5,7 +5,7 @@
 import React, { Component } from 'react'
 import ReactDOM from "react-dom";
 import { connect } from 'react-redux'
-import { Alert } from 'react-bootstrap';
+import { Alert, Tooltip, OverlayTrigger} from 'react-bootstrap'
 import { postConnection } from '../actions'
 
 import Navbar from "../../components/Navbar.react"
@@ -88,13 +88,24 @@ export default class Connect extends Component {
         {errors.map(m=><Alert bsStyle={'warning'} >{m}</Alert>)}
       </ul>)
     }
+
+    const tooltip = (
+      <Tooltip id="connectPageTooltip">The purpose of connections is to create a thread between similar content for others to find later. Some people connect music videos, others connect articles they have read online. What will you connect?</Tooltip>
+    );
+
     return (<div>
       <Navbar />
       {errMessage}
       <div className="container">
         <div className="row">
             <div className={responsiveClasses}
-              style={{marginTop: '20px',marginBottom: '15px', fontWeight: 'bold'}}>Connect two URLs together:</div>
+              style={{marginTop: '20px',marginBottom: '15px', fontWeight: 'bold'}}>Connect two URLs together:
+              <OverlayTrigger placement="right" overlay={tooltip}>
+                <sup style={{marginLeft: '2px'}}>
+                <span className="fa fa-info-circle" style={{color: '#337ab7'}}></span>
+                </sup>
+              </OverlayTrigger>
+            </div>
             <div className={responsiveClasses}
               style={formStyle}>
                 <div style={spacerStyle} className="form-group">
