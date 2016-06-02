@@ -15,6 +15,20 @@ const homepageUrlSearchForm = {
   paddingRight: '20px'
 }
 
+const connectLine = {
+  borderLeft: "2px solid orange",
+  marginLeft: '23px',
+  height: '6em'
+}
+
+const connectLineParent = {
+  height: "0px",
+  overflow: 'visible',
+  marginTop: '-3em',
+  marginBottom: '3em'
+}
+
+
 import { getFirehose } from "../actions/index"
 
 class Home extends Component {
@@ -49,7 +63,7 @@ class Home extends Component {
               id={nodeFrom._id}
               createdAt={Number(createdAt)}
             />
-            <div style={{borderLeft: "2px solid orange", marginLeft: '23px', height: '50px', marginTop:'-12px', marginBottom: '-5px'}}></div>
+            <div style={connectLineParent}><div style={connectLine}></div></div>
             <EntityItem
               imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
               faviconCDN={nodeTo.faviconCDN?nodeTo.faviconCDN:''}

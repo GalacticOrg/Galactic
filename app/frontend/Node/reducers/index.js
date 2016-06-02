@@ -5,7 +5,7 @@
 
 import { combineReducers } from 'redux';
 import userResult from '../../components/users/reducers'
-import { RECEIVE_NODE_DATA } from '../actions'
+import { RECEIVE_NODE_DATA, RECEIVE_CONNECTION_TAGS_RESULT } from '../actions'
 
 const nodeResult = (state = {}, action) => {
   switch (action.type) {
@@ -16,9 +16,19 @@ const nodeResult = (state = {}, action) => {
   }
 }
 
+const edgeResult = (state = {}, action) => {
+  switch(action.type) {
+    case RECEIVE_CONNECTION_TAGS_RESULT:
+      return action.result
+    default:
+      return state
+  }
+}
+
 const nodeApp = combineReducers({
   userResult,
-  nodeResult
+  nodeResult,
+  edgeResult
 })
 
 export default nodeApp

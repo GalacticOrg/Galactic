@@ -7,7 +7,7 @@ import EdgeConnection from "../../components/EdgeConnection.react"
 
 import { Alert, Tooltip, OverlayTrigger  } from "react-bootstrap"
 
-import { getNode } from "../actions/index"
+import { getNode, postNodeTags } from "../actions/index"
 const responsiveClasses = [
         'col-xs-12','col-sm-10',
         'col-sm-offset-1',
@@ -28,8 +28,8 @@ class NodeMain extends Component {
   componentWillMount() {
     const { dispatch } = this.props;
     dispatch(getNode(window.location.pathname.replace('/node/',''))) //@todo include this in the page
-
   }
+
   render() {
     const { nodeResult } = this.props
     const { messageFlag } = this.state
@@ -106,55 +106,56 @@ class NodeMain extends Component {
     }
 
     return (
-    <div>
-    <Navbar />
-    <div className="container">
-      <div className={responsiveClasses+' row resultNodeCard'}>
-        <div className="show-grid">
-          <div className="resultFont">
-            <br />
-            <h3>{title}</h3>
-            <div>
-              {documentImage}
-              &nbsp;<a href={canonicalLink} className="noUnderline">
-              <span className="resultNodeHyperlinkText">{prettyLink}</span>
-              </a>
+      <div>
+      <Navbar />
+      <button onClick={()=>{this.props.dispatch(postNodeTags(1234,["faker"]))}}>POSTER BUTTON</button>
+      <div className="container">
+        <div className={responsiveClasses+' row resultNodeCard'}>
+          <div className="show-grid">
+            <div className="resultFont">
+              <br />
+              <h3>{title}</h3>
+              <div>
+                {documentImage}
+                &nbsp;<a href={canonicalLink} className="noUnderline">
+                <span className="resultNodeHyperlinkText">{prettyLink}</span>
+                </a>
+              </div>
+              <div style={{fontSize:'14px'}}>{descriptionClipped}</div>
             </div>
-            <div style={{fontSize:'14px'}}>{descriptionClipped}</div>
           </div>
+          <div>
+            <div
+              style={{fontSize: '17px', fontWeight: 'bold', marginTop: '5px'}}>
+                <a href={connectHref}>
+                   <button
+                     type="button"
+                     className="btn btn-default resultNodeAddConnectionBox">
+                     Add a new connection
+                   </button>
+                 </a>
+              </div>
+            </div>
+            <hr />
         </div>
-        <div>
-          <div
-            style={{fontSize: '17px', fontWeight: 'bold', marginTop: '5px'}}>
-              <a href={connectHref}>
-                 <button
-                   type="button"
-                   className="btn btn-default resultNodeAddConnectionBox">
-                   Add a new connection
-                 </button>
-               </a>
-            </div>
-          </div>
-          <hr />
-      </div>
 
-      <div className={responsiveClasses + ' row resultsSection'}>
-        {messageFlag?
-          <Alert bsStyle="success" onDismiss={this.handleAlertDismiss}>
-            <h4>You added a new Connection!</h4>
-            <p>Every connection on the WikiWeb makes it that much more useful for the next person.</p>
-          </Alert>
-         :null}
-        <div className={messageFlag?'highlight-first':''}>
-          {nodeEdges}
-        </div>
-        <div style={{margin:'50px'}}>
-          {emptyMessage}
+        <div className={responsiveClasses + ' row resultsSection'}>
+          {messageFlag?
+            <Alert bsStyle="success" onDismiss={this.handleAlertDismiss}>
+              <h4>You added a new Connection!</h4>
+              <p>Every connection on the WikiWeb makes it that much more useful for the next person.</p>
+            </Alert>
+           :null}
+          <div className={messageFlag?'highlight-first':''}>
+            {nodeEdges}
+          </div>
+          <div style={{margin:'50px'}}>
+            {emptyMessage}
+          </div>
         </div>
       </div>
-    </div>
-    </div>
-  );
+      </div>
+    );
   }
 
   handleAlertDismiss(){
@@ -166,9 +167,10 @@ class NodeMain extends Component {
 }
 
 function mapStateToProps(state) {
-  const { nodeResult } = state;
+  const { nodeResult, edgeResult } = state;
   return {
-    nodeResult
+    nodeResult,
+    edgeResult
   }
 }
 

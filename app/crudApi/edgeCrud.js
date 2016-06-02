@@ -54,7 +54,7 @@ exports.load = function (req, res, next, username){
            createdAt: edge.createdAt
          }
        })
-       
+
        res.send({
          result,
          profile
@@ -65,28 +65,33 @@ exports.load = function (req, res, next, username){
  /**
   * * Get Edges API
   */
-exports.getEdgeController = function (req, res) {
+ exports.getEdgeController = function (req, res) {
   Edge.getEdges(35, function(err, edges){
     const entityIds = _.map(edges, '_idNodeFrom').concat(_.map(edges, '_idNodeTo'))
     const userIds = _.map(edges, '_idUser')
     Entity.find(
       { _id: {$in: entityIds }},
       '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
-    .exec(function(err, entities){
-      User.find({ _id: {$in: userIds }}, 'name username twitter')
-        .exec(function(err, users){
-          const object = edges.map(function(edge, i){
-            return {
-              nodeFrom :  _.find(entities, { id: edge._idNodeFrom}),
-              nodeTo : _.find(entities, { id: edge._idNodeTo}),
-              user:  _.find(users, { id: edge._idUser}),
-              createdAt: edge.createdAt
-            }
-          })
-          res.send(object)
-        })
+        .exec(function(err, entities){
+          User.find({ _id: {$in: userIds }}, 'name username twitter')
+            .exec(function(err, users){
+              const object = edges.map(function(edge, i){
+                return {
+                  nodeFrom :  _.find(entities, { id: edge._idNodeFrom}),
+                  nodeTo : _.find(entities, { id: edge._idNodeTo}),
+                  user:  _.find(users, { id: edge._idUser}),
+                  createdAt: edge.createdAt
+                }
+              })
+              res.send(object)
+            })
     });
   })
+}
+
+const blob = require('./nested.json');
+exports.getEdgeControllerNest = function(req, res){
+  res.send(blob)
 }
 
 
@@ -139,3 +144,11 @@ exports.postCreateEdgeController = function (req, res) {
       }
   })
 };
+
+/**
+ * * Post Tags Edges API
+ */
+exports.postTagsEdgeController = function (req, res) {
+  const tags = req.body.tags
+  res.send({tags, success:true})
+}

@@ -24,11 +24,14 @@ module.exports = function (app, passport) {
   app.get('/api/searchurl', entityCrud.getSearchController)
   app.get('/api/node/:id', entityCrud.getEntityController)
 
-  //API edge
+  //API Edge
   app.param('user', edgeCrud.load);
   app.get('/api/edges/users/:user', edgeCrud.getUserEdgeController)
   app.get('/api/edges/firehose', edgeCrud.getEdgeController)
+  app.get('/api/edges/firehosenest', edgeCrud.getEdgeControllerNest)
+
   app.post('/api/connect', auth.requiresLogin, edgeCrud.postCreateEdgeController)
+  app.post('/api/connect/:cid', auth.requiresLogin, edgeCrud.postTagsEdgeController)
 
 
   // API User
