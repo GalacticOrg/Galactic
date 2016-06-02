@@ -202,7 +202,8 @@ exports.getEdges = function(_limit, cb){
        )
 	  });
 };
-const getEdgesQ = ['MATCH (nodeFrom)-[edge]->(nodeTo)',
+const getEdgesQ = [
+	'MATCH (nodeFrom)-[edge]->(nodeTo)',
 	'RETURN nodeFrom, edge, nodeTo',
 	'ORDER BY edge.createdAt DESC',
 	'LIMIT {_limit}'].join('\n');

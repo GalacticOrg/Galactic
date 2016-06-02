@@ -48,7 +48,7 @@ class InputURL extends React.Component {
     this._onKeyDown = this._onKeyDown.bind(this);
     this._search = this._search.bind(this);
     this._reset = this._reset.bind(this);
-    this._submitWithDelay = _.debounce(this._submitWithDelay, 700);
+    this._submitWithDelay = _.debounce(this._submitWithDelay, 1100);
   }
 
   componentWillMount(nextProps){
