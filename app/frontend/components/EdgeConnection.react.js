@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-const edgeUserStyle = {fontSize: '13x', borderTop: '1px #eee solid', paddingTop: '1px'}
+const edgeUserStyle = {fontSize: '13x', marginLeft: '65px', paddingTop: '1px'}
 
 export default class EdgeConnection extends Component {
 
