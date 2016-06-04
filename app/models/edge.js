@@ -152,7 +152,8 @@ exports.getUserEdges = function(_id, cb){
        )
 	  });
 };
-const getUserEdgesQ = ['MATCH (nodeFrom)-[edge]->(nodeTo)',
+const getUserEdgesQ = [
+	'MATCH (nodeFrom)-[edge]->(nodeTo)',
 	'WITH edge, nodeFrom, nodeTo',
 	'ORDER BY edge.createdAt DESC',
 	'WHERE edge.userId IN {_id}',
@@ -207,6 +208,45 @@ const getEdgesQ = [
 	'RETURN nodeFrom, edge, nodeTo',
 	'ORDER BY edge.createdAt DESC',
 	'LIMIT {_limit}'].join('\n');
+
+/**
+ * @name   srefParser
+ * @r     {obj} Neo4j object
+ * @return {obj}    cb  a callback for the data.
+ */
+// const resultsParser = function(r, id){
+// 	const pageID = r.pageOne.properties._id != id ? r.pageOne.properties._id :r.pageTwo.properties._id;
+//   return pageID
+// }
+
+
+exports.getEdgesForPath = function(_fromId, _toId, _userId, cb){
+
+	db.cypher({
+	      query: getEdgesForPathQ,
+	      params: {
+	      	_fromId,
+					_toId,
+					_userId
+	      },
+	  },
+	  function(err, results){
+
+	  	if (err) {
+	  	  console.log(err, 'getEdgesForPath')
+	  		return cb(err, null)
+	  	}
+
+      cb(err,
+				results.map(function(r){return getEdgeParser(r)})
+       )
+	  });
+};
+const getEdgesForPathQ = [
+	'MATCH (nodeFrom)-[edge]->(nodeTo)',
+	'WHERE nodeFrom.id IN {_fromId} AND nodeTo.id IN {_toId} AND edge.userId IN {_userId}',
+	'RETURN nodeFrom, edge, nodeTo'
+].join('\n');
 
 /**
  * @name   srefParser

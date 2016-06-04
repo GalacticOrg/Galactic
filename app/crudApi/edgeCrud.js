@@ -104,45 +104,61 @@ exports.postCreateEdgeController = function (req, res) {
   const fromId = body.fromId;
   const userId = req.user.id
 
-  Edge.createEdge(
+
+
+  Edge.getEdgesForPath(
     fromId,
     toId,
     userId,
-    function(err, resultEdge){
-      if (err) {
-        console.log(err, "postCreateEdgeController")
-        return res.status(500).send(utils.errsForApi(err.errors || err));
-      } else if(resultEdge.length==0){
-        console.log(resultEdge, "postCreateEdgeController No Edge")
-        return res.status(500).send(utils.errsForApi('No Edge Created'));
+    function(err, resultExisting){
+      if (resultExisting && resultExisting.length>0){
+        res.status(409).send({
+          success: false,
+          errors: ['You have already made that connection']
+        });
       } else {
-        Entity.update(
-           { _id: {$in: [fromId, toId]}},
-           { $set: { isConnected: true } },
-           { multi: true })
-          .exec(function(err){
-              if (err){
-                console.log(err, "postCreateEdgeController")
-                return res.status(400).send(utils.errsForApi(err.errors || err));
-              }
-
-              Entity.find(
-                { _id: {$in: [fromId, toId]}},
-                'title _id faviconCDN canonicalLink description')
-                .exec(function(err, entityResult){
-                  if (err) return res.status(400).send(utils.errsForApi(err.errors || err));
-                  res.send({
-                    edgeId: resultEdge[0].Link.properties.id,
-                    success: true,
-                    entities: {
-                      from: _.find(entityResult, { id: fromId}),
-                      to: _.find(entityResult, { id: toId})
+        Edge.createEdge(
+          fromId,
+          toId,
+          userId,
+          function(err, resultEdge){
+            if (err) {
+              console.log(err, "postCreateEdgeController")
+              return res.status(500).send(utils.errsForApi(err.errors || err));
+            } else if(resultEdge.length==0){
+              console.log(resultEdge, "postCreateEdgeController No Edge")
+              return res.status(500).send(utils.errsForApi('No Edge Created'));
+            } else {
+              Entity.update(
+                 { _id: {$in: [fromId, toId]}},
+                 { $set: { isConnected: true } },
+                 { multi: true })
+                .exec(function(err){
+                    if (err){
+                      console.log(err, "postCreateEdgeController")
+                      return res.status(400).send(utils.errsForApi(err.errors || err));
                     }
-                  });
-              });
-          });
-      }
-  })
+
+                    Entity.find(
+                      { _id: {$in: [fromId, toId]}},
+                      'title _id faviconCDN canonicalLink description')
+                      .exec(function(err, entityResult){
+                        if (err) return res.status(400).send(utils.errsForApi(err.errors || err));
+                        res.send({
+                          edgeId: resultEdge[0].Link.properties.id,
+                          success: true,
+                          entities: {
+                            from: _.find(entityResult, { id: fromId}),
+                            to: _.find(entityResult, { id: toId})
+                          }
+                        });
+                    });
+                });
+            }
+        })//Edge.createEdge end
+      } //END if else
+  })//Edge.getEdgesForPath e
+
 };
 
 /**
