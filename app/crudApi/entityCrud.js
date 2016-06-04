@@ -25,10 +25,8 @@ exports.load = function (req, res, next, id){
       req.edges = edges
       next();
     })
-
   });
 };
-
 
 /**
 * Entity API for Nodes
@@ -169,7 +167,6 @@ const pageExtractor = function(url, resultDB, cb){
  * @param  {Function}    cb  a callback for the data.
  */
 function pageExtractorDBSearch(url, resultDB, extractedPageData, cb) {
-
   if (extractedPageData && extractedPageData.canonicalLink){
     pageDBSearch(extractedPageData.canonicalLink, function(err, url, resultDBcanonicalLink){
       cb(err, url, resultDBcanonicalLink, extractedPageData);
