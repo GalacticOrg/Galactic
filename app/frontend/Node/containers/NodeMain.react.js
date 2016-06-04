@@ -31,6 +31,7 @@ class NodeMain extends Component {
   }
 
   render() {
+
     const { nodeResult } = this.props
     const { messageFlag } = this.state
 
@@ -108,7 +109,6 @@ class NodeMain extends Component {
     return (
       <div>
       <Navbar />
-      <button onClick={()=>{this.props.dispatch(postNodeTags(1234,["faker"]))}}>POSTER BUTTON</button>
       <div className="container">
         <div className={responsiveClasses+' row resultNodeCard'}>
           <div className="show-grid">
@@ -144,6 +144,13 @@ class NodeMain extends Component {
             <Alert bsStyle="success" onDismiss={this.handleAlertDismiss}>
               <h4>You added a new Connection!</h4>
               <p>Every connection on the WikiWeb makes it that much more useful for the next person.</p>
+              <div style={{float: 'right', marginTop: '-15px'}}>
+                <input id="tag-input" type="text"></input>
+                <button onClick={
+                  ()=>{getTags(), this.props.dispatch(postNodeTags(1234,["faker"]))}
+                }>Add Tag</button>
+                <div id="tag-output"></div>
+              </div>
             </Alert>
            :null}
           <div className={messageFlag?'highlight-first':''}>
@@ -163,7 +170,15 @@ class NodeMain extends Component {
       messageFlag:false
     })
   }
+}
 
+
+let thisTag = null
+function getTags() {
+  if (document.getElementById('tag-input').value){
+    thisTag = document.getElementById('tag-input').value
+  }
+  return thisTag
 }
 
 function mapStateToProps(state) {
