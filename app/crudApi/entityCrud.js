@@ -34,6 +34,22 @@ exports.load = function (req, res, next, id){
 exports.getEntityController = function (req, res) {
   const entity = req.entity
   const edges = req.edges
+
+
+  const r = _.chain(edges)
+    .groupBy('_idNode')
+    .map(function(edgesGrouped, i ){
+        const edge = _.minBy(edgesGrouped,'createdAt');
+        return {
+          _idNode: edge._idNode,
+          _idLink: edge._idLink,
+          _idUser: edge._idUser,
+          edges:edgesGrouped
+        }
+    })
+
+  return res.send(r)
+
   if (!entity) {
     res.status(404).send(utils.errsForApi('Node not found!!'));
   } else {
@@ -41,7 +57,6 @@ exports.getEntityController = function (req, res) {
     //object.edges = edges;
     const entityIds = _.map(edges, '_idNode')
     const userIds = _.map(edges, '_idUser')
-
 
     Entity.find(
       { _id: {$in: entityIds }},
@@ -54,7 +69,6 @@ exports.getEntityController = function (req, res) {
         'name username twitter'
       )
       .exec(function(err, users){
-
 
         object.edges = edges.map(function(edge, i){
           return {
