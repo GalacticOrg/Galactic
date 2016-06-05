@@ -32,31 +32,40 @@ exports.load = function (req, res, next, id){
 * Entity API for Nodes
  */
 exports.getEntityController = function (req, res) {
-  const entity = req.entity
-  const edges = req.edges
+  const entity = req.entity;
 
 
-  const r = _.chain(edges)
+  const edges = _.chain(req.edges)
     .groupBy('_idNode')
     .map(function(edgesGrouped, i ){
-        const edge = _.minBy(edgesGrouped,'createdAt');
+        const edgeSorted = _.sortBy(edgesGrouped,'createdAt');
+        console.log(edgeSorted)
         return {
-          _idNode: edge._idNode,
-          _idLink: edge._idLink,
-          _idUser: edge._idUser,
-          edges:edgesGrouped
+          _idNode: edgeSorted[0]._idNode,
+          _idLink: edgeSorted[0]._idLink,
+          createdAt: edgeSorted[0].createdAt,
+          edges:edgeSorted
         }
-    })
+    }).value()
 
-  return res.send(r)
+    const entityIds = _.map(req.edges, '_idNode')
+    const userIds = _.map(req.edges, '_idUser')
+
+    // return res.send({
+    //   entityIds,
+    //   userIds,
+    //   edges,
+    //   edgesORg:req.edges
+    // })
+
 
   if (!entity) {
     res.status(404).send(utils.errsForApi('Node not found!!'));
   } else {
     const object = entity.toJSON();
-    //object.edges = edges;
-    const entityIds = _.map(edges, '_idNode')
-    const userIds = _.map(edges, '_idUser')
+
+
+
 
     Entity.find(
       { _id: {$in: entityIds }},
@@ -73,8 +82,12 @@ exports.getEntityController = function (req, res) {
         object.edges = edges.map(function(edge, i){
           return {
             entity: _.find(entities, { id: edge._idNode}),
-            user: _.find(users, { id: edge._idUser}),
-            createdAt: edge.createdAt
+            users: edge.edges.map(function(e){
+              return {
+                user:_.find(users, { id: e._idUser}),
+                createdAt: e.createdAt
+              }
+            })
           }
         });
         res.send(object);
