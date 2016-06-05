@@ -4,7 +4,7 @@ const edgeUserStyle = {fontSize: '13x', marginLeft: '60px', paddingTop: '1px'}
 export default class EdgeConnection extends Component {
 
   render() {
-    const { username, profileImageUrl, createdAt } = this.props;
+    const { username, profileImageUrl, createdAt, length } = this.props;
 
     return (
       <div className="edge-connection" style={edgeUserStyle}>
@@ -15,7 +15,9 @@ export default class EdgeConnection extends Component {
         <a href={'/@'+username}>@{username}</a>
         </span>
         <span> | {Math.floor(Math.random() * (10 - 10)) + 10} edges</span>
-        <span> | {createdAt?new Date(createdAt).toLocaleString():null}</span>
+        <span> | {new Date(createdAt).toLocaleString()}</span>
+          <span> | {length} connections</span>
+
       </div>
     )
   }
@@ -24,5 +26,6 @@ export default class EdgeConnection extends Component {
 EdgeConnection.propTypes = {
   username: PropTypes.string.isRequired,
   profileImageUrl:  PropTypes.string.isRequired,
-  createdAt: PropTypes.number
+  createdAt: PropTypes.number,
+  length: PropTypes.number.isRequired,
 }

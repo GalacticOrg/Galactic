@@ -55,12 +55,16 @@ class NodeMain extends Component {
     }
 
     const nodeEdges = edges.map(function(edge, i){
-      const { user, entity, createdAt } = edge;
+      const { users, entity } = edge;
+      const user = users[0].user;
+      const createdAt = users[0].createdAt;
+      debugger
       const edgeComponent =(
       <EdgeConnection
         username={user.username}
         profileImageUrl={user.twitter.profile_image_url}
         createdAt={Number(createdAt)}
+        length={users.length}
         />
       )
 
