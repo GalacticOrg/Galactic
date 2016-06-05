@@ -28,7 +28,6 @@ module.exports = function (app, passport) {
   app.param('user', edgeCrud.load);
   app.get('/api/edges/users/:user', edgeCrud.getUserEdgeController)
   app.get('/api/edges/firehose', edgeCrud.getEdgeController)
-  app.get('/api/edges/firehosenest', edgeCrud.getEdgeControllerNest)
 
   app.post('/api/connect', auth.requiresLogin, edgeCrud.postCreateEdgeController)
   app.post('/api/connect/:cid', auth.requiresLogin, edgeCrud.postTagsEdgeController)

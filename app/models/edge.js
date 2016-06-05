@@ -15,7 +15,7 @@ mongoose.model('Connection', {});
 const Connection = mongoose.model('Connection');
 
 /**
- * Create anSREF from two existing nodes;
+ * Create createEdgeQ from two existing nodes;
  */
 exports.createEdge = function(_idOne, _idTwo, _userId, cb){
 	const _id = new Connection({})._id;
@@ -29,13 +29,13 @@ exports.createEdge = function(_idOne, _idTwo, _userId, cb){
 	db.cypher(
 		{
 			params: params,
-			query: createSREFQ
+			query: createEdgeQ
 		},
 	cb
 	);
 };
-//createSREF Query
-const createSREFQ = [
+//createEdgeQ Query
+const createEdgeQ = [
   'MATCH (PageOne {id:{_idOne}})',
   'MATCH (PageTwo {id:{_idTwo}})',
   'CREATE (PageOne)-[Link:userEdge {id:{_id}, userId:{_userId}, createdAt:{_createdAt} } ]-> (PageTwo)',
@@ -88,7 +88,7 @@ const getNodeQ = [
   'RETURN edge, nodeTo'].join('\n');
 
 /**
- * @name   srefParser
+ * @name   getNodeParser
  * @r     {obj} Neo4j object
  * @return {obj}    cb  a callback for the data.
  */
@@ -105,30 +105,6 @@ const getNodeParser = function(r){
 		createdAt
   }
 }
-
-/**
- * @name   inboundSrefParser
- * @r     {obj} Neo4j object
- * @return {obj}    cb  a callback for the data.
- */
-// const inboundSrefParser = function(r){
-//   const pageID = r.PageTwo.properties._id; //Get the other articles uid
-//   const link = r.Link.properties; //Get the link properties
-//   const textIndex = link.textIndexTo;//Get the text index
-//   const paragraphIndex = link.pIndexTo; //Get the p index
-//   return {
-//     _id: link._id,
-//     index: textIndex,
-//     paragraphIndex: paragraphIndex,
-//     sref: pageID,
-//   }
-// }
-
-  // const textIndex = outBound?link.textIndexFrom:link.textIndexTo; //Get the text index
-  // const paragraphIndex = outBound?link.pIndexFrom:link.pIndexTo; //Get the p index
-
-
-
 
 /**
  * load a list of edges by User
@@ -209,15 +185,6 @@ const getEdgesQ = [
 	'ORDER BY edge.createdAt DESC',
 	'LIMIT {_limit}'].join('\n');
 
-/**
- * @name   srefParser
- * @r     {obj} Neo4j object
- * @return {obj}    cb  a callback for the data.
- */
-// const resultsParser = function(r, id){
-// 	const pageID = r.pageOne.properties._id != id ? r.pageOne.properties._id :r.pageTwo.properties._id;
-//   return pageID
-// }
 
 
 exports.getEdgesForPath = function(_fromId, _toId, _userId, cb){
@@ -248,12 +215,32 @@ const getEdgesForPathQ = [
 	'RETURN nodeFrom, edge, nodeTo'
 ].join('\n');
 
+
+
+
 /**
- * @name   srefParser
- * @r     {obj} Neo4j object
- * @return {obj}    cb  a callback for the data.
+ * Create tags from two existing nodes;
  */
-// const resultsParser = function(r, id){
-// 	const pageID = r.pageOne.properties._id != id ? r.pageOne.properties._id :r.pageTwo.properties._id;
-//   return pageID
-// }
+exports.postTagEdges = function(_idOne, _idTwo, _userId, cb){
+	const _id = new Connection({})._id;
+	let params = {
+			_idOne,
+			_idTwo,
+			_createdAt : new Date().getTime(),
+			_id,
+			_userId
+	}
+	db.cypher(
+		{
+			params: params,
+			query: postTagQ
+		},
+	cb
+	);
+};
+//postTagQ Query
+const  postTagQ = [
+  'MATCH (PageOne {id:{_idOne}})',
+  'MATCH (PageTwo {id:{_idTwo}})',
+  'CREATE (PageOne)-[Link:userEdge {id:{_id}, userId:{_userId}, createdAt:{_createdAt} } ]-> (PageTwo)',
+  'RETURN PageOne, Link, PageTwo'].join('\n');

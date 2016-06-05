@@ -39,7 +39,6 @@ exports.getEntityController = function (req, res) {
     .groupBy('_idNode')
     .map(function(edgesGrouped, i ){
         const edgeSorted = _.sortBy(edgesGrouped,'createdAt');
-        console.log(edgeSorted)
         return {
           _idNode: edgeSorted[0]._idNode,
           _idLink: edgeSorted[0]._idLink,
@@ -50,14 +49,6 @@ exports.getEntityController = function (req, res) {
 
     const entityIds = _.map(req.edges, '_idNode')
     const userIds = _.map(req.edges, '_idUser')
-
-    // return res.send({
-    //   entityIds,
-    //   userIds,
-    //   edges,
-    //   edgesORg:req.edges
-    // })
-
 
   if (!entity) {
     res.status(404).send(utils.errsForApi('Node not found!!'));
