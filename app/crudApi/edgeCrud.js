@@ -89,11 +89,6 @@ exports.load = function (req, res, next, username){
   })
 }
 
-const blob = require('./nested.json');
-exports.getEdgeControllerNest = function(req, res){
-  res.send(blob)
-}
-
 
 /**
  * * Create Edges API
