@@ -55,14 +55,10 @@ exports.getEntityController = function (req, res) {
   } else {
     const object = entity.toJSON();
 
-
-
-
     Entity.find(
       { _id: {$in: entityIds }},
       '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
     .exec(function(err, entities){
-
 
       User.find(
         { _id: {$in: userIds }},
@@ -76,7 +72,8 @@ exports.getEntityController = function (req, res) {
             users: edge.edges.map(function(e){
               return {
                 user:_.find(users, { id: e._idUser}),
-                createdAt: e.createdAt
+                createdAt: e.createdAt,
+                _id:e._idUser
               }
             })
           }
@@ -99,6 +96,7 @@ exports.getSearchController = function (req, res) {
         var url = URLParse(
           q.replace(/^\s+|\s+$/g,'') //trim off trailing
         );
+        console.log(url)
         if (url){
            cb(null, url);
         } else {
@@ -187,6 +185,9 @@ const pageExtractor = function(url, resultDB, cb){
 function pageExtractorDBSearch(url, resultDB, extractedPageData, cb) {
   if (extractedPageData && extractedPageData.canonicalLink){
     pageDBSearch(extractedPageData.canonicalLink, function(err, url, resultDBcanonicalLink){
+
+
+      extractedPageData = resultDBcanonicalLink?null:extractedPageData;//updating value if we foun a result in DB.  Pretend we never did the pageExtractor
       cb(err, url, resultDBcanonicalLink, extractedPageData);
     });
   } else{

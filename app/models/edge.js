@@ -221,15 +221,13 @@ const getEdgesForPathQ = [
 /**
  * Create tags from two existing nodes;
  */
-exports.postTagEdges = function(_idOne, _idTwo, _userId, cb){
+exports.postTagEdges = function(_edgeId, _tags, cb){
 	const _id = new Connection({})._id;
 	let params = {
-			_idOne,
-			_idTwo,
-			_createdAt : new Date().getTime(),
-			_id,
-			_userId
+			_edgeId,
+			_tags
 	}
+	console.log(_edgeId)
 	db.cypher(
 		{
 			params: params,
@@ -240,7 +238,6 @@ exports.postTagEdges = function(_idOne, _idTwo, _userId, cb){
 };
 //postTagQ Query
 const  postTagQ = [
-  'MATCH (PageOne {id:{_idOne}})',
-  'MATCH (PageTwo {id:{_idTwo}})',
-  'CREATE (PageOne)-[Link:userEdge {id:{_id}, userId:{_userId}, createdAt:{_createdAt} } ]-> (PageTwo)',
-  'RETURN PageOne, Link, PageTwo'].join('\n');
+  'MATCH ()-[edge{id:{_edgeId}}]->()',
+	'SET edge.tags = edge.tags +{ _tags }',
+  'RETURN edge'].join('\n');

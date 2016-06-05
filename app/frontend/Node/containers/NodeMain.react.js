@@ -59,6 +59,7 @@ class NodeMain extends Component {
       const { users, entity } = edge;
       const user = users[0].user;
       const createdAt = users[0].createdAt;
+
       const edgeComponent =(
       <EdgeConnection
         username={user.username}
