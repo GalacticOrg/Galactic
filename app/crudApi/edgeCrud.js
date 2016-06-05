@@ -161,9 +161,9 @@ exports.postCreateEdgeController = function (req, res) {
  */
 exports.postTagsEdgeController = function (req, res) {
   const tags = req.body.tags
-  // res.send({tags, success:true})
   const edgeId = '57548c8b9342f4ea280d0ae0';
-  userId = req.user.id;
+  const userId = req.user.id;
+
 
   Edge.postTagEdges(
     edgeId,
