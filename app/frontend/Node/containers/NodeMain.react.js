@@ -146,7 +146,7 @@ class NodeMain extends Component {
 
         <div className={responsiveClasses + ' row resultsSection'}>
           {messageFlag?
-            <Alert bsStyle="success" onDismiss={this.handleAlertDismiss} style={{height: '115px'}}>
+            <Alert bsStyle="success" onDismiss={this.handleAlertDismiss} style={{height: '130px'}}>
               <h4>You added a new Connection!</h4>
               <p>Every connection on the WikiWeb makes it that much more useful for the next person.</p>
               <div className="tag-handler" style={{float: 'right', paddingTop: '10px'}}>
