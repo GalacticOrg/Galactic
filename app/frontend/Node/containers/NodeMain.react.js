@@ -20,6 +20,7 @@ class NodeMain extends Component {
      super();
      this.handleAlertDismiss = this.handleAlertDismiss.bind(this)
      this.addTag = this.addTag.bind(this)
+     this.clearMessage = this.clearMessage.bind(this)
      const messageFlag = window.location.search.search((/message=true/))
      this.state = {
        messageFlag: messageFlag!=-1?true:false
@@ -148,9 +149,10 @@ class NodeMain extends Component {
             <Alert bsStyle="success" onDismiss={this.handleAlertDismiss} style={{height: '115px'}}>
               <h4>You added a new Connection!</h4>
               <p>Every connection on the WikiWeb makes it that much more useful for the next person.</p>
-              <div style={{float: 'right', paddingTop: '10px'}}>
-                <input id="tag-input" type="text"></input>
-                <button onClick={this.addTag}>Add Tag</button>
+              <div className="tag-handler" style={{float: 'right', paddingTop: '10px'}}>
+                <span className="tagging-status" style={{marginRight: '3px'}}></span>
+                <input onFocus={this.clearMessage} id="tag-input" type="text"></input>
+                <button onClick={this.addTag} style={{marginLeft: '3px'}}>Add Tag</button>
                 <div id="tag-output"></div>
               </div>
             </Alert>
@@ -174,10 +176,22 @@ class NodeMain extends Component {
     let targetNode = (document.getElementsByClassName('highlight-first')[0])
     targetNode = targetNode.getElementsByClassName('edgeTags')[0]
     targetNode.appendChild(tagOutput)
-    this.props.dispatch(postNodeTags(1234,[document.getElementById('tag-input').value])) // dispatch route
-    document.getElementById('tag-input').value = '' // clear input
+
+    // dispatch route
+    this.props.dispatch(postNodeTags(1234,[document.getElementById('tag-input').value]))
+
+    // clear input
+    document.getElementById('tag-input').value = ''
+
+    // give confirmation message to user
+    let tagStatus=document.getElementsByClassName('tagging-status')[0]
+    tagStatus.innerText = "tag added!"
   }
 
+  clearMessage() {
+    let tagStatus=document.getElementsByClassName('tagging-status')[0]
+    tagStatus.innerText = ""
+  }
 
   handleAlertDismiss(){
     this.setState({
