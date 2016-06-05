@@ -44,7 +44,7 @@ class NodeMain extends Component {
       </div>)
     }
 
-    const { edges, faviconCDN, title, canonicalLink, description } = nodeResult
+    const { superEdges, faviconCDN, title, canonicalLink, description } = nodeResult
 
     const connectHref = "/connect?url="+canonicalLink
 
@@ -55,19 +55,20 @@ class NodeMain extends Component {
       documentImage = (<span><img src={faviconCDN} style={{width: '16px'}} /></span>)
     }
 
-    const nodeEdges = edges.map(function(edge, i){
-      const { users, entity } = edge;
-      const user = users[0].user;
-      const createdAt = users[0].createdAt;
+    const nodeEdges = superEdges.map(function(superEdge, i){
+      debugger
+      const { users, entity, edges } = superEdge;
+      const user = edges[0].user;
+      const createdAt = edges[0].createdAt;
 
       const edgeComponent =(
-      <EdgeConnection
-        username={user.username}
-        profileImageUrl={user.twitter.profile_image_url}
-        createdAt={Number(createdAt)}
-        length={users.length}
-        />
-      )
+        <EdgeConnection
+          username={user.username}
+          profileImageUrl={user.twitter.profile_image_url}
+          createdAt={Number(createdAt)}
+          length={edges.length}
+          />
+        )
 
       return <div
           className="connectionCardHover"

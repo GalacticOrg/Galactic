@@ -97,11 +97,13 @@ const getNodeParser = function(r){
   const _idLink = r.edge.properties.id; //Get the link properties
 	const _idUser = r.edge.properties.userId; //Get the link properties
 	const createdAt = r.edge.properties.createdAt; //Get the link properties
+	const tags = r.edge.properties.tags;
 
   return {
   	_idLink,
 		_idNode,
 		_idUser,
+		tags,
 		createdAt
   }
 }
@@ -195,7 +197,7 @@ exports.getEdgesForPath = function(_fromId, _toId, _userId, cb){
 	      	_fromId,
 					_toId,
 					_userId
-	      },
+	      }
 	  },
 	  function(err, results){
 
@@ -227,7 +229,7 @@ exports.postTagEdges = function(_edgeId, _tags, cb){
 			_edgeId,
 			_tags
 	}
-	console.log(_edgeId)
+
 	db.cypher(
 		{
 			params: params,
