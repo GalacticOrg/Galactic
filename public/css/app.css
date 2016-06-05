@@ -175,6 +175,17 @@ body {
     outline: none; }
   body .status-icon:focus {
     outline: none; }
+  body .edgeTags {
+    margin-left: 60px;
+    height: 25px; }
+    body .edgeTags span {
+      padding-left: 5px;
+      padding-right: 5px;
+      margin-right: 5px;
+      border: 1px solid orange;
+      border-radius: 3px; }
+    body .edgeTags span:hover {
+      background-color: orange; }
   body .connectionForm {
     margin-top: 50px; }
   body .connectionLiElement {

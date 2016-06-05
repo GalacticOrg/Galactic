@@ -188,8 +188,6 @@ body {
     border: 2px solid #dff0d8;
   }
 
-
-
   .connectionCard {
     min-height: 45px;
     padding-top: 5px;
@@ -230,6 +228,21 @@ body {
   /**************************/
   /** CONNECT PAGE SECTION **/
   /**************************/
+  .edgeTags {
+    margin-left: 60px;
+    height: 25px;
+    span {
+      padding-left: 5px;
+      padding-right: 5px;
+      margin-right: 5px;
+      border: 1px solid orange;
+      border-radius: 3px;
+    }
+    span:hover {
+      background-color: orange;
+    }
+  }
+
   .connectionForm {
     margin-top: 50px;
   }

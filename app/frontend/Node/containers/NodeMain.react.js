@@ -19,6 +19,7 @@ class NodeMain extends Component {
   constructor() {
      super();
      this.handleAlertDismiss = this.handleAlertDismiss.bind(this)
+     this.addTag = this.addTag.bind(this)
      const messageFlag = window.location.search.search((/message=true/))
      this.state = {
        messageFlag: messageFlag!=-1?true:false
@@ -31,7 +32,6 @@ class NodeMain extends Component {
   }
 
   render() {
-
     const { nodeResult } = this.props
     const { messageFlag } = this.state
 
@@ -76,6 +76,7 @@ class NodeMain extends Component {
           id={entity._id}
           edge={edgeComponent}
         />
+        <div className="edgeTags"></div>
 
       </div>
     });
@@ -141,14 +142,12 @@ class NodeMain extends Component {
 
         <div className={responsiveClasses + ' row resultsSection'}>
           {messageFlag?
-            <Alert bsStyle="success" onDismiss={this.handleAlertDismiss}>
+            <Alert bsStyle="success" onDismiss={this.handleAlertDismiss} style={{height: '115px'}}>
               <h4>You added a new Connection!</h4>
               <p>Every connection on the WikiWeb makes it that much more useful for the next person.</p>
-              <div style={{float: 'right', marginTop: '-15px'}}>
+              <div style={{float: 'right', paddingTop: '10px'}}>
                 <input id="tag-input" type="text"></input>
-                <button onClick={
-                  ()=>{getTags(), this.props.dispatch(postNodeTags(1234,["faker"]))}
-                }>Add Tag</button>
+                <button onClick={this.addTag}>Add Tag</button>
                 <div id="tag-output"></div>
               </div>
             </Alert>
@@ -165,20 +164,24 @@ class NodeMain extends Component {
     );
   }
 
+  addTag() {
+    let tagInput = document.getElementById('tag-input').value
+    let tagOutput = document.createElement('span')
+    tagOutput.innerHTML = tagInput
+    let targetNode = (document.getElementsByClassName('highlight-first')[0])
+    targetNode = targetNode.getElementsByClassName('edgeTags')[0]
+    targetNode.appendChild(tagOutput)
+    this.props.dispatch(postNodeTags(1234,[document.getElementById('tag-input').value])) // dispatch route
+    document.getElementById('tag-input').value = '' // clear input
+  }
+
+
   handleAlertDismiss(){
     this.setState({
       messageFlag:false
     })
   }
-}
 
-
-let thisTag = null
-function getTags() {
-  if (document.getElementById('tag-input').value){
-    thisTag = document.getElementById('tag-input').value
-  }
-  return thisTag
 }
 
 function mapStateToProps(state) {
