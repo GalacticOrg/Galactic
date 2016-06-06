@@ -66,16 +66,14 @@ exports.getEntityController = function (req, res) {
       .exec(function(err, users){
 
         object.superEdges = edges.map(function(edge, i){
-          console.log(edge)
           return {
             entity: _.find(entities, { id: edge._idNode}),
-            _id: edge._idLink,
-            tags: edge.tags,
             createdAt: edge.createdAt,
             edges: edge.edges.map(function(e){
               return {
                 user:_.find(users, { id: e._idUser}),
                 createdAt: e.createdAt,
+                _id: e._idLink,
                 tags: e.tags?e.tags:[]
               }
             })

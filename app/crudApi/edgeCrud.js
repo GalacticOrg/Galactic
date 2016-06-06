@@ -157,12 +157,12 @@ exports.postCreateEdgeController = function (req, res) {
 /**
  * * Post Tags Edges API
  */
-exports.postTagsEdgeController = function (req, res) {
+exports.postTagsEdgeController = function (req, res, id) {
   const tags = req.body.tags
-  const edgeId = '57548c8b9342f4ea280d0ae0';
+  const edgeId = id//'57548c8b9342f4ea280d0ae0';
   const userId = req.user.id;
 
-
+  return
   Edge.postTagEdges(
     edgeId,
     tags,

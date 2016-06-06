@@ -19,8 +19,6 @@ class NodeMain extends Component {
   constructor() {
      super();
      this.handleAlertDismiss = this.handleAlertDismiss.bind(this)
-     this.addTag = this.addTag.bind(this)
-     this.clearMessage = this.clearMessage.bind(this)
      const messageFlag = window.location.search.search((/message=true/))
      this.state = {
        messageFlag: messageFlag!=-1?true:false
@@ -56,17 +54,19 @@ class NodeMain extends Component {
     }
 
     const nodeEdges = superEdges.map(function(superEdge, i){
-      debugger
       const { users, entity, edges } = superEdge;
       const user = edges[0].user;
       const createdAt = edges[0].createdAt;
-
+      let tags = edges.map(edge=>edge.tags);
+      tags = tags.reduce((a, b)=>a.concat(b));//flattens the array
+      //superEdges[0]._id  //this is the id for the item we hand to update with tags api
       const edgeComponent =(
         <EdgeConnection
           username={user.username}
           profileImageUrl={user.twitter.profile_image_url}
           createdAt={Number(createdAt)}
           length={edges.length}
+          tags={tags}
           />
         )
 
@@ -147,16 +147,12 @@ class NodeMain extends Component {
         </div>
 
         <div className={responsiveClasses + ' row resultsSection'}>
-          {messageFlag?
-            <Alert bsStyle="success" onDismiss={this.handleAlertDismiss} style={{height: '115px'}}>
+          {messageFlag && superEdges[0]?
+            <Alert bsStyle="success" onDismiss={this.handleAlertDismiss}>
               <h4>You added a new Connection!</h4>
               <p>Every connection on the WikiWeb makes it that much more useful for the next person.</p>
-              <div className="tag-handler" style={{float: 'right', paddingTop: '10px'}}>
-                <span className="tagging-status" style={{marginRight: '3px'}}></span>
-                <input onFocus={this.clearMessage} id="tag-input" type="text"></input>
-                <button onClick={this.addTag} style={{marginLeft: '3px'}}>Add Tag</button>
-                <div id="tag-output"></div>
-              </div>
+              <br/>
+
             </Alert>
            :null}
           <div className={messageFlag?'highlight-first':''}>
@@ -169,30 +165,6 @@ class NodeMain extends Component {
       </div>
       </div>
     );
-  }
-
-  addTag() {
-    let tagInput = document.getElementById('tag-input').value
-    let tagOutput = document.createElement('span')
-    tagOutput.innerHTML = tagInput
-    let targetNode = (document.getElementsByClassName('highlight-first')[0])
-    targetNode = targetNode.getElementsByClassName('edgeTags')[0]
-    targetNode.appendChild(tagOutput)
-
-    // dispatch route
-    this.props.dispatch(postNodeTags(1234,[document.getElementById('tag-input').value]))
-
-    // clear input
-    document.getElementById('tag-input').value = ''
-
-    // give confirmation message to user
-    let tagStatus=document.getElementsByClassName('tagging-status')[0]
-    tagStatus.innerText = "tag added!"
-  }
-
-  clearMessage() {
-    let tagStatus=document.getElementsByClassName('tagging-status')[0]
-    tagStatus.innerText = ""
   }
 
   handleAlertDismiss(){
