@@ -4,10 +4,12 @@ import Loader from 'react-loader';
 import Navbar from "../../components/Navbar.react"
 import EntityItem from "../../components/EntityItem.react"
 import EdgeConnection from "../../components/EdgeConnection.react"
+import TagsInput from "../components/TagsInput.react"
+
 
 import { Alert, Tooltip, OverlayTrigger  } from "react-bootstrap"
-
 import { getNode, postNodeTags } from "../actions/index"
+
 const responsiveClasses = [
         'col-xs-12','col-sm-10',
         'col-sm-offset-1',
@@ -19,8 +21,6 @@ class NodeMain extends Component {
   constructor() {
      super();
      this.handleAlertDismiss = this.handleAlertDismiss.bind(this)
-     this.addTag = this.addTag.bind(this)
-     this.clearMessage = this.clearMessage.bind(this)
      const messageFlag = window.location.search.search((/message=true/))
      this.state = {
        messageFlag: messageFlag!=-1?true:false
@@ -33,7 +33,7 @@ class NodeMain extends Component {
   }
 
   render() {
-    const { nodeResult } = this.props
+    const { nodeResult, user } = this.props
     const { messageFlag } = this.state
 
     if (!nodeResult || Object.keys(nodeResult).length==0) {
@@ -44,7 +44,7 @@ class NodeMain extends Component {
       </div>)
     }
 
-    const { edges, faviconCDN, title, canonicalLink, description } = nodeResult
+    const { superEdges, faviconCDN, title, canonicalLink, description } = nodeResult
 
     const connectHref = "/connect?url="+canonicalLink
 
@@ -55,35 +55,44 @@ class NodeMain extends Component {
       documentImage = (<span><img src={faviconCDN} style={{width: '16px'}} /></span>)
     }
 
-    const nodeEdges = edges.map(function(edge, i){
-      const { users, entity } = edge;
-      const user = users[0].user;
-      const createdAt = users[0].createdAt;
-
+    const nodeEdges = superEdges.map(function(superEdge, i){
+      const { users, entity, edges } = superEdge;
+      const user = edges[0].user;
+      const createdAt = edges[0].createdAt;
+      let tags = edges.map(edge=>edge.tags);
+      tags = tags.reduce((a, b)=>a.concat(b));//flattens the array
+      //superEdges[0]._id  //this is the id for the item we h
       const edgeComponent =(
-      <EdgeConnection
-        username={user.username}
-        profileImageUrl={user.twitter.profile_image_url}
-        createdAt={Number(createdAt)}
-        length={users.length}
-        />
-      )
+        <EdgeConnection
+          username={user.username}
+          profileImageUrl={user.twitter.profile_image_url}
+          createdAt={Number(createdAt)}
+          length={edges.length}
+          tags={tags}
+          />
+        )
+      let currentUserEdgeId = null;
+      if (user){
+        const currentUserEdge = edges.find(e=>e.user._id==user._id);
+        currentUserEdgeId = currentUserEdge?currentUserEdge._id:null;
+      }
 
-      return <div
+      return (
+        <div
           className="connectionCardHover"
           key={i}>
-        <EntityItem
-          imageCDN={entity.imageCDN.url?entity.imageCDN.url:''}
-          faviconCDN={entity.faviconCDN?entity.faviconCDN:''}
-          canonicalLink={entity.canonicalLink}
-          title={entity.title}
-          description={entity.description}
-          id={entity._id}
-          edge={edgeComponent}
-        />
-        <div className="edgeTags"></div>
-
-      </div>
+          <EntityItem
+            imageCDN={entity.imageCDN.url?entity.imageCDN.url:''}
+            faviconCDN={entity.faviconCDN?entity.faviconCDN:''}
+            canonicalLink={entity.canonicalLink}
+            title={entity.title}
+            description={entity.description}
+            id={entity._id}
+            edge={edgeComponent}
+          />
+        {currentUserEdgeId} Is this an Id?
+          <TagsInput tags={tags} id={currentUserEdgeId} />
+        </div>)
     });
 
     const tooltip = (
@@ -146,16 +155,12 @@ class NodeMain extends Component {
         </div>
 
         <div className={responsiveClasses + ' row resultsSection'}>
-          {messageFlag?
-            <Alert bsStyle="success" onDismiss={this.handleAlertDismiss} style={{height: '130px'}}>
+          {messageFlag && superEdges[0]?
+            <Alert bsStyle="success" onDismiss={this.handleAlertDismiss}>
               <h4>You added a new Connection!</h4>
               <p>Every connection on the WikiWeb makes it that much more useful for the next person.</p>
-              <div className="tag-handler" style={{float: 'right', paddingTop: '10px'}}>
-                <span className="tagging-status" style={{marginRight: '3px'}}></span>
-                <input onFocus={this.clearMessage} id="tag-input" type="text"></input>
-                <button onClick={this.addTag} style={{marginLeft: '3px'}}>Add Tag</button>
-                <div id="tag-output"></div>
-              </div>
+              <br/>
+
             </Alert>
            :null}
           <div className={messageFlag?'highlight-first':''}>
@@ -169,30 +174,13 @@ class NodeMain extends Component {
       </div>
     );
   }
-
-  addTag() {
-    let tagInput = document.getElementById('tag-input').value
-    let tagOutput = document.createElement('span')
-    tagOutput.innerHTML = tagInput
-    let targetNode = (document.getElementsByClassName('highlight-first')[0])
-    targetNode = targetNode.getElementsByClassName('edgeTags')[0]
-    targetNode.appendChild(tagOutput)
-
-    // dispatch route
-    this.props.dispatch(postNodeTags(1234,[document.getElementById('tag-input').value]))
-
-    // clear input
-    document.getElementById('tag-input').value = ''
-
-    // give confirmation message to user
-    let tagStatus=document.getElementsByClassName('tagging-status')[0]
-    tagStatus.innerText = "tag added!"
+  _addTag(id){
+    this.props.dispatch( postNodeTags(id, this.state.tagInput.split(' ') ));
+    this.setState({
+      tagInput: ''
+    });
   }
 
-  clearMessage() {
-    let tagStatus=document.getElementsByClassName('tagging-status')[0]
-    tagStatus.innerText = ""
-  }
 
   handleAlertDismiss(){
     this.setState({
@@ -203,11 +191,18 @@ class NodeMain extends Component {
 }
 
 function mapStateToProps(state) {
-  const { nodeResult, edgeResult } = state;
+  const { nodeResult, edgeResult, userResult } = state;
+  let user = null;
+  if ( userResult && userResult.success ){
+    user = userResult;
+  }
   return {
     nodeResult,
-    edgeResult
+    edgeResult,
+    userResult,
+    user
   }
 }
+
 
 export default connect(mapStateToProps)(NodeMain)

@@ -34,7 +34,6 @@ exports.load = function (req, res, next, id){
 exports.getEntityController = function (req, res) {
   const entity = req.entity;
 
-
   const edges = _.chain(req.edges)
     .groupBy('_idNode')
     .map(function(edgesGrouped, i ){
@@ -47,8 +46,8 @@ exports.getEntityController = function (req, res) {
         }
     }).value()
 
-    const entityIds = _.map(req.edges, '_idNode')
-    const userIds = _.map(req.edges, '_idUser')
+  const entityIds = _.map(req.edges, '_idNode')
+  const userIds = _.map(req.edges, '_idUser')
 
   if (!entity) {
     res.status(404).send(utils.errsForApi('Node not found!!'));
@@ -66,14 +65,16 @@ exports.getEntityController = function (req, res) {
       )
       .exec(function(err, users){
 
-        object.edges = edges.map(function(edge, i){
+        object.superEdges = edges.map(function(edge, i){
           return {
             entity: _.find(entities, { id: edge._idNode}),
-            users: edge.edges.map(function(e){
+            createdAt: edge.createdAt,
+            edges: edge.edges.map(function(e){
               return {
                 user:_.find(users, { id: e._idUser}),
                 createdAt: e.createdAt,
-                _id:e._idUser
+                _id: e._idLink,
+                tags: e.tags?e.tags:[]
               }
             })
           }

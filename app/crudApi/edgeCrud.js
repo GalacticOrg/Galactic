@@ -6,7 +6,7 @@ const Edge = require('../models/edge');
 const utils = require('../../lib/utils')
 const _ = require('lodash');
 
-exports.load = function (req, res, next, username){
+exports.loadUser = function (req, res, next, username){
   const options = {
     criteria: { username : username }
   };
@@ -29,6 +29,12 @@ exports.load = function (req, res, next, username){
 
   });
 };
+exports.loadEdgeId = function (req, res, next, eid){
+  req.eid = eid
+  next()
+}
+
+
 
 /**
  * * Get User Edges API
@@ -99,8 +105,6 @@ exports.postCreateEdgeController = function (req, res) {
   const fromId = body.fromId;
   const userId = req.user.id
 
-
-
   Edge.getEdgesForPath(
     fromId,
     toId,
@@ -161,10 +165,8 @@ exports.postCreateEdgeController = function (req, res) {
  */
 exports.postTagsEdgeController = function (req, res) {
   const tags = req.body.tags
-  const edgeId = '57548c8b9342f4ea280d0ae0';
-  const userId = req.user.id;
-
-
+  const edgeId = req.eid;
+  console.log(tags, edgeId)
   Edge.postTagEdges(
     edgeId,
     tags,
