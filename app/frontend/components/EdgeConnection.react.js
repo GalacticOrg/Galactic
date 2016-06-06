@@ -22,11 +22,10 @@ export default class EdgeConnection extends Component {
           <img src={profileImageUrl} style={{height:'15px', width: '15px'}} />
         </a>
         <a href={'/@'+username}>@{username}</a>
+        {length>1?<span> and {length-1} more</span>:null}
         </span>
-        <span> | {length} edges</span>
         <span> | {new Date(createdAt).toLocaleString()}</span>
         {tags&&tags.length>0?<div style={{marginTop:'3px'}}>{tags.join(' ')}</div>:null}
-
       </div>
     )
   }

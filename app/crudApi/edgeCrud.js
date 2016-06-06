@@ -110,6 +110,7 @@ exports.postCreateEdgeController = function (req, res) {
     toId,
     userId,
     function(err, resultExisting){
+
       if (resultExisting && resultExisting.length>0){
         res.status(409).send({
           success: false,

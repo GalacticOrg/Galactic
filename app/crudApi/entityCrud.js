@@ -23,6 +23,8 @@ exports.load = function (req, res, next, id){
     req.entity = entity;
     Edge.getNode(entity._id, function(err, edges){
       req.edges = edges
+      //return res.send({edges, err})
+
       next();
     })
   });
@@ -54,35 +56,38 @@ exports.getEntityController = function (req, res) {
   } else {
     const object = entity.toJSON();
 
-    Entity.find(
-      { _id: {$in: entityIds }},
-      '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
-    .exec(function(err, entities){
+    Edge.getNodeCount(entityIds.concat(entity.id), function(err, entityCount){
 
-      User.find(
-        { _id: {$in: userIds }},
-        'name username twitter'
-      )
-      .exec(function(err, users){
+      Entity.find(
+        { _id: {$in:  entityIds}},
+        '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
+      .exec(function(err, entities){
 
-        object.superEdges = edges.map(function(edge, i){
-          return {
-            entity: _.find(entities, { id: edge._idNode}),
-            createdAt: edge.createdAt,
-            edges: edge.edges.map(function(e){
-              return {
-                user:_.find(users, { id: e._idUser}),
-                createdAt: e.createdAt,
-                _id: e._idLink,
-                tags: e.tags?e.tags:[]
-              }
-            })
-          }
-        });
-        res.send(object);
-      })
-    })
-
+        User.find(
+          { _id: {$in: userIds }},
+          'name username twitter'
+        )
+        .exec(function(err, users){
+          object.entityCount =  entityCount[entity.id]?entityCount[entity.id].length:0;
+          object.superEdges = edges.map(function(edge, i){
+            return {
+              entity: _.find(entities, { id: edge._idNode}),
+              entityCount: entityCount[edge._idNode].length,
+              createdAt: edge.createdAt,
+              edges: edge.edges.map(function(e){
+                return {
+                  user:_.find(users, { id: e._idUser}),
+                  createdAt: e.createdAt,
+                  _id: e._idLink,
+                  tags: e.tags?e.tags:[]
+                }
+              })
+            }
+          });
+          res.send(object);
+        })
+      });//Entity.find
+    });//Edge.getNodeCount
   }
 }
 /**

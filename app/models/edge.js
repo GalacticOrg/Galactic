@@ -84,8 +84,51 @@ exports.getNode = function(_id, cb){
 
 //get Node Query
 const getNodeQ = [
+
   'MATCH ({id:{_id}})-[edge:userEdge]-(nodeTo)',
   'RETURN edge, nodeTo'].join('\n');
+
+/**
+ * load a node from a MongoId;
+ */
+exports.getNodeCount = function(_ids, cb){
+	db.cypher({
+	      query: getNodeCountQ,
+	      params: {
+	          _ids
+	      },
+	  }, function(err, results){
+
+		if (err) {
+		  console.log(err, 'getNodeCount')
+			return cb(err, null)
+		}
+
+		results = results.map(function(r){
+			return {
+				fromId:r.nodeFrom.properties.id,
+				toId:r.nodeTo.properties.id
+			}
+		});
+
+		let r = _.groupBy(results, function(r){ return r.fromId })
+		for (let key in r) {
+			r[key] = _.uniqBy(r[key],'toId')
+		}
+	  cb(err,
+			r
+		);
+	});
+};
+
+//get Node Query
+const getNodeCountQ = [
+
+  'MATCH p=(nodeFrom)-[]-(nodeTo)',
+	'WHERE nodeFrom.id IN {_ids}',
+  'RETURN nodeTo, nodeFrom'].join('\n');
+
+	//.
 
 /**
  * @name   getNodeParser

@@ -44,7 +44,7 @@ class NodeMain extends Component {
       </div>)
     }
 
-    const { superEdges, faviconCDN, title, canonicalLink, description } = nodeResult
+    const { superEdges, faviconCDN, title, entityCount, canonicalLink, description } = nodeResult
 
     const connectHref = "/connect?url="+canonicalLink
 
@@ -56,7 +56,7 @@ class NodeMain extends Component {
     }
 
     const nodeEdges = superEdges.map(function(superEdge, i){
-      const { users, entity, edges } = superEdge;
+      const { users, entity, edges, entityCount } = superEdge;
       const user = edges[0].user;
       const createdAt = edges[0].createdAt;
       let tags = edges.map(edge=>edge.tags);
@@ -83,6 +83,7 @@ class NodeMain extends Component {
           style={{paddingBottom:'1em'}}
           key={i}>
           <EntityItem
+            count={entityCount}
             imageCDN={entity.imageCDN.url?entity.imageCDN.url:''}
             faviconCDN={entity.faviconCDN?entity.faviconCDN:''}
             canonicalLink={entity.canonicalLink}
@@ -129,7 +130,7 @@ class NodeMain extends Component {
           <div className="show-grid">
             <div className="resultFont">
               <br />
-              <h3>{title}</h3>
+              <h3>{title} <span className="label label-default">{entityCount}</span></h3>
               <div>
                 {documentImage}
                 &nbsp;<a href={canonicalLink} className="noUnderline">

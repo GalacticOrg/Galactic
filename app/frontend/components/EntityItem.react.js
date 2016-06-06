@@ -6,7 +6,7 @@ const nodeEntityDescriptionStyle = {fontSize: '13px'}
 export default class EntityItem extends Component {
 
   render() {
-    const { imageCDN, faviconCDN, canonicalLink, title, description, id, edge=null  } = this.props;
+    const { count, imageCDN, faviconCDN, canonicalLink, title, description, id, edge=null  } = this.props;
 
     let edgeImg = null;
     if (imageCDN){
@@ -40,6 +40,7 @@ export default class EntityItem extends Component {
             <EntityItemTitleHost
               title={title}
               id={id}
+              count={count}
               canonicalLink={canonicalLink} />
               <span style={nodeEntityDescriptionStyle}>{edgeDescription}</span>
           </div>
@@ -55,7 +56,8 @@ EntityItem.propTypes = {
   faviconCDN: PropTypes.string.isRequired,
   canonicalLink: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  count: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  edge: PropTypes.object
+  edge: PropTypes.object,
 }
