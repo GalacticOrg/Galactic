@@ -224,7 +224,7 @@ const getEdgesForPathQ = [
  * Create tags from two existing nodes;
  */
 exports.postTagEdges = function(_edgeId, _tags, cb){
-	const _id = new Connection({})._id;
+	//const _id = new Connection({})._id;
 	let params = {
 			_edgeId,
 			_tags
@@ -241,5 +241,5 @@ exports.postTagEdges = function(_edgeId, _tags, cb){
 //postTagQ Query
 const  postTagQ = [
   'MATCH ()-[edge{id:{_edgeId}}]->()',
-	'SET edge.tags = edge.tags +{ _tags }',
+	'SET edge.tags = { _tags }',
   'RETURN edge'].join('\n');

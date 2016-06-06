@@ -4,10 +4,12 @@ import Loader from 'react-loader';
 import Navbar from "../../components/Navbar.react"
 import EntityItem from "../../components/EntityItem.react"
 import EdgeConnection from "../../components/EdgeConnection.react"
+import TagsInput from "../components/TagsInput.react"
+
 
 import { Alert, Tooltip, OverlayTrigger  } from "react-bootstrap"
-
 import { getNode, postNodeTags } from "../actions/index"
+
 const responsiveClasses = [
         'col-xs-12','col-sm-10',
         'col-sm-offset-1',
@@ -31,7 +33,7 @@ class NodeMain extends Component {
   }
 
   render() {
-    const { nodeResult } = this.props
+    const { nodeResult, user } = this.props
     const { messageFlag } = this.state
 
     if (!nodeResult || Object.keys(nodeResult).length==0) {
@@ -59,7 +61,7 @@ class NodeMain extends Component {
       const createdAt = edges[0].createdAt;
       let tags = edges.map(edge=>edge.tags);
       tags = tags.reduce((a, b)=>a.concat(b));//flattens the array
-      //superEdges[0]._id  //this is the id for the item we hand to update with tags api
+      //superEdges[0]._id  //this is the id for the item we h
       const edgeComponent =(
         <EdgeConnection
           username={user.username}
@@ -69,22 +71,28 @@ class NodeMain extends Component {
           tags={tags}
           />
         )
-
-      return <div
+      let currentUserEdgeId = null;
+      if (user){
+        const currentUserEdge = edges.find(e=>e.user._id==user._id);
+        currentUserEdgeId = currentUserEdge?currentUserEdge._id:null;
+      }
+      
+      return (
+        <div
           className="connectionCardHover"
           key={i}>
-        <EntityItem
-          imageCDN={entity.imageCDN.url?entity.imageCDN.url:''}
-          faviconCDN={entity.faviconCDN?entity.faviconCDN:''}
-          canonicalLink={entity.canonicalLink}
-          title={entity.title}
-          description={entity.description}
-          id={entity._id}
-          edge={edgeComponent}
-        />
-        <div className="edgeTags"></div>
-
-      </div>
+          <EntityItem
+            imageCDN={entity.imageCDN.url?entity.imageCDN.url:''}
+            faviconCDN={entity.faviconCDN?entity.faviconCDN:''}
+            canonicalLink={entity.canonicalLink}
+            title={entity.title}
+            description={entity.description}
+            id={entity._id}
+            edge={edgeComponent}
+          />
+        {currentUserEdgeId} Is this an Id?
+          <TagsInput tags={tags} id={currentUserEdgeId} />
+        </div>)
     });
 
     const tooltip = (
@@ -166,6 +174,13 @@ class NodeMain extends Component {
       </div>
     );
   }
+  _addTag(id){
+    this.props.dispatch( postNodeTags(id, this.state.tagInput.split(' ') ));
+    this.setState({
+      tagInput: ''
+    });
+  }
+
 
   handleAlertDismiss(){
     this.setState({
@@ -176,11 +191,18 @@ class NodeMain extends Component {
 }
 
 function mapStateToProps(state) {
-  const { nodeResult, edgeResult } = state;
+  const { nodeResult, edgeResult, userResult } = state;
+  let user = null;
+  if ( userResult && userResult.success ){
+    user = userResult;
+  }
   return {
     nodeResult,
-    edgeResult
+    edgeResult,
+    userResult,
+    user
   }
 }
+
 
 export default connect(mapStateToProps)(NodeMain)

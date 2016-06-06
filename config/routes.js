@@ -25,12 +25,14 @@ module.exports = function (app, passport) {
   app.get('/api/node/:id', entityCrud.getEntityController)
 
   //API Edge
-  app.param('user', edgeCrud.load);
+  app.param('user', edgeCrud.loadUser);
   app.get('/api/edges/users/:user', edgeCrud.getUserEdgeController)
   app.get('/api/edges/firehose', edgeCrud.getEdgeController)
 
+  app.param('eid', edgeCrud.loadEdgeId);
+
   app.post('/api/connect', auth.requiresLogin, edgeCrud.postCreateEdgeController)
-  app.post('/api/connect/:cid', auth.requiresLogin, edgeCrud.postTagsEdgeController)
+  app.post('/api/connect/:eid', auth.requiresLogin, edgeCrud.postTagsEdgeController)
 
 
   // API User

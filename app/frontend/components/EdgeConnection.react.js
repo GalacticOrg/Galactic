@@ -27,30 +27,8 @@ export default class EdgeConnection extends Component {
         <span> | {new Date(createdAt).toLocaleString()}</span>
         {tags&&tags.length>0?<div>{tags.join(' ')}</div>:null}
 
-
-        <Alert bsStyle="success" onDismiss={this.handleAlertDismiss}>
-          <div className="input-group" style={{width:'400px'}}>
-            <input
-              onChange={this._tagChangeHandler}
-              value={this.state.tagInput}
-              type="text" className="form-control" placeholder="add Tags..." />
-              <span className="input-group-btn">
-              <button
-                onClick={this._addTag.bind(this, 'id goes here')}
-                className="btn btn-default"
-                type="button">Submit</button>
-            </span>
-          </div>
-        </Alert>
       </div>
     )
-  }
-
-  _addTag(id){
-    this.props.dispatch( postNodeTags(id, this.state.tagInput.split(' ') ));
-    this.setState({
-      tagInput: ''
-    });
   }
 
   _tagChangeHandler(e){
