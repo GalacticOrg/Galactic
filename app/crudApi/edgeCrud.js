@@ -171,6 +171,8 @@ exports.postTagsEdgeController = function (req, res) {
     edgeId,
     tags,
     function(err, edge){
-      res.send({err, edge})
+      if (err) return res.status(400).send(utils.errsForApi(err.errors || err));
+
+      res.send(edge[0].edge.properties)
     });
 }

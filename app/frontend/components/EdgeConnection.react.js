@@ -25,7 +25,7 @@ export default class EdgeConnection extends Component {
         </span>
         <span> | {length} edges</span>
         <span> | {new Date(createdAt).toLocaleString()}</span>
-        {tags&&tags.length>0?<div>{tags.join(' ')}</div>:null}
+        {tags&&tags.length>0?<div style={{marginTop:'3px'}}>{tags.join(' ')}</div>:null}
 
       </div>
     )

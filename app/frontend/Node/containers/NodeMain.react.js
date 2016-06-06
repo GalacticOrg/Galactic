@@ -71,7 +71,7 @@ class NodeMain extends Component {
           tags={tags}
           />
         )
-      let currentUserEdgeId = null;
+      let tagInput = null;
       if (user){
         const currentUserEdge = edges.find(e=>e.user._id==user._id);
         currentUserEdgeId = currentUserEdge?currentUserEdge._id:null;
@@ -80,6 +80,7 @@ class NodeMain extends Component {
       return (
         <div
           className="connectionCardHover"
+          style={{paddingBottom:'1em'}}
           key={i}>
           <EntityItem
             imageCDN={entity.imageCDN.url?entity.imageCDN.url:''}
@@ -90,8 +91,7 @@ class NodeMain extends Component {
             id={entity._id}
             edge={edgeComponent}
           />
-        {currentUserEdgeId} Is this an Id?
-          <TagsInput tags={tags} id={currentUserEdgeId} />
+          {tagInput}
         </div>)
     });
 
