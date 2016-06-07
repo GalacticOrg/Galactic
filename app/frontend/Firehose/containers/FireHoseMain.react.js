@@ -35,7 +35,7 @@ class User extends Component {
 
 
     const connections = firehoseResult?
-    firehoseResult.map(function(edge, i){
+    firehoseResult.map(function(edge, i) {
       const { user, nodeFrom, nodeTo, createdAt } = edge;
       return (
         <div

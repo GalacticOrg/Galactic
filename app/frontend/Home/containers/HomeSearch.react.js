@@ -15,20 +15,6 @@ const homepageUrlSearchForm = {
   paddingRight: '20px'
 }
 
-const connectLine = {
-  borderLeft: "2px solid orange",
-  marginLeft: '23px',
-  height: '6em'
-}
-
-const connectLineParent = {
-  height: "0px",
-  overflow: 'visible',
-  marginTop: '-3em',
-  marginBottom: '3em'
-}
-
-
 import { getFirehose } from "../actions/index"
 
 class Home extends Component {
@@ -46,13 +32,15 @@ class Home extends Component {
       const { user, nodeFrom, nodeTo, createdAt } = edge;
       return (
         <div
+          className="edge-card"
           key={i}
-          style={{backgroundColor:'rgb(249, 248, 241)',
-                  borderRadius:'4px',
+          style={{
                   padding:'4px',
                   paddingLeft: '6px',
-                  margin: '10px',
-                  border: '1px #eee solid',
+                  paddingTop: '12px',
+                  paddingBottom: '8px',
+                  border: '1px #E1E8ED solid',
+                  backgroundColor: 'white'
                 }}>
             <EntityItem
               imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
@@ -63,7 +51,6 @@ class Home extends Component {
               id={nodeFrom._id}
               createdAt={Number(createdAt)}
             />
-            <div style={connectLineParent}><div style={connectLine}></div></div>
             <EntityItem
               imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
               faviconCDN={nodeTo.faviconCDN?nodeTo.faviconCDN:''}
@@ -84,7 +71,7 @@ class Home extends Component {
     return (
       <div>
         <Navbar />
-        <div className="container">
+        <div className="container" style={{marginBottom:'80px'}}>
           <div className="row">
             <div className="text-center" style={{margin: '100px 0 30px'}}>
               <div style={{height: '120px'}}><b><span style={{fontFamily: "'Ovo', serif",fontSize: '82px'}}>WikiWeb</span></b></div>
@@ -116,18 +103,20 @@ class Home extends Component {
                 />
             </div>
           </div>
-          <div className='row'>
-            <div style={{marginTop:'80px'}}
-              className={
-              ['col-xs-12',
-              'col-sm-10',
-              'col-sm-offset-1',
-              'col-md-8',
-              'col-md-offset-2'].join(' ')
-              }>
-              <hr />
-              <h4>Recently Made Connections:</h4>
-              {connections}
+        </div>
+        <div id='homepage-firehose' style={{backgroundColor: '#F5F8FA', paddingTop: '10px', borderTop: '1px #E1E8ED solid'}}>
+          <div className='container'>
+            <div className='row'>
+              <div
+                className={
+                ['col-xs-12',
+                'col-sm-10',
+                'col-sm-offset-1',
+                'col-md-8',
+                'col-md-offset-2'].join(' ')
+                }>
+                {connections}
+              </div>
             </div>
           </div>
         </div>

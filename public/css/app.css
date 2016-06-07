@@ -64,6 +64,8 @@ body {
     text-decoration: none; }
   body .noUnderline:hover {
     text-decoration: none; }
+  body .edge-card:hover {
+    border: 1px solid black; }
   body .navbar .connect-icon-box {
     margin-right: 10px; }
   body .navbar .connect-icon {

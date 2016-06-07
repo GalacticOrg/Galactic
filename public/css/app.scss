@@ -26,6 +26,9 @@ body {
   .noUnderline:hover {
     text-decoration: none;
   }
+
+  .edge-card {}
+  .edge-card:hover {border: 1px solid black;}
   /**************************/
   /** NAVBAR SECTION **/
   /**************************/
