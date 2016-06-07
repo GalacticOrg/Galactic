@@ -27,24 +27,28 @@ export default class EntityItem extends Component {
 
     return (
       <div className="connectionCard">
-        <div style={{display: 'block'}}>
-          <div style={{
+        <div className="card-left-col" style={{width: '15%'}}>
+           <div style={{
               float: 'left',
               maxHeight:'50px',
               overflow:'hidden',
               marginLeft: '6px',
               marginRight: '5px'}}>
-            <img src={edgeImg} style={{width: '50px'}}/>
+            <img src={edgeImg} style={{width: '50px'}} />
           </div>
-          <div style={{paddingBottom:'3px'}}>
-            <EntityItemTitleHost
-              title={title}
-              id={id}
-              count={count}
-              canonicalLink={canonicalLink} />
+        </div>
+        <div className="card-right-col" style={{float: 'left', width: '85%', paddingLeft: '5px'}}>
+          <div>
+            <div style={{paddingBottom:'3px'}}>
+              <EntityItemTitleHost
+                title={title}
+                id={id}
+                count={count}
+                canonicalLink={canonicalLink} />
               <span style={nodeEntityDescriptionStyle}>{edgeDescription}</span>
+            </div>
+            {edge}
           </div>
-          {edge}
         </div>
       </div>
     )
