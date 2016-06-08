@@ -19,7 +19,7 @@ const responsiveClasses = [
 class NodeMain extends Component {
 
   constructor() {
-     super();
+     super()
      this.handleAlertDismiss = this.handleAlertDismiss.bind(this)
      const messageFlag = window.location.search.search((/message=true/))
      this.state = {
@@ -80,7 +80,6 @@ class NodeMain extends Component {
             <TagsInput tags={tags} id={currentUserEdgeId} />
           </div>
         )
-
       };
 
       return (
@@ -167,7 +166,6 @@ class NodeMain extends Component {
               <h4>You added a new Connection!</h4>
               <p>Every connection on the WikiWeb makes it that much more useful for the next person.</p>
               <br/>
-
             </Alert>
            :null}
           <div className={messageFlag?'highlight-first':''}>
