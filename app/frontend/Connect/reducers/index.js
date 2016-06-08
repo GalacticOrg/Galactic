@@ -5,7 +5,7 @@
 
 import { combineReducers } from 'redux';
 import userResult from '../../components/users/reducers'
-import inputURLResult from '../../components/inputURL/reducers'
+import inputURLResult from '../../components/InputURL/reducers'
 import { RECEIVE_CONNECTION_DATA, POST_CONNECTION_DATA, RECEIVE_CONNECTION_ERROR } from '../actions'
 
 const connectionsResult = (state = {success: null}, action) => {

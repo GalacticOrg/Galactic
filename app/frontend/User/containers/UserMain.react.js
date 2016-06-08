@@ -7,7 +7,7 @@ import ReactDOM from "react-dom";
 import Loader from 'react-loader';
 
 import Navbar from "../../components/Navbar.react"
-import EntityItem from "../../components/EntityItem.react"
+import EntityItem from "../../components/Entity/"
 import EdgeConnection from "../../components/EdgeConnection"
 
 import { connect } from 'react-redux'
