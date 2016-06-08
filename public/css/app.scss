@@ -1,6 +1,8 @@
 $success-green: #66AD57;
 $success-green-overlay: #5B9E4D;
 $failure-red: #FF0000;
+$background-grey: #F5F8FA;
+$border-color: rgb(225, 232, 237);
 
 body {
   font-family: "Open Sans","Helvetica Neue",sans-serif;
@@ -51,17 +53,12 @@ body {
   /** NAVBAR SECTION **/
   /**************************/
   .navbar {
-    .connect-icon-box {
-      margin-right: 10px;
+    .connect-icon-box{color: orange}
+    .connect-icon-box:hover {
+      background-color: orange;
+      color: white;
     }
     .connect-icon {
-      width: 20px;
-      height: auto;
-    }
-    .user-icon-box {
-      margin-right: 20px;
-    }
-    .user-icon {
       width: 20px;
       height: auto;
     }

@@ -83,13 +83,11 @@ body {
   body .edge-card:hover {
     background-color: #F5F8FA !important; }
   body .navbar .connect-icon-box {
-    margin-right: 10px; }
+    color: orange; }
+  body .navbar .connect-icon-box:hover {
+    background-color: orange;
+    color: white; }
   body .navbar .connect-icon {
-    width: 20px;
-    height: auto; }
-  body .navbar .user-icon-box {
-    margin-right: 20px; }
-  body .navbar .user-icon {
     width: 20px;
     height: auto; }
   body .loginModalHeader {

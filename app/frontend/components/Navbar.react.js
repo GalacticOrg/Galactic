@@ -19,14 +19,13 @@ class Navbar extends Component {
     if (loading) return null;
 
     return (
-      <div className="navbar navbar-default navbar-fixed-top" style={{backgroundColor: '#F6F6EF'}}>
+      <div className="navbar navbar-default navbar-fixed-top" style={{backgroundColor: '#F5F8FA'}}>
         <div className="navbar-header pull-left">
           <a className="navbar-brand" href="/">WikiWeb</a>
         </div>
         <div className="navbar-header pull-right">
           <a href="/connect">
-            <button type="button" className="btn btn-default navbar-btn connect-icon-box">
-              Add Connection</button>
+            <button type="button" className="btn btn-default navbar-btn connect-icon-box fa fa-plus" style={{fontSize: '15px', height: '32px', borderColor: 'orange', marginRight: '10px'}}></button>
           </a>
           {!success?
             <LoginSignupModal />:
@@ -34,8 +33,8 @@ class Navbar extends Component {
               <a
                 type="button"
                 href={'/@'+user.username}
-                className="btn btn-default navbar-btn user-icon-box">
-                <img className="user-icon"
+                style={{marginRight: '20px'}}>
+                <img style={{height: '32px', borderRadius: '3px', border: '1px solid rgb(197, 197, 197)'}}
                   src={user.twitter.profile_image_url_https} />
               </a>
             )}
