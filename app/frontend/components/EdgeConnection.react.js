@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-const edgeUserStyle = {fontSize: '13x', marginLeft: '60px', paddingTop: '1px'}
 import { Alert } from "react-bootstrap"
 
 export default class EdgeConnection extends Component {
@@ -16,16 +15,19 @@ export default class EdgeConnection extends Component {
     const { username, profileImageUrl, createdAt, length, tags } = this.props;
 
     return (
-      <div className="edge-connection" style={edgeUserStyle}>
-        <span title={username}>Connected by
-        <a href={'/@'+username} style={{marginLeft: '5px', marginRight: '5px'}}>
-          <img src={profileImageUrl} style={{height:'15px', width: '15px'}} />
-        </a>
-        <a href={'/@'+username}>@{username}</a>
-        {length>1?<span> and {length-1} more</span>:null}
-        </span>
-        <span> | {new Date(createdAt).toLocaleString()}</span>
-        {tags&&tags.length>0?<div style={{marginTop:'3px'}}>{tags.join(' ')}</div>:null}
+      <div className="edge-connection connectionCard">
+        <div className="card-left-col" style={{width: '15%', float: 'left'}}></div>
+        <div className="card-right-col" style={{width: '85%', float: 'left'}}>
+          <span title={username}>Connected by
+          <a href={'/@'+username} style={{marginLeft: '5px', marginRight: '5px'}}>
+            <img src={profileImageUrl} style={{height:'15px', width: '15px'}} />
+          </a>
+          <a href={'/@'+username}>@{username}</a>
+          {length>1?<span> and {length-1} more</span>:null}
+          </span>
+          <span> | {new Date(createdAt).toLocaleString()}</span>
+          {tags&&tags.length>0?<div style={{marginTop:'3px'}}>{tags.join(' ')}</div>:null}
+        </div>
       </div>
     )
   }

@@ -27,9 +27,8 @@ export default class EntityItem extends Component {
 
     return (
       <div className="connectionCard">
-        <div className="card-left-col" style={{width: '15%'}}>
+        <div className="card-left-col" style={{width: '15%', float: 'left'}}>
            <div style={{
-              float: 'left',
               maxHeight:'50px',
               overflow:'hidden',
               marginLeft: '6px',

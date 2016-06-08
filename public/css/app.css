@@ -64,6 +64,20 @@ body {
     text-decoration: none; }
   body .noUnderline:hover {
     text-decoration: none; }
+  body .edge-card {
+    border: 1px #E1E8ED solid; }
+    body .edge-card .edge-node:hover {
+      background-color: #F5F8FA; }
+    body .edge-card .top-node {
+      padding-left: 4px;
+      padding-bottom: 8px;
+      padding-top: 10px; }
+    body .edge-card .bottom-node {
+      padding-left: 4px;
+      padding-top: 10px;
+      padding-bottom: 8px; }
+    body .edge-card .edge-card-info {
+      padding-bottom: 4px; }
   body .edge-card:hover {
     border: 1px solid black; }
   body .navbar .connect-icon-box {

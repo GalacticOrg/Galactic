@@ -34,37 +34,36 @@ class Home extends Component {
         <div
           className="edge-card"
           key={i}
-          style={{
-                  padding:'4px',
-                  paddingLeft: '6px',
-                  paddingTop: '12px',
-                  paddingBottom: '8px',
-                  border: '1px #E1E8ED solid',
-                  backgroundColor: 'white'
-                }}>
-            <EntityItem
-              imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
-              faviconCDN={nodeFrom.faviconCDN?nodeFrom.faviconCDN:''}
-              canonicalLink={nodeFrom.canonicalLink}
-              title={nodeFrom.title}
-              description={nodeFrom.description}
-              id={nodeFrom._id}
-              createdAt={Number(createdAt)}
-            />
-            <EntityItem
-              imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
-              faviconCDN={nodeTo.faviconCDN?nodeTo.faviconCDN:''}
-              canonicalLink={nodeTo.canonicalLink}
-              title={nodeTo.title}
-              description={nodeTo.description}
-              id={nodeTo._id}
-              createdAt={Number(createdAt)}
-             />
-            <EdgeConnection
-              username={user.username}
-              profileImageUrl={user.twitter.profile_image_url}
-              createdAt={Number(createdAt)}
-            />
+          style={{backgroundColor: 'white'}}>
+            <div className='edge-node top-node'>
+              <EntityItem
+                imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
+                faviconCDN={nodeFrom.faviconCDN?nodeFrom.faviconCDN:''}
+                canonicalLink={nodeFrom.canonicalLink}
+                title={nodeFrom.title}
+                description={nodeFrom.description}
+                id={nodeFrom._id}
+                createdAt={Number(createdAt)}
+              />
+            </div>
+            <div className='edge-node bottom-node'>
+              <EntityItem
+                imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
+                faviconCDN={nodeTo.faviconCDN?nodeTo.faviconCDN:''}
+                canonicalLink={nodeTo.canonicalLink}
+                title={nodeTo.title}
+                description={nodeTo.description}
+                id={nodeTo._id}
+                createdAt={Number(createdAt)}
+              />
+            </div>
+            <div className='edge-card-info'>
+              <EdgeConnection
+                username={user.username}
+                profileImageUrl={user.twitter.profile_image_url}
+                createdAt={Number(createdAt)}
+              />
+            </div>
         </div>)
     }):<Loader top="100px"/>;
 
