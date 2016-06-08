@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Loader from 'react-loader';
 import Navbar from "../../components/Navbar.react"
 import EntityItem from "../../components/EntityItem.react"
-import EdgeConnection from "../../components/EdgeConnection.react"
+import EdgeConnection from "../../components/EdgeConnection"
 import TagsInput from "../components/TagsInput.react"
 
 
@@ -20,7 +20,6 @@ class NodeMain extends Component {
 
   constructor() {
      super()
-     this.handleAlertDismiss = this.handleAlertDismiss.bind(this)
      const messageFlag = window.location.search.search((/message=true/))
      this.state = {
        messageFlag: messageFlag!=-1?true:false
@@ -33,6 +32,7 @@ class NodeMain extends Component {
   }
 
   render() {
+    const that = this;
     const { nodeResult, user } = this.props
     const { messageFlag } = this.state
 
@@ -56,31 +56,22 @@ class NodeMain extends Component {
     }
 
     const nodeEdges = superEdges.map(function(superEdge, i){
+
       const { users, entity, edges, entityCount } = superEdge;
       const user = edges[0].user;
       const createdAt = edges[0].createdAt;
-      let tags = edges.map(edge=>edge.tags);
-      tags = tags.reduce((a, b)=>a.concat(b));//flattens the array
-      //superEdges[0]._id  //this is the id for the item we h
-      const edgeComponent =(
+      let tags = edges.map(edge=>edge.tags).reduce((a, b)=>a.concat(b));
+      const edgeComponentJSX =(
         <EdgeConnection
           username={user.username}
           profileImageUrl={user.twitter.profile_image_url}
           createdAt={Number(createdAt)}
           length={edges.length}
-          tags={tags}
           />
         )
-      let tagInput = null;
-      if (user){
-        const currentUserEdge = edges.find(e=>e.user._id==user._id);
-        const currentUserEdgeId = currentUserEdge?currentUserEdge._id:null;
-        if (currentUserEdgeId) tagInput=(
-          <div style={{marginTop:'3px'}}>
-            <TagsInput tags={tags} id={currentUserEdgeId} />
-          </div>
-        )
-      };
+
+      const currentUserEdgeId = that._getCurrentUserEdgeId(edges, user); //Has the user created an edge to tag along this route?
+      const tagInputJSX = currentUserEdgeId? <TagsInput tags={tags} id={currentUserEdgeId} />:null;
 
       return (
         <div
@@ -95,9 +86,11 @@ class NodeMain extends Component {
             title={entity.title}
             description={entity.description}
             id={entity._id}
-            edge={edgeComponent}
+            edge={edgeComponentJSX}
           />
-          {tagInput}
+          <div style={{marginTop:'3px'}}>
+            {tagInputJSX}
+          </div>
         </div>)
     });
 
@@ -186,11 +179,9 @@ class NodeMain extends Component {
     });
   }
 
-
-  handleAlertDismiss(){
-    this.setState({
-      messageFlag:false
-    })
+  _getCurrentUserEdgeId(edges, user){
+    const currentUserEdge = edges.find(e=>e.user._id==user._id);
+    return currentUserEdge?currentUserEdge._id:null;
   }
 
 }

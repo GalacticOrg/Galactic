@@ -8,7 +8,7 @@ import Loader from 'react-loader';
 
 import Navbar from "../../components/Navbar.react"
 import EntityItem from "../../components/EntityItem.react"
-import EdgeConnection from "../../components/EdgeConnection.react"
+import EdgeConnection from "../../components/EdgeConnection"
 
 import { connect } from 'react-redux'
 import { getFirehose } from "../actions/index"
