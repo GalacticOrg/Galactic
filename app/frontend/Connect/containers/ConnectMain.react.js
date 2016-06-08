@@ -15,8 +15,12 @@ import InputURL from "../../components/inputURL/"
 import { resetSearch } from "../../components/inputURL/actions"
 
 const spacerStyle = { marginBottom: '50px'}
-const formStyle = { padding: '60px 15px 40px', border: 'dashed 1px'}
-const responsiveClasses = ['col-xs-12','col-sm-10', 'col-sm-offset-1', 'col-md-10', 'col-md-offset-1'].join(' ')
+const formStyle = { padding: '60px 15px 40px',
+  border: 'dashed 1px'}
+const responsiveClasses = ['col-xs-12','col-sm-10',
+  'col-sm-offset-1',
+  'col-md-10',
+  'col-md-offset-1'].join(' ')
 
 export default class Connect extends Component {
 
@@ -40,7 +44,10 @@ export default class Connect extends Component {
 
 
     const fromNodeExists =  (fromNode!==undefined && fromNode.node!==undefined);
-    const toNodeStyle =  fromNodeExists?{}:{opacity:'.1', pointerEvents: 'none'};
+    const toNodeStyle =  fromNodeExists?
+      {}:
+      {opacity:'.1', pointerEvents: 'none'};
+
     Object.assign(toNodeStyle, spacerStyle)
     const toNodeExists =  (toNode!==undefined  && toNode.node!==undefined );
 
