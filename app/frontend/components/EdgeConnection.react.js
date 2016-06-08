@@ -16,11 +16,11 @@ export default class EdgeConnection extends Component {
 
     return (
       <div className="edge-connection connectionCard">
-        <div className="card-left-col" style={{width: '15%', float: 'left'}}></div>
-        <div className="card-right-col" style={{width: '85%', float: 'left'}}>
-          <span title={username}>Connected by
+        <div className="card-left-col"><img src="../../img/blank.png" /></div>
+        <div className="card-right-col">
+          <span title={username} style={{paddingLeft: '5px'}}>Connecter:
           <a href={'/@'+username} style={{marginLeft: '5px', marginRight: '5px'}}>
-            <img src={profileImageUrl} style={{height:'15px', width: '15px'}} />
+            <img src={profileImageUrl} style={{height:'15px', width: '15px', borderRadius: '3px'}} />
           </a>
           <a href={'/@'+username}>@{username}</a>
           {length>1?<span> and {length-1} more</span>:null}

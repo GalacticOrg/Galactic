@@ -29,14 +29,14 @@ body {
 
   .edge-card {
     border: 1px #E1E8ED solid;
-    .edge-node:hover { background-color: #F5F8FA }
+    .card-left-col {width: 10%; float: left;}
+    .card-right-col {width: 90%; float: left;}
+    .edge-node:hover { }
     .top-node {
-      padding-left: 4px;
       padding-bottom: 8px;
       padding-top: 10px;
      }
     .bottom-node {
-      padding-left: 4px;
       padding-top: 10px;
       padding-bottom: 8px;
     }
@@ -44,7 +44,7 @@ body {
       padding-bottom: 4px;
     }
   }
-  .edge-card:hover {border: 1px solid black;}
+  .edge-card:hover { background-color: #F5F8FA !important; }
 
 
   /**************************/

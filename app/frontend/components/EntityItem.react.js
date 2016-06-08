@@ -27,16 +27,15 @@ export default class EntityItem extends Component {
 
     return (
       <div className="connectionCard">
-        <div className="card-left-col" style={{width: '15%', float: 'left'}}>
+        <div className="card-left-col">
            <div style={{
               maxHeight:'50px',
               overflow:'hidden',
-              marginLeft: '6px',
-              marginRight: '5px'}}>
+              paddingLeft: '8px'}}>
             <img src={edgeImg} style={{width: '50px'}} />
           </div>
         </div>
-        <div className="card-right-col" style={{float: 'left', width: '85%', paddingLeft: '5px'}}>
+        <div className="card-right-col" style={{paddingLeft: '5px'}}>
           <div>
             <div style={{paddingBottom:'3px'}}>
               <EntityItemTitleHost
