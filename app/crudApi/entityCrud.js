@@ -23,8 +23,6 @@ exports.load = function (req, res, next, id){
     req.entity = entity;
     Edge.getNode(entity._id, function(err, edges){
       req.edges = edges
-      //return res.send({edges, err})
-
       next();
     })
   });
@@ -191,8 +189,6 @@ const pageExtractor = function(url, resultDB, cb){
 function pageExtractorDBSearch(url, resultDB, extractedPageData, cb) {
   if (extractedPageData && extractedPageData.canonicalLink){
     pageDBSearch(extractedPageData.canonicalLink, function(err, url, resultDBcanonicalLink){
-
-
       extractedPageData = resultDBcanonicalLink?null:extractedPageData;//updating value if we foun a result in DB.  Pretend we never did the pageExtractor
       cb(err, url, resultDBcanonicalLink, extractedPageData);
     });

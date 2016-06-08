@@ -169,8 +169,8 @@ export default class Connect extends Component {
     const { dispatch, fromNode, toNode } = this.props;
     if ( fromNode && toNode && fromNode.node._id !== toNode.node._id ){
       dispatch(postConnection(fromNode.node._id, toNode.node._id));
-      // dispatch(resetSearch('toNode'));
-      // dispatch(resetSearch('fromNode'));
+      dispatch(resetSearch('toNode'));
+      dispatch(resetSearch('fromNode'));
     }
   }
 
