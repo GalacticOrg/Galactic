@@ -72,7 +72,21 @@ class Home extends Component {
                 index={0}
                 />
             </div>
-            <Tags tags={tags}/>
+            <div style={{
+                display: 'block',
+                overflow: 'hidden',
+                border: 'none',
+                marginTop: '3px'
+                marginBottom: '3px'
+              }}>
+              <div className="card-left-col">
+                <img src="../../img/blank.png" />
+              </div>
+              <div className="card-right-col"
+                   style={{paddingLeft: '5px'}}>
+                <Tags tags={tags}/>
+              </div>
+            </div>
         </div>)
     }):<Loader top="100px"/>;
 
@@ -81,7 +95,8 @@ class Home extends Component {
         <Navbar />
         <div className="container" style={{marginBottom:'80px'}}>
           <div className="row">
-            <div className="text-center" style={{margin: '100px 0 30px'}}>
+            <div  className="text-center"
+                  style={{margin: '100px 0 30px'}}>
               <div style={{height: '120px'}}><b><span style={{fontFamily: "'Ovo', serif",fontSize: '82px'}}>WikiWeb</span></b></div>
               <div style={{fontFamily: "'Ovo', serif", fontSize: '18px', marginLeft: '15px'}}>
                 <span>WikiWeb is a hub for connected content on the web.

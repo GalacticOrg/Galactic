@@ -57,7 +57,7 @@ class NodeMain extends Component {
 
       const userId = user?user.user._id:null;
       const currentUserEdgeId = that._getCurrentUserEdgeId(edges, userId); //Has the user created an edge to tag along this route?
-      const tagInputJSX = currentUserEdgeId ?
+      const tagsInputJSX = currentUserEdgeId ?
         <TagsInput
           tags={tags}
           id={currentUserEdgeId}
@@ -80,8 +80,9 @@ class NodeMain extends Component {
             edges={edges}
             index={0}
           />
-          <div style={{marginTop:'3px'}}>
-            {tagInputJSX}
+          <div style={{display: 'block', overflow: 'hidden', border: 'none', marginTop: '3px'}}>
+            <div className="card-left-col"><img src="../../img/blank.png" /></div>
+            <div className="card-right-col" style={{ paddingLeft: '5px'}}>{tagsInputJSX}</div>
           </div>
         </div>)
     });
