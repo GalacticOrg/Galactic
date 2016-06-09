@@ -64,12 +64,6 @@ body {
     background-color: white; }
     body .default-card:hover {
       background-color: #F5F8FA !important; }
-  body .entity-card .top-node {
-    padding-bottom: 8px;
-    padding-top: 10px; }
-  body .entity-card .bottom-node {
-    padding-top: 10px;
-    padding-bottom: 8px; }
   body .edge-card-info {
     padding-bottom: 4px; }
   body .navbar .connect-icon-box {

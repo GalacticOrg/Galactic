@@ -36,7 +36,10 @@ class Home extends Component {
           key={i}
           className="default-card"
           >
-            <div className='top-node' style={{border: 'none'}}>
+            <div style={{
+                  border: 'none',
+                  paddingTop: '10px',
+                  paddingBottom: '8px'}}>
               <EntityItem
                 count={nodeFromEntityCount}
                 imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
@@ -48,7 +51,10 @@ class Home extends Component {
                 createdAt={Number(createdAt)}
               />
             </div>
-            <div className='bottom-node'>
+            <div style={{
+                  border: 'none',
+                  paddingTop: '10px',
+                  paddingBottom: '8px'}}>
               <EntityItem
                 count={nodeToEntityCount}
                 imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
