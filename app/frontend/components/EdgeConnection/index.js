@@ -47,7 +47,7 @@ export default class EdgeConnection extends Component {
               createdAt={createdAt} />
             {length>1?
             <span>
-              <a href="javascript:void(0)" onClick={this._toggle} >and {length-1} more</a>
+              <a href="javascript:void(0)" onClick={this._toggle} >&nbsp;and {length-1} more</a>
             </span>:null}
             {this.state.open?(edgesJSX):null}
           </div>
