@@ -14,6 +14,7 @@ class NodeMain extends Component {
   constructor() {
      super()
      const messageFlag = window.location.search.search((/message=true/))
+     this._handleAlertDismiss = this._handleAlertDismiss.bind(this)
      this.state = {
        messageFlag: messageFlag!=-1?true:false
      }
@@ -162,7 +163,7 @@ class NodeMain extends Component {
                 'col-md-offset-2'].join(' ')
                 }>
                 {messageFlag && superEdges[0]?
-                  <Alert bsStyle="success" onDismiss={this.handleAlertDismiss}>
+                  <Alert bsStyle="success" onDismiss={this._handleAlertDismiss}>
                     <h4>You added a new Connection!</h4>
                     <p>Every connection on the WikiWeb makes it that much more useful for the next person.</p>
                     <br/>
@@ -184,6 +185,12 @@ class NodeMain extends Component {
   }
   _addTag(input){
     this.props.dispatch( postNodeTags(id, this.state.tagInput.split(' ') ));
+  }
+
+  _handleAlertDismiss(){
+    this.setState({
+      messageFlag:false
+    })
   }
 
   _getCurrentUserEdgeId(edges, userId){

@@ -53,20 +53,22 @@ body {
     text-decoration: none; }
   body .noUnderline:hover {
     text-decoration: none; }
-  body .edge-card .card-left-col {
-    width: 10%;
-    float: left; }
-  body .edge-card .card-right-col {
-    width: 90%;
-    float: left; }
-  body .edge-card .top-node {
-    padding-bottom: 8px;
-    padding-top: 10px; }
-  body .edge-card .bottom-node {
-    padding-top: 10px;
-    padding-bottom: 8px; }
-  body .edge-card .edge-card-info {
-    padding-bottom: 4px; }
+  body .edge-card {
+    border: 1px #E1E8ED solid; }
+    body .edge-card .card-left-col {
+      width: 60px;
+      float: left; }
+    body .edge-card .card-right-col {
+      width: calc(100% - 60px);
+      float: left; }
+    body .edge-card .top-node {
+      padding-bottom: 8px;
+      padding-top: 10px; }
+    body .edge-card .bottom-node {
+      padding-top: 10px;
+      padding-bottom: 8px; }
+    body .edge-card .edge-card-info {
+      padding-bottom: 4px; }
   body .edge-card:hover {
     background-color: #F5F8FA !important; }
   body .navbar .connect-icon-box {

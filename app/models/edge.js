@@ -191,12 +191,14 @@ const getEdgeParser = function(r){
   const _idLink = r.edge.properties.id;
 	const _idUser = r.edge.properties.userId; //Get the link uid
 	const createdAt = r.edge.properties.createdAt; //Get the link properties
+	const tags = r.edge.properties.tags;
 
   return {
   	_idNodeFrom,
 		_idNodeTo,
 		_idLink,
 		_idUser,
+		tags,
 		createdAt
   }
 }

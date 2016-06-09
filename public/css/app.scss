@@ -4,6 +4,8 @@ $failure-red: #FF0000;
 $background-grey: #F5F8FA;
 $border-color: rgb(225, 232, 237);
 
+$card-left-width: 60px;
+
 body {
   font-family: "Open Sans","Helvetica Neue",sans-serif;
   margin-top: 50px;
@@ -15,10 +17,10 @@ body {
     text-decoration: none;
   }
 
-
   .edge-card {
-    .card-left-col {width: 10%; float: left;}
-    .card-right-col {width: 90%; float: left;}
+    border: 1px #E1E8ED solid;
+    .card-left-col {width: $card-left-width; float: left;}
+    .card-right-col {width: calc(100% - #{$card-left-width}); float: left;}
     .top-node {
       padding-bottom: 8px;
       padding-top: 10px;

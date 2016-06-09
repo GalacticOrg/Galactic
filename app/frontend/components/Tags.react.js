@@ -5,8 +5,8 @@ export default class Tags extends Component {
 
   render() {
     const { tags  } = this.props;
-    const tagJSX = tags.map(tag=>(
-      <span>
+    const tagJSX = tags.map((tag, i)=>(
+      <span key={i}>
         &nbsp;
         <i className="fa fa-tags" aria-hidden="true"></i>
         &nbsp;

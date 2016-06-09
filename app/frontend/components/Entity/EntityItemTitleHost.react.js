@@ -1,6 +1,20 @@
 import React, { Component, PropTypes } from 'react'
-const nodeEntityStyle = {color: 'grey', marginLeft: '5px', fontSize: '12px'}
-const nodeEntityTitleStyle = {fontSize: '15px', fontWeight: 'bold'}
+const nodeEntityStyle = {
+  display: 'inline-block',
+  color: 'grey',
+  marginLeft: '5px',
+  fontSize: '12px'
+}
+const nodeEntityTitleStyle = {
+  display: 'inline-block',
+  maxWidth: '300px',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  fontSize: '15px',
+  fontWeight: 'bold',
+  whiteSpace: 'nowrap',
+  verticalAlign: 'top'
+}
 
 export default class EntityItemTitleHost extends Component {
 
@@ -11,15 +25,16 @@ export default class EntityItemTitleHost extends Component {
     sourceURL.href=canonicalLink
 
 
-
-
     return (
       <div>
         {faviconCDN?<img style={{width:'16px', marginTop:'-5px'}} src={faviconCDN} />:null}
         <a href={'/node/'+id}
         title={canonicalLink}
-        className="noUnderline">
-          <span style={nodeEntityTitleStyle}>{title}</span>
+        className="noUnderline"
+        >
+          <span style={nodeEntityTitleStyle}>
+            {title.length>0?title:sourceURL.host+(sourceURL.pathname.length>1?sourceURL.pathname:'')}
+          </span>
         </a>
         <span style={nodeEntityStyle}>
           <a href={sourceURL.href} target="_blank" >({sourceURL.host})</a>
