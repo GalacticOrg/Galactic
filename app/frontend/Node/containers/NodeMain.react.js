@@ -65,8 +65,8 @@ class NodeMain extends Component {
           index={0}
           />
         )
-        debugger
-      const currentUserEdgeId = that._getCurrentUserEdgeId(edges, user.user); //Has the user created an edge to tag along this route?
+      const userId = user?user._id:null;
+      const currentUserEdgeId = that._getCurrentUserEdgeId(edges, userId); //Has the user created an edge to tag along this route?
       const tagInputJSX = currentUserEdgeId ?
         <TagsInput
           tags={tags}
@@ -175,8 +175,8 @@ class NodeMain extends Component {
     this.props.dispatch( postNodeTags(id, this.state.tagInput.split(' ') ));
   }
 
-  _getCurrentUserEdgeId(edges, user){
-    const currentUserEdge = edges.find(e=>e.user._id==user._id);
+  _getCurrentUserEdgeId(edges, userId){
+    const currentUserEdge = edges.find(e=>e.user._id==userId);
     return currentUserEdge?currentUserEdge._id:null;
   }
 
