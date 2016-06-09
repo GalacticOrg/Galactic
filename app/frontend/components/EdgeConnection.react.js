@@ -18,7 +18,7 @@ export default class EdgeConnection extends Component {
       <div className="edge-connection" style={{display: 'block', overflow: 'hidden'}}>
         <div className="card-left-col"><img src="../../img/blank.png" /></div>
         <div className="card-right-col">
-          <span title={username} style={{paddingLeft: '5px'}}>Connecter:
+          <span title={username} style={{paddingLeft: '5px'}}>By:
           <a href={'/@'+username} style={{marginLeft: '5px', marginRight: '5px'}}>
             <img src={profileImageUrl} style={{height:'15px', width: '15px', borderRadius: '3px'}} />
           </a>
