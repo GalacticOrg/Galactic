@@ -1,3 +1,206 @@
-body {
+$success-green: #66AD57;
+$success-green-overlay: #5B9E4D;
+$failure-red: #FF0000;
+$background-grey: #F5F8FA;
+$border-color: rgb(225, 232, 237);
 
+$card-left-width: 60px;
+
+body {
+  font-family: "Open Sans","Helvetica Neue",sans-serif;
+  margin-top: 50px;
+
+  .noUnderline {
+    text-decoration: none;
+  }
+  .noUnderline:hover {
+    text-decoration: none;
+  }
+
+  .card-left-col {width: $card-left-width; float: left;}
+  .card-right-col {width: calc(100% - #{$card-left-width}); float: left;}
+
+  .default-card {
+    &:hover { background-color: #F5F8FA !important; }
+    border: 1px solid rgb(225, 232, 237);
+    background-color: white;
+  }
+
+  .edge-card-info {
+    padding-bottom: 4px;
+  }
+
+  /**************************/
+  /** NAVBAR SECTION **/
+  /**************************/
+  .navbar {
+    .connect-icon-box{color: orange}
+    .connect-icon-box:hover {
+      background-color: orange;
+      color: white;
+    }
+    .connect-icon {
+      width: 20px;
+      height: auto;
+    }
+  }
+  /**************************/
+  /** END NAVBAR SECTION **/
+  /**************************/
+
+  /**************************/
+  /** LOGIN MODAL SECTION **/
+  /**************************/
+  .loginModalHeader {
+    background-color: #f0f0f0;
+  }
+  .explanatoryModalText {
+    font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+    font-size: 16px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    color: rgba(0,0,0,.6);
+  }
+  .loginButtonTwitter {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border:none;
+    background-color: #55acee;
+    width: 100%;
+    text-align: left;
+    padding-left: 24px;
+    color: white;
+    height: 6rem;
+  }
+  .loginButtonTwitter:hover {
+    background-color: #006DAA;
+  }
+  .loginButtonTwitter:active {
+    outline: none;
+    border: none;
+  }
+  .loginButtonTwitterIcon {
+    font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+    font-size: 20px;
+    width: 32px;
+    margin-left: 14px;
+  }
+  .loginButtonText{
+    font-size: 14px;
+  }
+  .loginModalFooter {
+    margin: auto;
+  }
+  .permissionsText {
+    font-size: 10px;
+    text-align: left;
+    margin: auto;
+    color: #b3b3b1;
+    font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+    font-size: 14px;
+  }
+  /**************************/
+  /** END LOGIN MODAL SECTION **/
+  /**************************/
+
+  /**************************/
+  /** HOMEPAGE SECTION **/
+  /**************************/
+  .indicators li {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid rgba(150,150,150,1);
+    border-radius: 10px;
+  }
+
+  .indicators .active {
+    width: 8px;
+    height: 8px;
+    margin: 0;
+    background-color: rgba(100,100,100,1);
+  }
+
+  .is-url{
+    color: $success-green;
+  }
+  .is-not-url{
+    color: $failure-red;
+  }
+
+  /**************************/
+  /** END HOMEPAGE SECTION **/
+  /**************************/
+
+  /**************************/
+  /** NODE PAGE SECTION **/
+  /**************************/
+
+  .highlight-first >div:first-child{
+    border: 2px solid #dff0d8;
+  }
+
+  /**************************/
+  /** END RESULT NODE SECTION **/
+  /**************************/
+
+  /**************************/
+  /** INPUT BUTTON COMPONENT  **/
+  /**************************/
+  .input-button a:focus {
+    outline:none;
+  }
+  /**************************/
+  /**  INPUT BUTTON PAGE SECTION **/
+  /**************************/
+
+  /**************************/
+  /** STATUS BUTTON COMPONENT  **/
+  /**************************/
+  .status-icon:focus {
+    outline:none;
+  }
+  /**************************/
+  /** END CONNECT PAGE SECTION **/
+  /**************************/
+
+  /**************************/
+  /** CONNECT PAGE SECTION **/
+  /**************************/
+  .edgeTags {
+    margin-left: 60px;
+    height: 25px;
+    span {
+      padding-left: 5px;
+      padding-right: 5px;
+      margin-right: 5px;
+      border: 1px solid orange;
+      border-radius: 3px;
+    }
+    span:hover {
+      background-color: orange;
+    }
+  }
+
+  .connectionForm {
+    margin-top: 50px;
+  }
+  /**************************/
+  /** END CONNECT PAGE SECTION **/
+  /**************************/
+
+  /**************************/
+  /** USER PAGE SECTION **/
+  /**************************/
+  .connectionLiElement {
+    margin-bottom: 5px;
+  }
+  /**************************/
+  /** END USER PAGE SECTION **/
+  /**************************/
 }

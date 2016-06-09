@@ -1,3 +1,158 @@
-
+body {
+  font-family: "Open Sans","Helvetica Neue",sans-serif;
+  margin-top: 50px;
+  /**************************/
+  /** NAVBAR SECTION **/
+  /**************************/
+  /**************************/
+  /** END NAVBAR SECTION **/
+  /**************************/
+  /**************************/
+  /** LOGIN MODAL SECTION **/
+  /**************************/
+  /**************************/
+  /** END LOGIN MODAL SECTION **/
+  /**************************/
+  /**************************/
+  /** HOMEPAGE SECTION **/
+  /**************************/
+  /**************************/
+  /** END HOMEPAGE SECTION **/
+  /**************************/
+  /**************************/
+  /** NODE PAGE SECTION **/
+  /**************************/
+  /**************************/
+  /** END RESULT NODE SECTION **/
+  /**************************/
+  /**************************/
+  /** INPUT BUTTON COMPONENT  **/
+  /**************************/
+  /**************************/
+  /**  INPUT BUTTON PAGE SECTION **/
+  /**************************/
+  /**************************/
+  /** STATUS BUTTON COMPONENT  **/
+  /**************************/
+  /**************************/
+  /** END CONNECT PAGE SECTION **/
+  /**************************/
+  /**************************/
+  /** CONNECT PAGE SECTION **/
+  /**************************/
+  /**************************/
+  /** END CONNECT PAGE SECTION **/
+  /**************************/
+  /**************************/
+  /** USER PAGE SECTION **/
+  /**************************/
+  /**************************/
+  /** END USER PAGE SECTION **/
+  /**************************/ }
+  body .noUnderline {
+    text-decoration: none; }
+  body .noUnderline:hover {
+    text-decoration: none; }
+  body .card-left-col {
+    width: 60px;
+    float: left; }
+  body .card-right-col {
+    width: calc(100% - 60px);
+    float: left; }
+  body .default-card {
+    border: 1px solid #e1e8ed;
+    background-color: white; }
+    body .default-card:hover {
+      background-color: #F5F8FA !important; }
+  body .edge-card-info {
+    padding-bottom: 4px; }
+  body .navbar .connect-icon-box {
+    color: orange; }
+  body .navbar .connect-icon-box:hover {
+    background-color: orange;
+    color: white; }
+  body .navbar .connect-icon {
+    width: 20px;
+    height: auto; }
+  body .loginModalHeader {
+    background-color: #f0f0f0; }
+  body .explanatoryModalText {
+    font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+    font-size: 16px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    color: rgba(0, 0, 0, 0.6); }
+  body .loginButtonTwitter {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+    background-color: #55acee;
+    width: 100%;
+    text-align: left;
+    padding-left: 24px;
+    color: white;
+    height: 6rem; }
+  body .loginButtonTwitter:hover {
+    background-color: #006DAA; }
+  body .loginButtonTwitter:active {
+    outline: none;
+    border: none; }
+  body .loginButtonTwitterIcon {
+    font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+    font-size: 20px;
+    width: 32px;
+    margin-left: 14px; }
+  body .loginButtonText {
+    font-size: 14px; }
+  body .loginModalFooter {
+    margin: auto; }
+  body .permissionsText {
+    font-size: 10px;
+    text-align: left;
+    margin: auto;
+    color: #b3b3b1;
+    font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+    font-size: 14px; }
+  body .indicators li {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid #969696;
+    border-radius: 10px; }
+  body .indicators .active {
+    width: 8px;
+    height: 8px;
+    margin: 0;
+    background-color: #646464; }
+  body .is-url {
+    color: #66AD57; }
+  body .is-not-url {
+    color: #FF0000; }
+  body .highlight-first > div:first-child {
+    border: 2px solid #dff0d8; }
+  body .input-button a:focus {
+    outline: none; }
+  body .status-icon:focus {
+    outline: none; }
+  body .edgeTags {
+    margin-left: 60px;
+    height: 25px; }
+    body .edgeTags span {
+      padding-left: 5px;
+      padding-right: 5px;
+      margin-right: 5px;
+      border: 1px solid orange;
+      border-radius: 3px; }
+    body .edgeTags span:hover {
+      background-color: orange; }
+  body .connectionForm {
+    margin-top: 50px; }
+  body .connectionLiElement {
+    margin-bottom: 5px; }
 
 /*# sourceMappingURL=app.css.map */

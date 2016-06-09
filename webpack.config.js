@@ -1,24 +1,53 @@
 const webpack = require('webpack');
 const env = process.env.NODE_ENV
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
-    entry: env==='development'?[
-        'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
-        'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-        './app/frontend/Home.react.jsx' // Your appʼs entry point
-    ]:'./app/frontend/Connect.react.jsx',
+    entry: {
+      "home.js": env==='development'?[
+          'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
+          './app/frontend/Home/' // Your appʼs entry point
+      ]:'./app/frontend/Home/',
+      "connect.js": env==='development'?[
+          'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
+          './app/frontend/Connect/'
+      ]:'./app/frontend/Connect/',
+      "node.js": env==='development'?[
+          'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
+          './app/frontend/Node/'
+      ]:'./app/frontend/Node/',
+      "user.js": env==='development'?[
+          'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
+          './app/frontend/User/'
+      ]:'./app/frontend/User/',
+      "firehose.js": env==='development'?[
+          'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
+          './app/frontend/Firehose/'
+      ]:'./app/frontend/Firehose/',
+    },
     output: {
-        filename: 'bundle.js',
-        publicPath: '/app/js/',
-        path: 'build/js/'
+        filename: '[name]',
+        publicPath: '/js/',
+        path: 'dist/js/'
     },
     module: {
         loaders: [
-           { test: /\.jsx$/, exclude: /node_modules/, loader: "babel-loader"}
+           { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"}
         ]
     },
     devtool: env==='development'?'source-map':null,
     plugins: [
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.DefinePlugin({
+        'process.env': {
+          'NODE_ENV': JSON.stringify(env)
+        }
+      }),
+      new BrowserSyncPlugin({
+        // browse to http://localhost:3000/ during development,
+        // ./public directory is being served
+        host: 'localhost',
+        port: 3000,
+        proxy: 'http://localhost:3001'
+      })
     ]
 }

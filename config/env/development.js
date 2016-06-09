@@ -4,25 +4,21 @@
  */
 
 module.exports = {
-  db: 'mongodb://localhost/your_project_development',
-  facebook: {
-    clientID: 'APP_ID',
-    clientSecret: 'SECRET',
-    callbackURL: 'http://localhost:3000/auth/facebook/callback',
+  db: 'mongodb://localhost/galactic_development',
+  neo4jdb: 'http://neo4j:neo4j@localhost:7474',
+  aws:{
+    key: process.env.AWS_KEY || '',
+    secret: process.env.AWS_SECRET || '',
+    imagebucket: process.env.IMAGE_BUCKET || ''
+  },
+  twitter: {
+    clientID: process.env.TWITTER_CLIENT_KEY || '',
+    clientSecret: process.env.TWITTER_CLIENT_SECRET || '',
+    callbackURL: (process.env.ROOT_URL || '')+ '/auth/twitter/callback',
     scope: [
       'email',
       'user_about_me',
       'user_friends'
-    ]
-  },
-  google: {
-    clientID: 'APP_ID',
-    clientSecret: 'SECRET',
-    callbackURL: 'http://localhost:3000/auth/google/callback',
-    scope: [
-      'https://www.googleapis.com/auth/userinfo.profile',
-      'https://www.googleapis.com/auth/userinfo.email',
-      'https://www.google.com/m8/feeds',
     ]
   }
 };

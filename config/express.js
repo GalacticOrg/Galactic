@@ -36,7 +36,18 @@ module.exports = function (app, passport) {
   }));
 
   // Static files middleware
+  if (env==='development'){
+    const proxy = require('http-proxy').createProxyServer({});
+    app.use('/js',function(req, res){
+      proxy.web(req, res, {
+        target: 'http://127.0.0.1:8090/js'
+      })
+    })
+  }else{
+    app.use('/js', express.static(config.root + '/dist/js'));  ///serve the main JS dist files.  //Requires a npm run build step.
+  }
   app.use(express.static(config.root + '/public'));
+
 
 
 
@@ -112,6 +123,7 @@ module.exports = function (app, passport) {
   // should be declared after session and flash
   app.use(helpers(pkg.name));
 
+
   // adds CSRF support
   if (process.env.NODE_ENV !== 'test') {
     app.use(csrf());
@@ -120,7 +132,7 @@ module.exports = function (app, passport) {
     app.use(function (req, res, next){
       res.locals.csrf_token = req.csrfToken();
       //Our live loading bundle from webpack-dev-server
-      res.locals.bundle_js = (env==='development')?'http://localhost:8090/app/js/bundle.js':'/js/bundle.js';
+      res.locals.bundle_js = '/js';
       next();
     });
   }

@@ -4,7 +4,12 @@
  * Module dependencies.
  */
 
-const home = require('../app/controllers/home');
+const pages = require('../app/controllers/pages');
+const users = require('../app/controllers/users');
+const edgeCrud = require('../app/crudApi/edgeCrud');
+const entityCrud = require('../app/crudApi/entityCrud');
+const userCrud = require('../app/crudApi/userCrud');
+const auth = require('./middlewares/authorization');
 
 /**
  * Expose
@@ -12,11 +17,69 @@ const home = require('../app/controllers/home');
 
 module.exports = function (app, passport) {
 
-  app.get('/', home.index);
+
+
+  //API Entity
+  app.param('id', entityCrud.load);
+  app.get('/api/searchurl', entityCrud.getSearchController)
+  app.get('/api/node/:id', entityCrud.getEntityController)
+
+  //API Edge
+  app.param('user', edgeCrud.loadUser);
+  app.get('/api/edges/users/:user', edgeCrud.getUserEdgeController)
+  app.get('/api/edges/firehose', edgeCrud.getEdgeController)
+
+  app.param('eid', edgeCrud.loadEdgeId);
+
+  app.post('/api/connect', auth.requiresLogin, edgeCrud.postCreateEdgeController)
+  app.post('/api/connect/:eid', auth.requiresLogin, edgeCrud.postTagsEdgeController)
+
+
+  // API User
+  const userPath = '/api/users'
+  const profilePath = userPath + '/profile';
+  app.get(profilePath, userCrud.getReadControllerProfile);
+
+  //Static Routes App
+  app.get('/', pages.home);
+  app.get('/@:user', pages.user);
+  app.get('/node/:id', pages.node);
+  app.get('/connect', pages.connect);
+  app.get('/firehose', pages.firehose);
+
+  //Static Routes for pages
+  app.get('/analytics', pages.analytics);
+  app.get('/about', pages.about);
+  app.get('/terms', pages.terms);
+  app.get('/privacy', pages.privacy);
+  app.get('/fivehundred', pages.fivehundred);
+
+
+
 
   /**
    * Error handling
    */
+ // user routes
+  app.get('/login', users.login);
+  app.get('/signup', users.signup);
+  app.get('/logout', users.logout);
+  app.post('/users', users.create);
+  app.post('/users/session',
+   passport.authenticate('local', {
+     failureRedirect: '/login',
+     failureFlash: 'Invalid email or password.'
+   }), users.session);
+
+   app.get('/auth/twitter',
+     passport.authenticate('twitter', {
+       failureRedirect: '/login'
+     }), users.signin);
+
+   app.get('/auth/twitter/callback',
+     passport.authenticate('twitter', {
+       failureRedirect: '/login'
+     }), users.authCallback);
 
   app.use(function (err, req, res, next) {
     // treat as 404
@@ -25,7 +88,7 @@ module.exports = function (app, passport) {
       || (~err.message.indexOf('Cast to ObjectId failed')))) {
       return next();
     }
-    console.error(err.stack);
+    console.error('ERROR: Message', err.message, 'Stack Trace', err.stack);
     // error page
     res.status(500).render('500', { error: err.stack });
   });
