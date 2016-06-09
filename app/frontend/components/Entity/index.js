@@ -19,7 +19,9 @@ export default class EntityItem extends Component {
 
 
     let edgeDescription = ''
-    if (description.length > 200){
+    if (description.length == 0){
+      edgeDescription = <i className="text-muted">None</i>
+    } else if (description.length > 200){
       edgeDescription = description.slice(0,200)+"..."
     } else {
       edgeDescription = description

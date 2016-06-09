@@ -56,10 +56,10 @@ body {
   body .edge-card {
     border: 1px #E1E8ED solid; }
     body .edge-card .card-left-col {
-      width: 10%;
+      width: 60px;
       float: left; }
     body .edge-card .card-right-col {
-      width: 90%;
+      width: calc(100% - 60px);
       float: left; }
     body .edge-card .top-node {
       padding-bottom: 8px;

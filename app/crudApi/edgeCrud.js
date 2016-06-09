@@ -67,6 +67,7 @@ exports.getUserEdgeController = function (req, res) {
        return {
          nodeFromEntityCount: entityCount[edge._idNodeFrom].length,
          nodeToEntityCount: entityCount[edge._idNodeTo].length,
+         tags: edge.tags?edge.tags:[],
          nodeFrom :  _.find(entities, { id: edge._idNodeFrom}),
          nodeTo : _.find(entities, { id: edge._idNodeTo}),
          createdAt: edge.createdAt

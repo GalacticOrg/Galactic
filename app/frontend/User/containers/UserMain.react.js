@@ -8,7 +8,9 @@ import Loader from 'react-loader';
 
 import Navbar from "../../components/Navbar.react"
 import EntityItem from "../../components/Entity/"
-import EdgeConnection from "../../components/EdgeConnection"
+import EdgeConnection from "../../components/EdgeConnection/"
+import Tags from "../../components/Tags.react"
+
 
 import { connect } from 'react-redux'
 import { getUserEdges } from "../actions/index"
@@ -51,7 +53,7 @@ class User extends Component {
     const profile_image_url_https = profile.twitter.profile_image_url_https
 
     const connections = result.map(function(edge, i){
-      const { nodeFrom, nodeTo, createdAt, nodeFromEntityCount, nodeToEntityCount } = edge;
+      const { nodeFrom, nodeTo, createdAt, nodeFromEntityCount, nodeToEntityCount, tags } = edge;
       return (
         <div
           key={i}
@@ -87,6 +89,7 @@ class User extends Component {
             edges={[{...edge, user:profile}]}
             index={0}
             />
+          <Tags tags={tags}/>
         </div>)
     });
 
