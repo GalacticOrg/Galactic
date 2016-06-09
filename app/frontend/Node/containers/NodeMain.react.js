@@ -38,14 +38,17 @@ class NodeMain extends Component {
       </div>)
     }
 
-    const { superEdges, faviconCDN, title, entityCount, canonicalLink, description } = nodeResult
+    const { superEdges, imageCDN, faviconCDN, title, entityCount, canonicalLink, description } = nodeResult
 
     const connectHref = "/connect?url="+canonicalLink
 
     const prettyLink = canonicalLink.replace(/^(http:\/\/|https:\/\/)/,'');
 
     let documentImage = (<span><img src="/img/document.png" style={{height: '50px'}} /></span>)
-    if (faviconCDN){
+    if (imageCDN){
+      documentImage = (<span><img src={imageCDN.url} style={{width: '50px'}} /></span>)
+    }
+    else if (faviconCDN){
       documentImage = (<span><img src={faviconCDN} style={{width: '16px'}} /></span>)
     }
 
