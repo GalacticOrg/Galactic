@@ -6,7 +6,7 @@ const nodeEntityDescriptionStyle = {fontSize: '13px'}
 export default class EntityItem extends Component {
 
   render() {
-    const { count, imageCDN, faviconCDN, canonicalLink, title, description, id, edge, tags  } = this.props;
+    const { count, imageCDN, faviconCDN, canonicalLink, title, description, id, tags  } = this.props;
 
     let edgeImg = null;
     if (imageCDN){
@@ -28,28 +28,30 @@ export default class EntityItem extends Component {
     }
 
     return (
-      <div style={{display: 'block', overflow: 'hidden'}}>
-        <div className="card-left-col">
-           <div style={{
-              overflow:'hidden',
-              paddingLeft: '8px',
-              paddingTop: '6px'
-            }}>
-            <img src={edgeImg} style={{width: '50px'}} />
-          </div>
-        </div>
-        <div className="card-right-col" style={{paddingLeft: '5px'}}>
-          <div>
-            <div style={{paddingBottom:'3px'}}>
-              <EntityItemTitleHost
-                title={title}
-                id={id}
-                count={count}
-                canonicalLink={canonicalLink} />
-              <span style={nodeEntityDescriptionStyle}>{edgeDescription}</span>
+      <div>
+        <div style={{display: 'block', overflow: 'hidden'}}>
+          <div className="card-left-col">
+             <div style={{
+                overflow:'hidden',
+                paddingLeft: '8px',
+                paddingTop: '6px'
+              }}>
+              <img src={edgeImg} style={{width: '50px'}} />
             </div>
-            {edge}
-            {tags}
+          </div>
+          <div className="card-right-col" style={{paddingLeft: '5px'}}>
+
+            <div>
+              <div style={{paddingBottom:'3px'}}>
+                <EntityItemTitleHost
+                  title={title}
+                  id={id}
+                  count={count}
+                  canonicalLink={canonicalLink} />
+                <span style={nodeEntityDescriptionStyle}>{edgeDescription}</span>
+              </div>
+              {tags}
+            </div>
           </div>
         </div>
       </div>
@@ -65,11 +67,9 @@ EntityItem.propTypes = {
   count: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  edge: PropTypes.node,
   tags: PropTypes.node
 }
 
 EntityItem.defaultProps = {
   tags:null,
-  edge:null
 }

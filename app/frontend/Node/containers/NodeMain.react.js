@@ -54,12 +54,7 @@ class NodeMain extends Component {
       const { users, entity, edges, entityCount } = superEdge;
 
       let tags = edges.map(edge=>edge.tags).reduce((a, b)=>a.concat(b));
-      const edgeComponentJSX =(
-        <EdgeConnection
-          edges={edges}
-          index={0}
-          />
-        )
+
       const userId = user?user.user._id:null;
       const currentUserEdgeId = that._getCurrentUserEdgeId(edges, userId); //Has the user created an edge to tag along this route?
       const tagInputJSX = currentUserEdgeId ?
@@ -80,7 +75,10 @@ class NodeMain extends Component {
             title={entity.title}
             description={entity.description}
             id={entity._id}
-            edge={edgeComponentJSX}
+          />
+          <EdgeConnection
+            edges={edges}
+            index={0}
           />
           <div style={{marginTop:'3px'}}>
             {tagInputJSX}
