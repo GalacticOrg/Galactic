@@ -55,6 +55,7 @@ exports.getEntityController = function (req, res) {
     const object = entity.toJSON();
 
     Edge.getNodeCount(entityIds.concat(entity.id), function(err, entityCount){
+      if (err) return  res.status(500).send( utils.errsForApi(err.errors || err) );
 
       Entity.find(
         { _id: {$in:  entityIds}},
