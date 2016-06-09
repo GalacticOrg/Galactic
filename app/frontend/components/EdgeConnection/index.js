@@ -45,7 +45,7 @@ export default class EdgeConnection extends Component {
         <div className="card-right-col">
           <div
             title={username}
-            style={connectBlocksStyle}>Connecter:
+            style={connectBlocksStyle}>By:
           </div>
           <div style={connectBlocksStyle}>
             <EdgeConnectionItem

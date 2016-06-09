@@ -61,7 +61,7 @@ class Home extends Component {
             </div>
             <div className='edge-card-info'>
               <EdgeConnection
-                edges={[edge, edge]}
+                edges={[edge]}
                 index={0}
                 />
             </div>
