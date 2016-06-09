@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import { Alert } from 'react-bootstrap'
 import EdgeConnectionItem from './EdgeConnectionItem.react'
 
-const connectBlocksStyle= {
+const connectBlocksStyle={
+  paddingLeft: '5px',
   display: 'inline-block',
   verticalAlign: 'top'
 }
