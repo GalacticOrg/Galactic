@@ -15,8 +15,11 @@ import InputURL from "../../components/InputURL/"
 import { resetSearch } from "../../components/InputURL/actions"
 
 const spacerStyle = { marginBottom: '50px'}
-const formStyle = { padding: '60px 15px 40px',
-  border: 'dashed 1px'}
+const formStyle = {
+  padding: '60px 15px 40px',
+  border: 'dashed 1px',
+  backgroundColor: 'white'
+}
 const responsiveClasses = ['col-xs-12','col-sm-10',
   'col-sm-offset-1',
   'col-md-10',

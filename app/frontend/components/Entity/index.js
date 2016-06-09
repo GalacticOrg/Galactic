@@ -39,8 +39,9 @@ export default class EntityItem extends Component {
               <img src={edgeImg} style={{width: '50px'}} />
             </div>
           </div>
-          <div className="card-right-col" style={{paddingLeft: '5px'}}>
-
+          <div
+            className="card-right-col"
+            style={{paddingLeft: '5px'}}>
             <div>
               <div style={{paddingBottom:'3px'}}>
                 <EntityItemTitleHost

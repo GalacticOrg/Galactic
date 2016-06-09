@@ -40,7 +40,7 @@ export default class EdgeConnection extends Component {
             title={username}
             style={{paddingLeft: '5px', display: 'inline-block', verticalAlign: 'top'}}>By:
           </div>
-          <div style={{paddingLeft: '5px', display: 'inline-block', verticalAlign: 'top'}}>
+          <div style={{display: 'inline-block', verticalAlign: 'top'}}>
             <EdgeConnectionItem
               profileImageUrl={profile_image_url}
               username={username}
