@@ -76,7 +76,7 @@ class Home extends Component {
                 display: 'block',
                 overflow: 'hidden',
                 border: 'none',
-                marginTop: '3px'
+                marginTop: '3px',
                 marginBottom: '3px'
               }}>
               <div className="card-left-col">
