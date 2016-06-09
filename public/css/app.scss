@@ -1,6 +1,8 @@
 $success-green: #66AD57;
 $success-green-overlay: #5B9E4D;
 $failure-red: #FF0000;
+$background-grey: #F5F8FA;
+$border-color: rgb(225, 232, 237);
 
 body {
   font-family: "Open Sans","Helvetica Neue",sans-serif;
@@ -13,21 +15,36 @@ body {
     text-decoration: none;
   }
 
+
+  .edge-card {
+    border: 1px #E1E8ED solid;
+    .card-left-col {width: 10%; float: left;}
+    .card-right-col {width: 90%; float: left;}
+    .top-node {
+      padding-bottom: 8px;
+      padding-top: 10px;
+     }
+    .bottom-node {
+      padding-top: 10px;
+      padding-bottom: 8px;
+    }
+    .edge-card-info {
+      padding-bottom: 4px;
+    }
+  }
+  .edge-card:hover { background-color: #F5F8FA !important; }
+
+
   /**************************/
   /** NAVBAR SECTION **/
   /**************************/
   .navbar {
-    .connect-icon-box {
-      margin-right: 10px;
+    .connect-icon-box{color: orange}
+    .connect-icon-box:hover {
+      background-color: orange;
+      color: white;
     }
     .connect-icon {
-      width: 20px;
-      height: auto;
-    }
-    .user-icon-box {
-      margin-right: 20px;
-    }
-    .user-icon {
       width: 20px;
       height: auto;
     }
@@ -129,60 +146,9 @@ body {
   /** NODE PAGE SECTION **/
   /**************************/
 
-  .resultNodeCard {
-    margin-top: 20px;
-    padding-top: 20px;
-    color: #555;
-    font-family: "Helvetica Neue", "Lucida Grande", "Arial";
-    .resultFont {
-      font-size: 18px;
-    }
-    .resultNodeHyperlinkText{
-      font-size: 12px;
-    }
-    .resultInfo {
-    }
-    .resultNodeAddConnectionBox {
-      margin-bottom: 8px;
-      background-color: orange;
-    }
-    .resultNodeAddConnectionBox:hover {
-      background-color: orange;
-    }
-
-    .resultNodeAddConnectionImg {
-      height: 50px;
-    }
-    .resultNodeAddConnectionImg:hover {
-      background-color: orange;
-    }
-    .connectorIconBox {
-      margin-right: 5px;
-    }
-    .connectorIcon {
-      width: 20px;
-    }
-  }
-
-  .resultsSection {
-    .connectionCardHover:hover {
-      background-color: #F6F6EF;
-    }
-    a:hover { color: blue; }
-  }
-
   .highlight-first >div:first-child{
     border: 2px solid #dff0d8;
   }
-
-  .connectionCard {
-    display: block;
-    color: #555;
-    font-size: 14px;
-    font-family: "Helvetica Neue", "Lucida Grande", "Arial";
-    overflow: hidden;
-  }
-
 
   /**************************/
   /** END RESULT NODE SECTION **/

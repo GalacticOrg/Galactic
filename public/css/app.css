@@ -53,14 +53,30 @@ body {
     text-decoration: none; }
   body .noUnderline:hover {
     text-decoration: none; }
+  body .edge-card {
+    border: 1px #E1E8ED solid; }
+    body .edge-card .card-left-col {
+      width: 10%;
+      float: left; }
+    body .edge-card .card-right-col {
+      width: 90%;
+      float: left; }
+    body .edge-card .top-node {
+      padding-bottom: 8px;
+      padding-top: 10px; }
+    body .edge-card .bottom-node {
+      padding-top: 10px;
+      padding-bottom: 8px; }
+    body .edge-card .edge-card-info {
+      padding-bottom: 4px; }
+  body .edge-card:hover {
+    background-color: #F5F8FA !important; }
   body .navbar .connect-icon-box {
-    margin-right: 10px; }
+    color: orange; }
+  body .navbar .connect-icon-box:hover {
+    background-color: orange;
+    color: white; }
   body .navbar .connect-icon {
-    width: 20px;
-    height: auto; }
-  body .navbar .user-icon-box {
-    margin-right: 20px; }
-  body .navbar .user-icon {
     width: 20px;
     height: auto; }
   body .loginModalHeader {
@@ -122,40 +138,8 @@ body {
     color: #66AD57; }
   body .is-not-url {
     color: #FF0000; }
-  body .resultNodeCard {
-    margin-top: 20px;
-    padding-top: 20px;
-    color: #555;
-    font-family: "Helvetica Neue", "Lucida Grande", "Arial"; }
-    body .resultNodeCard .resultFont {
-      font-size: 18px; }
-    body .resultNodeCard .resultNodeHyperlinkText {
-      font-size: 12px; }
-    body .resultNodeCard .resultNodeAddConnectionBox {
-      margin-bottom: 8px;
-      background-color: orange; }
-    body .resultNodeCard .resultNodeAddConnectionBox:hover {
-      background-color: orange; }
-    body .resultNodeCard .resultNodeAddConnectionImg {
-      height: 50px; }
-    body .resultNodeCard .resultNodeAddConnectionImg:hover {
-      background-color: orange; }
-    body .resultNodeCard .connectorIconBox {
-      margin-right: 5px; }
-    body .resultNodeCard .connectorIcon {
-      width: 20px; }
-  body .resultsSection .connectionCardHover:hover {
-    background-color: #F6F6EF; }
-  body .resultsSection a:hover {
-    color: blue; }
   body .highlight-first > div:first-child {
     border: 2px solid #dff0d8; }
-  body .connectionCard {
-    display: block;
-    color: #555;
-    font-size: 14px;
-    font-family: "Helvetica Neue", "Lucida Grande", "Arial";
-    overflow: hidden; }
   body .input-button a:focus {
     outline: none; }
   body .status-icon:focus {

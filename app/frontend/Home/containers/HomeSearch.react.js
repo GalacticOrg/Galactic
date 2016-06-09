@@ -35,7 +35,7 @@ class Home extends Component {
           className="edge-card"
           key={i}
           style={{backgroundColor: 'white'}}>
-            <div className='edge-node top-node'>
+            <div className='top-node'>
               <EntityItem
                 count={999}
                 imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
@@ -47,7 +47,7 @@ class Home extends Component {
                 createdAt={Number(createdAt)}
               />
             </div>
-            <div className='edge-node bottom-node'>
+            <div className='bottom-node'>
               <EntityItem
                 count={999}
                 imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
@@ -61,7 +61,7 @@ class Home extends Component {
             </div>
             <div className='edge-card-info'>
               <EdgeConnection
-                edges={[edge]}
+                edges={[edge, edge]}
                 index={0}
                 />
             </div>
