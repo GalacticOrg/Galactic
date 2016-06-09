@@ -9,12 +9,6 @@ import TagsInput from "../components/TagsInput.react"
 import { Alert, Tooltip, OverlayTrigger  } from "react-bootstrap"
 import { getNode, postNodeTags } from "../actions/index"
 
-const responsiveClasses = [
-        'col-xs-12','col-sm-10',
-        'col-sm-offset-1',
-        'col-md-10',
-        'col-md-offset-1'].join(' ')
-
 class NodeMain extends Component {
 
   constructor() {
@@ -120,12 +114,16 @@ class NodeMain extends Component {
 
     return (
       <div>
-      <Navbar />
-      <div className="container">
-        <div className={responsiveClasses+' row'}>
-          <div>
-            <div>
-              <br />
+        <Navbar />
+        <div className="container" style={{marginTop:'40px', marginBottom: '40px'}}>
+          <div className='row'>
+            <div className={
+              ['col-xs-12',
+              'col-sm-10',
+              'col-sm-offset-1',
+              'col-md-8',
+              'col-md-offset-2'].join(' ')
+              }>
               <h3>{title} <span className="label label-default">{entityCount}</span></h3>
               <div>
                 {documentImage}
@@ -134,39 +132,44 @@ class NodeMain extends Component {
                 </a>
               </div>
               <div style={{fontSize:'14px'}}>{descriptionClipped}</div>
+              <a href={connectHref}>
+                 <button
+                   type="button"
+                   className="btn btn-default">
+                   Add a new connection
+                 </button>
+               </a>
             </div>
           </div>
-          <div>
-            <div
-              style={{fontSize: '17px', fontWeight: 'bold', marginTop: '5px'}}>
-                <a href={connectHref}>
-                   <button
-                     type="button"
-                     className="btn btn-default">
-                     Add a new connection
-                   </button>
-                 </a>
+        </div>
+        <div style={{borderTop: '1px solid rgb(225, 232, 237)', backgroundColor: '#F5F8FA'}}>
+          <div className="container" >
+            <div className='row'>
+              <div className={
+                ['col-xs-12',
+                'col-sm-10',
+                'col-sm-offset-1',
+                'col-md-8',
+                'col-md-offset-2'].join(' ')
+                }>
+                {messageFlag && superEdges[0]?
+                  <Alert bsStyle="success" onDismiss={this.handleAlertDismiss}>
+                    <h4>You added a new Connection!</h4>
+                    <p>Every connection on the WikiWeb makes it that much more useful for the next person.</p>
+                    <br/>
+                  </Alert>
+                 :null}
+                <div className={messageFlag?'highlight-first':''}>
+                  {nodeEdges}
+                </div>
+                <div style={{margin:'50px'}}>
+                  {emptyMessage}
+                </div>
               </div>
             </div>
-            <hr />
+          </div>
         </div>
 
-        <div className={responsiveClasses + ' row'}>
-          {messageFlag && superEdges[0]?
-            <Alert bsStyle="success" onDismiss={this.handleAlertDismiss}>
-              <h4>You added a new Connection!</h4>
-              <p>Every connection on the WikiWeb makes it that much more useful for the next person.</p>
-              <br/>
-            </Alert>
-           :null}
-          <div className={messageFlag?'highlight-first':''}>
-            {nodeEdges}
-          </div>
-          <div style={{margin:'50px'}}>
-            {emptyMessage}
-          </div>
-        </div>
-      </div>
       </div>
     );
   }
