@@ -28,12 +28,13 @@ export default class EntityItem extends Component {
     }
 
     return (
-      <div style={{display: 'block', overflow: 'hidden'}}>
+      <div className="edge-card" style={{display: 'block', overflow: 'hidden'}}>
         <div className="card-left-col">
            <div style={{
-              maxHeight:'50px',
               overflow:'hidden',
-              paddingLeft: '8px'}}>
+              paddingLeft: '8px',
+              paddingTop: '6px'
+            }}>
             <img src={edgeImg} style={{width: '50px'}} />
           </div>
         </div>

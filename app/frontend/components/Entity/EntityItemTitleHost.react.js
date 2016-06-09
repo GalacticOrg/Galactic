@@ -27,7 +27,7 @@ export default class EntityItemTitleHost extends Component {
 
     return (
       <div>
-        {faviconCDN?<img style={{width:'16px',marginTop:'-5px'}} src={faviconCDN} />:null}
+        {faviconCDN?<img style={{width:'16px', marginTop:'-5px'}} src={faviconCDN} />:null}
         <a href={'/node/'+id}
         title={canonicalLink}
         className="noUnderline"
