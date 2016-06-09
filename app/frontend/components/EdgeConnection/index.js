@@ -2,12 +2,6 @@ import React, { Component, PropTypes } from 'react'
 import { Alert } from 'react-bootstrap'
 import EdgeConnectionItem from './EdgeConnectionItem.react'
 
-const connectBlocksStyle={
-  paddingLeft: '5px',
-  display: 'inline-block',
-  verticalAlign: 'top'
-}
-
 export default class EdgeConnection extends Component {
 
   constructor() {
@@ -39,24 +33,21 @@ export default class EdgeConnection extends Component {
     })
 
     return (
-      <div
-        className="edge-connection"
-        style={{display: 'block', overflow: 'hidden'}}>
+      <div className="edge-card" style={{display: 'block', overflow: 'hidden', border: 'none'}}>
         <div className="card-left-col"><img src="../../img/blank.png" /></div>
         <div className="card-right-col">
           <div
             title={username}
-            style={connectBlocksStyle}>By:
+            style={{paddingLeft: '5px', display: 'inline-block', verticalAlign: 'top'}}>By:
           </div>
-          <div style={connectBlocksStyle}>
+          <div style={{paddingLeft: '5px', display: 'inline-block', verticalAlign: 'top'}}>
             <EdgeConnectionItem
               profileImageUrl={profile_image_url}
               username={username}
               createdAt={createdAt} />
             {length>1?
             <span>
-              &nbsp;|&nbsp;
-              <a href="javascript:void(0)" onClick={this._toggle} >see {length-1} more</a>
+              <a href="javascript:void(0)" onClick={this._toggle} >and {length-1} more</a>
             </span>:null}
             {this.state.open?(edgesJSX):null}
           </div>

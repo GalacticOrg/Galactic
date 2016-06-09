@@ -68,7 +68,6 @@ class NodeMain extends Component {
           />:null;
       return (
         <div
-          style={{paddingBottom:'1em'}}
           key={i}>
           <EntityItem
             count={entityCount}
@@ -115,7 +114,7 @@ class NodeMain extends Component {
     return (
       <div>
         <Navbar />
-        <div className="container" style={{marginTop:'40px', marginBottom: '40px'}}>
+        <div className="container" style={{marginTop:'40px', marginBottom: '40px', backgroundColor: 'white'}}>
           <div className='row'>
             <div className={
               ['col-xs-12',
@@ -124,25 +123,35 @@ class NodeMain extends Component {
               'col-md-8',
               'col-md-offset-2'].join(' ')
               }>
-              <h3>{title} <span className="label label-default">{entityCount}</span></h3>
-              <div>
+
+            <div style={{display: 'block', overflow: 'hidden'}}>
+              <div className="card-left-col">
                 {documentImage}
-                <a href={canonicalLink} className="noUnderline">
-                <span>{prettyLink}</span>
-                </a>
               </div>
-              <div style={{fontSize:'14px'}}>{descriptionClipped}</div>
-              <a href={connectHref}>
-                 <button
-                   type="button"
-                   className="btn btn-default">
-                   Add a new connection
-                 </button>
-               </a>
+              <div className="card-right-col" style={{paddingLeft: '5px'}}>
+                <h3>{title} <span className="label label-default">{entityCount}</span></h3>
+                <div>
+
+                  <a href={canonicalLink} className="noUnderline">
+                  <span>{prettyLink}</span>
+                  </a>
+                </div>
+                <div style={{fontSize:'14px'}}>{descriptionClipped}</div>
+                <a href={connectHref}>
+                   <button
+                     type="button"
+                     className="btn btn-default">
+                     Add a new connection
+                   </button>
+                 </a>
+              </div>
+             </div>
+
             </div>
           </div>
         </div>
-        <div style={{borderTop: '1px solid rgb(225, 232, 237)', backgroundColor: '#F5F8FA'}}>
+
+        <div style={{borderTop: '1px solid rgb(225, 232, 237)', backgroundColor: '#F5F8FA', paddingTop: '5px'}}>
           <div className="container" >
             <div className='row'>
               <div className={
@@ -162,7 +171,7 @@ class NodeMain extends Component {
                 <div className={messageFlag?'highlight-first':''}>
                   {nodeEdges}
                 </div>
-                <div style={{margin:'50px'}}>
+                <div>
                   {emptyMessage}
                 </div>
               </div>
