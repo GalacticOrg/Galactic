@@ -73,23 +73,29 @@ exports.getEdgeController = function (req, res) {
   Edge.getEdges(35, function(err, edges){
     const entityIds = _.map(edges, '_idNodeFrom').concat(_.map(edges, '_idNodeTo'))
     const userIds = _.map(edges, '_idUser')
-    Entity.find(
-      { _id: {$in: entityIds }},
-      '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
-      .exec(function(err, entities){
+    Edge.getNodeCount(entityIds, function(err, entityCount){
+      Entity.find(
+        { _id: {$in: entityIds }},
+        '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
+        .exec(function(err, entities){
         User.find({ _id: {$in: userIds }}, 'name username twitter')
-          .exec(function(err, users){
-            const object = edges.map(function(edge, i){
-              return {
-                nodeFrom :  _.find(entities, { id: edge._idNodeFrom}),
-                nodeTo : _.find(entities, { id: edge._idNodeTo}),
-                user:  _.find(users, { id: edge._idUser}),
-                createdAt: edge.createdAt
-              }
-            })
+        .exec(function(err, users){
+          const object = edges.map(function(edge, i){
+            return {
+              nodeFromEntityCount: entityCount[edge._idNodeFrom].length,
+              nodeToEntityCount: entityCount[edge._idNodeTo].length,
+              nodeFrom :  _.find(entities, { id: edge._idNodeFrom}),
+              nodeTo : _.find(entities, { id: edge._idNodeTo}),
+              user:  _.find(users, { id: edge._idUser}),
+              createdAt: edge.createdAt,
+              tags: edge.tags?edge.tags:[],
+              _id: edge._idLink
+            }
+          })
           res.send(object)
         })
-    })
+      })
+    });
   })
 }
 
@@ -136,7 +142,6 @@ exports.postCreateEdgeController = function (req, res) {
                       console.log(err, "postCreateEdgeController")
                       return res.status(400).send(utils.errsForApi(err.errors || err));
                     }
-
                     Entity.find(
                       { _id: {$in: [fromId, toId]}},
                       'title _id faviconCDN canonicalLink description')
@@ -171,7 +176,6 @@ exports.postTagsEdgeController = function (req, res) {
     tags,
     function(err, edge){
       if (err) return res.status(400).send(utils.errsForApi(err.errors || err));
-
       res.send(edge[0].edge.properties)
     });
 }

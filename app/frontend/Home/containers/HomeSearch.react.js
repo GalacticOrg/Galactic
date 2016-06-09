@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbar.react"
 import InputURL from "../../components/InputURL/"
 import EntityItem from "../../components/Entity/"
 import EdgeConnection from "../../components/EdgeConnection/"
+import Tags from "../../components/Tags.react"
 
 const inputKey = 'homeResult';
 const homepageUrlSearchForm = {
@@ -29,7 +30,7 @@ class Home extends Component {
 
     const connections = firehoseResult?
     firehoseResult.map(function(edge, i){
-      const { user, nodeFrom, nodeTo, createdAt } = edge;
+      const { user, nodeFrom, nodeTo, createdAt, nodeFromEntityCount, nodeToEntityCount, tags } = edge;
       return (
         <div
           className="edge-card"
@@ -37,7 +38,7 @@ class Home extends Component {
           style={{backgroundColor: 'white'}}>
             <div className='top-node'>
               <EntityItem
-                count={999}
+                count={nodeFromEntityCount}
                 imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
                 faviconCDN={nodeFrom.faviconCDN?nodeFrom.faviconCDN:''}
                 canonicalLink={nodeFrom.canonicalLink}
@@ -49,7 +50,7 @@ class Home extends Component {
             </div>
             <div className='bottom-node'>
               <EntityItem
-                count={999}
+                count={nodeToEntityCount}
                 imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
                 faviconCDN={nodeTo.faviconCDN?nodeTo.faviconCDN:''}
                 canonicalLink={nodeTo.canonicalLink}
@@ -65,6 +66,7 @@ class Home extends Component {
                 index={0}
                 />
             </div>
+            <Tags tags={tags}/>
         </div>)
     }):<Loader top="100px"/>;
 
