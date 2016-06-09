@@ -33,7 +33,7 @@ export default class EdgeConnection extends Component {
     })
 
     return (
-      <div className="edge-card" style={{display: 'block', overflow: 'hidden', border: 'none'}}>
+      <div style={{display: 'block', overflow: 'hidden', border: 'none'}}>
         <div className="card-left-col"><img src="../../img/blank.png" /></div>
         <div className="card-right-col">
           <div

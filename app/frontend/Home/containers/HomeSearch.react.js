@@ -33,9 +33,8 @@ class Home extends Component {
       const { user, nodeFrom, nodeTo, createdAt, nodeFromEntityCount, nodeToEntityCount, tags } = edge;
       return (
         <div
-          className="edge-card"
           key={i}
-          style={{border: '1px solid rgb(225, 232, 237)', backgroundColor: 'white'}}
+          className="default-card"
           >
             <div className='top-node' style={{border: 'none'}}>
               <EntityItem

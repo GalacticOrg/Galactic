@@ -69,7 +69,9 @@ class NodeMain extends Component {
           />:null;
       return (
         <div
-          key={i}>
+          key={i}
+          className='default-card'
+          >
           <EntityItem
             count={entityCount}
             imageCDN={entity.imageCDN.url?entity.imageCDN.url:''}

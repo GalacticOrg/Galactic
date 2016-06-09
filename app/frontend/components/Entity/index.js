@@ -28,7 +28,7 @@ export default class EntityItem extends Component {
     }
 
     return (
-      <div className="edge-card" style={{display: 'block', overflow: 'hidden'}}>
+      <div className="entity-card" style={{display: 'block', overflow: 'hidden'}}>
         <div className="card-left-col">
            <div style={{
               overflow:'hidden',

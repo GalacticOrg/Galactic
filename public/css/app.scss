@@ -17,10 +17,18 @@ body {
     text-decoration: none;
   }
 
-  .edge-card {
-    border: 1px #E1E8ED solid;
-    .card-left-col {width: $card-left-width; float: left;}
-    .card-right-col {width: calc(100% - #{$card-left-width}); float: left;}
+  .card-left-col {width: $card-left-width; float: left;}
+  .card-right-col {width: calc(100% - #{$card-left-width}); float: left;}
+
+  .default-card {
+    &:hover { background-color: #F5F8FA !important; }
+    border: 1px solid rgb(225, 232, 237);
+    background-color: white
+  }
+
+
+  .entity-card {
+
     .top-node {
       padding-bottom: 8px;
       padding-top: 10px;
@@ -29,12 +37,11 @@ body {
       padding-top: 10px;
       padding-bottom: 8px;
     }
-    .edge-card-info {
-      padding-bottom: 4px;
-    }
   }
-  .edge-card:hover { background-color: #F5F8FA !important; }
 
+  .edge-card-info {
+    padding-bottom: 4px;
+  }
 
   /**************************/
   /** NAVBAR SECTION **/
