@@ -34,8 +34,9 @@ class Home extends Component {
         <div
           className="edge-card"
           key={i}
-          style={{backgroundColor: 'white'}}>
-            <div className='top-node'>
+          style={{border: '1px solid rgb(225, 232, 237)', backgroundColor: 'white'}}
+          >
+            <div className='top-node' style={{border: 'none'}}>
               <EntityItem
                 count={999}
                 imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
