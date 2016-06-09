@@ -66,6 +66,9 @@ body {
       background-color: #F5F8FA !important; }
   body .edge-card-info {
     padding-bottom: 4px; }
+  body .invertibleButton:hover {
+    color: white;
+    background-color: orange; }
   body .navbar .connect-icon-box {
     color: orange; }
   body .navbar .connect-icon-box:hover {

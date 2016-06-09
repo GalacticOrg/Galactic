@@ -44,7 +44,7 @@ class NodeMain extends Component {
 
     const prettyLink = canonicalLink.replace(/^(http:\/\/|https:\/\/)/,'');
 
-    let documentImage = (<span><img src="/img/document.png" style={{height: '30px'}} /></span>)
+    let documentImage = (<span><img src="/img/document.png" style={{height: '50px'}} /></span>)
     if (faviconCDN){
       documentImage = (<span><img src={faviconCDN} style={{width: '16px'}} /></span>)
     }
@@ -81,8 +81,14 @@ class NodeMain extends Component {
             index={0}
           />
           <div style={{display: 'block', overflow: 'hidden', border: 'none', marginTop: '3px'}}>
-            <div className="card-left-col"><img src="../../img/blank.png" /></div>
-            <div className="card-right-col" style={{ paddingLeft: '5px'}}>{tagsInputJSX}</div>
+            <div className="card-left-col">
+              <img src="../../img/blank.png" />
+            </div>
+            <div
+              className="card-right-col"
+              style={{ paddingLeft: '5px'}}>
+              {tagsInputJSX}
+            </div>
           </div>
         </div>)
     });
@@ -116,7 +122,11 @@ class NodeMain extends Component {
     return (
       <div>
         <Navbar />
-        <div className="container" style={{marginTop:'40px', marginBottom: '40px', backgroundColor: 'white'}}>
+        <div  className="container"
+              style={{
+                marginTop:'40px',
+                marginBottom: '40px',
+                backgroundColor: 'white'}}>
           <div className='row'>
             <div className={
               ['col-xs-12',
@@ -127,23 +137,31 @@ class NodeMain extends Component {
               }>
 
             <div style={{display: 'block', overflow: 'hidden'}}>
-              <div className="card-left-col">
+              <div  className="card-left-col"
+                    style={{paddingTop: '20px', textAlign: 'center'}}>
                 {documentImage}
               </div>
-              <div className="card-right-col" style={{paddingLeft: '5px'}}>
-                <h3>{title} <span className="label label-default">{entityCount}</span></h3>
+              <div  className="card-right-col"
+                    style={{paddingLeft: '5px', paddingRight: '5px'}}>
+                <h3>{title}</h3>
                 <div>
-
-                  <a href={canonicalLink} className="noUnderline">
+                  <span
+                    className="label label-default">
+                    {entityCount}
+                  </span>
+                  <a  href={canonicalLink}
+                      className="noUnderline"
+                      style={{marginLeft: '5px'}}>
                   <span>{prettyLink}</span>
                   </a>
                 </div>
-                <div style={{fontSize:'14px'}}>{descriptionClipped}</div>
+                <div style={{fontSize:'14px', paddingTop: '8px'}}>{descriptionClipped}</div>
                 <a href={connectHref}>
                    <button
                      type="button"
-                     className="btn btn-default">
-                     Add a new connection
+                     className="btn btn-default invertibleButton"
+                     style={{marginTop: '10px', border: '1px solid orange'}}>
+                     Add a connection
                    </button>
                  </a>
               </div>
@@ -153,7 +171,10 @@ class NodeMain extends Component {
           </div>
         </div>
 
-        <div style={{borderTop: '1px solid rgb(225, 232, 237)', backgroundColor: '#F5F8FA', paddingTop: '5px'}}>
+        <div style={{
+          borderTop: '1px solid rgb(225, 232, 237)',
+          backgroundColor: '#F5F8FA',
+          paddingTop: '5px'}}>
           <div className="container" >
             <div className='row'>
               <div className={
