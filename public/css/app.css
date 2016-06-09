@@ -70,6 +70,12 @@ body {
   body .invertibleButton:hover {
     color: white;
     background-color: orange; }
+  body .badge-styling {
+    background-color: transparent;
+    border: 1px solid orange;
+    color: orange;
+    padding-left: 6px;
+    padding-right: 6px; }
   body .navbar .connect-icon-box {
     color: orange; }
   body .navbar .connect-icon-box:hover {

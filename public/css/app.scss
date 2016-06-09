@@ -31,9 +31,17 @@ body {
     padding-bottom: 4px;
   }
 
-  .invertibleButton:hover{
+  .invertibleButton:hover {
     color: white;
     background-color: orange;
+  }
+
+  .badge-styling {
+    background-color: transparent;
+    border: 1px solid orange;
+    color: orange;
+    padding-left: 6px;
+    padding-right: 6px;
   }
 
   /**************************/

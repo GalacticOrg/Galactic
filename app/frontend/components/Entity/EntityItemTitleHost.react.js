@@ -24,7 +24,20 @@ export default class EntityItemTitleHost extends Component {
     let sourceURL=document.createElement('a')
     sourceURL.href=canonicalLink
 
+    let countJSX = <span
+      title="numer of connections"
+      className="badge badge-default badge-styling">
+      {count}
+    </span>
 
+    if (count > 9) {
+      countJSX =
+      <span
+        title="number of connections"
+        className="badge badge-default badge-styling"
+        style={{paddingLeft: '3px', paddingRight: '3px'}}>
+        {count}</span>
+    }
     return (
       <div>
         {faviconCDN?<img style={{width:'16px', marginTop:'-5px'}} src={faviconCDN} />:null}
@@ -39,7 +52,7 @@ export default class EntityItemTitleHost extends Component {
         <span style={nodeEntityStyle}>
           <a href={sourceURL.href} target="_blank" >({sourceURL.host})</a>
           &nbsp;
-          <span className="label label-default">{count}</span>
+          {countJSX}
         </span>
       </div>
     )

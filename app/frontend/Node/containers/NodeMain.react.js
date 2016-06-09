@@ -122,6 +122,21 @@ class NodeMain extends Component {
       descriptionClipped = description
     }
 
+    let entityCountJSX =
+    <span className="badge badge-default badge-styling">
+      {entityCount}
+    </span>
+
+    if (entityCount > 9){
+      entityCountJSX =
+      <span
+        title="number of connections"
+        className="badge badge-default badge-styling"
+        style={{paddingLeft: '3px', paddingRight: '3px'}}>
+        {entityCount}
+      </span>
+    }
+
     return (
       <div style={{backgroundColor:'white'}}>
         <Navbar />
@@ -148,10 +163,7 @@ class NodeMain extends Component {
                     style={{paddingLeft: '5px', paddingRight: '5px'}}>
                 <h3>{title}</h3>
                 <div>
-                  <span
-                    className="label label-default">
-                    {entityCount}
-                  </span>
+                  {entityCountJSX}
                   <a  href={canonicalLink}
                       className="noUnderline"
                       style={{marginLeft: '5px'}}>
