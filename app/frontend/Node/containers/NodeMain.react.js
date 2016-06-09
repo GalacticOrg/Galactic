@@ -16,7 +16,8 @@ class NodeMain extends Component {
      const messageFlag = window.location.search.search((/message=true/))
      this._handleAlertDismiss = this._handleAlertDismiss.bind(this)
      this.state = {
-       messageFlag: messageFlag!=-1?true:false
+       messageFlag: messageFlag!=-1?true:false,
+       imgError: false
      }
   }
 
@@ -28,7 +29,7 @@ class NodeMain extends Component {
   render() {
     const that = this;
     const { nodeResult, user } = this.props
-    const { messageFlag } = this.state
+    const { messageFlag, imgError } = this.state
 
     if (!nodeResult || Object.keys(nodeResult).length==0) {
       return (
@@ -44,12 +45,9 @@ class NodeMain extends Component {
 
     const prettyLink = canonicalLink.replace(/^(http:\/\/|https:\/\/)/,'');
 
-    let documentImage = (<span><img src="/img/document.png" style={{height: '50px'}} /></span>)
-    if (imageCDN.url){
-      documentImage = (<span><img src={imageCDN.url} style={{width: '50px'}} /></span>)
-    }
-    else if (faviconCDN){
-      documentImage = (<span><img src={faviconCDN} style={{maxWidth: '50px'}} /></span>)
+    let documentImageSrc ='/img/document.png';
+    if (!imgError && faviconCDN){
+      documentImageSrc = faviconCDN
     }
 
     const nodeEdges = superEdges.map(function(superEdge, i){
@@ -140,9 +138,14 @@ class NodeMain extends Component {
               }>
 
             <div style={{display: 'block', overflow: 'hidden'}}>
-              <div  className="card-left-col"
-                    style={{paddingTop: '20px', textAlign: 'center'}}>
-                {documentImage}
+              <div className="card-left-col">
+                <span>
+                  <img
+                  src={documentImageSrc}
+                  style={{height: '30px'}}
+                  onError={this._handleImageErrored.bind(this)}
+                  />
+                </span>
               </div>
               <div  className="card-right-col"
                     style={{paddingLeft: '5px', paddingRight: '5px'}}>
@@ -221,6 +224,12 @@ class NodeMain extends Component {
   _getCurrentUserEdgeId(edges, userId){
     const currentUserEdge = edges.find(e=>e.user._id==userId);
     return currentUserEdge?currentUserEdge._id:null;
+  }
+
+  _handleImageErrored(){
+    this.setState({
+      imgError:true
+    })
   }
 
 }
