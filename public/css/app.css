@@ -49,39 +49,10 @@ body {
   /**************************/
   /** END USER PAGE SECTION **/
   /**************************/ }
-  body .top-twenty {
-    margin-top: 20px; }
-  body .marginAuto {
-    margin: auto;
-    display: block; }
-  body .displayBlock {
-    display: block; }
-  body .pageTitle {
-    font-family: "Open Sans","Helvetica Neue",sans-serif;
-    font-size: 18px;
-    margin-top: 20px; }
   body .noUnderline {
     text-decoration: none; }
   body .noUnderline:hover {
     text-decoration: none; }
-  body .edge-card {
-    border: 1px #E1E8ED solid; }
-    body .edge-card .card-left-col {
-      width: 10%;
-      float: left; }
-    body .edge-card .card-right-col {
-      width: 90%;
-      float: left; }
-    body .edge-card .top-node {
-      padding-bottom: 8px;
-      padding-top: 10px; }
-    body .edge-card .bottom-node {
-      padding-top: 10px;
-      padding-bottom: 8px; }
-    body .edge-card .edge-card-info {
-      padding-bottom: 4px; }
-  body .edge-card:hover {
-    background-color: #F5F8FA !important; }
   body .navbar .connect-icon-box {
     margin-right: 10px; }
   body .navbar .connect-icon {

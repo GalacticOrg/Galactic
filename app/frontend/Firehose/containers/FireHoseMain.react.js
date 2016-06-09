@@ -61,9 +61,7 @@ class User extends Component {
             id={nodeTo._id}
           />
           <EdgeConnection
-            username={user.username}
-            profileImageUrl={user.twitter.profile_image_url}
-            createdAt={Number(createdAt)}
+            edges={[edge]}
             />
         </div>)
     }):null;

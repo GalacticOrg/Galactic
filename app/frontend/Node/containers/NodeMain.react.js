@@ -6,7 +6,6 @@ import EntityItem from "../../components/Entity/"
 import EdgeConnection from "../../components/EdgeConnection"
 import TagsInput from "../components/TagsInput.react"
 
-
 import { Alert, Tooltip, OverlayTrigger  } from "react-bootstrap"
 import { getNode, postNodeTags } from "../actions/index"
 
@@ -58,21 +57,21 @@ class NodeMain extends Component {
     const nodeEdges = superEdges.map(function(superEdge, i){
 
       const { users, entity, edges, entityCount } = superEdge;
-      const user = edges[0].user;
-      const createdAt = edges[0].createdAt;
+
       let tags = edges.map(edge=>edge.tags).reduce((a, b)=>a.concat(b));
       const edgeComponentJSX =(
         <EdgeConnection
-          username={user.username}
-          profileImageUrl={user.twitter.profile_image_url}
-          createdAt={Number(createdAt)}
-          length={edges.length}
+          edges={edges}
+          index={0}
           />
         )
-
-      const currentUserEdgeId = that._getCurrentUserEdgeId(edges, user); //Has the user created an edge to tag along this route?
-      const tagInputJSX = currentUserEdgeId? <TagsInput tags={tags} id={currentUserEdgeId} />:null;
-
+        debugger
+      const currentUserEdgeId = that._getCurrentUserEdgeId(edges, user.user); //Has the user created an edge to tag along this route?
+      const tagInputJSX = currentUserEdgeId ?
+        <TagsInput
+          tags={tags}
+          id={currentUserEdgeId}
+          />:null;
       return (
         <div
           className="connectionCardHover"
@@ -172,11 +171,8 @@ class NodeMain extends Component {
       </div>
     );
   }
-  _addTag(id){
+  _addTag(input){
     this.props.dispatch( postNodeTags(id, this.state.tagInput.split(' ') ));
-    this.setState({
-      tagInput: ''
-    });
   }
 
   _getCurrentUserEdgeId(edges, user){

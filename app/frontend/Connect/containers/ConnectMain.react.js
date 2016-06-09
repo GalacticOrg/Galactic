@@ -9,7 +9,7 @@ import { Alert, Tooltip, OverlayTrigger} from 'react-bootstrap'
 import { postConnection } from '../actions'
 
 import Navbar from "../../components/Navbar.react"
-import EntityItemTitleHost from "../../components/EntityItemTitleHost.react"
+import EntityItemTitleHost from "../../components/Entity/EntityItemTitleHost.react"
 import InputURL from "../../components/InputURL/"
 
 import { resetSearch } from "../../components/InputURL/actions"

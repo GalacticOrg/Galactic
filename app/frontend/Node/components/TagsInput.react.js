@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { postNodeTags } from "../actions/index"
+import Tags from "../../components/Tags.react"
 
 export default class TagsInput extends Component {
 
@@ -17,8 +18,13 @@ export default class TagsInput extends Component {
 
   componentWillMount(){
     this.state={
-      open: this.props.isOpen?this.props.isOpen:false,
       tagInput: this.props.tags.join(' ')
+    }
+  }
+
+  componentWillReceiveProps(nextProps){
+    this.state={
+      tagInput: nextProps.tags.join(' ')
     }
   }
 
@@ -26,14 +32,16 @@ export default class TagsInput extends Component {
     const { username, profileImageUrl, createdAt, length, tags } = this.props;
 
     if (!this.state.open){
-      return <a
-        style={{padding:'0px 0px 20px 60px'}}
-        href="javascript:void(0)"
-        onClick={this._open}>+ Add/Edit Tags</a>
+      return (
+      <div>
+        <Tags tags={this.props.tags}/>
+        <a href="javascript:void(0)" onClick={this._open}>Add/Edit Tags</a>
+      </div>
+      )
     }
 
     return (
-      <div style={{padding:'10px 60px 20px'}}>
+      <div>
         <div className="input-group tag-entry">
           <input
             onChange={this._tagChangeHandler}
@@ -48,7 +56,6 @@ export default class TagsInput extends Component {
         </div>
         <a href="javascript:void(0)" onClick={this._close}>close</a>
       </div>
-
     )
   }
 
@@ -75,7 +82,7 @@ export default class TagsInput extends Component {
 
   _addTags(){
     const {dispatch, id} = this.props;
-    const val =this.state.tagInput.split(' ').filter(v=>v.length!==0);
+    const val =this.state.tagInput.split(/[\s,]+/).filter(v=>v.length!==0);
     dispatch(postNodeTags(id, val))
     this.setState({
       open: false
@@ -86,8 +93,7 @@ export default class TagsInput extends Component {
 
 TagsInput.propTypes = {
   tags: PropTypes.array.isRequired,
-  id: PropTypes.string.isRequired,
-  isOpen: PropTypes.bool
+  id: PropTypes.string.isRequired
 }
 
 export default connect()(TagsInput)

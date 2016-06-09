@@ -36,7 +36,7 @@ class User extends Component {
   render() {
     const { dispatch, result, profile } = this.props
 
-    if (!result) {
+    if (!result || !profile) {
       return (
         <div>
           <Navbar dispatch={dispatch} />
@@ -45,6 +45,8 @@ class User extends Component {
       )
     }
 
+
+    const name = profile.name;
     const username = profile.username;
     const profile_image_url_https = profile.twitter.profile_image_url_https
 
@@ -62,6 +64,7 @@ class User extends Component {
                   border: '1px #eee solid',
                 }}>
           <EntityItem
+            count={999}
             imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
             faviconCDN={nodeFrom.faviconCDN?nodeFrom.faviconCDN:''}
             canonicalLink={nodeFrom.canonicalLink}
@@ -72,6 +75,7 @@ class User extends Component {
           />
           <div style={connectLineParent}><div style={connectLine}></div></div>
           <EntityItem
+            count={999}
             imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
             faviconCDN={nodeTo.faviconCDN?nodeTo.faviconCDN:''}
             canonicalLink={nodeTo.canonicalLink}
@@ -81,9 +85,8 @@ class User extends Component {
             createdAt={Number(createdAt)}
            />
           <EdgeConnection
-            username={profile.username}
-            profileImageUrl={profile.twitter.profile_image_url}
-            createdAt={Number(createdAt)}
+            edges={[{...edge, user:profile}]}
+            index={0}
             />
         </div>)
     });
@@ -91,7 +94,7 @@ class User extends Component {
 
     return (<div>
       <Navbar dispatch={dispatch} />
-      <div style={{backgroundColor: '#f0f0f0', paddingBottom: '20px'}}>
+      <div style={{backgroundColor: '#f0f0f0', padding: '20px'}}>
         <div className="container">
           <div className="row pageTitle" >
             <div className="col-md-3 col-md-offset-1">&#47;{"@"+username}</div>

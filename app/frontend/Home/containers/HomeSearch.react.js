@@ -37,6 +37,7 @@ class Home extends Component {
           style={{backgroundColor: 'white'}}>
             <div className='edge-node top-node'>
               <EntityItem
+                count={999}
                 imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
                 faviconCDN={nodeFrom.faviconCDN?nodeFrom.faviconCDN:''}
                 canonicalLink={nodeFrom.canonicalLink}
@@ -48,6 +49,7 @@ class Home extends Component {
             </div>
             <div className='edge-node bottom-node'>
               <EntityItem
+                count={999}
                 imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
                 faviconCDN={nodeTo.faviconCDN?nodeTo.faviconCDN:''}
                 canonicalLink={nodeTo.canonicalLink}
@@ -59,10 +61,9 @@ class Home extends Component {
             </div>
             <div className='edge-card-info'>
               <EdgeConnection
-                username={user.username}
-                profileImageUrl={user.twitter.profile_image_url}
-                createdAt={Number(createdAt)}
-              />
+                edges={[edge]}
+                index={0}
+                />
             </div>
         </div>)
     }):<Loader top="100px"/>;
