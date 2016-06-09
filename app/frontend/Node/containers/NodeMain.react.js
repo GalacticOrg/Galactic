@@ -84,7 +84,6 @@ class NodeMain extends Component {
 
       return (
         <div
-          className="connectionCardHover"
           style={{paddingBottom:'1em'}}
           key={i}>
           <EntityItem
@@ -131,15 +130,15 @@ class NodeMain extends Component {
       <div>
       <Navbar />
       <div className="container">
-        <div className={responsiveClasses+' row resultNodeCard'}>
-          <div className="show-grid">
-            <div className="resultFont">
+        <div className={responsiveClasses+' row'}>
+          <div>
+            <div>
               <br />
               <h3>{title} <span className="label label-default">{entityCount}</span></h3>
               <div>
                 {documentImage}
-                &nbsp;<a href={canonicalLink} className="noUnderline">
-                <span className="resultNodeHyperlinkText">{prettyLink}</span>
+                <a href={canonicalLink} className="noUnderline">
+                <span>{prettyLink}</span>
                 </a>
               </div>
               <div style={{fontSize:'14px'}}>{descriptionClipped}</div>
@@ -151,7 +150,7 @@ class NodeMain extends Component {
                 <a href={connectHref}>
                    <button
                      type="button"
-                     className="btn btn-default resultNodeAddConnectionBox">
+                     className="btn btn-default">
                      Add a new connection
                    </button>
                  </a>
@@ -160,7 +159,7 @@ class NodeMain extends Component {
             <hr />
         </div>
 
-        <div className={responsiveClasses + ' row resultsSection'}>
+        <div className={responsiveClasses + ' row'}>
           {messageFlag && superEdges[0]?
             <Alert bsStyle="success" onDismiss={this.handleAlertDismiss}>
               <h4>You added a new Connection!</h4>

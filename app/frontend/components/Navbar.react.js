@@ -25,7 +25,7 @@ class Navbar extends Component {
         </div>
         <div className="navbar-header pull-right">
           <a href="/connect">
-            <button type="button" className="btn btn-default navbar-btn connect-icon-box fa fa-plus" style={{fontSize: '15px', height: '32px', borderColor: 'orange', marginRight: '10px'}}></button>
+            <button type="button" className="btn btn-default navbar-btn connect-icon-box fa fa-plus" style={{fontSize: '15px', height: '32px', borderColor: 'orange', marginRight: '10px'}} title="add a connection"></button>
           </a>
           {!success?
             <LoginSignupModal />:
@@ -34,7 +34,7 @@ class Navbar extends Component {
                 type="button"
                 href={'/@'+user.username}
                 style={{marginRight: '20px'}}>
-                <img style={{height: '32px', borderRadius: '3px', border: '1px solid rgb(197, 197, 197)'}}
+                <img style={{height: '32px', borderRadius: '3px'}}
                   src={user.twitter.profile_image_url_https} />
               </a>
             )}

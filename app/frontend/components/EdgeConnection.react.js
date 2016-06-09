@@ -15,7 +15,7 @@ export default class EdgeConnection extends Component {
     const { username, profileImageUrl, createdAt, length, tags } = this.props;
 
     return (
-      <div className="edge-connection connectionCard">
+      <div className="edge-connection" style={{display: 'block', overflow: 'hidden'}}>
         <div className="card-left-col"><img src="../../img/blank.png" /></div>
         <div className="card-right-col">
           <span title={username} style={{paddingLeft: '5px'}}>Connecter:

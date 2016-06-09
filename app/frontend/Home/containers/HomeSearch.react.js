@@ -35,7 +35,7 @@ class Home extends Component {
           className="edge-card"
           key={i}
           style={{backgroundColor: 'white'}}>
-            <div className='edge-node top-node'>
+            <div className='top-node'>
               <EntityItem
                 imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
                 faviconCDN={nodeFrom.faviconCDN?nodeFrom.faviconCDN:''}
@@ -46,7 +46,7 @@ class Home extends Component {
                 createdAt={Number(createdAt)}
               />
             </div>
-            <div className='edge-node bottom-node'>
+            <div className='bottom-node'>
               <EntityItem
                 imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
                 faviconCDN={nodeTo.faviconCDN?nodeTo.faviconCDN:''}

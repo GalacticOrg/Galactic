@@ -33,7 +33,6 @@ body {
     border: 1px #E1E8ED solid;
     .card-left-col {width: 10%; float: left;}
     .card-right-col {width: 90%; float: left;}
-    .edge-node:hover { }
     .top-node {
       padding-bottom: 8px;
       padding-top: 10px;
@@ -160,60 +159,9 @@ body {
   /** NODE PAGE SECTION **/
   /**************************/
 
-  .resultNodeCard {
-    margin-top: 20px;
-    padding-top: 20px;
-    color: #555;
-    font-family: "Helvetica Neue", "Lucida Grande", "Arial";
-    .resultFont {
-      font-size: 18px;
-    }
-    .resultNodeHyperlinkText{
-      font-size: 12px;
-    }
-    .resultInfo {
-    }
-    .resultNodeAddConnectionBox {
-      margin-bottom: 8px;
-      background-color: orange;
-    }
-    .resultNodeAddConnectionBox:hover {
-      background-color: orange;
-    }
-
-    .resultNodeAddConnectionImg {
-      height: 50px;
-    }
-    .resultNodeAddConnectionImg:hover {
-      background-color: orange;
-    }
-    .connectorIconBox {
-      margin-right: 5px;
-    }
-    .connectorIcon {
-      width: 20px;
-    }
-  }
-
-  .resultsSection {
-    .connectionCardHover:hover {
-      background-color: #F6F6EF;
-    }
-    a:hover { color: blue; }
-  }
-
   .highlight-first >div:first-child{
     border: 2px solid #dff0d8;
   }
-
-  .connectionCard {
-    display: block;
-    color: #555;
-    font-size: 14px;
-    font-family: "Helvetica Neue", "Lucida Grande", "Arial";
-    overflow: hidden;
-  }
-
 
   /**************************/
   /** END RESULT NODE SECTION **/

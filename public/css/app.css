@@ -149,40 +149,8 @@ body {
     color: #66AD57; }
   body .is-not-url {
     color: #FF0000; }
-  body .resultNodeCard {
-    margin-top: 20px;
-    padding-top: 20px;
-    color: #555;
-    font-family: "Helvetica Neue", "Lucida Grande", "Arial"; }
-    body .resultNodeCard .resultFont {
-      font-size: 18px; }
-    body .resultNodeCard .resultNodeHyperlinkText {
-      font-size: 12px; }
-    body .resultNodeCard .resultNodeAddConnectionBox {
-      margin-bottom: 8px;
-      background-color: orange; }
-    body .resultNodeCard .resultNodeAddConnectionBox:hover {
-      background-color: orange; }
-    body .resultNodeCard .resultNodeAddConnectionImg {
-      height: 50px; }
-    body .resultNodeCard .resultNodeAddConnectionImg:hover {
-      background-color: orange; }
-    body .resultNodeCard .connectorIconBox {
-      margin-right: 5px; }
-    body .resultNodeCard .connectorIcon {
-      width: 20px; }
-  body .resultsSection .connectionCardHover:hover {
-    background-color: #F6F6EF; }
-  body .resultsSection a:hover {
-    color: blue; }
   body .highlight-first > div:first-child {
     border: 2px solid #dff0d8; }
-  body .connectionCard {
-    display: block;
-    color: #555;
-    font-size: 14px;
-    font-family: "Helvetica Neue", "Lucida Grande", "Arial";
-    overflow: hidden; }
   body .input-button a:focus {
     outline: none; }
   body .status-icon:focus {

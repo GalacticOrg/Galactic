@@ -26,7 +26,7 @@ export default class EntityItem extends Component {
     }
 
     return (
-      <div className="connectionCard">
+      <div style={{display: 'block', overflow: 'hidden'}}>
         <div className="card-left-col">
            <div style={{
               maxHeight:'50px',
