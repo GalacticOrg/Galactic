@@ -23,7 +23,9 @@ class Navbar extends Component {
         <div className="navbar-header pull-left">
           <a className="navbar-brand" href="/">WikiWeb</a>
         </div>
-        <div className="navbar-header pull-right">
+        <div
+          className="navbar-header pull-right"
+          style={{marginRight:'10px'}}>
           <a href="/connect">
             <button type="button" className="btn btn-default navbar-btn connect-icon-box fa fa-plus" style={{fontSize: '15px', height: '32px', borderColor: 'orange', marginRight: '10px'}} title="add a connection"></button>
           </a>
