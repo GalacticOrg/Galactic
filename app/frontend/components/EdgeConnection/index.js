@@ -12,7 +12,7 @@ export default class EdgeConnection extends Component {
   }
 
   render() {
-    const { username, profileImageUrl, createdAt, length, tags } = this.props;
+    const { username, profileImageUrl, createdAt, length } = this.props;
 
     return (
       <div className="edge-connection" style={{display: 'block', overflow: 'hidden'}}>
@@ -26,7 +26,6 @@ export default class EdgeConnection extends Component {
           {length>1?<span> and {length-1} more</span>:null}
           </span>
           <span> | {new Date(createdAt).toLocaleString()}</span>
-          {tags&&tags.length>0?<div style={{marginTop:'3px'}}>{tags.join(' ')}</div>:null}
         </div>
       </div>
     )
@@ -42,9 +41,12 @@ export default class EdgeConnection extends Component {
 }
 
 EdgeConnection.propTypes = {
-  username: PropTypes.string.isRequired,
   profileImageUrl:  PropTypes.string.isRequired,
-  tags: PropTypes.array,
   createdAt: PropTypes.number,
   length: PropTypes.number.isRequired,
+
+  edges: React.PropTypes.shape([{
+    username: PropTypes.string.isRequired,
+    title: React.PropTypes.string
+  }])
 }

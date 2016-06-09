@@ -5,7 +5,7 @@
 
 import { combineReducers } from 'redux';
 import userResult from '../../components/users/reducers'
-import inputURLResult from '../../components/inputURL/reducers'
+import inputURLResult from '../../components/InputURL/reducers'
 import { RECEIVE_FIREHOSE_DATA } from '../actions'
 
 const firehoseResult = (state = null, action) => {

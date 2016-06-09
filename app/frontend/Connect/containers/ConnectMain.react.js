@@ -10,9 +10,9 @@ import { postConnection } from '../actions'
 
 import Navbar from "../../components/Navbar.react"
 import EntityItemTitleHost from "../../components/EntityItemTitleHost.react"
-import InputURL from "../../components/inputURL/"
+import InputURL from "../../components/InputURL/"
 
-import { resetSearch } from "../../components/inputURL/actions"
+import { resetSearch } from "../../components/InputURL/actions"
 
 const spacerStyle = { marginBottom: '50px'}
 const formStyle = { padding: '60px 15px 40px',

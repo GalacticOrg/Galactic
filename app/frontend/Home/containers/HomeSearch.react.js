@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Loader from 'react-loader';
 import Navbar from "../../components/Navbar.react"
-import InputURL from "../../components/inputURL/"
-import EntityItem from "../../components/EntityItem.react"
-import EdgeConnection from "../../components/EdgeConnection.react"
+import InputURL from "../../components/InputURL/"
+import EntityItem from "../../components/Entity/"
+import EdgeConnection from "../../components/EdgeConnection/"
 
 const inputKey = 'homeResult';
 const homepageUrlSearchForm = {
