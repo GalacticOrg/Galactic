@@ -91,7 +91,7 @@ class Home extends Component {
     }):<Loader top="100px"/>;
 
     return (
-      <div>
+      <div style={{backgroundColor:'white'}}>
         <Navbar />
         <div className="container" style={{marginBottom:'80px'}}>
           <div className="row">

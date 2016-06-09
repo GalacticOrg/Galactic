@@ -45,11 +45,11 @@ class NodeMain extends Component {
     const prettyLink = canonicalLink.replace(/^(http:\/\/|https:\/\/)/,'');
 
     let documentImage = (<span><img src="/img/document.png" style={{height: '50px'}} /></span>)
-    if (imageCDN){
+    if (imageCDN.url){
       documentImage = (<span><img src={imageCDN.url} style={{width: '50px'}} /></span>)
     }
     else if (faviconCDN){
-      documentImage = (<span><img src={faviconCDN} style={{width: '16px'}} /></span>)
+      documentImage = (<span><img src={faviconCDN} style={{maxWidth: '50px'}} /></span>)
     }
 
     const nodeEdges = superEdges.map(function(superEdge, i){
@@ -123,11 +123,11 @@ class NodeMain extends Component {
     }
 
     return (
-      <div>
+      <div style={{backgroundColor:'white'}}>
         <Navbar />
         <div  className="container"
               style={{
-                marginTop:'40px',
+                paddingTop:'40px',
                 marginBottom: '40px',
                 backgroundColor: 'white'}}>
           <div className='row'>

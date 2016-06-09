@@ -101,10 +101,10 @@ class User extends Component {
     });
 
 
-    return (<div>
+    return (<div style={{backgroundColor:'white'}}>
       <Navbar dispatch={dispatch} />
 
-      <div style={{marginTop:'40px', marginBottom: '40px'}}>
+      <div style={{paddingTop:'40px', marginBottom: '40px'}}>
         <div className="container">
           <div className="row" style={{marginTop: '20px'}}>
             <div className={
