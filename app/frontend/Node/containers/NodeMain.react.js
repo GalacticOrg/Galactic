@@ -66,7 +66,7 @@ class NodeMain extends Component {
           index={0}
           />
         )
-      const userId = user?user._id:null;
+      const userId = user?user.user._id:null;
       const currentUserEdgeId = that._getCurrentUserEdgeId(edges, userId); //Has the user created an edge to tag along this route?
       const tagInputJSX = currentUserEdgeId ?
         <TagsInput
