@@ -25,12 +25,15 @@ export default class EntityItemTitleHost extends Component {
     sourceURL.href=canonicalLink
 
     const href = '/node/'+id
-    const countJSX = <a
+    const countJSX = count?(
+      <a
       href={href}
       title="number of connections"
       className="badge badge-default badge-styling connect-icon"
       style={count > 9?{paddingLeft: '3px', paddingRight: '3px'}:{}}>
       {count}</a>
+      ):
+      null;
 
     return (
       <div>
@@ -60,5 +63,5 @@ EntityItemTitleHost.propTypes = {
   id: PropTypes.string.isRequired,
   canonicalLink: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  count: PropTypes.number.isRequired
+  count: PropTypes.number
 }

@@ -35,5 +35,5 @@ exports.timeSince = function(date) {
     if (interval > 1) {
         return interval + " minutes";
     }
-    return Math.floor(seconds) + " seconds";
+    return "1 minute";
 }

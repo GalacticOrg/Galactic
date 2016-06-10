@@ -4,6 +4,7 @@
 */
 const mongoose = require('mongoose')
 const Entity = mongoose.model('Entity');
+const Edge = require('../models/edge');
 const User = mongoose.model('User');
 const _ = require('lodash');
 const pageSearch = require('../../lib/pageSearch')
@@ -95,7 +96,7 @@ exports.getSearchController = function (req, res) {
   pageSearch(q, function(err, url, resultDB, extractedPageData){
       //Handle the end
       if (err &&
-         (err.status === 404 || err.code )) {
+         (err.status === 404 || err.code )) { //Did we get a 404 from the search. We tell the search
         console.log(err, 'getSearchController isURL = flase')
         res.send({
            node : null,
@@ -106,7 +107,9 @@ exports.getSearchController = function (req, res) {
         console.log(err, status,  'getSearchController err')
         res.status(status).json(err);
       } else {
-        let payload = {
+        //Here is where we push all links to our child scrapper.
+
+        const payload = {
            node : resultDB.toObject(),
            isURL: true
         };
@@ -114,3 +117,16 @@ exports.getSearchController = function (req, res) {
       }
   })
 };
+
+
+const scrapperQ = function(){
+
+  const q = Q.pop()
+
+  pageSearch(q, function(err, url, resultDB, extractedPageData){
+
+  });
+
+}
+
+let Q =[];
