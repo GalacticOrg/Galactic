@@ -2,7 +2,7 @@
  * Copyright (c) 2016, WikiWeb
 */
 
-import React from "react";
+import React, {PropTypes} from "react";
 import { Modal, OverlayTrigger, Popover} from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { getSearch, resetSearch } from './actions'
@@ -85,17 +85,9 @@ class InputURL extends React.Component {
 
   render() {
     const { searchInput } = this.state
-    const { dispatch, hasSearchButton, placeholder } = this.props
+    const { dispatch, hasSearchButton, placeholder, autoFocus } = this.props
     const search = this.props[this.uid]?this.props[this.uid]:{}
     const {isURL=null, loading=false, node=null} = search;
-
-    //preventing flicker
-    //let iconState =
-    //let buttonIsURL = isURL;
-    // if (loading && this.lastSearchObject) {
-    //   buttonIsURL = this.lastSearchObject.isURL;
-    //   iconState = this._getIcon(this.lastSearchObject.node);
-    // }
 
     // Search Button
     const inputButton = hasSearchButton?(
@@ -111,6 +103,7 @@ class InputURL extends React.Component {
     return (
         <span className="input-group" style={{width: '100%'}}>
           <input
+            autoFocus={autoFocus}
             onChange={this._onChange}
             onKeyDown={this._onKeyDown}
             value={searchInput}
@@ -137,15 +130,6 @@ class InputURL extends React.Component {
     }
     return href
   }
-
-  // _getIcon(node){ //@todo move into inputbutton.
-  //   let icon = 'fa fa-search'
-  //   if (node && !node.isConnected) {
-  //     icon = 'fa fa-search-plus'
-  //   }
-  //   return icon
-  // }
-
 
   _setValue(setValue){
     this.setState({
@@ -214,6 +198,18 @@ class InputURL extends React.Component {
 function mapStateToProps(state) {
   const searches = {...state.inputURLResult};
   return searches
+}
+
+InputURL.propTypes = {
+  hasSearchButton:  PropTypes.bool,
+  placeholder: PropTypes.string,
+  autoFocus: PropTypes.bool
+}
+
+InputURL.defaultProps = {
+  hasSearchButton:  true,
+  placeholder: '',
+  autoFocus: true
 }
 
 export default connect(mapStateToProps)(InputURL)

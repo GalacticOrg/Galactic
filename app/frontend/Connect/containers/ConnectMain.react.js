@@ -31,9 +31,11 @@ export default class Connect extends Component {
   constructor() {
      super();
      this._onSubmit = this._onSubmit.bind(this);
+     const url = this._getQueryString().url;
      this.state = {
        initalSearch: this._getQueryString().url,
-       loading: false
+       loading: false,
+       autoFocus: url?1:0
      };
   }
 
@@ -44,7 +46,7 @@ export default class Connect extends Component {
   }
 
   render() {
-    const {initalSearch, loading } = this.state
+    const {initalSearch, loading, autoFocus } = this.state
     const { fromNode, toNode, success, edgeId, entities, errors } = this.props
 
 
@@ -153,6 +155,7 @@ export default class Connect extends Component {
                 </div>
                 <div style={spacerStyle} className="form-group">
                   <InputURL
+                    autoFocus={autoFocus==0}
                     setValue = {fromInput}
                     receivedSearchResult={this._onSearchResultA}
                     id='fromNode'
@@ -164,6 +167,7 @@ export default class Connect extends Component {
                 </div>
                 <div style={toNodeStyle} className="form-group" >
                   <InputURL
+                    autoFocus={autoFocus==1}
                     receivedSearchResult={this._onSearchResultB}
                     id='toNode'
                     placeholder={'Paste another URL'}

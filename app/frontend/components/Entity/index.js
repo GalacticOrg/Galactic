@@ -38,7 +38,9 @@ export default class EntityItem extends Component {
       <div>
         <div style={{display: 'block', overflow: 'hidden'}}>
           <div className="card-left-col">
-             <div style={{
+             <div
+               className="text-center"
+               style={{
                 overflow:'hidden',
                 paddingLeft: '8px',
                 paddingTop: '6px'
@@ -46,7 +48,7 @@ export default class EntityItem extends Component {
               <img
                 onError={this._handleImageErrored.bind(this)}
                 src={edgeImg}
-                style={{width: '50px'}} />
+                style={{maxWidth: '50px'}} />
             </div>
           </div>
           <div
