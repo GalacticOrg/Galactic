@@ -159,7 +159,7 @@ export default class Connect extends Component {
                     setValue = {fromInput}
                     receivedSearchResult={this._onSearchResultA}
                     id='fromNode'
-                    placeholder={'Paste a URL'} />
+                    placeholder={'Enter a URL'} />
                 </div>
                 <hr />
                 <div style={{height:'25px'}}>
@@ -170,7 +170,7 @@ export default class Connect extends Component {
                     autoFocus={autoFocus==1}
                     receivedSearchResult={this._onSearchResultB}
                     id='toNode'
-                    placeholder={'Paste another URL'}
+                    placeholder={'Enter another URL'}
                     />
                   {equalURL?<div style={{color:'red'}}>Please enter two different URLs</div>:null}
                 </div>
