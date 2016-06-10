@@ -16,7 +16,8 @@ class NodeMain extends Component {
      const messageFlag = window.location.search.search((/message=true/))
      this._handleAlertDismiss = this._handleAlertDismiss.bind(this)
      this.state = {
-       messageFlag: messageFlag!=-1?true:false
+       messageFlag: messageFlag!=-1?true:false,
+       imgError: false
      }
   }
 
@@ -28,7 +29,7 @@ class NodeMain extends Component {
   render() {
     const that = this;
     const { nodeResult, user } = this.props
-    const { messageFlag } = this.state
+    const { messageFlag, imgError } = this.state
 
     if (!nodeResult || Object.keys(nodeResult).length==0) {
       return (
@@ -38,15 +39,17 @@ class NodeMain extends Component {
       </div>)
     }
 
-    const { superEdges, faviconCDN, title, entityCount, canonicalLink, description } = nodeResult
+    const { superEdges, imageCDN, faviconCDN, title, entityCount, canonicalLink, description, _id } = nodeResult
 
     const connectHref = "/connect?url="+canonicalLink
 
-    const prettyLink = canonicalLink.replace(/^(http:\/\/|https:\/\/)/,'');
-
-    let documentImage = (<span><img src="/img/document.png" style={{height: '30px'}} /></span>)
-    if (faviconCDN){
-      documentImage = (<span><img src={faviconCDN} style={{width: '16px'}} /></span>)
+    let documentImageSrc ='/img/document.png';
+    if (imgError){
+      //no opperation
+    } else if(imageCDN.url){
+      documentImageSrc = imageCDN.url
+    }else if (faviconCDN){
+      documentImageSrc = faviconCDN
     }
 
     const nodeEdges = superEdges.map(function(superEdge, i){
@@ -62,9 +65,11 @@ class NodeMain extends Component {
           tags={tags}
           id={currentUserEdgeId}
           />:null;
+
       return (
         <div
           key={i}
+          style={{padding:'5px 0px'}}
           className='default-card'
           >
           <EntityItem
@@ -81,8 +86,14 @@ class NodeMain extends Component {
             index={0}
           />
           <div style={{display: 'block', overflow: 'hidden', border: 'none', marginTop: '3px'}}>
-            <div className="card-left-col"><img src="../../img/blank.png" /></div>
-            <div className="card-right-col" style={{ paddingLeft: '5px'}}>{tagsInputJSX}</div>
+            <div className="card-left-col">
+              <img src="../../img/blank.png" />
+            </div>
+            <div
+              className="card-right-col"
+              style={{ paddingLeft: '5px', paddingRight: '20px'}}>
+              {tagsInputJSX}
+            </div>
           </div>
         </div>)
     });
@@ -113,10 +124,24 @@ class NodeMain extends Component {
       descriptionClipped = description
     }
 
+    const href = '/node/'+_id;
+    const entityCountJSX = <span
+      title="number of connections"
+      className="badge badge-default badge-styling connect-icon"
+      style={entityCount > 9?{paddingLeft: '3px', paddingRight: '3px', cursor:'default'}:{cursor:'default'}}>
+      {entityCount}</span>
+
+    let sourceURL=document.createElement('a')
+    sourceURL.href=canonicalLink
+
     return (
-      <div>
+      <div style={{backgroundColor:'white'}}>
         <Navbar />
-        <div className="container" style={{marginTop:'40px', marginBottom: '40px', backgroundColor: 'white'}}>
+        <div  className="container"
+              style={{
+                paddingTop:'40px',
+                marginBottom: '40px',
+                backgroundColor: 'white'}}>
           <div className='row'>
             <div className={
               ['col-xs-12',
@@ -128,22 +153,37 @@ class NodeMain extends Component {
 
             <div style={{display: 'block', overflow: 'hidden'}}>
               <div className="card-left-col">
-                {documentImage}
+                <span>
+                  <img
+                  src={documentImageSrc}
+                  style={{
+                    maxWidth: '50px',
+                    paddingTop:'20px'}}
+                  onError={this._handleImageErrored.bind(this)}
+                  />
+                </span>
               </div>
-              <div className="card-right-col" style={{paddingLeft: '5px'}}>
-                <h3>{title} <span className="label label-default">{entityCount}</span></h3>
+              <div  className="card-right-col"
+                    style={{paddingLeft: '5px', paddingRight: '5px'}}>
+                <h3>{title.length>0?
+                      title:
+                      sourceURL.host+(sourceURL.pathname.length>1?sourceURL.pathname:'')}
+                </h3>
                 <div>
-
-                  <a href={canonicalLink} className="noUnderline">
-                  <span>{prettyLink}</span>
+                  {entityCountJSX}
+                  <a  href={canonicalLink}
+                      className="noUnderline"
+                      style={{marginLeft: '5px'}}>
+                  <span>{sourceURL.host}</span>
                   </a>
                 </div>
-                <div style={{fontSize:'14px'}}>{descriptionClipped}</div>
+                <div style={{fontSize:'14px', paddingTop: '8px'}}>{descriptionClipped}</div>
                 <a href={connectHref}>
                    <button
                      type="button"
-                     className="btn btn-default">
-                     Add a new connection
+                     className="btn btn-default invertibleButton"
+                     style={{marginTop: '10px', border: '1px solid orange'}}>
+                     Add a connection
                    </button>
                  </a>
               </div>
@@ -153,7 +193,10 @@ class NodeMain extends Component {
           </div>
         </div>
 
-        <div style={{borderTop: '1px solid rgb(225, 232, 237)', backgroundColor: '#F5F8FA', paddingTop: '5px'}}>
+        <div style={{
+          borderTop: '1px solid rgb(225, 232, 237)',
+          backgroundColor: '#F5F8FA',
+          paddingTop: '5px'}}>
           <div className="container" >
             <div className='row'>
               <div className={
@@ -166,8 +209,7 @@ class NodeMain extends Component {
                 {messageFlag && superEdges[0]?
                   <Alert bsStyle="success" onDismiss={this._handleAlertDismiss}>
                     <h4>You added a new Connection!</h4>
-                    <p>Every connection on the WikiWeb makes it that much more useful for the next person.</p>
-                    <br/>
+                    <p>Now add tags to show why they're connected.</p>
                   </Alert>
                  :null}
                 <div className={messageFlag?'highlight-first':''}>
@@ -197,6 +239,12 @@ class NodeMain extends Component {
   _getCurrentUserEdgeId(edges, userId){
     const currentUserEdge = edges.find(e=>e.user._id==userId);
     return currentUserEdge?currentUserEdge._id:null;
+  }
+
+  _handleImageErrored(){
+    this.setState({
+      imgError:true
+    })
   }
 
 }

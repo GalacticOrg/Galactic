@@ -9,6 +9,7 @@ $card-left-width: 60px;
 body {
   font-family: "Open Sans","Helvetica Neue",sans-serif;
   margin-top: 50px;
+  background-color: $background-grey;
 
   .noUnderline {
     text-decoration: none;
@@ -30,15 +31,32 @@ body {
     padding-bottom: 4px;
   }
 
+  .invertibleButton:hover {
+    color: white;
+    background-color: orange;
+  }
+
+  .badge-styling {
+    background-color: transparent;
+    border: 1px solid orange;
+    color: orange;
+    padding-left: 6px;
+    padding-right: 7px;
+  }
+
+  .connect-icon:hover {
+    background-color: orange;
+    color: white;
+  }
+
+
+
   /**************************/
   /** NAVBAR SECTION **/
   /**************************/
   .navbar {
     .connect-icon-box{color: orange}
-    .connect-icon-box:hover {
-      background-color: orange;
-      color: white;
-    }
+
     .connect-icon {
       width: 20px;
       height: auto;

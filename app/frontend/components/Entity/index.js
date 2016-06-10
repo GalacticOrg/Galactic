@@ -4,13 +4,20 @@ import EntityItemTitleHost from './EntityItemTitleHost.react'
 const nodeEntityDescriptionStyle = {fontSize: '13px'}
 
 export default class EntityItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { imgError: false };
+  }
 
   render() {
     const { count, imageCDN, faviconCDN, canonicalLink, title, description, id } = this.props;
+    const {imgError} = this.state;
 
     let edgeImg = null;
-    if (imageCDN){
-    edgeImg = imageCDN;
+    if (imgError){
+      edgeImg = '/img/document.png'
+    } else if (imageCDN){
+      edgeImg = imageCDN;
     } else if (faviconCDN){
       edgeImg = faviconCDN;
     } else {
@@ -20,7 +27,7 @@ export default class EntityItem extends Component {
 
     let edgeDescription = ''
     if (description.length == 0){
-      edgeDescription = <i className="text-muted">None</i>
+      edgeDescription = <i className="text-muted">No desctiption</i>
     } else if (description.length > 200){
       edgeDescription = description.slice(0,200)+"..."
     } else {
@@ -36,11 +43,15 @@ export default class EntityItem extends Component {
                 paddingLeft: '8px',
                 paddingTop: '6px'
               }}>
-              <img src={edgeImg} style={{width: '50px'}} />
+              <img
+                onError={this._handleImageErrored.bind(this)}
+                src={edgeImg}
+                style={{width: '50px'}} />
             </div>
           </div>
-          <div className="card-right-col" style={{paddingLeft: '5px'}}>
-
+          <div
+            className="card-right-col"
+            style={{paddingLeft: '5px'}}>
             <div>
               <div style={{paddingBottom:'3px'}}>
                 <EntityItemTitleHost
@@ -55,6 +66,12 @@ export default class EntityItem extends Component {
         </div>
       </div>
     )
+  }
+
+  _handleImageErrored(){
+    this.setState({
+      imgError:true
+    })
   }
 }
 

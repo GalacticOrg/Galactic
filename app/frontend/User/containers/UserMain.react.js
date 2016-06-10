@@ -41,6 +41,27 @@ class User extends Component {
 
     const connections = result.map(function(edge, i){
       const { nodeFrom, nodeTo, createdAt, nodeFromEntityCount, nodeToEntityCount, tags } = edge;
+
+      let tagsSection =
+        <div style={{
+            display: 'block',
+            overflow: 'hidden',
+            border: 'none',
+            marginBottom: '3px'
+          }}>
+          <div className="card-left-col">
+            <img src="../../img/blank.png" />
+          </div>
+          <div className="card-right-col"
+               style={{paddingLeft: '5px'}}>
+            <Tags tags={tags}/>
+          </div>
+        </div>
+
+        if (tags.length < 1){
+          tagsSection = (null)
+        }
+
       return (
         <div
           key={i}
@@ -48,8 +69,7 @@ class User extends Component {
           >
           <div style={{
                   border: 'none',
-                  paddingTop: '10px',
-                  paddingBottom: '8px'}}>
+                  paddingTop: '10px'}}>
             <EntityItem
               count={nodeFromEntityCount}
               imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
@@ -63,8 +83,7 @@ class User extends Component {
           </div>
           <div style={{
                   border: 'none',
-                  paddingTop: '10px',
-                  paddingBottom: '8px'}}>
+                  paddingTop: '10px'}}>
             <EntityItem
               count={nodeToEntityCount}
               imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
@@ -82,29 +101,15 @@ class User extends Component {
               index={0}
               />
           </div>
-          <div style={{
-              display: 'block',
-              overflow: 'hidden',
-              border: 'none',
-              marginTop: '3px',
-              marginBottom: '3px'
-            }}>
-            <div className="card-left-col">
-              <img src="../../img/blank.png" />
-            </div>
-            <div className="card-right-col"
-                 style={{paddingLeft: '5px'}}>
-              <Tags tags={tags}/>
-            </div>
-          </div>
+          {tagsSection}
         </div>)
     });
 
 
-    return (<div>
+    return (<div style={{backgroundColor:'white'}}>
       <Navbar dispatch={dispatch} />
 
-      <div style={{marginTop:'40px', marginBottom: '40px'}}>
+      <div style={{paddingTop:'40px', marginBottom: '40px'}}>
         <div className="container">
           <div className="row" style={{marginTop: '20px'}}>
             <div className={

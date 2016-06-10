@@ -31,6 +31,29 @@ class Home extends Component {
     const connections = firehoseResult?
     firehoseResult.map(function(edge, i){
       const { user, nodeFrom, nodeTo, createdAt, nodeFromEntityCount, nodeToEntityCount, tags } = edge;
+
+      let tagsSection = (
+        <div
+          style={{
+            display: 'block',
+            overflow: 'hidden',
+            border: 'none',
+            marginBottom: '3px'
+          }}>
+          <div className="card-left-col">
+            <img src="../../img/blank.png" />
+          </div>
+          <div className="card-right-col"
+               style={{paddingLeft: '5px'}}>
+            <Tags tags={tags}/>
+          </div>
+        </div>
+      )
+
+      if (tags.length < 1){
+        tagsSection = (null)
+      }
+
       return (
         <div
           key={i}
@@ -38,8 +61,7 @@ class Home extends Component {
           >
             <div style={{
                   border: 'none',
-                  paddingTop: '10px',
-                  paddingBottom: '8px'}}>
+                  paddingTop: '10px'}}>
               <EntityItem
                 count={nodeFromEntityCount}
                 imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
@@ -53,8 +75,7 @@ class Home extends Component {
             </div>
             <div style={{
                   border: 'none',
-                  paddingTop: '10px',
-                  paddingBottom: '8px'}}>
+                  paddingTop: '10px'}}>
               <EntityItem
                 count={nodeToEntityCount}
                 imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
@@ -72,28 +93,16 @@ class Home extends Component {
                 index={0}
                 />
             </div>
-            <div style={{
-                display: 'block',
-                overflow: 'hidden',
-                border: 'none',
-                marginTop: '3px',
-                marginBottom: '3px'
-              }}>
-              <div className="card-left-col">
-                <img src="../../img/blank.png" />
-              </div>
-              <div className="card-right-col"
-                   style={{paddingLeft: '5px'}}>
-                <Tags tags={tags}/>
-              </div>
-            </div>
+            {tagsSection}
         </div>)
     }):<Loader top="100px"/>;
 
     return (
-      <div>
+      <div style={{backgroundColor:'white'}}>
         <Navbar />
-        <div className="container" style={{marginBottom:'80px'}}>
+        <div
+          className="container"
+          style={{marginBottom:'80px'}}>
           <div className="row">
             <div  className="text-center"
                   style={{margin: '100px 0 30px'}}>
