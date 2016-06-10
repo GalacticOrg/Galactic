@@ -39,14 +39,16 @@ class NodeMain extends Component {
       </div>)
     }
 
-    const { superEdges, imageCDN, faviconCDN, title, entityCount, canonicalLink, description } = nodeResult
+    const { superEdges, imageCDN, faviconCDN, title, entityCount, canonicalLink, description, _id } = nodeResult
 
     const connectHref = "/connect?url="+canonicalLink
 
-    const prettyLink = canonicalLink.replace(/^(http:\/\/|https:\/\/)/,'');
-
     let documentImageSrc ='/img/document.png';
-    if (!imgError && faviconCDN){
+    if (imgError){
+      //no opperation
+    } else if(imageCDN.url){
+      documentImageSrc = imageCDN.url
+    }else if (faviconCDN){
       documentImageSrc = faviconCDN
     }
 
@@ -63,9 +65,11 @@ class NodeMain extends Component {
           tags={tags}
           id={currentUserEdgeId}
           />:null;
+
       return (
         <div
           key={i}
+          style={{padding:'5px 0px'}}
           className='default-card'
           >
           <EntityItem
@@ -87,7 +91,7 @@ class NodeMain extends Component {
             </div>
             <div
               className="card-right-col"
-              style={{ paddingLeft: '5px'}}>
+              style={{ paddingLeft: '5px', paddingRight: '20px'}}>
               {tagsInputJSX}
             </div>
           </div>
@@ -120,20 +124,32 @@ class NodeMain extends Component {
       descriptionClipped = description
     }
 
-    let entityCountJSX =
-    <span className="badge badge-default badge-styling">
-      {entityCount}
-    </span>
+    const href = '/node/'+_id;
+    const entityCountJSX = <a
+      href={href}
+      title="number of connections"
+      className="badge badge-default badge-styling connect-icon"
+      style={entityCount > 9?{paddingLeft: '3px', paddingRight: '3px'}:{}}>
+      {entityCount}</a>
 
-    if (entityCount > 9){
-      entityCountJSX =
-      <span
-        title="number of connections"
-        className="badge badge-default badge-styling"
-        style={{paddingLeft: '3px', paddingRight: '3px'}}>
-        {entityCount}
-      </span>
-    }
+    // let entityCountJSX =
+    // <a
+    //   href = {'/node/'+_id}
+    //   className="badge badge-default badge-styling connect-icon">
+    //   {entityCount}
+    // </a>
+    //
+    // if (entityCount > 9){
+    //   entityCountJSX =
+    //   <span
+    //     title="number of connections"
+    //     className="badge badge-default badge-styling connect-icon"
+    //     style={{paddingLeft: '3px', paddingRight: '3px'}}>
+    //     {entityCount}
+    //   </span>
+    // }
+    let sourceURL=document.createElement('a')
+    sourceURL.href=canonicalLink
 
     return (
       <div style={{backgroundColor:'white'}}>
@@ -157,20 +173,25 @@ class NodeMain extends Component {
                 <span>
                   <img
                   src={documentImageSrc}
-                  style={{height: '30px'}}
+                  style={{
+                    maxWidth: '50px',
+                    paddingTop:'20px'}}
                   onError={this._handleImageErrored.bind(this)}
                   />
                 </span>
               </div>
               <div  className="card-right-col"
                     style={{paddingLeft: '5px', paddingRight: '5px'}}>
-                <h3>{title}</h3>
+                <h3>{title.length>0?
+                      title:
+                      sourceURL.host+(sourceURL.pathname.length>1?sourceURL.pathname:'')}
+                </h3>
                 <div>
                   {entityCountJSX}
                   <a  href={canonicalLink}
                       className="noUnderline"
                       style={{marginLeft: '5px'}}>
-                  <span>{prettyLink}</span>
+                  <span>{sourceURL.host}</span>
                   </a>
                 </div>
                 <div style={{fontSize:'14px', paddingTop: '8px'}}>{descriptionClipped}</div>
@@ -205,8 +226,7 @@ class NodeMain extends Component {
                 {messageFlag && superEdges[0]?
                   <Alert bsStyle="success" onDismiss={this._handleAlertDismiss}>
                     <h4>You added a new Connection!</h4>
-                    <p>Every connection on the WikiWeb makes it that much more useful for the next person.</p>
-                    <br/>
+                    <p>Now add tags to show why they're connected.</p>
                   </Alert>
                  :null}
                 <div className={messageFlag?'highlight-first':''}>

@@ -44,15 +44,19 @@ body {
     padding-right: 6px;
   }
 
+  .connect-icon:hover {
+    background-color: orange;
+    color: white;
+  }
+
+
+
   /**************************/
   /** NAVBAR SECTION **/
   /**************************/
   .navbar {
     .connect-icon-box{color: orange}
-    .connect-icon-box:hover {
-      background-color: orange;
-      color: white;
-    }
+
     .connect-icon {
       width: 20px;
       height: auto;

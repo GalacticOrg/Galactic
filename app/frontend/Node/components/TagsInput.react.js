@@ -4,7 +4,7 @@ import { postNodeTags } from "../actions/index"
 import Tags from "../../components/Tags.react"
 
 const ENTER_KEY_CODE = 13;
-
+const ESC_KEY_CODE = 27;
 export default class TagsInput extends Component {
 
   constructor() {
@@ -50,6 +50,7 @@ export default class TagsInput extends Component {
             onChange={this._tagChangeHandler}
             onKeyDown={this._onKeyDown.bind(this)}
             value={this.state.tagInput}
+            autoFocus={true}
             type="text" className="form-control" placeholder="enter tags..." />
             <span className="input-group-btn">
               <button
@@ -58,7 +59,6 @@ export default class TagsInput extends Component {
               type="button">Submit</button>
             </span>
         </div>
-        <a href="javascript:void(0)" onClick={this._close}>close</a>
       </div>
     )
   }
@@ -73,6 +73,8 @@ export default class TagsInput extends Component {
   _onKeyDown(e) {
     if (e.keyCode === ENTER_KEY_CODE) {
       this._addTags()
+    } else if (e.keyCode === ESC_KEY_CODE){
+      this._close()
     }
   }
 
@@ -83,10 +85,10 @@ export default class TagsInput extends Component {
     })
   }
 
-  _close(e){
-    e.preventDefault()
+  _close(){
     this.setState({
-      open: false
+      open: false,
+      tagInput: this.props.tags.join(' ')
     })
   }
 

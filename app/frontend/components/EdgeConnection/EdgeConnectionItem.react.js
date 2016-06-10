@@ -13,7 +13,7 @@ export default class EdgeConnectionItem extends Component {
           <img src={profileImageUrl} style={{height:'15px', width: '15px', borderRadius: '3px'}} />
         </a>
         <a href={'/@'+username}>@{username}</a>
-        &nbsp;{time} Ago
+        &nbsp;{time} ago
       </span>
     )
   }

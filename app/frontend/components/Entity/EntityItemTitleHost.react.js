@@ -24,24 +24,18 @@ export default class EntityItemTitleHost extends Component {
     let sourceURL=document.createElement('a')
     sourceURL.href=canonicalLink
 
-    let countJSX = <span
-      title="numer of connections"
-      className="badge badge-default badge-styling">
-      {count}
-    </span>
+    const href = '/node/'+_id
+    const countJSX = <a
+      href={href}
+      title="number of connections"
+      className="badge badge-default badge-styling connect-icon"
+      style={count > 9?{paddingLeft: '3px', paddingRight: '3px'}:{}}>
+      {count}</a>
 
-    if (count > 9) {
-      countJSX =
-      <span
-        title="number of connections"
-        className="badge badge-default badge-styling"
-        style={{paddingLeft: '3px', paddingRight: '3px'}}>
-        {count}</span>
-    }
     return (
       <div>
         {faviconCDN?<img style={{width:'16px', marginTop:'-5px'}} src={faviconCDN} />:null}
-        <a href={'/node/'+id}
+        <a href={href}
         title={canonicalLink}
         className="noUnderline"
         >

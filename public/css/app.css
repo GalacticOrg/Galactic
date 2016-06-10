@@ -76,11 +76,11 @@ body {
     color: orange;
     padding-left: 6px;
     padding-right: 6px; }
-  body .navbar .connect-icon-box {
-    color: orange; }
-  body .navbar .connect-icon-box:hover {
+  body .connect-icon:hover {
     background-color: orange;
     color: white; }
+  body .navbar .connect-icon-box {
+    color: orange; }
   body .navbar .connect-icon {
     width: 20px;
     height: auto; }
