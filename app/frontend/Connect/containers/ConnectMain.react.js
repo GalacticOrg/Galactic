@@ -34,7 +34,6 @@ export default class Connect extends Component {
      const url = this._getQueryString().url;
      this.state = {
        initalSearch: this._getQueryString().url,
-       loading: false,
        autoFocus: url?1:0
      };
   }
@@ -46,8 +45,8 @@ export default class Connect extends Component {
   }
 
   render() {
-    const {initalSearch, loading, autoFocus } = this.state
-    const { fromNode, toNode, success, edgeId, entities, errors } = this.props
+    const {initalSearch, autoFocus } = this.state
+    const { fromNode, toNode, success, edgeId, entities, errors, loading } = this.props
 
 
     const fromNodeExists =  (fromNode!==undefined && fromNode.node!==undefined);
@@ -122,18 +121,18 @@ export default class Connect extends Component {
 
     const loader = loading?(
       <div>
-        <Loader top="30%" />
+        <Loader top="300px" />
         <div style={{
             position:'absolute',
             width:'100%',
             height:'100%',
-            opacity: '.5',
+            opacity: '.9',
             backgroundColor:'#FFF',
-            zIndex:'1'
+            zIndex:'999'
         }} />
       </div>
     ):null;
-
+debugger
     return (<div>
       <Navbar />
       {errMessage}
@@ -216,14 +215,15 @@ export default class Connect extends Component {
 
 function mapStateToProps(state) {
   const { fromNode, toNode } = state.inputURLResult
-  const { success, edgeId, entities, errors } = state.connectionsResult;
+  const { success, edgeId, entities, errors, loading=false } = state.connectionsResult;
   return {
     fromNode,
     toNode,
     edgeId,
     success,
     entities,
-    errors
+    errors,
+    loading
   }
 }
 

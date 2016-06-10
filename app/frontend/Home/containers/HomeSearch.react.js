@@ -106,7 +106,15 @@ class Home extends Component {
           <div className="row">
             <div  className="text-center"
                   style={{margin: '100px 0 30px'}}>
-              <div style={{height: '120px'}}><b><span style={{fontFamily: "'Ovo', serif",fontSize: '82px'}}>WikiWeb</span></b></div>
+              <div style={{height: '120px'}}>
+                <b>
+                <span style={{
+                    fontFamily: "'Ovo', serif",
+                    fontSize: '68px'}}>
+                    WikiWeb
+                </span>
+                </b>
+                </div>
               <div style={{fontFamily: "'Ovo', serif", fontSize: '18px', marginLeft: '15px'}}>
                 <span>WikiWeb is a hub for connected content on the web.
                   <sup>

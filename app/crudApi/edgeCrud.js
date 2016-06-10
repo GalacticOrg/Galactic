@@ -126,7 +126,6 @@ exports.postCreateEdgeController = function (req, res) {
   const toId = body.toId;
   const fromId = body.fromId;
   const userId = req.user.id
-
   Edge.getEdgesForPath(
     fromId,
     toId,

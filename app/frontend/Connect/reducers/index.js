@@ -12,6 +12,7 @@ const connectionsResult = (state = {success: null}, action) => {
   switch (action.type) {
     case POST_CONNECTION_DATA:
       return {
+        loading:true
       }
     case RECEIVE_CONNECTION_ERROR:
       return action.response
