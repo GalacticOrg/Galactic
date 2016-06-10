@@ -17,8 +17,11 @@ exports.connect = function (req, res) {
 };
 
 exports.node = function (req, res) {
+  const entity = req.entity
   res.render('node/index', {
-    title: 'Node'
+    title: entity.title,
+    description: entity.description,
+    image:entity.imageCDN.url?entity.imageCDN.url:null
   });
 };
 
