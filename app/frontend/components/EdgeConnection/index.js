@@ -17,7 +17,7 @@ export default class EdgeConnection extends Component {
     const { edges, index } = this.props;
     const length = edges.length;
     const user = edges[index].user;
-    const {username, profileImageUrl, twitter:{ profile_image_url } } = user;
+    const {username, profileImageUrl, twitter:{ profile_image_url_https } } = user;
     const createdAt = edges[index].createdAt;
 
     const edgesJSX = edges.map((e, i)=>{
@@ -25,7 +25,7 @@ export default class EdgeConnection extends Component {
         (
           <div>
             <EdgeConnectionItem
-              profileImageUrl={e.user.twitter.profile_image_url}
+              profileImageUrl={e.user.twitter.profile_image_url_https}
               username={e.user.username}
               createdAt={e.createdAt}/>
           </div>
@@ -42,7 +42,7 @@ export default class EdgeConnection extends Component {
           </div>
           <div style={{display: 'inline-block', verticalAlign: 'top'}}>
             <EdgeConnectionItem
-              profileImageUrl={profile_image_url}
+              profileImageUrl={profile_image_url_https}
               username={username}
               createdAt={createdAt} />
             {length>1?
