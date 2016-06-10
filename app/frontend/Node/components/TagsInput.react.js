@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { postNodeTags } from "../actions/index"
 import Tags from "../../components/Tags.react"
 
+const ENTER_KEY_CODE = 13;
+
 export default class TagsInput extends Component {
 
   constructor() {
@@ -10,6 +12,7 @@ export default class TagsInput extends Component {
      this._tagChangeHandler = this._tagChangeHandler.bind(this)
      this._open = this._open.bind(this)
      this._close = this._close.bind(this)
+     this._addTags = this._addTags.bind(this)
      this.state = {
        tagInput: '',
        open: false
@@ -45,11 +48,12 @@ export default class TagsInput extends Component {
         <div className="input-group tag-entry">
           <input
             onChange={this._tagChangeHandler}
+            onKeyDown={this._onKeyDown.bind(this)}
             value={this.state.tagInput}
             type="text" className="form-control" placeholder="enter tags..." />
             <span className="input-group-btn">
               <button
-              onClick={this._addTags.bind(this, 'id goes here')}
+              onClick={this._addTags}
               className="btn btn-default"
               type="button">Submit</button>
             </span>
@@ -64,6 +68,12 @@ export default class TagsInput extends Component {
     this.setState({
       tagInput: e.target.value
     })
+  }
+
+  _onKeyDown(e) {
+    if (e.keyCode === ENTER_KEY_CODE) {
+      this._addTags()
+    }
   }
 
   _open(e){
