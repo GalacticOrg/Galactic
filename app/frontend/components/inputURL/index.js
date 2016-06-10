@@ -207,7 +207,7 @@ InputURL.propTypes = {
 }
 
 InputURL.defaultProps = {
-  hasSearchButton:  true,
+  hasSearchButton:  false,
   placeholder: '',
   autoFocus: true
 }

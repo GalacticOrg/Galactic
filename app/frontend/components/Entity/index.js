@@ -5,14 +5,9 @@ import EntityImg from "../../components/EntityImg.react"
 const nodeEntityDescriptionStyle = {fontSize: '13px'}
 
 export default class EntityItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { imgError: false };
-  }
 
   render() {
     const { count, imageCDN, faviconCDN, canonicalLink, title, description, id } = this.props;
-    const {imgError} = this.state;
 
     let edgeImg = '/img/document.png'
     if (imageCDN){

@@ -78,7 +78,7 @@ body {
     padding-right: 7px; }
   body .connect-icon:hover, body .connect-icon-box:hover {
     background-color: orange;
-    color: white; }
+    color: white !important; }
   body .navbar .connect-icon-box {
     color: orange; }
   body .navbar .connect-icon {
