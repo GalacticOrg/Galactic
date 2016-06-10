@@ -165,17 +165,20 @@ class NodeMain extends Component {
               </div>
               <div  className="card-right-col"
                     style={{paddingLeft: '5px', paddingRight: '5px'}}>
-                <h3>{title.length>0?
+                <h3>
+
+                    {title.length>0?
                       title:
                       sourceURL.host+(sourceURL.pathname.length>1?sourceURL.pathname:'')}
+                    &nbsp;
+                    {entityCountJSX}
                 </h3>
                 <div>
-                  {entityCountJSX}
                   <a  href={canonicalLink}
-                      className="noUnderline"
-                      style={{marginLeft: '5px'}}>
-                  <span>{sourceURL.host}</span>
+                      className="noUnderline">
+                  {sourceURL.host}
                   </a>
+
                 </div>
                 <div style={{fontSize:'14px', paddingTop: '8px'}}>{descriptionClipped}</div>
                 <a href={connectHref}>

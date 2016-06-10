@@ -44,7 +44,9 @@ export default class EntityItemTitleHost extends Component {
           </span>
         </a>
         <span style={nodeEntityStyle}>
-          <a href={sourceURL.href} target="_blank" >({sourceURL.host})</a>
+          (<a href={sourceURL.href} target="_blank" >
+            {sourceURL.host}
+          </a>)
           &nbsp;
           {countJSX}
         </span>

@@ -26,6 +26,11 @@ exports.timeSince = function(date) {
     if (interval > 1) {
         return interval + " hours";
     }
+
+    if (interval == 1) {
+        return "1 hour";
+    }
+
     interval = Math.floor(seconds / 60);
     if (interval > 1) {
         return interval + " minutes";
