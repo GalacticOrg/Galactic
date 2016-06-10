@@ -11,6 +11,8 @@ const async = require('async')
 const extract = require('../../lib/extract')
 const utils = require('../../lib/utils')
 const URLParse = extract.URLParse;
+const copyAssets = extract.copyAssets;
+const pageRequester = extract.pageRequester;
 const Edge = require('../models/edge');
 
 /**
@@ -101,9 +103,8 @@ exports.getSearchController = function (req, res) {
         var url = URLParse(
           q.replace(/^\s+|\s+$/g,'') //trim off trailing
         );
-        console.log(url)
         if (url){
-           cb(null, url);
+           cb(null, url); //We pass URL as the first parameter in our waterfall
         } else {
           cb({
             status: 200,
@@ -173,7 +174,7 @@ const pageExtractor = function(url, resultDB, cb){
   if (resultDB){
     cb(null, url, resultDB, null);
   } else {
-    extract.pageRequester(url, function(err, extractedPageData){
+    pageRequester(url, function(err, extractedPageData){
       cb(err, url, resultDB, extractedPageData);
     });
   }
@@ -243,7 +244,7 @@ const nodeCreator = function(url, resultDB, extractedPageData, cb){
  */
 const saveEntityToDB = function(result, cb){
   var entity = new Entity(result);
-  extract.copyAssets(
+  copyAssets(
     entity.image,
     entity.favicon,
     entity._id,
