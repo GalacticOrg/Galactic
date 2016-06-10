@@ -6,6 +6,7 @@ import React, { Component } from 'react'
 import ReactDOM from "react-dom";
 import { connect } from 'react-redux'
 import { Alert, Tooltip, OverlayTrigger} from 'react-bootstrap'
+import Loader from 'react-loader';
 import { postConnection } from '../actions'
 
 import Navbar from "../../components/Navbar.react"
@@ -31,7 +32,8 @@ export default class Connect extends Component {
      super();
      this._onSubmit = this._onSubmit.bind(this);
      this.state = {
-       initalSearch: this._getQueryString().url
+       initalSearch: this._getQueryString().url,
+       loading: false
      };
   }
 
@@ -42,7 +44,7 @@ export default class Connect extends Component {
   }
 
   render() {
-    const {initalSearch } = this.state
+    const {initalSearch, loading } = this.state
     const { fromNode, toNode, success, edgeId, entities, errors } = this.props
 
 
@@ -116,9 +118,24 @@ export default class Connect extends Component {
       )
     }
 
+    const loader = loading?(
+      <div>
+        <Loader top="30%" />
+        <div style={{
+            position:'absolute',
+            width:'100%',
+            height:'100%',
+            opacity: '.5',
+            backgroundColor:'#FFF',
+            zIndex:'1'
+        }} />
+      </div>
+    ):null;
+
     return (<div>
       <Navbar />
       {errMessage}
+      {loader}
       <div className="container">
         <div className="row">
             <div className={responsiveClasses}
@@ -155,7 +172,7 @@ export default class Connect extends Component {
                 </div>
 
                 <button
-                  disabled={diabled}
+                  disabled={diabled || loading}
                   onClick={this._onSubmit}
                   type="submit"
                   className="btn btn-default"
@@ -172,6 +189,9 @@ export default class Connect extends Component {
     const { dispatch, fromNode, toNode } = this.props;
     if ( fromNode && toNode && fromNode.node._id !== toNode.node._id ){
       dispatch(postConnection(fromNode.node._id, toNode.node._id));
+      this.setState({
+        loading: true
+      })
       // dispatch(resetSearch('toNode'));  /we are dedirection. Dont need these
       // dispatch(resetSearch('fromNode'));
     }
