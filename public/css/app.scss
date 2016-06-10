@@ -44,12 +44,10 @@ body {
     padding-right: 7px;
   }
 
-  .connect-icon:hover {
+  .connect-icon:hover, .connect-icon-box:hover {
     background-color: orange;
-    color: white;
+    color: white !important;
   }
-
-
 
   /**************************/
   /** NAVBAR SECTION **/

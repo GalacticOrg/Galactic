@@ -2,7 +2,7 @@
  * Copyright (c) 2016, WikiWeb
 */
 
-import React, {PropTypes} from "react";
+import React, { PropTypes } from "react";
 import { Modal, OverlayTrigger, Popover} from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { getSearch, resetSearch } from './actions'

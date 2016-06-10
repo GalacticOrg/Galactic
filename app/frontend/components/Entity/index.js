@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import EntityItemTitleHost from './EntityItemTitleHost.react'
+import EntityImg from "../../components/EntityImg.react"
 
 const nodeEntityDescriptionStyle = {fontSize: '13px'}
 
@@ -13,15 +14,11 @@ export default class EntityItem extends Component {
     const { count, imageCDN, faviconCDN, canonicalLink, title, description, id } = this.props;
     const {imgError} = this.state;
 
-    let edgeImg = null;
-    if (imgError){
-      edgeImg = '/img/document.png'
-    } else if (imageCDN){
+    let edgeImg = '/img/document.png'
+    if (imageCDN){
       edgeImg = imageCDN;
     } else if (faviconCDN){
       edgeImg = faviconCDN;
-    } else {
-      edgeImg = '/img/document.png'
     }
 
 
@@ -38,18 +35,7 @@ export default class EntityItem extends Component {
       <div>
         <div style={{display: 'block', overflow: 'hidden'}}>
           <div className="card-left-col">
-             <div
-               className="text-center"
-               style={{
-                overflow:'hidden',
-                paddingLeft: '8px',
-                paddingTop: '6px'
-              }}>
-              <img
-                onError={this._handleImageErrored.bind(this)}
-                src={edgeImg}
-                style={{maxWidth: '50px'}} />
-            </div>
+            <EntityImg imgSrc={edgeImg}/>
           </div>
           <div
             className="card-right-col"
@@ -70,11 +56,6 @@ export default class EntityItem extends Component {
     )
   }
 
-  _handleImageErrored(){
-    this.setState({
-      imgError:true
-    })
-  }
 }
 
 EntityItem.propTypes = {

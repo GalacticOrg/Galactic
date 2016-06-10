@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbar.react"
 import EntityItem from "../../components/Entity/"
 import EdgeConnection from "../../components/EdgeConnection"
 import TagsInput from "../components/TagsInput.react"
+import EntityImg from "../../components/EntityImg.react"
 
 import { Alert, Tooltip, OverlayTrigger  } from "react-bootstrap"
 import { getNode, postNodeTags } from "../actions/index"
@@ -16,8 +17,7 @@ class NodeMain extends Component {
      const messageFlag = window.location.search.search((/message=true/))
      this._handleAlertDismiss = this._handleAlertDismiss.bind(this)
      this.state = {
-       messageFlag: messageFlag!=-1?true:false,
-       imgError: false
+       messageFlag: messageFlag!=-1?true:false
      }
   }
 
@@ -29,7 +29,7 @@ class NodeMain extends Component {
   render() {
     const that = this;
     const { nodeResult, user } = this.props
-    const { messageFlag, imgError } = this.state
+    const { messageFlag } = this.state
 
     if (!nodeResult || Object.keys(nodeResult).length==0) {
       return (
@@ -44,9 +44,7 @@ class NodeMain extends Component {
     const connectHref = "/connect?url="+canonicalLink
 
     let documentImageSrc ='/img/document.png';
-    if (imgError){
-      //no opperation
-    } else if(imageCDN.url){
+    if(imageCDN.url){
       documentImageSrc = imageCDN.url
     }else if (faviconCDN){
       documentImageSrc = faviconCDN
@@ -152,18 +150,8 @@ class NodeMain extends Component {
               }>
 
             <div style={{display: 'block', overflow: 'hidden'}}>
-              <div className="card-left-col text-center">
-                <div style={{
-                  maxWidth: '50px',
-                  paddingTop:'25px'}}>
-                  <img
-                    style={{
-                      maxWidth: '50px',
-                      }}
-                    src={documentImageSrc}
-                    onError={this._handleImageErrored.bind(this)}
-                  />
-              </div>
+              <div className="card-left-col">
+                <EntityImg imgSrc={documentImageSrc}/>
               </div>
               <div  className="card-right-col"
                     style={{paddingLeft: '5px', paddingRight: '5px'}}>
@@ -244,12 +232,6 @@ class NodeMain extends Component {
   _getCurrentUserEdgeId(edges, userId){
     const currentUserEdge = edges.find(e=>e.user._id==userId);
     return currentUserEdge?currentUserEdge._id:null;
-  }
-
-  _handleImageErrored(){
-    this.setState({
-      imgError:true
-    })
   }
 
 }
