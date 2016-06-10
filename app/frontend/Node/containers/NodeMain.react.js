@@ -152,16 +152,18 @@ class NodeMain extends Component {
               }>
 
             <div style={{display: 'block', overflow: 'hidden'}}>
-              <div className="card-left-col">
-                <span>
+              <div className="card-left-col text-center">
+                <div style={{
+                  maxWidth: '50px',
+                  paddingTop:'25px'}}>
                   <img
-                  src={documentImageSrc}
-                  style={{
-                    maxWidth: '50px',
-                    paddingTop:'20px'}}
-                  onError={this._handleImageErrored.bind(this)}
+                    style={{
+                      maxWidth: '50px',
+                      }}
+                    src={documentImageSrc}
+                    onError={this._handleImageErrored.bind(this)}
                   />
-                </span>
+              </div>
               </div>
               <div  className="card-right-col"
                     style={{paddingLeft: '5px', paddingRight: '5px'}}>
