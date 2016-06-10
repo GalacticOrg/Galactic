@@ -24,7 +24,7 @@ export default class EntityItemTitleHost extends Component {
     let sourceURL=document.createElement('a')
     sourceURL.href=canonicalLink
 
-    const href = '/node/'+_id
+    const href = '/node/'+id
     const countJSX = <a
       href={href}
       title="number of connections"
@@ -34,7 +34,7 @@ export default class EntityItemTitleHost extends Component {
 
     return (
       <div>
-        {faviconCDN?<img style={{width:'16px', marginTop:'-5px'}} src={faviconCDN} />:null}
+        {faviconCDN?<img style={{width:'16px', marginTop:'-5px', marginRight:'3px'}} src={faviconCDN} />:null}
         <a href={href}
         title={canonicalLink}
         className="noUnderline"

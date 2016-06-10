@@ -125,29 +125,12 @@ class NodeMain extends Component {
     }
 
     const href = '/node/'+_id;
-    const entityCountJSX = <a
-      href={href}
+    const entityCountJSX = <span
       title="number of connections"
       className="badge badge-default badge-styling connect-icon"
-      style={entityCount > 9?{paddingLeft: '3px', paddingRight: '3px'}:{}}>
-      {entityCount}</a>
+      style={entityCount > 9?{paddingLeft: '3px', paddingRight: '3px', cursor:'default'}:{cursor:'default'}}>
+      {entityCount}</span>
 
-    // let entityCountJSX =
-    // <a
-    //   href = {'/node/'+_id}
-    //   className="badge badge-default badge-styling connect-icon">
-    //   {entityCount}
-    // </a>
-    //
-    // if (entityCount > 9){
-    //   entityCountJSX =
-    //   <span
-    //     title="number of connections"
-    //     className="badge badge-default badge-styling connect-icon"
-    //     style={{paddingLeft: '3px', paddingRight: '3px'}}>
-    //     {entityCount}
-    //   </span>
-    // }
     let sourceURL=document.createElement('a')
     sourceURL.href=canonicalLink
 
