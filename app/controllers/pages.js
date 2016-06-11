@@ -1,7 +1,27 @@
+'use strict';
+/**
+ * app/frontend/Connect/reducers/index.js
+ * Copyright (c) 2016, WikiWeb
+*/
 
-/*!
- * Module dependencies.
- */
+const mongoose = require('mongoose')
+const Entity = mongoose.model('Entity');
+const Edge = require('../models/edge');
+
+ /**
+  * Load
+  */
+ exports.load = function (req, res, next, id){
+   Entity.load(id, function (err, entity) {
+     if (!entity || (err && err.message==='Cast to ObjectId failed')) return next(new Error('Article not found'));
+     if (err) return next(err);
+     req.entity = entity;
+     Edge.getNode(entity._id, function(err, edges){
+       req.edges = edges
+       next();
+     })
+   });
+ };
 
 /*Web App Pages*/
 exports.home = function (req, res) {

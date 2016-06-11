@@ -5,12 +5,13 @@
 const mongoose = require('mongoose')
 const Entity = mongoose.model('Entity');
 const Edge = require('../models/edge');
+const utils = require('../../lib/utils')
 const User = mongoose.model('User');
 const _ = require('lodash');
 const pageSearch = require('../../lib/pageSearch')
 
 /**
- * Load
+ * loadApi
  */
 exports.load = function (req, res, next, id){
   Entity.load(id, function (err, entity) {
@@ -91,6 +92,7 @@ exports.getEntityController = function (req, res) {
  */
 exports.getSearchController = function (req, res) {
   const q = req.query.q
+  const user = req.user
   if (!q) return res.status(422).send(utils.errsForApi('Please Enter a URL'));
 
   pageSearch(q, function(err, url, resultDB, extractedPageData){
@@ -108,7 +110,13 @@ exports.getSearchController = function (req, res) {
         res.status(status).json(err);
       } else {
         //Here is where we push all links to our child scrapper.
-
+        addToScrapperQ(_.map(resultDB.links, function(link){
+          return {
+            href: link.href,
+            userId: user.id,
+            fromId: resultDB.id
+          }
+        }))
         const payload = {
            node : resultDB.toObject(),
            isURL: true
@@ -118,15 +126,57 @@ exports.getSearchController = function (req, res) {
   })
 };
 
+function scraperRecursive(){
+  const edgeType = 'siteEdge';
+  running = true;
 
-const scrapperQ = function(){
+  const link = Q.pop()
+  if (link==undefined || !link.href){running = false; return false}//Q was empty we can not continue;
 
-  const q = Q.pop()
+  pageSearch(link.href, function(err, url, resultDB, extractedPageData){
 
-  pageSearch(q, function(err, url, resultDB, extractedPageData){
+    if (!err && resultDB){
+      const fromId = link.fromId
+      const toId = resultDB.id
+      Edge.getEdgesForPath(
+        fromId,
+        toId,
+        function(err, resultExisting){
+          console.log(err, 'err')
+          if (resultExisting && resultExisting.length==0){
+            Edge.createSiteEdge(
+              fromId,
+              toId,
+              function(err, resultEdge){
+                if (err) console.log(err, 'scraperRecursive')
+            })
+          }
 
+        });
+
+    } else{
+      console.log(err,'scraperRecursive')
+    }
+
+    if (Q.length==0){
+      running = false; //Stop the recursive call and set running to false
+    } else {
+      scraperRecursive()
+    }
   });
 
 }
 
+function addToScrapperQ(hrefs){
+  console.log(hrefs, 'hrefs')
+  Q = Q.concat(_.uniq(hrefs))
+
+  if (running==false){
+    scraperRecursive();
+  }
+
+
+}
+
 let Q =[];
+let running = false;

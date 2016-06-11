@@ -20,9 +20,9 @@ module.exports = function (app, passport) {
 
 
   //API Entity
-  app.param('id', entityCrud.load);
+  app.param('idApi', entityCrud.load);
   app.get('/api/searchurl', entityCrud.getSearchController)
-  app.get('/api/node/:id', entityCrud.getEntityController)
+  app.get('/api/node/:idApi', entityCrud.getEntityController)
 
   //API Edge
   app.param('user', edgeCrud.loadUser);
@@ -41,6 +41,7 @@ module.exports = function (app, passport) {
   app.get(profilePath, userCrud.getReadControllerProfile);
 
   //Static Routes App
+  app.param('id', pages.load);
   app.get('/', pages.home);
   app.get('/@:user', pages.user);
   app.get('/node/:id', pages.node);

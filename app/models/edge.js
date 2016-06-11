@@ -41,6 +41,32 @@ const createEdgeQ = [
   'CREATE (PageOne)-[Link:userEdge {id:{_id}, userId:{_userId}, createdAt:{_createdAt} } ]-> (PageTwo)',
   'RETURN PageOne, Link, PageTwo'].join('\n');
 
+/**
+ * Create createEdgeQ from two existing nodes;
+ */
+exports.createSiteEdge = function(_idOne, _idTwo, cb){
+	const _id = new Connection({})._id;
+	let params = {
+			_idOne,
+			_idTwo,
+			_createdAt : new Date().getTime(),
+			_id
+	}
+	db.cypher(
+		{
+			params: params,
+			query: createSiteEdgeQ
+		},
+	cb
+	);
+};
+//createEdgeQ Query
+const createSiteEdgeQ = [
+  'MATCH (PageOne {id:{_idOne}})',
+  'MATCH (PageTwo {id:{_idTwo}})',
+  'CREATE (PageOne)-[Link:siteEdge {id:{_id}, createdAt:{_createdAt} } ]-> (PageTwo)',
+  'RETURN PageOne, Link, PageTwo'].join('\n');
+
 
 /**
  * Create a node from a MongoId;
@@ -124,7 +150,7 @@ exports.getNodeCount = function(_ids, cb){
 //get Node Query
 const getNodeCountQ = [
 
-  'MATCH p=(nodeFrom)-[]-(nodeTo)',
+  'MATCH p=(nodeFrom)-[edge:userEdge]-(nodeTo)',
 	'WHERE nodeFrom.id IN {_ids}',
   'RETURN nodeTo, nodeFrom'].join('\n');
 
@@ -174,7 +200,7 @@ exports.getUserEdges = function(_id, cb){
 	  });
 };
 const getUserEdgesQ = [
-	'MATCH (nodeFrom)-[edge]->(nodeTo)',
+	'MATCH (nodeFrom)-[edge:userEdge]->(nodeTo)',
 	'WITH edge, nodeFrom, nodeTo',
 	'ORDER BY edge.createdAt DESC',
 	'WHERE edge.userId IN {_id}',
@@ -227,17 +253,17 @@ exports.getEdges = function(_limit, cb){
 	  });
 };
 const getEdgesQ = [
-	'MATCH (nodeFrom)-[edge]->(nodeTo)',
+	'MATCH (nodeFrom)-[edge:userEdge]->(nodeTo)',
 	'RETURN nodeFrom, edge, nodeTo',
 	'ORDER BY edge.createdAt DESC',
 	'LIMIT {_limit}'].join('\n');
 
 
 
-exports.getEdgesForPath = function(_fromId, _toId, _userId, cb){
+exports.getEdgesForPathUser = function(_fromId, _toId, _userId, cb){
 
 	db.cypher({
-	      query: getEdgesForPathQ,
+	      query: getEdgesForPathUserQ,
 	      params: {
 	      	_fromId,
 					_toId,
@@ -256,13 +282,38 @@ exports.getEdgesForPath = function(_fromId, _toId, _userId, cb){
        )
 	  });
 };
-const getEdgesForPathQ = [
-	'MATCH (nodeFrom)-[edge]->(nodeTo)',
+const getEdgesForPathUserQ = [
+	'MATCH (nodeFrom)-[edge:userEdge]->(nodeTo)',
 	'WHERE nodeFrom.id IN {_fromId} AND nodeTo.id IN {_toId} AND edge.userId IN {_userId}',
 	'RETURN nodeFrom, edge, nodeTo'
 ].join('\n');
 
+exports.getEdgesForPath = function(_fromId, _toId, cb){
 
+	db.cypher({
+	      query: getEdgesForPathQ,
+	      params: {
+	      	_fromId,
+					_toId
+	      }
+	  },
+	  function(err, results){
+
+	  	if (err) {
+	  	  console.log(err, 'getEdgesForPath')
+	  		return cb(err, null)
+	  	}
+
+      cb(err,
+				results.map(function(r){return getEdgeParser(r)})
+       )
+	  });
+};
+const getEdgesForPathQ = [
+	'MATCH (nodeFrom)-[edge:siteEdge]->(nodeTo)',
+	'WHERE nodeFrom.id IN {_fromId} AND nodeTo.id IN {_toId}',
+	'RETURN nodeFrom, edge, nodeTo'
+].join('\n');
 
 
 /**
