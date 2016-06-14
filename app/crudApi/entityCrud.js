@@ -48,41 +48,61 @@ exports.getEntityController = function (req, res) {
           edges:edgeSorted
         }
     }).value()
-    const nearByEdges = _.chain(req.nearByEdges)
-      .groupBy('_idNode')
-      .map(function(edgesGrouped, i ){
-          const edgeSorted = _.sortBy(edgesGrouped,'createdAt');
-          return {
-            _idNode: edgeSorted[0]._idNode,
-            _idLink: edgeSorted[0]._idLink,
-            createdAt: edgeSorted[0].createdAt,
-            edges:edgeSorted
-          }
-      }).value()
-
-  //return res.send({n:req.nearByEdges})
+  const nearByEdges = req.nearByEdges
   const entityIds = _.map(req.edges, '_idNode')
   const userIds = _.map(req.edges, '_idUser')
+  const entityIdsRelated = _.chain(nearByEdges)
+    .map('nodes')
+    .flatten()
+    .map('_id')
+    .value();
+  const userIdsRelated = _.chain(nearByEdges)
+    .map('edges')
+    .flatten()
+    .map('properties.userId')
+    .reject(_.isUndefined)
+    .value();
 
   if (!entity) {
     res.status(404).send(utils.errsForApi('Node not found!!'));
   } else {
     const object = entity.toJSON();
 
-    Edge.getNodeCount(entityIds.concat(entity.id), function(err, entityCount){
+    Edge.getNodeCount(entityIds.concat(entity.id).concat(entityIdsRelated), function(err, entityCount){
       if (err) return  res.status(500).send( utils.errsForApi(err.errors || err) );
 
       Entity.find(
-        { _id: {$in:  entityIds}},
+        { _id: {$in:  entityIds.concat(entityIdsRelated) }},
         '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
       .exec(function(err, entities){
 
         User.find(
-          { _id: {$in: userIds }},
+          { _id: {$in: userIds.concat(userIdsRelated) }},
           'name username twitter'
         )
         .exec(function(err, users){
           object.entityCount =  entityCount[entity.id]?entityCount[entity.id].length:0;
+          object.nearByEdges = nearByEdges.map(function(near){
+            const nodes = near.nodes.map(function(node){
+              const _id = node._id;
+              return  {
+                node: _.find(entities, { id: _id}),
+                entityCount: entityCount[_id]?entityCount[_id].length:0
+              }
+            })
+            const edges = near.edges.map(function(edge){
+              const userId = edge.properties.userId
+              if (userId!=undefined){
+                edge.properties.userId = _.find(users, { id: userId})
+              }
+              return edge;
+            })
+            return {
+              nodes,
+              edges
+            }
+          });
+
           object.superEdges = edges.map(function(edge, i){
             return {
               entity: _.find(entities, { id: edge._idNode}),
