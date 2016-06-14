@@ -154,7 +154,6 @@ const getNodeCountQ = [
 	'WHERE nodeFrom.id IN {_ids}',
   'RETURN nodeTo, nodeFrom'].join('\n');
 
-	//.
 
 /**
  * @name   getNodeParser
@@ -314,6 +313,68 @@ const getEdgesForPathQ = [
 	'WHERE nodeFrom.id IN {_fromId} AND nodeTo.id IN {_toId}',
 	'RETURN nodeFrom, edge, nodeTo'
 ].join('\n');
+
+exports.getNearByNodeEdges = function(_fromId, cb){
+
+	db.cypher({
+	      query: getNearByEdgesQ,
+	      params: {
+	      	_fromId
+	      }
+	  },
+	  function(err, results){
+
+	  	if (err) {
+	  	  console.log(err, 'getEdgesForPath')
+	  		return cb(err, null)
+	  	}
+
+      cb(err,
+				results.map(function(r){return nearbyEdgeParser(r)})
+       )
+	  });
+};
+const getNearByEdgesQ = [
+	'MATCH relations=(nodeFrom{id:{_fromId}})-[hops:siteEdge*1..2]-(nodeHop)-[edge:userEdge]-(nodeTo)',
+	'RETURN rels(relations), nodes(relations), length(relations)'
+].join('\n');
+
+
+/**
+ * @name   getEdgeParser
+ * @r     {obj} Neo4j object
+ * @return {obj}    cb  a callback for the data.
+ */
+const nearbyEdgeParser = function(r){
+  const edgesData = r['rels(relations)'];
+	//nodesDataShift.shift();
+	const nodesData = r['nodes(relations)']
+	const nodes = nodesData.map(function(node, i){
+		const _id = node.properties.id
+			return {
+				_id
+			}
+	})
+	const edges = edgesData.map(function(edge, i){
+		const properties = edge.properties
+		const type = edge.type
+		const _idFrom = _.find(nodesData, {_id: edge._fromId} ).properties.id
+		const _idTo = _.find(nodesData, {_id: edge._toId} ).properties.id
+
+			return {
+				_idFrom,
+				_idTo,
+				properties,
+				type
+			}
+	})
+
+
+  return {
+		nodes,
+		edges
+  }
+}
 
 
 /**

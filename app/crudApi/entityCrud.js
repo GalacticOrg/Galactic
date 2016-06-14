@@ -18,9 +18,15 @@ exports.load = function (req, res, next, id){
     if (!entity || (err && err.message==='Cast to ObjectId failed')) return  res.status(404).send(utils.errsForApi('Page not found'));
     if (err) return  res.status(500).send( utils.errsForApi(err.errors || err) );
     req.entity = entity;
-    Edge.getNode(entity._id, function(err, edges){
-      req.edges = edges
-      next();
+    Edge.getNearByNodeEdges(entity._id, function(errNear, nearByEdges){
+      if (errNear) return  res.status(500).send( utils.errsForApi(errNear.errors || errNear) );
+      req.nearByEdges = nearByEdges;
+
+      Edge.getNode(entity._id, function(errNodeEdge, edges){
+        if (errNodeEdge) return  res.status(500).send( utils.errsForApi(errNodeEdge.errors || errNodeEdge) );
+        req.edges = edges
+        next();
+      })
     })
   });
 };
@@ -42,7 +48,19 @@ exports.getEntityController = function (req, res) {
           edges:edgeSorted
         }
     }).value()
+    const nearByEdges = _.chain(req.nearByEdges)
+      .groupBy('_idNode')
+      .map(function(edgesGrouped, i ){
+          const edgeSorted = _.sortBy(edgesGrouped,'createdAt');
+          return {
+            _idNode: edgeSorted[0]._idNode,
+            _idLink: edgeSorted[0]._idLink,
+            createdAt: edgeSorted[0].createdAt,
+            edges:edgeSorted
+          }
+      }).value()
 
+  //return res.send({n:req.nearByEdges})
   const entityIds = _.map(req.edges, '_idNode')
   const userIds = _.map(req.edges, '_idUser')
 
