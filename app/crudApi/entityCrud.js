@@ -89,7 +89,8 @@ exports.getEntityController = function (req, res) {
                 node: _.find(entities, { id: _id}),
                 entityCount: entityCount[_id]?entityCount[_id].length:0
               }
-            })
+            });
+
             const edges = near.edges.map(function(edge){
               const userId = edge.properties.userId
               if (userId!=undefined){
@@ -151,7 +152,6 @@ exports.getSearchController = function (req, res) {
         addToScrapperQ(_.map(resultDB.links, function(link){
           return {
             href: link.href,
-            userId: user.id,
             fromId: resultDB.id
           }
         }))
