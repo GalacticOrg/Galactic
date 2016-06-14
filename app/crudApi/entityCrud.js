@@ -168,32 +168,35 @@ function scraperRecursive(){
   const edgeType = 'siteEdge';
   running = true;
 
-  const link = Q.pop()
-  if (link==undefined || !link.href){running = false; return false}//Q was empty we can not continue;
+   const link = Q.pop()
+  // if (link==undefined || !link.href){// no link stop attempt for page search
+  //   if (Q.length==0){running = false}//Q was empty we can not continue;
+  //   else {scraperRecursive()}
+  //   return false;
+  // }
 
   pageSearch(link.href, function(err, url, resultDB, extractedPageData){
-
     if (!err && resultDB){
+      console.log(url,'Adding this url to Graph');
       const fromId = link.fromId
       const toId = resultDB.id
       Edge.getEdgesForPath(
         fromId,
         toId,
         function(err, resultExisting){
-          console.log(err, 'err')
           if (resultExisting && resultExisting.length==0){
             Edge.createSiteEdge(
               fromId,
               toId,
               function(err, resultEdge){
-                if (err) console.log(err, 'scraperRecursive')
+                if (err) console.log(err, 'scraperRecursive getEdgesForPath')
             })
           }
 
         });
 
     } else{
-      console.log(err,'scraperRecursive')
+      console.log(err,'scraperRecursive pageSearch')
     }
 
     if (Q.length==0){
@@ -206,14 +209,11 @@ function scraperRecursive(){
 }
 
 function addToScrapperQ(hrefs){
-  console.log(hrefs, 'hrefs')
   Q = Q.concat(_.uniq(hrefs))
-
+  console.log(Q,'Q is now this')
   if (running==false){
     scraperRecursive();
   }
-
-
 }
 
 let Q =[];
