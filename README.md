@@ -16,13 +16,22 @@ cp .env.example .env
 
 Install:
 
+* Install [MongoDB](https://www.mongodb.com/download-center#community)
+
+* Install [Neo4J](https://neo4j.com/download/)
+
+* Disable Neo4J [authorization](http://stackoverflow.com/questions/29096616/how-to-disable-basic-auth-on-neo4j-2-2-0-rc01)
+
+Run:
 ```
-$ git clone https://github.com/SFDevLabs/galactic.git
-$ cd galactic
+$ git clone https://github.com/WikiWebOrg/wikiweb-dot-org.git
+$ cd wikiweb-dot-org
 $ npm install
 ```
 
-Run:
+* Remember both MongoDB and Neo4J must be running
+
+Then Run:
 
 ```
 $ npm start

@@ -26,7 +26,7 @@ const responsiveClasses = ['col-xs-12','col-sm-10',
   'col-md-10',
   'col-md-offset-1'].join(' ')
 
-export default class Connect extends Component {
+class Connect extends Component {
 
   constructor() {
      super();
