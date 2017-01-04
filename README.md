@@ -1,5 +1,5 @@
 
-## Galactic
+## WikiWeb
 
 A map of the Internet.
 
