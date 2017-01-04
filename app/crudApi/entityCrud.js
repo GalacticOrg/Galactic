@@ -168,12 +168,16 @@ function scraperRecursive(){
   const edgeType = 'siteEdge';
   running = true;
 
-   const link = Q.pop()
-  // if (link==undefined || !link.href){// no link stop attempt for page search
-  //   if (Q.length==0){running = false}//Q was empty we can not continue;
-  //   else {scraperRecursive()}
-  //   return false;
-  // }
+  const link = Q.pop()
+  if (link===undefined || !link.href){// no link stop attempt for page search
+    if (Q.length==0) { //Q was empty we can not continue;
+      running = false
+    } else {
+      scraperRecursive()
+    }
+
+    return false; //Do not run the page search
+  }
 
   pageSearch(link.href, function(err, url, resultDB, extractedPageData){
     if (!err && resultDB){
