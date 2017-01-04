@@ -20,7 +20,7 @@ Install:
 
 * Install [Neo4J](https://neo4j.com/download/)
 
-* Disable Neo4J [authorization](http://stackoverflow.com/questions/29096616/how-to-disable-basic-auth-on-neo4j-2-2-0-rc01)
+* Disable Neo4J password [authorization](http://stackoverflow.com/questions/29096616/how-to-disable-basic-auth-on-neo4j-2-2-0-rc01)
 
 Run:
 ```

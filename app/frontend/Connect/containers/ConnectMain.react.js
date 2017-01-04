@@ -132,7 +132,7 @@ class Connect extends Component {
         }} />
       </div>
     ):null;
-debugger
+
     return (<div>
       <Navbar />
       {errMessage}
