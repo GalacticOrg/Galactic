@@ -23,19 +23,21 @@ Install:
 * Disable Neo4J password [authorization](http://stackoverflow.com/questions/29096616/how-to-disable-basic-auth-on-neo4j-2-2-0-rc01)
 
 Run:
+
 ```
 $ git clone https://github.com/WikiWebOrg/wikiweb-dot-org.git
 $ cd wikiweb-dot-org
 $ npm install
 ```
 
-* Remember both MongoDB and Neo4J must be running
+\* Remember both MongoDB and Neo4J must be running
 
 Create config file:
+
 ```
 $ cp .env.example .env
 ```
-* Some configuuration are manditory
+\* Some configuuration are manditory.  Find
 
 Then Run:
 
