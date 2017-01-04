@@ -31,6 +31,12 @@ $ npm install
 
 * Remember both MongoDB and Neo4J must be running
 
+Create config file:
+```
+$ cp .env.example .env
+```
+* Some configuuration are manditory
+
 Then Run:
 
 ```
