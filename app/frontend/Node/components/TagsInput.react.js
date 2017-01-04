@@ -5,7 +5,7 @@ import Tags from "../../components/Tags.react"
 
 const ENTER_KEY_CODE = 13;
 const ESC_KEY_CODE = 27;
-export default class TagsInput extends Component {
+class TagsInput extends Component {
 
   constructor() {
      super();

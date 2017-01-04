@@ -12,9 +12,9 @@ module.exports = {
     imagebucket: process.env.IMAGE_BUCKET || ''
   },
   twitter: {
-    clientID: process.env.TWITTER_CLIENT_KEY || '',
-    clientSecret: process.env.TWITTER_CLIENT_SECRET || '',
-    callbackURL: (process.env.ROOT_URL || '')+ '/auth/twitter/callback',
+    clientID: process.env.TWITTER_CLIENT_KEY,
+    clientSecret: process.env.TWITTER_CLIENT_SECRET,
+    callbackURL: ( process.env.ROOT_URL || 'http://localhost:3000' )+'/auth/twitter/callback',
     scope: [
       'email',
       'user_about_me',

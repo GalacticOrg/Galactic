@@ -177,7 +177,6 @@ function scraperRecursive(){
 
   pageSearch(link.href, function(err, url, resultDB, extractedPageData){
     if (!err && resultDB){
-      console.log(url,'Adding this url to Graph');
       const fromId = link.fromId
       const toId = resultDB.id
       Edge.getEdgesForPath(
@@ -196,7 +195,7 @@ function scraperRecursive(){
         });
 
     } else{
-      console.log(err,'scraperRecursive pageSearch')
+      //No Opp
     }
 
     if (Q.length==0){
@@ -210,7 +209,7 @@ function scraperRecursive(){
 
 function addToScrapperQ(hrefs){
   Q = Q.concat(_.uniq(hrefs))
-  console.log(Q,'Q is now this')
+  //console.log(Q.length,'Q is now this')
   if (running==false){
     scraperRecursive();
   }
