@@ -55,14 +55,14 @@ Scrub the Neo4J DB:
 
 ``` Neo4j
 MATCH (pageOne)-[Link]-(PageTwo), (pageUnconnected)
-DELETE pageOne, Link, PageTwo, pageUnconnected
+DELETE pageOne, Link, PageTwo, (pageUnconnected)
 ```
 
 See all connections:
 
 ``` Neo4j
-MATCH (pageOne)-[Link]-(PageTwo), pageUnconnected
-RETURN pageOne, Link, PageTwo, pageUnconnected
+MATCH (pageOne)-[Link]-(PageTwo), (pageUnconnected)
+RETURN pageOne, Link, PageTwo, (pageUnconnected)
 ```
 
 See all unconnected nodes:
