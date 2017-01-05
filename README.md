@@ -37,7 +37,7 @@ Create config file:
 ```
 $ cp .env.example .env
 ```
-\* Some configuuration are manditory.  Find
+\* Some configuration are mandatory. Find a sysadmin to give you the .env file.
 
 Then Run:
 

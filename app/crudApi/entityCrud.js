@@ -145,7 +145,7 @@ exports.getSearchController = function (req, res) {
         });
       } else if (err) {
         const status = err.status || 500;
-        console.log(err, status,  'getSearchController err')
+        console.log(err, 'getSearchController err')
         res.status(status).json(err);
       } else {
         //Here is where we push all links to our child scrapper.
