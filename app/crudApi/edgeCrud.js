@@ -1,9 +1,9 @@
 'use strict';
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const Entity = mongoose.model('Entity');
 const User = mongoose.model('User');
 const Edge = require('../models/edge');
-const utils = require('../../lib/utils')
+const utils = require('../../lib/utils');
 const _ = require('lodash');
 
 /**
@@ -15,20 +15,19 @@ exports.loadUser = function (req, res, next, username){
   };
   User.load(options, function (err, user) {
     if (err && err.name == 'CastError' || !user){
-      return res.status(404).send( utils.errsForApi('Not Found') )
+      return res.status(404).send( utils.errsForApi('Not Found') );
     } else if (err) {
-      return res.status(500).send( utils.errsForApi(err) )
+      return res.status(500).send( utils.errsForApi(err) );
     }
     req.profile = user;
-    const id = user._id
-    Edge.getUserEdges(id, function(err, edges){
+    const id = user._id;
+    Edge.getUserEdges(id, function (err, edges){
       if (err) {
-        console.log(err, "getUserEdges")
         return res.status(500).send(utils.errsForApi(err.errors || err));
       }
-      req.userEdges=edges;
+      req.userEdges = edges;
       next();
-    })
+    });
 
   });
 };
@@ -37,85 +36,84 @@ exports.loadUser = function (req, res, next, username){
  * * LoadEdgeId
  */
 exports.loadEdgeId = function (req, res, next, eid){
-  req.eid = eid
-  next()
-}
+  req.eid = eid;
+  next();
+};
 
 /**
  * * Get User Edges API
  */
 exports.getUserEdgeController = function (req, res) {
  const edges = req.userEdges;
- const entityIds = _.map(edges, '_idNodeFrom').concat(_.map(edges, '_idNodeTo'))
+ const entityIds = _.map(edges, '_idNodeFrom').concat(_.map(edges, '_idNodeTo'));
  const profile = req.profile;
 
 
- Edge.getNodeCount(entityIds, function(err, entityCount){
+ Edge.getNodeCount(entityIds, function (err, entityCount){
    if (err) return  res.status(500).send( utils.errsForApi(err.errors || err) );
 
    Entity.find(
-    { _id: {$in: entityIds }},
+    { _id: { $in: entityIds } },
     '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
-    .exec(function(err, entities){
-
+    .exec(function (err, entities){
      if (err) {
-       console.log(err, "Entity Find")
+       console.log(err, 'Entity Find');
        return res.status(500).send(utils.errsForApi(err.errors || err));
      }
 
-     const result = edges.map(function(edge, i){
+     const result = edges.map(function (edge){
        return {
          nodeFromEntityCount: entityCount[edge._idNodeFrom].length,
          nodeToEntityCount: entityCount[edge._idNodeTo].length,
-         tags: edge.tags?edge.tags:[],
-         nodeFrom :  _.find(entities, { id: edge._idNodeFrom}),
-         nodeTo : _.find(entities, { id: edge._idNodeTo}),
+         tags: edge.tags ? edge.tags : [],
+         nodeFrom :  _.find(entities, { id: edge._idNodeFrom }),
+         nodeTo : _.find(entities, { id: edge._idNodeTo }),
          createdAt: edge.createdAt
-       }
-     })
+       };
+     });
 
      res.send({
        result,
        profile
-     })
-    })
- })
-}
+     });
+   });
+ });
+};
 
  /**
   * * Get Edges API
   */
 exports.getEdgeController = function (req, res) {
-  Edge.getEdges(35, function(err, edges){
-    const entityIds = _.map(edges, '_idNodeFrom').concat(_.map(edges, '_idNodeTo'))
-    const userIds = _.map(edges, '_idUser')
+  Edge.getEdges(35, function (err, edges){
+    const entityIds = _.map(edges, '_idNodeFrom').concat(_.map(edges, '_idNodeTo'));
+    const userIds = _.map(edges, '_idUser');
     Edge.getNodeCount(entityIds, function(err, entityCount){
       if (err) return  res.status(500).send( utils.errsForApi(err.errors || err) );
 
       Entity.find(
-        { _id: {$in: entityIds }},
+        { _id: { $in: entityIds } },
         '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
-        .exec(function(err, entities){
-        User.find({ _id: {$in: userIds }}, 'name username twitter')
-        .exec(function(err, users){
-          const object = edges.map(function(edge, i){
+        .exec(function (err, entities){
+        User.find({ _id:  { $in: userIds } }, 'name username twitter' )
+        .exec(function (err, users){
+          const object = edges.map(function (edge){
             return {
               nodeFromEntityCount: entityCount[edge._idNodeFrom].length,
               nodeToEntityCount: entityCount[edge._idNodeTo].length,
-              nodeFrom :  _.find(entities, { id: edge._idNodeFrom}),
-              nodeTo : _.find(entities, { id: edge._idNodeTo}),
-              user:  _.find(users, { id: edge._idUser}),
+              nodeFrom :  _.find(entities, { id: edge._idNodeFrom }),
+              nodeTo : _.find(entities, { id: edge._idNodeTo }),
+              user:  _.find(users, { id: edge._idUser }),
               createdAt: edge.createdAt,
-              tags: edge.tags?edge.tags:[],
+              tags: edge.tags ? edge.tags : [],
               _id: edge._idLink
-            }
-          })
-          res.send(object)
-        })
-      })
+            };
+          });
+          res.send(object);
+        });
+      });
     });
-  })
-}
+  });
+};
 
 
 /**
@@ -131,9 +129,9 @@ exports.postCreateEdgeController = function (req, res) {
     fromId,
     toId,
     userId,
-    function(err, resultExisting){
+    function (err, resultExisting){
 
-      if (resultExisting && resultExisting.length>0){
+      if (resultExisting && resultExisting.length > 0){
         res.status(409).send({
           success: false,
           errors: ['You have already made that connection']
@@ -145,23 +143,22 @@ exports.postCreateEdgeController = function (req, res) {
           userId,
           function(err, resultEdge){
             if (err) {
-              console.log(err, "postCreateEdgeController")
+              console.log(err, 'postCreateEdgeController')
               return res.status(500).send(utils.errsForApi(err.errors || err));
-            } else if(resultEdge.length==0){
-              console.log(resultEdge, "postCreateEdgeController No Edge")
+            } else if (resultEdge.length == 0){
+              console.log(resultEdge, 'postCreateEdgeController No Edge')
               return res.status(500).send(utils.errsForApi('No Edge Created'));
             } else {
               Entity.update(
-                 { _id: {$in: [fromId, toId]}},
+                 { _id: { $in: [fromId, toId] } },
                  { $set: { isConnected: true } },
                  { multi: true })
-                .exec(function(err){
+                .exec(function (err){
                     if (err){
-                      console.log(err, "postCreateEdgeController")
                       return res.status(400).send(utils.errsForApi(err.errors || err));
                     }
                     Entity.find(
-                      { _id: {$in: [fromId, toId]}},
+                      { _id: { $in: [fromId, toId] } },
                       'title _id faviconCDN canonicalLink description')
                       .exec(function(err, entityResult){
                         if (err) return res.status(400).send(utils.errsForApi(err.errors || err));
@@ -169,16 +166,16 @@ exports.postCreateEdgeController = function (req, res) {
                           edgeId: resultEdge[0].Link.properties.id,
                           success: true,
                           entities: {
-                            from: _.find(entityResult, { id: fromId}),
-                            to: _.find(entityResult, { id: toId})
+                            from: _.find(entityResult, { id: fromId }),
+                            to: _.find(entityResult, { id: toId }),
                           }
                         });
                     });
                 });
             }
-        })//Edge.createEdge end
-      } //END if else
-  })//Edge.getEdgesForPath e
+        })// Edge.createEdge end
+      } // END if else
+  })// Edge.getEdgesForPath e
 
 };
 

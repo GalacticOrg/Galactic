@@ -39,18 +39,18 @@ exports.getEntityController = function (req, res) {
 
   const edges = _.chain(req.edges)
     .groupBy('_idNode')
-    .map(function(edgesGrouped, i ){
+    .map(function (edgesGrouped ){
         const edgeSorted = _.sortBy(edgesGrouped,'createdAt');
         return {
           _idNode: edgeSorted[0]._idNode,
           _idLink: edgeSorted[0]._idLink,
           createdAt: edgeSorted[0].createdAt,
           edges:edgeSorted
-        }
-    }).value()
-  const nearByEdges = req.nearByEdges
-  const entityIds = _.map(req.edges, '_idNode')
-  const userIds = _.map(req.edges, '_idUser')
+        };
+    }).value();
+  const nearByEdges = req.nearByEdges;
+  const entityIds = _.map(req.edges, '_idNode');
+  const userIds = _.map(req.edges, '_idUser');
   const entityIdsRelated = _.chain(nearByEdges)
     .map('nodes')
     .flatten()
@@ -68,7 +68,7 @@ exports.getEntityController = function (req, res) {
   } else {
     const object = entity.toJSON();
 
-    Edge.getNodeCount(entityIds.concat(entity.id).concat(entityIdsRelated), function(err, entityCount){
+    Edge.getNodeCount(entityIds.concat(entity.id).concat(entityIdsRelated), function (err, entityCount){
       if (err) return  res.status(500).send( utils.errsForApi(err.errors || err) );
 
       Entity.find(
@@ -109,22 +109,22 @@ exports.getEntityController = function (req, res) {
               entity: _.find(entities, { id: edge._idNode}),
               entityCount: entityCount[edge._idNode].length,
               createdAt: edge.createdAt,
-              edges: edge.edges.map(function(e){
+              edges: edge.edges.map(function (e){
                 return {
-                  user:_.find(users, { id: e._idUser}),
+                  user:_.find(users, { id: e._idUser }),
                   createdAt: e.createdAt,
                   _id: e._idLink,
-                  tags: e.tags?e.tags:[]
-                }
+                  tags: e.tags ? e.tags : []
+                };
               })
-            }
+            };
           });
           res.send(object);
-        })
-      });//Entity.find
-    });//Edge.getNodeCount
+        });
+      });// Entity.find
+    });// Edge.getNodeCount
   }
-}
+};
 
 /**
  * Search API for Node and Scrape Page
