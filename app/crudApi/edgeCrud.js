@@ -87,7 +87,7 @@ exports.getEdgeController = function (req, res) {
   Edge.getEdges(35, function (err, edges){
     const entityIds = _.map(edges, '_idNodeFrom').concat(_.map(edges, '_idNodeTo'));
     const userIds = _.map(edges, '_idUser');
-    Edge.getNodeCount(entityIds, function(err, entityCount){
+    Edge.getNodeCount(entityIds, function (err, entityCount){
       if (err) return  res.status(500).send( utils.errsForApi(err.errors || err) );
 
       Entity.find(
@@ -124,6 +124,8 @@ exports.postCreateEdgeController = function (req, res) {
   const toId = body.toId;
   const fromId = body.fromId;
   const userId = req.user.id;
+  const tags = body.tags;
+  const description = body.description;
 
   Edge.getEdgesForPathUser(
     fromId,
@@ -141,12 +143,14 @@ exports.postCreateEdgeController = function (req, res) {
           fromId,
           toId,
           userId,
-          function(err, resultEdge){
+          tags,
+          description,
+          function (err, resultEdge){
             if (err) {
-              console.log(err, 'postCreateEdgeController')
+              console.log( err, 'postCreateEdgeController');
               return res.status(500).send(utils.errsForApi(err.errors || err));
             } else if (resultEdge.length == 0){
-              console.log(resultEdge, 'postCreateEdgeController No Edge')
+              console.log(resultEdge, 'postCreateEdgeController No Edge');
               return res.status(500).send(utils.errsForApi('No Edge Created'));
             } else {
               Entity.update(
@@ -160,22 +164,22 @@ exports.postCreateEdgeController = function (req, res) {
                     Entity.find(
                       { _id: { $in: [fromId, toId] } },
                       'title _id faviconCDN canonicalLink description')
-                      .exec(function(err, entityResult){
+                      .exec(function (err, entityResult){
                         if (err) return res.status(400).send(utils.errsForApi(err.errors || err));
                         res.send({
                           edgeId: resultEdge[0].Link.properties.id,
                           success: true,
                           entities: {
                             from: _.find(entityResult, { id: fromId }),
-                            to: _.find(entityResult, { id: toId }),
+                            to: _.find(entityResult, { id: toId })
                           }
                         });
                     });
                 });
             }
-        })// Edge.createEdge end
+        });// Edge.createEdge end
       } // END if else
-  })// Edge.getEdgesForPath e
+  });// Edge.getEdgesForPath e
 
 };
 
@@ -183,14 +187,14 @@ exports.postCreateEdgeController = function (req, res) {
  * * Post Tags Edges API
  */
 exports.postTagsEdgeController = function (req, res) {
-  const tags = req.body.tags
+  const tags = req.body.tags;
   const edgeId = req.eid;
-  console.log(tags, edgeId)
+  console.log(tags, edgeId);
   Edge.postTagEdges(
     edgeId,
     tags,
-    function(err, edge){
+    function (err, edge){
       if (err) return res.status(400).send(utils.errsForApi(err.errors || err));
-      res.send(edge[0].edge.properties)
+      res.send(edge[0].edge.properties);
     });
-}
+};

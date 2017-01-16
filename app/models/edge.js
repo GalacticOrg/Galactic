@@ -17,14 +17,17 @@ const Connection = mongoose.model('Connection');
 /**
  * Create createEdgeQ from two existing nodes;
  */
-exports.createEdge = function (_idOne, _idTwo, _userId, cb){
+exports.createEdge = function (_idOne, _idTwo, _userId, _tags, _description, cb){
 	const _id = new Connection({})._id;
+	console.log(_description, _tags, '_tags Desc')
 	let params = {
 			_idOne,
 			_idTwo,
 			_createdAt : new Date().getTime(),
 			_id,
-			_userId
+			_userId,
+			_tags,
+			_description
 	};
 	db.cypher(
 		{
@@ -39,8 +42,9 @@ exports.createEdge = function (_idOne, _idTwo, _userId, cb){
 const createEdgeQ = [
   'MATCH (PageOne {id:{_idOne}})',
   'MATCH (PageTwo {id:{_idTwo}})',
-  'CREATE (PageOne)-[Link:userEdge {id:{_id}, userId:{_userId}, createdAt:{_createdAt} } ]-> (PageTwo)',
+  'CREATE (PageOne)-[Link:userEdge {id:{_id}, userId:{_userId}, createdAt:{_createdAt}, tags:{ _tags }, description:{ _description } } ]-> (PageTwo)',
   'RETURN PageOne, Link, PageTwo'].join('\n');
+
 
 /**
  * Create createEdgeQ from two existing nodes;
@@ -77,7 +81,7 @@ exports.createNode = function (_id, cb){
     query: createNodeQ,
     params: {
         _id
-    },
+    }
   },
   cb);
 };
@@ -95,7 +99,7 @@ exports.getNode = function (_id, cb){
     query: getNodeQ,
     params: {
         _id
-    },
+    }
   },
 	function (err, results){
 		if (err) {
@@ -124,7 +128,7 @@ exports.getNodeCount = function (_ids, cb){
     query: getNodeCountQ,
     params: {
         _ids
-    },
+    }
 	},
 	function (err, results){
 		if (err) {
@@ -187,7 +191,7 @@ exports.getUserEdges = function (_id, cb){
 		query: getUserEdgesQ,
 		params: {
 			_id
-		},
+		}
   },
   function (err, results){
 		if (err) {
@@ -238,7 +242,7 @@ exports.getEdges = function (_limit, cb){
 		query: getEdgesQ,
 		params: {
 			_limit
-		},
+		}
 	},
   function (err, results){
 		if (err) {
@@ -271,7 +275,7 @@ exports.getEdgesForPathUser = function (_fromId, _toId, _userId, cb){
   },
   function (err, results){
 		if (err) {
-			console.log(err, 'getEdgesForPath');
+			console.log(err, 'getEdgesForPath Error');
 			return cb(err, null);
 		}
 
@@ -280,6 +284,7 @@ exports.getEdgesForPathUser = function (_fromId, _toId, _userId, cb){
 		);
 	});
 };
+
 const getEdgesForPathUserQ = [
 	'MATCH (nodeFrom)-[edge:userEdge]->(nodeTo)',
 	'WHERE nodeFrom.id IN {_fromId} AND nodeTo.id IN {_toId} AND edge.userId IN {_userId}',
@@ -346,13 +351,13 @@ const nearbyEdgeParser = function (r){
   const edgesData = r['rels(relations)'];
 	// nodesDataShift.shift();
 	const nodesData = r['nodes(relations)'];
-	const nodes = nodesData.map(function (node, i){
+	const nodes = nodesData.map(function (node){
 		const _id = node.properties.id;
 			return {
 				_id
 			};
 	});
-	const edges = edgesData.map(function (edge, i){
+	const edges = edgesData.map(function (edge){
 		const properties = edge.properties;
 		const type = edge.type;
 		const _idFrom = _.find(nodesData, { _id: edge._fromId } ).properties.id;

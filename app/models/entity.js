@@ -10,9 +10,6 @@ const Schema = mongoose.Schema;
 /**
  * Entity Schema
  */
- /**
-  * Entity Schema
-  */
  const EntitySchema = new Schema({
    title: { type : String, default : '', trim : true },
    description: { type : String, default : '', trim : true },

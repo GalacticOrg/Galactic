@@ -104,7 +104,7 @@ exports.getEntityController = function (req, res) {
             };
           });
 
-          object.superEdges = edges.map(function (edge, index){
+          object.superEdges = edges.map(function (edge){
             return {
               entity: _.find(entities, { id: edge._idNode }),
               entityCount: entityCount[edge._idNode].length,
@@ -131,21 +131,18 @@ exports.getEntityController = function (req, res) {
  */
 exports.getSearchController = function (req, res) {
   const q = req.query.q;
-  const user = req.user;
   if (!q) return res.status(422).send(utils.errsForApi('Please Enter a URL'));
 
-  pageSearch(q, function (err, url, resultDB, extractedPageData){
+  pageSearch(q, function (err, url, resultDB){
       // Handle the end
       if (err &&
          (err.status === 404 || err.code )) { // Did we get a 404 from the search. We tell the search
-        console.log(err, 'getSearchController isURL = false');
         res.send({
            node : null,
            isURL: false
         });
       } else if (err) {
         const status = err.status || 500;
-        console.log(err, 'getSearchController err');
         res.status(status).json(err);
       } else {
         // Here is where we push all links to our child scrapper.
@@ -165,7 +162,6 @@ exports.getSearchController = function (req, res) {
 };
 
 function scraperRecursive (){
-  const edgeType = 'siteEdge';
   running = true;
 
   const link = Q.pop();
@@ -179,7 +175,7 @@ function scraperRecursive (){
     return false; // Do not run the page search
   }
 
-  pageSearch(link.href, function (err, url, resultDB, extractedPageData){
+  pageSearch(link.href, function (err, url, resultDB){
     if (!err && resultDB){
       const fromId = link.fromId;
       const toId = resultDB.id;
@@ -191,7 +187,7 @@ function scraperRecursive (){
             Edge.createSiteEdge(
               fromId,
               toId,
-              function (err, resultEdge){
+              function (err){
                 if (err) console.log(err, 'scraperRecursive getEdgesForPath');
             });
           }
