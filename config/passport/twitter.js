@@ -10,7 +10,6 @@ const config = require('../../config');
 const User = mongoose.model('User');
 const extract = require('../../lib/extract');
 
-
 /**
  * Expose
  */
@@ -23,7 +22,7 @@ module.exports = new TwitterStrategy({
   },
   function (accessToken, refreshToken, profile, done) {
     const options = {
-      criteria: { "twitter_id": profile.id }
+      criteria: { 'twitter_id': profile.id }
     };
     User.load(options, function (err, user) {
       if (err) return done(err);
@@ -37,7 +36,7 @@ module.exports = new TwitterStrategy({
           twitter_id: profile.id,
           twitter: profile._json
         });
-        //pulling profile images
+        // pulling profile images
         // if (user.twitter && user.twitter.profile_image_url){
         //   const uID = user._id;
         //   const defaultImageURL = user.twitter.profile_image_url;
@@ -63,6 +62,6 @@ module.exports = new TwitterStrategy({
       } else {
         return done(err, user);
       }
-    })
+    });
   }
 );

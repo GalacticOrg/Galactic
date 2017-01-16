@@ -8,8 +8,8 @@ const utils = require('../../lib/utils');
 
 exports.requiresLogin = function (req, res, next) {
   if (req.isAuthenticated()) return next();
-  //if (req.method == 'GET') req.session.returnTo = req.originalUrl;  /maybe we will bring this back.
-  res.status(401).send( utils.errsForApi('Requires you to login'))
+  // if (req.method == 'GET') req.session.returnTo = req.originalUrl;  /maybe we will bring this back.
+  res.status(401).send( utils.errsForApi('Requires you to login')); // TODO: show error message on page. redirect to login. @mceoin
 };
 
 /*
@@ -19,7 +19,7 @@ exports.requiresLogin = function (req, res, next) {
 exports.user = {
   hasAuthorization: function (req, res, next) {
     if (req.profile.id != req.user.id) {
-      return res.status(401).send( utils.errsForApi('You are not authorized'))
+      return res.status(401).send( utils.errsForApi('You are not authorized')); // TODO: what is the UX on this? @mceoin
     }
     next();
   }
@@ -32,7 +32,7 @@ exports.user = {
 exports.article = {
   hasAuthorization: function (req, res, next) {
     if (req.article.user.id != req.user.id) {
-      return res.status(401).send( utils.errsForApi('You are not authorized'))
+      return res.status(401).send( utils.errsForApi('You are not authorized')); // TODO: what is the UX on this? @mceoin
     }
     next();
   }
@@ -49,7 +49,7 @@ exports.comment = {
     if (req.user.id === req.comment.user.id || req.user.id === req.article.user.id) {
       next();
     } else {
-      res.status(401).send( utils.errsForApi('You are not authorized'))
+      res.status(401).send( utils.errsForApi('You are not authorized'));
     }
   }
 };

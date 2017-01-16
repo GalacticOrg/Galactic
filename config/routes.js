@@ -19,28 +19,28 @@ module.exports = function (app, passport) {
 
 
 
-  //API Entity
+  // API Entity
   app.param('idApi', entityCrud.load);
-  app.get('/api/searchurl', entityCrud.getSearchController)
-  app.get('/api/node/:idApi', entityCrud.getEntityController)
+  app.get('/api/searchurl', entityCrud.getSearchController);
+  app.get('/api/node/:idApi', entityCrud.getEntityController);
 
-  //API Edge
+  // API Edge
   app.param('user', edgeCrud.loadUser);
-  app.get('/api/edges/users/:user', edgeCrud.getUserEdgeController)
-  app.get('/api/edges/firehose', edgeCrud.getEdgeController)
+  app.get('/api/edges/users/:user', edgeCrud.getUserEdgeController);
+  app.get('/api/edges/firehose', edgeCrud.getEdgeController);
 
   app.param('eid', edgeCrud.loadEdgeId);
 
-  app.post('/api/connect', auth.requiresLogin, edgeCrud.postCreateEdgeController)
-  app.post('/api/connect/:eid', auth.requiresLogin, edgeCrud.postTagsEdgeController)
+  app.post('/api/connect', auth.requiresLogin, edgeCrud.postCreateEdgeController);
+  app.post('/api/connect/:eid', auth.requiresLogin, edgeCrud.postTagsEdgeController);
 
 
   // API User
-  const userPath = '/api/users'
+  const userPath = '/api/users';
   const profilePath = userPath + '/profile';
   app.get(profilePath, userCrud.getReadControllerProfile);
 
-  //Static Routes App
+  // Static Routes App
   app.param('id', pages.load);
   app.get('/', pages.home);
   app.get('/@:user', pages.user);
@@ -48,7 +48,7 @@ module.exports = function (app, passport) {
   app.get('/connect', pages.connect);
   app.get('/firehose', pages.firehose);
 
-  //Static Routes for pages
+  // Static Routes for pages
   app.get('/analytics', pages.analytics);
   app.get('/about', pages.about);
   app.get('/terms', pages.terms);
