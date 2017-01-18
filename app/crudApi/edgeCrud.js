@@ -135,9 +135,12 @@ exports.postCreateEdgeController = function (req, res) {
     function (err, resultExisting){
 
       if (resultExisting && resultExisting.length > 0){
-        res.status(409).send({
+        return res.status(409).send({
           success: false,
-          errors: ['You have already made that connection']
+          messages: [{
+            type: 'warning',
+            text: 'You have already made that connection'
+          }]
         });
       } else {
         Edge.createEdge(
@@ -151,8 +154,14 @@ exports.postCreateEdgeController = function (req, res) {
               console.log( err, 'postCreateEdgeController');
               return res.status(500).send(utils.errsForApi(err.errors || err));
             } else if (resultEdge.length == 0){
-              console.log(resultEdge, 'postCreateEdgeController No Edge');
-              return res.status(500).send(utils.errsForApi('No Edge Created'));
+              console.log(err, resultEdge, 'postCreateEdgeController No Edge');
+              return res.status(500).send({
+                success: false,
+                messages: [{
+                  type: 'error',
+                  text: 'A connection was not made.'
+                }]
+              });
             } else {
               Entity.update(
                  { _id: { $in: [fromId, toId] } },

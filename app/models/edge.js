@@ -19,7 +19,6 @@ const Connection = mongoose.model('Connection');
  */
 exports.createEdge = function (_idOne, _idTwo, _userId, _tags, _description, cb){
 	const _id = new Connection({})._id;
-	console.log(_description, _tags, '_tags Desc')
 	let params = {
 			_idOne,
 			_idTwo,
