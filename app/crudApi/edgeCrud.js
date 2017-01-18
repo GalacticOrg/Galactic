@@ -105,6 +105,7 @@ exports.getEdgeController = function (req, res) {
               user:  _.find(users, { id: edge._idUser }),
               createdAt: edge.createdAt,
               tags: edge.tags ? edge.tags : [],
+              description: edge.description ? edge.description : '',
               _id: edge._idLink
             };
           });
