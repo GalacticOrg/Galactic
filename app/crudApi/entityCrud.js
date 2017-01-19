@@ -114,7 +114,8 @@ exports.getEntityController = function (req, res) {
                   user:_.find(users, { id: e._idUser }),
                   createdAt: e.createdAt,
                   _id: e._idLink,
-                  tags: e.tags ? e.tags : []
+                  tags: e.tags ? e.tags : [],
+                  description: e.description ? e.description : ''
                 };
               })
             };
