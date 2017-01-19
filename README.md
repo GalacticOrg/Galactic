@@ -54,8 +54,11 @@ Run test with:
 Scrub the Neo4J DB:
 
 ``` Neo4j
-MATCH (pageOne)-[Link]-(PageTwo), (pageUnconnected)
-DELETE pageOne, Link, PageTwo, (pageUnconnected)
+MATCH (pageOne)-[Link]-(PageTwo)
+DELETE pageOne, Link, PageTwo
+
+MATCH (pageUnconnected)
+DELETE (pageUnconnected)
 ```
 
 See all connections:

@@ -37,7 +37,7 @@ class Navbar extends Component {
                 href={'/@'+user.username}
                 style={{marginRight: '20px'}}>
                 <img style={{height: '32px', borderRadius: '3px'}}
-                  src={user.twitter.profile_image_url_https} />
+                  src={user.profile_image} />
               </a>
             )}
         </div>

@@ -94,7 +94,7 @@ exports.getEdgeController = function (req, res) {
         { _id: { $in: entityIds } },
         '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
         .exec(function (err, entities){
-        User.find({ _id:  { $in: userIds } }, 'name username twitter' )
+        User.find({ _id:  { $in: userIds } }, 'name username twitter profile_image' )
         .exec(function (err, users){
           const object = edges.map(function (edge){
             return {

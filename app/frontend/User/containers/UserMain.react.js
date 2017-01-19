@@ -37,7 +37,7 @@ class User extends Component {
 
     const name = profile.name;
     const username = profile.username;
-    const profile_image_url_https = profile.twitter.profile_image_url_https
+    const profile_image = profile.profile_image
 
     const connections = result.map(function(edge, i){
       const { nodeFrom, nodeTo, createdAt, nodeFromEntityCount, nodeToEntityCount, tags } = edge;
@@ -120,7 +120,7 @@ class User extends Component {
                   'col-md-offset-2'].join(' ')
               }>
               <div style={{float: 'left'}}>
-                <img style={{padding: '1px', border: '2px solid black'}} src={profile_image_url_https} />
+                <img style={{padding: '1px', border: '2px solid black'}} src={profile_image} />
                 </div>
               <div style={{float: 'left', marginLeft: '20px'}}>
                 <div style={{fontSize: '20px'}}>{name}</div>
