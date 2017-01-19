@@ -9,7 +9,13 @@ const utils = require('../../lib/utils');
 exports.requiresLogin = function (req, res, next) {
   if (req.isAuthenticated()) return next();
   // if (req.method == 'GET') req.session.returnTo = req.originalUrl;  /maybe we will bring this back.
-  res.status(401).send( utils.errsForApi('Requires you to login')); // TODO: show error message on page. redirect to login. @mceoin
+  res.status(401).send( {
+    success: false,
+    messages: [{
+      type: 'Warning',
+      text: 'Requires you to login.'
+    }]
+  });
 };
 
 /*
