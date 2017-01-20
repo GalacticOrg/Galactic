@@ -84,15 +84,15 @@ body {
   body .navbar .connect-icon {
     width: 20px;
     height: auto; }
-  body .loginModalHeader {
+  body .loginModal .loginModalHeader {
     background-color: #f0f0f0; }
-  body .explanatoryModalText {
+  body .loginModal .explanatoryModalText {
     font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
     font-size: 16px;
     margin-top: 12px;
     margin-bottom: 12px;
     color: rgba(0, 0, 0, 0.6); }
-  body .loginButtonTwitter {
+  body .loginModal .loginButtonTwitter {
     margin-top: 20px;
     margin-bottom: 20px;
     padding-top: 10px;
@@ -104,21 +104,21 @@ body {
     padding-left: 24px;
     color: white;
     height: 6rem; }
-  body .loginButtonTwitter:hover {
+  body .loginModal .loginButtonTwitter:hover {
     background-color: #006DAA; }
-  body .loginButtonTwitter:active {
+  body .loginModal .loginButtonTwitter:active {
     outline: none;
     border: none; }
-  body .loginButtonTwitterIcon {
+  body .loginModal .loginButtonTwitterIcon {
     font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
     font-size: 20px;
     width: 32px;
     margin-left: 14px; }
-  body .loginButtonText {
+  body .loginModal .loginButtonText {
     font-size: 14px; }
-  body .loginModalFooter {
+  body .loginModal .loginModalFooter {
     margin: auto; }
-  body .permissionsText {
+  body .loginModal .permissionsText {
     font-size: 10px;
     text-align: left;
     margin: auto;
@@ -164,3 +164,70 @@ body {
     margin-top: 50px; }
   body .connectionLiElement {
     margin-bottom: 5px; }
+  body .twitterLogin {
+    background: #F5F8FA;
+    display: block;
+    width: 100%;
+    text-align: center; }
+    body .twitterLogin .loginBox {
+      background-color: white;
+      border: 1px solid #e5e5e5;
+      width: 555px;
+      margin-left: auto;
+      margin-right: auto; }
+      body .twitterLogin .loginBox .loginHeader {
+        background-color: #f0f0f0;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #e5e5e5; }
+        body .twitterLogin .loginBox .loginHeader img {
+          display: block;
+          margin: auto;
+          width: 250px; }
+      body .twitterLogin .loginBox .loginBody {
+        padding: 15px; }
+        body .twitterLogin .loginBox .loginBody .explanatoryModalTextBox {
+          text-align: left; }
+          body .twitterLogin .loginBox .loginBody .explanatoryModalTextBox p {
+            font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+            font-size: 16px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            color: rgba(0, 0, 0, 0.6); }
+        body .twitterLogin .loginBox .loginBody form .loginButtonTwitter {
+          margin-top: 20px;
+          margin-bottom: 20px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          border: none;
+          background-color: #55acee;
+          width: 100%;
+          text-align: left;
+          padding-left: 24px;
+          color: white;
+          height: 6rem; }
+        body .twitterLogin .loginBox .loginBody form .loginButtonTwitter:hover {
+          background-color: #006DAA; }
+        body .twitterLogin .loginBox .loginBody form .loginButtonTwitter:active {
+          outline: none;
+          border: none; }
+        body .twitterLogin .loginBox .loginBody form img {
+          height: 40px; }
+        body .twitterLogin .loginBox .loginBody form span {
+          padding-left: 10px; }
+      body .twitterLogin .loginBox .loginFooter {
+        border-top: 1px solid #e5e5e5;
+        padding: 15px; }
+        body .twitterLogin .loginBox .loginFooter p {
+          font-size: 10px;
+          text-align: left;
+          margin: auto;
+          color: #b3b3b1;
+          font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+          font-size: 14px; }
+    body .twitterLogin .twitterBox {
+      display: block;
+      display: block; }
+      body .twitterLogin .twitterBox img {
+        height: 100px;
+        width: 100px; }

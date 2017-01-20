@@ -24,7 +24,7 @@ export default class LoginSignupModal extends React.Component {
 
   constructModal() {
     return (
-      <Modal show={this.state.showModal} onHide={this.close}>
+      <Modal show={this.state.showModal} onHide={this.close} className="loginModal">
         <Modal.Header closeButton className="loginModalHeader">
           <img src="/img/WikiWeb.png"
             style={{
