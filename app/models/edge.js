@@ -171,13 +171,15 @@ const getNodeParser = function (r){
 	const _idUser = r.edge.properties.userId; // Get the link properties
 	const createdAt = r.edge.properties.createdAt; // Get the link properties
 	const tags = r.edge.properties.tags;
+	const description = r.edge.properties.description;
 
   return {
 		_idLink,
 		_idNode,
 		_idUser,
 		tags,
-		createdAt
+		createdAt,
+		description
 	};
 };
 
@@ -363,12 +365,18 @@ const nearbyEdgeParser = function (r){
 		const type = edge.type;
 		const _idFrom = _.find(nodesData, { _id: edge._fromId } ).properties.id;
 		const _idTo = _.find(nodesData, { _id: edge._toId } ).properties.id;
+		const description = edge.description;
+		const tags = edge.tags;
+
+
 
 		return {
 			_idFrom,
 			_idTo,
 			properties,
-			type
+			type,
+			description,
+			tags
 		};
 	});
 

@@ -78,7 +78,7 @@ exports.getEntityController = function (req, res) {
 
         User.find(
           { _id: { $in: userIds.concat(userIdsRelated) } },
-          'name username twitter profile_image'
+          'name username profile_image'
         )
         .exec(function (err, users){
           object.entityCount =  entityCount[entity.id] ? entityCount[entity.id].length : 0;
