@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Loader from 'react-loader';
-import Navbar from "../../components/Navbar.react"
-import InputURL from "../../components/InputURL/"
-import EntityItem from "../../components/Entity/"
-import EdgeConnection from "../../components/EdgeConnection/"
-import Tags from "../../components/Tags.react"
+import Navbar from "../../components/Navbar.react";
+import InputURL from "../../components/InputURL/";
+import EntityItem from "../../components/Entity/";
+import EdgeConnection from "../../components/EdgeConnection/";
+import Tags from "../../components/Tags.react";
 
 const inputKey = 'homeResult';
 const homepageUrlSearchForm = {
@@ -14,58 +14,46 @@ const homepageUrlSearchForm = {
   marginTop: '50px',
   paddingLeft: '20px',
   paddingRight: '20px'
-}
+};
 
-import { getFirehose } from "../actions/index"
+import { getFirehose } from '../actions/index';
 
 class Home extends Component {
 
-  componentWillMount() {
+  componentWillMount () {
     const { dispatch } = this.props;
-    dispatch(getFirehose())
+    dispatch(getFirehose());
   }
 
-  render() {
+  render () {
     const { node, isURL, firehoseResult, dispatch } = this.props;
 
-    const connections = firehoseResult?
-    firehoseResult.map(function(edge, i){
+    const connections = firehoseResult ?
+    firehoseResult.map(function (edge, i){
       const { user, nodeFrom, nodeTo, createdAt, nodeFromEntityCount, nodeToEntityCount, tags } = edge;
 
       let tagsSection = (
-        <div
-          style={{
-            display: 'block',
-            overflow: 'hidden',
-            border: 'none',
-            marginBottom: '3px'
-          }}>
+        <div style={{ display: 'block', overflow: 'hidden', border: 'none', marginBottom: '3px' }}>
           <div className="card-left-col">
             <img src="../../img/blank.png" />
           </div>
-          <div className="card-right-col"
-               style={{paddingLeft: '5px'}}>
+          <div className="card-right-col" style={{ paddingLeft: '5px' }}>
             <Tags tags={tags}/>
           </div>
         </div>
-      )
+      );
 
-      if (tags.length < 1){
-        tagsSection = (null)
+      if (tags.length < 1) {
+        tagsSection = (null);
       }
 
       return (
-        <div
-          key={i}
-          className="default-card"
-          >
-            <div style={{
-                  border: 'none',
-                  paddingTop: '10px'}}>
+        <div key={i} className="default-card">
+            <div style={{ border: 'none', paddingTop: '10px' }}>
               <EntityItem
                 count={nodeFromEntityCount}
-                imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
-                faviconCDN={nodeFrom.faviconCDN?nodeFrom.faviconCDN:''}
+                imageCDN={nodeFrom.imageCDN.url ? nodeFrom.imageCDN.url : ''}
+                faviconCDN={nodeFrom.faviconCDN ? nodeFrom.faviconCDN : ''}
                 canonicalLink={nodeFrom.canonicalLink}
                 title={nodeFrom.title}
                 description={nodeFrom.description}
@@ -73,13 +61,11 @@ class Home extends Component {
                 createdAt={Number(createdAt)}
               />
             </div>
-            <div style={{
-                  border: 'none',
-                  paddingTop: '10px'}}>
+            <div style={{ border: 'none', paddingTop: '10px' }}>
               <EntityItem
                 count={nodeToEntityCount}
-                imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
-                faviconCDN={nodeTo.faviconCDN?nodeTo.faviconCDN:''}
+                imageCDN={nodeTo.imageCDN.url ? nodeTo.imageCDN.url : ''}
+                faviconCDN={nodeTo.faviconCDN ? nodeTo.faviconCDN : ''}
                 canonicalLink={nodeTo.canonicalLink}
                 title={nodeTo.title}
                 description={nodeTo.description}
@@ -88,45 +74,35 @@ class Home extends Component {
               />
             </div>
             <div className='edge-card-info'>
-              <EdgeConnection
-                edges={[edge]}
-                index={0}
-                />
+              <EdgeConnection edges={[edge]} index={0} />
             </div>
             {tagsSection}
-        </div>)
-    }):<Loader top="100px"/>;
+        </div>);
+    }) : <Loader top="100px"/>;
 
     return (
-      <div style={{backgroundColor:'white'}}>
+      <div style={{ backgroundColor:'white' }}>
         <Navbar />
-        <div
-          className="container"
-          style={{marginBottom:'80px'}}>
+        <div className="container" style={{ marginBottom:'80px' }}>
           <div className="row">
-            <div  className="text-center"
-                  style={{margin: '100px 0 30px'}}>
-              <div style={{height: '120px'}}>
-                <b>
-                <span style={{
-                    fontFamily: "'Ovo', serif",
-                    fontSize: '68px'}}>
-                    WikiWeb
+            <div  className="text-center" style={{ margin: '100px 0 30px' }}>
+              <div style={{ height: '120px' }}>
+                <span style={{ fontFamily: "'Ovo', serif", fontSize: '68px' }}>
+                  <b>WikiWeb</b>
                 </span>
-                </b>
-                </div>
-              <div style={{fontFamily: "'Ovo', serif", fontSize: '18px', marginLeft: '15px'}}>
+              </div>
+              <div style={{ fontFamily: "'Ovo', serif", fontSize: '18px', marginLeft: '15px' }}>
                 <span>WikiWeb is a hub for connected content on the web.
                   <sup>
                     <a href="/about">
-                      <span className="fa fa-info-circle" style={{color: '#337ab7'}} />
+                      <span className="fa fa-info-circle" style={{ color: '#337ab7' }} />
                     </a>
                   </sup>
                 </span>
               </div>
             </div>
           </div>
-          <div className='row' style={{marginTop: '10px'}}>
+          <div className='row' style={{ marginTop: '10px' }}>
             <div
               className={
               ['col-xs-12',
@@ -144,17 +120,10 @@ class Home extends Component {
             </div>
           </div>
         </div>
-        <div id='homepage-firehose' style={{backgroundColor: '#F5F8FA', paddingTop: '10px', borderTop: '1px #E1E8ED solid'}}>
+        <div id='homepage-firehose' style={{ backgroundColor: '#F5F8FA', paddingTop: '10px', borderTop: '1px #E1E8ED solid' }}>
           <div className='container'>
             <div className='row'>
-              <div
-                className={
-                ['col-xs-12',
-                'col-sm-10',
-                'col-sm-offset-1',
-                'col-md-8',
-                'col-md-offset-2'].join(' ')
-                }>
+              <div className={['col-xs-12', 'col-sm-10', 'col-sm-offset-1', 'col-md-8', 'col-md-offset-2'].join(' ')}>
                 {connections}
               </div>
             </div>
@@ -164,24 +133,21 @@ class Home extends Component {
     );
   }
 
-  _changeMessage(i){
+  _changeMessage (i){
     this.setState({
       messageIndex: i
-    })
+    });
   }
 }
 
-function mapStateToProps(state) {
-  const { firehoseResult, inputURLResult} = state
-
-  let object = { firehoseResult }
-
+function mapStateToProps (state) {
+  const { firehoseResult, inputURLResult } = state;
+  let object = { firehoseResult };
   if (  inputURLResult && inputURLResult[inputKey] ){
     const { node, isURL } = inputURLResult[inputKey];
     Object.assign(object, { node, isURL });
   }
-
-  return object
+  return object;
 }
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(Home);
