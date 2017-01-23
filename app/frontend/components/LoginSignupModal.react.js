@@ -37,7 +37,7 @@ export default class LoginSignupModal extends React.Component {
         </Modal.Header>
         <Modal.Body>
           <div>
-            <p className="explanatoryModalText">Sign in to WikiWeb to connect ideas together and access a new way of exploring the Internet.</p>
+            <p className="explanatoryModalText">Sign in to WikiWeb to connect ideas and access a new way of exploring the Internet.</p>
           </div>
           <div>
             <form action="/auth/twitter" method="GET">
