@@ -1,43 +1,41 @@
 /**
- * Copyright (c) 2016, WikiWeb
+ * Copyright (c) 2017, WikiWeb
 */
 
-import React, {PropTypes} from "react";
+import React, { PropTypes } from "react";
 
 export default class EntityImg extends React.Component {
-  constructor() {
-     super()
-     this._handleImageErrored = this._handleImageErrored.bind(this)
+  constructor () {
+     super();
+     this._handleImageErrored = this._handleImageErrored.bind(this);
      this.state = {
        imgError: false
-     }
+     };
   }
 
-  render() {
+  render () {
     const { imgError } = this.state;
     const { imgSrc } = this.props;
 
     return (
       <div
         className="text-center"
-        style={{
-        paddingTop:'25px'}}>
-        <img
-          style={{maxWidth: '50px'}}
-          src={imgError?'/img/document.png':imgSrc}
+        style={{ paddingTop:'5px' }}>
+        <img src={imgError ? '/img/document.png' : imgSrc}
           onError={this._handleImageErrored}
+          style={{ maxWidth: '50px' }}
         />
       </div>
     );
   }
 
-  _handleImageErrored(){
+  _handleImageErrored (){
     this.setState({
       imgError:true
-    })
+    });
   }
-};
+}
 
 EntityImg.propTypes = {
   imgSrc:  PropTypes.string.isRequired
-}
+};
