@@ -135,8 +135,9 @@ exports.postCreateEdgeController = function (req, res) {
     function (err, resultExisting){
 
       if (resultExisting && resultExisting.length > 0){
-        return res.status(409).send({
+        return res.status(200).send({
           success: false,
+          node: {},
           messages: [{
             type: 'warning',
             text: 'You have already made that connection'
