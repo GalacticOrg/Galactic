@@ -132,19 +132,27 @@ exports.getEntityController = function (req, res) {
  */
 exports.getSearchController = function (req, res) {
   const q = req.query.q;
-  if (!q) return res.status(422).send(utils.errsForApi('Please Enter a URL'));
+  if (!q) return res.status(422).send(utils.errsForApi('Please Enter a URL.'));
 
   pageSearch(q, function (err, url, resultDB){
       // Handle the end
       if (err &&
          (err.status === 404 || err.code )) { // Did we get a 404 from the search. We tell the search
         res.send({
-           node : null,
-           isURL: false
+           node : {},
+           isURL: false,
+           success: false
         });
       } else if (err) {
-        const status = err.status || 500;
-        res.status(status).json(err);
+        res.status(200).json({
+          isURL: false,
+          node : {},
+          success: false,
+          messages: [{
+            type: 'warning',
+            text: 'This URL does not return a valid page.'
+          }]
+        });
       } else {
         // Here is where we push all links to our child scrapper.
         addToScrapperQ(_.map(resultDB.links, function (link){
@@ -155,7 +163,8 @@ exports.getSearchController = function (req, res) {
         }));
         const payload = {
            node : resultDB.toObject(),
-           isURL: true
+           isURL: true,
+           success: true,
         };
         res.send(payload);
       }
