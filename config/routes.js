@@ -17,8 +17,6 @@ const auth = require('./middlewares/authorization');
 
 module.exports = function (app, passport) {
 
-
-
   // API Entity
   app.param('idApi', entityCrud.load);
   app.get('/api/searchurl', entityCrud.getSearchController);
@@ -54,9 +52,6 @@ module.exports = function (app, passport) {
   app.get('/terms', pages.terms);
   app.get('/privacy', pages.privacy);
   app.get('/fivehundred', pages.fivehundred);
-
-
-
 
   /**
    * Error handling

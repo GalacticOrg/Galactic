@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Loader from 'react-loader';
-import Navbar from "../../components/Navbar.react";
-import InputURL from "../../components/InputURL/";
-import EntityItem from "../../components/Entity/";
-import EdgeConnection from "../../components/EdgeConnection/";
-import Tags from "../../components/Tags.react";
+import Navbar from '../../components/Navbar.react';
+import InputURL from '../../components/InputURL/';
+import EntityItem from '../../components/Entity/';
+import EdgeConnection from '../../components/EdgeConnection/';
+import Tags from '../../components/Tags.react';
 
 const inputKey = 'homeResult';
 const homepageUrlSearchForm = {
@@ -27,11 +27,8 @@ class Home extends Component {
 
   render () {
     const { node, isURL, firehoseResult, dispatch } = this.props;
-
-    const connections = firehoseResult ?
-    firehoseResult.map(function (edge, i){
+    const connections = firehoseResult ? firehoseResult.map(function (edge, i){
       const { user, nodeFrom, nodeTo, createdAt, nodeFromEntityCount, nodeToEntityCount, tags } = edge;
-
       let tagsSection = (
         <div style={{ display: 'block', overflow: 'hidden', border: 'none', marginBottom: '3px' }}>
           <div className="card-left-col">
@@ -103,20 +100,13 @@ class Home extends Component {
             </div>
           </div>
           <div className='row' style={{ marginTop: '10px' }}>
-            <div
-              className={
-              ['col-xs-12',
-              'col-sm-10',
-              'col-sm-offset-1',
-              'col-md-8',
-              'col-md-offset-2'].join(' ')
-              }>
+            <div className={['col-xs-12', 'col-sm-10', 'col-sm-offset-1', 'col-md-8', 'col-md-offset-2'].join(' ')}>
               <InputURL
                 placeholder="Enter a URL to search"
                 hasSearchButton={true}
                 receivedSearchResult={this._onSearchResult}
                 id={inputKey}
-                />
+              />
             </div>
           </div>
         </div>

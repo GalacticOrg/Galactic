@@ -3,40 +3,32 @@ $success-green-overlay: #5B9E4D;
 $failure-red: #FF0000;
 $background-grey: #F5F8FA;
 $border-color: rgb(225, 232, 237);
-
 $card-left-width: 60px;
 
 body {
-
   font-family: "Open Sans","Helvetica Neue",sans-serif;
   margin: 50px 0px 20px;
   background-color: $background-grey;
-
   .noUnderline {
     text-decoration: none;
   }
   .noUnderline:hover {
     text-decoration: none;
   }
-
   .card-left-col {width: $card-left-width; float: left;}
   .card-right-col {width: calc(100% - #{$card-left-width}); float: left;}
-
   .default-card {
     &:hover { background-color: #F5F8FA !important; }
     border: 1px solid rgb(225, 232, 237);
     background-color: white;
   }
-
   .edge-card-info {
     padding-bottom: 4px;
   }
-
   .invertibleButton:hover {
     color: white;
     background-color: orange;
   }
-
   .badge-styling {
     background-color: transparent;
     border: 1px solid orange;
@@ -44,7 +36,6 @@ body {
     padding-left: 6px;
     padding-right: 7px;
   }
-
   .connect-icon:hover, .connect-icon-box:hover {
     background-color: orange;
     color: white !important;

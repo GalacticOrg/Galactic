@@ -16,14 +16,14 @@ const Edge = require('../models/edge');
      if (!entity || (err && err.message==='Cast to ObjectId failed')) return next(new Error('Article not found'));
      if (err) return next(err);
      req.entity = entity;
-     Edge.getNode(entity._id, function(err, edges){
-       req.edges = edges
+     Edge.getNode(entity._id, function (err, edges){
+       req.edges = edges;
        next();
-     })
+     });
    });
  };
 
-/*Web App Pages*/
+/* Web App Pages */
 exports.home = function (req, res) {
   res.render('home/index', {
     title: 'Home'
@@ -37,11 +37,11 @@ exports.connect = function (req, res) {
 };
 
 exports.node = function (req, res) {
-  const entity = req.entity
+  const entity = req.entity;
   res.render('node/index', {
     title: entity.title,
     description: entity.description,
-    image:entity.imageCDN.url?entity.imageCDN.url:null
+    image: entity.imageCDN.url ? entity.imageCDN.url : null
   });
 };
 
