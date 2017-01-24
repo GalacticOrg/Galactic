@@ -3,37 +3,30 @@
 */
 
 import React from "react";
-import { Modal } from "react-bootstrap"
+import { Modal } from "react-bootstrap";
 
 export default class LoginSignupModal extends React.Component {
 
-  constructor(props) {
+  constructor (props) {
      super(props);
-     this.state = {showModal: false};
+     this.state = { showModal: false };
      this.close = this.close.bind(this);
      this.open = this.open.bind(this);
    }
 
-  close() {
+  close () {
     this.setState({ showModal: false });
   }
 
-  open() {
+  open () {
     this.setState({ showModal: true });
   }
 
-  constructModal() {
+  constructModal () {
     return (
       <Modal show={this.state.showModal} onHide={this.close} className="loginModal">
         <Modal.Header closeButton className="loginModalHeader">
-          <img src="/img/WikiWeb.png"
-            style={{
-              display: 'block',
-              margin: 'auto',
-              width: '250px',
-              marginTop: '20px',
-              marginBottom: '20px',
-            }}/>
+          <img src="/img/WikiWeb.png" style={{ display: 'block', margin: 'auto', width: '250px', marginTop: '20px', marginBottom: '20px' }}/>
         </Modal.Header>
         <Modal.Body>
           <div>
@@ -41,11 +34,8 @@ export default class LoginSignupModal extends React.Component {
           </div>
           <div>
             <form action="/auth/twitter" method="GET">
-              <button
-                className="loginButtonTwitter"
-                type="submit"
-              >
-                <i style={{fontSize:"3rem", marginRight:"20px", verticalAlign: "-5px"}} className="fa fa-twitter" aria-hidden="true"></i>
+              <button className="loginButtonTwitter" type="submit">
+                <i style={{ fontSize:'3rem', marginRight:'20px', verticalAlign: '-5px' }} className='fa fa-twitter' aria-hidden="true"></i>
                 <span className="loginButtonText">
                   Continue with Twitter
                 </span>
@@ -58,10 +48,10 @@ export default class LoginSignupModal extends React.Component {
           </p>
         </Modal.Footer>
       </Modal>
-    )
+    );
   }
 
-  render() {
+  render () {
     return (
       <span>
         {this.constructModal()}
@@ -74,4 +64,4 @@ export default class LoginSignupModal extends React.Component {
       </span>
     );
   }
-};
+}

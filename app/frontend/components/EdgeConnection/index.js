@@ -4,24 +4,24 @@ import EdgeConnectionItem from './EdgeConnectionItem.react'
 
 export default class EdgeConnection extends Component {
 
-  constructor() {
+  constructor () {
      super();
-     this._toggle = this._toggle.bind(this)
+     this._toggle = this._toggle.bind(this);
 
      this.state = {
        tagInput: ''
-     }
+     };
   }
 
-  render() {
+  render () {
     const { edges, index } = this.props;
     const length = edges.length;
     const user = edges[index].user;
-    const {username, profile_image } = user;
+    const { username, profile_image } = user;
     const createdAt = edges[index].createdAt;
 
-    const edgesJSX = edges.map((e, i)=>{
-      return i!==index?
+    const edgesJSX = edges.map((e, i) => {
+      return i !== index ?
         (
           <div>
             <EdgeConnectionItem
@@ -29,37 +29,37 @@ export default class EdgeConnection extends Component {
               username={e.user.username}
               createdAt={e.createdAt}/>
           </div>
-        ):null;
-    })
+        ) : null;
+    });
 
     return (
-      <div style={{display: 'block', overflow: 'hidden', border: 'none'}}>
+      <div style={{ float: 'left', display: 'block', overflow: 'hidden', border: 'none' }}>
         <div className="card-left-col"><img src="../../img/blank.png" /></div>
         <div className="card-right-col">
-          <div
-            title={username}
-            style={{paddingLeft: '5px', display: 'inline-block', verticalAlign: 'top'}}>By:
+          <div title={username} style={{ paddingLeft: '5px', display: 'inline-block', verticalAlign: 'top'}}>
+            By:
           </div>
-          <div style={{display: 'inline-block', verticalAlign: 'top'}}>
+          <div style={{ display: 'inline-block', verticalAlign: 'top' }}>
             <EdgeConnectionItem
               profileImageUrl={profile_image}
               username={username}
               createdAt={createdAt} />
-            {length>1?
-            <span>
-              <a href="javascript:void(0)" onClick={this._toggle} >&nbsp;and {length-1} more</a>
-            </span>:null}
-            {this.state.open?(edgesJSX):null}
+            {length > 1 ?
+              (<span>
+                <a href="javascript:void(0)" onClick={this._toggle} >&nbsp;and {length - 1} more</a>
+              </span>) : null
+            }
+            { this.state.open ? (edgesJSX) : null}
           </div>
         </div>
       </div>
-    )
+    );
   }
 
-  _toggle(){
+  _toggle (){
     this.setState({
       open:!this.state.open
-    })
+    });
   }
 
 }
@@ -73,4 +73,4 @@ EdgeConnection.propTypes = {
       createdAt: PropTypes.number.isRequired,
     }).isRequired
   )
-}
+};

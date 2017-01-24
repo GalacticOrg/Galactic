@@ -29,16 +29,7 @@ class Home extends Component {
     const { node, isURL, firehoseResult, dispatch } = this.props;
     const connections = firehoseResult ? firehoseResult.map(function (edge, i){
       const { user, nodeFrom, nodeTo, createdAt, nodeFromEntityCount, nodeToEntityCount, tags } = edge;
-      let tagsSection = (
-        <div style={{ display: 'block', overflow: 'hidden', border: 'none', marginBottom: '3px' }}>
-          <div className="card-left-col">
-            <img src="../../img/blank.png" />
-          </div>
-          <div className="card-right-col" style={{ paddingLeft: '5px' }}>
-            <Tags tags={tags}/>
-          </div>
-        </div>
-      );
+      let tagsSection = (<Tags tags={tags}/>);
 
       if (tags.length < 1) {
         tagsSection = (null);
@@ -46,34 +37,34 @@ class Home extends Component {
 
       return (
         <div key={i} className="default-card">
-            <div style={{ border: 'none', paddingTop: '10px' }}>
-              <EntityItem
-                count={nodeFromEntityCount}
-                imageCDN={nodeFrom.imageCDN.url ? nodeFrom.imageCDN.url : ''}
-                faviconCDN={nodeFrom.faviconCDN ? nodeFrom.faviconCDN : ''}
-                canonicalLink={nodeFrom.canonicalLink}
-                title={nodeFrom.title}
-                description={nodeFrom.description}
-                id={nodeFrom._id}
-                createdAt={Number(createdAt)}
-              />
-            </div>
-            <div style={{ border: 'none', paddingTop: '10px' }}>
-              <EntityItem
-                count={nodeToEntityCount}
-                imageCDN={nodeTo.imageCDN.url ? nodeTo.imageCDN.url : ''}
-                faviconCDN={nodeTo.faviconCDN ? nodeTo.faviconCDN : ''}
-                canonicalLink={nodeTo.canonicalLink}
-                title={nodeTo.title}
-                description={nodeTo.description}
-                id={nodeTo._id}
-                createdAt={Number(createdAt)}
-              />
-            </div>
-            <div className='edge-card-info'>
-              <EdgeConnection edges={[edge]} index={0} />
-            </div>
-            {tagsSection}
+          <div style={{ border: 'none', paddingTop: '10px' }}>
+            <EntityItem
+              count={nodeFromEntityCount}
+              imageCDN={nodeFrom.imageCDN.url ? nodeFrom.imageCDN.url : ''}
+              faviconCDN={nodeFrom.faviconCDN ? nodeFrom.faviconCDN : ''}
+              canonicalLink={nodeFrom.canonicalLink}
+              title={nodeFrom.title}
+              description={nodeFrom.description}
+              id={nodeFrom._id}
+              createdAt={Number(createdAt)}
+            />
+          </div>
+          <div style={{ border: 'none', paddingTop: '10px' }}>
+            <EntityItem
+              count={nodeToEntityCount}
+              imageCDN={nodeTo.imageCDN.url ? nodeTo.imageCDN.url : ''}
+              faviconCDN={nodeTo.faviconCDN ? nodeTo.faviconCDN : ''}
+              canonicalLink={nodeTo.canonicalLink}
+              title={nodeTo.title}
+              description={nodeTo.description}
+              id={nodeTo._id}
+              createdAt={Number(createdAt)}
+            />
+          </div>
+          <div style={{ height: 27 }}>
+            <EdgeConnection edges={[edge]} index={0} />
+            <span style={{ float: 'right' }}>{tagsSection}</span>
+          </div>
         </div>);
     }) : <Loader top="100px"/>;
 
