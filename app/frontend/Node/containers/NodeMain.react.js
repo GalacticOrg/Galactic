@@ -120,7 +120,8 @@ class NodeMain extends Component {
       title="number of connections"
       className="badge badge-default badge-styling connect-icon"
       style={entityCount > 9 ? { paddingLeft: '3px', paddingRight: '3px', cursor:'default' } : { cursor:'default' }}>
-      {entityCount}</span>;
+      {entityCount}
+    </span>;
 
     let sourceURL = document.createElement('a');
     sourceURL.href = canonicalLink;
@@ -134,13 +135,14 @@ class NodeMain extends Component {
               <div style={{ display: 'block', overflow: 'hidden' }}>
                 <div className="card-left-col" style={{ paddingTop: 20 }}>
                   <EntityImg imgSrc={documentImageSrc}/>
+                  <div style={{ marginTop: 45, marginLeft: 20 }}>{entityCountJSX}</div>
                 </div>
                 <div className="card-right-col" style={{ paddingLeft: '5px', paddingRight: '5px' }}>
                   <h3>
                     {title.length > 0 ?
                       title :
                       sourceURL.host + (sourceURL.pathname.length > 1 ? sourceURL.pathname : '')
-                    }&nbsp;{entityCountJSX}
+                    }
                   </h3>
                   <div>
                     <a href={canonicalLink} className="noUnderline">{sourceURL.host}</a>
