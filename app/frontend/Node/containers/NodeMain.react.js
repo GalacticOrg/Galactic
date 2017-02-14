@@ -79,12 +79,12 @@ class NodeMain extends Component {
             edges={edges}
             index={0}
           />
-          <div style={{ display: 'block', overflow: 'hidden', border: 'none', marginTop: '3px' }}>
+          <div style={{ display: 'block', overflow: 'hidden', border: 'none', marginTop: 3 }}>
             <div className="card-left-col">
               <img src="../../img/blank.png" />
             </div>
-            <div className="card-right-col" style={{ paddingLeft: '5px', paddingRight: '20px' }}>
-              {tagsInputJSX}
+            <div className="card-right-col" style={{ paddingLeft: 5, marginBottom: 5 }}>
+              <span style={{ float: 'right',  marginRight: 5 }}>{tagsInputJSX}</span>
             </div>
           </div>
         </div>);
@@ -116,12 +116,6 @@ class NodeMain extends Component {
     }
 
     const href = '/node/' + _id;
-    const entityCountJSX = <span
-      title="number of connections"
-      className="badge badge-default badge-styling connect-icon"
-      style={entityCount > 9 ? { paddingLeft: '3px', paddingRight: '3px', cursor:'default' } : { cursor:'default' }}>
-      {entityCount}
-    </span>;
 
     let sourceURL = document.createElement('a');
     sourceURL.href = canonicalLink;
@@ -135,7 +129,6 @@ class NodeMain extends Component {
               <div style={{ display: 'block', overflow: 'hidden' }}>
                 <div className="card-left-col" style={{ paddingTop: 20 }}>
                   <EntityImg imgSrc={documentImageSrc}/>
-                  <div style={{ marginTop: 45, marginLeft: 20 }}>{entityCountJSX}</div>
                 </div>
                 <div className="card-right-col" style={{ paddingLeft: '5px', paddingRight: '5px' }}>
                   <h3>
