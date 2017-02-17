@@ -36,7 +36,7 @@ class Home extends Component {
       }
 
       return (
-        <div key={i} className="default-card">
+        <div key={i} className="default-card" style={{ marginBottom: 10 }}>
           <div style={{ border: 'none', paddingTop: '10px' }}>
             <EntityItem
               count={nodeFromEntityCount}
@@ -73,14 +73,14 @@ class Home extends Component {
         <Navbar />
         <div className="container" style={{ marginBottom:'80px' }}>
           <div className="row">
-            <div  className="text-center" style={{ margin: '100px 0 30px' }}>
-              <div style={{ height: '120px' }}>
+            <div className="text-center" style={{ margin: '100px 0 30px' }}>
+              <div style={{ height: 90 }}>
                 <span style={{ fontFamily: "'Ovo', serif", fontSize: '68px' }}>
                   <b>WikiWeb</b>
                 </span>
               </div>
               <div style={{ fontFamily: "'Ovo', serif", fontSize: '18px', marginLeft: '15px' }}>
-                <span>WikiWeb is a hub for connected content on the web.
+                <span>WikiWeb is a hub for connecting content on the Internet.
                   <sup>
                     <a href="/about">
                       <span className="fa fa-info-circle" style={{ color: '#337ab7' }} />
@@ -88,16 +88,20 @@ class Home extends Component {
                   </sup>
                 </span>
               </div>
-            </div>
-          </div>
-          <div className='row' style={{ marginTop: '10px' }}>
-            <div className={['col-xs-12', 'col-sm-10', 'col-sm-offset-1', 'col-md-8', 'col-md-offset-2'].join(' ')}>
-              <InputURL
-                placeholder="Enter a URL to search"
-                hasSearchButton={true}
-                receivedSearchResult={this._onSearchResult}
-                id={inputKey}
-              />
+              <div className="downloadPluginBox" >
+                <div>
+                  <a href="">
+                    <img src='/img/logo.png' style={{ height: 50, width: 50 }} />
+                  </a>
+                </div>
+                <div>
+                  <span>For the best experience, <a href="">download</a> the WikiWeb chrome plugin.
+                    <a href="">
+                      <img src='/img/outbound_link.png'/>
+                    </a>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
