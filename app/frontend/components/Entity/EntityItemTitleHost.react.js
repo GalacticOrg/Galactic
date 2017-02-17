@@ -27,13 +27,13 @@ export default class EntityItemTitleHost extends Component {
     return (
       <div>
         {faviconCDN ? <img style={{ width:'16px', marginTop:'-5px', marginRight:'3px' }} src={faviconCDN} /> : null}
-        <a href={href} title={canonicalLink} className="noUnderline">
+        <a href={canonicalLink} className="noUnderline">
           <span style={nodeEntityTitleStyle}>
             {title.length > 0 ? title : sourceURL.host + (sourceURL.pathname.length > 1 ? sourceURL.pathname : '')}
           </span>
         </a>
         <span style={nodeEntityStyle}>
-          (<a href={sourceURL.href} target="_blank" >
+          (<a href={href} >
             {sourceURL.host}
           </a>)
           &nbsp;
