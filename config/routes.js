@@ -17,27 +17,6 @@ const auth = require('./middlewares/authorization');
 
 module.exports = function (app, passport) {
 
-  // API Entity
-  app.param('idApi', entityCrud.load);
-  app.get('/api/searchurl', entityCrud.getSearchController);
-  app.get('/api/node/:idApi', entityCrud.getEntityController);
-
-  // API Edge
-  app.param('user', edgeCrud.loadUser);
-  app.get('/api/edges/users/:user', edgeCrud.getUserEdgeController);
-  app.get('/api/edges/firehose', edgeCrud.getEdgeController);
-
-  app.param('eid', edgeCrud.loadEdgeId);
-
-  app.post('/api/connect', auth.requiresLogin, edgeCrud.postCreateEdgeController);
-  app.post('/api/connect/:eid', auth.requiresLogin, edgeCrud.postTagsEdgeController);
-
-
-  // API User
-  const userPath = '/api/users';
-  const profilePath = userPath + '/profile';
-  app.get(profilePath, userCrud.getReadControllerProfile);
-
   // Static Routes App
   app.param('id', pages.load);
   app.get('/', pages.home);
@@ -77,6 +56,36 @@ module.exports = function (app, passport) {
        failureRedirect: '/login'
      }), users.authCallback);
 
+   // Everything Below is CORS enabled for our X-site extension
+   app.use(function (req, res, next) {
+     res.header('Access-Control-Allow-Origin', '*');
+     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+     res.header('Access-Control-Allow-Headers', 'Authorization, Origin, X-Requested-With, Content-Type, Accept');
+     next();
+   });
+
+   // API Entity
+   app.param('idApi', entityCrud.load);
+   app.get('/api/searchurl', entityCrud.getSearchController);
+   app.get('/api/node/:idApi', entityCrud.getEntityController);
+
+   // API Edge
+   app.param('user', edgeCrud.loadUser);
+   app.get('/api/edges/users/:user', edgeCrud.getUserEdgeController);
+   app.get('/api/edges/firehose', edgeCrud.getEdgeController);
+
+   app.param('eid', edgeCrud.loadEdgeId);
+
+   app.post('/api/connect', auth.requiresLogin, edgeCrud.postCreateEdgeController);
+   app.options('/api/connect', auth.requiresLogin, edgeCrud.postCreateEdgeController);
+
+   app.post('/api/connect/:eid', auth.requiresLogin, edgeCrud.postTagsEdgeController);
+
+   // API User
+   const userPath = '/api/users';
+   const profilePath = userPath + '/profile';
+   app.get(profilePath, userCrud.getReadControllerProfile);
+
   app.use(function (err, req, res, next) {
     // treat as 404
     if (err.message
@@ -90,10 +99,11 @@ module.exports = function (app, passport) {
   });
 
   // assume 404 since no middleware responded
-  app.use(function (req, res, next) {
+  app.use(function (req, res) {
     res.status(404).render('404', {
       url: req.originalUrl,
       error: 'Not found'
     });
   });
+
 };
