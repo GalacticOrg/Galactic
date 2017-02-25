@@ -125,8 +125,8 @@ exports.postCreateEdgeController = function (req, res) {
   const toId = body.toId;
   const fromId = body.fromId;
   const userId = req.user.id;
-  const tags = body.tags;
-  const description = body.description;
+  const tags = body.tags ? body.tags: '';
+  const description = body.description ? body.description: '';
 
   Edge.getEdgesForPathUser(
     fromId,
