@@ -59,7 +59,7 @@ module.exports = function (app, passport) {
    // Everything Below is CORS enabled for our X-site extension
    app.use(function (req, res, next) {
      res.header('Access-Control-Allow-Origin', '*');
-     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
      res.header('Access-Control-Allow-Headers', 'Authorization, Origin, X-Requested-With, Content-Type, Accept');
      next();
    });
@@ -68,6 +68,8 @@ module.exports = function (app, passport) {
    app.param('idApi', entityCrud.load);
    app.get('/api/searchurl', entityCrud.getSearchController);
    app.get('/api/node/:idApi', entityCrud.getEntityController);
+   app.post('/api/node/:idApi/heart', entityCrud.postHeartController);
+   app.delete('/api/node/:idApi/heart', entityCrud.deleteHeartController);
 
    // API Edge
    app.param('user', edgeCrud.loadUser);
@@ -76,7 +78,7 @@ module.exports = function (app, passport) {
 
    app.param('eid', edgeCrud.loadEdgeId);
 
-   app.post('/api/connect', auth.requiresLogin, edgeCrud.postCreateEdgeController);
+   app.post('/api/connect', edgeCrud.postCreateEdgeController);
    app.options('/api/connect', auth.requiresLogin, edgeCrud.postCreateEdgeController);
 
    app.post('/api/connect/:eid', auth.requiresLogin, edgeCrud.postTagsEdgeController);

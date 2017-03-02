@@ -6,6 +6,7 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const url = require('url');
 
 /**
  * Entity Schema
@@ -22,7 +23,6 @@ const Schema = mongoose.Schema;
      paragraphIndex: { type:Number },
      href: { type:String }
    }],
-   user: { type : Schema.ObjectId, ref : 'User' },
    lang: { type : String, default : '', trim : true },
    createdAt  : { type : Date, default : Date.now },
    tags: { type : Array, default : [] },
@@ -36,8 +36,19 @@ const Schema = mongoose.Schema;
      url:{ type : String, default : null },
      dimensions:[{ type : Number, default:null }]
    },
-   videos: { type : Array, default : null }
+   videos: { type : Array, default : null },
+   hearts: [{
+     createdAt: { type : Date, default : Date.now },
+     user: { type : Schema.ObjectId, ref : 'User' }
+    }]
  });
+
+ /**
+  * toJSON Options
+  */
+EntitySchema.set('toJSON', {
+    virtuals: true // This is for our "domain" virtual
+});
 
 /**
  * Validations
@@ -53,6 +64,13 @@ EntitySchema.methods = {
 
 
 };
+
+/**
+ * Virtual
+ */
+EntitySchema.virtual('domain').get(function () {
+  return url.parse(this.canonicalLink).hostname
+});
 
 /**
  * Statics
