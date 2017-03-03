@@ -67,9 +67,8 @@ module.exports = function (app, passport) {
    // API Entity
    app.param('idApi', entityCrud.load);
    app.get('/api/searchurl', entityCrud.getSearchController);
+   app.post('/api/node/:idApi/heart', auth.requiresLogin, entityCrud.postHeartController);
    app.get('/api/node/:idApi', entityCrud.getEntityController);
-   app.post('/api/node/:idApi/heart', entityCrud.postHeartController);
-   app.delete('/api/node/:idApi/heart', entityCrud.deleteHeartController);
 
    // API Edge
    app.param('user', edgeCrud.loadUser);

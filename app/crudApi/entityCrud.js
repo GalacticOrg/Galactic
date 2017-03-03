@@ -36,6 +36,7 @@ exports.load = function (req, res, next, id){
  */
 exports.getEntityController = function (req, res) {
   const entity = req.entity;
+  const uId = req.user.id;
 
   const edges = _.chain(req.edges)
     .groupBy('_idNode')
@@ -120,6 +121,13 @@ exports.getEntityController = function (req, res) {
               })
             };
           });
+          const heartValue = object.hearts.find(function (heart){
+            return uId === String(heart.user)
+          });
+          object.heart = {
+            count: object.hearts.length,
+            value: heartValue !== undefined
+          }
           res.send(object);
         });
       });// Entity.find
@@ -131,53 +139,46 @@ exports.getEntityController = function (req, res) {
 * Entity API for Hearts POST
  */
 exports.postHeartController = function (req, res) {
-  const id = req.query.id;
+  const value = req.body.value;
   const uId = req.user.id;
+  var text;
+  const entity = req.entity;
 
-  Entity.load(id, function (err, entity) {
-    if (!entity || (err && err.message === 'Cast to ObjectId failed')) return  res.status(404).send(utils.errsForApi('Page not found'));
-    if (err) return  res.status(500).send( utils.errsForApi(err.errors || err) );
-    entity.hearts.push({
-      user:uId
+  if (value === true){
+    const existingHeart = entity.hearts.find(function (heart){
+      return uId === String(heart.user)
     });
-    entity.save(function (err){
-      if (err) return  res.status(500).send( utils.errsForApi(err.errors || err) );
-      res.send({
-        success: true,
-        messages: [{
-          type: 'success',
-          text: 'Awesome! You reccomend this article.'
-        }]
+    if (existingHeart === undefined ) {
+      entity.hearts.push({
+        user:uId
       });
+    }
+    text = 'Awesome! You recommend this article.';
+  } else if (value === false) {
+    entity.hearts = entity.hearts.filter(function (heart){
+      return uId !== String(heart.user);
+    });
+    text = 'Awesome! You removed your recommendation.';
+  } else {
+    return res.status(500).send({
+      success: false,
+      text:'Please include true/false value for your recommendation.'
+    })
+  }
+  const count = entity.hearts.length;
+  entity.save(function (err){
+    if (err) return  res.status(500).send( utils.errsForApi(err.errors || err) );
+    return res.send({
+      success: true,
+      value,
+      count,
+      messages: [{
+        type: 'success',
+        text: text
+      }]
     });
   });
-};
 
-/**
-* Entity API for Hearts DELETE
- */
-exports.deleteHeartController = function (req, res) {
-  const id = req.query.id;
-  const uId = req.user.id;
-
-  Entity.load(id, function (err, entity) {
-    if (!entity || (err && err.message === 'Cast to ObjectId failed')) return  res.status(404).send(utils.errsForApi('Page not found'));
-    if (err) return  res.status(500).send( utils.errsForApi(err.errors || err) );
-    entity.hearts.filter(function (heart){
-      return heart.id === uId;
-    });
-    entity.save(function (err){
-      if (err) return  res.status(500).send( utils.errsForApi(err.errors || err) );
-      res.send({
-        success: true,
-        messages: [{
-          type: 'success',
-          text: 'Awesome! You unreccomend this article.'
-        }]
-      });
-    });
-
-  });
 };
 
 /**
