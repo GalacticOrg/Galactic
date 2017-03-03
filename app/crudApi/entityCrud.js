@@ -203,7 +203,7 @@ exports.getSearchController = function (req, res) {
           success: false,
           messages: [{
             type: 'warning',
-            text: 'This URL does not return a valid page.'
+            text: 'Invalid URL'
           }]
         });
       } else {
