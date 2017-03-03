@@ -36,7 +36,7 @@ exports.load = function (req, res, next, id){
  */
 exports.getEntityController = function (req, res) {
   const entity = req.entity;
-  const uId = req.user.id;
+  const uId = req.user? req.user.id: null;
 
   const edges = _.chain(req.edges)
     .groupBy('_idNode')
@@ -189,19 +189,22 @@ exports.getSearchController = function (req, res) {
   if (!q) return res.status(422).send(utils.errsForApi('Please Enter a URL.'));
 
   pageSearch(q, function (err, url, resultDB){
-      // Handle the end
       if (err &&
          (err.status === 404 || err.code )) { // Did we get a 404 from the search. We tell the search
         res.send({
            node : {},
-           isURL: false,
-           success: false
+           isURL: true,
+           parseSuccess: false,
+           messages: [{
+             type: 'Warning',
+             text: 'This URL does not return a valid page'
+           }]
         });
       } else if (err) {
-        res.status(200).json({
-          isURL: false,
+        res.send({
+          isURL: true,
           node : {},
-          success: false,
+          parseSuccess: false,
           messages: [{
             type: 'warning',
             text: 'Invalid URL'
@@ -218,7 +221,11 @@ exports.getSearchController = function (req, res) {
         const payload = {
            node : resultDB.toObject(),
            isURL: true,
-           success: true,
+           parseSuccess: true,
+           messages:[{
+             type: 'success',
+             text: 'This site exists'
+           }]
         };
         res.send(payload);
       }
