@@ -39,7 +39,7 @@ const url = require('url');
    videos: { type : Array, default : null },
    hearts: [{
      createdAt: { type : Date, default : Date.now },
-     user: { type : Schema.ObjectId, ref : 'User' }
+     user: { type : Schema.ObjectId, ref : 'User', unique: true }
     }]
  });
 
@@ -87,7 +87,7 @@ EntitySchema.statics = {
    */
 
   load: function (id, cb) {
-    this.findOne({ _id : id }, '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
+    this.findOne({ _id : id }, '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN hearts')
       .populate('user', 'name email username')
       .populate('comments.user', 'name email username')
       .exec(cb);
