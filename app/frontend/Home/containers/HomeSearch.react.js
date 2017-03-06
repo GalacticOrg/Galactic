@@ -80,7 +80,7 @@ class Home extends Component {
                 </span>
               </div>
               <div style={{ fontFamily: "'Ovo', serif", fontSize: '18px', marginLeft: '15px' }}>
-                <span>WikiWeb is a hub for connecting content on the Internet.
+                <span className='tagline'>Crowdsourced suggestions for what to read next on the Internet.
                   <sup>
                     <a href="/about">
                       <span className="fa fa-info-circle" style={{ color: '#337ab7' }} />
@@ -88,14 +88,17 @@ class Home extends Component {
                   </sup>
                 </span>
               </div>
-              <div className="downloadPluginBox" >
-                <div>
+              <div className='downloadPluginBox' >
+                <div className='logoBox'>
                   <a href="">
                     <img src='/img/logo.png' style={{ height: 50, width: 50 }} />
                   </a>
                 </div>
-                <div>
-                  <span>For the best experience, <a href="">download</a> the WikiWeb chrome plugin.
+                <div className="contentBox">
+                  <span>
+                    <a href="">Download</a> the chrome plugin to get started.
+                  </span>
+                  <span>
                     <a href="">
                       <img src='/img/outbound_link.png'/>
                     </a>
@@ -105,15 +108,11 @@ class Home extends Component {
             </div>
           </div>
         </div>
-        <div id='homepage-firehose' style={{ backgroundColor: '#F5F8FA', paddingTop: '10px', borderTop: '1px #E1E8ED solid' }}>
-          <div className='container'>
-            <div className='row'>
-              <div className={['col-xs-12', 'col-sm-10', 'col-sm-offset-1', 'col-md-8', 'col-md-offset-2'].join(' ')}>
-                {connections}
-              </div>
-            </div>
-          </div>
+
+        <div style={{ backgroundColor: '#F5F8FA', paddingTop: '10px', borderTop: '1px #E1E8ED solid' }}>
+
         </div>
+         
       </div>
     );
   }

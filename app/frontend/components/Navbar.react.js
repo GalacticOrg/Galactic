@@ -21,7 +21,7 @@ class Navbar extends Component {
     return (
       <div className="navbar navbar-default navbar-fixed-top" style={{ backgroundColor: '#F5F8FA' }}>
         <div className="navbar-header pull-left">
-          <a className="navbar-brand" href="/">WikiWeb</a>
+          <a className="navbar-brand purpleNavbar" href="https://wikiweb.org">WikiWeb</a>
         </div>
         <div className="navbar-header pull-right" style={{ marginRight:'10px' }}>
           {!success ?
