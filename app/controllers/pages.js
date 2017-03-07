@@ -1,9 +1,29 @@
+'use strict';
+/**
+ * app/frontend/Connect/reducers/index.js
+ * Copyright (c) 2016, WikiWeb
+*/
 
-/*!
- * Module dependencies.
- */
+const mongoose = require('mongoose')
+const Entity = mongoose.model('Entity');
+const Edge = require('../models/edge');
 
-/*Web App Pages*/
+ /**
+  * Load
+  */
+ exports.load = function (req, res, next, id){
+   Entity.load(id, function (err, entity) {
+     if (!entity || (err && err.message==='Cast to ObjectId failed')) return next(new Error('Article not found'));
+     if (err) return next(err);
+     req.entity = entity;
+     Edge.getNode(entity._id, function (err, edges){
+       req.edges = edges;
+       next();
+     });
+   });
+ };
+
+/* Web App Pages */
 exports.home = function (req, res) {
   res.render('home/index', {
     title: 'Home'
@@ -17,11 +37,11 @@ exports.connect = function (req, res) {
 };
 
 exports.node = function (req, res) {
-  const entity = req.entity
+  const entity = req.entity;
   res.render('node/index', {
     title: entity.title,
     description: entity.description,
-    image:entity.imageCDN.url?entity.imageCDN.url:null
+    image: entity.imageCDN.url ? entity.imageCDN.url : null
   });
 };
 
@@ -48,6 +68,12 @@ exports.analytics = function (req, res) {
 exports.about = function (req, res) {
   res.render('About', {
     title: 'About'
+  });
+};
+
+exports.faq = function (req, res) {
+  res.render('FAQ', {
+    title: 'FAQ'
   });
 };
 

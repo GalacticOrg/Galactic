@@ -7,8 +7,8 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const utils = {
-  errors: (m)=> m
-}//require('../../lib/utils');
+  errors: (m) => m
+}; // require('../../lib/utils');
 
 /**
  * Create user
@@ -19,12 +19,13 @@ exports.create = function (req, res) {
   user.provider = 'local';
   user.save(function (err) {
     if (err) {
-      res.status(422)
+      res.status(422);
       return res.render('users/signup', {
         errors: utils.errors(err.errors || err.message),
         user: user,
         title: 'Sign up'
       });
+      // Here is where we save the login icon
     }
 
     // manually login the user once successfully signed up
@@ -51,7 +52,7 @@ exports.authCallback = login;
 exports.login = function (req, res) {
 
   if (req.isAuthenticated()){
-    return res.redirect('/')
+    return res.redirect('/');
   }
 
   res.render('auth/login', {
@@ -64,6 +65,11 @@ exports.login = function (req, res) {
  */
 
 exports.signup = function (req, res) {
+
+  if (req.isAuthenticated()){
+    return res.redirect('/');
+  }
+
   res.render('auth/signup', {
     title: 'Sign up',
     user: new User()

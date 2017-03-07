@@ -3,39 +3,35 @@ $success-green-overlay: #5B9E4D;
 $failure-red: #FF0000;
 $background-grey: #F5F8FA;
 $border-color: rgb(225, 232, 237);
-
 $card-left-width: 60px;
 
 body {
   font-family: "Open Sans","Helvetica Neue",sans-serif;
-  margin-top: 50px;
+  margin: 50px 0px 20px;
   background-color: $background-grey;
-
   .noUnderline {
     text-decoration: none;
   }
   .noUnderline:hover {
     text-decoration: none;
   }
-
+  .cursorPointer:hover {
+    cursor: pointer;
+  }
   .card-left-col {width: $card-left-width; float: left;}
   .card-right-col {width: calc(100% - #{$card-left-width}); float: left;}
-
   .default-card {
     &:hover { background-color: #F5F8FA !important; }
     border: 1px solid rgb(225, 232, 237);
     background-color: white;
   }
-
   .edge-card-info {
     padding-bottom: 4px;
   }
-
   .invertibleButton:hover {
     color: white;
     background-color: orange;
   }
-
   .badge-styling {
     background-color: transparent;
     border: 1px solid orange;
@@ -43,7 +39,6 @@ body {
     padding-left: 6px;
     padding-right: 7px;
   }
-
   .connect-icon:hover, .connect-icon-box:hover {
     background-color: orange;
     color: white !important;
@@ -52,9 +47,10 @@ body {
   /**************************/
   /** NAVBAR SECTION **/
   /**************************/
+  .purpleNavbar { color: rgba(128,0,128, 0.9) !important; }
+  .purpleNavbar:hover { color: purple !important; }
   .navbar {
-    .connect-icon-box{color: orange}
-
+    .connect-icon-box{ color: orange; }
     .connect-icon {
       width: 20px;
       height: auto;
@@ -67,56 +63,59 @@ body {
   /**************************/
   /** LOGIN MODAL SECTION **/
   /**************************/
-  .loginModalHeader {
-    background-color: #f0f0f0;
+  .loginModal {
+    .loginModalHeader {
+      background-color: #f0f0f0;
+    }
+    .explanatoryModalText {
+      font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+      font-size: 16px;
+      margin-top: 12px;
+      margin-bottom: 12px;
+      color: rgba(0,0,0,.6);
+    }
+    .loginButtonTwitter {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border:none;
+      background-color: #55acee;
+      width: 100%;
+      text-align: left;
+      padding-left: 24px;
+      color: white;
+      height: 6rem;
+    }
+    .loginButtonTwitter:hover {
+      background-color: #006DAA;
+    }
+    .loginButtonTwitter:active {
+      outline: none;
+      border: none;
+    }
+    .loginButtonTwitterIcon {
+      font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+      font-size: 20px;
+      width: 32px;
+      margin-left: 14px;
+    }
+    .loginButtonText{
+      font-size: 14px;
+    }
+    .loginModalFooter {
+      margin: auto;
+    }
+    .permissionsText {
+      font-size: 10px;
+      text-align: left;
+      margin: auto;
+      color: #b3b3b1;
+      font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+      font-size: 14px;
+    }
   }
-  .explanatoryModalText {
-    font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
-    font-size: 16px;
-    margin-top: 12px;
-    margin-bottom: 12px;
-    color: rgba(0,0,0,.6);
-  }
-  .loginButtonTwitter {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border:none;
-    background-color: #55acee;
-    width: 100%;
-    text-align: left;
-    padding-left: 24px;
-    color: white;
-    height: 6rem;
-  }
-  .loginButtonTwitter:hover {
-    background-color: #006DAA;
-  }
-  .loginButtonTwitter:active {
-    outline: none;
-    border: none;
-  }
-  .loginButtonTwitterIcon {
-    font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
-    font-size: 20px;
-    width: 32px;
-    margin-left: 14px;
-  }
-  .loginButtonText{
-    font-size: 14px;
-  }
-  .loginModalFooter {
-    margin: auto;
-  }
-  .permissionsText {
-    font-size: 10px;
-    text-align: left;
-    margin: auto;
-    color: #b3b3b1;
-    font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
-    font-size: 14px;
-  }
+
   /**************************/
   /** END LOGIN MODAL SECTION **/
   /**************************/
@@ -124,29 +123,75 @@ body {
   /**************************/
   /** HOMEPAGE SECTION **/
   /**************************/
-  .indicators li {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    text-indent: -999px;
-    cursor: pointer;
+  .homepageTopModule {
     background-color: white;
-    border: 1px solid rgba(150,150,150,1);
-    border-radius: 10px;
-  }
-
-  .indicators .active {
-    width: 8px;
-    height: 8px;
-    margin: 0;
-    background-color: rgba(100,100,100,1);
-  }
-
-  .is-url{
-    color: $success-green;
-  }
-  .is-not-url{
-    color: $failure-red;
+    .indicators li {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      text-indent: -999px;
+      cursor: pointer;
+      background-color: white;
+      border: 1px solid rgba(150,150,150,1);
+      border-radius: 10px;
+    }
+    .indicators .active {
+      width: 8px;
+      height: 8px;
+      margin: 0;
+      background-color: rgba(100,100,100,1);
+    }
+    .is-url{
+      color: $success-green;
+    }
+    .is-not-url{
+      color: $failure-red;
+    }
+    .downloadPluginBox {
+      width: 430px;
+      height: 70px;
+      border: 1px dashed rgba(128,0,128,0.5);
+      margin: auto;
+      margin-top: 40px;
+      display: flex;
+      flex-direction: row;
+      .logoBox {
+        width: 68px;
+        padding: 8px;
+        padding-left: 12px;
+        img {
+          height: 50px;
+          width: 50px;
+        }
+      }
+      .contentBox {
+        display: flex;
+        align-items: center;
+        width: 350px;
+        padding: 8px;
+        span {
+          font-size: 16px;
+        }
+        img {
+          margin-top: -3px;
+          margin-left: 6px;
+          height: 16px;
+          width: 16px;
+        }
+      }
+    }
+    .subnavBar {
+      width: 250px;
+      margin: auto;
+      .navOptions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;  
+        font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+        font-size: 16px;
+        margin-top: 12px;
+      }
+    }
   }
 
   /**************************/
@@ -219,4 +264,94 @@ body {
   /**************************/
   /** END USER PAGE SECTION **/
   /**************************/
+
+  .twitterLogin {
+    background: #F5F8FA;
+    display: block;
+    width: 100%;
+    text-align: center;
+    .loginBox {
+      background-color: white;
+      border: 1px solid #e5e5e5;
+      width: 555px;
+      margin-left: auto;
+      margin-right: auto;
+      .loginHeader {
+        background-color: #f0f0f0;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #e5e5e5;
+        img {
+          display: block;
+          margin: auto;
+          width: 250px;
+        }
+      }
+      .loginBody {
+        padding: 15px;
+        .explanatoryModalTextBox {
+          text-align: left;
+          p {
+            font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+            font-size: 16px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            color: rgba(0,0,0,.6);
+          }
+        }
+        form {
+          .loginButtonTwitter {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border:none;
+            background-color: #55acee;
+            width: 100%;
+            text-align: left;
+            padding-left: 24px;
+            color: white;
+            height: 6rem;
+          }
+          .loginButtonTwitter:hover {
+            background-color: #006DAA;
+          }
+          .loginButtonTwitter:active {
+            outline: none;
+            border: none;
+          }
+          img {
+            height: 40px;
+          }
+          span {
+            padding-left: 10px;
+          }
+        }
+      }
+      .loginFooter {
+        border-top: 1px solid #e5e5e5;
+        padding: 15px;
+        p {
+          font-size: 10px;
+          text-align: left;
+          margin: auto;
+          color: #b3b3b1;
+          font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+          font-size: 14px;
+        }
+      }
+
+    }
+
+
+    .twitterBox {
+      display: block;
+      display: block;
+      img {
+        height: 100px;
+        width: 100px;
+      }
+    }
+  }
+
 }

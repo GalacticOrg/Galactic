@@ -1,15 +1,15 @@
-import React, { Component, PropTypes } from 'react'
-import EntityItemTitleHost from './EntityItemTitleHost.react'
-import EntityImg from "../../components/EntityImg.react"
+import React, { Component, PropTypes } from 'react';
+import EntityItemTitleHost from './EntityItemTitleHost.react';
+import EntityImg from '../../components/EntityImg.react';
 
-const nodeEntityDescriptionStyle = {fontSize: '13px'}
+const nodeEntityDescriptionStyle = { fontSize: '13px' };
 
 export default class EntityItem extends Component {
 
-  render() {
+  render () {
     const { count, imageCDN, faviconCDN, canonicalLink, title, description, id } = this.props;
 
-    let edgeImg = '/img/document.png'
+    let edgeImg = '/img/document.png';
     if (imageCDN){
       edgeImg = imageCDN;
     } else if (faviconCDN){
@@ -17,26 +17,24 @@ export default class EntityItem extends Component {
     }
 
 
-    let edgeDescription = ''
-    if (description.length == 0){
-      edgeDescription = <i className="text-muted">No desctiption</i>
+    let edgeDescription = '';
+    if (description.length === 0){
+      edgeDescription = <i className="text-muted">No desctiption</i>;
     } else if (description.length > 200){
-      edgeDescription = description.slice(0,200)+"..."
+      edgeDescription = description.slice(0,200) + '...';
     } else {
-      edgeDescription = description
+      edgeDescription = description;
     }
 
     return (
       <div>
-        <div style={{display: 'block', overflow: 'hidden'}}>
+        <div style={{ display: 'block', overflow: 'hidden' }}>
           <div className="card-left-col">
             <EntityImg imgSrc={edgeImg}/>
           </div>
-          <div
-            className="card-right-col"
-            style={{paddingLeft: '5px'}}>
+          <div className="card-right-col" style={{ paddingLeft: '5px' }}>
             <div>
-              <div style={{paddingBottom:'3px'}}>
+              <div style={{ paddingBottom:'3px' }}>
                 <EntityItemTitleHost
                   title={title}
                   id={id}
@@ -48,7 +46,7 @@ export default class EntityItem extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
 }
@@ -60,5 +58,5 @@ EntityItem.propTypes = {
   title: PropTypes.string.isRequired,
   count: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-}
+  id: PropTypes.string.isRequired
+};

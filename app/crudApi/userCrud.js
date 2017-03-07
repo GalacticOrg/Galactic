@@ -3,8 +3,9 @@
  * Read Profile
  */
 exports.getReadControllerProfile = function (req, res) {
-  res.send({
-    user:req.user,
+  const status = req.user ? 200 : 401;
+  res.status(status).send({
+    user: req.user,
     success: !!req.user
   });
 };
