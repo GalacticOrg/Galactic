@@ -69,7 +69,7 @@ class Home extends Component {
     }) : <Loader top="100px"/>;
 
     return (
-      <div style={{ backgroundColor:'white' }}>
+      <div className="homepageTopModule">
         <Navbar />
         <div className="container" style={{ marginBottom:'80px' }}>
           <div className="row">
@@ -80,7 +80,7 @@ class Home extends Component {
                 </span>
               </div>
               <div style={{ fontFamily: "'Ovo', serif", fontSize: '18px', marginLeft: '15px' }}>
-                <span className='tagline'>Crowdsourced suggestions for what to read next on the Internet.
+                <span className='tagline'><em>Crowdsourced suggestions for what to read next on the Internet</em>.
                   <sup>
                     <a href="/about">
                       <span className="fa fa-info-circle" style={{ color: '#337ab7' }} />
@@ -96,7 +96,7 @@ class Home extends Component {
                 </div>
                 <div className="contentBox">
                   <span>
-                    <a href="">Download</a> the chrome plugin to get started.
+                    <a href="" className="cursorPointer">Download</a> the chrome plugin to get started.
                   </span>
                   <span>
                     <a href="">
@@ -107,7 +107,15 @@ class Home extends Component {
               </div>
             </div>
           </div>
+          <div className="subnavBar">
+            <div className="navOptions">
+              <span><a className="cursorPointer" href="/about">About</a></span>
+              <span><a className="cursorPointer" href="/faq">FAQ</a></span>
+              <span><a className="cursorPointer" href="">Download</a></span>
+            </div>
+          </div>
         </div>
+
 
         <div style={{ backgroundColor: '#F5F8FA', paddingTop: '10px', borderTop: '1px #E1E8ED solid' }}>
 

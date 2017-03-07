@@ -71,6 +71,12 @@ exports.about = function (req, res) {
   });
 };
 
+exports.faq = function (req, res) {
+  res.render('FAQ', {
+    title: 'FAQ'
+  });
+};
+
 exports.privacy = function (req, res) {
   res.render('Privacy', {
     title: 'Privacy'
