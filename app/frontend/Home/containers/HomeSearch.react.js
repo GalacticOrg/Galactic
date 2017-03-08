@@ -71,15 +71,15 @@ class Home extends Component {
     return (
       <div className="homepageTopModule">
         <Navbar />
-        <div className="container" style={{ marginBottom:'80px' }}>
+        <div className="container" style={{ marginBottom: 110 }}>
           <div className="row">
             <div className="text-center" style={{ margin: '100px 0 30px' }}>
               <div style={{ height: 90 }}>
                 <span style={{ fontFamily: "'Ovo', serif", fontSize: '68px' }}>
-                  <b>WikiWeb</b>
+                  <b style={{ color: 'rgb(112, 2, 123)' }}>WikiWeb</b>
                 </span>
               </div>
-              <div style={{ fontFamily: "'Ovo', serif", fontSize: '18px', marginLeft: '15px' }}>
+              <div style={{ fontFamily: "'Ovo', serif", fontSize: '18px' }}>
                 <span className='tagline'><em>Crowdsourced suggestions for what to read next on the Internet</em>.
                   <sup>
                     <a href="/about">
