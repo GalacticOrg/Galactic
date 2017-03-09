@@ -5,19 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <title>{{ title }} | WikiWeb</title>
-    <meta name="keywords" content="wikiweb connect">
-    <meta name="description" content="What to read next on the web.">
+    <title>WikiWeb - what to read next on the Internet.</title>
+    <meta name="keywords" content="WikiWeb crowdsourced reading recommendations article">
+    <meta name="description" content="What to read next on the Internet.">
     <meta property="csrf" id="csrf" content="{{ csrf_token }}">
 
     {# Opengraph tags #}
     <meta property="fb:app_id" content="">
-    <meta property="og:title" content="Wikweb">
-    <meta property="og:description" content="What to read next on the web.">
-    <meta property="og:url" content="">
+    <meta property="og:title" content="WikWeb">
+    <meta property="og:description" content="WikiWeb - crowdsourced recommendations for what to read next on the Internet.">
+    <meta property="og:url" content="www.wikiweb.org">
     <meta property="og:site_name" content="WikiWeb">
     <meta property="fb:admins" content="">
-    <meta property="og:image" content="/img/network.png" >
+    <meta property="og:image" content="/img/logo.png" >
+    <meta property="og:type" content="website" >
+
+    {# Twitter Cards #}
+    <meta name="twitter:card" content="WikiWeb - crowdsourced recommendations for what to read next on the Internet">
+    <meta name="twitter:site" content="@wikiweborg">
+    <meta name="twitter:title" content= "The WikiWeb">
+    <meta name="twitter:description" content="Crowdsourced recommendations for what to read next on the Internet">
+    <meta name="twitter:creator" content="@mceoin & @jeffj">
+    <meta name="twitter:image:src" content="img/logo.png">
+    <meta name="twitter:domain" content="wikiweb.org">
+
+    {# Google Plus #}
+    <meta itemprop="name" content="WikiWeb - what to read next on the Internet.">
+    <meta itemprop="description" content="The WikiWeb crowdsources recommendations from people to recommend the best content to read next, based on what you're currently lookign at">
+    <meta itemprop="image" content="img/logo.png">
 
     {% block head %}
     <link rel="icon" href="/favicon.ico">
