@@ -21,6 +21,6 @@ module.exports = {
       'user_friends'
     ]
   },
-  chromeWebStoreLocation: 'https://chrome.google.com/webstore/detail/fahnenabljcfknjfkaoohnneejicnagd/publish-accepted?hl=en-US&gl=US&authuser=2'
+  chromeWebStoreLocation: 'https://chrome.google.com/webstore/detail/fahnenabljcfknjfkaoohnneejicnagd'
 
 };
