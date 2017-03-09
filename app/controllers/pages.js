@@ -7,7 +7,7 @@
 const mongoose = require('mongoose')
 const Entity = mongoose.model('Entity');
 const Edge = require('../models/edge');
-
+const config = require('../../config');
  /**
   * Load
   */
@@ -27,6 +27,13 @@ const Edge = require('../models/edge');
 exports.home = function (req, res) {
   res.render('home/index', {
     title: 'Home'
+  });
+};
+
+/* Web App Pages */
+exports.download = function (req, res) {
+  res.render('redirect', {
+    url: config.chromeWebStoreLocation
   });
 };
 

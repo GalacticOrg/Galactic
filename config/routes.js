@@ -10,7 +10,6 @@ const edgeCrud = require('../app/crudApi/edgeCrud');
 const entityCrud = require('../app/crudApi/entityCrud');
 const userCrud = require('../app/crudApi/userCrud');
 const auth = require('./middlewares/authorization');
-const config = require('./');
 
 /**
  * Expose
@@ -18,7 +17,7 @@ const config = require('./');
 
 module.exports = function (app, passport) {
 
-  app.get('/download', function(req, res){res.redirect( config.chromeWebStoreLocation )});
+  app.get('/download', pages.download);
   // Static Routes App
   app.param('id', pages.load);
   app.get('/', pages.home);
