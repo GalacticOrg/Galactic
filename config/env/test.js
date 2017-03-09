@@ -24,5 +24,6 @@ module.exports = {
       'https://www.googleapis.com/auth/userinfo.email',
       'https://www.google.com/m8/feeds'
     ]
-  }
+  },
+  chromeWebStoreLocation: '',
 };

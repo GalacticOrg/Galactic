@@ -20,5 +20,7 @@ module.exports = {
       'user_about_me',
       'user_friends'
     ]
-  }
+  },
+  chromeWebStoreLocation: 'https://chrome.google.com/webstore/detail/fahnenabljcfknjfkaoohnneejicnagd/publish-accepted?hl=en-US&gl=US&authuser=2'
+
 };

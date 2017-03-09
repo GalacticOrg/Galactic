@@ -96,10 +96,10 @@ class Home extends Component {
                 </div>
                 <div className="contentBox">
                   <span>
-                    <a href="" data-downloadLink className="cursorPointer">Download</a> the chrome plugin to get started.
+                    <a href="/download"  className="cursorPointer">Download</a> the chrome plugin to get started.
                   </span>
                   <span>
-                    <a href="" data-downloadLink>
+                    <a href="/download" >
                       <img src='/img/outbound_link.png'/>
                     </a>
                   </span>
@@ -111,7 +111,7 @@ class Home extends Component {
             <div className="navOptions">
               <span><a href="/about" className="cursorPointer">About</a></span>
               <span><a href="/faq" className="cursorPointer">FAQ</a></span>
-              <span><a href="" data-downloadLink className="cursorPointer">Download</a></span>
+              <span><a href="/download"  className="cursorPointer">Download</a></span>
             </div>
           </div>
         </div>
@@ -120,7 +120,7 @@ class Home extends Component {
         <div style={{ backgroundColor: '#F5F8FA', paddingTop: '10px', borderTop: '1px #E1E8ED solid' }}>
 
         </div>
-         
+
       </div>
     );
   }
