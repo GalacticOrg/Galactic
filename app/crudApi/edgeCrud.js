@@ -5,6 +5,7 @@ const User = mongoose.model('User');
 const Edge = require('../models/edge');
 const utils = require('../../lib/utils');
 const _ = require('lodash');
+const slackNewConnection = utils.slackNewConnection;
 
 /**
  * * LoadUser
@@ -124,7 +125,8 @@ exports.postCreateEdgeController = function (req, res) {
   const body = req.body;
   const toId = body.toId;
   const fromId = body.fromId;
-  const userId = req.user.id;
+  const user = req.user
+  const userId = user.id;
   const tags = body.tags ? body.tags: '';
   const description = body.description ? body.description: '';
 
@@ -155,7 +157,7 @@ exports.postCreateEdgeController = function (req, res) {
               console.log( err, 'postCreateEdgeController');
               return res.status(500).send(utils.errsForApi(err.errors || err));
             } else if (resultEdge.length == 0){
-              console.log(err, resultEdge, 'postCreateEdgeController No Edge');
+              console.log(err, resultEdge, 'postCreateEdgeController No Edge (figure out why)');
               return res.status(500).send({
                 success: false,
                 messages: [{
@@ -177,12 +179,15 @@ exports.postCreateEdgeController = function (req, res) {
                       'title _id faviconCDN canonicalLink description')
                       .exec(function (err, entityResult){
                         if (err) return res.status(400).send(utils.errsForApi(err.errors || err));
+                        const fromEntity = _.find(entityResult, { id: fromId });
+                        const toEntity = _.find(entityResult, { id: toId });
+                        slackNewConnection(user.username, fromEntity.canonicalLink, toEntity.canonicalLink);
                         res.send({
                           edgeId: resultEdge[0].Link.properties.id,
                           success: true,
                           entities: {
-                            from: _.find(entityResult, { id: fromId }),
-                            to: _.find(entityResult, { id: toId })
+                            from: fromEntity,
+                            to: toEntity
                           }
                         });
                     });

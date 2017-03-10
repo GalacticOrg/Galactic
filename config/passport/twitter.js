@@ -9,6 +9,8 @@ const TwitterStrategy = require('passport-twitter').Strategy;
 const config = require('../../config');
 const User = mongoose.model('User');
 const extract = require('../../lib/extract');
+const utils = require('../../lib/utils');
+const logNewUserInSlack = utils.logNewUserInSlack;
 
 /**
  * Expose
@@ -37,6 +39,7 @@ module.exports = new TwitterStrategy({
           twitter: profile._json
         });
         // pulling profile images
+        var profileImageUrl = null;
         if (user.twitter && user.twitter.profile_image_url){
           const uID = user._id;
           const defaultImageURL = user.twitter.profile_image_url;
@@ -55,8 +58,11 @@ module.exports = new TwitterStrategy({
           });
         }
 
+
+
         user.save(function (err) {
           if (err) console.log(err);
+          logNewUserInSlack(user.username);
           return done(err, user);
         });
       } else {

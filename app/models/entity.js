@@ -39,7 +39,7 @@ const url = require('url');
    videos: { type : Array, default : null },
    hearts: [{
      createdAt: { type : Date, default : Date.now },
-     user: { type : Schema.ObjectId, ref : 'User', unique: true }
+     user: { type : Schema.ObjectId, ref : 'User' }
     }]
  });
 
