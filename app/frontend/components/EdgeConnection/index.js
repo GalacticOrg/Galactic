@@ -65,7 +65,7 @@ export default class EdgeConnection extends Component {
 }
 
 EdgeConnection.propTypes = {
-  index: PropTypes.number.isRequired,
+  index: PropTypes.number,
   edges: PropTypes.arrayOf(
     PropTypes.shape({
       user: PropTypes.object.isRequired,
@@ -73,4 +73,9 @@ EdgeConnection.propTypes = {
       createdAt: PropTypes.number.isRequired,
     }).isRequired
   )
+};
+
+
+EdgeConnection.defaultProps = {
+  index: 0
 };

@@ -36,7 +36,7 @@ class User extends Component {
 
     const connections = firehoseResult?
     firehoseResult.map(function(edge, i) {
-      const { user, nodeFrom, nodeTo, createdAt } = edge;
+      const { user, nodeFrom, nodeTo, nodeFromEntityCount, nodeToEntityCount, createdAt } = edge;
       return (
         <div
           key={i}
@@ -45,6 +45,7 @@ class User extends Component {
                   padding:'4px',
                   margin: '10px'}}>
           <EntityItem
+            count={nodeFromEntityCount}
             imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
             faviconCDN={nodeFrom.faviconCDN?nodeFrom.faviconCDN:''}
             canonicalLink={nodeFrom.canonicalLink}
@@ -53,6 +54,7 @@ class User extends Component {
             id={nodeFrom._id}
           />
           <EntityItem
+            count={nodeToEntityCount}
             imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
             faviconCDN={nodeTo.faviconCDN?nodeTo.faviconCDN:''}
             canonicalLink={nodeTo.canonicalLink}
