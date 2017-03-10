@@ -9,6 +9,7 @@ const utils = require('../../lib/utils');
 const User = mongoose.model('User');
 const _ = require('lodash');
 const pageSearch = require('../../lib/pageSearch');
+const slackNewHeart = utils.slackNewHeart;
 
 /**
  * loadApi
@@ -140,7 +141,8 @@ exports.getEntityController = function (req, res) {
  */
 exports.postHeartController = function (req, res) {
   const value = req.body.value;
-  const uId = req.user.id;
+  const user = req.user
+  const uId = user.id;
   var text;
   const entity = req.entity;
 
@@ -168,6 +170,7 @@ exports.postHeartController = function (req, res) {
   const count = entity.hearts.length;
   entity.save(function (err){
     if (err) return  res.status(500).send( utils.errsForApi(err.errors || err) );
+    if (value === true){slackNewHeart(user.username, entity.canonicalLink, entity.title);}
     return res.send({
       success: true,
       value,
@@ -190,7 +193,7 @@ exports.getSearchController = function (req, res) {
 
   pageSearch(q, function (err, url, resultDB){
       if (err &&
-         (err.status === 404 || err.code )) { // Did we get a 404 from the search. We tell the search
+         (err.status === 404 )) { // Did we get a 404 from the search. We tell the search
         res.send({
            node : {},
            isURL: true,
