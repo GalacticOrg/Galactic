@@ -9,6 +9,10 @@ const TwitterStrategy = require('passport-twitter').Strategy;
 const config = require('../../config');
 const User = mongoose.model('User');
 const extract = require('../../lib/extract');
+const Slack = require('node-slack');
+const SLACK_USER_WEBHOOK = process.env.SLACK_USER_WEBHOOK
+const slack = new Slack('SLACK_USER_WEBHOOK');
+const env = process.env.NODE_ENV || 'development';
 
 /**
  * Expose
@@ -55,8 +59,13 @@ module.exports = new TwitterStrategy({
           });
         }
 
+
+
         user.save(function (err) {
           if (err) console.log(err);
+          if (env === 'production'){
+            logNewUserInSlack(user.username);
+          }
           return done(err, user);
         });
       } else {
@@ -65,3 +74,11 @@ module.exports = new TwitterStrategy({
     });
   }
 );
+
+function logNewUserInSlack(username){
+  slack.send({
+      text: 'A new user just joined the system @'+username,
+      channel: '#webhook_new_user',
+      icon_emoji: 'taco',
+  });
+}

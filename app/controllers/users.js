@@ -8,8 +8,7 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const utils = {
   errors: (m) => m
-}; // require('../../lib/utils');
-
+};
 /**
  * Create user
  */
@@ -25,7 +24,6 @@ exports.create = function (req, res) {
         user: user,
         title: 'Sign up'
       });
-      // Here is where we save the login icon
     }
 
     // manually login the user once successfully signed up
