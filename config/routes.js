@@ -26,6 +26,8 @@ module.exports = function (app, passport) {
   app.get('/connect', pages.connect);
   app.get('/firehose', pages.firehose);
 
+
+
   // Static Routes for pages
   app.get('/analytics', pages.analytics);
   app.get('/about', pages.about);
@@ -72,10 +74,17 @@ module.exports = function (app, passport) {
    app.post('/api/node/:idApi/heart', auth.requiresLogin, entityCrud.postHeartController);
    app.get('/api/node/:idApi', entityCrud.getEntityController);
 
+   // API Entities
+   app.get('/api/nodes/hearts', entityCrud.getHeartsController);
+
+
+
    // API Edge
    app.param('user', edgeCrud.loadUser);
    app.get('/api/edges/users/:user', edgeCrud.getUserEdgeController);
    app.get('/api/edges/firehose', edgeCrud.getEdgeController);
+
+
 
    app.param('eid', edgeCrud.loadEdgeId);
 

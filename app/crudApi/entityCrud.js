@@ -33,6 +33,23 @@ exports.load = function (req, res, next, id){
 };
 
 /**
+* Entities API for Reverse Chronological Hearts
+ */
+exports.getHeartsController = function (req, res) {
+  var SortQ = '-hearts.createdAt'
+  Entity.find(
+    {},
+    '_id title description hearts createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
+    .populate('hearts.user', 'name username profile_image_large profile_image')
+    .sort(SortQ)
+    .exec(function (err, entities){
+
+      return res.send(entities);
+
+  });
+}
+
+/**
 * Entity API for Nodes
  */
 exports.getEntityController = function (req, res) {
