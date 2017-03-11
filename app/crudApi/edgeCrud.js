@@ -93,7 +93,8 @@ exports.getEdgeController = function (req, res) {
 
       Entity.find(
         { _id: { $in: entityIds } },
-        '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
+        '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN hearts')
+        .populate('hearts.user', 'name username profile_image_large profile_image')
         .exec(function (err, entities){
         User.find({ _id:  { $in: userIds } }, 'name username twitter profile_image' )
         .exec(function (err, users){
