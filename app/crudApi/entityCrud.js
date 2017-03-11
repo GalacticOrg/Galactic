@@ -43,6 +43,7 @@ exports.getHeartsController = function (req, res) {
     .populate('hearts.user', 'name username profile_image_large profile_image')
     .sort(SortQ)
     .limit(30)
+    .skip(0)
     .exec(function (err, entities){
 
       return res.send(entities);
