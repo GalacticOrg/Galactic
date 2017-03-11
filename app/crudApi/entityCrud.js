@@ -42,6 +42,7 @@ exports.getHeartsController = function (req, res) {
     '_id title description hearts createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN')
     .populate('hearts.user', 'name username profile_image_large profile_image')
     .sort(SortQ)
+    .limit(30)
     .exec(function (err, entities){
 
       return res.send(entities);
