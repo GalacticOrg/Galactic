@@ -25,7 +25,7 @@ export default class EntityItemTitleHost extends Component {
     const href = '/node/' + id;
 
     return (
-      <div>
+      <div style={{ backgroundColor: 'red' }}>
         {faviconCDN ? <img style={{ width:'16px', marginTop:'-5px', marginRight:'3px' }} src={faviconCDN} /> : null}
         <a href={canonicalLink} className="noUnderline">
           <span style={nodeEntityTitleStyle}>

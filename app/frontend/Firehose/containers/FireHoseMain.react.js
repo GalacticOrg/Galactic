@@ -1,20 +1,14 @@
 /**
-  * app/frontend/User/containers/UserMain.react.js
   * Copyright (c) 2016, WikiWeb
 */
 import React, { Component } from 'react'
 import ReactDOM from "react-dom";
 import Loader from 'react-loader';
+import Navbar from "../../components/Navbar.react";
+import { connect } from 'react-redux';
+import { getFirehose } from "../actions/index";
 
-import Navbar from "../../components/Navbar.react"
-import EntityItem from "../../components/Entity/"
-import EdgeConnection from "../../components/EdgeConnection"
-
-import { connect } from 'react-redux'
-import { getFirehose } from "../actions/index"
-
-
-class User extends Component {
+class Firehose extends Component {
 
   componentWillMount() {
     const { dispatch } = this.props;
@@ -33,62 +27,67 @@ class User extends Component {
       )
     }
 
+    console.log(firehoseResult[0])
 
-    const connections = firehoseResult?
-    firehoseResult.map(function(edge, i) {
-      const { user, nodeFrom, nodeTo, nodeFromEntityCount, nodeToEntityCount, createdAt } = edge;
-      return (
-        <div
-          key={i}
-          style={{backgroundColor:'#eee',
-                  borderRadius:'4px',
-                  padding:'4px',
-                  margin: '10px'}}>
-          <EntityItem
-            count={nodeFromEntityCount}
-            imageCDN={nodeFrom.imageCDN.url?nodeFrom.imageCDN.url:''}
-            faviconCDN={nodeFrom.faviconCDN?nodeFrom.faviconCDN:''}
-            canonicalLink={nodeFrom.canonicalLink}
-            title={nodeFrom.title}
-            description={nodeFrom.description}
-            id={nodeFrom._id}
-          />
-          <EntityItem
-            count={nodeToEntityCount}
-            imageCDN={nodeTo.imageCDN.url?nodeTo.imageCDN.url:''}
-            faviconCDN={nodeTo.faviconCDN?nodeTo.faviconCDN:''}
-            canonicalLink={nodeTo.canonicalLink}
-            title={nodeTo.title}
-            description={nodeTo.description}
-            id={nodeTo._id}
-          />
-          <EdgeConnection
-            edges={[edge]}
-            />
-        </div>)
-    }):null;
+    const connections = firehoseResult ?
+      firehoseResult.map(function(edge, i) {
+        const { user, nodeFrom, nodeTo, createdAt, } = edge;
+        const paddingTop = i === 0 ? 8 : 0 ;
+        const borderTop = i === 0 ? 'none' : '2px solid rgb(245, 248, 250)';
+        const borderBottom = i + 1 === firehoseResult.length ? 'none' : '2px solid rgb(245, 248, 250)';
+        return (
+          <div key={i} style={{ backgroundColor: 'white' }}>
+            <div style={{ display: 'flex', alignSelf: 'center', flexDirection: 'column', height: 48, borderBottom: borderBottom, borderTop: borderTop }}>
+              <div style={{ marginTop: 'auto', marginBottom: 'auto', fontWeight: 700, marginLeft: 20 }}>
+                <span>@{ user.username }</span>
+              </div>
+            </div>
+            <div style={{ paddingTop: paddingTop, marginLeft: 20 }}>
+              <div style={{ display: 'flex', alignItems: 'center', height: 44 }}>
+                <span style={{ marginRight: 16 }}>
+                  <img src={nodeFrom.faviconCDN} style={{ height: 16, width: 16 }} />
+                </span>
+                <span style={{ color: 'rgb(51, 51, 51)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
+                  {nodeFrom.title}
+                </span>
+                <span style={{ paddingLeft: 20, paddingRight: 8, color: 'rgb(117, 117, 117)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
+                  {nodeFrom.domain}
+                </span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', height: 44 }}>
+                <span style={{ marginRight: 16 }}>
+                  <img src={nodeTo.faviconCDN} style={{ height: 16, width: 16 }} />
+                </span>
+                <span style={{ color: 'rgb(51, 51, 51)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
+                  {nodeTo.title}
+                </span>
+                <span style={{ paddingLeft: 20, paddingRight: 8, color: 'rgb(117, 117, 117)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
+                  {nodeTo.domain}
+                </span>
+              </div>
+            </div>
+          </div>)
+      }) : null;
 
-    return (<div>
-      <Navbar dispatch={dispatch} />
-      <div style={{backgroundColor: '#f0f0f0', paddingBottom: '20px'}}>
+    return (
+      <div style={{ backgroundColor: 'rgb(245, 248, 250)' }}>
+        <Navbar dispatch={dispatch} />
+        <div style={{ backgroundColor: '#f0f0f0', paddingBottom: 18 }}>
+          <div className="container">
+            <div className="row pageTitle" >
+              <div className="col-md-3 col-md-offset-1" style={{ paddingTop: 15, fontSize: '20px', fontWeight: 700 }}>/Firehose</div>
+            </div>
+          </div>
+        </div>
+
         <div className="container">
-          <div className="row pageTitle" >
-            <div className="col-md-3 col-md-offset-1">/Firehose</div>
-          </div>
-        </div>
-      </div>
-
-      <div className="container">
-        <div className="row">
-          <div className="col-md-9 col-md-offset-1" style={{marginTop: '15px'}}>
-            <p>Connections:</p>
-            <ul>
+          <div className="row">
+            <div className="col-md-9 col-md-offset-1" style={{ marginTop: '15px', boxShadow: '0 0 2px rgba(0,0,0,0.2)', padding: 0 }}>
               {connections}
-            </ul>
+            </div>
           </div>
         </div>
-      </div>
-    </div>);
+      </div>);
   }
 };
 
@@ -101,4 +100,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(User)
+export default connect(mapStateToProps)(Firehose)
