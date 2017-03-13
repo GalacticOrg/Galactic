@@ -109,7 +109,7 @@ class User extends Component {
                   </div>
                   <div style={{marginTop: '-4px'}}>
                     <span style={{ fontSize: '13px' }}>
-                      {result.length > 1 ? result.length + ' connections' : result.length + 'connection'}
+                      {result.length > 1 ? result.length + ' connections' : result.length + ' connection'}
                     </span>
                   </div>
                 </div>
