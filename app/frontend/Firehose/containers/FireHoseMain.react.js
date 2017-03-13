@@ -26,9 +26,7 @@ class Firehose extends Component {
         </div>
       )
     }
-
-    console.log(firehoseResult)
-
+    
     const connections = firehoseResult ?
       firehoseResult.map(function(edge, i) {
         const { user, nodeFrom, nodeTo, createdAt } = edge;
