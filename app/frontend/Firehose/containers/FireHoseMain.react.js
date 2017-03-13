@@ -26,7 +26,7 @@ class Firehose extends Component {
         </div>
       )
     }
-    
+
     const connections = firehoseResult ?
       firehoseResult.map(function(edge, i) {
         const { user, nodeFrom, nodeTo, createdAt } = edge;
@@ -72,7 +72,7 @@ class Firehose extends Component {
     return (
       <div style={{ backgroundColor: 'rgb(245, 248, 250)' }}>
         <Navbar dispatch={dispatch} />
-        <div style={{ backgroundColor: '#f0f0f0', paddingBottom: 18 }}>
+        <div style={{ backgroundColor: '#f0f0f0', paddingBottom: 18, boxShadow: '0 0 2px rgba(0,0,0,0.2)' }}>
           <div className="container">
             <div className="row pageTitle" >
               <div className="col-md-3 col-md-offset-1" style={{ paddingTop: 15, fontSize: '20px', fontWeight: 700 }}>/Firehose</div>
@@ -80,7 +80,7 @@ class Firehose extends Component {
           </div>
         </div>
 
-        <div className="container">
+        <div style={{ marginTop: 20 }} className="container">
           <div className="row">
             <div className="col-md-9 col-md-offset-1" style={{ marginTop: '15px', boxShadow: '0 0 2px rgba(0,0,0,0.2)', padding: 0 }}>
               {connections}
