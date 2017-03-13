@@ -67,7 +67,7 @@ class Firehose extends Component {
               </div>
             </div>
           </div>)
-      }) : null;
+      }) : <div>User has no connections.</div>;
 
     return (
       <div style={{ backgroundColor: 'rgb(245, 248, 250)' }}>
