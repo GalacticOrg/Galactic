@@ -58,7 +58,9 @@ class User extends Component {
                   <img src={nodeFrom.faviconCDN  === null ? '/img/default-favicon.png' : nodeFrom.faviconCDN } style={{ height: 16, width: 16 }} />
                 </span>
                 <span style={{ color: 'rgb(51, 51, 51)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
-                  {nodeFrom.title}
+                  <a href={nodeFrom.canonicalLink} style={{ color: 'rgb(51, 51, 51)' }} className="noUnderline">
+                    {nodeFrom.title}
+                  </a>
                 </span>
                 <span style={{ paddingLeft: 16, paddingRight: 8, color: 'rgb(117, 117, 117)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
                   {nodeFrom.domain}
@@ -69,7 +71,9 @@ class User extends Component {
                   <img src={nodeTo.faviconCDN  === null ? '/img/default-favicon.png' : nodeTo.faviconCDN } style={{ height: 16, width: 16 }} />
                 </span>
                 <span style={{ color: 'rgb(51, 51, 51)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
-                  {nodeTo.title}
+                  <a href={nodeFrom.canonicalLink} style={{ color: 'rgb(51, 51, 51)' }} className="noUnderline">
+                    {nodeFrom.title}
+                  </a>
                 </span>
                 <span style={{ paddingLeft: 16, paddingRight: 8, color: 'rgb(117, 117, 117)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
                   {nodeTo.domain}
