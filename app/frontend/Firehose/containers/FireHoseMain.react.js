@@ -27,41 +27,43 @@ class Firehose extends Component {
       )
     }
 
-    console.log(firehoseResult[0])
+    console.log(firehoseResult)
 
     const connections = firehoseResult ?
       firehoseResult.map(function(edge, i) {
-        const { user, nodeFrom, nodeTo, createdAt, } = edge;
+        const { user, nodeFrom, nodeTo, createdAt } = edge;
         const paddingTop = i === 0 ? 8 : 0 ;
-        const borderTop = i === 0 ? 'none' : '2px solid rgb(245, 248, 250)';
-        const borderBottom = i + 1 === firehoseResult.length ? 'none' : '2px solid rgb(245, 248, 250)';
+        const borderTop = i === 0 ? 'none' : '2px solid rgba(0,0,0,0.075)';
+        const borderBottom = i + 1 === firehoseResult.length ? 'none' : '2px solid rgba(0,0,0,0.04)'; 
         return (
           <div key={i} style={{ backgroundColor: 'white' }}>
             <div style={{ display: 'flex', alignSelf: 'center', flexDirection: 'column', height: 48, borderBottom: borderBottom, borderTop: borderTop }}>
               <div style={{ marginTop: 'auto', marginBottom: 'auto', fontWeight: 700, marginLeft: 20 }}>
-                <span>@{ user.username }</span>
+                <span>
+                  <a href={`/@${user.username}`} className="noUnderline" style={{ color: 'rgb(51, 51, 51)' }}>@{ user.username }</a> - {createdAt}
+                </span>
               </div>
             </div>
             <div style={{ paddingTop: paddingTop, marginLeft: 20 }}>
               <div style={{ display: 'flex', alignItems: 'center', height: 44 }}>
-                <span style={{ marginRight: 16 }}>
-                  <img src={nodeFrom.faviconCDN} style={{ height: 16, width: 16 }} />
+                <span style={{ marginTop: '-2px', marginRight: 16 }}>
+                  <img src={nodeFrom.faviconCDN  === null ? '/img/default-favicon.png' : nodeFrom.faviconCDN } style={{ height: 16, width: 16 }} />
                 </span>
                 <span style={{ color: 'rgb(51, 51, 51)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
                   {nodeFrom.title}
                 </span>
-                <span style={{ paddingLeft: 20, paddingRight: 8, color: 'rgb(117, 117, 117)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
+                <span style={{ paddingLeft: 16, paddingRight: 8, color: 'rgb(117, 117, 117)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
                   {nodeFrom.domain}
                 </span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', height: 44 }}>
-                <span style={{ marginRight: 16 }}>
-                  <img src={nodeTo.faviconCDN} style={{ height: 16, width: 16 }} />
+                <span style={{ marginTop: '-2px', marginRight: 16 }}>
+                  <img src={nodeTo.faviconCDN  === null ? '/img/default-favicon.png' : nodeTo.faviconCDN } style={{ height: 16, width: 16 }} />
                 </span>
                 <span style={{ color: 'rgb(51, 51, 51)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
                   {nodeTo.title}
                 </span>
-                <span style={{ paddingLeft: 20, paddingRight: 8, color: 'rgb(117, 117, 117)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
+                <span style={{ paddingLeft: 16, paddingRight: 8, color: 'rgb(117, 117, 117)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
                   {nodeTo.domain}
                 </span>
               </div>
