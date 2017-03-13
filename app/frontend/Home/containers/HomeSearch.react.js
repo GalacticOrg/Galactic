@@ -22,7 +22,7 @@ class Home extends Component {
 
   componentWillMount () {
     const { dispatch } = this.props;
-    dispatch(getFirehose());
+    //dispatch(getFirehose());
   }
 
   render () {
@@ -88,6 +88,7 @@ class Home extends Component {
                   </sup>
                 </span>
               </div>
+
               <div className='downloadPluginBox' >
                 <div className='logoBox'>
                   <a href="">
@@ -109,6 +110,7 @@ class Home extends Component {
           </div>
           <div className="subnavBar">
             <div className="navOptions">
+              <span><a href="/firehose"  className="cursorPointer">Firehose</a></span>
               <span><a href="/about" className="cursorPointer">About</a></span>
               <span><a href="/faq" className="cursorPointer">FAQ</a></span>
               <span><a href="/download"  className="cursorPointer">Download</a></span>
