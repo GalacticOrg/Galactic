@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 import Loader from 'react-loader';
+import moment from 'moment';
 import Navbar from "../../components/Navbar.react";
 import EntityItem from "../../components/Entity/";
 import EdgeConnection from "../../components/EdgeConnection/";
@@ -19,7 +20,13 @@ class User extends Component {
     dispatch(getUserEdges(window.location.pathname.replace('/@',''))) //@todo include this in the page
   }
 
+  timeparser (timeStamp){
+    return moment(timeStamp).format('dddd, MMMM D, YYYY');
+  }
+
+
   render() {
+    const that = this;
     const { dispatch, result, profile } = this.props;
 
     console.log(this.props)
@@ -42,13 +49,13 @@ class User extends Component {
         const { user, nodeFrom, nodeTo, createdAt } = edge;
         const paddingTop = i === 0 ? 8 : 0 ;
         const borderTop = i === 0 ? 'none' : '2px solid rgba(0,0,0,0.075)';
-        const borderBottom = i + 1 === result.length ? 'none' : '2px solid rgba(0,0,0,0.04)'; 
+        const borderBottom = i + 1 === result.length ? 'none' : '2px solid rgba(0,0,0,0.04)';
         return (
           <div key={i} style={{ backgroundColor: 'white' }}>
             <div style={{ display: 'flex', alignSelf: 'center', flexDirection: 'column', height: 48, borderBottom: borderBottom, borderTop: borderTop }}>
               <div style={{ marginTop: 'auto', marginBottom: 'auto', fontWeight: 700, marginLeft: 20 }}>
                 <span>
-                  {createdAt}
+                  {that.timeparser(createdAt)}
                 </span>
               </div>
             </div>
