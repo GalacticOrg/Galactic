@@ -54,7 +54,7 @@ class User extends Component {
           <div key={i} style={{ backgroundColor: 'white' }}>
             <div style={{ display: 'flex', alignSelf: 'center', flexDirection: 'column', height: 48, borderBottom: borderBottom, borderTop: borderTop }}>
               <div style={{ marginTop: 'auto', marginBottom: 'auto', fontWeight: 700, marginLeft: 20 }}>
-                <span>
+                <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                   {that.timeparser(createdAt)}
                 </span>
               </div>
@@ -64,7 +64,7 @@ class User extends Component {
                 <span style={{ marginTop: '-2px', marginRight: 16 }}>
                   <img src={nodeFrom.faviconCDN  === null ? '/img/default-favicon.png' : nodeFrom.faviconCDN } style={{ height: 16, width: 16 }} />
                 </span>
-                <span style={{ color: 'rgb(51, 51, 51)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
+                <span style={{ color: 'rgb(51, 51, 51)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
                   <a href={nodeFrom.canonicalLink} style={{ color: 'rgb(51, 51, 51)' }} className="noUnderline">
                     {nodeFrom.title}
                   </a>
@@ -77,9 +77,9 @@ class User extends Component {
                 <span style={{ marginTop: '-2px', marginRight: 16 }}>
                   <img src={nodeTo.faviconCDN  === null ? '/img/default-favicon.png' : nodeTo.faviconCDN } style={{ height: 16, width: 16 }} />
                 </span>
-                <span style={{ color: 'rgb(51, 51, 51)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
-                  <a href={nodeFrom.canonicalLink} style={{ color: 'rgb(51, 51, 51)' }} className="noUnderline">
-                    {nodeFrom.title}
+                <span style={{ color: 'rgb(51, 51, 51)', fontSize: 13, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
+                  <a href={nodeTo.canonicalLink} style={{ color: 'rgb(51, 51, 51)' }} className="noUnderline">
+                    {nodeTo.title}
                   </a>
                 </span>
                 <span style={{ paddingLeft: 16, paddingRight: 8, color: 'rgb(117, 117, 117)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
