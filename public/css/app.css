@@ -151,8 +151,15 @@ body {
       color: #66AD57; }
     body .homepageTopModule .is-not-url {
       color: #FF0000; }
+    body .homepageTopModule .tagline {
+      margin-left: 10px;
+      margin-right: 10px; }
+    body .homepageTopModule .downloadPluginBoxWrapper {
+      margin: auto;
+      padding-left: 10px;
+      padding-right: 10px; }
     body .homepageTopModule .downloadPluginBox {
-      width: 430px;
+      max-width: 430px;
       height: 70px;
       border: 1px dashed rgba(128, 0, 128, 0.5);
       margin: auto;

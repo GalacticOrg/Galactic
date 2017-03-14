@@ -89,23 +89,26 @@ class Home extends Component {
                 </span>
               </div>
 
-              <div className='downloadPluginBox' >
-                <div className='logoBox'>
-                  <a href="">
-                    <img src='/img/logo.png' style={{ height: 50, width: 50 }} />
-                  </a>
-                </div>
-                <div className="contentBox">
-                  <span>
-                    <a href="/download"  className="cursorPointer">Download</a> the chrome plugin to get started.
-                  </span>
-                  <span>
-                    <a href="/download" >
-                      <img src='/img/outbound_link.png'/>
+              <div className="downloadPluginBoxWrapper">
+                <div className="downloadPluginBox" >
+                  <div className='logoBox'>
+                    <a href="">
+                      <img src='/img/logo.png' style={{ height: 50, width: 50 }} />
                     </a>
-                  </span>
+                  </div>
+                  <div className="contentBox">
+                    <span>
+                      <a href="/download"  className="cursorPointer">Download</a> the chrome plugin to get started.
+                    </span>
+                    <span>
+                      <a href="/download" >
+                        <img src='/img/outbound_link.png'/>
+                      </a>
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </div>  
+
             </div>
           </div>
           <div className="subnavBar">

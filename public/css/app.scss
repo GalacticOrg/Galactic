@@ -147,8 +147,17 @@ body {
     .is-not-url{
       color: $failure-red;
     }
+    .tagline {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    .downloadPluginBoxWrapper {
+      margin: auto;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
     .downloadPluginBox {
-      width: 430px;
+      max-width: 430px;
       height: 70px;
       border: 1px dashed rgba(128,0,128,0.5);
       margin: auto;
