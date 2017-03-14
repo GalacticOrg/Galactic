@@ -216,6 +216,11 @@ body {
     margin-top: 50px; }
   body .connectionLiElement {
     margin-bottom: 5px; }
+  body .userBox {
+    float: left; }
+  @media only screen and (max-width: 846px) {
+    body .userBox {
+      margin-left: 20px; } }
   body .twitterLogin {
     background: #F5F8FA;
     display: block;
