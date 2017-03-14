@@ -270,6 +270,17 @@ body {
   .connectionLiElement {
     margin-bottom: 5px;
   }
+
+  .userBox {
+    float: left;
+  }
+
+  @media only screen
+    and (max-width : 846px) {
+    .userBox {
+      margin-left: 20px;
+    }
+  }
   /**************************/
   /** END USER PAGE SECTION **/
   /**************************/

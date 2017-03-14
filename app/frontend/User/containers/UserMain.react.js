@@ -99,9 +99,9 @@ class User extends Component {
           <div className="container">
             <div className="row" style={{marginTop: '20px'}}>
               <div style={{ display: 'flex', flexDirection: 'row', padding: 0 }} className={['col-xs-12', 'col-sm-10', 'col-sm-offset-1', 'col-md-8', 'col-md-offset-2'].join(' ')}>
-                <div style={{float: 'left'}}>
+                <div className="userBox">
                   <img style={{padding: '1px', border: '2px solid black'}} src={profile_image} />
-                  </div>
+                </div>
                 <div style={{float: 'left', marginLeft: '20px'}}>
                   <div style={{ fontSize: '18px', lineHeight: '18px' }}>{name}</div>
                   <div>
