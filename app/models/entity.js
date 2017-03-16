@@ -21,7 +21,9 @@ const url = require('url');
      name: { type:String },
      index: [{ type:Number }],
      paragraphIndex: { type:Number },
-     href: { type:String }
+     href: { type:String },
+     pageTo: { type : Schema.ObjectId, ref : 'Entity' },
+     linkTo: { type : Schema.ObjectId, ref : 'Edge' },
    }],
    lang: { type : String, default : '', trim : true },
    createdAt  : { type : Date, default : Date.now },
@@ -79,7 +81,7 @@ EntitySchema.virtual('domain').get(function () {
 EntitySchema.statics = {
 
   /**
-   * Find Entity by id [Required]
+   * Find Entity by id
    *
    * @param {ObjectId} id
    * @param {Function} cb
@@ -87,9 +89,8 @@ EntitySchema.statics = {
    */
 
   load: function (id, cb) {
-    this.findOne({ _id : id }, '_id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN hearts')
-      .populate('user', 'name email username')
-      .populate('comments.user', 'name email username')
+    this.findOne({ _id : id }, 'links _id title description createdAt canonicalLink queryLink faviconCDN isConnected image imageCDN hearts')
+      .populate('links.pageTo', 'title description canonicalLink createdAt faviconCDN')
       .exec(cb);
   },
 
