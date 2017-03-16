@@ -24,7 +24,7 @@ exports.load = function (req, res, next, id){
       req.nearByEdges = nearByEdges;
 
       Edge.getNode(entity._id, function (errNodeEdge, edges){
-        if (errNodeEdge) return  res.status(500).send( utils.errsForApi(errNodeEdge.errors || errNodeEdge) );
+        if (errNodeEdge) return res.status(500).send( utils.errsForApi(errNodeEdge.errors || errNodeEdge) );
         req.edges = edges;
         next();
       });
@@ -45,9 +45,7 @@ exports.getHeartsController = function (req, res) {
     .limit(30)
     .skip(0)
     .exec(function (err, entities){
-
       return res.send(entities);
-
   });
 }
 
@@ -235,9 +233,11 @@ exports.getSearchController = function (req, res) {
       } else {
         // Here is where we push all links to our child scrapper.
         addToScrapperQ(_.map(resultDB.links, function (link){
+          const linkDB = link;
           return {
             href: link.href,
-            fromId: resultDB.id
+            fromId: resultDB.id,
+            linkDB,
           };
         }));
         const payload = {
@@ -264,7 +264,6 @@ function scraperRecursive (){
     } else {
       scraperRecursive();
     }
-
     return false; // Do not run the page search
   }
 
@@ -272,6 +271,8 @@ function scraperRecursive (){
     if (!err && resultDB){
       const fromId = link.fromId;
       const toId = resultDB.id;
+      const linkDB = link.linkDB;
+
       Edge.getEdgesForPath(
         fromId,
         toId,
@@ -280,7 +281,11 @@ function scraperRecursive (){
             Edge.createSiteEdge(
               fromId,
               toId,
-              function (err){
+              function (err, edges){
+                //console.log(edges, 'edge')/ @TODO Add edge id to links
+                //linkDB.linkToID = edge[0].properties.Relationship.id;
+                linkDB.pageTo = toId !== null ? toId : '';
+                linkDB.save();
                 if (err) console.log(err, 'scraperRecursive getEdgesForPath');
             });
           }
@@ -302,7 +307,7 @@ function scraperRecursive (){
 
 function addToScrapperQ (hrefs){
   Q = Q.concat(_.uniq(hrefs));
-  // console.log(Q.length,'Q is now this')
+
   if (running === false){
     scraperRecursive();
   }
