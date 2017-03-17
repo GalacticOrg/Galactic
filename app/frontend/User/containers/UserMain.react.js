@@ -92,9 +92,9 @@ class User extends Component {
       <div style={{ backgroundColor: 'rgb(245, 248, 250)'}} >
         <Navbar dispatch={dispatch} />
 
-        <div style={{paddingBottom: 20, backgroundColor: 'rgb(240, 240, 240)', boxShadow: '0 0 2px rgba(0,0,0,0.2)' }}>
+        <div style={{paddingBottom: 20, backgroundColor: 'rgba(128,0,128, 0.3)', boxShadow: '0 0 2px rgba(0,0,0,0.2)' }}>
           <div className="container">
-            <div className="row" style={{marginTop: '20px'}}>
+            <div className="row" style={{ marginTop: '20px' }}>
               <div style={{ display: 'flex', flexDirection: 'row', padding: 0 }} className={['col-xs-12', 'col-sm-10', 'col-sm-offset-1', 'col-md-8', 'col-md-offset-2'].join(' ')}>
                 <div className="userBox">
                   <img style={{padding: '1px', border: '2px solid black'}} src={profile_image} />
