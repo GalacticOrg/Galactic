@@ -49,7 +49,17 @@ class Firehose extends Component {
               <div style={{ display: 'flex', alignItems: 'center', height: 44 }}>
                 <span style={{ marginTop: '-2px', marginRight: 16 }}>
                   <img src={nodeFrom.faviconCDN  === null ? '/img/default-favicon.png' : nodeFrom.faviconCDN } style={{ height: 16, width: 16 }} />
-                  <div style={{ position: 'absolute', marginTop: 3, width: 1, height: 22, marginLeft: 7, borderRight: '2px solid rgba(128,0,128,0.5)', color: 'white' }}></div>
+                  <div style={{ 
+                    position: 'absolute', 
+                    marginTop: '-9px', 
+                    marginLeft: '-12px', 
+                    width: 8, 
+                    height: 47, 
+                    borderTop: '2px solid rgba(128,0,128,0.5)', 
+                    borderBottom: '2px solid rgba(128,0,128,0.5)', 
+                    borderLeft: '2px solid rgba(128, 0, 128, 0.498039)', 
+                    color: 'white' }}>
+                  </div>
                 </span>
                 <span style={{ color: 'rgb(51, 51, 51)', fontSize: 13, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
                   <a href={nodeFrom.canonicalLink} style={{ color: 'rgb(51, 51, 51)' }} className="noUnderline">
