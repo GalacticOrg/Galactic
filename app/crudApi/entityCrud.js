@@ -232,12 +232,14 @@ exports.getSearchController = function (req, res) {
         });
       } else {
         // Here is where we push all links to our child scrapper.
+        const pageDB = resultDB;
         addToScrapperQ(_.map(resultDB.links, function (link){
           const linkDB = link;
           return {
             href: link.href,
             fromId: resultDB.id,
             linkDB,
+            pageDB,
           };
         }));
         const payload = {
@@ -266,12 +268,13 @@ function scraperRecursive (){
     }
     return false; // Do not run the page search
   }
-
+  console.log(link, 'link')
   pageSearch(link.href, function (err, url, resultDB){
     if (!err && resultDB){
       const fromId = link.fromId;
       const toId = resultDB.id;
       const linkDB = link.linkDB;
+      const pageDB = link.pageDB
 
       Edge.getEdgesForPath(
         fromId,
@@ -285,7 +288,9 @@ function scraperRecursive (){
                 //console.log(edges, 'edge')/ @TODO Add edge id to links
                 //linkDB.linkToID = edge[0].properties.Relationship.id;
                 linkDB.pageTo = toId !== null ? toId : '';
-                linkDB.save();
+                pageDB.save(function(err, result){
+                  if (err) console.log(err, 'pageDB save');
+                });
                 if (err) console.log(err, 'scraperRecursive getEdgesForPath');
             });
           }

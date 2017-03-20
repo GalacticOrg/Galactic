@@ -18,12 +18,12 @@ const url = require('url');
    html: [{ type : String }],
    text: [{ type : String }],
    links: [{
-     name: { type:String },
-     index: [{ type:Number }],
-     paragraphIndex: { type:Number },
-     href: { type:String },
+     name: { type: String },
+     index: [{ type: Number }],
+     paragraphIndex: { type: Number },
+     href: { type: String },
      pageTo: { type : Schema.ObjectId, ref : 'Entity' },
-     linkTo: { type : Schema.ObjectId, ref : 'Edge' },
+     edge: { type : Schema.ObjectId, ref : 'Edge' }
    }],
    lang: { type : String, default : '', trim : true },
    createdAt  : { type : Date, default : Date.now },
