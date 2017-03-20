@@ -268,7 +268,7 @@ function scraperRecursive (){
     }
     return false; // Do not run the page search
   }
-  console.log(link, 'link')
+
   pageSearch(link.href, function (err, url, resultDB){
     if (!err && resultDB){
       const fromId = link.fromId;
