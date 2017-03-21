@@ -21,7 +21,7 @@ exports.load = function (req, res, next, id){
     req.entity = entity;
     entity.links = entity.links.filter(function(link){
         console.log(link.pageTo)
-        return link.pageTo !== null && link.pageTo.title.length !== 0;
+        return link.pageTo !== null && link.pageTo !== undefined && link.pageTo.title.length !== 0;
     });
     Edge.getNearByNodeEdges(entity._id, function (errNear, nearByEdges) {
       if (errNear) return  res.status(500).send( utils.errsForApi(errNear.errors || errNear) );
