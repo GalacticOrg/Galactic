@@ -19,6 +19,10 @@ exports.load = function (req, res, next, id){
     if (!entity || (err && err.message === 'Cast to ObjectId failed')) return  res.status(404).send(utils.errsForApi('Page not found'));
     if (err) return  res.status(500).send( utils.errsForApi(err.errors || err) );
     req.entity = entity;
+    entity.links = entity.links.filter(function(link){
+        console.log(link.pageTo)
+        return link.pageTo !== null && link.pageTo.title.length !== 0;
+    });
     Edge.getNearByNodeEdges(entity._id, function (errNear, nearByEdges) {
       if (errNear) return  res.status(500).send( utils.errsForApi(errNear.errors || errNear) );
       req.nearByEdges = nearByEdges;
