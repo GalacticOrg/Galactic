@@ -85,11 +85,13 @@ body {
     color: rgba(128, 0, 128, 0.9) !important; }
   body .purpleNavbar:hover {
     color: purple !important; }
-  body .navbar .connect-icon-box {
-    color: orange; }
-  body .navbar .connect-icon {
-    width: 20px;
-    height: auto; }
+  body .navbar {
+    border-top: 3px solid purple; }
+    body .navbar .connect-icon-box {
+      color: orange; }
+    body .navbar .connect-icon {
+      width: 20px;
+      height: auto; }
   body .loginModal .loginModalHeader {
     background-color: #f0f0f0; }
   body .loginModal .explanatoryModalText {
