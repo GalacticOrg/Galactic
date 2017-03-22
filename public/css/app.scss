@@ -47,9 +47,12 @@ body {
   /**************************/
   /** NAVBAR SECTION **/
   /**************************/
-  .purpleNavbar { color: rgba(128,0,128, 0.9) !important; }
+  .purpleNavbar { 
+    color: rgba(128,0,128, 0.9) !important; 
+  }
   .purpleNavbar:hover { color: purple !important; }
   .navbar {
+    border-top: 3px solid purple;
     .connect-icon-box{ color: orange; }
     .connect-icon {
       width: 20px;
