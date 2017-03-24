@@ -21,9 +21,15 @@ var helpers = require('view-helpers');
 var swig = require('swig');
 var config = require('./');
 var pkg = require('../package.json');
+const proxy = require('./proxy');
 
 var env = process.env.NODE_ENV || 'development';
 
+
+
+if (env === 'development'){
+  proxy();
+}
 /**
  * Expose
  */
