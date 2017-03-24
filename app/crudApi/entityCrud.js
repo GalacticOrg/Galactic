@@ -19,10 +19,10 @@ exports.load = function (req, res, next, id){
     if (!entity || (err && err.message === 'Cast to ObjectId failed')) return  res.status(404).send(utils.errsForApi('Page not found'));
     if (err) return  res.status(500).send( utils.errsForApi(err.errors || err) );
     req.entity = entity;
-    entity.links = entity.links.filter(function(link){
-        console.log(link.pageTo)
-        return link.pageTo !== null && link.pageTo !== undefined && link.pageTo.title.length !== 0;
-    });
+    // Removed because it messed with Mongooses isParsed virtual
+    // entity.links = entity.links.filter(function(link){
+    //     return link.pageTo !== null && link.pageTo !== undefined && link.pageTo.title.length !== 0;
+    // });
     Edge.getNearByNodeEdges(entity._id, function (errNear, nearByEdges) {
       if (errNear) return  res.status(500).send( utils.errsForApi(errNear.errors || errNear) );
       req.nearByEdges = nearByEdges;
@@ -281,6 +281,7 @@ function scraperRecursive (){
     pageDB.save(function(err, result){
       if (err) console.log(err, 'pageDB save');
     });
+    console.log(pageDB.links, 'pageDB.links');
 
     if (!err && resultDB){
       const fromId = link.fromId;

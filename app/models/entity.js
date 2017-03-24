@@ -76,9 +76,20 @@ EntitySchema.virtual('domain').get(function () {
 });
 
 EntitySchema.virtual('isParsed').get(function () {
-  return this.links.every(function(link){
-    return link.isParsed === true;
-  });
+  const links = this.links;
+  if ( links ) {
+    let isParsed = true;
+    for (var i = 0; i < links.length; i++) {
+      const link = links[i];
+      if (link.isParsed === false){
+        isParsed = false
+      }
+    }
+    return isParsed;
+  } else {
+    return true;
+  }
+
 });
 
 /**
