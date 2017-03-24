@@ -272,16 +272,17 @@ function scraperRecursive (){
     }
     return false; // Do not run the page search
   }
+  const linkDB = link.linkDB;
+  const pageDB = link.pageDB;
+
+  // Save that the page is parsed.
+  linkDB.isParsed = true;
+  pageDB.save(function(err, result){
+    if (err) console.log(err, 'err pageDB save');
+  });
 
   pageSearch(link.href, function (err, url, resultDB){
-    const linkDB = link.linkDB;
-    const pageDB = link.pageDB;
-    // Save that the page is parsed.
-    linkDB.isParsed = true;
-    pageDB.save(function(err, result){
-      if (err) console.log(err, 'pageDB save');
-    });
-    console.log(pageDB.links, 'pageDB.links');
+    console.log(pageDB.links, 'err pageDB links');
 
     if (!err && resultDB){
       const fromId = link.fromId;
