@@ -274,11 +274,17 @@ function scraperRecursive (){
   }
 
   pageSearch(link.href, function (err, url, resultDB){
+    const linkDB = link.linkDB;
+    const pageDB = link.pageDB;
+    // Save that the page is parsed.
+    linkDB.isParsed = true;
+    pageDB.save(function(err, result){
+      if (err) console.log(err, 'pageDB save');
+    });
+
     if (!err && resultDB){
       const fromId = link.fromId;
       const toId = resultDB.id;
-      const linkDB = link.linkDB;
-      const pageDB = link.pageDB
 
       Edge.getEdgesForPath(
         fromId,

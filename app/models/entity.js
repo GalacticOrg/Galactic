@@ -23,7 +23,8 @@ const url = require('url');
      paragraphIndex: { type: Number },
      href: { type: String },
      pageTo: { type : Schema.ObjectId, ref : 'Entity' },
-     edge: { type : Schema.ObjectId, ref : 'Edge' }
+     edge: { type : Schema.ObjectId, ref : 'Edge' },
+     isParsed: { type : Boolean, default : false }
    }],
    lang: { type : String, default : '', trim : true },
    createdAt  : { type : Date, default : Date.now },
@@ -72,6 +73,12 @@ EntitySchema.methods = {
  */
 EntitySchema.virtual('domain').get(function () {
   return url.parse(this.canonicalLink).hostname
+});
+
+EntitySchema.virtual('isParsed').get(function () {
+  return this.links.every(function(link){
+    return link.isParsed === true;
+  });
 });
 
 /**
