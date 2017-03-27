@@ -93,6 +93,10 @@ module.exports = function (app, passport) {
 
    app.post('/api/connect/:eid', auth.requiresLogin, edgeCrud.postTagsEdgeController);
 
+   app.get('/util/closepage', function (req, res) {
+     res.render('closepage');
+   });
+
    // API User
    const userPath = '/api/users';
    const profilePath = userPath + '/profile';
