@@ -47,7 +47,7 @@ $ npm start
 # Tests
 Run test with:
 
-	$ npm test
+	$ sudo npm test
 
 #Handy Neo4j Commands
 
