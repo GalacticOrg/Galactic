@@ -53,6 +53,8 @@ exports.login = function (req, res) {
     return res.redirect('/');
   }
 
+  req.session.returnTo = '/util/closepage'
+
   res.render('auth/login', {
     title: 'Login'
   });

@@ -6,6 +6,7 @@ import InputURL from '../../components/InputURL/';
 import EntityItem from '../../components/Entity/';
 import EdgeConnection from '../../components/EdgeConnection/';
 import Tags from '../../components/Tags.react';
+import Firehose from '../../Firehose/containers/FirehoseMain.react';
 
 const inputKey = 'homeResult';
 const homepageUrlSearchForm = {
@@ -13,7 +14,7 @@ const homepageUrlSearchForm = {
   margin: 'auto',
   marginTop: '50px',
   paddingLeft: '20px',
-  paddingRight: '20px'
+  paddingRight: '20px',
 };
 
 import { getFirehose } from '../actions/index';
@@ -22,7 +23,7 @@ class Home extends Component {
 
   componentWillMount () {
     const { dispatch } = this.props;
-    //dispatch(getFirehose());
+    // dispatch(getFirehose());
   }
 
   render () {
@@ -116,15 +117,11 @@ class Home extends Component {
               <span><a href="/about" className="cursorPointer">About</a></span>
               <span><a href="/faq" className="cursorPointer">FAQ</a></span>
               <span><a href="/download"  className="cursorPointer">Download</a></span>
-              <span><a href="/firehose"  className="cursorPointer">Firehose</a></span>
             </div>
           </div>
         </div>
 
-
-        <div style={{ backgroundColor: '#F5F8FA', paddingTop: '10px', borderTop: '1px #E1E8ED solid' }}>
-
-        </div>
+        <Firehose />
 
       </div>
     );

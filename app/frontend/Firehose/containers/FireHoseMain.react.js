@@ -23,14 +23,6 @@ class Firehose extends Component {
   render() {
     const that = this;
     const { dispatch, firehoseResult, userResult } = this.props
-    if (!firehoseResult){
-      return (
-        <div>
-          <Navbar dispatch={dispatch} />
-          <Loader top="30%" />
-        </div>
-      )
-    }
 
     const connections = firehoseResult ?
       firehoseResult.map(function(edge, i) {
@@ -87,17 +79,11 @@ class Firehose extends Component {
 
     return (
       <div style={{ backgroundColor: 'rgb(245, 248, 250)' }}>
-        <Navbar dispatch={dispatch} />
-        <div style={{ backgroundColor: 'rgba(128,0,128, 0.3)', paddingBottom: 18, boxShadow: '0 0 2px rgba(0,0,0,0.2)' }}>
-          <div className="container">
-            <div className="row pageTitle" >
-              <div style={{ display: 'flex', flexDirection: 'row', paddingTop: 15, fontSize: '20px', fontWeight: 700 }} className={['col-xs-12', 'col-sm-10', 'col-sm-offset-1', 'col-md-8', 'col-md-offset-2'].join(' ')}>Firehose 🔥</div>
-            </div>
-          </div>
-        </div>
-
         <div style={{ marginTop: 20 }} className="container">
           <div className="row">
+            <div style={{ marginTop: 20 }} className={['col-xs-12', 'col-sm-10', 'col-sm-offset-1', 'col-md-8', 'col-md-offset-2'].join(' ')}>
+              <strong>Recent Contributions:</strong>
+            </div>
             <div style={{ marginTop: '15px', boxShadow: '0 0 2px rgba(0,0,0,0.2)', padding: 0 }} className={['col-xs-12', 'col-sm-10', 'col-sm-offset-1', 'col-md-8', 'col-md-offset-2'].join(' ')}>
               {connections}
             </div>
