@@ -188,8 +188,9 @@ body {
           height: 16px;
           width: 16px; }
     body .homepageTopModule .subnavBar {
-      width: 320px;
-      margin: auto; }
+      width: 220px;
+      margin: auto;
+      padding-left: 10px; }
       body .homepageTopModule .subnavBar .navOptions {
         display: flex;
         flex-direction: row;
