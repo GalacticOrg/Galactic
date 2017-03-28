@@ -231,7 +231,7 @@ exports.getSearchController = function (req, res) {
           parseSuccess: false,
           messages: [{
             type: 'warning',
-            text: 'Invalid URL'
+            text: err.status + ': Invalid Repsonse'
           }]
         });
       } else {
