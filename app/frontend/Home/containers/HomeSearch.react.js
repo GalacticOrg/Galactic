@@ -6,6 +6,7 @@ import InputURL from '../../components/InputURL/';
 import EntityItem from '../../components/Entity/';
 import EdgeConnection from '../../components/EdgeConnection/';
 import Tags from '../../components/Tags.react';
+import Firehose from '../../Firehose/containers/FirehoseMain.react';
 
 const inputKey = 'homeResult';
 const homepageUrlSearchForm = {
@@ -22,7 +23,7 @@ class Home extends Component {
 
   componentWillMount () {
     const { dispatch } = this.props;
-    //dispatch(getFirehose());
+    // dispatch(getFirehose());
   }
 
   render () {
@@ -121,6 +122,7 @@ class Home extends Component {
           </div>
         </div>
 
+        <Firehose />
 
         <div style={{ backgroundColor: '#F5F8FA', paddingTop: '10px', borderTop: '1px #E1E8ED solid' }}>
 
