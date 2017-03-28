@@ -14,7 +14,7 @@ const homepageUrlSearchForm = {
   margin: 'auto',
   marginTop: '50px',
   paddingLeft: '20px',
-  paddingRight: '20px'
+  paddingRight: '20px',
 };
 
 import { getFirehose } from '../actions/index';
@@ -117,16 +117,11 @@ class Home extends Component {
               <span><a href="/about" className="cursorPointer">About</a></span>
               <span><a href="/faq" className="cursorPointer">FAQ</a></span>
               <span><a href="/download"  className="cursorPointer">Download</a></span>
-              <span><a href="/firehose"  className="cursorPointer">Firehose</a></span>
             </div>
           </div>
         </div>
 
         <Firehose />
-
-        <div style={{ backgroundColor: '#F5F8FA', paddingTop: '10px', borderTop: '1px #E1E8ED solid' }}>
-
-        </div>
 
       </div>
     );
