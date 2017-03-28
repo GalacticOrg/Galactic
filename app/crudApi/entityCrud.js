@@ -262,16 +262,12 @@ exports.getSearchController = function (req, res) {
 
 function scraperRecursive (){
   running = true;
-
   const link = Q.pop();
-  if (link === undefined || !link.href){// no link stop attempt for page search
-    if (Q.length === 0) { // Q was empty we can not continue;
-      running = false;
-    } else {
-      scraperRecursive();
-    }
-    return false; // Do not run the page search
+  if (Q.length === 0) {
+    running = false;
+    return false; // Q was empty we can not continue;
   }
+
   const linkDB = link.linkDB;
   const pageDB = link.pageDB;
 
@@ -282,7 +278,6 @@ function scraperRecursive (){
   });
 
   pageSearch(link.href, function (err, url, resultDB){
-    console.log(pageDB.links, 'err pageDB links');
 
     if (!err && resultDB){
       const fromId = link.fromId;
