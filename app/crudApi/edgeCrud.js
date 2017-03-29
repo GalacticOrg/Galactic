@@ -131,6 +131,17 @@ exports.postCreateEdgeController = function (req, res) {
   const tags = body.tags ? body.tags: '';
   const description = body.description ? body.description: '';
 
+  if ( fromId === toId ){
+    return res.status(405).send({
+      success: false,
+      node: {},
+      messages: [{
+        type: 'warning',
+        text: 'You cannot connect an page to itself.'
+      }]
+    });
+  }
+
   Edge.getEdgesForPathUser(
     fromId,
     toId,
