@@ -79,12 +79,12 @@ class Firehose extends Component {
 
     return (
       <div style={{ backgroundColor: 'rgb(245, 248, 250)' }}>
-        <div style={{ marginTop: 20 }} className="container">
+        <div className="container">
           <div className="row">
-            <div style={{ marginTop: 20 }} className={['col-xs-12', 'col-sm-10', 'col-sm-offset-1', 'col-md-8', 'col-md-offset-2'].join(' ')}>
-              <strong>Recent Contributions:</strong>
+            <div style={{ height: 45, marginTop: 35, display: 'flex', alignItems: 'center', backgroundColor: 'rgba(128, 0, 128, 0.3)' }} className={['col-xs-12', 'col-sm-10', 'col-sm-offset-1', 'col-md-8', 'col-md-offset-2'].join(' ')}>
+              <span><strong>Recent Contributions:</strong></span>
             </div>
-            <div style={{ marginTop: '15px', boxShadow: '0 0 2px rgba(0,0,0,0.2)', padding: 0 }} className={['col-xs-12', 'col-sm-10', 'col-sm-offset-1', 'col-md-8', 'col-md-offset-2'].join(' ')}>
+            <div style={{ boxShadow: '0 0 2px rgba(0,0,0,0.2)', padding: 0 }} className={['col-xs-12', 'col-sm-10', 'col-sm-offset-1', 'col-md-8', 'col-md-offset-2'].join(' ')}>
               {connections}
             </div>
           </div>
