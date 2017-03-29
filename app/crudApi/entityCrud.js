@@ -213,8 +213,17 @@ exports.getSearchController = function (req, res) {
   if (!q) return res.status(422).send(utils.errsForApi('Please Enter a URL.'));
 
   pageSearch(q, function (err, url, resultDB){
-      if (err &&
-         (err.status === 404 )) { // Did we get a 404 from the search. We tell the search
+      if (err && err.status === 200) {
+        res.send({
+           node : {},
+           isURL: true,
+           parseSuccess: false,
+           messages: [{
+             type: 'Warning',
+             text: 'Please enter a valid URL'
+           }]
+        });
+      } else if (err && err.status === 404 ) { // Did we get a 404 from the search. We tell the search
         res.send({
            node : {},
            isURL: true,
