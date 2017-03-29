@@ -271,15 +271,12 @@ exports.getSearchController = function (req, res) {
 
 function scraperRecursive (){
   running = true;
+  const content = Q.map(function(qq){return qq.href});
+
   const link = Q.pop();
-  if (Q.length === 0) {
-    running = false;
-    return false; // Q was empty we can not continue;
-  }
 
   const linkDB = link.linkDB;
   const pageDB = link.pageDB;
-
   // Save that the page is parsed.
   linkDB.isParsed = true;
   pageDB.save(function(err, result){
@@ -287,7 +284,6 @@ function scraperRecursive (){
   });
 
   pageSearch(link.href, function (err, url, resultDB){
-
     if (!err && resultDB){
       const fromId = link.fromId;
       const toId = resultDB.id;
@@ -316,7 +312,6 @@ function scraperRecursive (){
     } else {
       // No Opp
     }
-
     if (Q.length === 0){
       running = false; // Stop the recursive call and set running to false
     } else {
@@ -327,9 +322,8 @@ function scraperRecursive (){
 }
 
 function addToScrapperQ (hrefs){
-  Q = Q.concat(_.uniq(hrefs));
-
-  if (running === false){
+  Q = Q.concat(hrefs);
+  if (Q.length > 0){
     scraperRecursive();
   }
 }
