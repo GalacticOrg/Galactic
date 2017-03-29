@@ -189,15 +189,15 @@ body {
           width: 16px; }
     body .homepageTopModule .subnavBar {
       width: 220px;
-      margin: auto;
-      padding-left: 10px; }
+      margin: auto; }
       body .homepageTopModule .subnavBar .navOptions {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
+        text-align: center;
         font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
         font-size: 16px;
         margin-top: 12px; }
+        body .homepageTopModule .subnavBar .navOptions span {
+          margin-left: 10px;
+          margin-right: 10px; }
   body .highlight-first > div:first-child {
     border: 2px solid #dff0d8; }
   body .input-button a:focus {

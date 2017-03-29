@@ -223,7 +223,7 @@ exports.getSearchController = function (req, res) {
              text: 'Please enter a valid URL'
            }]
         });
-      } else if (err && err.status === 404 ) { // Did we get a 404 from the search. We tell the search
+      } else if (err && err.status === 404 ) { /* Did we get a 404 from the search. We tell the search */
         res.send({
            node : {},
            isURL: true,
@@ -244,7 +244,7 @@ exports.getSearchController = function (req, res) {
           }]
         });
       } else {
-        // Here is where we push all links to our child scrapper.
+        /* Here is where we push all links to our child scrapper. */
         const pageDB = resultDB;
         addToScrapperQ(_.map(resultDB.links, function (link){
           const linkDB = link;

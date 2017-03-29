@@ -195,14 +195,15 @@ body {
     .subnavBar {
       width: 220px;
       margin: auto;
-      padding-left: 10px;
       .navOptions {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
+        text-align: center;
         font-family: Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
         font-size: 16px;
         margin-top: 12px;
+        span {
+          margin-left: 10px;
+          margin-right: 10px;
+        }
       }
     }
   }
