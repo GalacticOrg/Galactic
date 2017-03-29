@@ -84,7 +84,7 @@ class Home extends Component {
       </div>) : 
     (<div className="contentBox">
         <span>
-          <a href="/download"  className="cursorPointer">Download</a> the chrome plugin to get started.
+          <a href="/download"  className="cursorPointer">Install</a> the chrome extension to get started.
         </span>
         <span>
           <a href="/download" >
@@ -131,7 +131,7 @@ class Home extends Component {
             <div className="navOptions">
               <span><a href="/about" className="cursorPointer">About</a></span>
               <span><a href="/faq" className="cursorPointer">FAQ</a></span>
-              <span style={{ display: isMobile }}><a href="/download"  className="cursorPointer">Download</a></span>
+              <span style={{ display: isMobile }}><a href="/download"  className="cursorPointer">Install</a></span>
             </div>
           </div>
         </div>

@@ -161,7 +161,7 @@ body {
       padding-left: 10px;
       padding-right: 10px; }
     body .homepageTopModule .downloadPluginBox {
-      max-width: 430px;
+      max-width: 420px;
       height: 70px;
       border: 1px dashed rgba(128, 0, 128, 0.5);
       margin: auto;
@@ -178,7 +178,7 @@ body {
       body .homepageTopModule .downloadPluginBox .contentBox {
         display: flex;
         align-items: center;
-        width: 350px;
+        width: 345px;
         padding: 8px; }
         body .homepageTopModule .downloadPluginBox .contentBox span {
           font-size: 16px; }
