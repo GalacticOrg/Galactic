@@ -28,7 +28,7 @@ class Home extends Component {
 
   render () {
     const { node, isURL, firehoseResult, dispatch } = this.props;
-    const connections = firehoseResult ? firehoseResult.map(function (edge, i){
+    const connections = firehoseResult ? firehoseResult.map(function (edge, i) {
       const { user, nodeFrom, nodeTo, createdAt, nodeFromEntityCount, nodeToEntityCount, tags } = edge;
       let tagsSection = (<Tags tags={tags}/>);
 

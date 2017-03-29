@@ -9,7 +9,7 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import userApp from './reducers'
 
-import User from './containers/FireHoseMain.react'
+import User from './containers/FirehoseMain.react'
 
 import thunkMiddleware from 'redux-thunk'
 let store = createStore(

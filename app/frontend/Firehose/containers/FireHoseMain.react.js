@@ -8,6 +8,7 @@ import moment from 'moment';
 import Navbar from "../../components/Navbar.react";
 import { connect } from 'react-redux';
 import { getFirehose } from "../actions/index";
+import ReactSpinner from 'react-spinjs';
 
 class Firehose extends Component {
 
@@ -77,6 +78,10 @@ class Firehose extends Component {
           </div>)
       }) : <div>User has no connections.</div>;
 
+    /* Loader */
+    if (userResult.loading) return <ReactSpinner color="black"/>;
+
+    /* Firehose */
     return (
       <div style={{ backgroundColor: 'rgb(245, 248, 250)' }}>
         <div className="container">
