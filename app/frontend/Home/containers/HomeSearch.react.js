@@ -81,13 +81,13 @@ class Home extends Component {
     const contentBox = window.mobileAndTabletcheck() ? (
       <div className="contentBox">
         <strong><span style={{ width: '100%', textAlign: 'middle' }}>Sorry folks, the WikiWeb is desktop only.</span></strong>
-      </div>) : 
+      </div>) :
     (<div className="contentBox">
         <span>
-          <a href="/download"  className="cursorPointer">Install</a> the chrome extension to get started.
+          <a href="javascript:void();"  onClick={this.download} className="cursorPointer">Download</a> the chrome plugin to get started.
         </span>
         <span>
-          <a href="/download" >
+          <a href="javascript:void();"  onClick={this.download} >
             <img src='/img/outbound_link.png'/>
           </a>
         </span>
@@ -123,7 +123,7 @@ class Home extends Component {
                   </div>
                   {contentBox}
                 </div>
-              </div>  
+              </div>
 
             </div>
           </div>
@@ -146,6 +146,10 @@ class Home extends Component {
     this.setState({
       messageIndex: i
     });
+  }
+  download (e){
+    chrome.webstore.install();
+    e.preventDefault();
   }
 }
 
