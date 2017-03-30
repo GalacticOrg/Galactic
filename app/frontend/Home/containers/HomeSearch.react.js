@@ -131,7 +131,7 @@ class Home extends Component {
             <div className="navOptions">
               <span><a href="/about" className="cursorPointer">About</a></span>
               <span><a href="/faq" className="cursorPointer">FAQ</a></span>
-              <span style={{ display: isMobile }}><a href="/download"  className="cursorPointer">Download</a></span>
+              <span style={{ display: isMobile }}><a href="/download"  className="cursorPointer">Install</a></span>
             </div>
           </div>
         </div>
