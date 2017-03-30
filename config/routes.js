@@ -31,6 +31,7 @@ module.exports = function (app, passport) {
   // Static Routes for pages
   app.get('/analytics', pages.analytics);
   app.get('/about', pages.about);
+  app.get('/guide', pages.guide);
   app.get('/faq', pages.faq);
   app.get('/terms', pages.terms);
   app.get('/privacy', pages.privacy);

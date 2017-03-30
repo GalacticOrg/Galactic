@@ -7,6 +7,8 @@ import EntityItem from '../../components/Entity/';
 import EdgeConnection from '../../components/EdgeConnection/';
 import Tags from '../../components/Tags.react';
 import Firehose from '../../Firehose/containers/FirehoseMain.react';
+const WIKI_WEB_PLUGIN_URL = 'https://chrome.google.com/webstore/detail/fahnenabljcfknjfkaoohnneejicnagd'
+const SUCCESS_REDIRECT = '/guide'
 
 const inputKey = 'homeResult';
 const homepageUrlSearchForm = {
@@ -76,6 +78,7 @@ class Home extends Component {
       return check;
     };
 
+
     const isMobile = window.mobileAndTabletcheck() ? 'none' : 'inline';
 
     const contentBox = window.mobileAndTabletcheck() ? (
@@ -84,10 +87,10 @@ class Home extends Component {
       </div>) :
     (<div className="contentBox">
         <span>
-          <a href="javascript:void();"  onClick={this.download} className="cursorPointer">Download</a> the chrome plugin to get started.
+          <a href="javascript:void();"  onClick={this.install} className="cursorPointer">Install</a> the chrome plugin to get started.
         </span>
         <span>
-          <a href="javascript:void();"  onClick={this.download} >
+          <a href="javascript:void();"  onClick={this.install} >
             <img src='/img/outbound_link.png'/>
           </a>
         </span>
@@ -131,7 +134,7 @@ class Home extends Component {
             <div className="navOptions">
               <span><a href="/about" className="cursorPointer">About</a></span>
               <span><a href="/faq" className="cursorPointer">FAQ</a></span>
-              <span style={{ display: isMobile }}><a href="/download"  className="cursorPointer">Install</a></span>
+              <span style={{ display: isMobile }}><a href="javascript:void();"  onClick={this.install}>Install</a></span>
             </div>
           </div>
         </div>
@@ -147,8 +150,14 @@ class Home extends Component {
       messageIndex: i
     });
   }
-  download (e){
-    chrome.webstore.install();
+  install (e){
+    chrome.webstore.install(
+    WIKI_WEB_PLUGIN_URL ,
+      function(){
+        window.location = SUCCESS_REDIRECT;
+    }, function(detail){
+        console.log(detail, 'Download failed');
+    });
     e.preventDefault();
   }
 }
