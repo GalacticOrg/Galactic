@@ -92,7 +92,7 @@ class Firehose extends Component {
 
     /* Firehose */
     return (
-      <div style={{ backgroundColor: 'rgb(245, 248, 250)' }}>
+      <div style={{ backgroundColor: 'rgb(245, 248, 250)', marginBottom: 70 }}>
         <div className="container">
           <div className="row">
             <div style={{ height: 45, marginTop: 35, display: 'flex', alignItems: 'center', backgroundColor: 'rgba(128, 0, 128, 0.3)' }} className={['col-xs-12', 'col-sm-10', 'col-sm-offset-1', 'col-md-8', 'col-md-offset-2'].join(' ')}>
