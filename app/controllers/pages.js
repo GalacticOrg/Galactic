@@ -73,14 +73,14 @@ exports.analytics = function (req, res) {
 };
 
 exports.about = function (req, res) {
-  res.render('about', {
+  res.render('About', {
     title: 'About'
   });
 };
 
 
 exports.guide = function (req, res) {
-  res.render('guide', {
+  res.render('Guide', {
     title: 'Guide'
   });
 };
