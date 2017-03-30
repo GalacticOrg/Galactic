@@ -8,7 +8,6 @@ import moment from 'moment';
 import Navbar from "../../components/Navbar.react";
 import { connect } from 'react-redux';
 import { getFirehose } from "../actions/index";
-import ReactSpinner from 'react-spinjs';
 
 class Firehose extends Component {
 
@@ -25,6 +24,8 @@ class Firehose extends Component {
     const that = this;
     const { dispatch, firehoseResult, userResult } = this.props
 
+    console.log(this.props, 'props from firehosemain')
+
     const connections = firehoseResult ?
       firehoseResult.map(function(edge, i) {
         const { user, nodeFrom, nodeTo, createdAt } = edge;
@@ -40,7 +41,7 @@ class Firehose extends Component {
             </div>
             <div style={{ marginLeft: 20 }}>
               <div style={{ display: 'flex', alignItems: 'center', height: 44 }}>
-                <span style={{ marginTop: '-2px', marginRight: 16 }}>
+                <span style={{ marginTop: '-2px', marginRight: 16, marginLeft: 5 }}>
                   <img src={nodeFrom.faviconCDN  === null ? '/img/default-favicon.png' : nodeFrom.faviconCDN } style={{ height: 16, width: 16 }} />
                   <div style={{ 
                     position: 'absolute', 
@@ -56,7 +57,10 @@ class Firehose extends Component {
                 </span>
                 <span style={{ color: 'rgb(51, 51, 51)', fontSize: 13, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
                   <a href={nodeFrom.canonicalLink} style={{ color: 'rgb(51, 51, 51)' }} className="noUnderline">
-                    {nodeFrom.title}
+                    { nodeFrom.title === '' ?
+                      (<span style={{ color: 'rgb(117, 117, 117)' }}>(no title)</span>) : 
+                      nodeFrom.title
+                    }
                   </a>
                 </span>
                 <span style={{ paddingLeft: 16, paddingRight: 8, color: 'rgb(117, 117, 117)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
@@ -64,11 +68,16 @@ class Firehose extends Component {
                 </span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', height: 44 }}>
-                <span style={{ marginTop: '-2px', marginRight: 16 }}>
+                <span style={{ marginTop: '-2px', marginRight: 16, marginLeft: 5 }}>
                   <img src={nodeTo.faviconCDN  === null ? '/img/default-favicon.png' : nodeTo.faviconCDN } style={{ height: 16, width: 16 }} />
                 </span>
                 <span style={{ color: 'rgb(51, 51, 51)', fontSize: 13, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
-                  <a href={nodeTo.canonicalLink} style={{ color: 'rgb(51, 51, 51)' }} className="noUnderline">{nodeTo.title}</a>
+                  <a href={nodeTo.canonicalLink} style={{ color: 'rgb(51, 51, 51)' }} className="noUnderline">
+                    { nodeTo.title === '' ?
+                      (<span style={{ color: 'rgb(117, 117, 117)' }}>(no title)</span>) : 
+                      nodeTo.title
+                    }
+                  </a>
                 </span>
                 <span style={{ paddingLeft: 16, paddingRight: 8, color: 'rgb(117, 117, 117)', fontSize: 13, fontFamily: 'Roboto, "Helvetica Neue", "Lucida Grande", sans-serif' }}>
                   {nodeTo.domain}
@@ -79,7 +88,7 @@ class Firehose extends Component {
       }) : <div>User has no connections.</div>;
 
     /* Loader */
-    if (userResult.loading) return <ReactSpinner color="black"/>;
+    if (firehoseResult === null) return <div style={{ height: 1 }} />;
 
     /* Firehose */
     return (
@@ -87,7 +96,7 @@ class Firehose extends Component {
         <div className="container">
           <div className="row">
             <div style={{ height: 45, marginTop: 35, display: 'flex', alignItems: 'center', backgroundColor: 'rgba(128, 0, 128, 0.3)' }} className={['col-xs-12', 'col-sm-10', 'col-sm-offset-1', 'col-md-8', 'col-md-offset-2'].join(' ')}>
-              <span><strong>Recent Contributions:</strong></span>
+              <span><strong>Recent Connections:</strong></span>
             </div>
             <div style={{ boxShadow: '0 0 2px rgba(0,0,0,0.2)', padding: 0 }} className={['col-xs-12', 'col-sm-10', 'col-sm-offset-1', 'col-md-8', 'col-md-offset-2'].join(' ')}>
               {connections}
