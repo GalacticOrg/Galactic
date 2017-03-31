@@ -141,11 +141,9 @@ body {
       flex-direction: row; }
     body .homepageTopModule .rightSide, body .homepageTopModule .leftSide {
       padding-left: 28px;
-      padding-right: 28px; }
+      padding-right: 32px; }
     body .homepageTopModule .leftSide {
-      background-color: beige; }
-    body .homepageTopModule .rightSide {
-      background-color: aquamarine; }
+      width: 35%; }
     body .homepageTopModule .mainBox {
       display: block;
       margin: auto; }

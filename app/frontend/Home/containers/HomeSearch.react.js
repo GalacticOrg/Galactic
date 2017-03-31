@@ -94,8 +94,8 @@ class Home extends Component {
 
     const pageContents = (
       <div className={'pageContents'} style={{ marginBottom: 110, paddingTop: 100 }}>
-        <div className={'leftSide'} style={{ textAlign: 'center' }}>
-          <img src="/img/network.png" style={{ height: 160 }}/>
+        <div className={'leftSide'} style={{ textAlign: 'right' }}>
+          <img src="/img/network.png" style={{ maxHeight: 160 }}/>
         </div>
         <div className={'rightSide'} >
           <div style={{ height: 50, fontFamily: "lato, sans-serif", fontSize: 32, fontWeight: 700, lineHeight: 1.1 }}>

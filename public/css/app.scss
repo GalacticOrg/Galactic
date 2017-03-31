@@ -135,13 +135,10 @@ body {
     }
     .rightSide, .leftSide {
       padding-left: 28px;
-      padding-right: 28px;
+      padding-right: 32px;
     }
     .leftSide {
-      background-color: beige;
-    }
-    .rightSide {
-      background-color: aquamarine;
+      width: 35%;
     }
     .mainBox {
       display: block;
