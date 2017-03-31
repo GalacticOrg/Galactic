@@ -138,6 +138,19 @@ class Home extends Component {
           </div>
         </div>
 
+        <section className="installer">
+          <span>
+            <a 
+              className="btn" 
+              href="javascript:void();" 
+              onClick={this.install} 
+              style={{ color: '#fff', backgroundColor: 'rgba(128,0,128,0.9)', borderColor: 'rgba(128,0,128,1)', fontFamily: 'lato, sans-serif' }}>
+              <img alt="" className="installer__browser-logo--chrome" src="/img/browser-chrome-64x64.png" style={{ height: 19, width: 19, marginTop: '-2px', marginRight: 4.2, verticalAlign: 'middle' }}/>
+              Install
+            </a>
+          </span>
+        </section>
+
         <Firehose />
 
       </div>
