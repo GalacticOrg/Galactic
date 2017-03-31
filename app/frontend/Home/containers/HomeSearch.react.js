@@ -93,9 +93,11 @@ class Home extends Component {
       </section>);
 
     const pageContents = (
-      <div className={'row'} style={{ marginBottom: 110, paddingTop: 100 }}>
-        <div className={'col-sm-6'} style={{ border: '1px solid purple'}}>Left Side</div>
-        <div className={'col-sm-6'} style={{ paddingRight: '10%'}}>
+      <div className={'pageContents'} style={{ marginBottom: 110, paddingTop: 100 }}>
+        <div className={'leftSide'} style={{ textAlign: 'center' }}>
+          <img src="/img/network.png" style={{ height: 160 }}/>
+        </div>
+        <div className={'rightSide'} >
           <div style={{ height: 50, fontFamily: "lato, sans-serif", fontSize: 32, fontWeight: 700, lineHeight: 1.1 }}>
             <span style={{ fontFamily: "'Ovo', serif", fontSize: '24px', color: 'rgb(51, 51, 51)' }}>
               What to read next
@@ -115,7 +117,7 @@ class Home extends Component {
     return (
       <div className="homepageTopModule">
         <Navbar />
-        {pageContents}
+          <div className={'mainBox'}>{pageContents}</div>
         <Firehose />
       </div>
     );
