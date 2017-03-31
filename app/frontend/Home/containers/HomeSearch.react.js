@@ -100,14 +100,14 @@ class Home extends Component {
         <div className={'rightSide'} >
           <div style={{ height: 50, fontFamily: "lato, sans-serif", fontSize: 32, fontWeight: 700, lineHeight: 1.1 }}>
             <span style={{ fontFamily: "'Ovo', serif", fontSize: '24px', color: 'rgb(51, 51, 51)' }}>
-              What to read next
+              A map of the Internet.
             </span>
           </div>
           <div style={{ fontFamily: "lato, sans-serif", fontSize: 20, fontWeight: 200 }}>
             <a href='/about'>
               <span style={{ color: 'rgb(112, 2, 123)' }}>Our mission</span>
             </a>
-            <span style={{ color: 'rgb(51, 51, 51)' }}> is to bring a new navigation layer to the web. Use WikiWeb to discover, connect and research similar websites, or surf the web.</span>
+            <span style={{ color: 'rgb(51, 51, 51)' }}> is to bring a new navigation layer to the web. Use WikiWeb to discover, connect and research similar sites, or surf the web.</span>
           </div>
           <br />
           {installButton}
