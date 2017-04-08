@@ -240,7 +240,7 @@ exports.getSearchController = function (req, res) {
           parseSuccess: false,
           messages: [{
             type: 'warning',
-            text: err.status + ': Invalid Repsonse'
+            text: err.status + ': Invalid Response'
           }]
         });
       } else {

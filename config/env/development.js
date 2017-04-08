@@ -1,4 +1,3 @@
-
 /**
  * Expose
  */
@@ -6,7 +5,7 @@
 module.exports = {
   db: 'mongodb://localhost/galactic_development',
   neo4jdb: 'http://neo4j:neo4j@localhost:7474',
-  aws:{
+  aws: {
     key: process.env.AWS_KEY || '',
     secret: process.env.AWS_SECRET || '',
     imagebucket: process.env.IMAGE_BUCKET || ''

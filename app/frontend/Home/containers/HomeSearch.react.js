@@ -100,7 +100,7 @@ class Home extends Component {
         <div className={'rightSide'} >
           <div style={{ height: 50, fontFamily: "lato, sans-serif", fontSize: 32, fontWeight: 700, lineHeight: 1.1 }}>
             <span style={{ fontFamily: "'Ovo', serif", fontSize: '24px', color: 'rgb(51, 51, 51)' }}>
-              A map of the Internet.
+              What to read next.
             </span>
           </div>
           <div style={{ fontFamily: "lato, sans-serif", fontSize: 20, fontWeight: 200 }}>

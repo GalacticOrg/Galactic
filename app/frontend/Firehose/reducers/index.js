@@ -11,6 +11,7 @@ import { RECEIVE_FIREHOSE_DATA } from '../actions';
 const firehoseResult = (state = null, action) => {
   switch (action.type) {
     case RECEIVE_FIREHOSE_DATA:
+    	console.log(action, 'action')
       return action.result;
     default:
       return state;

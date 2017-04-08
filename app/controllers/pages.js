@@ -59,6 +59,7 @@ exports.user = function (req, res) {
 };
 
 exports.firehose = function (req, res) {
+  console.log(req, res, 'req, res')
   res.render('firehose/index', {
     title: 'Firehose'
   });

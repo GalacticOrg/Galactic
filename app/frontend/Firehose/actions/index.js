@@ -16,6 +16,7 @@ function requestFirehoseResult() {
 }
 
 function receiveFirehoseResult(result) {
+  console.log(result, 'receiveFirehoseResult(result)')
   return {
     type: RECEIVE_FIREHOSE_DATA,
     result
