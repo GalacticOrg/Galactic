@@ -49,6 +49,10 @@ Run test with:
 
 	$ sudo npm test
 
+```
+# Gotchas
+Plugin not popping up on screen? Try this: https://localhost:4000/js/popup.bundle.js
+
 #Handy Neo4j Commands
 
 Scrub the Neo4J DB:
