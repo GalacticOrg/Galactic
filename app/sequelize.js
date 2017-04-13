@@ -1,4 +1,10 @@
-var Sequelize = require('sequelize'),
-    sequelize = new Sequelize('postgres://postgres:postgres@localhost:5432/example')
+const pgdb = process.env.pgdb || 'postgres://postgres:postgres@localhost:5432/wikiweb'
 
-module.exports = sequelize
+const Sequelize = require('sequelize'),
+    sequelize = new Sequelize(
+    pgdb,
+    {
+      logging: false
+    });
+
+module.exports = sequelize;

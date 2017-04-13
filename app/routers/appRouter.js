@@ -1,37 +1,39 @@
-var passport = require('passport'),
-    signupController = require('../controllers/signupController.js')
+const signupController = require('../controllers/signupController.js'),
+      appController = require('../controllers/appController.js');
 
 module.exports = function(express) {
   var router = express.Router()
 
   var isAuthenticated = function (req, res, next) {
     if (req.isAuthenticated())
-      return next()
-    req.flash('error', 'You have to be logged in to access the page.')
-    res.redirect('/')
-  }
-  
-  router.get('/signup', signupController.show)
-  router.post('/signup', signupController.signup)
+      return next();
+    req.flash('error', 'You have to be logged in to access the page.');
+    res.redirect('/');
+  };
 
-  router.post('/login', passport.authenticate('local', {
-      successRedirect: '/dashboard',
-      failureRedirect: '/',
-      failureFlash: true 
-  }))
+  var isNotAuthenticated = function (req, res, next) {
+    if (!req.isAuthenticated())
+      return next();
+    res.redirect('/');
+  };
 
-  router.get('/', function(req, res) {
-    res.render('home')
-  })
+  router.get('/signup', isNotAuthenticated, signupController.show);
+  router.post('/signup', signupController.signup);
 
-  router.get('/dashboard', isAuthenticated, function(req, res) {
-    res.render('dashboard')
-  })
+  router.post('/login', signupController.authenticate);
 
-  router.get('/logout', function(req, res) {
-    req.logout()
-    res.redirect('/')
-  })
+  router.get('/login', isNotAuthenticated, signupController.login);
 
-  return router
-}
+  router.get('/', appController.main);
+
+  router.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
+  });
+
+  router.get('/*', function (req, res) {
+    res.status(404).render('404');
+  });
+
+  return router;
+};
