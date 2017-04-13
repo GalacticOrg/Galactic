@@ -15,7 +15,7 @@ module.exports = function (app) {
         }
       }).then(function (user) {
         if (user == null) {
-          return done(null, false, { message: 'Incorrect credentials.' });
+          return done(null, false, { message: 'Incorrect username or password.' });
         }
 
         var hashedPassword = bcrypt.hashSync(password, user.salt);
@@ -24,7 +24,7 @@ module.exports = function (app) {
           return done(null, user);
         }
 
-        return done(null, false, { message: 'Incorrect credentials.' });
+        return done(null, false, { message: 'Incorrect username or password.' });
       });
     }
   ));

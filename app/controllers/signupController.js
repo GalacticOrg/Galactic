@@ -33,7 +33,7 @@ module.exports.signup = function (req, res) {
     console.log(user.id, 'user')
     req.logIn(user, err => {
       if (err) req.flash('info', 'Sorry! We are not able to log you in!');
-      return res.redirect('/');
+      return res.redirect('/login');
     });
   }).catch(function (error) {
     console.log(error, 'signup error');
@@ -44,6 +44,6 @@ module.exports.signup = function (req, res) {
 
 module.exports.authenticate = passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/',
+    failureRedirect: '/login',
     failureFlash: true
 })
