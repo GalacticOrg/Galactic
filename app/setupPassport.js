@@ -11,11 +11,14 @@ module.exports = function (app) {
     function (username, password, done) {
       Model.User.findOne({
         where: {
-          'username': username
+          $or: [
+            { 'username': username },
+            { 'email' : username }
+          ]
         }
       }).then(function (user) {
         if (user == null) {
-          return done(null, false, { message: 'Incorrect username or password.' });
+          return done(null, false, { message: 'Incorrect username, email or password.' });
         }
 
         var hashedPassword = bcrypt.hashSync(password, user.salt);
@@ -24,7 +27,7 @@ module.exports = function (app) {
           return done(null, user);
         }
 
-        return done(null, false, { message: 'Incorrect username or password.' });
+        return done(null, false, { message: 'Incorrect username, email or password.' });
       });
     }
   ));

@@ -26,6 +26,7 @@ module.exports.signup = function (req, res) {
   var newUser = {
     username: username,
     salt: salt,
+    email: email,
     password: hashedPassword
   };
 

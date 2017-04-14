@@ -1,6 +1,11 @@
 var Sequelize = require('sequelize')
 
 var attributes = {
+  id: {
+    type: Sequelize.UUID,
+    primaryKey: true,
+    defaultValue: Sequelize.UUIDV4
+  },
   username: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -16,18 +21,19 @@ var attributes = {
     }
   },
   firstName: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING
   },
   lastName: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING
   },
   password: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING
   },
   salt: {
     type: Sequelize.STRING
-  }
-}
+  },
+  createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.NOW }
+};
 
 var options = {
   freezeTableName: true
