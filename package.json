@@ -5,7 +5,8 @@
   "main": "app.js",
   "author": "Jeff Jenkins",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "nodemon app.js && npm run sass",
+    "sass": "node_modules/node-sass/bin/node-sass --watch styles/ --output static/css/",
     "prod": "NODE_ENV=production PORT=3000 ROOT_URL=http://localhost:3000 node server"
   },
   "dependencies": {
@@ -28,6 +29,7 @@
   "devDependencies": {
     "babel-eslint": "^7.2.2",
     "eslint": "^3.19.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "node-sass": "^3.13.1"
   }
 }
