@@ -5,7 +5,8 @@
   "main": "app.js",
   "author": "Jeff Jenkins",
   "scripts": {
-    "start": "nodemon app.js && npm run sass",
+    "start": "npm run webpack & nodemon app.js && npm run sass",
+    "webpack": "NODE_ENV=development webpack-dev-server --port 8090",
     "sass": "node_modules/node-sass/bin/node-sass --watch styles/ --output static/css/",
     "prod": "NODE_ENV=production PORT=3000 ROOT_URL=http://localhost:3000 node server"
   },
@@ -16,6 +17,7 @@
     "connect-pg-simple": "^3.1.2",
     "connect-session-sequelize": "^4.1.0",
     "cookie-parser": "~1.3.5",
+    "dotenv": "^4.0.0",
     "express": "~4.13.3",
     "express-handlebars": "~2.0.1",
     "express-session": "~1.11.3",
@@ -24,12 +26,24 @@
     "passport-local": "~1.0.0",
     "pg": "~4.4.1",
     "pg-hstore": "~2.3.2",
-    "sequelize": "~3.6.0"
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "sequelize": "~3.24.5",
+    "superagent": "^3.5.2"
   },
   "devDependencies": {
+    "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.2",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "browser-sync": "^2.18.8",
+    "browser-sync-webpack-plugin": "^1.1.4",
     "eslint": "^3.19.0",
+    "node-sass": "^3.13.1",
     "nodemon": "^1.11.0",
-    "node-sass": "^3.13.1"
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.2"
   }
 }

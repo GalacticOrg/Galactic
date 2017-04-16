@@ -26,6 +26,10 @@ module.exports = function(express) {
 
   router.get('/', appController.main);
 
+  router.get('/test', appController.test);
+
+
+
   router.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
