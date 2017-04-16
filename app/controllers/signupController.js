@@ -31,13 +31,11 @@ module.exports.signup = function (req, res) {
   };
 
   Model.User.create(newUser).then(function (user){
-    console.log(user.id, 'user')
     req.logIn(user, err => {
       if (err) req.flash('info', 'Sorry! We are not able to log you in!');
       return res.redirect('/login');
     });
   }).catch(function (error) {
-    console.log(error, 'signup error');
     req.flash('error', 'Please, choose a different username.');
     res.redirect('/signup');
   });
