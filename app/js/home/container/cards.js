@@ -8,7 +8,8 @@ class Cards extends Component {
 
   render (){
     return (
-      <div>
+      <div style="background-color: red">
+        This is the container Cards.js
         <Card />
         <Card />
         <Card />
