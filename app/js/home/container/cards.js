@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import Card from '../components/card'
+
 class Cards extends Component {
   constructor (props) {
     super(props);
   }
 
-  render() {
+  render (){
     return (
       <div>
         <Card />
@@ -14,6 +15,6 @@ class Cards extends Component {
       </div>
     );
   }
-};
+}
 
 export default Cards;

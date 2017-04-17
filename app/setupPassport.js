@@ -33,13 +33,10 @@ module.exports = function (app) {
   ));
 
   passport.serializeUser(function (user, done) {
-    console.log(user, 'user.id serializeUser');
-
     done(null, user.id);
   });
 
   passport.deserializeUser(function (id, done) {
-    console.log(id, 'idid');
     Model.User.findOne({
       where: {
         'id': id
