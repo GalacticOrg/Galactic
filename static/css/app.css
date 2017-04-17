@@ -13,6 +13,19 @@ i {
 
 .landingPage .headline {
   text-align: center; }
+  .landingPage .headline h1 {
+    font-family: "Andale Mono";
+    font-size: 48px;
+    font-weight: 900;
+    margin: 8px 0 32px;
+    color: purple; }
+  .landingPage .headline h2 {
+    font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
+    font-size: 19px;
+    font-weight: 400;
+    margin: 8px 0 32px;
+    margin-top: -15px;
+    color: #999; }
 
 .landingPage .landingPageSignupForm {
   width: 650px;
