@@ -13,6 +13,7 @@ i {
 
 .landingPage .headline {
   margin-top: 30px;
+  margin-bottom: 10px;
   text-align: center; }
   .landingPage .headline h1 {
     font-family: "Andale Mono";
