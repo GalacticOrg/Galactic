@@ -20,7 +20,6 @@ module.exports.test = function (req, res) {
 };
 
 module.exports.main = function (req, res) {
-  console.log(req.user?req.user.id:'nada', 'main main');
 
   if (req.isAuthenticated()){
     home(req, res);

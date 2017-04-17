@@ -5,13 +5,13 @@ class Card extends Component {
     super(props);
   }
 
-  render() {
+  render (){
     return (
       <div>
         <h1>Hello, world! This is a card in components.</h1>
       </div>
     );
   }
-};
+}
 
 export default Card;
