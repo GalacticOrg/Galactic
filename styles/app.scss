@@ -17,6 +17,7 @@ i {
 
 .landingPage {
 	.headline {
+		margin-top: 30px;
 		text-align: center;
 		h1 {
 			font-family: "Andale Mono";
@@ -63,6 +64,7 @@ i {
 		    font-size: 13px;
 		    line-height: 1.4;
     		.signup {
+    			height: 140px; /* for the border */
     			padding-right: 32px;
     			width: 50%;
     			box-sizing: border-box;
@@ -179,6 +181,35 @@ i {
 										    text-decoration: underline;
 										}
 		    					}
+		    					.submit_button_box {
+		    						float: right;	    						
+			    					.submit_button {
+									    -webkit-user-select: none;
+									    -moz-user-select: none;
+									    -ms-user-select: none;
+									    user-select: none;
+									    -webkit-box-sizing: border-box;
+									    -moz-box-sizing: border-box;
+									    box-sizing: border-box;
+									    transition: opacity ease-in-out 100ms,color ease-in-out 100ms,background-color ease-in-out 100ms,border-color ease-in-out 100ms;
+									    border-radius: 3px;
+									    box-shadow: 0 1px 1px 0 rgba(200,200,200,0.2);
+									    display: inline-block;
+									    font-weight: 500;
+									    outline: 0;
+									    padding: 3px 7px 4px 7px;
+									    text-align: center;
+									    text-decoration: none;
+									    cursor: pointer;
+									    background: #3e78ad;
+									    color: #fff;
+									    border: 1px solid #3a66ad;
+									    box-shadow: 0 1px 1px 0 rgba(200,200,200,0.6);
+	    						    font-size: 15px;
+	    								line-height: 1.4;
+	    								opacity: 0.5;
+			    					}		    				
+		    					}
 		    				}
 		    			}
 	    			}
@@ -214,6 +245,6 @@ i {
   }
   .content_inner {
   	padding: 32px;
-  	height: 120px;
+  	height: 130px;
   }
 }
