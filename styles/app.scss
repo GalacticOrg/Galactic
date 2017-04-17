@@ -57,6 +57,7 @@ i {
     box-sizing: border-box;
     position: relative;
     .content_inner {
+    	margin-bottom: 10px;
     	.signup_login {
     		color: #333;
     		word-wrap: break-word;
@@ -183,6 +184,7 @@ i {
 										}
 		    					}
 		    					.submit_button_box {
+		    						width: 60px;
 		    						float: right;	    						
 			    					.submit_button {
 									    -webkit-user-select: none;
@@ -248,4 +250,17 @@ i {
   	padding: 32px;
   	height: 130px;
   }
+}
+
+.loginPage {
+	.container {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		form {
+			border: 1px solid purple;
+		}
+		img {
+			height: 50px;
+		}
+	}
 }

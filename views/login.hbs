@@ -2,20 +2,21 @@
     <link rel="stylesheet" href="/static/css/auth.css">
 {{/section}}
 
-<div class="container">
-  <form method="POST" action="/login" class="form-signin">
-    <h2 class="form-signin-heading">Please log in</h2>
+<div class="loginPage">
+  <div class="container">
+    <form method="POST" action="/login" class="form-signin">
+      <img src="/static/img/logo.png">
+      <h2 class="form-signin-heading">Please log in</h2>
 
-    {{#if errorMessage}}
-      <div class="alert alert-danger">
-        {{errorMessage}}
-      </div>
-    {{/if}}
-
-    <label for="inputUsername" class="sr-only">Username or Email</label>
-    <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username or Email" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
-  </form>
+      {{#if errorMessage}}
+        <div class="alert alert-danger">
+          {{errorMessage}}
+        </div>
+      {{/if}}
+      <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username or Email" required autofocus>
+      <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+      <br />
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+    </form>
+  </div>
 </div>
