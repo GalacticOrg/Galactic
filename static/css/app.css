@@ -5,6 +5,15 @@ body {
   /* Move down content because we have a fixed navbar that is 50px tall */
   padding-top: 50px; }
 
+i {
+  color: white; }
+
+.top_five {
+  margin-top: 5px; }
+
+.landingPage .headline {
+  text-align: center; }
+
 .landingPage .landingPageSignupForm {
   width: 650px;
   position: absolute;
@@ -14,9 +23,6 @@ body {
   margin: auto;
   overflow-y: hidden;
   top: 10%; }
-
-.landingPage .headline {
-  text-align: center; }
 
 .landingPage .container {
   background: #fff;
@@ -28,6 +34,113 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   position: relative; }
+  .landingPage .container .content_inner .signup_login {
+    color: #333;
+    word-wrap: break-word;
+    font-weight: 400;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    line-height: 1.4; }
+    .landingPage .container .content_inner .signup_login .signup {
+      padding-right: 32px;
+      width: 50%;
+      box-sizing: border-box;
+      position: relative;
+      float: left; }
+      .landingPage .container .content_inner .signup_login .signup .connect_buttons_row .connect_with_email_icon {
+        float: left;
+        content: "";
+        margin-right: 8px;
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-size: 16px 16px;
+        color: white; }
+      .landingPage .container .content_inner .signup_login .signup .connect_buttons_row .connect_with_email_text {
+        color: white;
+        float: left;
+        background-color: purple;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        transition: opacity ease-in-out 100ms,color ease-in-out 100ms,background-color ease-in-out 100ms,border-color ease-in-out 100ms;
+        border-radius: 3px;
+        box-shadow: 0 1px 1px 0 rgba(200, 200, 200, 0.2);
+        display: inline-block;
+        font-weight: 500;
+        outline: 0;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        margin-bottom: 16px;
+        font-size: 17px;
+        padding: 8px 16px;
+        width: 260px; }
+      .landingPage .container .content_inner .signup_login .signup .connect_buttons_row .connect_with_email_text:hover {
+        opacity: 0.9; }
+      .landingPage .container .content_inner .signup_login .signup .TosDisclaimer {
+        color: #999;
+        font-size: 13px; }
+    .landingPage .container .content_inner .signup_login .signup:after {
+      content: "";
+      width: 1px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      background-color: #e2e2e2;
+      left: 100%; }
+    .landingPage .container .content_inner .signup_login .login {
+      padding-left: 32px;
+      width: 50%;
+      box-sizing: border-box;
+      float: left; }
+      .landingPage .container .content_inner .signup_login .login .regular_login {
+        display: block; }
+        .landingPage .container .content_inner .signup_login .login .regular_login form {
+          display: block;
+          margin-top: 0em; }
+          .landingPage .container .content_inner .signup_login .login .regular_login form .title {
+            margin-bottom: 8px;
+            font-weight: bold; }
+          .landingPage .container .content_inner .signup_login .login .regular_login form .form_inputs .form_column input {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            outline: 0;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            box-shadow: inset 0 1px 1px rgba(200, 200, 200, 0.3);
+            -webkit-transition: border-color .2s;
+            transition: border-color .2s;
+            -webkit-transition: border-color .2s 180ms ease-in-out 0s;
+            -o-transition: border-color .2s 180ms ease-in-out 0s;
+            transition: border-color .2s 180ms ease-in-out 0s;
+            background-color: #EEE;
+            width: 100%;
+            font-size: 15px;
+            line-height: 1.4;
+            min-height: 32px;
+            margin-bottom: 8px;
+            padding: 3px 5px;
+            height: 15px;
+            padding-left: 8px;
+            padding-right: 8px; }
+          .landingPage .container .content_inner .signup_login .login .regular_login form .form_inputs .form_column input:focus {
+            border-color: #333; }
+          .landingPage .container .content_inner .signup_login .login .regular_login form .form_inputs .form_column .login_options a {
+            text-decoration: none;
+            color: #999;
+            font-weight: 400;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 13px;
+            line-height: 1.4;
+            word-wrap: break-word; }
+          .landingPage .container .content_inner .signup_login .login .regular_login form .form_inputs .form_column .login_options a:hover {
+            text-decoration: underline; }
   .landingPage .container .footerNav {
     display: block;
     padding: 16px;
@@ -51,4 +164,5 @@ body {
         text-decoration: none; }
 
 .landingPage .content_inner {
-  padding: 32px; }
+  padding: 32px;
+  height: 120px; }

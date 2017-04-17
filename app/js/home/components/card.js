@@ -8,7 +8,7 @@ class Card extends Component {
   render() {
     return (
       <div>
-        <h1>Hello, world! This is a card.</h1>
+        <h1>Hello, world! This is a card in components.</h1>
       </div>
     );
   }
