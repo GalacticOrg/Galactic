@@ -34,10 +34,6 @@ a {
 	background: transparent;
 }
 
-i {
-	color: white;
-}
-
 img {
 	border: 0;
 }
@@ -576,8 +572,22 @@ img {
 					}
 					.socialShare {
 						float: right;
-						padding-top: 5px;
 						padding-right: 10px;
+						background-image: none;
+    				background-color: transparent;
+    				span {
+    					margin-right: 5px;
+    					margin-top: -2px;
+    					i {
+	  						font-size: 17px;
+	  						line-height: 1.4;
+    						background-image: none;
+    						background-color: transparent;
+    						&:hover {
+    							color: #666666;
+    						}
+    					}
+    				}
 					}
 		    }
 	    }

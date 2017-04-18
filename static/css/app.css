@@ -28,9 +28,6 @@ a {
   text-decoration: none;
   background: transparent; }
 
-i {
-  color: white; }
-
 img {
   border: 0; }
 
@@ -473,8 +470,19 @@ img {
           margin: -3px 0 0 4px; }
         .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare {
           float: right;
-          padding-top: 5px;
-          padding-right: 10px; }
+          padding-right: 10px;
+          background-image: none;
+          background-color: transparent; }
+          .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span {
+            margin-right: 5px;
+            margin-top: -2px; }
+            .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i {
+              font-size: 17px;
+              line-height: 1.4;
+              background-image: none;
+              background-color: transparent; }
+              .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i:hover {
+                color: #666666; }
   .homePage .contentWrapper .layout_3col_right {
     background-color: aqua;
     width: 220px;
