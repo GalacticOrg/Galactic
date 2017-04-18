@@ -10,7 +10,12 @@ html {
 
 body {
   /* Move down content because we have a fixed navbar that is 50px tall */
-  word-wrap: break-word; }
+  height: 100%;
+  word-wrap: break-word;
+  color: #333;
+  font-size: 13px;
+  overflow-y: scroll;
+  overflow-x: auto; }
 
 ul {
   list-style: none; }
@@ -20,10 +25,14 @@ h1, h2, h3, h4, h5, h6, ul, ol, li {
   padding: 0; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  background: transparent; }
 
 i {
   color: white; }
+
+img {
+  border: 0; }
 
 .top_five {
   margin-top: 5px; }
@@ -245,7 +254,10 @@ i {
   margin: 53px auto 0;
   padding-top: 30px;
   padding-left: 32px;
-  padding-right: 32px; }
+  padding-right: 32px;
+  /* end layout_3col_left */
+  /* end layout_3col_center */
+  /* end layout_3col_right */ }
   .homePage .contentWrapper .layout_3col_left {
     width: 142px;
     float: left;
@@ -290,6 +302,7 @@ i {
       font-weight: 400;
       color: #666; }
   .homePage .contentWrapper .layout_3col_center {
+    line-height: 1.4;
     width: 572px;
     float: left;
     min-height: 1px;
@@ -309,6 +322,50 @@ i {
           color: #333;
           font-weight: 500;
           font-size: 15px; }
+    .homePage .contentWrapper .layout_3col_center .addQuestionPrompt {
+      margin-top: 16px;
+      margin-bottom: 0;
+      color: #999;
+      font-size: 13px;
+      text-align: left; }
+      .homePage .contentWrapper .layout_3col_center .addQuestionPrompt .inner {
+        margin-bottom: 4px; }
+        .homePage .contentWrapper .layout_3col_center .addQuestionPrompt .inner .nameWithPhoto .profile_photo_img {
+          float: left;
+          width: 18px;
+          height: 18px;
+          margin-right: 4px;
+          border-radius: 50%; }
+      .homePage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton {
+        color: #262626;
+        display: block;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #e2e2e2; }
+        .homePage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner {
+          color: #999;
+          font-weight: bold;
+          font-size: 18px;
+          line-height: 1.3;
+          font-family: 'q_serif',Georgia,Times,"Times New Roman",serif; }
+          .homePage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner span:hover {
+            color: #2b6dad;
+            cursor: pointer; }
+    .homePage .contentWrapper .layout_3col_center .feedBundle {
+      padding-top: 16px;
+      margin-bottom: 0;
+      color: #999;
+      font-size: 13px;
+      text-align: left; }
+      .homePage .contentWrapper .layout_3col_center .feedBundle:hover {
+        background-color: #F6F8F9;
+        cursor: pointer; }
+      .homePage .contentWrapper .layout_3col_center .feedBundle .bullet {
+        color: #999;
+        font-size: 13px; }
+      .homePage .contentWrapper .layout_3col_center .feedBundle .topic a:hover {
+        text-decoration: underline; }
+      .homePage .contentWrapper .layout_3col_center .feedBundle .time a:hover {
+        text-decoration: underline; }
   .homePage .contentWrapper .layout_3col_right {
     background-color: aqua;
     width: 220px;
