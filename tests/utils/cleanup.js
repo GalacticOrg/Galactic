@@ -1,10 +1,22 @@
-var Model = require('../../app/model/models.js')
+const User = require('../../app/model/User.js'),
+      Page = require('../../app/model/Page.js');
+
 
 module.exports = function(callback) {
   // recreate User table
-  Model.User.sync({ force: true }).then(function(result) {
+  Model.User.sync({ force: true }).then(function (){
+
+    Page.User.sync({ force: true }).then(function (){
+      callback();
+    }).catch(function (err){
+      console.log(err);
+      callback();
+    });
+
+  }).catch(function (err){
+    console.log(err);
     callback();
-  }).catch(function(err){
-    callback();
-  })
+  });
+
+
 }

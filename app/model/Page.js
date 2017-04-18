@@ -1,6 +1,7 @@
-var Sequelize = require('sequelize')
+const Sequelize = require('sequelize'),
+    connection = require('./sequelize.js');
 
-var attributes = {
+const attributes = {
   id: {
     type: Sequelize.UUID,
     primaryKey: true,
@@ -22,9 +23,9 @@ var attributes = {
   }
 };
 
-var options = {
+const options = {
   freezeTableName: true
 };
 
-module.exports.attributes = attributes
-module.exports.options = options
+const Page = connection.define('pages', attributes, options);
+module.exports = Page;

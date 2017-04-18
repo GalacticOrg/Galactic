@@ -1,5 +1,5 @@
 var bcrypt = require('bcrypt'),
-    Model = require('../model/models.js'),
+    User = require('../model/User.js'),
     passport = require('passport');
 
 module.exports.show = function (req, res) {
@@ -30,7 +30,7 @@ module.exports.signup = function (req, res) {
     password: hashedPassword
   };
 
-  Model.User.create(newUser).then(function (user){
+  User.create(newUser).then(function (user){
     req.logIn(user, err => {
       if (err) req.flash('info', 'Sorry! We are not able to log you in!');
       return res.redirect('/login');
