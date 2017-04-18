@@ -471,6 +471,10 @@ img {
           font-size: 12px;
           padding: 1px 3px;
           margin: -3px 0 0 4px; }
+        .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare {
+          float: right;
+          padding-top: 5px;
+          padding-right: 10px; }
   .homePage .contentWrapper .layout_3col_right {
     background-color: aqua;
     width: 220px;
