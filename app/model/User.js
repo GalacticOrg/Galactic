@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize'),
-    connection = require('./sequelize.js');
+      connection = require('./sequelize.js');
 
 const attributes = {
   id: {
