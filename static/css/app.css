@@ -1,9 +1,26 @@
 /*
  * Base structure
  */
+html {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  height: 100%;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.4; }
+
 body {
   /* Move down content because we have a fixed navbar that is 50px tall */
-  padding-top: 50px; }
+  word-wrap: break-word; }
+
+ul {
+  list-style: none; }
+
+h1, h2, h3, h4, h5, h6, ul, ol, li {
+  margin: 0;
+  padding: 0; }
+
+a {
+  text-decoration: none; }
 
 i {
   color: white; }
@@ -221,3 +238,82 @@ i {
     border: 1px solid purple; }
   .loginPage .container img {
     height: 50px; }
+
+.homePage .contentWrapper {
+  background-color: beige;
+  width: 1002px;
+  margin: 53px auto 0;
+  padding-top: 30px;
+  padding-left: 32px;
+  padding-right: 32px; }
+  .homePage .contentWrapper .layout_3col_left {
+    width: 142px;
+    float: left;
+    min-height: 1px;
+    clear: left;
+    font-size: 13px; }
+    .homePage .contentWrapper .layout_3col_left .title {
+      color: #333;
+      font-weight: 500;
+      position: relative;
+      border-bottom: 1px solid #e2e2e2;
+      margin: 0;
+      padding: 0;
+      padding-bottom: 8px;
+      font-size: 15px;
+      letter-spacing: 0;
+      text-transform: none;
+      margin-bottom: 8px;
+      position: relative; }
+      .homePage .contentWrapper .layout_3col_left .title .title_with_link {
+        color: #333;
+        font-weight: 500;
+        font-size: 15px;
+        letter-spacing: 0;
+        text-transform: none;
+        line-height: 1.4; }
+    .homePage .contentWrapper .layout_3col_left .pagedList .pagedListItem ul li {
+      padding: 4px 5px;
+      margin: 0 0 0 -5px;
+      width: 100%; }
+      .homePage .contentWrapper .layout_3col_left .pagedList .pagedListItem ul li a {
+        margin-bottom: 2px;
+        margin-top: 2px;
+        display: inline-block;
+        color: #666; }
+      .homePage .contentWrapper .layout_3col_left .pagedList .pagedListItem ul li a:hover {
+        color: #2b6dad; }
+    .homePage .contentWrapper .layout_3col_left .nav_item_selected > ul > li {
+      background-color: #ececec;
+      border-radius: 3px;
+      cursor: default;
+      font-weight: 400;
+      color: #666; }
+  .homePage .contentWrapper .layout_3col_center {
+    width: 572px;
+    float: left;
+    min-height: 1px;
+    margin-left: 30px; }
+    .homePage .contentWrapper .layout_3col_center .section_header {
+      display: flex;
+      border-bottom: 1px solid #e2e2e2;
+      padding-bottom: 8px; }
+      .homePage .contentWrapper .layout_3col_center .section_header .header_text {
+        align-self: flex-start;
+        width: 100%;
+        color: #999;
+        font-size: 13px;
+        line-height: 1.4; }
+        .homePage .contentWrapper .layout_3col_center .section_header .header_text span {
+          float: none;
+          color: #333;
+          font-weight: 500;
+          font-size: 15px; }
+  .homePage .contentWrapper .layout_3col_right {
+    background-color: aqua;
+    width: 220px;
+    float: left;
+    min-height: 1px;
+    margin-left: 30px;
+    font-size: 13px;
+    height: 200px; }

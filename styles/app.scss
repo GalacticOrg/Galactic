@@ -2,9 +2,30 @@
  * Base structure
  */
 
+html {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  height: 100%;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
 body {
 	/* Move down content because we have a fixed navbar that is 50px tall */
-  padding-top: 50px;
+  word-wrap: break-word;
+}
+
+ul {
+	list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6, ul, ol, li {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
 }
 
 i {
@@ -264,3 +285,105 @@ i {
 		}
 	}
 }
+
+.homePage {
+	.contentWrapper {
+		background-color: beige;
+    width: 1002px;
+    margin: 53px auto 0;
+    padding-top: 30px;
+    padding-left: 32px;
+    padding-right: 32px;
+    .layout_3col_left {
+	    width: 142px;
+	    float: left;
+	    min-height: 1px;
+	    // margin-left: 30px;
+	    clear: left;
+	    font-size: 13px;
+	    .title {
+		    color: #333;
+		    font-weight: 500;
+		    position: relative;
+		    border-bottom: 1px solid #e2e2e2;
+		    margin: 0;
+		    padding: 0;
+		    padding-bottom: 8px;
+		    font-size: 15px;
+		    letter-spacing: 0;
+		    text-transform: none;
+        margin-bottom: 8px;
+    		position: relative;
+    		.title_with_link {
+    			color: #333;
+    			font-weight: 500;
+    			font-size: 15px;
+    			letter-spacing: 0;
+    			text-transform: none;
+    			line-height: 1.4;
+    		}
+			}
+			.pagedList {
+				.pagedListItem {
+					ul {
+						li {
+							padding: 4px 5px;
+					    margin: 0 0 0 -5px;
+					    width: 100%;
+							a {
+								margin-bottom: 2px;
+								margin-top: 2px;
+								display: inline-block;
+    						color: #666;
+							}
+							a:hover {
+								color: #2b6dad;	
+							}
+						}
+					}
+				}
+			}
+			.nav_item_selected > ul > li {
+				background-color: #ececec;
+				border-radius: 3px;
+				cursor: default;
+				font-weight: 400;
+				color: #666;
+			}
+		}
+		.layout_3col_center {
+	    width: 572px;
+	    float: left;
+	    min-height: 1px;
+	    margin-left: 30px;
+	    .section_header {
+  	    display: flex;
+				border-bottom: 1px solid #e2e2e2;
+				padding-bottom: 8px;
+	    	.header_text {
+  		    align-self: flex-start;
+    			width: 100%;
+			    color: #999;
+    			font-size: 13px;
+			    line-height: 1.4;
+			    span {
+	    	    float: none;
+				    color: #333;
+				    font-weight: 500;
+				    font-size: 15px;
+			    }
+	    	}
+	    }
+		}
+		.layout_3col_right {
+			background-color: aqua;
+	    width: 220px;
+	    float: left;
+	    min-height: 1px;
+	    margin-left: 30px;
+	    font-size: 13px;
+	    height: 200px;
+		}
+	}
+}
+
