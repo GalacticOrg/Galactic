@@ -32,20 +32,18 @@ const home = function (req, res) {
 
 module.exports.test = function (req, res) {
   const pageId = 'CE212FC5-2CB9-4A19-BED2-9B7D19E1599E';
-  // Connection.findAll({pageId:''})
-  // Page.findOne(
-  //   { id:pageId, include:[{model: User}]}
-  // )
-  //   .then(function(page){
-  //     res.send(page)
-  //   // page.getUser().getConnections().then(function(user){
-  //   //   res.send({
-  //   //     user,
-  //   //     page
-  //   //
-  //   //   })
-  //   // });
-  // });
+  Connection.findAll({pageId:''})
+  Page.findOne(
+    { id:pageId, include:[{model: User}]}
+  )
+    .then(function(page){
+
+    page.getConnections().then(function(connection){
+      res.send({
+        connection,
+      })
+    });
+  });
 };
 
 module.exports.main = function (req, res) {
