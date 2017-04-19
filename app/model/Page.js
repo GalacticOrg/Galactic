@@ -36,7 +36,6 @@ const options = {
   freezeTableName: true,
   classMethods: {
     saveDiffBotResult: function (data, user){
-
       return Page.create({
         html: data.html,
         text: data.html,
@@ -53,6 +52,15 @@ const options = {
         authors: data.authors,
         images: data.images,
         userId: user.id
+      });
+    },
+    load: function (url){
+      // 1 Full url
+      // 2 Without protocol
+      // 3 withtout params
+      //
+      return Page.findOne({
+        pageUrl:url
       });
     }
   }

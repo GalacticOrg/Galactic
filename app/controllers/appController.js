@@ -30,20 +30,31 @@ const home = function (req, res) {
 //   });
 // };
 
-module.exports.test = function (req, res) {
-  const pageId = 'CE212FC5-2CB9-4A19-BED2-9B7D19E1599E';
-  Connection.findAll({pageId:''})
-  Page.findOne(
-    { id:pageId, include:[{model: User}]}
-  )
-    .then(function(page){
+// Connection.findAll({pageId:''})
+// Page.findOne(
+//   { id:pageId, include:[{model: User}]}
+// )
+//   .then(function(page){
+//
+//   page.getConnections().then(function(connection){
+//     res.send({
+//       connection,
+//     })
+//   });
+// });
 
-    page.getConnections().then(function(connection){
-      res.send({
-        connection,
-      })
-    });
+module.exports.loadurl = function (req, res, next, id) {
+  Page.findPage(id).then(function(){
+    parser
   });
+};
+
+module.exports.page = function (req, res) {
+
+};
+
+module.exports.search = function (req, res) {
+
 };
 
 module.exports.main = function (req, res) {
