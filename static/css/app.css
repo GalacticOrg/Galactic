@@ -491,10 +491,59 @@ img {
               .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i:hover {
                 color: #666666; }
   .homePage .contentWrapper .layout_3col_right {
-    background-color: aqua;
     width: 220px;
     float: left;
     min-height: 1px;
     margin-left: 30px;
     font-size: 13px;
     height: 200px; }
+    .homePage .contentWrapper .layout_3col_right .identityModule {
+      text-align: center;
+      border: 1px solid #e2e2e2; }
+      .homePage .contentWrapper .layout_3col_right .identityModule .top_rail {
+        background-color: purple;
+        height: 80px; }
+      .homePage .contentWrapper .layout_3col_right .identityModule .actor {
+        margin: 0;
+        border: 0;
+        outline: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+        background: 0 0;
+        box-sizing: inherit;
+        height: 107px;
+        border-bottom: 1px solid #e2e2e2; }
+        .homePage .contentWrapper .layout_3col_right .identityModule .actor .profile_img_box {
+          content: "";
+          margin: auto;
+          width: 68px; }
+          .homePage .contentWrapper .layout_3col_right .identityModule .actor .profile_img_box .profile_img {
+            height: 68px;
+            width: 68px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: inset 0 1.5px 3px 0 rgba(0, 0, 0, 0.15), 0 1.5px 3px 0 rgba(0, 0, 0, 0.15);
+            margin: -38px auto 12px; }
+        .homePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info {
+          font-family: 'q_serif',Georgia,Times,"Times New Roman",serif; }
+          .homePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname {
+            font-size: 16px;
+            color: #333; }
+            .homePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname a:hover {
+              cursor: pointer; }
+          .homePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .title {
+            margin-top: 2px;
+            color: #999;
+            font-size: 13px; }
+      .homePage .contentWrapper .layout_3col_right .identityModule .stats {
+        padding: 12px; }
+        .homePage .contentWrapper .layout_3col_right .identityModule .stats .number {
+          color: purple;
+          font-size: 17px; }
+        .homePage .contentWrapper .layout_3col_right .identityModule .stats .text {
+          color: #999;
+          font-size: 13px; }
+        .homePage .contentWrapper .layout_3col_right .identityModule .stats .divider {
+          content: "";
+          border-top: 1px solid #e2e2e2;
+          margin: 10px; }
