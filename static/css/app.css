@@ -97,11 +97,9 @@ img {
         .landingPage .container .content_inner .signup_login .signup .connect_buttons_row .connect_with_email_icon {
           float: left;
           content: "";
-          margin-right: 8px;
           display: inline-block;
-          width: 16px;
-          height: 16px;
-          background-size: 16px 16px;
+          font-size: 22px;
+          line-height: 22px;
           color: white; }
         .landingPage .container .content_inner .signup_login .signup .connect_buttons_row .connect_with_email_text {
           color: white;
@@ -371,6 +369,8 @@ img {
         align-items: center; }
         .appNav .appNavInner .pageButtons .pageButton .currentPage {
           color: purple; }
+          .appNav .appNavInner .pageButtons .pageButton .currentPage:hover {
+            background-color: white; }
         .appNav .appNavInner .pageButtons .pageButton:hover {
           background-color: #F4F4F4;
           cursor: pointer; }
@@ -378,6 +378,7 @@ img {
           display: flex;
           flex-direction: row; }
           .appNav .appNavInner .pageButtons .pageButton .buttonContents .icon {
+            min-width: 17px;
             font-size: 17px;
             padding-left: 14px; }
           .appNav .appNavInner .pageButtons .pageButton .buttonContents .text {
@@ -392,6 +393,113 @@ img {
             margin-top: 6px; }
 
 /* end appNav */
+.homePage .modalMask {
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color: black;
+  opacity: 0.75;
+  z-index: 2; }
+
+.homePage .requestModal {
+  display: none;
+  margin: auto;
+  margin-top: 100px;
+  margin-left: 30%;
+  width: 620px;
+  background-color: white;
+  z-index: 10;
+  position: fixed;
+  border-radius: 4px; }
+  .homePage .requestModal .modalContent {
+    padding: 32px 32px 24px 32px; }
+    .homePage .requestModal .modalContent .closeButton {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding-right: 15px;
+      padding-top: 8px;
+      font-size: 20px;
+      color: #999; }
+      .homePage .requestModal .modalContent .closeButton i:hover {
+        color: #2b6dad;
+        cursor: pointer; }
+    .homePage .requestModal .modalContent .contentBox .userImg {
+      float: left; }
+      .homePage .requestModal .modalContent .contentBox .userImg img {
+        height: 25px;
+        width: 25px;
+        border-radius: 50%; }
+    .homePage .requestModal .modalContent .contentBox div {
+      margin-left: 30px; }
+      .homePage .requestModal .modalContent .contentBox div .username, .homePage .requestModal .modalContent .contentBox div .text {
+        color: #999;
+        font-size: 15px;
+        line-height: 25px;
+        font-weight: 400;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+    .homePage .requestModal .modalContent .questionBox {
+      clear: both;
+      width: 100%; }
+      .homePage .requestModal .modalContent .questionBox textarea {
+        resize: none;
+        width: 100%;
+        overflow: hidden;
+        word-wrap: break-word;
+        font-weight: bold;
+        line-height: 1.3;
+        color: #262626;
+        font-size: 18px;
+        padding: 0;
+        margin-top: 8px;
+        border: 0;
+        box-shadow: none;
+        padding-bottom: 8px; }
+        .homePage .requestModal .modalContent .questionBox textarea:focus {
+          outline: none; }
+  .homePage .requestModal .modalFooter {
+    background: #f6f6f6;
+    border-radius: 0 0 4px 4px;
+    padding: 10px;
+    border-top: 1px solid #e2e2e2;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 1.4;
+    display: flex;
+    justify-content: flex-end; }
+    .homePage .requestModal .modalFooter div {
+      display: flex;
+      justify-content: flex-end; }
+    .homePage .requestModal .modalFooter .cancel {
+      margin-top: 4px;
+      font-size: 15px;
+      line-height: 1.4;
+      color: #999;
+      cursor: pointer;
+      margin-right: 16px; }
+    .homePage .requestModal .modalFooter .askButton {
+      padding: 6px 8px;
+      user-select: none;
+      box-sizing: border-box;
+      transition: opacity ease-in-out 100ms,color ease-in-out 100ms,background-color ease-in-out 100ms,border-color ease-in-out 100ms;
+      border-radius: 3px;
+      font-weight: 500;
+      outline: 0;
+      padding: 3px 7px 4px 7px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      background: #3e78ad;
+      color: #fff;
+      border: 1px solid #3a66ad;
+      box-shadow: 0 1px 1px 0 rgba(200, 200, 200, 0.6); }
+      .homePage .requestModal .modalFooter .askButton:hover {
+        border: 1px solid #333; }
+
+.homePage .displayRequestModal {
+  display: block; }
+
 .homePage .contentWrapper {
   width: 1002px;
   margin: 53px auto 0;
@@ -664,6 +772,7 @@ img {
           margin: auto;
           width: 68px; }
           .homePage .contentWrapper .layout_3col_right .identityModule .actor .profile_img_box .profile_img {
+            background: white;
             height: 68px;
             width: 68px;
             border-radius: 50%;
