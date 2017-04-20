@@ -3,12 +3,15 @@
 		<div class="wikiwebLogo">
 			WikiWeb
 		</div>
-		<div class="searchBox">
+		<form id="askform" class="searchBox" action="/search" method="get">
 			<textarea
+				type="text"
+				id="email"
+				name="q"
 				placeholder="Ask or Search the WikiWeb"
 			></textarea>
-			<div class="submitButton">Search</div>
-		</div>
+			<input class="submitButton" type="submit" value="Submit"></input>
+		</form>
 		<div class="pageButtons">
 			<div class="pageButton">
 				<div class="buttonContents currentPage">
@@ -45,6 +48,12 @@
 		</div>
 	</div>
 </div>
+
+{{#if errorMessage}}
+	<div style="top:70px; left:50px; position: absolute;" class="alert alert-danger">
+		{{errorMessage}}
+	</div>
+{{/if}}
 
 <div class="homePage">
 	<div class="modalMask displayRequestModal"></div>
@@ -377,5 +386,5 @@
 
 </div>
 {{#section 'foot'}}
-<script type="application/javascript" src="http://0.0.0.0:8090/js/home.js"></script>
+<!-- <script type="application/javascript" src="http://0.0.0.0:8090/js/home.js"></script> -->
 {{/section}}

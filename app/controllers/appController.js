@@ -1,6 +1,6 @@
-var parser = require('../../utils/pageparser'),
+var parser = require('../../utils/pageparser').diffBotAnalyze,
+    isValidURI = require('../../utils/pageparser').isValidURI,
     Page = require('../model/page.js'),
-    User = require('../model/user.js'),
     Connection = require('../model/Connection.js');
 
 
@@ -44,18 +44,101 @@ const home = function (req, res) {
 // });
 
 module.exports.loadurl = function (req, res, next, id) {
-  Page.findPage(id).then(function(){
-    parser
-  });
+
 };
 
 module.exports.page = function (req, res) {
+  console.log(req.url, 'page hit')
+  const pageId =  req.url.replace('/page/','');
+  Page.loadPage(pageId).then(function (result){
+    if (result === null){
+      res.render('404');
+    } else {
+      const page = result.dataValues;
+      console.log(page, 'page')
+      //return res.send(page)
+      res.render('page', {
+        page
+      });
+    }
 
+  });
 };
 
 module.exports.search = function (req, res) {
+  const inputURI = req.query.q;
+  let uri = '';
+  if (inputURI && inputURI.search('https://') === -1 && inputURI.search('http://') === -1){
+    uri = 'http://';
+  }
+  uri += inputURI;
+  let pages = [];
+  let addPage = null;
+  if ( !isValidURI(uri) ) {
+    const searchString = inputURI;
+    Page.search(searchString).then(function (results){
+
+      pages = results.map(function(result){
+        return result.dataValues;
+      });
+      return res.render('search', {
+        pages
+      });
+    });
+  } else {
+    Page.load(uri).then(function (result){
+      if (!result){
+        parser(uri, function (err, article){
+          if (err){
+            req.flash('error', err);
+            return res.render('search', {
+              pages: []
+            });
+          }
+          Page.load(article.pageURL).then(function (result){
+            if (!result){
+              Page.saveDiffBotResult(article.objects[0])
+                .then(function (result){
+                addPage = result;
+                return res.render('search', {
+                  pages,
+                  addPage
+                });
+              });
+            } else {
+              if (result.userId !== null){
+                pages = [result];
+              } else {
+                addPage = result
+              }
+              return res.render('search', {
+                pages,
+                addPage
+              });
+            }
+          });
+
+        });
+      } else {
+        if (result.userId !== null){
+          pages = [result];
+        } else {
+          addPage = result
+        }
+        return res.render('search', {
+          pages,
+          addPage
+        });
+      }
+
+    });
+
+  }
+
 
 };
+
+
 
 module.exports.main = function (req, res) {
 
