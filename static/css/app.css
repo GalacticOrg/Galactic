@@ -644,6 +644,14 @@ img {
         /* number of lines to show */
         max-height: 2.6;
         /* fallback */ }
+      .homePage .contentWrapper .layout_3col_center .feedBundle .bundleURL {
+        font-size: 13px;
+        text-align: left;
+        margin-bottom: 4px;
+        margin-top: 4px; }
+        .homePage .contentWrapper .layout_3col_center .feedBundle .bundleURL span:hover {
+          color: #2b6dad;
+          cursor: pointer; }
       .homePage .contentWrapper .layout_3col_center .feedBundle .contentHeader {
         margin-top: 10px;
         position: relative;
@@ -674,17 +682,27 @@ img {
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 2;
         /* number of lines to show */
-        max-height: 3.9;
+        max-height: 2.6;
         /* fallback */ }
+      .homePage .contentWrapper .layout_3col_center .feedBundle .divider {
+        justify-content: space-around;
+        content: "";
+        border-top: 1px solid #e2e2e2;
+        margin: 10px;
+        margin-left: 15%;
+        margin-right: 15%; }
+      .homePage .contentWrapper .layout_3col_center .feedBundle .centerAlign {
+        margin-left: 20%;
+        margin-right: 15%; }
       .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar {
         font-size: 13px;
         margin-bottom: -16px;
         padding: 8px 0 16px;
         bottom: 0;
         clear: left; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .upvoteButton {
+        .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .connectButton {
           margin-right: 12px;
           -webkit-user-select: none;
           -moz-user-select: none;
@@ -706,11 +724,9 @@ img {
           background: #f1f8fb;
           color: #2b6dad;
           border: 1px solid #bbcadc; }
-          .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .upvoteButton:hover {
+          .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .connectButton:hover {
             border-color: #2b6dad; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .downvote {
-          margin-right: 12px; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .comments .commentsTotal {
+        .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .connections .connectionsTotal {
           -webkit-font-smoothing: antialiased;
           border-radius: 2px;
           background: #eee;
