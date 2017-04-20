@@ -282,6 +282,8 @@ img {
       font-weight: 900;
       color: purple;
       width: 80px; }
+      .appNav .appNavInner .wikiwebLogo a {
+        color: purple; }
     .appNav .appNavInner .searchBox {
       align-self: center;
       padding-left: 40px;
@@ -356,7 +358,7 @@ img {
         display: flex-end;
         width: 80px; }
         .appNav .appNavInner .searchBox .submitButton:hover {
-          border-color: #333; }
+          border-color: #2b6dad; }
     .appNav .appNavInner .pageButtons {
       margin-left: 8px;
       display: flex;
@@ -393,7 +395,7 @@ img {
             margin-top: 6px; }
 
 /* end appNav */
-.homePage .modalMask {
+.homePage .modalMask, .searchPage .modalMask, .resultPage .modalMask {
   display: none;
   height: 100%;
   width: 100%;
@@ -402,7 +404,7 @@ img {
   opacity: 0.75;
   z-index: 2; }
 
-.homePage .requestModal {
+.homePage .requestModal, .searchPage .requestModal, .resultPage .requestModal {
   display: none;
   margin: auto;
   margin-top: 100px;
@@ -412,9 +414,9 @@ img {
   z-index: 10;
   position: fixed;
   border-radius: 4px; }
-  .homePage .requestModal .modalContent {
+  .homePage .requestModal .modalContent, .searchPage .requestModal .modalContent, .resultPage .requestModal .modalContent {
     padding: 32px 32px 24px 32px; }
-    .homePage .requestModal .modalContent .closeButton {
+    .homePage .requestModal .modalContent .closeButton, .searchPage .requestModal .modalContent .closeButton, .resultPage .requestModal .modalContent .closeButton {
       position: absolute;
       right: 0;
       top: 0;
@@ -422,27 +424,27 @@ img {
       padding-top: 8px;
       font-size: 20px;
       color: #999; }
-      .homePage .requestModal .modalContent .closeButton i:hover {
+      .homePage .requestModal .modalContent .closeButton i:hover, .searchPage .requestModal .modalContent .closeButton i:hover, .resultPage .requestModal .modalContent .closeButton i:hover {
         color: #2b6dad;
         cursor: pointer; }
-    .homePage .requestModal .modalContent .contentBox .userImg {
+    .homePage .requestModal .modalContent .contentBox .userImg, .searchPage .requestModal .modalContent .contentBox .userImg, .resultPage .requestModal .modalContent .contentBox .userImg {
       float: left; }
-      .homePage .requestModal .modalContent .contentBox .userImg img {
+      .homePage .requestModal .modalContent .contentBox .userImg img, .searchPage .requestModal .modalContent .contentBox .userImg img, .resultPage .requestModal .modalContent .contentBox .userImg img {
         height: 25px;
         width: 25px;
         border-radius: 50%; }
-    .homePage .requestModal .modalContent .contentBox div {
+    .homePage .requestModal .modalContent .contentBox div, .searchPage .requestModal .modalContent .contentBox div, .resultPage .requestModal .modalContent .contentBox div {
       margin-left: 30px; }
-      .homePage .requestModal .modalContent .contentBox div .username, .homePage .requestModal .modalContent .contentBox div .text {
+      .homePage .requestModal .modalContent .contentBox div .username, .homePage .requestModal .modalContent .contentBox div .text, .searchPage .requestModal .modalContent .contentBox div .username, .searchPage .requestModal .modalContent .contentBox div .text, .resultPage .requestModal .modalContent .contentBox div .username, .resultPage .requestModal .modalContent .contentBox div .text {
         color: #999;
         font-size: 15px;
         line-height: 25px;
         font-weight: 400;
         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
-    .homePage .requestModal .modalContent .questionBox {
+    .homePage .requestModal .modalContent .questionBox, .searchPage .requestModal .modalContent .questionBox, .resultPage .requestModal .modalContent .questionBox {
       clear: both;
       width: 100%; }
-      .homePage .requestModal .modalContent .questionBox textarea {
+      .homePage .requestModal .modalContent .questionBox textarea, .searchPage .requestModal .modalContent .questionBox textarea, .resultPage .requestModal .modalContent .questionBox textarea {
         resize: none;
         width: 100%;
         overflow: hidden;
@@ -456,9 +458,9 @@ img {
         border: 0;
         box-shadow: none;
         padding-bottom: 8px; }
-        .homePage .requestModal .modalContent .questionBox textarea:focus {
+        .homePage .requestModal .modalContent .questionBox textarea:focus, .searchPage .requestModal .modalContent .questionBox textarea:focus, .resultPage .requestModal .modalContent .questionBox textarea:focus {
           outline: none; }
-  .homePage .requestModal .modalFooter {
+  .homePage .requestModal .modalFooter, .searchPage .requestModal .modalFooter, .resultPage .requestModal .modalFooter {
     background: #f6f6f6;
     border-radius: 0 0 4px 4px;
     padding: 10px;
@@ -468,17 +470,17 @@ img {
     line-height: 1.4;
     display: flex;
     justify-content: flex-end; }
-    .homePage .requestModal .modalFooter div {
+    .homePage .requestModal .modalFooter div, .searchPage .requestModal .modalFooter div, .resultPage .requestModal .modalFooter div {
       display: flex;
       justify-content: flex-end; }
-    .homePage .requestModal .modalFooter .cancel {
+    .homePage .requestModal .modalFooter .cancel, .searchPage .requestModal .modalFooter .cancel, .resultPage .requestModal .modalFooter .cancel {
       margin-top: 4px;
       font-size: 15px;
       line-height: 1.4;
       color: #999;
       cursor: pointer;
       margin-right: 16px; }
-    .homePage .requestModal .modalFooter .askButton {
+    .homePage .requestModal .modalFooter .askButton, .searchPage .requestModal .modalFooter .askButton, .resultPage .requestModal .modalFooter .askButton {
       padding: 6px 8px;
       user-select: none;
       box-sizing: border-box;
@@ -494,13 +496,13 @@ img {
       color: #fff;
       border: 1px solid #3a66ad;
       box-shadow: 0 1px 1px 0 rgba(200, 200, 200, 0.6); }
-      .homePage .requestModal .modalFooter .askButton:hover {
+      .homePage .requestModal .modalFooter .askButton:hover, .searchPage .requestModal .modalFooter .askButton:hover, .resultPage .requestModal .modalFooter .askButton:hover {
         border: 1px solid #333; }
 
-.homePage .displayRequestModal {
+.homePage .displayRequestModal, .searchPage .displayRequestModal, .resultPage .displayRequestModal {
   display: block; }
 
-.homePage .contentWrapper {
+.homePage .contentWrapper, .searchPage .contentWrapper, .resultPage .contentWrapper {
   width: 1002px;
   margin: 53px auto 0;
   padding-top: 30px;
@@ -509,14 +511,14 @@ img {
   /* end layout_3col_left */
   /* end layout_3col_center */
   /* end layout_3col_right */ }
-  .homePage .contentWrapper .layout_3col_left {
+  .homePage .contentWrapper .layout_3col_left, .searchPage .contentWrapper .layout_3col_left, .resultPage .contentWrapper .layout_3col_left {
     width: 142px;
     float: left;
     min-height: 1px;
     clear: left;
     font-size: 13px;
     position: fixed; }
-    .homePage .contentWrapper .layout_3col_left .title {
+    .homePage .contentWrapper .layout_3col_left .title, .searchPage .contentWrapper .layout_3col_left .title, .resultPage .contentWrapper .layout_3col_left .title {
       color: #333;
       font-weight: 500;
       position: relative;
@@ -529,80 +531,80 @@ img {
       text-transform: none;
       margin-bottom: 8px;
       position: relative; }
-      .homePage .contentWrapper .layout_3col_left .title .title_with_link {
+      .homePage .contentWrapper .layout_3col_left .title .title_with_link, .searchPage .contentWrapper .layout_3col_left .title .title_with_link, .resultPage .contentWrapper .layout_3col_left .title .title_with_link {
         color: #333;
         font-weight: 500;
         font-size: 15px;
         letter-spacing: 0;
         text-transform: none;
         line-height: 1.4; }
-    .homePage .contentWrapper .layout_3col_left .pagedList .pagedListItem ul li {
+    .homePage .contentWrapper .layout_3col_left .pagedList .pagedListItem ul li, .searchPage .contentWrapper .layout_3col_left .pagedList .pagedListItem ul li, .resultPage .contentWrapper .layout_3col_left .pagedList .pagedListItem ul li {
       padding: 4px 5px;
       margin: 0 0 0 -5px;
       width: 100%; }
-      .homePage .contentWrapper .layout_3col_left .pagedList .pagedListItem ul li a {
+      .homePage .contentWrapper .layout_3col_left .pagedList .pagedListItem ul li a, .searchPage .contentWrapper .layout_3col_left .pagedList .pagedListItem ul li a, .resultPage .contentWrapper .layout_3col_left .pagedList .pagedListItem ul li a {
         margin-bottom: 2px;
         margin-top: 2px;
         display: inline-block;
         color: #666; }
-      .homePage .contentWrapper .layout_3col_left .pagedList .pagedListItem ul li a:hover {
+      .homePage .contentWrapper .layout_3col_left .pagedList .pagedListItem ul li a:hover, .searchPage .contentWrapper .layout_3col_left .pagedList .pagedListItem ul li a:hover, .resultPage .contentWrapper .layout_3col_left .pagedList .pagedListItem ul li a:hover {
         color: #2b6dad; }
-    .homePage .contentWrapper .layout_3col_left .nav_item_selected > ul > li {
+    .homePage .contentWrapper .layout_3col_left .nav_item_selected > ul > li, .searchPage .contentWrapper .layout_3col_left .nav_item_selected > ul > li, .resultPage .contentWrapper .layout_3col_left .nav_item_selected > ul > li {
       background-color: #ececec;
       border-radius: 3px;
       cursor: default;
       font-weight: 400;
       color: #666; }
-  .homePage .contentWrapper .layout_3col_center {
+  .homePage .contentWrapper .layout_3col_center, .searchPage .contentWrapper .layout_3col_center, .resultPage .contentWrapper .layout_3col_center {
     line-height: 1.4;
     width: 572px;
     float: left;
     min-height: 1px;
     margin-left: 180px; }
-    .homePage .contentWrapper .layout_3col_center .section_header {
+    .homePage .contentWrapper .layout_3col_center .section_header, .searchPage .contentWrapper .layout_3col_center .section_header, .resultPage .contentWrapper .layout_3col_center .section_header {
       display: flex;
       border-bottom: 1px solid #e2e2e2;
       padding-bottom: 8px; }
-      .homePage .contentWrapper .layout_3col_center .section_header .header_text {
+      .homePage .contentWrapper .layout_3col_center .section_header .header_text, .searchPage .contentWrapper .layout_3col_center .section_header .header_text, .resultPage .contentWrapper .layout_3col_center .section_header .header_text {
         align-self: flex-start;
         width: 100%;
         color: #999;
         font-size: 13px;
         line-height: 1.4; }
-        .homePage .contentWrapper .layout_3col_center .section_header .header_text span {
+        .homePage .contentWrapper .layout_3col_center .section_header .header_text span, .searchPage .contentWrapper .layout_3col_center .section_header .header_text span, .resultPage .contentWrapper .layout_3col_center .section_header .header_text span {
           float: none;
           color: #333;
           font-weight: 500;
           font-size: 15px; }
-    .homePage .contentWrapper .layout_3col_center .addQuestionPrompt {
+    .homePage .contentWrapper .layout_3col_center .addQuestionPrompt, .searchPage .contentWrapper .layout_3col_center .addQuestionPrompt, .resultPage .contentWrapper .layout_3col_center .addQuestionPrompt {
       margin-top: 16px;
       margin-bottom: 0;
       color: #999;
       font-size: 13px;
       text-align: left; }
-      .homePage .contentWrapper .layout_3col_center .addQuestionPrompt .inner {
+      .homePage .contentWrapper .layout_3col_center .addQuestionPrompt .inner, .searchPage .contentWrapper .layout_3col_center .addQuestionPrompt .inner, .resultPage .contentWrapper .layout_3col_center .addQuestionPrompt .inner {
         margin-bottom: 4px; }
-        .homePage .contentWrapper .layout_3col_center .addQuestionPrompt .inner .nameWithPhoto .profile_photo_img {
+        .homePage .contentWrapper .layout_3col_center .addQuestionPrompt .inner .nameWithPhoto .profile_photo_img, .searchPage .contentWrapper .layout_3col_center .addQuestionPrompt .inner .nameWithPhoto .profile_photo_img, .resultPage .contentWrapper .layout_3col_center .addQuestionPrompt .inner .nameWithPhoto .profile_photo_img {
           float: left;
           width: 18px;
           height: 18px;
           margin-right: 4px;
           border-radius: 50%; }
-      .homePage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton {
+      .homePage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton, .searchPage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton, .resultPage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton {
         color: #262626;
         display: block;
         padding-bottom: 16px;
         border-bottom: 1px solid #e2e2e2; }
-        .homePage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner {
+        .homePage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner, .searchPage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner, .resultPage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner {
           color: #999;
           font-weight: bold;
           font-size: 18px;
           line-height: 1.3;
           font-family: 'q_serif',Georgia,Times,"Times New Roman",serif; }
-          .homePage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner span:hover {
+          .homePage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner span:hover, .searchPage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner span:hover, .resultPage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner span:hover {
             color: #2b6dad;
             cursor: pointer; }
-    .homePage .contentWrapper .layout_3col_center .feedBundle {
+    .homePage .contentWrapper .layout_3col_center .feedBundle, .searchPage .contentWrapper .layout_3col_center .feedBundle, .resultPage .contentWrapper .layout_3col_center .feedBundle {
       padding-top: 16px;
       color: #999;
       font-size: 13px;
@@ -613,24 +615,24 @@ img {
       padding-right: 12px;
       border-bottom: 1px solid #e2e2e2;
       padding-bottom: 16px; }
-      .homePage .contentWrapper .layout_3col_center .feedBundle:hover {
+      .homePage .contentWrapper .layout_3col_center .feedBundle:hover, .searchPage .contentWrapper .layout_3col_center .feedBundle:hover, .resultPage .contentWrapper .layout_3col_center .feedBundle:hover {
         background-color: #F6F8F9;
         cursor: pointer; }
-      .homePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta {
+      .homePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta, .searchPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta, .resultPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta {
         color: #999;
         font-size: 13px;
         text-align: left;
         margin-bottom: 4px; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .bullet {
+        .homePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .bullet, .searchPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .bullet, .resultPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .bullet {
           color: #999;
           font-size: 13px; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .hoverUnderline a:hover {
+        .homePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .hoverUnderline a:hover, .searchPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .hoverUnderline a:hover, .resultPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .hoverUnderline a:hover {
           text-decoration: underline; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .topic a:hover {
+        .homePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .topic a:hover, .searchPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .topic a:hover, .resultPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .topic a:hover {
           text-decoration: underline; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .timestamp a:hover {
+        .homePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .timestamp a:hover, .searchPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .timestamp a:hover, .resultPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .timestamp a:hover {
           text-decoration: underline; }
-      .homePage .contentWrapper .layout_3col_center .feedBundle .bundleTitle {
+      .homePage .contentWrapper .layout_3col_center .feedBundle .bundleTitle, .searchPage .contentWrapper .layout_3col_center .feedBundle .bundleTitle, .resultPage .contentWrapper .layout_3col_center .feedBundle .bundleTitle {
         font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
         font-weight: bold;
         line-height: 1.3;
@@ -644,15 +646,15 @@ img {
         /* number of lines to show */
         max-height: 2.6;
         /* fallback */ }
-      .homePage .contentWrapper .layout_3col_center .feedBundle .bundleURL {
+      .homePage .contentWrapper .layout_3col_center .feedBundle .bundleURL, .searchPage .contentWrapper .layout_3col_center .feedBundle .bundleURL, .resultPage .contentWrapper .layout_3col_center .feedBundle .bundleURL {
         font-size: 13px;
         text-align: left;
         margin-bottom: 4px;
         margin-top: 4px; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .bundleURL span:hover {
+        .homePage .contentWrapper .layout_3col_center .feedBundle .bundleURL span:hover, .searchPage .contentWrapper .layout_3col_center .feedBundle .bundleURL span:hover, .resultPage .contentWrapper .layout_3col_center .feedBundle .bundleURL span:hover {
           color: #2b6dad;
           cursor: pointer; }
-      .homePage .contentWrapper .layout_3col_center .feedBundle .contentHeader {
+      .homePage .contentWrapper .layout_3col_center .feedBundle .contentHeader, .searchPage .contentWrapper .layout_3col_center .feedBundle .contentHeader, .resultPage .contentWrapper .layout_3col_center .feedBundle .contentHeader {
         margin-top: 10px;
         position: relative;
         min-height: 40px;
@@ -660,20 +662,20 @@ img {
         font-size: 15px;
         line-height: 1.4;
         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .contentHeader .imgWrapper {
+        .homePage .contentWrapper .layout_3col_center .feedBundle .contentHeader .imgWrapper, .searchPage .contentWrapper .layout_3col_center .feedBundle .contentHeader .imgWrapper, .resultPage .contentWrapper .layout_3col_center .feedBundle .contentHeader .imgWrapper {
           float: left;
           width: 48px; }
-          .homePage .contentWrapper .layout_3col_center .feedBundle .contentHeader .imgWrapper .userImg {
+          .homePage .contentWrapper .layout_3col_center .feedBundle .contentHeader .imgWrapper .userImg, .searchPage .contentWrapper .layout_3col_center .feedBundle .contentHeader .imgWrapper .userImg, .resultPage .contentWrapper .layout_3col_center .feedBundle .contentHeader .imgWrapper .userImg {
             border-radius: 50%;
             height: 40px;
             width: 40px; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .contentHeader .layoutTextWrapper {
+        .homePage .contentWrapper .layout_3col_center .feedBundle .contentHeader .layoutTextWrapper, .searchPage .contentWrapper .layout_3col_center .feedBundle .contentHeader .layoutTextWrapper, .resultPage .contentWrapper .layout_3col_center .feedBundle .contentHeader .layoutTextWrapper {
           float: left;
           font-size: 15px;
           font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
           color: #333;
           line-height: 1.2em; }
-      .homePage .contentWrapper .layout_3col_center .feedBundle .contentMain {
+      .homePage .contentWrapper .layout_3col_center .feedBundle .contentMain, .searchPage .contentWrapper .layout_3col_center .feedBundle .contentMain, .resultPage .contentWrapper .layout_3col_center .feedBundle .contentMain {
         font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
         font-size: 15px;
         line-height: 1.6;
@@ -686,23 +688,23 @@ img {
         /* number of lines to show */
         max-height: 2.6;
         /* fallback */ }
-      .homePage .contentWrapper .layout_3col_center .feedBundle .divider {
+      .homePage .contentWrapper .layout_3col_center .feedBundle .divider, .searchPage .contentWrapper .layout_3col_center .feedBundle .divider, .resultPage .contentWrapper .layout_3col_center .feedBundle .divider {
         justify-content: space-around;
         content: "";
         border-top: 1px solid #e2e2e2;
         margin: 10px;
         margin-left: 15%;
         margin-right: 15%; }
-      .homePage .contentWrapper .layout_3col_center .feedBundle .centerAlign {
+      .homePage .contentWrapper .layout_3col_center .feedBundle .centerAlign, .searchPage .contentWrapper .layout_3col_center .feedBundle .centerAlign, .resultPage .contentWrapper .layout_3col_center .feedBundle .centerAlign {
         margin-left: 20%;
         margin-right: 15%; }
-      .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar {
+      .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar, .searchPage .contentWrapper .layout_3col_center .feedBundle .actionBar, .resultPage .contentWrapper .layout_3col_center .feedBundle .actionBar {
         font-size: 13px;
         margin-bottom: -16px;
         padding: 8px 0 16px;
         bottom: 0;
         clear: left; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .connectButton {
+        .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .connectButton, .searchPage .contentWrapper .layout_3col_center .feedBundle .actionBar .connectButton, .resultPage .contentWrapper .layout_3col_center .feedBundle .actionBar .connectButton {
           margin-right: 12px;
           -webkit-user-select: none;
           -moz-user-select: none;
@@ -724,9 +726,9 @@ img {
           background: #f1f8fb;
           color: #2b6dad;
           border: 1px solid #bbcadc; }
-          .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .connectButton:hover {
+          .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .connectButton:hover, .searchPage .contentWrapper .layout_3col_center .feedBundle .actionBar .connectButton:hover, .resultPage .contentWrapper .layout_3col_center .feedBundle .actionBar .connectButton:hover {
             border-color: #2b6dad; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .connections .connectionsTotal {
+        .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .connections .connectionsTotal, .searchPage .contentWrapper .layout_3col_center .feedBundle .actionBar .connections .connectionsTotal, .resultPage .contentWrapper .layout_3col_center .feedBundle .actionBar .connections .connectionsTotal {
           -webkit-font-smoothing: antialiased;
           border-radius: 2px;
           background: #eee;
@@ -741,39 +743,39 @@ img {
           font-size: 12px;
           padding: 1px 3px;
           margin: -3px 0 0 4px; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare {
+        .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare, .searchPage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare, .resultPage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare {
           float: right;
           padding-right: 10px;
           background-image: none;
           background-color: transparent; }
-          .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span {
+          .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span, .searchPage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span, .resultPage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span {
             margin-right: 5px;
             margin-top: -2px; }
-            .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i {
+            .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i, .searchPage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i, .resultPage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i {
               font-size: 17px;
               line-height: 1.4;
               background-image: none;
               background-color: transparent; }
-              .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i:hover {
+              .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i:hover, .searchPage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i:hover, .resultPage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i:hover {
                 color: #666666; }
-  .homePage .contentWrapper .layout_3col_right {
+  .homePage .contentWrapper .layout_3col_right, .searchPage .contentWrapper .layout_3col_right, .resultPage .contentWrapper .layout_3col_right {
     width: 220px;
     float: left;
     min-height: 1px;
     margin-left: 30px;
     font-size: 13px;
     height: 200px; }
-    .homePage .contentWrapper .layout_3col_right .identityModule {
+    .homePage .contentWrapper .layout_3col_right .identityModule, .searchPage .contentWrapper .layout_3col_right .identityModule, .resultPage .contentWrapper .layout_3col_right .identityModule {
       text-align: center;
       border: 1px solid #e2e2e2; }
-      .homePage .contentWrapper .layout_3col_right .identityModule .top_rail {
+      .homePage .contentWrapper .layout_3col_right .identityModule .top_rail, .searchPage .contentWrapper .layout_3col_right .identityModule .top_rail, .resultPage .contentWrapper .layout_3col_right .identityModule .top_rail {
         border: 1px solid #e2e2e2;
         border-bottom: none;
         margin: -1px;
         margin-bottom: 0;
         background-color: purple;
         height: 80px; }
-      .homePage .contentWrapper .layout_3col_right .identityModule .actor {
+      .homePage .contentWrapper .layout_3col_right .identityModule .actor, .searchPage .contentWrapper .layout_3col_right .identityModule .actor, .resultPage .contentWrapper .layout_3col_right .identityModule .actor {
         margin: 0;
         border: 0;
         outline: 0;
@@ -783,11 +785,11 @@ img {
         box-sizing: inherit;
         height: 107px;
         border-bottom: 1px solid #e2e2e2; }
-        .homePage .contentWrapper .layout_3col_right .identityModule .actor .profile_img_box {
+        .homePage .contentWrapper .layout_3col_right .identityModule .actor .profile_img_box, .searchPage .contentWrapper .layout_3col_right .identityModule .actor .profile_img_box, .resultPage .contentWrapper .layout_3col_right .identityModule .actor .profile_img_box {
           content: "";
           margin: auto;
           width: 68px; }
-          .homePage .contentWrapper .layout_3col_right .identityModule .actor .profile_img_box .profile_img {
+          .homePage .contentWrapper .layout_3col_right .identityModule .actor .profile_img_box .profile_img, .searchPage .contentWrapper .layout_3col_right .identityModule .actor .profile_img_box .profile_img, .resultPage .contentWrapper .layout_3col_right .identityModule .actor .profile_img_box .profile_img {
             background: white;
             height: 68px;
             width: 68px;
@@ -795,26 +797,84 @@ img {
             border: 2px solid #fff;
             box-shadow: inset 0 1.5px 3px 0 rgba(0, 0, 0, 0.15), 0 1.5px 3px 0 rgba(0, 0, 0, 0.15);
             margin: -38px auto 12px; }
-        .homePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info {
+        .homePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info, .searchPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info, .resultPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info {
           font-family: 'q_serif',Georgia,Times,"Times New Roman",serif; }
-          .homePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname {
+          .homePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname, .searchPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname, .resultPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname {
             font-size: 16px;
             color: #333; }
-            .homePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname a:hover {
+            .homePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname a:hover, .searchPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname a:hover, .resultPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname a:hover {
               cursor: pointer; }
-          .homePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .title {
+          .homePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .title, .searchPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .title, .resultPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .title {
             margin-top: 2px;
             color: #999;
             font-size: 13px; }
-      .homePage .contentWrapper .layout_3col_right .identityModule .stats {
+      .homePage .contentWrapper .layout_3col_right .identityModule .stats, .searchPage .contentWrapper .layout_3col_right .identityModule .stats, .resultPage .contentWrapper .layout_3col_right .identityModule .stats {
         padding: 12px; }
-        .homePage .contentWrapper .layout_3col_right .identityModule .stats .number {
+        .homePage .contentWrapper .layout_3col_right .identityModule .stats .number, .searchPage .contentWrapper .layout_3col_right .identityModule .stats .number, .resultPage .contentWrapper .layout_3col_right .identityModule .stats .number {
           color: purple;
           font-size: 17px; }
-        .homePage .contentWrapper .layout_3col_right .identityModule .stats .text {
+        .homePage .contentWrapper .layout_3col_right .identityModule .stats .text, .searchPage .contentWrapper .layout_3col_right .identityModule .stats .text, .resultPage .contentWrapper .layout_3col_right .identityModule .stats .text {
           color: #999;
           font-size: 13px; }
-        .homePage .contentWrapper .layout_3col_right .identityModule .stats .divider {
+        .homePage .contentWrapper .layout_3col_right .identityModule .stats .divider, .searchPage .contentWrapper .layout_3col_right .identityModule .stats .divider, .resultPage .contentWrapper .layout_3col_right .identityModule .stats .divider {
           content: "";
           border-top: 1px solid #e2e2e2;
           margin: 10px; }
+
+.searchPage .section_header {
+  border-top: 1px solid #e2e2e2;
+  padding-top: 8px; }
+
+.searchPage .noResultFound {
+  padding-top: 8px; }
+  .searchPage .noResultFound .titleURL {
+    font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
+    font-weight: bold;
+    line-height: 1.3;
+    color: #262626;
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    /* number of lines to show */
+    max-height: 2.6;
+    /* fallback */ }
+  .searchPage .noResultFound .explanatoryText {
+    margin-top: 8px;
+    color: #999;
+    font-size: 15px;
+    line-height: 1.4;
+    font-weight: 400;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+  .searchPage .noResultFound .actionBar {
+    font-size: 13px;
+    margin-bottom: -16px;
+    padding: 8px 0 16px;
+    bottom: 0;
+    clear: left; }
+    .searchPage .noResultFound .actionBar .connectButton {
+      margin-right: 12px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      transition: opacity ease-in-out 100ms,color ease-in-out 100ms,background-color ease-in-out 100ms,border-color ease-in-out 100ms;
+      border-radius: 3px;
+      box-shadow: 0 1px 1px 0 rgba(200, 200, 200, 0.2);
+      display: inline-block;
+      font-weight: 500;
+      outline: 0;
+      padding: 3px 7px 4px 7px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      background: #f1f8fb;
+      color: #2b6dad;
+      border: 1px solid #bbcadc; }
+      .searchPage .noResultFound .actionBar .connectButton:hover {
+        border-color: #2b6dad; }
