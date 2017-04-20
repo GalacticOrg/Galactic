@@ -56,8 +56,8 @@
 {{/if}}
 
 <div class="homePage">
-	<div class="modalMask displayRequestModal"></div>
-	<div class="requestModal displayRequestModal">
+	<div class="modalMask" id='modalMask' onclick=closeRecommendationsModal()></div>
+	<div class="requestModal" id='requestModal'>
 		<div class="modalContent">
 			<div class="closeButton">
 				<i class="fa fa-times" aria-hidden="true"></i>
@@ -129,7 +129,7 @@
 							</span>
 						</span>
 					</div>
-					<a class="askQuestionButton">
+					<a class="askQuestionButton" onClick=openRecommendationsModal()>
 						<div class="inner">
 							<span>What could you use a recommendation for?</span>
 						</div>
@@ -387,4 +387,5 @@
 </div>
 {{#section 'foot'}}
 <!-- <script type="application/javascript" src="http://0.0.0.0:8090/js/home.js"></script> -->
+<script type="application/javascript" src="/static/js/main.js"></script>
 {{/section}}
