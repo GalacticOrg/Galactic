@@ -26,9 +26,8 @@ module.exports = function(express) {
 
   router.get('/', appController.main);
 
-  router.get('/search', appController.search);
 
-  router.param('url', appController.loadurl);
+  router.get('/search', appController.search);
   router.get('/page/*', appController.page);
 
   router.get('/logout', function (req, res) {

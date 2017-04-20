@@ -43,10 +43,6 @@ const home = function (req, res) {
 //   });
 // });
 
-module.exports.loadurl = function (req, res, next, id) {
-
-};
-
 module.exports.page = function (req, res) {
   console.log(req.url, 'page hit')
   const pageId =  req.url.replace('/page/','');
@@ -135,6 +131,18 @@ module.exports.search = function (req, res) {
 
   }
 
+=======
+  Page.findPage(id).then(function(){
+    parser
+  });
+};
+
+module.exports.page = function (req, res) {
+
+};
+
+module.exports.search = function (req, res) {
+>>>>>>> aba4d6c3e99b62722d87284d5b8f4bffe71b5c08
 
 };
 
