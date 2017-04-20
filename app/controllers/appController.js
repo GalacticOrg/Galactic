@@ -126,27 +126,9 @@ module.exports.search = function (req, res) {
           addPage
         });
       }
-
     });
-
   }
-
-=======
-  Page.findPage(id).then(function(){
-    parser
-  });
 };
-
-module.exports.page = function (req, res) {
-
-};
-
-module.exports.search = function (req, res) {
->>>>>>> aba4d6c3e99b62722d87284d5b8f4bffe71b5c08
-
-};
-
-
 
 module.exports.main = function (req, res) {
 
