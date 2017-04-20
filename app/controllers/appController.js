@@ -63,8 +63,15 @@ module.exports.page = function (req, res) {
 
 module.exports.search = function (req, res) {
   const inputURI = req.query.q;
+
+  if (inputURI === undefined || inputURI.length === 0){
+    return res.render('search', {
+      pages: []
+    });
+  };
+
   let uri = '';
-  if (inputURI && inputURI.search('https://') === -1 && inputURI.search('http://') === -1){
+  if (inputURI !== undefined && inputURI.search('https://') === -1 && inputURI.search('http://') === -1){
     uri = 'http://';
   }
   uri += inputURI;
@@ -73,7 +80,6 @@ module.exports.search = function (req, res) {
   if ( !isValidURI(uri) ) {
     const searchString = inputURI;
     Page.search(searchString).then(function (results){
-
       pages = results.map(function(result){
         return result.dataValues;
       });

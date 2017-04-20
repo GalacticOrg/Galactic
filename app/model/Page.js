@@ -86,15 +86,6 @@ const options = {
         },
         include:[{ model: User }]
       });
-    },
-    load: function (url){
-      // 1 Full url
-      // 2 Without protocol
-      // 3 withtout params
-      //
-      return Page.findOne({
-        pageUrl:url
-      });
     }
   }
 };
