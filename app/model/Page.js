@@ -43,6 +43,19 @@ const attributes = {
 
 const options = {
   freezeTableName: true,
+  exclude: ['html'],
+  instanceMethods: {
+    toJSON: function () {
+      var values = Object.assign({}, this.get());
+
+      delete values.html;
+      delete values.text;
+      delete values.meta;
+      delete values.videos;
+      delete values.images;
+      return values;
+    }
+  },
   classMethods: {
     saveDiffBotResult: function (page, data, user){
       return page.update({
@@ -70,10 +83,11 @@ const options = {
       const searchExpressionArray = searchWordsArray.map((item) => {
           return { $iLike: '%' + item + '%' };
       });
-      return Page.findAll({
+      return Page.scope('defaultScope').findAll({
         where:{
           title:{ $or:searchExpressionArray }
-        }
+        },
+        attributes: { exclude: ['text, html'] }
       });
     },
     load: function (url){

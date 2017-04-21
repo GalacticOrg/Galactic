@@ -35,7 +35,7 @@ module.exports.loadwwid = function (req, res, next, id) {
     if (result === null){
       next(new Error('Article not found'));
     } else {
-      req.page = result.dataValues;
+      req.page = result.toJSON();
       next();
     }
   });
@@ -96,7 +96,7 @@ module.exports.search = function (req, res) {
     const searchString = inputURI;
     Page.search(searchString).then(function (results){
       pages = results.map(function(result){
-        return result.dataValues;
+        return result.toJSON();
       });
       // Toggle to see data
       // return res.send(pages)
