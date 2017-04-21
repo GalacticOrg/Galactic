@@ -9,6 +9,24 @@ const landing = function (req, res) {
 };
 
 const home = function (req, res) {
+  req.flash(
+  'errors',
+  [{
+    message:'Example of Error.',
+    type: 'error'
+  },
+  {
+    message:'Example of Info.',
+    type: 'info'
+  },
+  {
+    message:'Example of Success.',
+    type: 'success'
+  },
+  {
+    message:'Example of Warning.',
+    type: 'warning'
+  }]);
   res.render('home');
 };
 
@@ -21,7 +39,7 @@ module.exports.loadwwid = function (req, res, next, id) {
       next();
     }
   });
-}
+};
 
 module.exports.loaduid = function (req, res, next, id) {
   Page.findOne({
@@ -138,11 +156,15 @@ module.exports.search = function (req, res) {
 module.exports.new = function (req, res) {
   const uri = req.body.uri;
   const user = req.user;
-  if (isValidURI(uri)) return res.status(400).send({
-    errors:[{
-      message:'Please enter a valid URL.'
-    }]
-  });
+  if (!isValidURI(uri)) {
+    req.flash(
+    'errors',
+    [{
+      message:'Please enter a valid URL.',
+      type: 'error'
+    }]);
+    return res.redirect('/');
+  }
 
   const page = Page.build();
 

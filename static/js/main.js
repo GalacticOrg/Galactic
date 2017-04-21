@@ -8,3 +8,7 @@ closeRecommendationsModal = function() {
 	document.getElementById('requestModal').classList.remove("displayRequestModal");
 	document.getElementById('modalMask').classList.remove("displayRequestModal");
 }
+
+dismissAlert = function() {
+	document.getElementById('alerts').remove()
+}

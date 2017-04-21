@@ -51,38 +51,10 @@
 		</div>
 	</div>
 </div>
-
-{{#if errorMessage}}
-	<div style="top:70px; left:50px; position: absolute;" class="alert alert-danger">
-		{{errorMessage}}
-	</div>
-{{/if}}
+{{> messages}}
 
 <div class="homePage">
-	<div class="modalMask" id='modalMask' onclick=closeRecommendationsModal()></div>
-	<div class="requestModal" id='requestModal'>
-		<div class="modalContent">
-			<div class="closeButton" onclick=closeRecommendationsModal()>
-				<i class="fa fa-times" aria-hidden="true"></i>
-			</div>
-			<div class="contentBox">
-				<span class="userImg">
-					<img src="/static/img/profile.jpg" />
-				</span>
-				<div>
-					<span class="username underlineOnHover">Eoin McMillan</span>
-					<span class="text">requests</span>
-				</div>
-			</div>
-			<div class="questionBox">
-				<textarea type="text" placeholder="What needs recommendations? (paste url)"></textarea>
-			</div>
-		</div>
-		<div class="modalFooter">
-			<div class="cancel underlineOnHover">Cancel</div>
-			<div class="askButton">Ask for Connections</div>
-		</div>
-	</div>
+	{{> modal}}
 	<div class="contentWrapper">
 		<div class="layout_3col_left">
 			<h3 class="title">
@@ -248,7 +220,7 @@
 						</span>
 						<span class="layoutTextWrapper">
 							<div>
-								<span class="username">Eoin McMillan</span><span class="userInfo">, CSS Dilettante 
+								<span class="username">Eoin McMillan</span><span class="userInfo">, CSS Dilettante
 								</span>
 							</div>
 							<div class="credibilityFacts feedBundleMeta">
