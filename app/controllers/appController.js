@@ -9,24 +9,24 @@ const landing = function (req, res) {
 };
 
 const home = function (req, res) {
-  req.flash(
-  'errors',
-  [{
-    message:'Example of Error.',
-    type: 'error'
-  },
-  {
-    message:'Example of Info.',
-    type: 'info'
-  },
-  {
-    message:'Example of Success.',
-    type: 'success'
-  },
-  {
-    message:'Example of Warning.',
-    type: 'warning'
-  }]);
+  // req.flash(
+  // 'errors',
+  // [{
+  //   message:'Example of Error.',
+  //   type: 'error'
+  // },
+  // {
+  //   message:'Example of Info.',
+  //   type: 'info'
+  // },
+  // {
+  //   message:'Example of Success.',
+  //   type: 'success'
+  // },
+  // {
+  //   message:'Example of Warning.',
+  //   type: 'warning'
+  // }]);
 
   Page.feed().then(function (results){
     const pages = results.map(function (result){ return result.toJSON(); });
