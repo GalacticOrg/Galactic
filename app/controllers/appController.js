@@ -50,6 +50,13 @@ module.exports.page = function (req, res) {
   });
 };
 
+module.exports.newpage = function (req, res) {
+  const page = req.page;
+  res.render('newpage', {
+    page
+  });
+};
+
 module.exports.search = function (req, res) {
   const inputURI = req.query.q;
 

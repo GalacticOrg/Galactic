@@ -32,7 +32,7 @@ module.exports = function(express) {
   router.param('uid', appController.loaduid);
 
   router.get('/page/:wwid', appController.page);
-  router.get('/newpage/:uid', appController.page);
+  router.get('/newpage/:uid', appController.newpage);
 
 
   router.get('/logout', function (req, res) {
