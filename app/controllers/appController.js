@@ -158,7 +158,11 @@ module.exports.new = function (req, res) {
     }
     Page.load(article.pageURL).then(function (result){
       if (!result){
-        const wwUri = article.title.length > 4 ? article.title.replace(new RegExp(' ', 'g'), '-') : page.id;
+        let wwUri = article.title.length > 4 ?
+        article.title.replace(new RegExp(' ', 'g'), '_') :
+        page.id;
+        wwUri = wwUri.replace(new RegExp(/\W/, 'g'), '');
+
         page.update({
           html: article.html,
           text: article.text,
