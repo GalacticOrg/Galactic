@@ -1,3 +1,7 @@
+window.onload = function() {
+  setCurrentPageNavIcon('search');
+}
+
 openRecommendationsModal = function() {
 	document.getElementById('requestModal').className += " displayRequestModal";
 	document.getElementById('modalMask').className += " displayRequestModal";

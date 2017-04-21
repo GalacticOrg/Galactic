@@ -358,7 +358,7 @@ img {
         display: flex-end;
         width: 80px; }
         .appNav .appNavInner .searchBox .submitButton:hover {
-          border-color: #2b6dad; }
+          border-color: #333; }
     .appNav .appNavInner .pageButtons {
       margin-left: 8px;
       display: flex;
@@ -821,37 +821,22 @@ img {
           border-top: 1px solid #e2e2e2;
           margin: 10px; }
 
-.searchPage .titleURL {
-  font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
-  font-weight: bold;
-  line-height: 1.3;
-  color: #262626;
-  font-size: 18px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  /* number of lines to show */
-  max-height: 2.6;
-  /* fallback */ }
-
-.searchPage .section_header {
-  background-color: white;
-  width: 572px;
-  margin-top: -50px;
-  padding-top: 50px;
-  position: fixed; }
-
-.searchPage .underHeader {
-  position: fixed;
-  margin-top: 30px;
-  height: 2px;
-  width: 572px;
-  background-color: white; }
-
 .searchPage .noResultFound {
   padding-top: 8px; }
+  .searchPage .noResultFound .titleURL {
+    font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
+    font-weight: bold;
+    line-height: 1.3;
+    color: #262626;
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    /* number of lines to show */
+    max-height: 2.6;
+    /* fallback */ }
   .searchPage .noResultFound .explanatoryText {
     margin-top: 8px;
     color: #999;
@@ -889,6 +874,3 @@ img {
       border: 1px solid #bbcadc; }
       .searchPage .noResultFound .actionBar .connectButton:hover {
         border-color: #2b6dad; }
-
-.searchPage .searchResult .contentMain {
-  margin-top: 6px; }
