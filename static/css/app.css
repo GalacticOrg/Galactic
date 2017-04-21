@@ -49,6 +49,8 @@ img {
   width: 80px; }
   .wikiwebLogo span {
     color: purple; }
+  .wikiwebLogo a {
+    color: purple; }
 
 .loaderBox {
   margin-left: 45%;
@@ -307,7 +309,7 @@ img {
       padding-left: 40px;
       width: 500px;
       display: flex; }
-      .appNav .appNavInner .searchBox textarea {
+      .appNav .appNavInner .searchBox input {
         resize: none;
         width: 385px;
         background: #fff;
@@ -344,7 +346,7 @@ img {
         border-right: 0;
         display: flex-start;
         background-color: #F4F4F4; }
-        .appNav .appNavInner .searchBox textarea:focus {
+        .appNav .appNavInner .searchBox input:focus {
           background-color: white; }
       .appNav .appNavInner .searchBox .submitButton {
         position: relative;
