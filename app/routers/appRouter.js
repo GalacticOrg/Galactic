@@ -28,8 +28,10 @@ module.exports = function(express) {
 
 
   router.get('/search', appController.search);
+
   router.param('wwid', appController.loadwwid);
   router.get('/page/:wwid', appController.page);
+
 
   router.get('/logout', function (req, res) {
     req.logout();
