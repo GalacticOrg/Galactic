@@ -1,4 +1,3 @@
-
 <div class="appNav">
 	<div class="appNavInner">
 		<div class="wikiwebLogo">
@@ -12,8 +11,9 @@
 				id="email"
 				name="q"
 				placeholder="Ask or Search the WikiWeb"
+				onkeypress="searchOnEnter()"
 			>{{inputURI}}</textarea>
-			<input class="submitButton" type="submit" value="Submit"></input>
+			<input id="navbarSearchButton" class="submitButton" type="submit" value="Submit"></input>
 		</form>
 		<div class="pageButtons">
 			<div class="pageButton">

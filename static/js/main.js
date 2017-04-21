@@ -8,3 +8,9 @@ closeRecommendationsModal = function() {
 	document.getElementById('requestModal').classList.remove("displayRequestModal");
 	document.getElementById('modalMask').classList.remove("displayRequestModal");
 }
+
+searchOnEnter = function() {
+  if(event.which === 13) {
+    document.getElementById('navbarSearchButton').click()
+  }
+}
