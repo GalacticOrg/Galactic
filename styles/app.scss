@@ -59,6 +59,7 @@ img {
   color: purple;
   width: 80px;
   span {color: purple}
+  a {color: purple}
 }
 
 .loaderBox {
@@ -378,7 +379,7 @@ img {
 	  	padding-left: 40px;
 	  	width: 500px;
 	  	display: flex;
-	  	textarea {
+	  	input {
 	  		resize: none;
 	  		width: 385px;
 		    background: #fff;

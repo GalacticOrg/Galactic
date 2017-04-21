@@ -1,15 +1,18 @@
 <div class="appNav">
 	<div class="appNavInner">
 		<div class="wikiwebLogo">
-			<a href="/">WikiWeb</a>
+			<a href="/">
+				<span>WikiWeb</span>
+			</a>
 		</div>
 		<form id="askform" class="searchBox" action="/search" method="get">
-			<textarea
+			<input
 				type="text"
 				id="email"
 				name="q"
 				placeholder="Ask or Search the WikiWeb"
-			></textarea>
+				onkeypress="searchOnEnter()"
+			></input>
 			<input class="submitButton" type="submit" value="Submit"></input>
 		</form>
 		<div class="pageButtons">
