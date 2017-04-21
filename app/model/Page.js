@@ -32,13 +32,14 @@ const attributes = {
   authors: { type: Sequelize.JSONB },
   images: { type: Sequelize.JSONB },
   meta: { type: Sequelize.JSONB },
+  wwurl: { type: Sequelize.STRING },
 };
 
 const options = {
   freezeTableName: true,
   classMethods: {
-    saveDiffBotResult: function (data, user){
-      return Page.create({
+    saveDiffBotResult: function (page, data, user){
+      return page.update({
         html: data.html,
         text: data.html,
         title: data.title,
@@ -72,17 +73,17 @@ const options = {
     load: function (url){
       return Page.findOne({
         where:{
-          pageUrl:url
+          pageUrl: {$iLike: '%'+url }
         },
         include:[{ model: User }]
       });
     },
     loadPage: function (pageUUID){
-      const urlHttps = 'https://' + pageUUID;
-      const urlHttp = 'http://' + pageUUID;
+      // const urlHttps = 'https://' + pageUUID;
+      // const urlHttp = 'http://' + pageUUID;
       return Page.findOne({
         where:{
-          $or: [{ pageUrl: urlHttp }, { pageUrl: urlHttps }]
+          $or: [{ id: pageUUID }, { wwurl: pageUUID }]
         },
         include:[{ model: User }]
       });

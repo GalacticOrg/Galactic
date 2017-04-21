@@ -9,7 +9,7 @@
 				id="email"
 				name="q"
 				placeholder="Ask or Search the WikiWeb"
-			></textarea>
+			>{{inputURI}}</textarea>
 			<input class="submitButton" type="submit" value="Submit"></input>
 		</form>
 		<div class="pageButtons">
@@ -64,11 +64,9 @@
 					<span>Search Results</span>
 				</div>
 			</div>
-
-				{{#if addPage}}
+				{{#if addURL}}
 					<div style="top:70px; left:50px; position: absolute;" class="alert alert-danger">
-						{{addPage.title}}
-						{{addPage.description}}
+						Addy
 					</div>
 				{{/if}}
 				{{#each pages}}
