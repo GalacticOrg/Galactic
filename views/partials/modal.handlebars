@@ -1,24 +1,32 @@
 <div class="modalMask" id='modalMask' onclick=closeRecommendationsModal()></div>
 <div class="requestModal" id='requestModal'>
-  <div class="modalContent">
-    <div class="closeButton" onclick=closeRecommendationsModal()>
-      <i class="fa fa-times" aria-hidden="true"></i>
-    </div>
-    <div class="contentBox">
-      <span class="userImg">
-        <img src="/static/img/profile.jpg" />
-      </span>
-      <div>
-        <span class="username underlineOnHover">Eoin McMillan</span>
-        <span class="text">requests</span>
+  <form id="askform" action="/new" method="post">
+    <div class="modalContent">
+      <div class="closeButton" onclick=closeRecommendationsModal()>
+        <i class="fa fa-times" aria-hidden="true"></i>
       </div>
+      <div class="contentBox">
+        <span class="userImg">
+          <img src="/static/img/profile.jpg" />
+        </span>
+        <div>
+          <span class="username underlineOnHover">Eoin McMillan</span>
+          <span class="text">requests</span>
+        </div>
+      </div>
+        <div class="questionBox">
+          <textarea
+            type="text"
+            name="uri"
+            placeholder="What needs recommendations? (paste url)"
+          >{{inputURI}}</textarea>
+      </div>
+
+
     </div>
-    <div class="questionBox">
-      <textarea type="text" placeholder="What needs recommendations? (paste url)"></textarea>
+    <div class="modalFooter">
+      <div class="cancel underlineOnHover">Cancel</div>
+      <input class="askButton" type="submit" value="Ask for Connections"></input>
     </div>
-  </div>
-  <div class="modalFooter">
-    <div class="cancel underlineOnHover">Cancel</div>
-    <div class="askButton">Ask for Connections</div>
-  </div>
+  </form>
 </div>

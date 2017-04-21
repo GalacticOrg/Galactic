@@ -481,6 +481,7 @@ img {
       cursor: pointer;
       margin-right: 16px; }
     .homePage .requestModal .modalFooter .askButton, .searchPage .requestModal .modalFooter .askButton, .resultPage .requestModal .modalFooter .askButton {
+      font-size: 15px;
       padding: 6px 8px;
       user-select: none;
       box-sizing: border-box;
@@ -601,7 +602,7 @@ img {
           font-size: 18px;
           line-height: 1.3;
           font-family: 'q_serif',Georgia,Times,"Times New Roman",serif; }
-          .homePage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner span:hover, .searchPage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner span:hover, .resultPage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner span:hover {
+          .homePage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner a:hover, .searchPage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner a:hover, .resultPage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner a:hover {
             color: #2b6dad;
             cursor: pointer; }
     .homePage .contentWrapper .layout_3col_center .feedBundle, .searchPage .contentWrapper .layout_3col_center .feedBundle, .resultPage .contentWrapper .layout_3col_center .feedBundle {

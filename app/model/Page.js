@@ -15,9 +15,12 @@ const attributes = {
   },
   html: {
     type: Sequelize.TEXT,
-    length: 'medium'
+    length: 'long'
   },
-  text: { type: Sequelize.TEXT, length: 'medium' },
+  text: {
+    type: Sequelize.TEXT,
+    length: 'long'
+  },
   title: { type: Sequelize.STRING },
   author: { type: Sequelize.STRING },
   authorUrl: { type: Sequelize.STRING },
@@ -25,14 +28,17 @@ const attributes = {
   icon: { type: Sequelize.STRING },
   pageUrl: { type: Sequelize.STRING },
   siteName: { type: Sequelize.STRING },
-  description: { type: Sequelize.STRING },
+  description: {
+    type: Sequelize.TEXT,
+    length: 'medium'
+  },
   humanLanguage: { type: Sequelize.STRING },
   diffbotUri: { type: Sequelize.STRING },
   videos: { type: Sequelize.JSONB },
   authors: { type: Sequelize.JSONB },
   images: { type: Sequelize.JSONB },
   meta: { type: Sequelize.JSONB },
-  wwurl: { type: Sequelize.STRING },
+  wwUri: { type: Sequelize.STRING },
 };
 
 const options = {
@@ -83,7 +89,7 @@ const options = {
       // const urlHttp = 'http://' + pageUUID;
       return Page.findOne({
         where:{
-          $or: [{ id: pageUUID }, { wwurl: pageUUID }]
+          $or: [{ wwUri: pageUUID }]
         },
         include:[{ model: User }]
       });

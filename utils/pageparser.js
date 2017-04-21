@@ -20,7 +20,8 @@ module.exports.diffBotAnalyze = function (inputURI, cb){
       if (err) {
         cb(err);
       } else {
-        cb(null, res.body);
+        const result = res.body.objects[0]
+        cb(null, result);
       }
     });
 };

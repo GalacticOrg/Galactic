@@ -20,12 +20,28 @@ module.exports.loadwwid = function (req, res, next, id) {
       req.page = result.dataValues;
       next();
     }
+  });
+}
 
+module.exports.loaduid = function (req, res, next, id) {
+  Page.findOne({
+    where:{
+      $or: [{ id: id }]
+    }
+  }).then(function (result){
+    if (result === null){
+      next(new Error('Article not found'));
+    } else {
+      if ( result.dataValues.wwUri !== null ) {
+          return res.redirect( '/page/' + result.dataValues.wwUri );
+      };
+      req.page = result.dataValues;
+      next();
+    }
   });
 }
 
 module.exports.page = function (req, res) {
-  console.log(req.page, 'page hit');
   const page = req.page;
   res.render('page', {
     page
@@ -110,13 +126,18 @@ module.exports.search = function (req, res) {
 
 module.exports.new = function (req, res) {
   const uri = req.body.uri;
-  if (uri = undefined) return res.status(400).send({
+  const user = req.user;
+  if (uri === undefined) return res.status(400).send({
     errors:[{
       message:'URL Required In Post Body'
     }]
   });
-  const page = Page.build().save().then(function(result){
-      res.redirect('page/'+result.id);
+  const page = Page.build();
+
+  page.wwUri = page.id;
+
+  page.save().then(function(result){
+      res.redirect('newpage/'+result.wwUri);
   });
 
   parser(uri, function (err, article){
@@ -128,19 +149,44 @@ module.exports.new = function (req, res) {
     }
     Page.load(article.pageURL).then(function (result){
       if (!result){
-        Page.saveDiffBotResult(article.objects[0], req.user)
-          .then(function (result){
-
-
-          // addPage = result;
-          // return res.render('search', {
-          //   pages,
-          //   addPage
-          // });
+        const wwUri = article.title.length > 4 ? article.title.replace(new RegExp(' ', 'g'), '-') : page.id;
+        page.update({
+          html: article.html,
+          text: article.text,
+          title: article.title,
+          author: article.author,
+          authorUrl: article.authorUrl,
+          type: article.type,
+          icon: article.icon,
+          pageUrl: article.resolvedPageUrl || article.pageUrl,
+          siteName: article.siteName,
+          humanLanguage: article.humanLanguage,
+          diffbotUri: article.diffbotUri,
+          videos: article.videos,
+          authors: article.authors,
+          images: article.images,
+          userId:user.id,
+          meta: article.meta,
+          description:  article.meta?article.meta.description : '',
+          wwUri: wwUri
+        }).then(function(){
+          console.log('save success')
+        }).catch(function(){
+          console.log('save failed')
         });
+        // Page.saveDiffBotResult(page, article.objects[0], req.user)
+        //   .then(function (result){
+        //
+        //
+        //   // addPage = result;
+        //   // return res.render('search', {
+        //   //   pages,
+        //   //   addPage
+        //   // });
+        // });
       } else {
 
-
+        res.send(result.id)
         //res.redirect();
         // return res.render('search', {
         //   pages: [],

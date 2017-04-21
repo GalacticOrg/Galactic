@@ -21,16 +21,18 @@ module.exports = function(express) {
   router.post('/signup', signupController.signup);
 
   router.post('/login', signupController.authenticate);
-
   router.get('/login', isNotAuthenticated, signupController.login);
-
   router.get('/', appController.main);
 
 
   router.get('/search', appController.search);
+  router.post('/new', appController.new);
 
   router.param('wwid', appController.loadwwid);
+  router.param('uid', appController.loaduid);
+
   router.get('/page/:wwid', appController.page);
+  router.get('/newpage/:uid', appController.page);
 
 
   router.get('/logout', function (req, res) {
