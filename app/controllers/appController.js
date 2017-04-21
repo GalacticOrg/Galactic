@@ -136,11 +136,12 @@ module.exports.search = function (req, res) {
 module.exports.new = function (req, res) {
   const uri = req.body.uri;
   const user = req.user;
-  if (uri === undefined) return res.status(400).send({
+  if (isValidURI(uri)) return res.status(400).send({
     errors:[{
-      message:'URL Required In Post Body'
+      message:'Please enter a valid URL.'
     }]
   });
+
   const page = Page.build();
 
   page.wwUri = page.id;
@@ -151,10 +152,12 @@ module.exports.new = function (req, res) {
 
   parser(uri, function (err, article){
     if (err){
-      req.flash('error', err);
-      return res.render('search', {
-        pages: []
-      });
+
+      page
+      // req.flash('error', err);
+      // return res.render('search', {
+      //   pages: []
+      // });
     }
     Page.load(article.pageURL).then(function (result){
       if (!result){
@@ -180,39 +183,19 @@ module.exports.new = function (req, res) {
           images: article.images,
           userId:user.id,
           meta: article.meta,
-          description:  article.meta?article.meta.description : '',
+          description:  article.meta ? article.meta.description : '',
           wwUri: wwUri
-        }).then(function(){
-          console.log('save success')
-        }).catch(function(){
-          console.log('save failed')
+        }).then(function (){
+          console.log('save success');
+        }).catch(function (){
+          console.log('save failed');
         });
-        // Page.saveDiffBotResult(page, article.objects[0], req.user)
-        //   .then(function (result){
-        //
-        //
-        //   // addPage = result;
-        //   // return res.render('search', {
-        //   //   pages,
-        //   //   addPage
-        //   // });
-        // });
       } else {
-
-        //res.send(result.id)
-        //res.redirect();
-        // return res.render('search', {
-        //   pages: [],
-        //   addURL: true,
-        //   inputURI
-        // });
+        // No Opps
       }
     });
-
   });
-}
-
-
+};
 
 module.exports.main = function (req, res) {
 
