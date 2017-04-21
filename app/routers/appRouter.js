@@ -26,7 +26,7 @@ module.exports = function(express) {
 
 
   router.get('/search', appController.search);
-  router.post('/new', appController.new);
+  router.post('/new', isAuthenticated, appController.new);
 
   router.param('wwid', appController.loadwwid);
   router.param('uid', appController.loaduid);
