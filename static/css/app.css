@@ -358,7 +358,7 @@ img {
         display: flex-end;
         width: 80px; }
         .appNav .appNavInner .searchBox .submitButton:hover {
-          border-color: #2b6dad; }
+          border-color: #333; }
     .appNav .appNavInner .pageButtons {
       margin-left: 8px;
       display: flex;
@@ -821,10 +821,6 @@ img {
           content: "";
           border-top: 1px solid #e2e2e2;
           margin: 10px; }
-
-.searchPage .section_header {
-  border-top: 1px solid #e2e2e2;
-  padding-top: 8px; }
 
 .searchPage .noResultFound {
   padding-top: 8px; }

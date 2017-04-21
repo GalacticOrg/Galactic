@@ -213,7 +213,7 @@ img {
 									    word-wrap: break-word;
 		    						}
 		    						a:hover {
-									    text-decoration: underline;
+										    text-decoration: underline;
 										}
 		    					}
 		    					.submit_button_box {
@@ -409,7 +409,7 @@ img {
 		    display: flex-end;
 		    width: 80px;
 		    &:hover {
-		    	border-color: #2b6dad;
+		    	border-color: #333;
 		    }
 		  }
 	  }
@@ -984,10 +984,7 @@ img {
 }
 
 .searchPage {
-	.section_header {
-		border-top: 1px solid #e2e2e2;
-		padding-top: 8px;
-  }
+	.section_header {}
   .noResultFound {
   	padding-top: 8px;
   	.titleURL {
@@ -1020,31 +1017,31 @@ img {
 	    bottom: 0;
 	    clear: left;
 	  	.connectButton {
-	    	margin-right: 12px;
-		    -webkit-user-select: none;
-		    -moz-user-select: none;
-		    -ms-user-select: none;
-		    user-select: none;
-		    -webkit-box-sizing: border-box;
-		    -moz-box-sizing: border-box;
-		    box-sizing: border-box;
-		    transition: opacity ease-in-out 100ms,color ease-in-out 100ms,background-color ease-in-out 100ms,border-color ease-in-out 100ms;
-		    border-radius: 3px;
-		    box-shadow: 0 1px 1px 0 rgba(200,200,200,0.2);
-		    display: inline-block;
-		    font-weight: 500;
-		    outline: 0;
-		    padding: 3px 7px 4px 7px;
-		    text-align: center;
-		    text-decoration: none;
-		    cursor: pointer;
-		    background: #f1f8fb;
-		    color: #2b6dad;
-		    border: 1px solid #bbcadc;
-		    &:hover {
-		    	border-color: #2b6dad;
-		    }
+		    	margin-right: 12px;
+			    -webkit-user-select: none;
+			    -moz-user-select: none;
+			    -ms-user-select: none;
+			    user-select: none;
+			    -webkit-box-sizing: border-box;
+			    -moz-box-sizing: border-box;
+			    box-sizing: border-box;
+			    transition: opacity ease-in-out 100ms,color ease-in-out 100ms,background-color ease-in-out 100ms,border-color ease-in-out 100ms;
+			    border-radius: 3px;
+			    box-shadow: 0 1px 1px 0 rgba(200,200,200,0.2);
+			    display: inline-block;
+			    font-weight: 500;
+			    outline: 0;
+			    padding: 3px 7px 4px 7px;
+			    text-align: center;
+			    text-decoration: none;
+			    cursor: pointer;
+			    background: #f1f8fb;
+			    color: #2b6dad;
+			    border: 1px solid #bbcadc;
+			    &:hover {
+			    	border-color: #2b6dad;
+			    }
+				}
 			}
-		}
   }
 }
