@@ -27,7 +27,13 @@ const home = function (req, res) {
     message:'Example of Warning.',
     type: 'warning'
   }]);
-  res.render('home');
+
+  Page.feed().then(function (results){
+    const pages = results.map(function (result){ return result.toJSON(); });
+    res.render('home', {
+      pages
+    });
+  });
 };
 
 module.exports.loadwwid = function (req, res, next, id) {

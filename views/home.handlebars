@@ -14,7 +14,7 @@
 				name="q"
 				placeholder="Ask or Search the WikiWeb"
 				onkeypress="searchOnEnter()"
-			>{{inputURI}}</input>
+			></input>
 			<input id="navbarSearchButton" class="submitButton" type="submit" value="Submit"></input>
 		</form>
 		<div class="pageButtons">
@@ -259,12 +259,8 @@
 						</div>
 					</div>
 				</div>
-
-
-
+				{{toJSON pages}}
 			</div>
-
-
 
 			<div class="layout_3col_right">
 				<div class="identityModule">

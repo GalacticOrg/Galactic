@@ -11,10 +11,16 @@ module.exports = function (app) {
       },
       toJSON: function(obj) {
         return JSON.stringify(obj, null, 3);
+      },
+      isLength: function(obj, len) {
+        return obj.length===len;
+      },
+      doesEqual: function(a, b) {
+        return a === b;
       }
     }
   });
-  
+
   app.engine('handlebars', hbs.engine);
   app.set('view engine', 'handlebars');
 };

@@ -8,6 +8,7 @@ const request = require('superagent'),
   expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
 
 module.exports.diffBotAnalyze = function (inputURI, cb){
+  console.log(inputURI , 'inputURIinputURIinputURI')
   request
     .get(diffBotApiUri + '/analyze')
     .query({
@@ -15,15 +16,16 @@ module.exports.diffBotAnalyze = function (inputURI, cb){
       url: inputURI,
       fields: 'links,sentiment,meta'
     })
-    .timeout({
-      response: 5000, 
-      deadline: 30000,
-    })
+    // .timeout({
+    //   response: 5000,
+    //   deadline: 30000,
+    // })
     .set('Accept', 'application/json')
     .end(function (err, res){
-      if (err) {
+      if (res.error) {
         cb(err);
       } else {
+        console.log(res.body, err, 'err')
         const result = res.body.objects[0]
         cb(null, result);
       }

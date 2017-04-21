@@ -78,16 +78,25 @@ const options = {
         description:  data.meta.description
       });
     },
+    feed: function (limit, offset){
+      return Page.findAll({
+        limit: limit || 20,
+        offset: offset || 0
+      });
+    },
     search: function (searchString){
       const searchWordsArray = searchString.split(' ');
       const searchExpressionArray = searchWordsArray.map((item) => {
           return { $iLike: '%' + item + '%' };
       });
-      return Page.scope('defaultScope').findAll({
+      return Page.findAll({
         where:{
-          title:{ $or:searchExpressionArray }
-        },
-        attributes: { exclude: ['text, html'] }
+          $or: [{
+            title:{ $or:searchExpressionArray }
+          },{
+            description:{ $or:searchExpressionArray }
+          }]
+        }
       });
     },
     load: function (url){

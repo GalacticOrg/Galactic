@@ -15,8 +15,12 @@
 		<div class="layout_3col_center">
 			<div class="section_header">
 				<div class="header_text">
-					<span>No Result Found</span>
-
+					{{#if (isLength pages 0)}}
+							<span>No Result Found</span>
+					{{else if (isLength pages 1)}}
+						<span>Found 1 Result</span>
+					{{else}}
+						<span>Found {{pages.length}} Results</span>
 				</div>
 			</div>
 
@@ -33,6 +37,7 @@
 					</a>
 				</div>
 			</div>
+			{{/if}}
 
 			<div style="height: 20px;" content=""></div>
 			<div class="section_header">
@@ -104,7 +109,7 @@
 						{{addPage.description}}
 					</div>
 				{{/if}}
-				{{ pages.length }}
+
 				{{ pages }}
 				{{#each pages}}
 					{{ toJSON this }}
@@ -190,6 +195,13 @@
 			</div>
 		</div>
 	</div>
+
+	{{#if (doesEqual 'Jeff' 'Jeff')}}
+			<span>Jeff is Jeff</span>
+	{{/if}}
+	{{#if (doesEqual 'Jeff' 'Eoin')}}
+			<span>Jeff is not Eoin</span>
+	{{/if}}
 
 </div>
 {{#section 'foot'}}
