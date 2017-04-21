@@ -32,11 +32,13 @@ module.exports.loaduid = function (req, res, next, id) {
     if (result === null){
       next(new Error('Article not found'));
     } else {
-      if ( result.dataValues.wwUri !== null ) {
+      if ( result.dataValues.wwUri !== result.dataValues.id ) {
           return res.redirect( '/page/' + result.dataValues.wwUri );
-      };
-      req.page = result.dataValues;
-      next();
+      } else {
+        req.page = result.dataValues;
+        next();
+      }
+
     }
   });
 }
@@ -137,7 +139,7 @@ module.exports.new = function (req, res) {
   page.wwUri = page.id;
 
   page.save().then(function(result){
-      res.redirect('newpage/'+result.wwUri);
+      res.redirect('/newpage/'+result.wwUri);
   });
 
   parser(uri, function (err, article){
@@ -186,7 +188,7 @@ module.exports.new = function (req, res) {
         // });
       } else {
 
-        res.send(result.id)
+        //res.send(result.id)
         //res.redirect();
         // return res.render('search', {
         //   pages: [],
