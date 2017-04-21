@@ -45,63 +45,7 @@
 					<span>Search Results</span>
 				</div>
 			</div>
-			<!-- Result Example -->
-				<div class="feedBundle searchResult">
-					<div class="feedBundleMeta">
-						<span class="topic">
-							<a>
-								Brain Hacking
-							</a>
-						</span>
-						<span class="bullet"> · </span>
-						<span class="topic">
-							<a>
-								Donald Trump
-							</a>
-						</span>
-						<span class="bullet"> · </span>
-						<span class="topic">
-							<a>
-								Reticent Tapwater
-							</a>
-						</span>
-					</div>
-					<div class="bundleTitle">
-						Ep. 224: Dave Asprey – The Way To Evolve Better (in 5 steps)
-					</div>
-					<div class="contentMain">
-						Dave Asprey wants to live to be 180 years old and I don’t really believe it’s possible. But I admire him for trying. I’m fine if I die tomorrow. I feel I created good kids. Mission accomplished. BUT, if I have to live longer, I want to have high quality of life. When I read …
-					</div>
-				</div>
 
-				<!-- Result Example -->
-				<div class="feedBundle searchResult">
-					<div class="feedBundleMeta">
-						<span class="topic">
-							<a>
-								Politics
-							</a>
-						</span>
-						<span class="bullet"> · </span>
-						<span class="topic">
-							<a>
-								Chumptown
-							</a>
-						</span>
-						<span class="bullet"> · </span>
-						<span class="topic">
-							<a>
-								Terry Bolea
-							</a>
-						</span>
-					</div>
-					<div class="bundleTitle">
-						Marc Edwards - How to Address the U.D. Water Crisis in Flint and Beyond.
-					</div>
-					<div class="contentMain">
-						Virginia Tech Professor Marc Edwards talks about the ongoing contaminated water crisis in Flint, MI, and weighs in on the lead piping concerns in other low-income areas.
-					</div>
-				</div>
 
 				{{#if addPage}}
 					<div style="top:70px; left:50px; position: absolute;" class="alert alert-danger">
@@ -110,18 +54,8 @@
 					</div>
 				{{/if}}
 
-				{{ pages }}
 				{{#each pages}}
-					{{ toJSON this }}
-					<div>Page</div>
-					<div>Page</div>
-					<div>Page</div>
-					<div>Page</div>
-					<div>Page</div>
-					<div>Page</div>
-					<div>Page</div>
-					<div>Page</div>
-					<div class="feedBundle">
+					<div onClick="javascript:location.href='/page/{{wwUri}}'" class="feedBundle">
 						<div class="feedBundleMeta">
 							<span class="feedItemType">Feed Question</span>
 							<span class="bullet"> · </span>
@@ -191,17 +125,11 @@
 							</div>
 						</div>
 					</div>
+
 				{{/each}}
 			</div>
 		</div>
 	</div>
-
-	{{#if (doesEqual 'Jeff' 'Jeff')}}
-			<span>Jeff is Jeff</span>
-	{{/if}}
-	{{#if (doesEqual 'Jeff' 'Eoin')}}
-			<span>Jeff is not Eoin</span>
-	{{/if}}
 
 </div>
 {{#section 'foot'}}
