@@ -80,6 +80,8 @@ module.exports.search = function (req, res) {
       pages = results.map(function(result){
         return result.dataValues;
       });
+      // Toggle to see data
+      // return res.send(pages)
       return res.render('search', {
         pages,
         inputURI
