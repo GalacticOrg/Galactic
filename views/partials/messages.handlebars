@@ -1,0 +1,11 @@
+{{#if errorMessages}}
+	<div id="alerts" class="alerts">
+		<a href="javascript:void()" onClick=dismissAlert()>Close Alerts</a>
+		{{#each errorMessages}}
+			<div class="alert-{{type}}">
+				{{message}}
+
+			</div>
+			{{/each}}
+	</div>
+{{/if}}

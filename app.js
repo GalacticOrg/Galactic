@@ -37,7 +37,7 @@ app.use('/static', express.static(__dirname + '/static'));
 
 app.use(flash());
 app.use(function (req, res, next) {
-    res.locals.errorMessage = req.flash('error');
+    res.locals.errorMessages = req.flash('errors');
     next();
 });
 

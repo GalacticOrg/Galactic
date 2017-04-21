@@ -9,8 +9,6 @@ closeRecommendationsModal = function() {
 	document.getElementById('modalMask').classList.remove("displayRequestModal");
 }
 
-searchOnEnter = function() {
-  if(event.which === 13) {
-    document.getElementById('navbarSearchButton').click()
-  }
+dismissAlert = function() {
+	document.getElementById('alerts').remove()
 }

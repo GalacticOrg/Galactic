@@ -15,6 +15,10 @@ module.exports.diffBotAnalyze = function (inputURI, cb){
       url: inputURI,
       fields: 'links,sentiment,meta'
     })
+    .timeout({
+      response: 5000, 
+      deadline: 30000,
+    })
     .set('Accept', 'application/json')
     .end(function (err, res){
       if (err) {

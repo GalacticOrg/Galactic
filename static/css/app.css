@@ -69,6 +69,25 @@ img {
     padding-left: 20px;
     width: 50px; }
 
+.alerts {
+  top: 70px;
+  left: calc(50% - 300px);
+  position: absolute;
+  margin: auto;
+  width: 600px; }
+
+.alert-error {
+  background: red; }
+
+.alert-success {
+  background: lightgreen; }
+
+.alert-warning {
+  background: yellow; }
+
+.alert-info {
+  background: aqua; }
+
 .landingPage .headline {
   margin-top: 30px;
   margin-bottom: 10px;
