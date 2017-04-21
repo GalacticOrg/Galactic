@@ -13,7 +13,7 @@ module.exports = function (app) {
         return JSON.stringify(obj, null, 3);
       },
       isLength: function(obj, len) {
-        return obj.length===len;
+        return obj === len;
       },
       doesEqual: function(a, b) {
         return a === b;

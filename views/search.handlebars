@@ -15,9 +15,9 @@
 		<div class="layout_3col_center">
 			<div class="section_header">
 				<div class="header_text">
-					{{#if (isLength pages 0)}}
+					{{#if (isLength pages.length 0)}}
 							<span>No Result Found</span>
-					{{else if (isLength pages 1)}}
+					{{else if (isLength pages.length 1)}}
 						<span>Found 1 Result</span>
 					{{else}}
 						<span>Found {{pages.length}} Results</span>
