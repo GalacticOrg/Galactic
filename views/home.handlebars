@@ -114,7 +114,10 @@
 				</div>
 
 				{{> homefeedconnection}}
-				{{> homefeedrequest}}
+				
+				{{#each pages}}
+					{{> homefeedrequest}}
+				{{/each}}
 
 				
 				{{toJSON pages}}

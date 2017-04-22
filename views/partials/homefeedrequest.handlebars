@@ -1,43 +1,49 @@
 <div class="feedBundle">
-	<div class="feedBundleMeta">
-		<span class="feedItemType">Request</span>
-		<span class="bullet"> · </span>
-		<span class="topic">
-			<a>
-				Brain Hacking
-			</a>
-		</span>
-		<span class="bullet"> · </span>
-		<span class="feedReason">
-			Topic you might like
-		</span>
-		<span class="bullet"> · </span>
-		<span class="timestamp">
-			<a>21m</a>
-		</span>
-	</div>
-	<div class="bundleTitle">
-		Ep. 224: Dave Asprey – The Way To Evolve Better (in 5 steps)
-	</div>
-	<div class="contentHeader">
-		<span class="imgWrapper">
-			<img src="/static/img/example_profile.jpg" class="userImg" />
-		</span>
-		<span class="layoutTextWrapper">
-			<div>
-				<span class="username">Eoin McMillan</span><span class="userInfo">, CSS Dilettante
+	<div class="articleContentBox">
+		<div class="articleContent">
+			<div class="feedBundleMeta">
+				<span class="feedItemType">Request</span>
+				<span class="bullet"> · </span>
+				<span class="topic">
+					<a>
+						Brain Hacking
+					</a>
 				</span>
-			</div>
-			<div class="credibilityFacts feedBundleMeta">
+				<span class="bullet"> · </span>
+				<span class="feedReason">
+					Topic you might like
+				</span>
+				<span class="bullet"> · </span>
 				<span class="timestamp">
-					<a>Requested 21m ago</a>
+					<a>21m</a>
 				</span>
 			</div>
-		</span>
+			<div class="contentHeader">
+				<span class="imgWrapper">
+					<img src="/static/img/example_profile.jpg" class="userImg" />
+				</span>
+				<span class="layoutTextWrapper">
+					<div>
+						<span class="username">userId: {{this.userId}}</span><span class="userInfo">, 
+						</span>
+					</div>
+					<div class="credibilityFacts feedBundleMeta">
+						<span class="timestamp">
+							<a>Requested 21m ago</a>
+						</span>
+					</div>
+				</span>
+			</div>
+			<div class="bundleTitle">
+				{{this.title}}
+			</div>
+		</div>
+		<div class="articleImg">
+			<img src={{this.icon}}>
+		</div>
 	</div>
 	<div class="contentMain">
-		Dave Asprey wants to live to be 180 years old and I don’t really believe it’s possible. But I admire him for trying. I’m fine if I die tomorrow. I feel I created good kids. Mission accomplished. BUT, if I have to live longer, I want to have high quality of life. When I read …
-
+		{{this.description}}
 	</div>
 	<div class="actionBar">
 		<span class="connectButton">

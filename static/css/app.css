@@ -672,6 +672,16 @@ img {
           text-decoration: underline; }
         .homePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .timestamp a:hover, .searchPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .timestamp a:hover, .resultPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .timestamp a:hover {
           text-decoration: underline; }
+      .homePage .contentWrapper .layout_3col_center .feedBundle .articleContentBox, .searchPage .contentWrapper .layout_3col_center .feedBundle .articleContentBox, .resultPage .contentWrapper .layout_3col_center .feedBundle .articleContentBox {
+        display: flex;
+        flex-direction: row; }
+        .homePage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleContent, .searchPage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleContent, .resultPage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleContent {
+          width: 100%; }
+        .homePage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleImg, .searchPage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleImg, .resultPage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleImg {
+          justify-content: flex-end; }
+          .homePage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleImg img, .searchPage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleImg img, .resultPage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleImg img {
+            margin-left: 10px;
+            max-height: 120px; }
       .homePage .contentWrapper .layout_3col_center .feedBundle .bundleTitle, .searchPage .contentWrapper .layout_3col_center .feedBundle .bundleTitle, .resultPage .contentWrapper .layout_3col_center .feedBundle .bundleTitle {
         font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
         font-weight: bold;

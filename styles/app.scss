@@ -793,6 +793,20 @@ img {
 			    	}
 		    	}
 		    }
+		    .articleContentBox {
+		    	display: flex;
+		    	flex-direction: row;
+			    .articleContent {
+			    	width: 100%
+			    }
+			    .articleImg {
+			    	justify-content: flex-end;
+			    	img {
+			    		margin-left: 10px;
+			    		max-height: 120px;
+			    	}
+			    }
+		    }
 		    .bundleTitle {
 		    	font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
     	    font-weight: bold;
