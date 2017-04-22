@@ -11,24 +11,6 @@ const landing = function (req, res) {
 };
 
 const home = function (req, res) {
-  // req.flash(
-  // 'errors',
-  // [{
-  //   message:'Example of Error.',
-  //   type: 'error'
-  // },
-  // {
-  //   message:'Example of Info.',
-  //   type: 'info'
-  // },
-  // {
-  //   message:'Example of Success.',
-  //   type: 'success'
-  // },
-  // {
-  //   message:'Example of Warning.',
-  //   type: 'warning'
-  // }]);
 
   Page.feed().then(function (results){
     const pages = results.map(function (result){ return result.toJSON(); });
@@ -88,7 +70,9 @@ module.exports.pageValidate = function(req, res){
   const user = req.user;
 
   if (regexNYT.test(inputURI)){
-    pageParseNYT(inputURI, function(err, article){
+
+
+    pageParseNYT(inputURI.split("?")[0], function(err, article){
       if (err){
         return res.send(err)
       }
@@ -194,34 +178,47 @@ module.exports.search = function (req, res) {
 module.exports.new = function (req, res) {
   const id = req.body.id;
   const user = req.user;
-  // if (!isValidURI(uri)) {
-  //   req.flash(
-  //   'errors',
-  //   [{
-  //     message:'Please enter a valid URL.',
-  //     type: 'error'
-  //   }]);
-  //   return res.redirect('/');
-  // }
   Page.findOne({
     where:{
        id: id
     }
-  }).then(function (result){
-    if (result === null){
-      //next(new Error('Article not found'));
+  }).then(function (page){
+    if (page === null){
+      // next(new Error('Article not found'));
     } else {
-      result.update({
+      page.update({
         userId:user.id
-      }).then(function(){
-        res.send(result);
-      })
-
+      }).then(function (result){
+        res.redirect('/page/' + result.wwUri);
+      });
+      parser(page.pageURL, function (err, article) {
+        page.update({
+          html: article.html,
+          text: article.text,
+          title: article.title,
+          author: article.author,
+          authorUrl: article.authorUrl,
+          type: article.type,
+          icon: article.icon,
+          pageUrl: article.resolvedPageUrl || article.pageUrl,
+          siteName: article.siteName,
+          humanLanguage: article.humanLanguage,
+          diffbotUri: article.diffbotUri,
+          videos: article.videos,
+          authors: article.authors,
+          images: article.images,
+          meta: article.meta,
+          description:  article.meta ? article.meta.description : ''
+        }).then(function (){
+          console.log('save success');
+        }).catch(function (){
+          console.log('save failed');
+        });
+      });
     }
   });
 
-  // parser(uri, function (err, article){
-  //   if (err){
+
   //
   //     //page
   //     // req.flash('error', err);

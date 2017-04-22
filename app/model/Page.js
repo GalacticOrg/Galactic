@@ -109,8 +109,6 @@ const options = {
       });
     },
     loadPage: function (pageUUID){
-      // const urlHttps = 'https://' + pageUUID;
-      // const urlHttp = 'http://' + pageUUID;
       return Page.findOne({
         where:{
           $or: [{ wwUri: pageUUID }]

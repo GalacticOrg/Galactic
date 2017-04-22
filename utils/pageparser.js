@@ -65,8 +65,9 @@ module.exports.pageParseNYT = function (inputURI, cb){
       deadline: 10000
     })
     .end(function (err, res){
-      if (err) {
-        cb(err);
+      console.log(res.body.response, 'res.body.response')
+      if (err || res.body.response.docs.length === 0) {
+        cb({err:err});
       } else {
         cb(null, res.body.response.docs[0]);
       }
@@ -75,7 +76,6 @@ module.exports.pageParseNYT = function (inputURI, cb){
 
 
 
-http://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=3035051d3da84addb0028788a69ba918&fq=web_url:%22https://www.nytimes.com/2017/04/21/world/europe/chechnya-russia-attacks-gays.html%22
 
 module.exports.isValidURI = function (uri){
   return new RegExp(expression).test(uri);

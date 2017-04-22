@@ -27,6 +27,12 @@ const attributes = {
   lastName: {
     type: Sequelize.STRING
   },
+  bio: {
+    type: Sequelize.STRING
+  },
+  avatar: {
+    type: Sequelize.STRING
+  },
   password: {
     type: Sequelize.STRING
   },
