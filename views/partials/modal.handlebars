@@ -16,14 +16,15 @@
       </div>
         <div class="questionBox">
           <textarea
+            id="questionInput"
             type="text"
             name="uri"
             placeholder="What needs recommendations? (paste url)"
           >{{inputURI}}</textarea>
+          <input id="questionPageId" name="id"></input>
       </div>
-
-
     </div>
+    <div id="validateSection"> </div>
     <div class="modalFooter">
       <div class="cancel underlineOnHover">Cancel</div>
       <input class="askButton" type="submit" value="Ask for Connections"></input>

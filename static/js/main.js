@@ -12,3 +12,22 @@ closeRecommendationsModal = function() {
 dismissAlert = function() {
 	document.getElementById('alerts').remove()
 }
+
+
+const templateValidate = Handlebars.compile($('#validateTmpl').html());
+
+const validateSec = $('#validateSection');
+
+
+$( "#questionInput" ).bind('input propertychange', $.debounce(function() {
+	$.ajax({
+	  url: '/pagevalidate',
+	  data: {
+	    q: this.value
+	  },
+	  success: function( result ) {
+			$( "#questionPageId").val(result.id)
+			validateSec.html(templateValidate(result))
+	  }
+	});
+}, 1500));
