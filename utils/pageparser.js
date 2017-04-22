@@ -26,7 +26,7 @@ module.exports.diffBotAnalyze = function (inputURI, cb){
     })
     .set('Accept', 'application/json')
     .end(function (err, res){
-      if (res.error) {
+      if (err, res.body.error) {
         cb(err);
       } else {
         const result = res.body.objects[0]

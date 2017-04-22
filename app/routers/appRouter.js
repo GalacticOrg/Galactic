@@ -30,10 +30,8 @@ module.exports = function(express) {
   router.post('/new', isAuthenticated, appController.new);
 
   router.param('wwid', appController.loadwwid);
-  router.param('uid', appController.loaduid);
-
   router.get('/page/:wwid', appController.page);
-  router.get('/newpage/:uid', appController.newpage);
+  router.post('/page/:wwid/connect', appController.connect);
 
 
   router.get('/logout', function (req, res) {

@@ -54,20 +54,35 @@
 	</div>
 </div>
 
-{{#if errorMessage}}
-	<div style="top:70px; left:50px; position: absolute;" class="alert alert-danger">
-		{{errorMessage}}
-	</div>
-{{/if}}
 <div class="homePage">
+	{{> modalconnect}}
 	<div class="contentWrapper">
 		<br/><br/><br/>
+		<a class="askQuestionButton" onClick=openRecommendationsModal()>
+			<div class="inner">
+				Open Modal
+			</div>
+		</a>
+		<br />
 		<a href="/page/{{page.wwUri}}">
 			{{page.title}}
 		</a>
 	</div>
+	{{toJSON page}}
 </div>
+
+{{{{rawHelper}}}}
+	<script id='validateTmpl' type="text/template">
+		<img src="{{icon}}"></img>
+		{{title}}
+		{{description}}
+	</script>
+{{{{/rawHelper}}}}
 
 {{#section 'foot'}}
 <!-- <script type="application/javascript" src="http://0.0.0.0:8090/js/home.js"></script> -->
+<script type="application/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
+<script type="application/javascript" src="/static/js/jquery.debounce-1.0.5.js"></script>
+<script type="application/javascript" src="/static/js/handlebars.js"></script>
+<script type="application/javascript" src="/static/js/main.js"></script>
 {{/section}}

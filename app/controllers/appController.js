@@ -3,6 +3,7 @@ const parser = require('../../utils/pageparser').diffBotAnalyze,
     pageParse = require('../../utils/pageparser').pageParse,
     pageParseNYT = require('../../utils/pageparser').pageParseNYT,
     Page = require('../model/page.js'),
+    Connection = require('../model/Connection.js'),
     regexNYT = new RegExp('nyt.com|nytimes.com|newyorktimes.com');
 
 
@@ -25,53 +26,81 @@ module.exports.loadwwid = function (req, res, next, id) {
     if (result === null){
       next(new Error('Article not found'));
     } else {
-      req.page = result.toJSON();
+      req.page = result;
       next();
     }
   });
 };
 
-module.exports.loaduid = function (req, res, next, id) {
-  Page.findOne({
-    where:{
-      $or: [{ id: id }]
-    }
-  }).then(function (result){
-    if (result === null){
-      next(new Error('Article not found'));
-    } else {
-      if ( result.dataValues.wwUri !== result.dataValues.id ) {
-          return res.redirect( '/page/' + result.dataValues.wwUri );
-      } else {
-        req.page = result.dataValues;
-        next();
-      }
-
-    }
-  });
-}
 
 module.exports.page = function (req, res) {
-  const page = req.page;
+  const page = req.page.toJSON();
   res.render('page', {
     page
   });
 };
 
-module.exports.newpage = function (req, res) {
+
+module.exports.connect = function (req, res) {
   const page = req.page;
-  res.render('newpage', {
-    page
+  const user = req.user;
+  Connection.create({
+    pageId: page.id
+  }).then(function (){
+    page.getConnections().then(function (){
+      const pageObj = page.toJSON();
+      res.redirect('/page/' + pageObj.wwUri);
+    });
   });
+
+
+  // Page.findOne({
+  //   where:{
+  //      id: id
+  //   }
+  // }).then(function (page){
+  //   if (page === null){
+  //     // next(new Error('Article not found'));
+  //   } else {
+  //     page.update({
+  //       userId:user.id
+  //     }).then(function (result){
+  //       res.redirect('/page/' + result.wwUri);
+  //     });
+  //     parser(page.pageURL, function (err, article) {
+  //       page.update({
+  //         html: article.html,
+  //         text: article.text,
+  //         title: article.title,
+  //         author: article.author,
+  //         authorUrl: article.authorUrl,
+  //         type: article.type,
+  //         icon: article.icon,
+  //         pageUrl: article.resolvedPageUrl || article.pageUrl,
+  //         siteName: article.siteName,
+  //         humanLanguage: article.humanLanguage,
+  //         diffbotUri: article.diffbotUri,
+  //         videos: article.videos,
+  //         authors: article.authors,
+  //         images: article.images,
+  //         meta: article.meta,
+  //         description:  article.meta ? article.meta.description : ''
+  //       }).then(function (){
+  //         console.log('save success');
+  //       }).catch(function (){
+  //         console.log('save failed');
+  //       });
+  //     });
+  //   }
+  // });
 };
+
 
 module.exports.pageValidate = function(req, res){
   const inputURI = req.query.q;
   const user = req.user;
 
   if (regexNYT.test(inputURI)){
-
-
     pageParseNYT(inputURI.split("?")[0], function(err, article){
       if (err){
         return res.send(err)

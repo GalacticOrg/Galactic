@@ -1,25 +1,16 @@
 <div class="modalMask" id='modalMask' onclick=closeRecommendationsModal()></div>
 <div class="requestModal" id='requestModal'>
-  <form id="askform" action="{{inputURI}}/new" method="post">
+  <form id="askform" action="{{page.wwUri}}/connect" method="post">
     <div class="modalContent">
       <div class="closeButton" onclick=closeRecommendationsModal()>
         <i class="fa fa-times" aria-hidden="true"></i>
-      </div>
-      <div class="contentBox">
-        <span class="userImg">
-          <img src="/static/img/profile.jpg" />
-        </span>
-        <div>
-          <span class="username underlineOnHover">Eoin McMillan</span>
-          <span class="text">requests</span>
-        </div>
       </div>
         <div class="questionBox">
           <textarea
             id="questionInput"
             type="text"
             name="uri"
-            placeholder="What needs recommendations? (paste url)"
+            placeholder="What should we read next? (paste url)"
           >{{inputURI}}</textarea>
           <input id="questionPageId" name="id"></input>
       </div>

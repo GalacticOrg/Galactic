@@ -103,7 +103,7 @@ const options = {
     load: function (url){
       return Page.findOne({
         where:{
-          pageUrl: {$iLike: '%'+url }
+          pageUrl: {$iLike: '%' + url }
         },
         include:[{ model: User }]
       });
@@ -113,7 +113,7 @@ const options = {
         where:{
           $or: [{ wwUri: pageUUID }]
         },
-        include:[{ model: User }]
+        include:[{ model: User }, { model: Connection }, { model: Page }]
       });
     }
   }
