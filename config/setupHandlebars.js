@@ -17,6 +17,9 @@ module.exports = function (app) {
       },
       doesEqual: function(a, b) {
         return a === b;
+      },
+      rawHelper: function(obj){
+         return obj.fn();
       }
     }
   });

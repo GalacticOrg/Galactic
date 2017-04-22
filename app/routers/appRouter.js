@@ -24,6 +24,7 @@ module.exports = function(express) {
   router.get('/login', isNotAuthenticated, signupController.login);
   router.get('/', appController.main);
 
+  router.get('/pagevalidate', appController.pageValidate);
 
   router.get('/search', appController.search);
   router.post('/new', isAuthenticated, appController.new);
