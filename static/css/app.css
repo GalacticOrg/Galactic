@@ -681,7 +681,7 @@ img {
           justify-content: flex-end; }
           .homePage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleImg img, .searchPage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleImg img, .resultPage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleImg img {
             margin-left: 10px;
-            max-height: 120px; }
+            max-height: 60px; }
       .homePage .contentWrapper .layout_3col_center .feedBundle .bundleTitle, .searchPage .contentWrapper .layout_3col_center .feedBundle .bundleTitle, .resultPage .contentWrapper .layout_3col_center .feedBundle .bundleTitle {
         font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
         font-weight: bold;

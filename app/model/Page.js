@@ -81,7 +81,8 @@ const options = {
     feed: function (limit, offset){
       return Page.findAll({
         limit: limit || 20,
-        offset: offset || 0
+        offset: offset || 0,
+        include:[{ model: User }]
       });
     },
     search: function (searchString){

@@ -1,3 +1,4 @@
+{{#if this.icon}}
 <div class="feedBundle">
 	<div class="articleContentBox">
 		<div class="articleContent">
@@ -24,7 +25,7 @@
 				</span>
 				<span class="layoutTextWrapper">
 					<div>
-						<span class="username">userId: {{this.userId}}</span><span class="userInfo">, 
+						<span class="username underlineOnHover">{{this.user.username}}</span><span class="userInfo">, 
 						</span>
 					</div>
 					<div class="credibilityFacts feedBundleMeta">
@@ -34,13 +35,13 @@
 					</div>
 				</span>
 			</div>
-			<div class="bundleTitle">
-				{{this.title}}
-			</div>
 		</div>
 		<div class="articleImg">
 			<img src={{this.icon}}>
 		</div>
+	</div>
+	<div class="bundleTitle">
+		{{this.title}}
 	</div>
 	<div class="contentMain">
 		{{this.description}}
@@ -68,3 +69,75 @@
 		</div>
 	</div>
 </div>
+{{else}}
+<div class="feedBundle">
+	<div class="feedBundleMeta">
+		<span class="feedItemType">Request</span>
+		<span class="bullet"> · </span>
+		<span class="topic">
+			<a>
+				Brain Hacking
+			</a>
+		</span>
+		<span class="bullet"> · </span>
+		<span class="feedReason">
+			Topic you might like
+		</span>
+		<span class="bullet"> · </span>
+		<span class="timestamp">
+			<span content=timeSince({{this.createdAt}})></span>
+			<a>21m</a>
+		</span>
+	</div>
+	<a href="/page/{{wwUri}}">
+		<div class="bundleTitle">
+			{{this.title}}
+		</div>
+	</a>
+	<div class="contentHeader">
+		<span class="imgWrapper">
+			<img src="/static/img/example_profile.jpg" class="userImg" />
+		</span>
+		<span class="layoutTextWrapper">
+			<div>
+				<span class="username">userId: {{this.userId}}</span><span class="userInfo">, 
+				</span>
+			</div>
+			<div class="credibilityFacts feedBundleMeta">
+				<span class="timestamp">
+					<a>Requested 21m ago</a>
+				</span>
+			</div>
+		</span>
+	</div>
+	<div class="contentMain">
+		{{this.description}}
+	</div>
+	<div class="actionBar">
+		<span class="connectButton">
+			Connect
+		</span>
+		<span class="connections underlineOnHover">
+			Connections<span class="connectionsTotal">10</span>
+		</span>
+		<div class="socialShare">
+			<span class="shareIcon">
+				<i class="fa fa-facebook-official" aria-hidden="true"></i>
+			</span>
+			<span class="shareIcon">
+				<i class="fa fa-twitter" aria-hidden="true"></i>
+			</span>
+			<span class="shareIcon">
+				<i class="fa fa-share-square-o" aria-hidden="true"></i>
+			</span>
+			<span class="shareIcon">
+				<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+			</span>
+		</div>
+	</div>
+</div>
+{{/if}}
+
+{{#section 'foot'}}
+<script type="application/javascript" src="/static/js/main.js"></script>
+{{/section}}
