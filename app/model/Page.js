@@ -43,11 +43,10 @@ const attributes = {
 
 const options = {
   freezeTableName: true,
-  exclude: ['html'],
   instanceMethods: {
     toJSON: function () {
       var values = Object.assign({}, this.get());
-
+      // Killing unneded values for our http response.
       delete values.html;
       delete values.text;
       delete values.meta;
@@ -58,6 +57,7 @@ const options = {
   },
   classMethods: {
     saveDiffBotResult: function (page, data, user){
+      // @TODO Remove me.  I'm not used.
       return page.update({
         html: data.html,
         text: data.html,
@@ -113,7 +113,10 @@ const options = {
         where:{
           $or: [{ wwUri: pageUUID }]
         },
-        include:[{ model: User }, { model: Connection }, { model: Page }]
+        include:[
+          { model: User },
+          { model: Connection }
+        ]
       });
     }
   }
