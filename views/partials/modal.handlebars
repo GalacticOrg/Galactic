@@ -1,6 +1,6 @@
 <div class="modalMask" id='modalMask' onclick=closeRecommendationsModal()></div>
 <div class="requestModal" id='requestModal'>
-  <form id="askform" action="{{inputURI}}/new" method="post">
+  <form id="askform" action="new" method="post">
     <div class="modalContent">
       <div class="closeButton" onclick=closeRecommendationsModal()>
         <i class="fa fa-times" aria-hidden="true"></i>
@@ -21,7 +21,7 @@
             name="uri"
             placeholder="What needs recommendations? (paste url)"
           >{{inputURI}}</textarea>
-          <input id="questionPageId" name="id"></input>
+          <input id="questionPageId" name="id" type="hidden" ></input>
       </div>
     </div>
     <div id="validateSection"> </div>

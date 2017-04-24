@@ -13,10 +13,6 @@ const attributes = {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW
   },
-  html: {
-    type: Sequelize.TEXT,
-    length: 'long'
-  },
   text: {
     type: Sequelize.TEXT,
     length: 'long'
@@ -56,28 +52,6 @@ const options = {
     }
   },
   classMethods: {
-    saveDiffBotResult: function (page, data, user){
-      // @TODO Remove me.  I'm not used.
-      return page.update({
-        html: data.html,
-        text: data.html,
-        title: data.title,
-        author: data.author,
-        authorUrl: data.authorUrl,
-        type: data.type,
-        icon: data.icon,
-        pageUrl: data.resolvedPageUrl || data.pageUrl,
-        siteName: data.siteName,
-        humanLanguage: data.humanLanguage,
-        diffbotUri: data.diffbotUri,
-        videos: data.videos,
-        authors: data.authors,
-        images: data.images,
-        userId: user ? user.id : null,
-        meta: data.meta,
-        description:  data.meta.description
-      });
-    },
     feed: function (limit, offset){
       return Page.findAll({
         limit: limit || 20,

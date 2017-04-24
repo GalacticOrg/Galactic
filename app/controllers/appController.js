@@ -1,4 +1,4 @@
-const parser = require('../../utils/pageparser').diffBotAnalyze,
+const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     isValidURI = require('../../utils/pageparser').isValidURI,
     pageParse = require('../../utils/pageparser').pageParse,
     pageParseNYT = require('../../utils/pageparser').pageParseNYT,
@@ -24,7 +24,8 @@ const home = function (req, res) {
 module.exports.loadwwid = function (req, res, next, id) {
   Page.loadPage(id).then(function (result){
     if (result === null){
-      next(new Error('Article not found'));
+      res.render('404', {
+      });
     } else {
       req.page = result;
       next();
@@ -220,9 +221,12 @@ module.exports.new = function (req, res) {
       }).then(function (result){
         res.redirect('/page/' + result.wwUri);
       });
-      parser(page.pageURL, function (err, article) {
+
+      diffBotAnalyze(page.pageUrl, function (err, article) {
+        if (err){
+          return console.log('diffBotAnalyze failed');
+        };
         page.update({
-          html: article.html,
           text: article.text,
           title: article.title,
           author: article.author,
