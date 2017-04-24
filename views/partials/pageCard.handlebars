@@ -7,13 +7,15 @@
 			<div class="pageUrl">
 				<span>{{page.pageUrl}}</span>
 			</div>
-			<div class="explanatoryText">
+			<div class="descriptionText">
 				{{page.description}}
 			</div>
 		</div>
+		{{#if page.icon}}
 		<div class="articleImg">
-			<img src={{this.icon}}>
+			<img src={{page.icon}}>
 		</div>
+		{{/if}}
 	</div>
 	<div class="actionBar">
 		<a class="askQuestionButton" onClick=openRecommendationsModal()>

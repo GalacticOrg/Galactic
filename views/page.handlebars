@@ -37,17 +37,12 @@
 			{{#each page.connections}}
 				{{> pageConnection }}
 			{{/each}}
+			
+			{{toJSON page}}
+			{{> modalconnect}}
 		</div>
 		<div class="layout_3col_right"></div>
 	</div>
-	{{> modalconnect}}
-	<div class="contentWrapper">
-		<br />
-		<a href="/page/{{page.wwUri}}">
-			{{page.title}}
-		</a>
-	</div>
-	{{toJSON page}}
 </div>
 
 {{{{rawHelper}}}}
