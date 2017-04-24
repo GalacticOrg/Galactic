@@ -70,7 +70,7 @@
 	</div>
 </div>
 {{else}}
-<div class="feedBundle">
+<div onClick="javascript:location.href='/page/{{this.wwUri}}'" class="feedBundle">
 	<div class="feedBundleMeta">
 		<span class="feedItemType">Request</span>
 		<span class="bullet"> · </span>
@@ -85,15 +85,12 @@
 		</span>
 		<span class="bullet"> · </span>
 		<span class="timestamp">
-			<span content=timeSince({{this.createdAt}})></span>
 			<a>21m</a>
 		</span>
 	</div>
-	<a href="/page/{{wwUri}}">
-		<div class="bundleTitle">
-			{{this.title}}
-		</div>
-	</a>
+	<div class="bundleTitle">
+		{{this.title}}
+	</div>
 	<div class="contentHeader">
 		<span class="imgWrapper">
 			<img src="/static/img/example_profile.jpg" class="userImg" />
