@@ -35,24 +35,85 @@ module.exports.loadwwid = function (req, res, next, id) {
 
 
 module.exports.page = function (req, res) {
-  const page = req.page.toJSON();
-  res.render('page', {
-    page
-  });
+  const pageObj = req.page
+  const page = pageObj.toJSON();
+  let connections = null;
+  let destinations = null;
+
+  pageObj.getConnections().then(function (result){
+
+    destinations = result;
+
+    return destinations.map(function (destination, i){
+       return destination.connection.getUser();
+    });
+
+    // res.render('page', {
+    //   page
+    // });
+  }).spread(function (){
+    const users = arguments;
+    destinations = destinations.map(function(result, i){
+      let connection = result.toJSON();
+      console.log(arguments[i].toJSON() ,'ii')
+      connection.user = users[i].toJSON();
+      return connection;
+    })
+    // return res.send({
+    //   page: pageObj.toJSON(),
+    //   destinations,
+    // })
+    res.render('page', {
+      page,
+      destinations,
+    });
+  })
+
+  // req.page.getConnections().then(function(result){
+  //   //console.log(result, 'resultresult')
+  //   const page = req.page.toJSON();
+  //   res.render('page', {
+  //     page
+  //   });
+  // })
+
 };
 
 
 module.exports.connect = function (req, res) {
   const page = req.page;
   const user = req.user;
-  Connection.create({
-    pageId: page.id
-  }).then(function (){
-    page.getConnections().then(function (){
+  const id = req.body.id;
+  //const connection = Connection.build();
+
+  //connection.setUser(user);
+
+  Page.findOne({ where:{ id:id } }).then(function (destinationPage){
+    page.addConnection(destinationPage, { userId: user.id }).then(function (connections){
+      // connections[0].setUser(user)
+      //connections[0][0].setUser(user.id);
+      //
+    });
+    page.save().then(function (){
       const pageObj = page.toJSON();
       res.redirect('/page/' + pageObj.wwUri);
     });
   });
+  // page.setConnection(connection);
+  // page.save();
+  // connection.save().then(function (){
+  //   page.setConnection(connection)
+  //   page.save();
+  //   const pageObj = page.toJSON();
+  //   res.redirect('/page/' + pageObj.wwUri);
+  // });
+
+
+  // page.update({ pageId: id })
+  //   .then(function (){
+  //   const pageObj = page.toJSON();
+  //   res.redirect('/page/' + pageObj.wwUri);
+  // });
 
 
   // Page.findOne({
@@ -214,18 +275,22 @@ module.exports.new = function (req, res) {
     }
   }).then(function (page){
     if (page === null){
-      // next(new Error('Article not found'));
+      req.flash('errors', {
+        message: 'Something Went Wrong. Please Try Again.',
+        type: 'error'
+      });
+      res.redirect('back');
     } else {
-      page.update({
-        userId:user.id
-      }).then(function (result){
+      page.setUser(user).then(function (result){
         res.redirect('/page/' + result.wwUri);
       });
 
+
+      return // @TODO Kill me
       diffBotAnalyze(page.pageUrl, function (err, article) {
         if (err){
-          return console.log('diffBotAnalyze failed');
-        };
+          return console.log(page.id, '<--page.id, diffBotAnalyze failed');
+        }
         page.update({
           text: article.text,
           title: article.title,
@@ -249,6 +314,13 @@ module.exports.new = function (req, res) {
         });
       });
     }
+  }).catch(function (err){
+    console.log(err, 'module.exports.new DB Error');
+    req.flash('errors', {
+      message: 'Something Went Wrong. Please Try Again.',
+      type: 'error'
+    });
+    res.redirect('back');
   });
 
 

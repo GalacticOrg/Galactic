@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize'),
       connection = require('./sequelize.js'),
       User = require('./User.js');
-  
+
 const attributes = {
   id: {
     type: Sequelize.UUID,
@@ -17,6 +17,6 @@ const options = {
 
 const Connection = connection.define('connection', attributes, options);
 
-Connection.belongsTo(User);
+Connection.belongsTo(User, {as: 'user'});
 
 module.exports = Connection;

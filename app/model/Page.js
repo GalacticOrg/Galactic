@@ -86,11 +86,7 @@ const options = {
       return Page.findOne({
         where:{
           $or: [{ wwUri: pageUUID }]
-        },
-        include:[
-          { model: User },
-          { model: Connection }
-        ]
+        }
       });
     }
   }
@@ -99,6 +95,6 @@ const options = {
 const Page = connection.define('pages', attributes, options);
 
 Page.belongsTo(User);
-Page.hasMany(Connection);
+Page.belongsToMany(Page, { as: 'connections', foreignKey : 'connectionPage', otherKey:'destinationPage', through: Connection });
 
 module.exports = Page;
