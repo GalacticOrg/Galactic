@@ -43,7 +43,17 @@ const attributes = {
 };
 
 const options = {
-  freezeTableName: true
+  freezeTableName: true,
+  toJSON: function () {
+    var values = Object.assign({}, this.get());
+    // Killing unneded values for our http response.
+    delete values.email;
+    delete values.password;
+    delete values.salt;
+    delete values.createdAt;
+    delete values.updatedAt;
+    return values;
+  }
 }
 
 const User = connection.define('users', attributes, options);

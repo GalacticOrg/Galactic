@@ -36,33 +36,36 @@ module.exports.loadwwid = function (req, res, next, id) {
 
 module.exports.page = function (req, res) {
   const pageObj = req.page
+  const page = pageObj.toJSON();
   let connections = null;
-  //.toJSON();
-  //.
-  //return res.send(pageObj.toJSON())
-  // Connection.findOne({ where:{ id:'4908D658-B248-4456-ADF4-BB0596006FFA' },include:{all:true} }).then(function (connect){
-  //   res.send(connect.toJSON())
-  // })
-  //
-  pageObj.getConnections().then(function(result){
+  let destinations = null;
 
-    connections = result
+  pageObj.getConnections().then(function (result){
 
-    connections.map(function (connection, i){
-      return connection.getUser();
+    destinations = result;
+
+    return destinations.map(function (destination, i){
+       return destination.connection.getUser();
     });
 
     // res.render('page', {
     //   page
     // });
-  }).then(function(users){
-    //const page = pageObj.toJSON()
-    return res.send({
-      page: pageObj.toJSON(),
-      connectedPages: connections,
+  }).spread(function (){
+    const users = arguments;
+    destinations = destinations.map(function(result, i){
+      let connection = result.toJSON();
+      console.log(arguments[i].toJSON() ,'ii')
+      connection.user = users[i].toJSON();
+      return connection;
     })
+    // return res.send({
+    //   page: pageObj.toJSON(),
+    //   destinations,
+    // })
     res.render('page', {
-      page
+      page,
+      destinations,
     });
   })
 
@@ -90,7 +93,6 @@ module.exports.connect = function (req, res) {
       // connections[0].setUser(user)
       //connections[0][0].setUser(user.id);
       //
-      console.log(connections[0][0], 'connection connection connection')
     });
     page.save().then(function (){
       const pageObj = page.toJSON();

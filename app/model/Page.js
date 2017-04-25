@@ -83,9 +83,6 @@ const options = {
       });
     },
     loadPage: function (pageUUID){
-
-      //  return connection.query('SELECT * FROM pages INNER JOIN connection ON "connectionPage" = pages.id INNER JOIN users ON connection."userId" = users.id;')
-
       return Page.findOne({
         where:{
           $or: [{ wwUri: pageUUID }]
