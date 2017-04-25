@@ -1,6 +1,8 @@
 const User = require('../../app/model/User.js'),
       Page = require('../../app/model/Page.js');
-      Connection = require('../../app/model/Connection.js');
+      Connection = require('../../app/model/Connection.js'),
+      Tags = require('../../app/model/Tags.js').tags;
+      ItemTag = require('../../app/model/Tags.js').itemtags;
 
 
 module.exports = function(callback) {
@@ -8,7 +10,17 @@ module.exports = function(callback) {
   User.sync().then(function (){
     Page.sync().then(function (){
       Connection.sync().then(function (){
-        callback();
+        Tags.sync().then(function (){
+          ItemTag.sync().then(function (){
+            callback();
+          }).catch(function (err){
+            console.log(err);
+            callback();
+          });
+        }).catch(function (err){
+          console.log(err);
+          callback();
+        });
       }).catch(function (err){
         console.log(err);
         callback();
