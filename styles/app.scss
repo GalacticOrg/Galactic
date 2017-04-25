@@ -981,8 +981,9 @@ img {
 				  background: linear-gradient(to right, purple , rgba(128,0,128, 0.8)); /* Standard syntax */
 				  img {
 				  	width: 218px;
-				  	opacity: .25;
+				  	opacity: .3;
 				  	margin-top: 10px;
+				  	mix-blend-mode: soft-light;
 				  }
         }
 	    	.actor {
@@ -1052,7 +1053,10 @@ img {
 .searchPage {
 	.section_header {}
   .noResultFound {
+  	border-top: 1px solid #e2e2e2;
   	padding-top: 8px;
+  	margin-top: 8px;
+  	padding-bottom: 8px;
   	.titleURL {
     	font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
 	    font-weight: bold;
@@ -1070,7 +1074,7 @@ img {
   	}
   	.descriptionText {
   		margin-top: 8px;
-	    color: #999;
+	    color: #333;
 	    font-size: 15px;
     	line-height: 1.4;
     	font-weight: 400;
@@ -1083,6 +1087,7 @@ img {
 	    bottom: 0;
 	    clear: left;
 	  	.connectButton {
+	  		margin-top: 5px;
 	    	margin-right: 12px;
 		    -webkit-user-select: none;
 		    -moz-user-select: none;
