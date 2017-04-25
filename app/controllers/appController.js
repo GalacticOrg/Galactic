@@ -84,6 +84,14 @@ module.exports.connect = function (req, res) {
   const page = req.page;
   const user = req.user;
   const id = req.body.id;
+  console.log(req.body, 'stuffy' );
+  if ( id === undefined || id.length === 0) {
+    req.flash('errors', {
+      message: 'Something Went Wrong. Please Try Again.',
+      type: 'error'
+    });
+    return res.redirect('/page/' + page.wwUri);
+  }
   //const connection = Connection.build();
 
   //connection.setUser(user);

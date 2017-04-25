@@ -75,6 +75,8 @@ const options = {
       });
     },
     load: function (url){
+      //  Manual Join Q for refrence
+      //  return connection.query('SELECT * FROM pages INNER JOIN connection ON "connectionPage" = pages.id INNER JOIN users ON connection."userId" = users.id;')
       return Page.findOne({
         where:{
           pageUrl: {$iLike: '%' + url }
