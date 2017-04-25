@@ -824,7 +824,21 @@ img {
         margin: -1px;
         margin-bottom: 0;
         background-color: purple;
-        height: 80px; }
+        height: 80px;
+        background: purple;
+        /* For browsers that do not support gradients */
+        background: -webkit-linear-gradient(left, purple, rgba(128, 0, 128, 0.8));
+        /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(right, purple, rgba(128, 0, 128, 0.8));
+        /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(right, purple, rgba(128, 0, 128, 0.8));
+        /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to right, purple, rgba(128, 0, 128, 0.8));
+        /* Standard syntax */ }
+        .homePage .contentWrapper .layout_3col_right .identityModule .top_rail img, .searchPage .contentWrapper .layout_3col_right .identityModule .top_rail img, .resultPage .contentWrapper .layout_3col_right .identityModule .top_rail img {
+          width: 218px;
+          opacity: .25;
+          margin-top: 10px; }
       .homePage .contentWrapper .layout_3col_right .identityModule .actor, .searchPage .contentWrapper .layout_3col_right .identityModule .actor, .resultPage .contentWrapper .layout_3col_right .identityModule .actor {
         margin: 0;
         border: 0;
@@ -836,9 +850,10 @@ img {
         height: 107px;
         border-bottom: 1px solid #e2e2e2; }
         .homePage .contentWrapper .layout_3col_right .identityModule .actor .profile_img_box, .searchPage .contentWrapper .layout_3col_right .identityModule .actor .profile_img_box, .resultPage .contentWrapper .layout_3col_right .identityModule .actor .profile_img_box {
+          position: absolute;
           content: "";
           margin: auto;
-          width: 68px; }
+          width: 220px; }
           .homePage .contentWrapper .layout_3col_right .identityModule .actor .profile_img_box .profile_img, .searchPage .contentWrapper .layout_3col_right .identityModule .actor .profile_img_box .profile_img, .resultPage .contentWrapper .layout_3col_right .identityModule .actor .profile_img_box .profile_img {
             background: white;
             height: 68px;
@@ -848,6 +863,7 @@ img {
             box-shadow: inset 0 1.5px 3px 0 rgba(0, 0, 0, 0.15), 0 1.5px 3px 0 rgba(0, 0, 0, 0.15);
             margin: -38px auto 12px; }
         .homePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info, .searchPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info, .resultPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info {
+          padding-top: 52px;
           font-family: 'q_serif',Georgia,Times,"Times New Roman",serif; }
           .homePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname, .searchPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname, .resultPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname {
             font-size: 16px;
@@ -966,9 +982,12 @@ img {
   /* number of lines to show */
   max-height: 2.6;
   /* fallback */ }
-  .resultPage .pageUrl span:hover {
-    color: #2b6dad;
-    cursor: pointer; }
+  .resultPage .pageUrl a {
+    color: #999; }
+    .resultPage .pageUrl a:hover {
+      color: #2b6dad; }
+  .resultPage .pageUrl i {
+    margin-right: 2px; }
 
 .resultPage .descriptionText {
   margin-top: 8px;

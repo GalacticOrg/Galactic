@@ -12,6 +12,11 @@ dismissAlert = function() {
 	document.getElementById('alerts').remove()
 }
 
+lengthGreaterThanZero = function(el){
+	if (el.length > 0) { return true }
+		else { return false }
+}
+
 const templateValidate = Handlebars.compile($('#validateTmpl').html());
 const validateSec = $('#validateSection');
 $( "#questionInput" ).bind('input propertychange', $.debounce(function() {
