@@ -35,39 +35,30 @@ module.exports.loadwwid = function (req, res, next, id) {
 
 
 module.exports.page = function (req, res) {
-  const pageObj = req.page
+  const pageObj = req.page;
   const page = pageObj.toJSON();
-  let connections = null;
   let destinations = null;
 
-  pageObj.getConnections().then(function (result){
-
+  pageObj.getUser().then(function (result){
+    page.user = result.toJSON();
+    return pageObj.getConnections();
+  }).then(function (result){
     destinations = result;
-
-    return destinations.map(function (destination, i){
+    return destinations.map(function (destination){
        return destination.connection.getUser();
     });
-
-    // res.render('page', {
-    //   page
-    // });
   }).spread(function (){
     const users = arguments;
-    destinations = destinations.map(function(result, i){
+    destinations = destinations.map(function (result, i){
       let connection = result.toJSON();
-      console.log(arguments[i].toJSON() ,'ii')
       connection.user = users[i].toJSON();
       return connection;
-    })
-    // return res.send({
-    //   page: pageObj.toJSON(),
-    //   destinations,
-    // })
+    });
     res.render('page', {
       page,
-      destinations,
+      destinations
     });
-  })
+  });
 
   // req.page.getConnections().then(function(result){
   //   //console.log(result, 'resultresult')
