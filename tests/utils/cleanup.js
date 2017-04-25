@@ -5,9 +5,9 @@ const User = require('../../app/model/User.js'),
 
 module.exports = function(callback) {
   // recreate User table
-  User.sync({ force: true }).then(function (){
-    Page.sync({ force: true }).then(function (){
-      Connection.sync({ force: true }).then(function (){
+  User.sync().then(function (){
+    Page.sync().then(function (){
+      Connection.sync().then(function (){
         callback();
       }).catch(function (err){
         console.log(err);
@@ -17,11 +17,8 @@ module.exports = function(callback) {
       console.log(err);
       callback();
     });
-
   }).catch(function (err){
     console.log(err);
     callback();
   });
-
-
 }
