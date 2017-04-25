@@ -1054,6 +1054,17 @@ img {
       text-decoration: underline; }
     .resultPage .metaBar .resultMeta .topic a:hover {
       text-decoration: underline; }
+  .resultPage .metaBar .username {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    /* number of lines to show */
+    max-height: 2.6;
+    /* fallback */ }
+    .resultPage .metaBar .username:hover {
+      text-decoration: underline; }
   .resultPage .metaBar .connector {
     width: 40%;
     display: flex;

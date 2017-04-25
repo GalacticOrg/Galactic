@@ -2,10 +2,10 @@
 	<div class="articleContentBox">
 		<div class="articleContent">
 			<div class="titleURL">
-				{{this.title}} Placeholder Title, Because Where Else Would This Go?
+				{{this.title}}
 			</div>
 			<div class="descriptionText">
-				{{page.description}} Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+				{{this.description}}
 			</div>
 		</div>
 		{{#if this.icon}}
@@ -37,8 +37,8 @@
 			<span class="imgWrapper">
 				<img class="connectorImg" src="/static/img/example_user.jpeg"/>
 			</span>
-			<span class="hoverUnderline">
-				<a>Eoin McMillan</a>
+			<span class="username">
+				<a>connected by: {{this.user.username}}</a>
 			</span>
 		</div>
 	</div>

@@ -1247,6 +1247,19 @@ img {
 	    	}
 	    }
 	  }
+	  .username {
+	    overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			$nLines: 2;
+			$line-height: 1.3;
+			-webkit-line-clamp: $nLines; /* number of lines to show */
+			max-height: $line-height*$nLines;       /* fallback */
+    	&:hover {
+    		text-decoration: underline;
+    	}
+    }
 	  .connector {
 	  	width: 40%;
 	  	display: flex;

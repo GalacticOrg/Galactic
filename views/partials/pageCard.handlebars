@@ -17,11 +17,32 @@
 		</div>
 		{{/if}}
 	</div>
-	<div class="actionBar">
+	<div class="metaBar">
 		<a class="askQuestionButton" onClick=openRecommendationsModal()>
 			<div class="connectButton">
 				Connect
 			</div>
 		</a>
+		<div class="resultMeta">
+			<span class="topic">
+				<a>Topic</a>
+			</span>
+			<span class="bullet"> · </span>
+			<span class="topic">
+				<a>Topic</a>
+			</span>
+			<span class="bullet"> · </span>
+			<span class="topic">
+				<a>Topic</a>
+			</span>
+		</div>
+		<div class="connector" title="First Connector">
+			<span class="imgWrapper">
+				<img class="connectorImg" src="/static/img/example_user.jpeg"/>
+			</span>
+			<span class="username">
+				<a>{{page.userId}}</a>
+			</span>
+		</div>
 	</div>
 </div>
