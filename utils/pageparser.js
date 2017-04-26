@@ -21,15 +21,15 @@ module.exports.diffBotAnalyze = function (inputURI, cb){
       fields: 'links,sentiment,meta'
     })
     .timeout({
-      response: 5000,
-      deadline: 30000,
+      response: 30000,
+      deadline: 90000,
     })
     .set('Accept', 'application/json')
     .end(function (err, res){
       if (err || res.body.error) {
-        cb('diffBotAnalyze failed');
+        const message = err || res.body.error;
+        cb(message);
       } else {
-        console.log(res.body.objects);
         const result = res.body.objects[0]
         cb(null, result);
       }
