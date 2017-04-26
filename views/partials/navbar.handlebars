@@ -1,4 +1,8 @@
-<div class="appNav">
+{{#if navIndex}}
+<div id="appNav" data-navIndex={{navIndex}}>
+{{else}}
+<div id="appNav" data-navIndex="">
+{{/if}}
 	<div class="appNavInner">
 		<div class="wikiwebLogo">
 			<a href="/">
@@ -18,7 +22,7 @@
 		</form>
 		<div class="pageButtons">
 			<div class="pageButton">
-				<div class="buttonContents currentPage">
+				<div class="buttonContents" id="requestsNavButton">
 					<span class="icon">
 						<i class="fa fa-hand-paper-o" aria-hidden="true"></i>
 					</span>
@@ -26,7 +30,7 @@
 				</div>
 			</div>
 			<div class="pageButton">
-				<div class="buttonContents">
+				<div class="buttonContents" id="connectionsNavButton">
 					<span class="icon">
 						<i class="fa fa-bullseye" aria-hidden="true"></i>
 					</span>
@@ -34,7 +38,7 @@
 				</div>
 			</div>
 			<div class="pageButton">
-				<div class="buttonContents">
+				<div class="buttonContents" id="notificationsNavButton">
 					<span class="icon">
 						<i class="fa fa-bell-o" aria-hidden="true"></i>
 					</span>
@@ -42,7 +46,7 @@
 				</div>
 			</div>
 			<div class="pageButton">
-				<div class="buttonContents">
+				<div class="buttonContents" id="userNavButton">
 					<span class="userImg">
 						<img src="/static/img/profile.jpg" class="userImg" />
 					</span>

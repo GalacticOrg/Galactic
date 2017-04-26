@@ -27,3 +27,26 @@ $( "#questionInput" ).bind('input propertychange', $.debounce(function() {
 	});
 }, 1500));
 
+window.onload = function() {
+	const navIndex = document.getElementById('appNav').getAttribute('data-navIndex')
+	
+	switch(navIndex) {
+    case 'home':
+        document.getElementById('requestsNavButton').classList += ' currentPage';
+        break;
+    case 'search':
+        document.getElementById('connectionsNavButton').classList += ' currentPage';
+        break;
+    case 'notifications':
+        document.getElementById('notificationsNavButton').classList += ' currentPage';
+    		break
+		case 'newpage':
+        document.getElementById('newpageNavButton').classList += ' currentPage';
+    		break
+		case 'user':
+        document.getElementById('userNavButton').classList += ' currentPage';
+    		break
+    default:
+        ''
+	}
+}

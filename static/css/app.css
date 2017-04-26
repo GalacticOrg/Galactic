@@ -322,7 +322,7 @@ img {
   .loginPage .container img {
     height: 50px; }
 
-.appNav {
+#appNav {
   background: #fff;
   position: fixed;
   top: 0;
@@ -341,19 +341,19 @@ img {
   display: flex;
   flex-direction: row;
   /* end appNavInner */ }
-  .appNav .appNavInner {
+  #appNav .appNavInner {
     display: flex;
     width: 1002px;
     margin: auto;
     color: black;
     height: 50px;
     display: flex; }
-    .appNav .appNavInner .searchBox {
+    #appNav .appNavInner .searchBox {
       align-self: center;
       padding-left: 40px;
       width: 500px;
       display: flex; }
-      .appNav .appNavInner .searchBox input {
+      #appNav .appNavInner .searchBox input {
         resize: none;
         width: 385px;
         background: #fff;
@@ -390,9 +390,9 @@ img {
         border-right: 0;
         display: flex-start;
         background-color: #F4F4F4; }
-        .appNav .appNavInner .searchBox input:focus {
+        #appNav .appNavInner .searchBox input:focus {
           background-color: white; }
-      .appNav .appNavInner .searchBox .submitButton {
+      #appNav .appNavInner .searchBox .submitButton {
         position: relative;
         -webkit-user-select: none;
         -moz-user-select: none;
@@ -421,36 +421,36 @@ img {
         border-bottom-left-radius: 0;
         display: flex-end;
         width: 80px; }
-        .appNav .appNavInner .searchBox .submitButton:hover {
+        #appNav .appNavInner .searchBox .submitButton:hover {
           border-color: #333; }
-    .appNav .appNavInner .pageButtons {
+    #appNav .appNavInner .pageButtons {
       margin-left: 8px;
       display: flex;
       color: #999;
       font-size: 14px;
       font-weight: 500;
       line-height: 50px; }
-      .appNav .appNavInner .pageButtons .pageButton {
+      #appNav .appNavInner .pageButtons .pageButton {
         display: flex;
         align-items: center; }
-        .appNav .appNavInner .pageButtons .pageButton .currentPage {
+        #appNav .appNavInner .pageButtons .pageButton .currentPage {
           color: purple; }
-          .appNav .appNavInner .pageButtons .pageButton .currentPage:hover {
+          #appNav .appNavInner .pageButtons .pageButton .currentPage:hover {
             background-color: white; }
-        .appNav .appNavInner .pageButtons .pageButton:hover {
+        #appNav .appNavInner .pageButtons .pageButton:hover {
           background-color: #F4F4F4;
           cursor: pointer; }
-        .appNav .appNavInner .pageButtons .pageButton .buttonContents {
+        #appNav .appNavInner .pageButtons .pageButton .buttonContents {
           display: flex;
           flex-direction: row; }
-          .appNav .appNavInner .pageButtons .pageButton .buttonContents .icon {
+          #appNav .appNavInner .pageButtons .pageButton .buttonContents .icon {
             min-width: 17px;
             font-size: 17px;
             padding-left: 14px; }
-          .appNav .appNavInner .pageButtons .pageButton .buttonContents .text {
+          #appNav .appNavInner .pageButtons .pageButton .buttonContents .text {
             padding-left: 5px;
             padding-right: 14px; }
-          .appNav .appNavInner .pageButtons .pageButton .buttonContents .userImg {
+          #appNav .appNavInner .pageButtons .pageButton .buttonContents .userImg {
             height: 22px;
             width: 22px;
             border-radius: 50%;

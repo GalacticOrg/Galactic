@@ -1,4 +1,4 @@
-{{#if this.icon}}
+{{#if icon}}
 <div onClick="javascript:location.href='/page/{{wwUri}}'" class="feedBundle">
 	<div class="articleContentBox">
 		<div class="articleContent">
@@ -25,7 +25,7 @@
 				</span>
 				<span class="layoutTextWrapper">
 					<div>
-						<span class="username underlineOnHover">{{this.user.username}}</span><span class="userInfo">,
+						<span class="username underlineOnHover">{{user.username}}</span><span class="userInfo">,
 						</span>
 					</div>
 					<div class="credibilityFacts feedBundleMeta">
@@ -37,14 +37,14 @@
 			</div>
 		</div>
 		<div class="articleImg">
-			<img src={{this.icon}}>
+			<img src={{icon}}>
 		</div>
 	</div>
 	<div class="bundleTitle">
-		{{this.title}}
+		{{title}}
 	</div>
 	<div class="contentMain">
-		{{this.description}}
+		{{description}}
 	</div>
 	<div class="actionBar">
 		<span class="connectButton">
@@ -70,7 +70,7 @@
 	</div>
 </div>
 {{else}}
-<div onClick="javascript:location.href='/page/{{this.wwUri}}'" class="feedBundle">
+<div onClick="javascript:location.href='/page/{{wwUri}}'" class="feedBundle">
 	<div class="feedBundleMeta">
 		<span class="feedItemType">Request</span>
 		<span class="bullet"> · </span>
@@ -89,7 +89,7 @@
 		</span>
 	</div>
 	<div class="bundleTitle">
-		{{this.title}}
+		{{title}}
 	</div>
 	<div class="contentHeader">
 		<span class="imgWrapper">
@@ -97,7 +97,7 @@
 		</span>
 		<span class="layoutTextWrapper">
 			<div>
-				<span class="username">userId: {{this.userId}}</span><span class="userInfo">,
+				<span class="username">userId: {{userId}}</span><span class="userInfo">,
 				</span>
 			</div>
 			<div class="credibilityFacts feedBundleMeta">
@@ -108,7 +108,7 @@
 		</span>
 	</div>
 	<div class="contentMain">
-		{{this.description}}
+		{{description}}
 	</div>
 	<div class="actionBar">
 		<span class="connectButton">
