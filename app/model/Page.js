@@ -1,6 +1,8 @@
 const Sequelize = require('sequelize'),
       connection = require('./sequelize.js'),
       User = require('./User.js'),
+      Tag = require('./Tag.js').tag,
+      ItemTag = require('./Tag.js').itemtag,
       Connection = require('./Connection.js');
 
 const attributes = {
@@ -56,7 +58,7 @@ const options = {
       return Page.findAll({
         limit: limit || 20,
         offset: offset || 0,
-        include:[{ model: User }]
+        include:[{ model: User }, { model: Tag, as: 'tag' }]
       });
     },
     search: function (searchString){
@@ -98,5 +100,6 @@ const Page = connection.define('pages', attributes, options);
 
 Page.belongsTo(User);
 Page.belongsToMany(Page, { as: 'connections', foreignKey : 'connectionPage', otherKey:'destinationPage', through: Connection });
-
+Page.belongsToMany(Tag, { as: 'tag', through: ItemTag });
+//console.log(Tag, ItemTag)
 module.exports = Page;

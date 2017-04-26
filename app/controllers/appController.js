@@ -3,7 +3,7 @@ const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     pageParse = require('../../utils/pageparser').pageParse,
     pageParseNYT = require('../../utils/pageparser').pageParseNYT,
     Page = require('../model/page.js'),
-    Connection = require('../model/Connection.js'),
+    Tag = require('../model/Tag.js').tag,
     regexNYT = new RegExp('nyt.com|nytimes.com|newyorktimes.com');
 
 
@@ -39,11 +39,57 @@ module.exports.page = function (req, res) {
   const page = pageObj.toJSON();
   let destinations = null;
 
+
+    // const tags = [{
+    //   "score": 0.53,
+    //   "count": 1,
+    //   "label": "Expedition Robinson",
+    //   "uri": "http://dbpedia.org/page/Expedition_Robinson",
+    //   "rdfTypes": [
+    //   "http://dbpedia.org/ontology/TelevisionShow",
+    //   "http://dbpedia.org/ontology/Work",
+    //   "http://www.w3.org/2002/07/owl#Thing"
+    //   ]
+    // },{
+    //   "score": 0.53,
+    //   "count": 1,
+    //   "label": "Expedition Robinson",
+    //   "uri": "http://dbpedia.org/page/Expedition_Robinson2",
+    //   "rdfTypes": [
+    //   "http://dbpedia.org/ontology/TelevisionShow",
+    //   "http://dbpedia.org/ontology/Work",
+    //   "http://www.w3.org/2002/07/owl#Thing"
+    //   ]
+    // }]
+  //   Page.findOne().then(function(){
+  //     return tags.map(function(tag){
+  //       return Tag.findOrCreate({
+  //         where: { uri: tag.uri },
+  //         defults: tag
+  //       });
+  //     });
+  //   }).spread(function (){
+  //       const tags = Array.prototype.slice.call(arguments);
+  //       tags.forEach(function(array){
+  //         const tag = array[0]
+  //         const data = tag.toJSON();
+  //         console.log(data, 'datadata')
+  //         pageObj.addTag(tag, data)
+  //       });
+  //        res.send(tags);
+  //     });
+  //
+  //
+  // return false
+
   pageObj.getUser().then(function (result){
     page.user = result.toJSON();
     return pageObj.getConnections();
   }).then(function (result){
     destinations = result;
+    return pageObj.getTag();
+  }).then(function (results){
+    page.tags = results.map(function (result){ return result.toJSON();});
     return destinations.map(function (destination){
        return destination.connection.getUser();
     });
@@ -60,14 +106,6 @@ module.exports.page = function (req, res) {
     });
   });
 
-  // req.page.getConnections().then(function(result){
-  //   //console.log(result, 'resultresult')
-  //   const page = req.page.toJSON();
-  //   res.render('page', {
-  //     page
-  //   });
-  // })
-
 };
 
 
@@ -75,7 +113,6 @@ module.exports.connect = function (req, res) {
   const page = req.page;
   const user = req.user;
   const id = req.body.id;
-  console.log(req.body, 'stuffy' );
   if ( id === undefined || id.length === 0) {
     req.flash('errors', {
       message: 'Something Went Wrong. Please Try Again.',
@@ -83,78 +120,12 @@ module.exports.connect = function (req, res) {
     });
     return res.redirect('/page/' + page.wwUri);
   }
-  //const connection = Connection.build();
-
-  //connection.setUser(user);
-
   Page.findOne({ where:{ id:id } }).then(function (destinationPage){
-    page.addConnection(destinationPage, { userId: user.id }).then(function (connections){
-      // connections[0].setUser(user)
-      //connections[0][0].setUser(user.id);
-      //
-    });
-    page.save().then(function (){
+    page.addConnection(destinationPage, { userId: user.id }).then(function (){
       const pageObj = page.toJSON();
       res.redirect('/page/' + pageObj.wwUri);
     });
   });
-
-  // page.setConnection(connection);
-  // page.save();
-  // connection.save().then(function (){
-  //   page.setConnection(connection)
-  //   page.save();
-  //   const pageObj = page.toJSON();
-  //   res.redirect('/page/' + pageObj.wwUri);
-  // });
-
-
-  // page.update({ pageId: id })
-  //   .then(function (){
-  //   const pageObj = page.toJSON();
-  //   res.redirect('/page/' + pageObj.wwUri);
-  // });
-
-
-  // Page.findOne({
-  //   where:{
-  //      id: id
-  //   }
-  // }).then(function (page){
-  //   if (page === null){
-  //     // next(new Error('Article not found'));
-  //   } else {
-  //     page.update({
-  //       userId:user.id
-  //     }).then(function (result){
-  //       res.redirect('/page/' + result.wwUri);
-  //     });
-  //     parser(page.pageURL, function (err, article) {
-  //       page.update({
-  //         html: article.html,
-  //         text: article.text,
-  //         title: article.title,
-  //         author: article.author,
-  //         authorUrl: article.authorUrl,
-  //         type: article.type,
-  //         icon: article.icon,
-  //         pageUrl: article.resolvedPageUrl || article.pageUrl,
-  //         siteName: article.siteName,
-  //         humanLanguage: article.humanLanguage,
-  //         diffbotUri: article.diffbotUri,
-  //         videos: article.videos,
-  //         authors: article.authors,
-  //         images: article.images,
-  //         meta: article.meta,
-  //         description:  article.meta ? article.meta.description : ''
-  //       }).then(function (){
-  //         console.log('save success');
-  //       }).catch(function (){
-  //         console.log('save failed');
-  //       });
-  //     });
-  //   }
-  // });
 };
 
 
@@ -236,7 +207,7 @@ module.exports.search = function (req, res) {
   if ( !isValidURI(uri) ) {
     const searchString = inputURI;
     Page.search(searchString).then(function (results){
-      pages = results.map(function(result){
+      pages = results.map(function (result){
         return result.toJSON();
       });
 
@@ -285,12 +256,12 @@ module.exports.new = function (req, res) {
         res.redirect('/page/' + result.wwUri);
       });
 
-
-      return // @TODO Kill me
       diffBotAnalyze(page.pageUrl, function (err, article) {
         if (err){
+          console.log(err)
           return console.log(page.id, '<--page.id, diffBotAnalyze failed');
         }
+        const articleTags = article.tags;
         page.update({
           text: article.text,
           title: article.title,
@@ -308,9 +279,23 @@ module.exports.new = function (req, res) {
           meta: article.meta,
           description:  article.meta ? article.meta.description : ''
         }).then(function (){
-          console.log('save success');
-        }).catch(function (){
-          console.log('save failed');
+          return articleTags.map(function (tag){
+            return Tag.findCreateFind({
+              where: { uri: tag.uri },
+              defaults: tag
+            });
+          });
+        }).spread(function (){
+          const spreadTag = Array.prototype.slice.call(arguments);
+          spreadTag.forEach(function (array, i){
+            const tag = array[0];
+            const data = articleTags[i];
+            page.addTag(tag, data).then(function (){
+              console.log('Save Successful');
+            });
+          });
+
+
         });
       });
     }
