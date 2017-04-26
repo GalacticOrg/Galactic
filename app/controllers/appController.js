@@ -39,49 +39,6 @@ module.exports.page = function (req, res) {
   const page = pageObj.toJSON();
   let destinations = null;
 
-
-    // const tags = [{
-    //   "score": 0.53,
-    //   "count": 1,
-    //   "label": "Expedition Robinson",
-    //   "uri": "http://dbpedia.org/page/Expedition_Robinson",
-    //   "rdfTypes": [
-    //   "http://dbpedia.org/ontology/TelevisionShow",
-    //   "http://dbpedia.org/ontology/Work",
-    //   "http://www.w3.org/2002/07/owl#Thing"
-    //   ]
-    // },{
-    //   "score": 0.53,
-    //   "count": 1,
-    //   "label": "Expedition Robinson",
-    //   "uri": "http://dbpedia.org/page/Expedition_Robinson2",
-    //   "rdfTypes": [
-    //   "http://dbpedia.org/ontology/TelevisionShow",
-    //   "http://dbpedia.org/ontology/Work",
-    //   "http://www.w3.org/2002/07/owl#Thing"
-    //   ]
-    // }]
-  //   Page.findOne().then(function(){
-  //     return tags.map(function(tag){
-  //       return Tag.findOrCreate({
-  //         where: { uri: tag.uri },
-  //         defults: tag
-  //       });
-  //     });
-  //   }).spread(function (){
-  //       const tags = Array.prototype.slice.call(arguments);
-  //       tags.forEach(function(array){
-  //         const tag = array[0]
-  //         const data = tag.toJSON();
-  //         console.log(data, 'datadata')
-  //         pageObj.addTag(tag, data)
-  //       });
-  //        res.send(tags);
-  //     });
-  //
-  //
-  // return false
-
   pageObj.getUser().then(function (result){
     page.user = result.toJSON();
     return pageObj.getConnections();
@@ -129,14 +86,13 @@ module.exports.connect = function (req, res) {
 };
 
 
-module.exports.pageValidate = function(req, res){
+module.exports.pageValidate = function (req, res){
   const inputURI = req.query.q;
-  const user = req.user;
 
   if (regexNYT.test(inputURI)){
-    pageParseNYT(inputURI.split("?")[0], function(err, article){
+    pageParseNYT(inputURI.split('?')[0], function (err, article){
       if (err){
-        return res.send(err)
+        return res.send(err);
       }
       const uri = article.web_url;
       Page.load(uri).then(function (result){
@@ -160,7 +116,7 @@ module.exports.pageValidate = function(req, res){
   } else {
     pageParse(inputURI, function (err, article){
       if (err){
-        return res.send(err)
+        return res.send(err);
       }
       const uri = article.canonicalLink || inputURI;
       Page.load(uri).then(function (result){
@@ -182,7 +138,7 @@ module.exports.pageValidate = function(req, res){
           res.send(result);
         }
       });
-    })
+    });
   }
 };
 
@@ -195,7 +151,7 @@ module.exports.search = function (req, res) {
       pages: [],
       inputURI
     });
-  };
+  }
 
   let uri = '';
   if (inputURI !== undefined && inputURI.search('https://') === -1 && inputURI.search('http://') === -1){
@@ -203,7 +159,6 @@ module.exports.search = function (req, res) {
   }
   uri += inputURI;
   let pages = [];
-  let addPage = null;
   if ( !isValidURI(uri) ) {
     const searchString = inputURI;
     Page.search(searchString).then(function (results){
@@ -258,8 +213,7 @@ module.exports.new = function (req, res) {
 
       diffBotAnalyze(page.pageUrl, function (err, article) {
         if (err){
-          console.log(err)
-          return console.log(page.id, '<--page.id, diffBotAnalyze failed');
+          return console.log(page.id, err, '<--page.id, diffBotAnalyze failed');
         }
         const articleTags = article.tags;
         page.update({
@@ -307,51 +261,6 @@ module.exports.new = function (req, res) {
     });
     res.redirect('back');
   });
-
-
-  //
-  //     //page
-  //     // req.flash('error', err);
-  //     // return res.render('search', {
-  //     //   pages: []
-  //     // });
-  //   }
-  //   Page.load(article.pageURL).then(function (result){
-  //     if (!result){
-  //       let wwUri = article.title.length > 4 ?
-  //       article.title.replace(new RegExp(' ', 'g'), '_') :
-  //       page.id;
-  //       wwUri = wwUri.replace(new RegExp(/\W/, 'g'), '');
-  //
-  //       page.update({
-  //         html: article.html,
-  //         text: article.text,
-  //         title: article.title,
-  //         author: article.author,
-  //         authorUrl: article.authorUrl,
-  //         type: article.type,
-  //         icon: article.icon,
-  //         pageUrl: article.resolvedPageUrl || article.pageUrl,
-  //         siteName: article.siteName,
-  //         humanLanguage: article.humanLanguage,
-  //         diffbotUri: article.diffbotUri,
-  //         videos: article.videos,
-  //         authors: article.authors,
-  //         images: article.images,
-  //         userId:user.id,
-  //         meta: article.meta,
-  //         description:  article.meta ? article.meta.description : '',
-  //         wwUri: wwUri
-  //       }).then(function (){
-  //         console.log('save success');
-  //       }).catch(function (){
-  //         console.log('save failed');
-  //       });
-  //     } else {
-  //       // No Opps
-  //     }
-  //   });
-  // });
 };
 
 module.exports.main = function (req, res) {

@@ -36,7 +36,7 @@ const attributes = {
   authors: { type: Sequelize.JSONB },
   images: { type: Sequelize.JSONB },
   meta: { type: Sequelize.JSONB },
-  wwUri: { type: Sequelize.STRING },
+  wwUri: { type: Sequelize.STRING }
 };
 
 const options = {
@@ -81,7 +81,7 @@ const options = {
       //  return connection.query('SELECT * FROM pages INNER JOIN connection ON "connectionPage" = pages.id INNER JOIN users ON connection."userId" = users.id;')
       return Page.findOne({
         where:{
-          pageUrl: {$iLike: '%' + url }
+          pageUrl: { $iLike: '%' + url }
         },
         include:[{ model: User }]
       });
@@ -101,5 +101,4 @@ const Page = connection.define('pages', attributes, options);
 Page.belongsTo(User);
 Page.belongsToMany(Page, { as: 'connections', foreignKey : 'connectionPage', otherKey:'destinationPage', through: Connection });
 Page.belongsToMany(Tag, { as: 'tag', through: ItemTag });
-//console.log(Tag, ItemTag)
 module.exports = Page;

@@ -1,11 +1,11 @@
 const User = require('../../app/model/User.js'),
-      Page = require('../../app/model/Page.js');
+      Page = require('../../app/model/Page.js'),
       Connection = require('../../app/model/Connection.js'),
-      Tag = require('../../app/model/Tag.js').tag;
+      Tag = require('../../app/model/Tag.js').tag,
       ItemTag = require('../../app/model/Tag.js').itemtag;
 
 
-module.exports = function(callback) {
+module.exports = function (callback) {
   // recreate User table
   User.sync().then(function (){
     Page.sync().then(function (){
@@ -33,4 +33,4 @@ module.exports = function(callback) {
     console.log(err);
     callback();
   });
-}
+};
