@@ -27,7 +27,37 @@
     <button id="croppedResult" value="Crop" type="button">Submit</button>
   </div>
 
+{{> navbar navIndex='profile'}}
+{{> messages }}
+
+
+<div class="profilePage">
+  <div class="contentWrapper">
+    <div class="container">
+      <div class="wideCol">
+        <div class="whole">
+          <div class="left">
+            <img class="bigProfileImg" src="/static/img/profile.jpg" />
+          </div>
+          <div class="right">
+            <div class="name">Eoin McMillan</div>
+            <div class="title">Reader, writer, dreamer.</div>
+            <div class="bio">I work at SFDevLabs where we build mobile and web apps, and help startups with strategy to achieve their goals.</div>
+          </div>
+        </div>
+        <div class="split">
+          <div class="left">left</div>
+          <div class="right">right</div>
+        </div>
+      </div>
+      <div class="rightCol">
+        rightCol
+      </div>
+    </div>
+  </div>
 </div>
+
+
 {{#section 'foot'}}
 <!-- <script type="application/javascript" src="http://0.0.0.0:8090/js/home.js"></script> -->
 <script type="application/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
