@@ -23,7 +23,10 @@ $( "#questionInput" ).bind('input propertychange', $.debounce(function() {
 	  success: function( result ) {
 			$( "#questionPageId").val(result.id)
 			validateSec.html(templateValidate(result))
-	  }
+	  	const submitButton = document.getElementById('modalSubmit');
+	  	submitButton.disabled = false;
+	  	
+	  },
 	});
 }, 1500));
 

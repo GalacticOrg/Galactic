@@ -635,29 +635,37 @@ img {
     		cursor: pointer;
     		margin-right: 16px;
     	}
-    	.askButton {
-        font-size: 15px;
-		    padding: 6px 8px;
-		    user-select: none;
-		    box-sizing: border-box;
-		    transition: opacity ease-in-out 100ms,color ease-in-out 100ms,background-color ease-in-out 100ms,border-color ease-in-out 100ms;
-		    border-radius: 3px;
-		    font-weight: 500;
-		    outline: 0;
-		    padding: 3px 7px 4px 7px;
-		    text-align: center;
-		    text-decoration: none;
-		    cursor: pointer;
-		    background: #3e78ad;
-		    color: #fff;
-		    border: 1px solid #3a66ad;
-		    box-shadow: 0 1px 1px 0 rgba(200,200,200,0.6);
-		    &:hover {
-		    	border: 1px solid #333;
-		    }
-    	}
   	}
   }
+  .modalSubmitButton {
+    font-size: 15px;
+    padding: 6px 8px;
+    user-select: none;
+    box-sizing: border-box;
+    transition: opacity ease-in-out 100ms,color ease-in-out 100ms,background-color ease-in-out 100ms,border-color ease-in-out 100ms;
+    border-radius: 3px;
+    font-weight: 500;
+    outline: 0;
+    padding: 3px 7px 4px 7px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    background: #3e78ad;
+    color: #fff;
+    border: 1px solid #3a66ad;
+    box-shadow: 0 1px 1px 0 rgba(200,200,200,0.6);
+    &:hover {
+    	border: 1px solid #333;
+    }
+	}
+	.modalSubmitButton:disabled {
+		background-color: rgb(226, 226, 226);
+		border-color: rgb(226, 226, 226);
+		&:hover {
+			border-color: rgb(226, 226, 226);
+		}
+	}
+
   .displayRequestModal {
 		display: block;
 	}

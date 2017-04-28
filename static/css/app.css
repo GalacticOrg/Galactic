@@ -552,25 +552,32 @@ img {
       color: #999;
       cursor: pointer;
       margin-right: 16px; }
-    .homePage .requestModal .modalFooter .askButton, .searchPage .requestModal .modalFooter .askButton, .resultPage .requestModal .modalFooter .askButton {
-      font-size: 15px;
-      padding: 6px 8px;
-      user-select: none;
-      box-sizing: border-box;
-      transition: opacity ease-in-out 100ms,color ease-in-out 100ms,background-color ease-in-out 100ms,border-color ease-in-out 100ms;
-      border-radius: 3px;
-      font-weight: 500;
-      outline: 0;
-      padding: 3px 7px 4px 7px;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-      background: #3e78ad;
-      color: #fff;
-      border: 1px solid #3a66ad;
-      box-shadow: 0 1px 1px 0 rgba(200, 200, 200, 0.6); }
-      .homePage .requestModal .modalFooter .askButton:hover, .searchPage .requestModal .modalFooter .askButton:hover, .resultPage .requestModal .modalFooter .askButton:hover {
-        border: 1px solid #333; }
+
+.homePage .modalSubmitButton, .searchPage .modalSubmitButton, .resultPage .modalSubmitButton {
+  font-size: 15px;
+  padding: 6px 8px;
+  user-select: none;
+  box-sizing: border-box;
+  transition: opacity ease-in-out 100ms,color ease-in-out 100ms,background-color ease-in-out 100ms,border-color ease-in-out 100ms;
+  border-radius: 3px;
+  font-weight: 500;
+  outline: 0;
+  padding: 3px 7px 4px 7px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background: #3e78ad;
+  color: #fff;
+  border: 1px solid #3a66ad;
+  box-shadow: 0 1px 1px 0 rgba(200, 200, 200, 0.6); }
+  .homePage .modalSubmitButton:hover, .searchPage .modalSubmitButton:hover, .resultPage .modalSubmitButton:hover {
+    border: 1px solid #333; }
+
+.homePage .modalSubmitButton:disabled, .searchPage .modalSubmitButton:disabled, .resultPage .modalSubmitButton:disabled {
+  background-color: #e2e2e2;
+  border-color: #e2e2e2; }
+  .homePage .modalSubmitButton:disabled:hover, .searchPage .modalSubmitButton:disabled:hover, .resultPage .modalSubmitButton:disabled:hover {
+    border-color: #e2e2e2; }
 
 .homePage .displayRequestModal, .searchPage .displayRequestModal, .resultPage .displayRequestModal {
   display: block; }
