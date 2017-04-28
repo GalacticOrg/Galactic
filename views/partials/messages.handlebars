@@ -1,10 +1,15 @@
 {{#if errorMessages}}
-	<div id="alerts" class="alerts">
-		<a href="javascript:void()" onClick=dismissAlert()>Close Alerts</a>
-		{{#each errorMessages}}
-			<div class="alert-{{type}}">
-				{{message}}
-			</div>
-			{{/each}}
-	</div>
+<div id="alerts" class="alerts">
+  {{#each errorMessages}}
+  <div class="alertContents alert-{{type}}">
+    <div class="message">
+      {{message}}
+    </div>
+    <a href="javascript:void()" onClick=dismissAlert() class="closeButton">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </a>
+  </div>
+  {{/each}}
+</div>	
 {{/if}}
+
