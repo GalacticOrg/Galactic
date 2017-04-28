@@ -618,6 +618,21 @@ img {
   /* end layout_3col_left */
   /* end layout_3col_center */
   /* end layout_3col_right */ }
+  .homePage .contentWrapper .section_header, .searchPage .contentWrapper .section_header, .resultPage .contentWrapper .section_header, .profilePage .contentWrapper .section_header {
+    display: flex;
+    border-bottom: 1px solid #e2e2e2;
+    padding-bottom: 8px; }
+    .homePage .contentWrapper .section_header .header_text, .searchPage .contentWrapper .section_header .header_text, .resultPage .contentWrapper .section_header .header_text, .profilePage .contentWrapper .section_header .header_text {
+      align-self: flex-start;
+      width: 100%;
+      color: #999;
+      font-size: 13px;
+      line-height: 1.4; }
+      .homePage .contentWrapper .section_header .header_text span, .searchPage .contentWrapper .section_header .header_text span, .resultPage .contentWrapper .section_header .header_text span, .profilePage .contentWrapper .section_header .header_text span {
+        float: none;
+        color: #333;
+        font-weight: 500;
+        font-size: 15px; }
   .homePage .contentWrapper .layout_3col_left, .searchPage .contentWrapper .layout_3col_left, .resultPage .contentWrapper .layout_3col_left, .profilePage .contentWrapper .layout_3col_left {
     width: 142px;
     float: left;
@@ -668,21 +683,6 @@ img {
     float: left;
     min-height: 1px;
     margin-left: 180px; }
-    .homePage .contentWrapper .layout_3col_center .section_header, .searchPage .contentWrapper .layout_3col_center .section_header, .resultPage .contentWrapper .layout_3col_center .section_header, .profilePage .contentWrapper .layout_3col_center .section_header {
-      display: flex;
-      border-bottom: 1px solid #e2e2e2;
-      padding-bottom: 8px; }
-      .homePage .contentWrapper .layout_3col_center .section_header .header_text, .searchPage .contentWrapper .layout_3col_center .section_header .header_text, .resultPage .contentWrapper .layout_3col_center .section_header .header_text, .profilePage .contentWrapper .layout_3col_center .section_header .header_text {
-        align-self: flex-start;
-        width: 100%;
-        color: #999;
-        font-size: 13px;
-        line-height: 1.4; }
-        .homePage .contentWrapper .layout_3col_center .section_header .header_text span, .searchPage .contentWrapper .layout_3col_center .section_header .header_text span, .resultPage .contentWrapper .layout_3col_center .section_header .header_text span, .profilePage .contentWrapper .layout_3col_center .section_header .header_text span {
-          float: none;
-          color: #333;
-          font-weight: 500;
-          font-size: 15px; }
     .homePage .contentWrapper .layout_3col_center .addQuestionPrompt, .searchPage .contentWrapper .layout_3col_center .addQuestionPrompt, .resultPage .contentWrapper .layout_3col_center .addQuestionPrompt, .profilePage .contentWrapper .layout_3col_center .addQuestionPrompt {
       margin-top: 16px;
       margin-bottom: 0;
@@ -1156,44 +1156,44 @@ img {
     width: 142px;
     min-height: 1px;
     clear: left;
-    font-size: 13px;
-    background-color: pink; }
+    font-size: 13px; }
   .profilePage .contentWrapper .container .right {
-    background-color: aquamarine;
     line-height: 1.4;
     width: 572px;
     float: left;
     min-height: 1px;
     margin-left: 30px; }
-  .profilePage .contentWrapper .container .wideCol {
-    font-family: 'q_serif',Georgia,Times,"Times New Roman",serif; }
-    .profilePage .contentWrapper .container .wideCol .bigProfileImg {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%; }
-    .profilePage .contentWrapper .container .wideCol .name {
-      font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
-      font-weight: bold;
-      line-height: 1.3;
-      color: #262626;
-      font-size: 26px; }
-    .profilePage .contentWrapper .container .wideCol .title {
-      font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
-      font-size: 19px;
-      word-wrap: break-word;
-      color: #333; }
-    .profilePage .contentWrapper .container .wideCol .bio {
-      font-size: 15px;
-      line-height: 1.4;
-      font-weight: 400; }
-    .profilePage .contentWrapper .container .wideCol .whole {
-      display: flex;
-      flex-direction: row;
-      background-color: beige; }
-    .profilePage .contentWrapper .container .wideCol .split {
-      display: flex;
-      flex-direction: row; }
+  .profilePage .contentWrapper .container .wideCol .bigProfileImg {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%; }
+  .profilePage .contentWrapper .container .wideCol .name {
+    font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
+    font-weight: bold;
+    line-height: 1.3;
+    color: #262626;
+    font-size: 26px; }
+  .profilePage .contentWrapper .container .wideCol .profile_title {
+    margin-top: 1px;
+    font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
+    font-size: 19px;
+    word-wrap: break-word;
+    color: #333; }
+  .profilePage .contentWrapper .container .wideCol .bio {
+    font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
+    margin-top: 4px;
+    font-size: 15px;
+    line-height: 1.4;
+    font-weight: 400; }
+  .profilePage .contentWrapper .container .wideCol .whole {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid #e2e2e2;
+    padding-bottom: 16px;
+    margin-bottom: 16px; }
+  .profilePage .contentWrapper .container .wideCol .split {
+    display: flex;
+    flex-direction: row; }
   .profilePage .contentWrapper .container .rightCol {
-    background-color: blue;
     width: 220px;
     margin-left: 30; }
