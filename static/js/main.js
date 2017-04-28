@@ -23,13 +23,15 @@ $( "#questionInput" ).bind('input propertychange', $.debounce(function() {
 	  success: function( result ) {
 			$( "#questionPageId").val(result.id)
 			validateSec.html(templateValidate(result))
-	  }
+	  	const submitButton = document.getElementById('modalSubmit');
+	  	submitButton.disabled = false;
+	  	
+	  },
 	});
 }, 1500));
 
-window.onload = function() {
-	const navIndex = document.getElementById('appNav').getAttribute('data-navIndex')
-	
+setNav = function () {
+	const navIndex = document.getElementById('appNav').getAttribute('data-navIndex');
 	switch(navIndex) {
     case 'home':
         document.getElementById('requestsNavButton').classList += ' currentPage';
@@ -49,4 +51,8 @@ window.onload = function() {
     default:
         ''
 	}
+}
+
+window.onload = function() {
+	setNav();
 }
