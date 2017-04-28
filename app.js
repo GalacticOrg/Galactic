@@ -19,8 +19,6 @@ const express = require('express'),
     jsonParser = bodyParser.json(),
     upload = require('multer')();
 
-//AKIAJ2Y4C5XR6XWSUQLQ  LtItTb+706LYlDmUArJz6XIeFp/pgLYiCkrlswHB
-
 app.use(cookieParser());
 
 app.use(session({
