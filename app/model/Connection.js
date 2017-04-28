@@ -8,7 +8,7 @@ const attributes = {
     primaryKey: true,
     defaultValue: Sequelize.UUIDV4
   },
-  createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
+  createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.NOW }
 };
 
 const options = {
@@ -17,6 +17,6 @@ const options = {
 
 const Connection = connection.define('connection', attributes, options);
 
-Connection.belongsTo(User, {as: 'user'});
+Connection.belongsTo(User, { as: 'user' });
 
 module.exports = Connection;
