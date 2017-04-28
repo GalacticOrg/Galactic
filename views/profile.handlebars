@@ -1,17 +1,40 @@
-<div>
-  Profile
-  {{toJSON user}}
-	{{> messages}}
-  <img src="{{user.avatar}}">
-  <form  action="/profile" method="post" enctype="multipart/form-data" role="form">
-    <input  name="_method" value="PUT" type="hidden"></input>
-    <input  name="username" type="text"></input>
-    <input  name="displayName" type="text"></input>
-    <input  name="image" type="file"></input>
-    <input type="submit" value="Ask for Connections"></input>
-  </form>
+{{> navbar navIndex='profile'}}
+{{> messages }}
 
+<div class="profilePage">
+  <div class="contentWrapper">
+    <div class="container">
+      <div class="wideCol">
+        <div class="whole">
+          <div class="left">
+            <img class="bigProfileImg" src="/static/img/profile.jpg" />
+          </div>
+          <div class="right">
+            <div class="name">Eoin McMillan</div>
+            <div class="title">Reader, writer, dreamer.</div>
+            <div class="bio">I work at SFDevLabs where we build mobile and web apps, and help startups with strategy to achieve their goals.</div>
+          </div>
+        </div>
+        <div class="split">
+          <div class="left">left</div>
+          <div class="right">right</div>
+        </div>
+      </div>
+      <div class="rightCol">
+        rightCol
+      </div>
+    </div>
+  </div>
 </div>
+
+<img src="{{user.avatar}}">
+<form  action="/profile" method="post" enctype="multipart/form-data" role="form">
+  <input  name="_method" value="PUT" type="hidden"></input>
+  <input  name="username" type="text"></input>
+  <input  name="displayName" type="text"></input>
+  <input  name="image" type="file"></input>
+  <input type="submit" value="Ask for Connections"></input>
+</form>
 {{#section 'foot'}}
 <!-- <script type="application/javascript" src="http://0.0.0.0:8090/js/home.js"></script> -->
 <script type="application/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
