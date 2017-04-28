@@ -21,19 +21,22 @@ const attributes = {
       isEmail: true
     }
   },
-  firstName: {
-    type: Sequelize.STRING
-  },
-  lastName: {
+  displayName: {
     type: Sequelize.STRING
   },
   bio: {
+    type: Sequelize.STRING
+  },
+  location: {
     type: Sequelize.STRING
   },
   avatar: {
     type: Sequelize.STRING
   },
   password: {
+    type: Sequelize.STRING
+  },
+  title: {
     type: Sequelize.STRING
   },
   salt: {

@@ -284,30 +284,36 @@ module.exports.updateProfile = function (req, res) {
   const image = req.file;
   const user = req.user;
   const uid = user.toJSON().id;
+  let update = req.body;
 
-  if (!image || image.mimetype !== 'image/jpeg' ){
+  if (!image ){
+    user.update(update).then(function (){
+      res.redirect('/profile');
+    });
+  } else if ( image.mimetype === 'image/jpeg' ){
+    uploadBuffer(
+      image.buffer,
+      image.size,
+      uid,
+      function (err, url){
+        if (err){
+          req.flash('errors', {
+            message: 'Please choose a photo',
+            type: 'error'
+          });
+          return res.redirect('back');
+        }
+        update.avatar = url;
+        user.update(update).then(function (){
+          res.redirect('/profile');
+        });
+      });
+  } else {
     req.flash('errors', {
       message: 'Please enter a JPG photo',
       type: 'error'
     });
     return res.redirect('back');
-  };
-
-  uploadBuffer(
-    image.buffer,
-    image.size,
-    uid,
-    function (err, url){
-      if (err){
-        req.flash('errors', {
-          message: 'Please choose a photo',
-          type: 'error'
-        });
-        return res.redirect('back');
-      }
-      user.update({ avatar: url }).then(function (){
-        res.redirect('/profile');
-      });
-    });
+  }
 
 };
