@@ -2,21 +2,22 @@ const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     isValidURI = require('../../utils/pageparser').isValidURI,
     pageParse = require('../../utils/pageparser').pageParse,
     pageParseNYT = require('../../utils/pageparser').pageParseNYT,
+    uploadBuffer = require('../../utils/assets').uploadBuffer,
     Page = require('../model/page.js'),
     Tag = require('../model/Tag.js').tag,
     regexNYT = new RegExp('nyt.com|nytimes.com|newyorktimes.com');
-
 
 const landing = function (req, res) {
   res.render('landing');
 };
 
 const home = function (req, res) {
-
+  const user = req.user.toJSON();
   Page.feed().then(function (results){
     const pages = results.map(function (result){ return result.toJSON(); });
     res.render('home', {
-      pages
+      pages,
+      user
     });
   });
 };
@@ -264,10 +265,49 @@ module.exports.new = function (req, res) {
 };
 
 module.exports.main = function (req, res) {
-
   if (req.isAuthenticated()){
     home(req, res);
   } else {
     landing(req, res);
   }
+};
+
+
+module.exports.profile = function (req, res) {
+  const user = req.user;
+  res.render('profile', {
+    user
+  });
+};
+
+module.exports.updateProfile = function (req, res) {
+  const image = req.file;
+  const user = req.user;
+  const uid = user.toJSON().id;
+
+  if (!image || image.mimetype !== 'image/jpeg' ){
+    req.flash('errors', {
+      message: 'Please enter a JPG photo',
+      type: 'error'
+    });
+    return res.redirect('back');
+  };
+
+  uploadBuffer(
+    image.buffer,
+    image.size,
+    uid,
+    function (err, url){
+      if (err){
+        req.flash('errors', {
+          message: 'Please choose a photo',
+          type: 'error'
+        });
+        return res.redirect('back');
+      }
+      user.update({ avatar: url }).then(function (){
+        res.redirect('/profile');
+      });
+    });
+
 };

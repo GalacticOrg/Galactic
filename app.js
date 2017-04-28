@@ -15,10 +15,11 @@ const express = require('express'),
     pgSession = require('connect-pg-simple')(session),
     pg = require('pg'),
     port = process.env.PORT || 8080,
-    pgdb = process.env.pgdb || 'postgres://postgres:postgres@localhost:5432/wikiweb'
-    jsonParser = bodyParser.json();
+    pgdb = process.env.pgdb || 'postgres://postgres:postgres@localhost:5432/wikiweb',
+    jsonParser = bodyParser.json(),
+    upload = require('multer')();
 
-
+//AKIAJ2Y4C5XR6XWSUQLQ  LtItTb+706LYlDmUArJz6XIeFp/pgLYiCkrlswHB
 
 app.use(cookieParser());
 
@@ -49,6 +50,7 @@ app.use(jsonParser);
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(upload.single('image'));
 
 setupPassport(app);
 setupHandlebars(app);

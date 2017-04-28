@@ -1,6 +1,7 @@
 var bcrypt = require('bcrypt'),
     User = require('../model/User.js'),
-    passport = require('passport');
+    passport = require('passport'),
+    assets = require('../../utils/assets');
 
 module.exports.show = function (req, res) {
   res.render('signup');
@@ -45,4 +46,18 @@ module.exports.authenticate = passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true
-})
+});
+
+/**
+ * Update
+ */
+module.exports.updateImage = function (req, res) {
+
+  const images = req.files[0]
+    ? [req.files[0].path]
+    : [];
+    console.log(images);
+    res.send('yayay');
+    assets.upload;
+
+};

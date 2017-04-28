@@ -1,0 +1,21 @@
+<div>
+  Profile
+  {{toJSON user}}
+	{{> messages}}
+  <img src="{{user.avatar}}">
+  <form  action="/profile" method="post" enctype="multipart/form-data" role="form">
+    <input  name="_method" value="PUT" type="hidden"></input>
+    <input  name="username" type="text"></input>
+    <input  name="displayName" type="text"></input>
+    <input  name="image" type="file"></input>
+    <input type="submit" value="Ask for Connections"></input>
+  </form>
+
+</div>
+{{#section 'foot'}}
+<!-- <script type="application/javascript" src="http://0.0.0.0:8090/js/home.js"></script> -->
+<script type="application/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
+<script type="application/javascript" src="/static/js/jquery.debounce-1.0.5.js"></script>
+<script type="application/javascript" src="/static/js/handlebars.js"></script>
+<script type="application/javascript" src="/static/js/main.js"></script>
+{{/section}}
