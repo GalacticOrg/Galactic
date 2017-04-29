@@ -58,7 +58,11 @@ const options = {
       return Page.findAll({
         limit: limit || 20,
         offset: offset || 0,
-        include:[{ model: User }, { model: Tag, as: 'tag' }]
+        include:[{ model: User }, { model: Tag, as: 'tag' }],
+        order: [
+          ['updatedAt', 'DESC']
+        ],
+        where:{ userId: { $ne:null } }
       });
     },
     search: function (searchString){

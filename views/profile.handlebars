@@ -1,5 +1,39 @@
+
 {{> navbar navIndex='profile'}}
 {{> messages }}
+
+{{#section 'head'}}
+    <link rel="stylesheet" href="/static/css/vendor/css/croppie.css">
+{{/section}}
+
+<div>
+  Profile
+  {{toJSON user}}
+	{{> messages}}
+
+  <div class="demo"></div>
+  <form  action="/profile" method="post" enctype="multipart/form-data" role="form">
+    <input  name="_method" value="PUT" type="hidden"></input>
+    <input  placeholder="username" name="username" type="text" value="{{user.username}}"></input>
+    <input  placeholder="display name" name="displayName" type="text" value="{{user.displayName}}"></input>
+    <input  placeholder="location" name="location" type="text" value="{{user.location}}"></input>
+    <input  placeholder="Occupation" name="title" type="text" value="{{user.title}}"></input>
+    <textarea placeholder="bio" name="bio">{{user.bio}}</textarea>
+    <input  placeholder="image" name="image" type="file"></input>
+    <input type="submit" value="Ask for Connections"></input>
+  </form>
+  <hr />
+  <img id="profile-img" src="{{user.avatar}}" />
+
+  <button onClick="createCropper()">OpenCropper</button>
+  <div id="profile-crop-holder" style="width:300px; height:300px; display:none">
+    <img id="profile-crop" src="{{user.avatar}}" />
+    <button id="croppedResult" value="Crop" type="button">Submit</button>
+  </div>
+
+{{> navbar navIndex='profile'}}
+{{> messages }}
+
 
 <div class="profilePage">
   <div class="contentWrapper">
@@ -121,18 +155,13 @@
   </div>
 </div>
 
-<img src="{{user.avatar}}">
-<form  action="/profile" method="post" enctype="multipart/form-data" role="form">
-  <input  name="_method" value="PUT" type="hidden"></input>
-  <input  name="username" type="text"></input>
-  <input  name="displayName" type="text"></input>
-  <input  name="image" type="file"></input>
-  <input type="submit" value="Ask for Connections"></input>
-</form>
+
 {{#section 'foot'}}
 <!-- <script type="application/javascript" src="http://0.0.0.0:8090/js/home.js"></script> -->
 <script type="application/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
 <script type="application/javascript" src="/static/js/jquery.debounce-1.0.5.js"></script>
 <script type="application/javascript" src="/static/js/handlebars.js"></script>
+<script type="application/javascript" src="/static/js/croppie.min.js"></script>
 <script type="application/javascript" src="/static/js/main.js"></script>
+<script type="application/javascript" src="/static/js/imageCropper.js"></script>
 {{/section}}

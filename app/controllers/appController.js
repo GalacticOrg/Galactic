@@ -4,6 +4,7 @@ const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     pageParseNYT = require('../../utils/pageparser').pageParseNYT,
     uploadBuffer = require('../../utils/assets').uploadBuffer,
     Page = require('../model/page.js'),
+    Connection = require('../model/page.js'),
     Tag = require('../model/Tag.js').tag,
     regexNYT = new RegExp('nyt.com|nytimes.com|newyorktimes.com');
 
@@ -21,6 +22,22 @@ const home = function (req, res) {
     });
   });
 };
+
+// const home = function (req, res) {
+//   const user = req.user.toJSON();
+//   let pages = null;
+//   Page.feed().then(function (results){
+//     pages = results.map(function (result){ return result.toJSON(); });
+//     return Connection.feed()
+//   }).then(function(results){
+//     const conections = results.map(function (result){ return result.toJSON(); });
+//     feed = pages.concat(conections);
+//     res.render('home', {
+//       feed,
+//       user
+//     });
+//   });
+// };
 
 module.exports.loadwwid = function (req, res, next, id) {
   Page.loadPage(id).then(function (result){
@@ -191,8 +208,6 @@ module.exports.search = function (req, res) {
   }
 };
 
-
-
 module.exports.new = function (req, res) {
   const id = req.body.id;
   const user = req.user;
@@ -202,7 +217,7 @@ module.exports.new = function (req, res) {
     }
   }).then(function (page){
     if (page === null){
-      req.flash('errors', {
+      return req.flash('errors', {
         message: 'Something Went Wrong. Please Try Again.',
         type: 'error'
       });
@@ -217,7 +232,7 @@ module.exports.new = function (req, res) {
           return console.log(page.id, err, '<--page.id, diffBotAnalyze failed');
         }
         const articleTags = article.tags;
-        page.update({
+        return page.update({
           text: article.text,
           title: article.title,
           author: article.author,
@@ -249,18 +264,9 @@ module.exports.new = function (req, res) {
               console.log('Save Successful');
             });
           });
-
-
         });
       });
     }
-  }).catch(function (err){
-    console.log(err, 'module.exports.new DB Error');
-    req.flash('errors', {
-      message: 'Something Went Wrong. Please Try Again.',
-      type: 'error'
-    });
-    res.redirect('back');
   });
 };
 
@@ -284,30 +290,36 @@ module.exports.updateProfile = function (req, res) {
   const image = req.file;
   const user = req.user;
   const uid = user.toJSON().id;
+  let update = req.body;
 
-  if (!image || image.mimetype !== 'image/jpeg' ){
+  if (!image ){
+    user.update(update).then(function (){
+      res.redirect('/profile');
+    });
+  } else if ( image.mimetype === 'image/jpeg' ){
+    uploadBuffer(
+      image.buffer,
+      image.size,
+      uid,
+      function (err, url){
+        if (err){
+          req.flash('errors', {
+            message: 'Please choose a photo',
+            type: 'error'
+          });
+          return res.redirect('back');
+        }
+        update.avatar = url;
+        user.update(update).then(function (){
+          res.redirect('/profile');
+        });
+      });
+  } else {
     req.flash('errors', {
       message: 'Please enter a JPG photo',
       type: 'error'
     });
     return res.redirect('back');
-  };
-
-  uploadBuffer(
-    image.buffer,
-    image.size,
-    uid,
-    function (err, url){
-      if (err){
-        req.flash('errors', {
-          message: 'Please choose a photo',
-          type: 'error'
-        });
-        return res.redirect('back');
-      }
-      user.update({ avatar: url }).then(function (){
-        res.redirect('/profile');
-      });
-    });
+  }
 
 };
