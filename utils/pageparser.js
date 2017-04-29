@@ -66,9 +66,8 @@ module.exports.pageParseNYT = function (inputURI, cb){
       deadline: 10000
     })
     .end(function (err, res){
-      console.log(res.body.response, 'res.body.response')
       if (err || res.body.response.docs.length === 0) {
-        cb({err:err});
+        cb({ err:err });
       } else {
         cb(null, res.body.response.docs[0]);
       }

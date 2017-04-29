@@ -14,7 +14,7 @@ dismissAlert = function() {
 const tmplString = $('#validateTmpl').html()
 
 if (tmplString){
-	const templateValidate = Handlebars.compile();
+	const templateValidate = Handlebars.compile(tmplString);
 	const validateSec = $('#validateSection');
 	$( "#questionInput" ).bind('input propertychange', $.debounce(function() {
 		$.ajax({
@@ -25,8 +25,7 @@ if (tmplString){
 		  success: function( result ) {
 				$( "#questionPageId").val(result.id)
 				validateSec.html(templateValidate(result))
-		  	const submitButton = document.getElementById('modalSubmit');
-		  	submitButton.disabled = false;
+				$('.modalSubmitButton').prop('disabled', false);
 		  },
 		});
 	}, 1500));
