@@ -37,7 +37,8 @@ img {
   margin-top: 5px; }
 
 .underlineOnHover:hover {
-  text-decoration: underline; }
+  text-decoration: underline;
+  cursor: pointer; }
 
 .wikiwebLogo {
   display: flex;
@@ -1163,7 +1164,6 @@ img {
       line-height: 1.4;
       margin-left: 8px;
       color: #999;
-      text-decoration: none;
       font-weight: 400;
       font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
     .profilePage .contentWrapper .container .editable:hover span:nth-of-type(2) {

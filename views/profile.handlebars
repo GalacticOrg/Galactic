@@ -24,7 +24,7 @@
               {{else}}
               <span class="incomplete">Display Name</span>
               {{/if}}
-              <span class="editButton" onClick=openProfileEditModal()>edit</span>
+              <span class="editButton underlineOnHover" onClick=openProfileEditModal()>edit</span>
             </div>
             <div class="display_name editable">
               {{#if user.title}}
@@ -32,7 +32,7 @@
               {{else}}
               <span class="incomplete">title</span>
               {{/if}}
-              <span class="editButton" onClick=openProfileEditModal()>edit</span>
+              <span class="editButton underlineOnHover" onClick=openProfileEditModal()>edit</span>
             </div>
             <div class="bio editable">
               {{#if user.bio}}
@@ -40,7 +40,7 @@
               {{else}}
               <span class="incomplete">bio</span>
               {{/if}}
-              <span class="editButton" onClick=openProfileEditModal()>edit</span>
+              <span class="editButton underlineOnHover" onClick=openProfileEditModal()>edit</span>
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@
           </div>
         </div>
         <div class="sectionInfo">
-          <div class="infoBox" title="username">
+          <div class="infoBox" title="Username">
             <span class="icon">
               <i class="fa fa-at" aria-hidden="true"></i>
             </span>
@@ -75,7 +75,7 @@
             <span class="text incomplete">Username</span>
             {{/if}}
           </div>
-          <div class="infoBox" title="location">
+          <div class="infoBox" title="Location">
             <span class="icon">
               <i class="fa fa-map-marker" aria-hidden="true"></i>
             </span>
@@ -85,7 +85,7 @@
             <span class="text incomplete">Location</span>
             {{/if}}
           </div>
-          <div class="infoBox" title="Signup Date">
+          <div class="infoBox" title="Account Created">
             <span class="icon">
               <i class="fa fa-calendar" aria-hidden="true"></i>
             </span>
