@@ -32,29 +32,18 @@ const home = function (req, res) {
   const offset = req.query.limit;
   let pages = null;
   let feed = [];
-  // return sequelize.query('SELECT * FROM connection;').then(function (results){
-  //   // console.log(result[0][0])
-  //   // res.send(result[0][0]);
-  //
-  //   return results[0].map(function (result){
-  //     return Page.findOne({ where:{ id: result.connectionPage } });
-  //   });
-  // }).spread(function (results){
-  //     res.send(results);
-  // });
 
-  // Connection.findAll({
-  //   limit: 20,
-  //   offset: 0,
-  //   include:[{ model: User, as: 'user' }],
-  //   order: [
-  //     ['updatedAt', 'DESC']
-  //   ]
-  // }).then(function(result){
-  //     console.log(result[0], 'getConnection')
-  //     res.send(result)
-  // });
+  const filter = req.query.filter;
 
+  let filters = {
+    userId: { $ne:null }
+  };
+
+  if (filter === 'requests') {
+    filters.isConnected = { $not : true };
+  } else if (filter === 'connections'){
+    filters.isConnected = { $not : false };
+  }
 
   Page.findAll({
     limit: limit || 20,
@@ -63,7 +52,7 @@ const home = function (req, res) {
     order: [
       ['lastActivityAt', 'DESC']
     ],
-    where:{ userId: { $ne:null } }
+    where: filters
   }).then(function (results){
     pages = results.map(function (result){ return result.toJSON(); });
     return results.map(function (result){
@@ -75,39 +64,18 @@ const home = function (req, res) {
     });
   }).spread(function (){
     const users = arguments;
-    feed = pages.map(function(page, i){
+    feed = pages.map(function (page, i){
       let newPage = page;
       if ( page.connections[0] ){
         newPage.userWhoMadeConnection = users[i].toJSON();
-        console.log(newPage)
-
       }
-      return newPage
-    })
-      res.render('home', {
-        feed,
-        user
-      });
-
-    // return pages.map(function (page, i){
-    //   console.log(arguments[i], 'arguments[i]')
-    //   const connection  = arguments[i][0];
-    //   return connection ? connection.connection.getUser() : null;
-    // });
-
-  })
-
-  // Page.feed().then(function (results){
-  //   pages = results.map(function (result){ return result.toJSON(); });
-  //   //return Connection.feed()
-  // }).then(function(results){
-  //   //const conections = results.map(function (result){ return result.toJSON(); });
-  //   feed = pages; // conections // pages.concat(conections);
-  //   res.render('home', {
-  //     feed,
-  //     user
-  //   });
-  // });
+      return newPage;
+    });
+    res.render('home', {
+      feed,
+      user
+    });
+  });
 };
 
 module.exports.loadwwid = function (req, res, next, id) {
@@ -168,7 +136,7 @@ module.exports.connect = function (req, res) {
   }
   Page.findOne({ where:{ id:id } }).then(function (destinationPage){
     const promsies = [
-      page.set('lastActivityAt', Sequelize.fn('NOW') ).save(),
+      page.set({ lastActivityAt: Sequelize.fn('NOW'), isConnected: true }).save(),
       page.addConnection(destinationPage, { userId: user.id })
     ];
     return promsies;
