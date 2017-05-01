@@ -7,7 +7,7 @@ const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     uploadBuffer = require('../../utils/assets').uploadBuffer,
     Page = require('../model/page.js'),
     User = require('../model/user.js'),
-    Tag = require('../model/Tag.js').tag,
+    Tag = require('../model/tag.js').tag,
     regexNYT = new RegExp('nyt.com|nytimes.com|newyorktimes.com');
 
 const landing = function (req, res) {

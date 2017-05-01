@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize'),
       connection = require('./sequelize.js'),
-      User = require('./User.js'),
-      Tag = require('./Tag.js').tag,
-      ItemTag = require('./Tag.js').itemtag,
+      User = require('./user.js'),
+      Tag = require('./tag.js').tag,
+      ItemTag = require('./tag.js').itemtag,
       Connection = require('./Connection.js');
 
 const attributes = {
