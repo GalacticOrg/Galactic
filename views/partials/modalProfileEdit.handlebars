@@ -1,23 +1,89 @@
 <div class="modalMask" id='modalMask' onclick=closeProfileEditModal()></div>
 <div class="profileEditModal" id='profileEditModal'>
-    <form  action="/profile" method="post" enctype="multipart/form-data" role="form">
-    <div class="modalContent">
-      <div class="closeButton" onclick=closeProfileEditModal()>
-        <i class="fa fa-times" aria-hidden="true"></i>
+  <div class="topBox">
+    <div class="title">Edit Profile Info</div>
+    <div class="subTitle">Profile info may also appear on answers you write.</div>
+  </div>
+  <div class="modalFooter">
+    <form class="profileEditModalFooter" action="/profile" method="post" enctype="multipart/form-data" role="form">
+      <div class="modalContent">
+        <div class="closeButton" onclick=closeProfileEditModal()>
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        <div class="contentBox">
+          <div class="inputBox">
+            <div class="title">
+              <span class="icon">
+                <i class="fa fa-at" aria-hidden="true"></i>
+              </span>
+              <span>
+                <span class="text">
+                  Username
+                </span>
+              </span>
+            </div>
+            <input placeholder="username" name="username" type="text" value="{{user.username}}"></input>
+          </div>
+          <div class="inputBox">
+            <div class="title">
+              <span class="icon">
+                <i class="fa fa-user" aria-hidden="true"></i>
+              </span>
+              <span>
+                <span class="text">
+                  Display Name
+                </span>
+              </span>
+            </div>
+            <input placeholder="display name" name="displayName" type="text" value="{{user.displayName}}"></input>
+          </div>
+          <div class="inputBox">
+            <div class="title">
+              <span class="icon">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+              </span>
+              <span>
+                <span class="text">
+                  Location
+                </span>
+              </span>
+            </div>
+            <input placeholder="location" name="location" type="text" value="{{user.location}}"></input>
+          </div>
+          <div class="inputBox">
+            <div class="title">
+              <span class="icon">
+                <i class="fa fa-at" aria-hidden="true"></i>
+              </span>
+              <span>
+                <span class="text">
+                  Occupation
+                </span>
+              </span>
+            </div>
+            <input placeholder="Occupation" name="title" type="text" value="{{user.title}}"></input>
+          </div>
+          <div class="inputBox">
+            <div class="title">
+              <span class="icon">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </span>
+              <span>
+                <span class="text">
+                  Bio
+                </span>
+              </span>
+            </div>
+            <textarea placeholder="bio" name="bio" maxlength="255">{{user.bio}}</textarea>
+          </div>
+        </div>
       </div>
-      <div class="contentBox">
-          <input  name="_method" value="PUT" type="hidden"></input>
-          <input  placeholder="username" name="username" type="text" value="{{user.username}}"></input>
-          <input  placeholder="display name" name="displayName" type="text" value="{{user.displayName}}"></input>
-          <input  placeholder="location" name="location" type="text" value="{{user.location}}"></input>
-          <input  placeholder="Occupation" name="title" type="text" value="{{user.title}}"></input>
-          <textarea placeholder="bio" name="bio">{{user.bio}}</textarea>
-          {{!-- <input  placeholder="image" name="image" type="file"></input> --}}
+      <div class="saveRow">
+        <div class="cancel underlineOnHover" onclick=closeProfileEditModal()>Cancel</div>
+        <input class="modalSubmitButton" type="submit" value="Save"></input>
       </div>
-    </div>
-    <div class="modalFooter">
-      <div class="cancel underlineOnHover">Cancel</div>
-      <input class="modalSubmitButton" type="submit" value="Save"></input>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>
+
+{{!-- <input  placeholder="image" name="image" type="file"></input> --}}
