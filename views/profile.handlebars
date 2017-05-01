@@ -19,15 +19,14 @@
     <input  placeholder="location" name="location" type="text" value="{{user.location}}"></input>
     <input  placeholder="Occupation" name="title" type="text" value="{{user.title}}"></input>
     <textarea placeholder="bio" name="bio">{{user.bio}}</textarea>
-    <input  placeholder="image" name="image" type="file"></input>
     <input type="submit" value="Ask for Connections"></input>
   </form>
   <hr />
+  <input  id="profileInput" placeholder="image" name="image" type="file"></input>
   <img id="profile-img" src="{{user.avatar}}" />
 
-  <button onClick="createCropper()">OpenCropper</button>
   <div id="profile-crop-holder" style="width:300px; height:300px; display:none">
-    <img id="profile-crop" src="{{user.avatar}}" />
+    <img id="profile-crop" />
     <button id="croppedResult" value="Crop" type="button">Submit</button>
   </div>
 
