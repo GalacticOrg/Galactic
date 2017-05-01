@@ -19,6 +19,10 @@ const attributes = {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW
   },
+  isConnected: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   text: {
     type: Sequelize.TEXT,
     length: 'long'
