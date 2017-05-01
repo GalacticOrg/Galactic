@@ -16,7 +16,7 @@ const express = require('express'),
     pgSession = require('connect-pg-simple')(session),
     pg = require('pg'),
     port = config.PORT,
-    pgdb = config.PGDB,
+    pgdb = config.DATABASE_URL,
     jsonParser = bodyParser.json(),
     upload = require('multer')();
 
