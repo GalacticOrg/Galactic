@@ -69,12 +69,16 @@ const home = function (req, res) {
 
 // @TODO Placeholders for connections and response
 module.exports.requests = function (req, res) {
-  res.send('requests')
+  return res.render('requests', {
+    pages: []
+  });
 };
 
 
 module.exports.connections = function (req, res) {
-  res.send('connections')
+  return res.render('requests', {
+    pages: []
+  });
 };
 
 module.exports.loadwwid = function (req, res, next, id) {
