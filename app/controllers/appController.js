@@ -1,10 +1,12 @@
 const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
+    Sequelize = require('sequelize'),
     isValidURI = require('../../utils/pageparser').isValidURI,
     pageParse = require('../../utils/pageparser').pageParse,
     pageParseNYT = require('../../utils/pageparser').pageParseNYT,
     uploadBuffer = require('../../utils/assets').uploadBuffer,
     Page = require('../model/page.js'),
-    Connection = require('../model/page.js'),
+    Connection = require('../model/connection.js'),
+    User = require('../model/user.js'),
     Tag = require('../model/Tag.js').tag,
     regexNYT = new RegExp('nyt.com|nytimes.com|newyorktimes.com');
 
@@ -12,32 +14,68 @@ const landing = function (req, res) {
   res.render('landing');
 };
 
+
 const home = function (req, res) {
   const user = req.user.toJSON();
-  Page.feed().then(function (results){
-    const pages = results.map(function (result){ return result.toJSON(); });
+  const limit = req.query.limit;
+  const offset = req.query.limit;
+  let pages = null;
+  let feed = [];
+
+  const filter = req.query.filter;
+
+  let filters = {
+    userId: { $ne:null }
+  };
+
+  if (filter === 'requests') {
+    filters.isConnected = { $not : true };
+  } else if (filter === 'connections'){
+    filters.isConnected = { $not : false };
+  }
+
+  Page.findAll({
+    limit: limit || 20,
+    offset: offset || 0,
+    include:[{ model: User }, { model: Tag, as: 'tag' }, { model: Page, as: 'connections' }],
+    order: [
+      ['lastActivityAt', 'DESC']
+    ],
+    where: filters
+  }).then(function (results){
+    pages = results.map(function (result){ return result.toJSON(); });
+    return results.map(function (result){
+      if  (result.connections.length >  0){
+        return result.connections[0].connection.getUser();
+      } else {
+        return null;
+      }
+    });
+  }).spread(function (){
+    const users = arguments;
+    feed = pages.map(function (page, i){
+      let newPage = page;
+      if ( page.connections[0] ){
+        newPage.userWhoMadeConnection = users[i].toJSON();
+      }
+      return newPage;
+    });
     res.render('home', {
-      feed: pages,
+      feed,
       user
     });
   });
 };
 
-// const home = function (req, res) {
-//   const user = req.user.toJSON();
-//   let pages = null;
-//   Page.feed().then(function (results){
-//     pages = results.map(function (result){ return result.toJSON(); });
-//     return Connection.feed()
-//   }).then(function(results){
-//     const conections = results.map(function (result){ return result.toJSON(); });
-//     feed = pages.concat(conections);
-//     res.render('home', {
-//       feed,
-//       user
-//     });
-//   });
-// };
+// @TODO Placeholders for connections and response
+module.exports.requests = function (req, res) {
+  res.send('requests')
+};
+
+
+module.exports.connections = function (req, res) {
+  res.send('connections')
+};
 
 module.exports.loadwwid = function (req, res, next, id) {
   Page.loadPage(id).then(function (result){
@@ -96,10 +134,14 @@ module.exports.connect = function (req, res) {
     return res.redirect('/page/' + page.wwUri);
   }
   Page.findOne({ where:{ id:id } }).then(function (destinationPage){
-    page.addConnection(destinationPage, { userId: user.id }).then(function (){
-      const pageObj = page.toJSON();
-      res.redirect('/page/' + pageObj.wwUri);
-    });
+    const promsies = [
+      page.set({ lastActivityAt: Sequelize.fn('NOW'), isConnected: true }).save(),
+      page.addConnection(destinationPage, { userId: user.id })
+    ];
+    return promsies;
+  }).then(function (){
+    const pageObj = page.toJSON();
+    res.redirect('/page/' + pageObj.wwUri);
   });
 };
 
@@ -321,5 +363,4 @@ module.exports.updateProfile = function (req, res) {
     });
     return res.redirect('back');
   }
-
 };

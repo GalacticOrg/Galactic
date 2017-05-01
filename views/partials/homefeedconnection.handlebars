@@ -1,4 +1,4 @@
-<div class="feedBundle">
+<div onClick="javascript:location.href='/page/{{wwUri}}'" class="feedBundle">
 	<div class="feedBundleMeta">
 		<span class="feedItemType">Connection</span>
 		<span class="bullet"> · </span>
@@ -13,14 +13,14 @@
 		</span>
 		<span class="bullet"> · </span>
 		<span class="timestamp">
-			<a>21m</a>
+			<a>{{timeAgo createdAt}}</a>
 		</span>
 	</div>
 	<div class="bundleTitle">
-		How a Single Gene Could Become a Volume Knob for Pain
+		{{title}}
 	</div>
 	<div class="contentMain">
-		Harnessing rare genetic mutations could help end America's opioid epidemic.
+		{{description}}
 	</div>
 
 	<div class="divider"></div>
@@ -28,16 +28,16 @@
 	<div class="centerAlign">
 		<div class="contentHeader">
 			<span class="imgWrapper">
-				<img src="/static/img/example_user.jpeg" class="userImg" />
+				<img src="{{userWhoMadeConnection.avatar}}" class="userImg" />
 			</span>
 			<span class="layoutTextWrapper">
 				<div>
-					<span class="username">Adam D'Angelo</span><span class="userInfo">, CEO at Quora
+					<span class="username">{{userWhoMadeConnection.displayName}}</span><span class="userInfo">, CEO at Quora
 					</span>
 				</div>
 				<div class="credibilityFacts feedBundleMeta">
 					<span class="timestamp">
-						<a>Connected 13h ago</a>
+						<a>Connected {{timeAgo connections.0.createdAt}}</a>
 					</span>
 					<span class="bullet"> · </span>
 					<span class="hoverUnderline">
@@ -49,17 +49,17 @@
 	</div>
 	<div class="divider"></div>
 	<div class="bundleTitle">
-		CRISPR - Wikipedia
+		{{connections.0.title}}
 	</div>
 	<div class="contentMain">
-		Clustered regularly interspaced short palindromic repeats (CRISPR, pronounced crisper) are segments of prokaryotic DNA containing short, repetitive base sequences.
+		{{connections.0.description}}
 	</div>
 	<div class="actionBar">
 		<span class="connectButton">
 			Connect
 		</span>
 		<span class="connections underlineOnHover">
-			Connections<span class="connectionsTotal">4</span>
+			Connections<span class="connectionsTotal">{{connections.length}}</span>
 		</span>
 		<div class="socialShare">
 			<span class="shareIcon">

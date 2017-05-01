@@ -15,6 +15,14 @@ const attributes = {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW
   },
+  lastActivityAt: {
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.NOW
+  },
+  isConnected: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   text: {
     type: Sequelize.TEXT,
     length: 'long'
@@ -58,9 +66,9 @@ const options = {
       return Page.findAll({
         limit: limit || 20,
         offset: offset || 0,
-        include:[{ model: User }, { model: Tag, as: 'tag' }],
+        include:[{ model: User }, { model: Tag, as: 'tag' }, { model: Page, as: 'connections' }],
         order: [
-          ['updatedAt', 'DESC']
+          ['lastActivityAt', 'DESC']
         ],
         where:{ userId: { $ne:null } }
       });
