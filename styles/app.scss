@@ -752,7 +752,7 @@ img {
 		opacity: 0.75;
 		z-index: 2;
 	}
-  .requestModal {
+  .requestModal, .profileEditModal {
   	display: none;
   	margin: auto;
   	margin-top: 100px;
@@ -880,7 +880,7 @@ img {
 			border-color: rgb(226, 226, 226);
 		}
 	}
-  .displayRequestModal {
+  .displayRequestModal, .displayProfileEditModal {
 		display: block;
 	}
 	.contentWrapper {
@@ -1358,10 +1358,31 @@ img {
 }
 
 .profilePage {
+	position: fixed;
 	.contentWrapper {
 		.container {
 			display: flex;
 			flex-direction: row;
+			.incomplete {
+				color: #999;
+			}
+			.editable {
+				span:nth-of-type(2){
+					display: none;
+					font-size: 15px;
+  				line-height: 1.4;
+			    margin-left: 8px;
+			    color: #999;
+			    text-decoration: none;
+			    font-weight: 400;
+  				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+				}
+			}
+			.editable:hover {
+				span:nth-of-type(2){
+					display: inline-block;
+				}
+			}
 			.left {
 				width: 142px;
 		    min-height: 1px;
@@ -1376,26 +1397,6 @@ img {
 		    margin-left: 30px;
 			}
 			.wideCol {
-				.incomplete {
-					color: #999;
-				}
-				.editable {
-					span:nth-of-type(2){
-						display: none;
-						font-size: 15px;
-    				line-height: 1.4;
-				    margin-left: 8px;
-				    color: #999;
-				    text-decoration: none;
-				    font-weight: 400;
-    				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-					}
-				}
-				.editable:hover {
-					span:nth-of-type(2){
-						display: inline-block;
-					}
-				}
 				.bigProfileImg {
 					width: 140px;
 					height: 140px;
@@ -1436,7 +1437,36 @@ img {
 			}
 			.rightCol {
 				width: 220px;
-				margin-left: 30;
+				margin-left: 30px;
+				.header_text {
+					.editButton {
+						font-size: 13px;
+				    font-weight: 400;
+				    float: right;
+				    bottom: 8px;
+				    color: #999;
+	  				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	  			}
+				}
+				.sectionInfo {
+					margin-top: 16px;
+					margin-bottom: 32px;
+					.infoBox {
+						height: 30px;
+						.icon {
+							margin-right: 8px;
+							i {
+								color: #999;
+								height: 16px;
+								width: 16px;
+							}
+						}
+						.text {
+					    color: #333;
+    					font-weight: 500;
+						}
+					}
+				}
 			}
 		}
 	}

@@ -8,6 +8,16 @@ closeRecommendationsModal = function() {
 	document.getElementById('modalMask').classList.remove("displayRequestModal");
 }
 
+openProfileEditModal = function() {
+	document.getElementById('profileEditModal').className += " displayProfileEditModal";
+	document.getElementById('modalMask').className += " displayProfileEditModal";
+}
+
+closeProfileEditModal = function() {
+	document.getElementById('profileEditModal').classList.remove("displayProfileEditModal");
+	document.getElementById('modalMask').classList.remove("displayProfileEditModal");
+}
+
 dismissAlert = function() {
 	document.getElementById('alerts').remove()
 }

@@ -635,7 +635,7 @@ img {
   opacity: 0.75;
   z-index: 2; }
 
-.homePage .requestModal, .searchPage .requestModal, .resultPage .requestModal, .profilePage .requestModal {
+.homePage .requestModal, .homePage .profileEditModal, .searchPage .requestModal, .searchPage .profileEditModal, .resultPage .requestModal, .resultPage .profileEditModal, .profilePage .requestModal, .profilePage .profileEditModal {
   display: none;
   margin: auto;
   margin-top: 100px;
@@ -645,9 +645,9 @@ img {
   z-index: 10;
   position: fixed;
   border-radius: 4px; }
-  .homePage .requestModal .modalContent, .searchPage .requestModal .modalContent, .resultPage .requestModal .modalContent, .profilePage .requestModal .modalContent {
+  .homePage .requestModal .modalContent, .homePage .profileEditModal .modalContent, .searchPage .requestModal .modalContent, .searchPage .profileEditModal .modalContent, .resultPage .requestModal .modalContent, .resultPage .profileEditModal .modalContent, .profilePage .requestModal .modalContent, .profilePage .profileEditModal .modalContent {
     padding: 32px 32px 24px 32px; }
-    .homePage .requestModal .modalContent .closeButton, .searchPage .requestModal .modalContent .closeButton, .resultPage .requestModal .modalContent .closeButton, .profilePage .requestModal .modalContent .closeButton {
+    .homePage .requestModal .modalContent .closeButton, .homePage .profileEditModal .modalContent .closeButton, .searchPage .requestModal .modalContent .closeButton, .searchPage .profileEditModal .modalContent .closeButton, .resultPage .requestModal .modalContent .closeButton, .resultPage .profileEditModal .modalContent .closeButton, .profilePage .requestModal .modalContent .closeButton, .profilePage .profileEditModal .modalContent .closeButton {
       position: absolute;
       right: 0;
       top: 0;
@@ -655,27 +655,27 @@ img {
       padding-top: 8px;
       font-size: 20px;
       color: #999; }
-      .homePage .requestModal .modalContent .closeButton i:hover, .searchPage .requestModal .modalContent .closeButton i:hover, .resultPage .requestModal .modalContent .closeButton i:hover, .profilePage .requestModal .modalContent .closeButton i:hover {
+      .homePage .requestModal .modalContent .closeButton i:hover, .homePage .profileEditModal .modalContent .closeButton i:hover, .searchPage .requestModal .modalContent .closeButton i:hover, .searchPage .profileEditModal .modalContent .closeButton i:hover, .resultPage .requestModal .modalContent .closeButton i:hover, .resultPage .profileEditModal .modalContent .closeButton i:hover, .profilePage .requestModal .modalContent .closeButton i:hover, .profilePage .profileEditModal .modalContent .closeButton i:hover {
         color: #2b6dad;
         cursor: pointer; }
-    .homePage .requestModal .modalContent .contentBox .userImg, .searchPage .requestModal .modalContent .contentBox .userImg, .resultPage .requestModal .modalContent .contentBox .userImg, .profilePage .requestModal .modalContent .contentBox .userImg {
+    .homePage .requestModal .modalContent .contentBox .userImg, .homePage .profileEditModal .modalContent .contentBox .userImg, .searchPage .requestModal .modalContent .contentBox .userImg, .searchPage .profileEditModal .modalContent .contentBox .userImg, .resultPage .requestModal .modalContent .contentBox .userImg, .resultPage .profileEditModal .modalContent .contentBox .userImg, .profilePage .requestModal .modalContent .contentBox .userImg, .profilePage .profileEditModal .modalContent .contentBox .userImg {
       float: left; }
-      .homePage .requestModal .modalContent .contentBox .userImg img, .searchPage .requestModal .modalContent .contentBox .userImg img, .resultPage .requestModal .modalContent .contentBox .userImg img, .profilePage .requestModal .modalContent .contentBox .userImg img {
+      .homePage .requestModal .modalContent .contentBox .userImg img, .homePage .profileEditModal .modalContent .contentBox .userImg img, .searchPage .requestModal .modalContent .contentBox .userImg img, .searchPage .profileEditModal .modalContent .contentBox .userImg img, .resultPage .requestModal .modalContent .contentBox .userImg img, .resultPage .profileEditModal .modalContent .contentBox .userImg img, .profilePage .requestModal .modalContent .contentBox .userImg img, .profilePage .profileEditModal .modalContent .contentBox .userImg img {
         height: 25px;
         width: 25px;
         border-radius: 50%; }
-    .homePage .requestModal .modalContent .contentBox div, .searchPage .requestModal .modalContent .contentBox div, .resultPage .requestModal .modalContent .contentBox div, .profilePage .requestModal .modalContent .contentBox div {
+    .homePage .requestModal .modalContent .contentBox div, .homePage .profileEditModal .modalContent .contentBox div, .searchPage .requestModal .modalContent .contentBox div, .searchPage .profileEditModal .modalContent .contentBox div, .resultPage .requestModal .modalContent .contentBox div, .resultPage .profileEditModal .modalContent .contentBox div, .profilePage .requestModal .modalContent .contentBox div, .profilePage .profileEditModal .modalContent .contentBox div {
       margin-left: 30px; }
-      .homePage .requestModal .modalContent .contentBox div .username, .homePage .requestModal .modalContent .contentBox div .text, .searchPage .requestModal .modalContent .contentBox div .username, .searchPage .requestModal .modalContent .contentBox div .text, .resultPage .requestModal .modalContent .contentBox div .username, .resultPage .requestModal .modalContent .contentBox div .text, .profilePage .requestModal .modalContent .contentBox div .username, .profilePage .requestModal .modalContent .contentBox div .text {
+      .homePage .requestModal .modalContent .contentBox div .username, .homePage .requestModal .modalContent .contentBox div .text, .homePage .profileEditModal .modalContent .contentBox div .username, .homePage .profileEditModal .modalContent .contentBox div .text, .searchPage .requestModal .modalContent .contentBox div .username, .searchPage .requestModal .modalContent .contentBox div .text, .searchPage .profileEditModal .modalContent .contentBox div .username, .searchPage .profileEditModal .modalContent .contentBox div .text, .resultPage .requestModal .modalContent .contentBox div .username, .resultPage .requestModal .modalContent .contentBox div .text, .resultPage .profileEditModal .modalContent .contentBox div .username, .resultPage .profileEditModal .modalContent .contentBox div .text, .profilePage .requestModal .modalContent .contentBox div .username, .profilePage .requestModal .modalContent .contentBox div .text, .profilePage .profileEditModal .modalContent .contentBox div .username, .profilePage .profileEditModal .modalContent .contentBox div .text {
         color: #999;
         font-size: 15px;
         line-height: 25px;
         font-weight: 400;
         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
-    .homePage .requestModal .modalContent .questionBox, .searchPage .requestModal .modalContent .questionBox, .resultPage .requestModal .modalContent .questionBox, .profilePage .requestModal .modalContent .questionBox {
+    .homePage .requestModal .modalContent .questionBox, .homePage .profileEditModal .modalContent .questionBox, .searchPage .requestModal .modalContent .questionBox, .searchPage .profileEditModal .modalContent .questionBox, .resultPage .requestModal .modalContent .questionBox, .resultPage .profileEditModal .modalContent .questionBox, .profilePage .requestModal .modalContent .questionBox, .profilePage .profileEditModal .modalContent .questionBox {
       clear: both;
       width: 100%; }
-      .homePage .requestModal .modalContent .questionBox textarea, .searchPage .requestModal .modalContent .questionBox textarea, .resultPage .requestModal .modalContent .questionBox textarea, .profilePage .requestModal .modalContent .questionBox textarea {
+      .homePage .requestModal .modalContent .questionBox textarea, .homePage .profileEditModal .modalContent .questionBox textarea, .searchPage .requestModal .modalContent .questionBox textarea, .searchPage .profileEditModal .modalContent .questionBox textarea, .resultPage .requestModal .modalContent .questionBox textarea, .resultPage .profileEditModal .modalContent .questionBox textarea, .profilePage .requestModal .modalContent .questionBox textarea, .profilePage .profileEditModal .modalContent .questionBox textarea {
         resize: none;
         width: 100%;
         overflow: hidden;
@@ -697,9 +697,9 @@ img {
         /* number of lines to show */
         max-height: 2.6;
         /* fallback */ }
-        .homePage .requestModal .modalContent .questionBox textarea:focus, .searchPage .requestModal .modalContent .questionBox textarea:focus, .resultPage .requestModal .modalContent .questionBox textarea:focus, .profilePage .requestModal .modalContent .questionBox textarea:focus {
+        .homePage .requestModal .modalContent .questionBox textarea:focus, .homePage .profileEditModal .modalContent .questionBox textarea:focus, .searchPage .requestModal .modalContent .questionBox textarea:focus, .searchPage .profileEditModal .modalContent .questionBox textarea:focus, .resultPage .requestModal .modalContent .questionBox textarea:focus, .resultPage .profileEditModal .modalContent .questionBox textarea:focus, .profilePage .requestModal .modalContent .questionBox textarea:focus, .profilePage .profileEditModal .modalContent .questionBox textarea:focus {
           outline: none; }
-  .homePage .requestModal .modalFooter, .searchPage .requestModal .modalFooter, .resultPage .requestModal .modalFooter, .profilePage .requestModal .modalFooter {
+  .homePage .requestModal .modalFooter, .homePage .profileEditModal .modalFooter, .searchPage .requestModal .modalFooter, .searchPage .profileEditModal .modalFooter, .resultPage .requestModal .modalFooter, .resultPage .profileEditModal .modalFooter, .profilePage .requestModal .modalFooter, .profilePage .profileEditModal .modalFooter {
     background: #f6f6f6;
     border-radius: 0 0 4px 4px;
     padding: 10px;
@@ -709,10 +709,10 @@ img {
     line-height: 1.4;
     display: flex;
     justify-content: flex-end; }
-    .homePage .requestModal .modalFooter div, .searchPage .requestModal .modalFooter div, .resultPage .requestModal .modalFooter div, .profilePage .requestModal .modalFooter div {
+    .homePage .requestModal .modalFooter div, .homePage .profileEditModal .modalFooter div, .searchPage .requestModal .modalFooter div, .searchPage .profileEditModal .modalFooter div, .resultPage .requestModal .modalFooter div, .resultPage .profileEditModal .modalFooter div, .profilePage .requestModal .modalFooter div, .profilePage .profileEditModal .modalFooter div {
       display: flex;
       justify-content: flex-end; }
-    .homePage .requestModal .modalFooter .cancel, .searchPage .requestModal .modalFooter .cancel, .resultPage .requestModal .modalFooter .cancel, .profilePage .requestModal .modalFooter .cancel {
+    .homePage .requestModal .modalFooter .cancel, .homePage .profileEditModal .modalFooter .cancel, .searchPage .requestModal .modalFooter .cancel, .searchPage .profileEditModal .modalFooter .cancel, .resultPage .requestModal .modalFooter .cancel, .resultPage .profileEditModal .modalFooter .cancel, .profilePage .requestModal .modalFooter .cancel, .profilePage .profileEditModal .modalFooter .cancel {
       margin-top: 4px;
       font-size: 15px;
       line-height: 1.4;
@@ -746,7 +746,7 @@ img {
   .homePage .modalSubmitButton:disabled:hover, .searchPage .modalSubmitButton:disabled:hover, .resultPage .modalSubmitButton:disabled:hover, .profilePage .modalSubmitButton:disabled:hover {
     border-color: #e2e2e2; }
 
-.homePage .displayRequestModal, .searchPage .displayRequestModal, .resultPage .displayRequestModal, .profilePage .displayRequestModal {
+.homePage .displayRequestModal, .homePage .displayProfileEditModal, .searchPage .displayRequestModal, .searchPage .displayProfileEditModal, .resultPage .displayRequestModal, .resultPage .displayProfileEditModal, .profilePage .displayRequestModal, .profilePage .displayProfileEditModal {
   display: block; }
 
 .homePage .contentWrapper, .searchPage .contentWrapper, .resultPage .contentWrapper, .profilePage .contentWrapper {
@@ -1150,64 +1150,87 @@ img {
         height: 22px;
         width: 22px; }
 
-.profilePage .contentWrapper .container {
-  display: flex;
-  flex-direction: row; }
-  .profilePage .contentWrapper .container .left {
-    width: 142px;
-    min-height: 1px;
-    clear: left;
-    font-size: 13px; }
-  .profilePage .contentWrapper .container .right {
-    line-height: 1.4;
-    width: 572px;
-    float: left;
-    min-height: 1px;
-    margin-left: 30px; }
-  .profilePage .contentWrapper .container .wideCol .incomplete {
-    color: #999; }
-  .profilePage .contentWrapper .container .wideCol .editable span:nth-of-type(2) {
-    display: none;
-    font-size: 15px;
-    line-height: 1.4;
-    margin-left: 8px;
-    color: #999;
-    text-decoration: none;
-    font-weight: 400;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
-  .profilePage .contentWrapper .container .wideCol .editable:hover span:nth-of-type(2) {
-    display: inline-block; }
-  .profilePage .contentWrapper .container .wideCol .bigProfileImg {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%; }
-  .profilePage .contentWrapper .container .wideCol .name {
-    font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
-    font-weight: bold;
-    line-height: 1.3;
-    color: #262626;
-    font-size: 26px; }
-  .profilePage .contentWrapper .container .wideCol .display_name {
-    margin-top: 1px;
-    font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
-    font-size: 19px;
-    word-wrap: break-word;
-    color: #333; }
-  .profilePage .contentWrapper .container .wideCol .bio {
-    font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
-    margin-top: 4px;
-    font-size: 15px;
-    line-height: 1.4;
-    font-weight: 400; }
-  .profilePage .contentWrapper .container .wideCol .whole {
-    display: flex;
-    flex-direction: row;
-    border-bottom: 2px solid #e2e2e2;
-    padding-bottom: 16px;
-    margin-bottom: 16px; }
-  .profilePage .contentWrapper .container .wideCol .split {
+.profilePage {
+  position: fixed; }
+  .profilePage .contentWrapper .container {
     display: flex;
     flex-direction: row; }
-  .profilePage .contentWrapper .container .rightCol {
-    width: 220px;
-    margin-left: 30; }
+    .profilePage .contentWrapper .container .incomplete {
+      color: #999; }
+    .profilePage .contentWrapper .container .editable span:nth-of-type(2) {
+      display: none;
+      font-size: 15px;
+      line-height: 1.4;
+      margin-left: 8px;
+      color: #999;
+      text-decoration: none;
+      font-weight: 400;
+      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+    .profilePage .contentWrapper .container .editable:hover span:nth-of-type(2) {
+      display: inline-block; }
+    .profilePage .contentWrapper .container .left {
+      width: 142px;
+      min-height: 1px;
+      clear: left;
+      font-size: 13px; }
+    .profilePage .contentWrapper .container .right {
+      line-height: 1.4;
+      width: 572px;
+      float: left;
+      min-height: 1px;
+      margin-left: 30px; }
+    .profilePage .contentWrapper .container .wideCol .bigProfileImg {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%; }
+    .profilePage .contentWrapper .container .wideCol .name {
+      font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
+      font-weight: bold;
+      line-height: 1.3;
+      color: #262626;
+      font-size: 26px; }
+    .profilePage .contentWrapper .container .wideCol .display_name {
+      margin-top: 1px;
+      font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
+      font-size: 19px;
+      word-wrap: break-word;
+      color: #333; }
+    .profilePage .contentWrapper .container .wideCol .bio {
+      font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
+      margin-top: 4px;
+      font-size: 15px;
+      line-height: 1.4;
+      font-weight: 400; }
+    .profilePage .contentWrapper .container .wideCol .whole {
+      display: flex;
+      flex-direction: row;
+      border-bottom: 2px solid #e2e2e2;
+      padding-bottom: 16px;
+      margin-bottom: 16px; }
+    .profilePage .contentWrapper .container .wideCol .split {
+      display: flex;
+      flex-direction: row; }
+    .profilePage .contentWrapper .container .rightCol {
+      width: 220px;
+      margin-left: 30px; }
+      .profilePage .contentWrapper .container .rightCol .header_text .editButton {
+        font-size: 13px;
+        font-weight: 400;
+        float: right;
+        bottom: 8px;
+        color: #999;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+      .profilePage .contentWrapper .container .rightCol .sectionInfo {
+        margin-top: 16px;
+        margin-bottom: 32px; }
+        .profilePage .contentWrapper .container .rightCol .sectionInfo .infoBox {
+          height: 30px; }
+          .profilePage .contentWrapper .container .rightCol .sectionInfo .infoBox .icon {
+            margin-right: 8px; }
+            .profilePage .contentWrapper .container .rightCol .sectionInfo .infoBox .icon i {
+              color: #999;
+              height: 16px;
+              width: 16px; }
+          .profilePage .contentWrapper .container .rightCol .sectionInfo .infoBox .text {
+            color: #333;
+            font-weight: 500; }
