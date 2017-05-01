@@ -35,7 +35,8 @@
     "sequelize": "~3.30.4",
     "superagent": "^3.5.2",
     "unfluff": "^1.1.0",
-    "url-parse": "^1.1.8"
+    "url-parse": "^1.1.8",
+    "forever": "^0.15.3"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -47,7 +48,6 @@
     "browser-sync": "^2.18.8",
     "browser-sync-webpack-plugin": "^1.1.4",
     "eslint": "^3.19.0",
-    "forever": "^0.15.3",
     "node-sass": "^3.13.1",
     "nodemon": "^1.11.0",
     "webpack": "^2.4.1",
