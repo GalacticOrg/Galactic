@@ -3,7 +3,7 @@ const Sequelize = require('sequelize'),
       User = require('./user.js'),
       Tag = require('./tag.js').tag,
       ItemTag = require('./tag.js').itemtag,
-      Connection = require('./Connection.js');
+      Connection = require('./connection.js');
 
 const attributes = {
   id: {
