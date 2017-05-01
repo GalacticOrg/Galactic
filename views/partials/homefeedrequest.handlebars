@@ -25,8 +25,7 @@
 				</span>
 				<span class="layoutTextWrapper">
 					<div>
-						<span class="username underlineOnHover">{{user.username}}</span><span class="userInfo">,
-						</span>
+						<span class="username underlineOnHover">{{user.displayName}}</span>{{#if user.title}}<span class="userInfo">, {{user.title}}</span>{{/if}}
 					</div>
 					<div class="credibilityFacts feedBundleMeta">
 						<span class="timestamp">
