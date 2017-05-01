@@ -1,13 +1,14 @@
 
-require('dotenv').config();
+
 const request = require('superagent'),
-  baseDiffBotBaseUri = process.env.DIFFBOT_URI,
+  config = require('../config'),
+  baseDiffBotBaseUri = config.DIFFBOT_URI,
   extractor = require('unfluff'),
-  diffBotVersion = process.env.DIFFBOT_API_VERISON,
-  nytVersion = process.env.NYT_API_VERISON,
-  tokenNyt = process.env.NYT_API_TOKEN,
-  nytBaseUri = process.env.NYT_SEARCH_API_URI,
-  tokenDiffbot = process.env.DIFFBOT_TOKEN,
+  diffBotVersion = config.DIFFBOT_API_VERISON,
+  nytVersion = config.NYT_API_VERISON,
+  tokenNyt = config.NYT_API_TOKEN,
+  nytBaseUri = config.NYT_SEARCH_API_URI,
+  tokenDiffbot = config.DIFFBOT_TOKEN,
   diffBotApiUri = 'https://' + baseDiffBotBaseUri + '/' + diffBotVersion,
   nytApiUri = 'http://' + nytBaseUri + '/' + nytVersion,
   expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
