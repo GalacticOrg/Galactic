@@ -14,17 +14,6 @@ const landing = function (req, res) {
   res.render('landing');
 };
 
-// const home = function (req, res) {
-//   const user = req.user.toJSON();
-//   Page.feed().then(function (results){
-//     const feed = results.map(function (result){ return result.toJSON(); });
-//     res.render('home', {
-//       feed,
-//       user
-//     });
-//   });
-// };
-
 
 const home = function (req, res) {
   const user = req.user.toJSON();
@@ -76,6 +65,16 @@ const home = function (req, res) {
       user
     });
   });
+};
+
+// @TODO Placeholders for connections and response
+module.exports.requests = function (req, res) {
+  res.send('requests')
+};
+
+
+module.exports.connections = function (req, res) {
+  res.send('connections')
 };
 
 module.exports.loadwwid = function (req, res, next, id) {

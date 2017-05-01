@@ -29,6 +29,9 @@ module.exports = function(express) {
   router.get('/search', appController.search);
   router.post('/new', isAuthenticated, appController.new);
 
+  router.get('/connections', appController.connections);
+  router.get('/requests', appController.requests);
+
   router.get('/profile', isAuthenticated, appController.profile);
   router.post('/profile', isAuthenticated, appController.updateProfile);
 
