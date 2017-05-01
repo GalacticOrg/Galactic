@@ -627,6 +627,9 @@ img {
           .feedBundle .actionBar .socialShare span i:hover {
             color: #666666; }
 
+.profilePage {
+  width: 100%; }
+
 .homePage .modalMask, .searchPage .modalMask, .resultPage .modalMask, .profilePage .modalMask {
   display: none;
   height: 100%;
@@ -1228,6 +1231,7 @@ img {
           .profilePage .contentWrapper .container .rightCol .sectionInfo .infoBox .icon {
             margin-right: 8px; }
             .profilePage .contentWrapper .container .rightCol .sectionInfo .infoBox .icon i {
+              text-align: center;
               color: #999;
               height: 16px;
               width: 16px; }

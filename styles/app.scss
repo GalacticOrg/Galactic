@@ -743,6 +743,9 @@ img {
   }
 }
 
+.profilePage {
+	width: 100%; //this is a hack solution to a bug.
+}
 .homePage, .searchPage, .resultPage, .profilePage {
 	.modalMask {
 		display: none;
@@ -1456,6 +1459,7 @@ img {
 						.icon {
 							margin-right: 8px;
 							i {
+								text-align: center;
 								color: #999;
 								height: 16px;
 								width: 16px;

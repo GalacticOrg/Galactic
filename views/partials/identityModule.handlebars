@@ -1,24 +1,26 @@
-<div class="identityModule">
-	<div class="top_rail">
-		<img src="/static/img/white_network.png" />
-	</div>
-	<div class="actor">
-		<div class="profile_img_box">
-			<img class="profile_img" src="{{user.avatar}}"/>
+<a href="/profile">
+	<div class="identityModule">
+		<div class="top_rail">
+			<img src="/static/img/white_network.png" />
 		</div>
-		<div class="actor_info">
-			<div class="fullname">
-				<a>{{user.displayName}}</a>
+			<div class="actor">
+				<div class="profile_img_box">
+					<img class="profile_img" src="{{user.avatar}}"/>
+				</div>
+				<div class="actor_info">
+					<div class="fullname">
+						<a>{{user.displayName}}</a>
+					</div>
+					<div class="title">{{user.title}}
+					</div>
+				</div>
 			</div>
-			<div class="title">{{user.title}}
-			</div>
+		<div class="stats">
+			<div class="number">56</div>
+			<div class="text">Requests</div>
+			<div class="divider"></div>
+			<div class="number">1096</div>
+			<div class="text">Connections</div>
 		</div>
 	</div>
-	<div class="stats">
-		<div class="number">56</div>
-		<div class="text">Requests</div>
-		<div class="divider"></div>
-		<div class="number">1096</div>
-		<div class="text">Connections</div>
-	</div>
-</div>
+</a>
