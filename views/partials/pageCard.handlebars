@@ -1,0 +1,53 @@
+<div class="pageCard">
+  <div class="articleContentBox">
+  	<div class="articleContent">
+			<div class="titleURL">
+				{{page.title}}
+			</div>
+			<div class="pageUrl">
+				<a href={{page.pageUrl}}>
+					<span>
+						<i class="fa fa-external-link" aria-hidden="true"></i>
+					</span>
+					<span>{{page.pageUrl}}</span>
+				</a>
+			</div>
+			<div class="descriptionText">
+				{{page.description}}
+			</div>
+		</div>
+		{{#if page.icon}}
+		<div class="articleImg">
+			<img src={{page.icon}}>
+		</div>
+		{{/if}}
+	</div>
+	<div class="metaBar">
+		<a class="askQuestionButton" onClick=openRecommendationsModal()>
+			<div class="connectButton">
+				Connect
+			</div>
+		</a>
+		<div class="resultMeta">
+			<span class="topic">
+				<a>Topic</a>
+			</span>
+			<span class="bullet"> · </span>
+			<span class="topic">
+				<a>Topic</a>
+			</span>
+			<span class="bullet"> · </span>
+			<span class="topic">
+				<a>Topic</a>
+			</span>
+		</div>
+		<div class="connector" title="First Connector">
+			<span class="imgWrapper">
+				<img class="connectorImg" src="/static/img/example_user.jpeg"/>
+			</span>
+			<span class="username">
+				<a>{{page.userId}}</a>
+			</span>
+		</div>
+	</div>
+</div>

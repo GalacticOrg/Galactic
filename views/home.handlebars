@@ -1,0 +1,88 @@
+{{> navbar navIndex='home' }}
+{{> messages }}
+
+<div class="homePage">
+	{{> modalRequest }}
+	<div class="contentWrapper">
+		<div class="layout_3col_left">
+			<h3 class="title">
+				<div class="title_with_link">
+					Feeds
+				</div>
+			</h3>
+			<div class="pagedList">
+				<div class="pagedListItem top_stories nav_item_selected">
+					<ul>
+						<li>
+							<a href="/">Top Stories</a>
+						</li>
+					</ul>
+				</div>
+				<div class="pagedListItem new_requests">
+					<ul>
+						<li>
+							<a href="/?filter=requests">New Requests</a>
+						</li>
+					</ul>
+				</div>
+				<div class="pagedListItem new_connections">
+					<ul>
+						<li>
+							<a href="/?filter=connections">New Connections</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="layout_3col_center">
+			<div class="section_header">
+				<div class="header_text">
+					<span>Recent Activity</span>
+				</div>
+			</div>
+
+				<div class="addQuestionPrompt">
+					<div class='inner'>
+						<span class="nameWithPhoto">
+							<span>
+								<img class="profile_photo_img" src="{{user.avatar}}" />
+							</span>
+							<span>
+								{{user.displayName}}
+							</span>
+						</span>
+					</div>
+					<a class="askQuestionButton" onClick=openRecommendationsModal()>
+						<div class="inner">
+							<span>What should be connected on the WikiWeb?</span>
+						</div>
+					</a>
+				</div>
+
+
+
+				{{#each feed}}
+					{{#if connections}}
+						{{> homefeedconnection}}
+					{{else}}
+						{{> homefeedrequest}}
+					{{/if}}
+				{{/each}}
+
+				{{toJSON feed}}
+			</div>
+
+			<div class="layout_3col_right">
+				{{> identityModule}}
+			</div>
+		</div>
+	</div>
+</div>
+
+{{#section 'foot'}}
+<!-- <script type="application/javascript" src="http://0.0.0.0:8090/js/home.js"></script> -->
+<script type="application/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
+<script type="application/javascript" src="/static/js/jquery.debounce-1.0.5.js"></script>
+<script type="application/javascript" src="/static/js/handlebars.js"></script>
+<script type="application/javascript" src="/static/js/main.js"></script>
+{{/section}}

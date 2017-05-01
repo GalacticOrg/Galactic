@@ -1,0 +1,107 @@
+
+{{#section 'head'}}
+    <link rel="stylesheet" href="/static/css/vendor/css/croppie.css">
+{{/section}}
+
+{{> navbar navIndex='profile'}}
+{{> messages }}
+
+<div class="profilePage">
+  {{> modalProfileEdit }}
+  <div class="contentWrapper">
+    <div class="container">
+      <div class="wideCol">
+        <div class="whole">
+          <div class="left">
+            <img class="bigProfileImg" src="{{user.avatar}}?{{getTime}}"/>
+          </div>
+          <div class="right">
+            <div class="name editable">
+              {{#if user.displayName}}
+              <span>{{user.displayName}}</span>
+              {{else}}
+              <span class="incomplete">Display Name</span>
+              {{/if}}
+              <span class="editButton underlineOnHover" onClick=openProfileEditModal()>edit</span>
+            </div>
+            <div class="display_name editable">
+              {{#if user.title}}
+              <span>{{user.title}}</span>
+              {{else}}
+              <span class="incomplete">title</span>
+              {{/if}}
+              <span class="editButton underlineOnHover" onClick=openProfileEditModal()>edit</span>
+            </div>
+            <div class="bio editable">
+              {{#if user.bio}}
+              <span>{{user.bio}}</span>
+              {{else}}
+              <span class="incomplete">bio</span>
+              {{/if}}
+              <span class="editButton underlineOnHover" onClick=openProfileEditModal()>edit</span>
+            </div>
+          </div>
+        </div>
+        <div class="split">
+          <div class="left">
+            {{!-- <div class="section_header">
+              <div class="header_text">
+                <span>Topics</span>
+              </div>
+            </div> --}}
+          </div>
+          <div class="right">
+            <!-- TODO. See list of recent activity >>> Add link here. -->
+          </div>
+        </div>
+      </div>
+      <div class="rightCol">
+        <div class="section_header">
+          <div class="header_text">
+            <span>User Info</span>
+            <span class="editButton underlineOnHover" onClick=openProfileEditModal()>Edit</span>
+          </div>
+        </div>
+        <div class="sectionInfo">
+          <div class="infoBox" title="Username">
+            <span class="icon">
+              <i class="fa fa-at" aria-hidden="true"></i>
+            </span>
+            {{#if user.username}}
+            <span class="text">{{user.username}}</span>
+            {{else}}
+            <span class="text incomplete">Username</span>
+            {{/if}}
+          </div>
+          <div class="infoBox" title="Location">
+            <span class="icon">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+            </span>
+            {{#if user.location}}
+            <span class="text">{{user.location}}</span>
+            {{else}}
+            <span class="text incomplete">Location</span>
+            {{/if}}
+          </div>
+          <div class="infoBox" title="Account Created">
+            <span class="icon">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </span>
+            <span class="text">{{timeAgo user.createdAt}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{{#section 'foot'}}
+<!-- <script type="application/javascript" src="http://0.0.0.0:8090/js/home.js"></script> -->
+<script type="application/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
+<script type="application/javascript" src="/static/js/jquery.debounce-1.0.5.js"></script>
+<script type="application/javascript" src="/static/js/handlebars.js"></script>
+<script type="application/javascript" src="/static/js/croppie.min.js"></script>
+<script type="application/javascript" src="/static/js/main.js"></script>
+<script type="application/javascript" src="/static/js/imageCropper.js"></script>
+{{/section}}

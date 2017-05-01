@@ -1,0 +1,50 @@
+<div onClick="javascript:location.href='/page/{{wwUri}}'" class="feedBundle pageConnection">
+	<div class="articleContentBox">
+		<div class="articleContent">
+			<div class="titleURL">
+				{{this.title}}
+			</div>
+			<div class="descriptionText">
+				{{this.description}}
+			</div>
+		</div>
+		{{#if this.icon}}
+		<div class="articleImg">
+			<img src={{this.icon}}>
+		</div>
+		{{else}}
+		<div class="articleImg">
+			<img src='../static/img/example_article_img.png'>
+		</div>
+		{{/if}}
+	</div>
+
+	<div class="metaBar">
+		<div class="resultMeta">
+			<span class="topic">
+				<a>Topic</a>
+			</span>
+			<span class="bullet"> · </span>
+			<span class="topic">
+				<a>Topic</a>
+			</span>
+			<span class="bullet"> · </span>
+			<span class="topic">
+				<a>Topic</a>
+			</span>
+		</div>
+		<div class="connector" title="First Connector">
+			<span class="imgWrapper">
+				<img class="connectorImg" src="/static/img/example_user.jpeg"/>
+			</span>
+			<span class="username">
+				<a>connected by: {{this.user.username}}</a>
+			</span>
+		</div>
+	</div>
+
+</div>
+
+{{#section 'foot'}}
+<script type="application/javascript" src="/static/js/main.js"></script>
+{{/section}}

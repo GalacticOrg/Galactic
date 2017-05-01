@@ -6,29 +6,13 @@ module.exports = {
     entry: {
       "home.js": env==='development'?[
           'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
-          './app/frontend/Home/' // Your appʼs entry point
-      ]:'./app/frontend/Home/',
-      "connect.js": env==='development'?[
-          'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
-          './app/frontend/Connect/'
-      ]:'./app/frontend/Connect/',
-      "node.js": env==='development'?[
-          'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
-          './app/frontend/Node/'
-      ]:'./app/frontend/Node/',
-      "user.js": env==='development'?[
-          'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
-          './app/frontend/User/'
-      ]:'./app/frontend/User/',
-      "firehose.js": env==='development'?[
-          'webpack-dev-server/client?http://0.0.0.0:8090', // WebpackDevServer host and port
-          './app/frontend/Firehose/'
-      ]:'./app/frontend/Firehose/',
+          './app/js/home/' // Your appʼs entry point
+      ]:'./app/js/home/index.js',
     },
     output: {
         filename: '[name]',
         publicPath: '/js/',
-        path: 'dist/js/'
+        path: '/static/js/'
     },
     module: {
         loaders: [
@@ -47,7 +31,7 @@ module.exports = {
         // ./public directory is being served
         host: 'localhost',
         port: 3000,
-        proxy: 'http://localhost:3001'
+        proxy: 'http://localhost:8080'
       })
     ]
 }

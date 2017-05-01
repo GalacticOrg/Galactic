@@ -1,0 +1,28 @@
+{{> navbar navIndex='newpage'}}
+
+<div class="loaderBox">
+	<div class="wikiwebLogo">
+		<span>Loading</span>
+	</div>
+	<div>
+		<img src="/static/img/loading_dots.gif">
+	</div>
+</div>
+
+{{#if errorMessage}}
+	<div style="top:70px; left:50px; position: absolute;" class="alert alert-danger">
+		{{errorMessage}}
+	</div>
+{{/if}}
+<div class="homePage">
+	<div class="contentWrapper">
+		<br/><br/><br/>
+		<a href="/page/{{page.wwUri}}">
+			{{page.title}}
+		</a>
+	</div>
+</div>
+
+{{#section 'foot'}}
+<!-- <script type="application/javascript" src="http://0.0.0.0:8090/js/home.js"></script> -->
+{{/section}}

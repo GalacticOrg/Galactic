@@ -1,0 +1,73 @@
+<div class="modalMask" id='modalMask' onclick=closeRecommendationsModal()></div>
+<div class="requestModal" id='requestModal'>
+  <form id="askform" action="{{page.wwUri}}/connect" method="post">
+    <div class="modalContent">
+      <div class="closeButton" onclick=closeRecommendationsModal()>
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </div>
+        <div class="questionBox">
+          <textarea
+            autofocus="true"
+            id="questionInput"
+            type="text"
+            name="uri"
+            placeholder="What should this page connect? (paste url)"
+          >{{inputURI}}</textarea>
+          <input id="questionPageId" name="id" type="hidden"></input>
+      </div>
+      <div id="validateSection"> </div>
+    </div>
+    <div class="modalFooter">
+      <div class="cancel underlineOnHover">Cancel</div>
+      <input id="modalSubmit" class="modalSubmitButton" type="submit" value="Ask for Connections" disabled='true'></input>
+    </div>
+  </form>
+</div>
+
+
+{{{{rawHelper}}}}
+  <script id="validateTmpl" type="text/template">
+    {{#if result}}
+    <div content="" style="border-bottom: 1px solid #ddd; margin-top: 10px; margin-bottom: 10px;"></div>
+    <div style="display: flex; flex-direction: row;">
+      <div style="justify-content: flex-start;">
+        <div style="
+          width: 100%;
+          overflow: hidden;
+          word-wrap: break-word;
+          font-weight: bold;
+          line-height: 1.3;
+          color: #262626;
+          font-size: 16px;
+          padding: 0;
+          margin-top: 8px;
+          border: 0;
+          box-shadow: none;
+          padding-bottom: 8px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;"
+          >{{title}}</div>
+        <div style="
+          font-family: 'q_serif',Georgia,Times,'Times New Roman',serif;
+          font-size: 15px;
+          line-height: 1.6;
+          color: #333;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+        ">{{description}}</div>
+      </div>
+      <div style="justify-content: flex-end">
+        {{#if icon}}
+        <img style="height: 32px;" src="{{icon}}" />
+        {{/if}}
+      </div>
+    </div>
+    {{/if}}
+  </script>
+{{{{/rawHelper}}}}

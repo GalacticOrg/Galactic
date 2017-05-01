@@ -1,0 +1,62 @@
+{{> navbar navIndex='page'}}
+
+<div class="resultPage">
+	{{> modalconnect}}
+	{{> messages}}
+	<div class="contentWrapper">
+		<div class="layout_3col_left">
+			<h3 class="title">
+				<div class="title_with_link">
+					Topics
+				</div>
+			</h3>
+			<div class="pagedList">
+				<div class="pagedListItem top_stories">
+					<ul>
+						<li>
+							<a href="/">Bartholemu (6)</a>
+						</li>
+					</ul>
+				</div>
+				<div class="pagedListItem new_requests">
+					<ul>
+						<li>
+							<a href="/">Optimus (4)</a>
+						</li>
+					</ul>
+				</div>
+				<div class="pagedListItem new_connections">
+					<ul>
+						<li>
+							<a href="/">Prime (1)</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="layout_3col_center">
+			{{> pageCard }}
+			{{#if destinations}}
+				{{#each destinations}}
+					{{> pageConnection }}
+				{{/each}}
+			{{else}}
+				<div style="margin-top: 30px;">
+					<b>There are no connections to this page yet. Be the first to add one!</b>
+				</div>
+			{{/if}}
+
+			{{toJSON page}}
+
+		</div>
+		<div class="layout_3col_right"></div>
+	</div>
+</div>
+
+{{#section 'foot'}}
+<!-- <script type="application/javascript" src="http://0.0.0.0:8090/js/home.js"></script> -->
+<script type="application/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
+<script type="application/javascript" src="/static/js/jquery.debounce-1.0.5.js"></script>
+<script type="application/javascript" src="/static/js/handlebars.js"></script>
+<script type="application/javascript" src="/static/js/main.js"></script>
+{{/section}}

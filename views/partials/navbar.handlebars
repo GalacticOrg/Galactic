@@ -1,0 +1,60 @@
+{{#if navIndex}}
+<div id="appNav" data-navIndex={{navIndex}}>
+{{else}}
+<div id="appNav" data-navIndex="">
+{{/if}}
+	<div class="appNavInner">
+		<div class="wikiwebLogo">
+			<a href="/">
+				<span>WikiWeb</span>
+			</a>
+		</div>
+		<form id="askform" class="searchBox" action="/search" method="get">
+			<input
+				type="text"
+				id="email"
+				name="q"
+				value="{{inputURI}}"
+				placeholder="Search the WikiWeb"
+				onkeypress="searchOnEnter()"
+			></input>
+			<input id="navbarSearchButton" class="submitButton" type="submit" value="Submit"></input>
+		</form>
+		<div class="pageButtons">
+			<div class="pageButton">
+				<div class="buttonContents" id="requestsNavButton">
+					<span class="icon">
+						<i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+					</span>
+					<a href="/requests" class="text">Requests</a>
+				</div>
+			</div>
+			<div class="pageButton">
+				<div class="buttonContents" id="connectionsNavButton">
+					<span class="icon">
+						<i class="fa fa-bullseye" aria-hidden="true"></i>
+					</span>
+					<a href="/connections" class="text">Connections</a>
+				</div>
+			</div>
+			<div class="pageButton" style="cursor: not-allowed;">
+				<div class="buttonContents" id="notificationsNavButton">
+					<span class="icon">
+						<i class="fa fa-bell-o" aria-hidden="true"></i>
+					</span>
+					<span class="text">Notifications</span>
+				</div>
+			</div>
+
+			<a href="/profile" class="pageButton">
+				<div class="buttonContents" id="userNavButton">
+					<span class="userImg">
+						<img src="/static/img/profile.jpg" class="userImg" />
+					</span>
+					<span class="text">{{user.username}}</span>
+				</div>
+			</a>
+
+		</div>
+	</div>
+</div>
