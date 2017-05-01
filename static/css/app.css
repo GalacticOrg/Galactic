@@ -486,7 +486,6 @@ img {
             margin-top: 6px; }
 
 /* end appNav */
-
 .feedBundle {
   padding-top: 16px;
   color: #999;
@@ -852,146 +851,6 @@ img {
           .homePage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner:hover, .searchPage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner:hover, .resultPage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner:hover, .profilePage .contentWrapper .layout_3col_center .addQuestionPrompt .askQuestionButton .inner:hover {
             color: #2b6dad;
             cursor: pointer; }
-
-    .homePage .contentWrapper .layout_3col_center .feedBundle, .searchPage .contentWrapper .layout_3col_center .feedBundle, .resultPage .contentWrapper .layout_3col_center .feedBundle, .profilePage .contentWrapper .layout_3col_center .feedBundle {
-      padding-top: 16px;
-      color: #999;
-      font-size: 13px;
-      text-align: left;
-      margin-left: -12px;
-      padding-left: 12px;
-      margin-right: -12px;
-      padding-right: 12px;
-      border-bottom: 1px solid #e2e2e2;
-      padding-bottom: 16px; }
-      .homePage .contentWrapper .layout_3col_center .feedBundle:hover, .searchPage .contentWrapper .layout_3col_center .feedBundle:hover, .resultPage .contentWrapper .layout_3col_center .feedBundle:hover, .profilePage .contentWrapper .layout_3col_center .feedBundle:hover {
-        background-color: #F6F8F9;
-        cursor: pointer; }
-      .homePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta, .searchPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta, .resultPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta, .profilePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta {
-        color: #999;
-        font-size: 13px;
-        text-align: left;
-        margin-bottom: 4px; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .bullet, .searchPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .bullet, .resultPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .bullet, .profilePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .bullet {
-          color: #999;
-          font-size: 13px; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .hoverUnderline a:hover, .searchPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .hoverUnderline a:hover, .resultPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .hoverUnderline a:hover, .profilePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .hoverUnderline a:hover {
-          text-decoration: underline; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .topic a:hover, .searchPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .topic a:hover, .resultPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .topic a:hover, .profilePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .topic a:hover {
-          text-decoration: underline; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .timestamp a:hover, .searchPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .timestamp a:hover, .resultPage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .timestamp a:hover, .profilePage .contentWrapper .layout_3col_center .feedBundle .feedBundleMeta .timestamp a:hover {
-          text-decoration: underline; }
-      .homePage .contentWrapper .layout_3col_center .feedBundle .articleContentBox, .searchPage .contentWrapper .layout_3col_center .feedBundle .articleContentBox, .resultPage .contentWrapper .layout_3col_center .feedBundle .articleContentBox, .profilePage .contentWrapper .layout_3col_center .feedBundle .articleContentBox {
-        display: flex;
-        flex-direction: row; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleContent, .searchPage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleContent, .resultPage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleContent, .profilePage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleContent {
-          width: 100%; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleImg, .searchPage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleImg, .resultPage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleImg, .profilePage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleImg {
-          justify-content: flex-end; }
-          .homePage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleImg img, .searchPage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleImg img, .resultPage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleImg img, .profilePage .contentWrapper .layout_3col_center .feedBundle .articleContentBox .articleImg img {
-            max-height: 60px; }
-      .homePage .contentWrapper .layout_3col_center .feedBundle .bundleTitle, .searchPage .contentWrapper .layout_3col_center .feedBundle .bundleTitle, .resultPage .contentWrapper .layout_3col_center .feedBundle .bundleTitle, .profilePage .contentWrapper .layout_3col_center .feedBundle .bundleTitle {
-        font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
-        font-weight: bold;
-        line-height: 1.3;
-        color: #262626;
-        font-size: 18px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        /* number of lines to show */
-        max-height: 2.6;
-        /* fallback */ }
-      .homePage .contentWrapper .layout_3col_center .feedBundle .bundleURL, .searchPage .contentWrapper .layout_3col_center .feedBundle .bundleURL, .resultPage .contentWrapper .layout_3col_center .feedBundle .bundleURL, .profilePage .contentWrapper .layout_3col_center .feedBundle .bundleURL {
-        font-size: 13px;
-        text-align: left;
-        margin-bottom: 4px;
-        margin-top: 4px; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .bundleURL span:hover, .searchPage .contentWrapper .layout_3col_center .feedBundle .bundleURL span:hover, .resultPage .contentWrapper .layout_3col_center .feedBundle .bundleURL span:hover, .profilePage .contentWrapper .layout_3col_center .feedBundle .bundleURL span:hover {
-          color: #2b6dad;
-          cursor: pointer; }
-      .homePage .contentWrapper .layout_3col_center .feedBundle .contentHeader, .searchPage .contentWrapper .layout_3col_center .feedBundle .contentHeader, .resultPage .contentWrapper .layout_3col_center .feedBundle .contentHeader, .profilePage .contentWrapper .layout_3col_center .feedBundle .contentHeader {
-        margin-top: 10px;
-        position: relative;
-        min-height: 40px;
-        margin-bottom: 5px;
-        font-size: 15px;
-        line-height: 1.4;
-        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .contentHeader .imgWrapper, .searchPage .contentWrapper .layout_3col_center .feedBundle .contentHeader .imgWrapper, .resultPage .contentWrapper .layout_3col_center .feedBundle .contentHeader .imgWrapper, .profilePage .contentWrapper .layout_3col_center .feedBundle .contentHeader .imgWrapper {
-          float: left;
-          width: 48px; }
-          .homePage .contentWrapper .layout_3col_center .feedBundle .contentHeader .imgWrapper .userImg, .searchPage .contentWrapper .layout_3col_center .feedBundle .contentHeader .imgWrapper .userImg, .resultPage .contentWrapper .layout_3col_center .feedBundle .contentHeader .imgWrapper .userImg, .profilePage .contentWrapper .layout_3col_center .feedBundle .contentHeader .imgWrapper .userImg {
-            border-radius: 50%;
-            height: 40px;
-            width: 40px; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .contentHeader .layoutTextWrapper, .searchPage .contentWrapper .layout_3col_center .feedBundle .contentHeader .layoutTextWrapper, .resultPage .contentWrapper .layout_3col_center .feedBundle .contentHeader .layoutTextWrapper, .profilePage .contentWrapper .layout_3col_center .feedBundle .contentHeader .layoutTextWrapper {
-          float: left;
-          font-size: 15px;
-          font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
-          color: #333;
-          line-height: 1.2em; }
-      .homePage .contentWrapper .layout_3col_center .feedBundle .contentMain, .searchPage .contentWrapper .layout_3col_center .feedBundle .contentMain, .resultPage .contentWrapper .layout_3col_center .feedBundle .contentMain, .profilePage .contentWrapper .layout_3col_center .feedBundle .contentMain {
-        font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
-        font-size: 15px;
-        line-height: 1.6;
-        color: #333;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        /* number of lines to show */
-        max-height: 2.6;
-        /* fallback */ }
-      .homePage .contentWrapper .layout_3col_center .feedBundle .divider, .searchPage .contentWrapper .layout_3col_center .feedBundle .divider, .resultPage .contentWrapper .layout_3col_center .feedBundle .divider, .profilePage .contentWrapper .layout_3col_center .feedBundle .divider {
-        justify-content: space-around;
-        content: "";
-        border-top: 1px solid #e2e2e2;
-        margin: 10px;
-        margin-left: 15%;
-        margin-right: 15%; }
-      .homePage .contentWrapper .layout_3col_center .feedBundle .centerAlign, .searchPage .contentWrapper .layout_3col_center .feedBundle .centerAlign, .resultPage .contentWrapper .layout_3col_center .feedBundle .centerAlign, .profilePage .contentWrapper .layout_3col_center .feedBundle .centerAlign {
-        margin-left: 20%;
-        margin-right: 15%; }
-      .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar, .searchPage .contentWrapper .layout_3col_center .feedBundle .actionBar, .resultPage .contentWrapper .layout_3col_center .feedBundle .actionBar, .profilePage .contentWrapper .layout_3col_center .feedBundle .actionBar {
-        font-size: 13px;
-        margin-bottom: -16px;
-        padding: 8px 0 16px;
-        bottom: 0;
-        clear: left; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .connections .connectionsTotal, .searchPage .contentWrapper .layout_3col_center .feedBundle .actionBar .connections .connectionsTotal, .resultPage .contentWrapper .layout_3col_center .feedBundle .actionBar .connections .connectionsTotal, .profilePage .contentWrapper .layout_3col_center .feedBundle .actionBar .connections .connectionsTotal {
-          -webkit-font-smoothing: antialiased;
-          border-radius: 2px;
-          background: #eee;
-          color: #999;
-          font-weight: bold;
-          min-width: 10px;
-          padding: 2px 3px;
-          margin-left: 4px;
-          text-align: center;
-          display: inline-block;
-          float: none;
-          font-size: 12px;
-          padding: 1px 3px;
-          margin: -3px 0 0 4px; }
-        .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare, .searchPage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare, .resultPage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare, .profilePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare {
-          float: right;
-          padding-right: 10px;
-          background-image: none;
-          background-color: transparent; }
-          .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span, .searchPage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span, .resultPage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span, .profilePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span {
-            margin-right: 5px;
-            margin-top: -2px; }
-            .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i, .searchPage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i, .resultPage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i, .profilePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i {
-              font-size: 17px;
-              line-height: 1.4;
-              background-image: none;
-              background-color: transparent; }
-              .homePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i:hover, .searchPage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i:hover, .resultPage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i:hover, .profilePage .contentWrapper .layout_3col_center .feedBundle .actionBar .socialShare span i:hover {
-                color: #666666; }
   .homePage .contentWrapper .layout_3col_right, .searchPage .contentWrapper .layout_3col_right, .resultPage .contentWrapper .layout_3col_right, .profilePage .contentWrapper .layout_3col_right {
     width: 220px;
     float: left;
@@ -1021,7 +880,7 @@ img {
         /* Standard syntax */ }
         .homePage .contentWrapper .layout_3col_right .identityModule .top_rail img, .searchPage .contentWrapper .layout_3col_right .identityModule .top_rail img, .resultPage .contentWrapper .layout_3col_right .identityModule .top_rail img, .profilePage .contentWrapper .layout_3col_right .identityModule .top_rail img {
           width: 218px;
-          opacity: .3;
+          opacity: .4;
           margin-top: 10px;
           mix-blend-mode: soft-light; }
       .homePage .contentWrapper .layout_3col_right .identityModule .actor, .searchPage .contentWrapper .layout_3col_right .identityModule .actor, .resultPage .contentWrapper .layout_3col_right .identityModule .actor, .profilePage .contentWrapper .layout_3col_right .identityModule .actor {
@@ -1305,6 +1164,19 @@ img {
     float: left;
     min-height: 1px;
     margin-left: 30px; }
+  .profilePage .contentWrapper .container .wideCol .incomplete {
+    color: #999; }
+  .profilePage .contentWrapper .container .wideCol .editable span:nth-of-type(2) {
+    display: none;
+    font-size: 15px;
+    line-height: 1.4;
+    margin-left: 8px;
+    color: #999;
+    text-decoration: none;
+    font-weight: 400;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+  .profilePage .contentWrapper .container .wideCol .editable:hover span:nth-of-type(2) {
+    display: inline-block; }
   .profilePage .contentWrapper .container .wideCol .bigProfileImg {
     width: 140px;
     height: 140px;
@@ -1315,7 +1187,7 @@ img {
     line-height: 1.3;
     color: #262626;
     font-size: 26px; }
-  .profilePage .contentWrapper .container .wideCol .profile_title {
+  .profilePage .contentWrapper .container .wideCol .display_name {
     margin-top: 1px;
     font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
     font-size: 19px;

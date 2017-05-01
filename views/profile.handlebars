@@ -8,9 +8,10 @@
 
 <div>
   Profile
-  {{toJSON user}}
-	{{> messages}}
-
+  <br />
+  <br />
+  <br />
+  <br />
   <div class="demo"></div>
   <form  action="/profile" method="post" enctype="multipart/form-data" role="form">
     <input  name="_method" value="PUT" type="hidden"></input>
@@ -23,17 +24,8 @@
     <input type="submit" value="Save"></input>
   </form>
   <hr />
-  <img id="profile-img" src="{{user.avatar}}" />
-
-  <button onClick="createCropper()">OpenCropper</button>
-  <div id="profile-crop-holder" style="width:300px; height:300px; display:none">
-    <img id="profile-crop" src="{{user.avatar}}" />
-    <button id="croppedResult" value="Crop" type="button">Submit</button>
-  </div>
 
 {{> navbar navIndex='profile'}}
-{{> messages }}
-
 
 <div class="profilePage">
   <div class="contentWrapper">
@@ -41,118 +33,53 @@
       <div class="wideCol">
         <div class="whole">
           <div class="left">
-            <img class="bigProfileImg" src="/static/img/profile.jpg" />
+            <img class="bigProfileImg" src="{{user.avatar}}?{{getTime}}"/>
           </div>
           <div class="right">
-            <div class="name">Eoin McMillan</div>
-            <div class="profile_title">Reader, writer, dreamer.</div>
-            <div class="bio">I work at SFDevLabs where we build mobile and web apps, and help startups with strategy to achieve their goals.</div>
+            <div class="name editable">
+              {{#if user.displayName}}
+              <span>{{user.displayName}}</span>
+              {{else}}
+              <span class="incomplete">Display Name</span>
+              {{/if}}
+              <span class="editButton">edit</span>
+            </div>
+            <div class="display_name editable">
+              {{#if user.title}}
+              <span>{{user.title}}</span>
+              {{else}}
+              <span class="incomplete">title</span>
+              {{/if}}
+              <span class="editButton">edit</span>
+            </div>
+            <div class="bio editable">
+              {{#if user.bio}}
+              <span>{{user.bio}}</span>
+              {{else}}
+              <span class="incomplete">bio</span>
+              {{/if}}
+              <span class="editButton">edit</span>
+            </div>
           </div>
         </div>
         <div class="split">
           <div class="left">
-            <div class="section_header">
+            {{!-- <div class="section_header">
               <div class="header_text">
-                <span>Recent Activity</span>
+                <span>Topics</span>
               </div>
-            </div>
+            </div> --}}
           </div>
           <div class="right">
-            <div class="section_header">
-              <div class="header_text">
-                <span>Recent Activity</span>
-              </div>
-            </div>
-            <div class="feedBundle">
-              <div class="feedBundleMeta">
-                <span class="feedItemType">Connection</span>
-                <span class="bullet"> · </span>
-                <span class="topic">
-                  <a>
-                    CRISPR
-                  </a>
-                </span>
-                <span class="bullet"> · </span>
-                <span class="feedReason">
-                  Topic you might like
-                </span>
-                <span class="bullet"> · </span>
-                <span class="timestamp">
-                  <a>21m</a>
-                </span>
-              </div>
-              <div class="bundleTitle">
-                How a Single Gene Could Become a Volume Knob for Pain
-              </div>
-              <div class="contentMain">
-                Harnessing rare genetic mutations could help end America's opioid epidemic.
-              </div>
-
-              <div class="divider"></div>
-
-              <div class="centerAlign">
-                <div class="contentHeader">
-                  <span class="imgWrapper">
-                    <img src="/static/img/example_user.jpeg" class="userImg" />
-                  </span>
-                  <span class="layoutTextWrapper">
-                    <div>
-                      <span class="username">Adam D'Angelo</span><span class="userInfo">, CEO at Quora
-                      </span>
-                    </div>
-                    <div class="credibilityFacts feedBundleMeta">
-                      <span class="timestamp">
-                        <a>Connected 13h ago</a>
-                      </span>
-                      <span class="bullet"> · </span>
-                      <span class="hoverUnderline">
-                        <a>Requested by Eoin McMillan</a>
-                      </span>
-                    </div>
-                  </span>
-                </div>
-              </div>
-              <div class="divider"></div>
-              <div class="bundleTitle">
-                CRISPR - Wikipedia
-              </div>
-              <div class="contentMain">
-                Clustered regularly interspaced short palindromic repeats (CRISPR, pronounced crisper) are segments of prokaryotic DNA containing short, repetitive base sequences.
-              </div>
-              <div class="actionBar">
-                <span class="connectButton">
-                  Connect
-                </span>
-                <span class="connections underlineOnHover">
-                  Connections<span class="connectionsTotal">4</span>
-                </span>
-                <div class="socialShare">
-                  <span class="shareIcon">
-                    <i class="fa fa-facebook-official" aria-hidden="true"></i>
-                  </span>
-                  <span class="shareIcon">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                  </span>
-                  <span class="shareIcon">
-                    <i class="fa fa-share-square-o" aria-hidden="true"></i>
-                  </span>
-                  <span class="shareIcon">
-                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
+            <!-- TODO. See list of recent activity >>> Add link here. -->
           </div>
-          <br />
-          <br />
-          <br />
-          <br />
         </div>
       </div>
       <div class="rightCol">
       </div>
     </div>
   </div>
+  {{toJSON user}}
 </div>
 
 

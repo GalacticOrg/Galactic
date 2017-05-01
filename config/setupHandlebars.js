@@ -25,6 +25,9 @@ module.exports = function (app) {
       timeAgo: function(time){
          return moment(time).startOf('hour').fromNow();       // a few seconds ago
       },
+      getTime: function(){
+         return new Date().getTime();
+      },
     }
   });
 

@@ -1033,7 +1033,7 @@ img {
 				  background: linear-gradient(to right, purple , rgba(128,0,128, 0.8)); /* Standard syntax */
 				  img {
 				  	width: 218px;
-				  	opacity: .3;
+				  	opacity: .4;
 				  	margin-top: 10px;
 				  	mix-blend-mode: soft-light;
 				  }
@@ -1376,6 +1376,26 @@ img {
 		    margin-left: 30px;
 			}
 			.wideCol {
+				.incomplete {
+					color: #999;
+				}
+				.editable {
+					span:nth-of-type(2){
+						display: none;
+						font-size: 15px;
+    				line-height: 1.4;
+				    margin-left: 8px;
+				    color: #999;
+				    text-decoration: none;
+				    font-weight: 400;
+    				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+					}
+				}
+				.editable:hover {
+					span:nth-of-type(2){
+						display: inline-block;
+					}
+				}
 				.bigProfileImg {
 					width: 140px;
 					height: 140px;
@@ -1388,7 +1408,7 @@ img {
     			color: #262626;
     			font-size: 26px;
 				}
-				.profile_title {
+				.display_name {
 					margin-top: 1px;
 					font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
 					font-size: 19px;
