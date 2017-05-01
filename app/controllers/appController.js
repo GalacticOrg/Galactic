@@ -1,11 +1,11 @@
 const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     Sequelize = require('sequelize'),
+    Jimp = require('jimp'),
     isValidURI = require('../../utils/pageparser').isValidURI,
     pageParse = require('../../utils/pageparser').pageParse,
     pageParseNYT = require('../../utils/pageparser').pageParseNYT,
     uploadBuffer = require('../../utils/assets').uploadBuffer,
     Page = require('../model/page.js'),
-    Connection = require('../model/connection.js'),
     User = require('../model/user.js'),
     Tag = require('../model/Tag.js').tag,
     regexNYT = new RegExp('nyt.com|nytimes.com|newyorktimes.com');
@@ -339,23 +339,42 @@ module.exports.updateProfile = function (req, res) {
       res.redirect('/profile');
     });
   } else if ( image.mimetype === 'image/jpeg' ){
-    uploadBuffer(
-      image.buffer,
-      image.size,
-      uid,
-      function (err, url){
-        if (err){
-          req.flash('errors', {
-            message: 'Please choose a photo',
-            type: 'error'
-          });
-          return res.redirect('back');
-        }
-        update.avatar = url;
-        user.update(update).then(function (){
-          res.redirect('/profile');
-        });
-      });
+
+    // open a file called "lenna.png"
+    Jimp.read(image.buffer, function (err, lenna) {
+        if (err) throw err;
+        lenna.resize(140, 140)            // resize
+             .quality(72)                 // set JPEG quality
+             .getBuffer(image.mimetype, function (err, result){
+               if (err) {
+                console.log(uid, err, '<--user id, Jimp profile pic failed, ');
+                req.flash('errors', {
+                   message: 'We had a problem. Please try again.',
+                   type: 'error'
+                 });
+                return res.redirect('back');
+               }
+               uploadBuffer(
+                 result,
+                 result.byteLength,
+                 uid,
+                 function (err, url){
+                   if (err){
+                     req.flash('errors', {
+                       message: 'Please choose a photo',
+                       type: 'error'
+                     });
+                     return res.redirect('back');
+                   }
+                   update.avatar = url;
+                   user.update(update).then(function (){
+                     res.redirect('/profile');
+                   });
+                 });
+
+             }); // resize  Jimp
+    });
+
   } else {
     req.flash('errors', {
       message: 'Please enter a JPG photo',

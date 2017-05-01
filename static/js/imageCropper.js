@@ -21,17 +21,14 @@ $('#profileInput').on('change', function () {
 });
 
 function renderImage(file) {
-
   // generate a new FileReader object
   var reader = new FileReader();
-
   // inject an image with the src url
   reader.onload = function(event) {
     const the_url = event.target.result
 		$('#profile-crop').attr('src', the_url);
 		createCropper();
   }
-
   // when the file is read it triggers the onload event above.
   reader.readAsDataURL(file);
 }
@@ -50,6 +47,6 @@ $('#croppedResult').bind('click', function(){
 		elementCropHolder.css('display', 'none');
 		setTimeout(function(){
 			profileImg.attr('src', profileImgSrc+'?'+Math.random());
-		},2000)
+		},1500)
 	});
 })
