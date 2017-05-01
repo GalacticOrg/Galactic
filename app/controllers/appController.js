@@ -17,7 +17,7 @@ const home = function (req, res) {
   Page.feed().then(function (results){
     const pages = results.map(function (result){ return result.toJSON(); });
     res.render('home', {
-      pages,
+      feed: pages,
       user
     });
   });
