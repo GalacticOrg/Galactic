@@ -13,7 +13,7 @@
 		</span>
 		<span class="bullet"> · </span>
 		<span class="timestamp">
-			<a>{{createdAt}}</a>
+			<a>{{timeAgo createdAt}}</a>
 		</span>
 	</div>
 	<div class="bundleTitle">
@@ -37,7 +37,7 @@
 				</div>
 				<div class="credibilityFacts feedBundleMeta">
 					<span class="timestamp">
-						<a>Connected 13h ago</a>
+						<a>Connected {{timeAgo connections.0.createdAt}}</a>
 					</span>
 					<span class="bullet"> · </span>
 					<span class="hoverUnderline">

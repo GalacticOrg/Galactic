@@ -1,4 +1,5 @@
-var ehandlebars = require('express-handlebars');
+const ehandlebars = require('express-handlebars'),
+      moment = require('moment');
 
 module.exports = function (app) {
   var hbs = ehandlebars.create({
@@ -20,7 +21,10 @@ module.exports = function (app) {
       },
       rawHelper: function(obj){
          return obj.fn();
-      }
+      },
+      timeAgo: function(time){
+         return moment(time).startOf('hour').fromNow();       // a few seconds ago
+      },
     }
   });
 
