@@ -12,19 +12,7 @@ const attributes = {
 };
 
 const options = {
-  freezeTableName: true,
-  classMethods: {
-    feed: function (limit, offset){
-      return Connection.findAll({
-        limit: limit || 20,
-        offset: offset || 0,
-        include:[{ model: User, as: 'user' }, { model: User, as: 'user' }],
-        order: [
-          ['updatedAt', 'DESC']
-        ]
-      });
-    }
-  }
+  freezeTableName: true
 };
 
 const Connection = connection.define('connection', attributes, options);

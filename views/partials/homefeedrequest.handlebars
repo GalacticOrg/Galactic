@@ -21,7 +21,7 @@
 			</div>
 			<div class="contentHeader">
 				<span class="imgWrapper">
-					<img src="/static/img/example_profile.jpg" class="userImg" />
+					<img src="{{user.avatar}}" class="userImg" />
 				</span>
 				<span class="layoutTextWrapper">
 					<div>
@@ -51,7 +51,7 @@
 			Connect
 		</span>
 		<span class="connections underlineOnHover">
-			Connections<span class="connectionsTotal">10</span>
+			Connections<span class="connectionsTotal">{{connections.length}}</span>
 		</span>
 		<div class="socialShare">
 			<span class="shareIcon">
@@ -85,7 +85,7 @@
 		</span>
 		<span class="bullet"> · </span>
 		<span class="timestamp">
-			<a>21m</a>
+			<a>{{createdAt}}</a>
 		</span>
 	</div>
 	<div class="bundleTitle">

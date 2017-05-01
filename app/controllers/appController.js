@@ -1,10 +1,12 @@
 const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
+    Sequelize = require('sequelize'),
     isValidURI = require('../../utils/pageparser').isValidURI,
     pageParse = require('../../utils/pageparser').pageParse,
     pageParseNYT = require('../../utils/pageparser').pageParseNYT,
     uploadBuffer = require('../../utils/assets').uploadBuffer,
     Page = require('../model/page.js'),
-    Connection = require('../model/page.js'),
+    Connection = require('../model/connection.js'),
+    User = require('../model/user.js'),
     Tag = require('../model/Tag.js').tag,
     regexNYT = new RegExp('nyt.com|nytimes.com|newyorktimes.com');
 
@@ -12,32 +14,101 @@ const landing = function (req, res) {
   res.render('landing');
 };
 
-const home = function (req, res) {
-  const user = req.user.toJSON();
-  Page.feed().then(function (results){
-    const pages = results.map(function (result){ return result.toJSON(); });
-    res.render('home', {
-      pages,
-      user
-    });
-  });
-};
-
 // const home = function (req, res) {
 //   const user = req.user.toJSON();
-//   let pages = null;
 //   Page.feed().then(function (results){
-//     pages = results.map(function (result){ return result.toJSON(); });
-//     return Connection.feed()
-//   }).then(function(results){
-//     const conections = results.map(function (result){ return result.toJSON(); });
-//     feed = pages.concat(conections);
+//     const feed = results.map(function (result){ return result.toJSON(); });
 //     res.render('home', {
 //       feed,
 //       user
 //     });
 //   });
 // };
+
+
+const home = function (req, res) {
+  const user = req.user.toJSON();
+  const limit = req.query.limit;
+  const offset = req.query.limit;
+  let pages = null;
+  let feed = [];
+  // return sequelize.query('SELECT * FROM connection;').then(function (results){
+  //   // console.log(result[0][0])
+  //   // res.send(result[0][0]);
+  //
+  //   return results[0].map(function (result){
+  //     return Page.findOne({ where:{ id: result.connectionPage } });
+  //   });
+  // }).spread(function (results){
+  //     res.send(results);
+  // });
+
+  // Connection.findAll({
+  //   limit: 20,
+  //   offset: 0,
+  //   include:[{ model: User, as: 'user' }],
+  //   order: [
+  //     ['updatedAt', 'DESC']
+  //   ]
+  // }).then(function(result){
+  //     console.log(result[0], 'getConnection')
+  //     res.send(result)
+  // });
+
+
+  Page.findAll({
+    limit: limit || 20,
+    offset: offset || 0,
+    include:[{ model: User }, { model: Tag, as: 'tag' }, { model: Page, as: 'connections' }],
+    order: [
+      ['lastActivityAt', 'DESC']
+    ],
+    where:{ userId: { $ne:null } }
+  }).then(function (results){
+    pages = results.map(function (result){ return result.toJSON(); });
+    return results.map(function (result){
+      if  (result.connections.length >  0){
+        return result.connections[0].connection.getUser();
+      } else {
+        return null;
+      }
+    });
+  }).spread(function (){
+    const users = arguments;
+    feed = pages.map(function(page, i){
+      let newPage = page;
+      if ( page.connections[0] ){
+        newPage.userWhoMadeConnection = users[i].toJSON();
+        console.log(newPage)
+
+      }
+      return newPage
+    })
+      res.render('home', {
+        feed,
+        user
+      });
+
+    // return pages.map(function (page, i){
+    //   console.log(arguments[i], 'arguments[i]')
+    //   const connection  = arguments[i][0];
+    //   return connection ? connection.connection.getUser() : null;
+    // });
+
+  })
+
+  // Page.feed().then(function (results){
+  //   pages = results.map(function (result){ return result.toJSON(); });
+  //   //return Connection.feed()
+  // }).then(function(results){
+  //   //const conections = results.map(function (result){ return result.toJSON(); });
+  //   feed = pages; // conections // pages.concat(conections);
+  //   res.render('home', {
+  //     feed,
+  //     user
+  //   });
+  // });
+};
 
 module.exports.loadwwid = function (req, res, next, id) {
   Page.loadPage(id).then(function (result){
@@ -96,10 +167,14 @@ module.exports.connect = function (req, res) {
     return res.redirect('/page/' + page.wwUri);
   }
   Page.findOne({ where:{ id:id } }).then(function (destinationPage){
-    page.addConnection(destinationPage, { userId: user.id }).then(function (){
-      const pageObj = page.toJSON();
-      res.redirect('/page/' + pageObj.wwUri);
-    });
+    const promsies = [
+      page.set('lastActivityAt', Sequelize.fn('NOW') ).save(),
+      page.addConnection(destinationPage, { userId: user.id })
+    ];
+    return promsies;
+  }).then(function (){
+    const pageObj = page.toJSON();
+    res.redirect('/page/' + pageObj.wwUri);
   });
 };
 
@@ -321,5 +396,4 @@ module.exports.updateProfile = function (req, res) {
     });
     return res.redirect('back');
   }
-
 };

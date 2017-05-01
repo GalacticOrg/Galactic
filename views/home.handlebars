@@ -59,12 +59,15 @@
 					</a>
 				</div>
 
-				{{> homefeedconnection}}
+
 
 				{{#each feed}}
-					{{> homefeedrequest}}
+					{{#if connections}}
+						{{> homefeedconnection}}
+					{{else}}
+						{{> homefeedrequest}}
+					{{/if}}
 				{{/each}}
-
 
 				{{toJSON feed}}
 			</div>
