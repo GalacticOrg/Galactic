@@ -22,15 +22,23 @@ const express = require('express'),
 
 app.use(cookieParser());
 
+// @TODO Hook of postgre database @jeffj
+// app.use(session({
+//   store: new pgSession({
+//     pg : pg,
+//     conString : pgdb, // Connect using something else than default DATABASE_URL env variable
+//   }),
+//   secret: sessionSecret,
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: { maxAge: 360 * 24 * 60 * 60 * 1000 } // 360 days
+// }));
+
 app.use(session({
-  store: new pgSession({
-    pg : pg,
-    conString : pgdb, // Connect using something else than default DATABASE_URL env variable
-  }),
-  secret: sessionSecret,
+  secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 360 * 24 * 60 * 60 * 1000 } // 360 days
+  cookie: { secure: true }
 }));
 
 app.use('/static', express.static(__dirname + '/static'));
