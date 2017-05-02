@@ -1,5 +1,5 @@
 
-const elementCrop = $('#profile-crop');
+const elementCrop = $('#profile-crop-img');
 const elementCropHolder = $('#profile-crop-holder');
 const profileImg = $('#profile-img');
 const profileImgSrc =  profileImg.attr('src');
@@ -15,7 +15,7 @@ function createCropper(){
 	});
 }
 
-$('#profileInput').on('change', function () {
+$('#profile-input').on('change', function () {
   var file = this.files[0];
 	renderImage(file)
 });
@@ -25,15 +25,21 @@ function renderImage(file) {
   var reader = new FileReader();
   // inject an image with the src url
   reader.onload = function(event) {
-    const the_url = event.target.result
-		$('#profile-crop').attr('src', the_url);
-		createCropper();
+		const result = event.target.result
+		if (result.search('data:image/jpeg') === 0){
+			const the_url = event.target.result
+			elementCrop.attr('src', the_url);
+			createCropper();
+		} else {
+			alert('Please Upload a jpeg image.');
+		}
+
   }
   // when the file is read it triggers the onload event above.
   reader.readAsDataURL(file);
 }
 
-$('#croppedResult').bind('click', function(){
+$('#profile-crop-submit').bind('click', function(){
 	elementCrop.croppie('result', {
 		format: 'jpeg',
 		type: 'blob'
@@ -45,8 +51,11 @@ $('#croppedResult').bind('click', function(){
 		xhr.send(formData);
 		elementCrop.croppie('destroy');
 		elementCropHolder.css('display', 'none');
-		setTimeout(function(){
-			profileImg.attr('src', profileImgSrc+'?'+Math.random());
-		},1500)
+		xhr.onload = function(){
+			setTimeout(function(){
+				profileImg.attr('src', profileImgSrc+'?'+Math.random());
+			},1000);
+		};
+
 	});
 })
