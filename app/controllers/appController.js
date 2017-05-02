@@ -18,7 +18,7 @@ const landing = function (req, res) {
 const home = function (req, res) {
   const user = req.user.toJSON();
   const limit = req.query.limit;
-  const offset = req.query.limit;
+  const offset = req.query.offset;
   let pages = null;
   let feed = [];
 
@@ -35,7 +35,7 @@ const home = function (req, res) {
   }
 
   Page.findAll({
-    limit: limit || 20,
+    limit: limit || 30,
     offset: offset || 0,
     include:[{ model: User }, { model: Tag, as: 'tag' }, { model: Page, as: 'connections' }],
     order: [
@@ -69,8 +69,26 @@ const home = function (req, res) {
 
 // @TODO Placeholders for connections and response
 module.exports.requests = function (req, res) {
-  return res.render('requests', {
-    pages: []
+  const limit = req.query.limit;
+  const offset = req.query.offset;
+
+  let filters = {
+    userId: { $ne:null }
+  };
+
+  Page.findAll({
+    limit: limit || 30,
+    offset: offset || 0,
+    include:[{ model: User }, { model: Tag, as: 'tag' }, { model: Page, as: 'connections' }],
+    order: [
+      ['lastActivityAt', 'DESC']
+    ],
+    where: filters
+  }).then(function (results){
+    const pages = results
+    return res.render('requests', {
+      pages
+    });
   });
 };
 
