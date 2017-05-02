@@ -46,15 +46,16 @@
 				</div>
 			</div>
 
+			{{#if user}}
 			<a href="/profile" class="pageButton">
 				<div class="buttonContents" id="userNavButton">
 					<span class="userImg">
-						<img src="/static/img/profile.jpg" class="userImg" />
+						<img src={{user.avatar}} class="userImg" />
 					</span>
 					<span class="text">{{user.username}}</span>
 				</div>
 			</a>
-
+			{{/if}}
 		</div>
 	</div>
 </div>

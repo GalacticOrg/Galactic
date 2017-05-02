@@ -18,6 +18,16 @@ closeProfileEditModal = function() {
 	document.getElementById('modalMask').classList.remove("displayProfileEditModal");
 }
 
+openProfilePhotoModal = function() {
+	document.getElementById('profilePhotoModal').className += " displayProfilePhotoModal";
+	document.getElementById('modalMask').className += " displayProfilePhotoModal";
+}
+
+closeProfilePhotoModal = function() {
+	document.getElementById('profilePhotoModal').classList.remove("displayProfilePhotoModal");
+	document.getElementById('modalMask').classList.remove("displayProfilePhotoModal");
+}
+
 dismissAlert = function() {
 	document.getElementById('alerts').remove()
 }

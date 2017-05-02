@@ -756,7 +756,7 @@ img {
 		opacity: 0.75;
 		z-index: 2;
 	}
-  .requestModal, .profileEditModal {
+  .requestModal, .profileEditModal, .profilePhotoModal {
   	display: none;
   	margin: auto;
   	margin-top: 100px;
@@ -857,7 +857,7 @@ img {
   	}  	
   }
 
-  .profileEditModal {
+  .profileEditModal, .profilePhotoModal {
   	.topBox {
   		padding: 16px;
 			.title {
@@ -870,6 +870,9 @@ img {
 				font-size: 15px;
 		    line-height: 1.4;
 		    color: #999;
+			}
+			input {
+				margin-top: 8px;
 			}
   	}
   	.modalFooter {
@@ -967,7 +970,7 @@ img {
 			border-color: rgb(226, 226, 226);
 		}
 	}
-  .displayRequestModal, .displayProfileEditModal {
+  .displayRequestModal, .displayProfileEditModal, .displayProfilePhotoModal {
 		display: block;
 	}
 	.contentWrapper {
@@ -1487,6 +1490,33 @@ img {
 					width: 140px;
 					height: 140px;
 					border-radius: 50%;
+				}
+				.bigProfileImgOverlay {
+					width: 140px;
+					height: 140px;
+					position: absolute;
+					&:hover {
+						.editBar {
+							display: block;
+						}
+					}
+					.editBar {
+						display: none;
+						width: 140px;
+						margin-top: 120px;
+						text-align: center;
+						.editButton {
+					    border-radius: 0 0 3px 3px;
+							background: rgba(0,0,0,0.65);
+							width: 140px;
+							height: 20px;
+							color: white;
+			        font-weight: 400;
+							font-size: 11px;
+    					font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+							line-height: 20px;
+						}
+					}
 				}
 				.name {
 					font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;

@@ -639,7 +639,7 @@ img {
   opacity: 0.75;
   z-index: 2; }
 
-.homePage .requestModal, .homePage .profileEditModal, .searchPage .requestModal, .searchPage .profileEditModal, .resultPage .requestModal, .resultPage .profileEditModal, .profilePage .requestModal, .profilePage .profileEditModal {
+.homePage .requestModal, .homePage .profileEditModal, .homePage .profilePhotoModal, .searchPage .requestModal, .searchPage .profileEditModal, .searchPage .profilePhotoModal, .resultPage .requestModal, .resultPage .profileEditModal, .resultPage .profilePhotoModal, .profilePage .requestModal, .profilePage .profileEditModal, .profilePage .profilePhotoModal {
   display: none;
   margin: auto;
   margin-top: 100px;
@@ -649,9 +649,9 @@ img {
   z-index: 10;
   position: fixed;
   border-radius: 4px; }
-  .homePage .requestModal .modalContent, .homePage .profileEditModal .modalContent, .searchPage .requestModal .modalContent, .searchPage .profileEditModal .modalContent, .resultPage .requestModal .modalContent, .resultPage .profileEditModal .modalContent, .profilePage .requestModal .modalContent, .profilePage .profileEditModal .modalContent {
+  .homePage .requestModal .modalContent, .homePage .profileEditModal .modalContent, .homePage .profilePhotoModal .modalContent, .searchPage .requestModal .modalContent, .searchPage .profileEditModal .modalContent, .searchPage .profilePhotoModal .modalContent, .resultPage .requestModal .modalContent, .resultPage .profileEditModal .modalContent, .resultPage .profilePhotoModal .modalContent, .profilePage .requestModal .modalContent, .profilePage .profileEditModal .modalContent, .profilePage .profilePhotoModal .modalContent {
     padding: 32px 32px 24px 32px; }
-    .homePage .requestModal .modalContent .closeButton, .homePage .profileEditModal .modalContent .closeButton, .searchPage .requestModal .modalContent .closeButton, .searchPage .profileEditModal .modalContent .closeButton, .resultPage .requestModal .modalContent .closeButton, .resultPage .profileEditModal .modalContent .closeButton, .profilePage .requestModal .modalContent .closeButton, .profilePage .profileEditModal .modalContent .closeButton {
+    .homePage .requestModal .modalContent .closeButton, .homePage .profileEditModal .modalContent .closeButton, .homePage .profilePhotoModal .modalContent .closeButton, .searchPage .requestModal .modalContent .closeButton, .searchPage .profileEditModal .modalContent .closeButton, .searchPage .profilePhotoModal .modalContent .closeButton, .resultPage .requestModal .modalContent .closeButton, .resultPage .profileEditModal .modalContent .closeButton, .resultPage .profilePhotoModal .modalContent .closeButton, .profilePage .requestModal .modalContent .closeButton, .profilePage .profileEditModal .modalContent .closeButton, .profilePage .profilePhotoModal .modalContent .closeButton {
       position: absolute;
       right: 0;
       top: 0;
@@ -659,27 +659,27 @@ img {
       padding-top: 8px;
       font-size: 20px;
       color: #999; }
-      .homePage .requestModal .modalContent .closeButton i:hover, .homePage .profileEditModal .modalContent .closeButton i:hover, .searchPage .requestModal .modalContent .closeButton i:hover, .searchPage .profileEditModal .modalContent .closeButton i:hover, .resultPage .requestModal .modalContent .closeButton i:hover, .resultPage .profileEditModal .modalContent .closeButton i:hover, .profilePage .requestModal .modalContent .closeButton i:hover, .profilePage .profileEditModal .modalContent .closeButton i:hover {
+      .homePage .requestModal .modalContent .closeButton i:hover, .homePage .profileEditModal .modalContent .closeButton i:hover, .homePage .profilePhotoModal .modalContent .closeButton i:hover, .searchPage .requestModal .modalContent .closeButton i:hover, .searchPage .profileEditModal .modalContent .closeButton i:hover, .searchPage .profilePhotoModal .modalContent .closeButton i:hover, .resultPage .requestModal .modalContent .closeButton i:hover, .resultPage .profileEditModal .modalContent .closeButton i:hover, .resultPage .profilePhotoModal .modalContent .closeButton i:hover, .profilePage .requestModal .modalContent .closeButton i:hover, .profilePage .profileEditModal .modalContent .closeButton i:hover, .profilePage .profilePhotoModal .modalContent .closeButton i:hover {
         color: #2b6dad;
         cursor: pointer; }
-    .homePage .requestModal .modalContent .contentBox .userImg, .homePage .profileEditModal .modalContent .contentBox .userImg, .searchPage .requestModal .modalContent .contentBox .userImg, .searchPage .profileEditModal .modalContent .contentBox .userImg, .resultPage .requestModal .modalContent .contentBox .userImg, .resultPage .profileEditModal .modalContent .contentBox .userImg, .profilePage .requestModal .modalContent .contentBox .userImg, .profilePage .profileEditModal .modalContent .contentBox .userImg {
+    .homePage .requestModal .modalContent .contentBox .userImg, .homePage .profileEditModal .modalContent .contentBox .userImg, .homePage .profilePhotoModal .modalContent .contentBox .userImg, .searchPage .requestModal .modalContent .contentBox .userImg, .searchPage .profileEditModal .modalContent .contentBox .userImg, .searchPage .profilePhotoModal .modalContent .contentBox .userImg, .resultPage .requestModal .modalContent .contentBox .userImg, .resultPage .profileEditModal .modalContent .contentBox .userImg, .resultPage .profilePhotoModal .modalContent .contentBox .userImg, .profilePage .requestModal .modalContent .contentBox .userImg, .profilePage .profileEditModal .modalContent .contentBox .userImg, .profilePage .profilePhotoModal .modalContent .contentBox .userImg {
       float: left; }
-      .homePage .requestModal .modalContent .contentBox .userImg img, .homePage .profileEditModal .modalContent .contentBox .userImg img, .searchPage .requestModal .modalContent .contentBox .userImg img, .searchPage .profileEditModal .modalContent .contentBox .userImg img, .resultPage .requestModal .modalContent .contentBox .userImg img, .resultPage .profileEditModal .modalContent .contentBox .userImg img, .profilePage .requestModal .modalContent .contentBox .userImg img, .profilePage .profileEditModal .modalContent .contentBox .userImg img {
+      .homePage .requestModal .modalContent .contentBox .userImg img, .homePage .profileEditModal .modalContent .contentBox .userImg img, .homePage .profilePhotoModal .modalContent .contentBox .userImg img, .searchPage .requestModal .modalContent .contentBox .userImg img, .searchPage .profileEditModal .modalContent .contentBox .userImg img, .searchPage .profilePhotoModal .modalContent .contentBox .userImg img, .resultPage .requestModal .modalContent .contentBox .userImg img, .resultPage .profileEditModal .modalContent .contentBox .userImg img, .resultPage .profilePhotoModal .modalContent .contentBox .userImg img, .profilePage .requestModal .modalContent .contentBox .userImg img, .profilePage .profileEditModal .modalContent .contentBox .userImg img, .profilePage .profilePhotoModal .modalContent .contentBox .userImg img {
         height: 25px;
         width: 25px;
         border-radius: 50%; }
-    .homePage .requestModal .modalContent .contentBox div, .homePage .profileEditModal .modalContent .contentBox div, .searchPage .requestModal .modalContent .contentBox div, .searchPage .profileEditModal .modalContent .contentBox div, .resultPage .requestModal .modalContent .contentBox div, .resultPage .profileEditModal .modalContent .contentBox div, .profilePage .requestModal .modalContent .contentBox div, .profilePage .profileEditModal .modalContent .contentBox div {
+    .homePage .requestModal .modalContent .contentBox div, .homePage .profileEditModal .modalContent .contentBox div, .homePage .profilePhotoModal .modalContent .contentBox div, .searchPage .requestModal .modalContent .contentBox div, .searchPage .profileEditModal .modalContent .contentBox div, .searchPage .profilePhotoModal .modalContent .contentBox div, .resultPage .requestModal .modalContent .contentBox div, .resultPage .profileEditModal .modalContent .contentBox div, .resultPage .profilePhotoModal .modalContent .contentBox div, .profilePage .requestModal .modalContent .contentBox div, .profilePage .profileEditModal .modalContent .contentBox div, .profilePage .profilePhotoModal .modalContent .contentBox div {
       margin-left: 30px; }
-      .homePage .requestModal .modalContent .contentBox div .username, .homePage .requestModal .modalContent .contentBox div .text, .homePage .profileEditModal .modalContent .contentBox div .username, .homePage .profileEditModal .modalContent .contentBox div .text, .searchPage .requestModal .modalContent .contentBox div .username, .searchPage .requestModal .modalContent .contentBox div .text, .searchPage .profileEditModal .modalContent .contentBox div .username, .searchPage .profileEditModal .modalContent .contentBox div .text, .resultPage .requestModal .modalContent .contentBox div .username, .resultPage .requestModal .modalContent .contentBox div .text, .resultPage .profileEditModal .modalContent .contentBox div .username, .resultPage .profileEditModal .modalContent .contentBox div .text, .profilePage .requestModal .modalContent .contentBox div .username, .profilePage .requestModal .modalContent .contentBox div .text, .profilePage .profileEditModal .modalContent .contentBox div .username, .profilePage .profileEditModal .modalContent .contentBox div .text {
+      .homePage .requestModal .modalContent .contentBox div .username, .homePage .requestModal .modalContent .contentBox div .text, .homePage .profileEditModal .modalContent .contentBox div .username, .homePage .profileEditModal .modalContent .contentBox div .text, .homePage .profilePhotoModal .modalContent .contentBox div .username, .homePage .profilePhotoModal .modalContent .contentBox div .text, .searchPage .requestModal .modalContent .contentBox div .username, .searchPage .requestModal .modalContent .contentBox div .text, .searchPage .profileEditModal .modalContent .contentBox div .username, .searchPage .profileEditModal .modalContent .contentBox div .text, .searchPage .profilePhotoModal .modalContent .contentBox div .username, .searchPage .profilePhotoModal .modalContent .contentBox div .text, .resultPage .requestModal .modalContent .contentBox div .username, .resultPage .requestModal .modalContent .contentBox div .text, .resultPage .profileEditModal .modalContent .contentBox div .username, .resultPage .profileEditModal .modalContent .contentBox div .text, .resultPage .profilePhotoModal .modalContent .contentBox div .username, .resultPage .profilePhotoModal .modalContent .contentBox div .text, .profilePage .requestModal .modalContent .contentBox div .username, .profilePage .requestModal .modalContent .contentBox div .text, .profilePage .profileEditModal .modalContent .contentBox div .username, .profilePage .profileEditModal .modalContent .contentBox div .text, .profilePage .profilePhotoModal .modalContent .contentBox div .username, .profilePage .profilePhotoModal .modalContent .contentBox div .text {
         color: #999;
         font-size: 15px;
         line-height: 25px;
         font-weight: 400;
         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
-    .homePage .requestModal .modalContent .questionBox, .homePage .profileEditModal .modalContent .questionBox, .searchPage .requestModal .modalContent .questionBox, .searchPage .profileEditModal .modalContent .questionBox, .resultPage .requestModal .modalContent .questionBox, .resultPage .profileEditModal .modalContent .questionBox, .profilePage .requestModal .modalContent .questionBox, .profilePage .profileEditModal .modalContent .questionBox {
+    .homePage .requestModal .modalContent .questionBox, .homePage .profileEditModal .modalContent .questionBox, .homePage .profilePhotoModal .modalContent .questionBox, .searchPage .requestModal .modalContent .questionBox, .searchPage .profileEditModal .modalContent .questionBox, .searchPage .profilePhotoModal .modalContent .questionBox, .resultPage .requestModal .modalContent .questionBox, .resultPage .profileEditModal .modalContent .questionBox, .resultPage .profilePhotoModal .modalContent .questionBox, .profilePage .requestModal .modalContent .questionBox, .profilePage .profileEditModal .modalContent .questionBox, .profilePage .profilePhotoModal .modalContent .questionBox {
       clear: both;
       width: 100%; }
-      .homePage .requestModal .modalContent .questionBox textarea, .homePage .profileEditModal .modalContent .questionBox textarea, .searchPage .requestModal .modalContent .questionBox textarea, .searchPage .profileEditModal .modalContent .questionBox textarea, .resultPage .requestModal .modalContent .questionBox textarea, .resultPage .profileEditModal .modalContent .questionBox textarea, .profilePage .requestModal .modalContent .questionBox textarea, .profilePage .profileEditModal .modalContent .questionBox textarea {
+      .homePage .requestModal .modalContent .questionBox textarea, .homePage .profileEditModal .modalContent .questionBox textarea, .homePage .profilePhotoModal .modalContent .questionBox textarea, .searchPage .requestModal .modalContent .questionBox textarea, .searchPage .profileEditModal .modalContent .questionBox textarea, .searchPage .profilePhotoModal .modalContent .questionBox textarea, .resultPage .requestModal .modalContent .questionBox textarea, .resultPage .profileEditModal .modalContent .questionBox textarea, .resultPage .profilePhotoModal .modalContent .questionBox textarea, .profilePage .requestModal .modalContent .questionBox textarea, .profilePage .profileEditModal .modalContent .questionBox textarea, .profilePage .profilePhotoModal .modalContent .questionBox textarea {
         resize: none;
         width: 100%;
         overflow: hidden;
@@ -701,9 +701,9 @@ img {
         /* number of lines to show */
         max-height: 2.6;
         /* fallback */ }
-        .homePage .requestModal .modalContent .questionBox textarea:focus, .homePage .profileEditModal .modalContent .questionBox textarea:focus, .searchPage .requestModal .modalContent .questionBox textarea:focus, .searchPage .profileEditModal .modalContent .questionBox textarea:focus, .resultPage .requestModal .modalContent .questionBox textarea:focus, .resultPage .profileEditModal .modalContent .questionBox textarea:focus, .profilePage .requestModal .modalContent .questionBox textarea:focus, .profilePage .profileEditModal .modalContent .questionBox textarea:focus {
+        .homePage .requestModal .modalContent .questionBox textarea:focus, .homePage .profileEditModal .modalContent .questionBox textarea:focus, .homePage .profilePhotoModal .modalContent .questionBox textarea:focus, .searchPage .requestModal .modalContent .questionBox textarea:focus, .searchPage .profileEditModal .modalContent .questionBox textarea:focus, .searchPage .profilePhotoModal .modalContent .questionBox textarea:focus, .resultPage .requestModal .modalContent .questionBox textarea:focus, .resultPage .profileEditModal .modalContent .questionBox textarea:focus, .resultPage .profilePhotoModal .modalContent .questionBox textarea:focus, .profilePage .requestModal .modalContent .questionBox textarea:focus, .profilePage .profileEditModal .modalContent .questionBox textarea:focus, .profilePage .profilePhotoModal .modalContent .questionBox textarea:focus {
           outline: none; }
-  .homePage .requestModal .modalFooter, .homePage .profileEditModal .modalFooter, .searchPage .requestModal .modalFooter, .searchPage .profileEditModal .modalFooter, .resultPage .requestModal .modalFooter, .resultPage .profileEditModal .modalFooter, .profilePage .requestModal .modalFooter, .profilePage .profileEditModal .modalFooter {
+  .homePage .requestModal .modalFooter, .homePage .profileEditModal .modalFooter, .homePage .profilePhotoModal .modalFooter, .searchPage .requestModal .modalFooter, .searchPage .profileEditModal .modalFooter, .searchPage .profilePhotoModal .modalFooter, .resultPage .requestModal .modalFooter, .resultPage .profileEditModal .modalFooter, .resultPage .profilePhotoModal .modalFooter, .profilePage .requestModal .modalFooter, .profilePage .profileEditModal .modalFooter, .profilePage .profilePhotoModal .modalFooter {
     background: #f6f6f6;
     border-radius: 0 0 4px 4px;
     padding: 10px;
@@ -713,10 +713,10 @@ img {
     line-height: 1.4;
     display: flex;
     justify-content: flex-end; }
-    .homePage .requestModal .modalFooter div, .homePage .profileEditModal .modalFooter div, .searchPage .requestModal .modalFooter div, .searchPage .profileEditModal .modalFooter div, .resultPage .requestModal .modalFooter div, .resultPage .profileEditModal .modalFooter div, .profilePage .requestModal .modalFooter div, .profilePage .profileEditModal .modalFooter div {
+    .homePage .requestModal .modalFooter div, .homePage .profileEditModal .modalFooter div, .homePage .profilePhotoModal .modalFooter div, .searchPage .requestModal .modalFooter div, .searchPage .profileEditModal .modalFooter div, .searchPage .profilePhotoModal .modalFooter div, .resultPage .requestModal .modalFooter div, .resultPage .profileEditModal .modalFooter div, .resultPage .profilePhotoModal .modalFooter div, .profilePage .requestModal .modalFooter div, .profilePage .profileEditModal .modalFooter div, .profilePage .profilePhotoModal .modalFooter div {
       display: flex;
       justify-content: flex-end; }
-    .homePage .requestModal .modalFooter .cancel, .homePage .profileEditModal .modalFooter .cancel, .searchPage .requestModal .modalFooter .cancel, .searchPage .profileEditModal .modalFooter .cancel, .resultPage .requestModal .modalFooter .cancel, .resultPage .profileEditModal .modalFooter .cancel, .profilePage .requestModal .modalFooter .cancel, .profilePage .profileEditModal .modalFooter .cancel {
+    .homePage .requestModal .modalFooter .cancel, .homePage .profileEditModal .modalFooter .cancel, .homePage .profilePhotoModal .modalFooter .cancel, .searchPage .requestModal .modalFooter .cancel, .searchPage .profileEditModal .modalFooter .cancel, .searchPage .profilePhotoModal .modalFooter .cancel, .resultPage .requestModal .modalFooter .cancel, .resultPage .profileEditModal .modalFooter .cancel, .resultPage .profilePhotoModal .modalFooter .cancel, .profilePage .requestModal .modalFooter .cancel, .profilePage .profileEditModal .modalFooter .cancel, .profilePage .profilePhotoModal .modalFooter .cancel {
       margin-top: 4px;
       font-size: 15px;
       line-height: 1.4;
@@ -724,52 +724,54 @@ img {
       cursor: pointer;
       margin-right: 16px; }
 
-.homePage .profileEditModal .topBox, .searchPage .profileEditModal .topBox, .resultPage .profileEditModal .topBox, .profilePage .profileEditModal .topBox {
+.homePage .profileEditModal .topBox, .homePage .profilePhotoModal .topBox, .searchPage .profileEditModal .topBox, .searchPage .profilePhotoModal .topBox, .resultPage .profileEditModal .topBox, .resultPage .profilePhotoModal .topBox, .profilePage .profileEditModal .topBox, .profilePage .profilePhotoModal .topBox {
   padding: 16px; }
-  .homePage .profileEditModal .topBox .title, .searchPage .profileEditModal .topBox .title, .resultPage .profileEditModal .topBox .title, .profilePage .profileEditModal .topBox .title {
+  .homePage .profileEditModal .topBox .title, .homePage .profilePhotoModal .topBox .title, .searchPage .profileEditModal .topBox .title, .searchPage .profilePhotoModal .topBox .title, .resultPage .profileEditModal .topBox .title, .resultPage .profilePhotoModal .topBox .title, .profilePage .profileEditModal .topBox .title, .profilePage .profilePhotoModal .topBox .title {
     font-size: 19px;
     font-weight: bold;
     color: #333;
     border-radius: 4px 4px 0 0; }
-  .homePage .profileEditModal .topBox .subTitle, .searchPage .profileEditModal .topBox .subTitle, .resultPage .profileEditModal .topBox .subTitle, .profilePage .profileEditModal .topBox .subTitle {
+  .homePage .profileEditModal .topBox .subTitle, .homePage .profilePhotoModal .topBox .subTitle, .searchPage .profileEditModal .topBox .subTitle, .searchPage .profilePhotoModal .topBox .subTitle, .resultPage .profileEditModal .topBox .subTitle, .resultPage .profilePhotoModal .topBox .subTitle, .profilePage .profileEditModal .topBox .subTitle, .profilePage .profilePhotoModal .topBox .subTitle {
     font-size: 15px;
     line-height: 1.4;
     color: #999; }
+  .homePage .profileEditModal .topBox input, .homePage .profilePhotoModal .topBox input, .searchPage .profileEditModal .topBox input, .searchPage .profilePhotoModal .topBox input, .resultPage .profileEditModal .topBox input, .resultPage .profilePhotoModal .topBox input, .profilePage .profileEditModal .topBox input, .profilePage .profilePhotoModal .topBox input {
+    margin-top: 8px; }
 
-.homePage .profileEditModal .modalFooter, .searchPage .profileEditModal .modalFooter, .resultPage .profileEditModal .modalFooter, .profilePage .profileEditModal .modalFooter {
+.homePage .profileEditModal .modalFooter, .homePage .profilePhotoModal .modalFooter, .searchPage .profileEditModal .modalFooter, .searchPage .profilePhotoModal .modalFooter, .resultPage .profileEditModal .modalFooter, .resultPage .profilePhotoModal .modalFooter, .profilePage .profileEditModal .modalFooter, .profilePage .profilePhotoModal .modalFooter {
   justify-content: flex-start; }
-  .homePage .profileEditModal .modalFooter form, .searchPage .profileEditModal .modalFooter form, .resultPage .profileEditModal .modalFooter form, .profilePage .profileEditModal .modalFooter form {
+  .homePage .profileEditModal .modalFooter form, .homePage .profilePhotoModal .modalFooter form, .searchPage .profileEditModal .modalFooter form, .searchPage .profilePhotoModal .modalFooter form, .resultPage .profileEditModal .modalFooter form, .resultPage .profilePhotoModal .modalFooter form, .profilePage .profileEditModal .modalFooter form, .profilePage .profilePhotoModal .modalFooter form {
     width: 100%; }
-    .homePage .profileEditModal .modalFooter form .modalContent, .searchPage .profileEditModal .modalFooter form .modalContent, .resultPage .profileEditModal .modalFooter form .modalContent, .profilePage .profileEditModal .modalFooter form .modalContent {
+    .homePage .profileEditModal .modalFooter form .modalContent, .homePage .profilePhotoModal .modalFooter form .modalContent, .searchPage .profileEditModal .modalFooter form .modalContent, .searchPage .profilePhotoModal .modalFooter form .modalContent, .resultPage .profileEditModal .modalFooter form .modalContent, .resultPage .profilePhotoModal .modalFooter form .modalContent, .profilePage .profileEditModal .modalFooter form .modalContent, .profilePage .profilePhotoModal .modalFooter form .modalContent {
       padding: 0px;
       justify-content: flex-start;
       align-items: flex-start; }
-      .homePage .profileEditModal .modalFooter form .modalContent .contentBox, .searchPage .profileEditModal .modalFooter form .modalContent .contentBox, .resultPage .profileEditModal .modalFooter form .modalContent .contentBox, .profilePage .profileEditModal .modalFooter form .modalContent .contentBox {
+      .homePage .profileEditModal .modalFooter form .modalContent .contentBox, .homePage .profilePhotoModal .modalFooter form .modalContent .contentBox, .searchPage .profileEditModal .modalFooter form .modalContent .contentBox, .searchPage .profilePhotoModal .modalFooter form .modalContent .contentBox, .resultPage .profileEditModal .modalFooter form .modalContent .contentBox, .resultPage .profilePhotoModal .modalFooter form .modalContent .contentBox, .profilePage .profileEditModal .modalFooter form .modalContent .contentBox, .profilePage .profilePhotoModal .modalFooter form .modalContent .contentBox {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         margin-bottom: 10px; }
-        .homePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox, .searchPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox, .resultPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox, .profilePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox {
+        .homePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox, .homePage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox, .searchPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox, .searchPage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox, .resultPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox, .resultPage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox, .profilePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox, .profilePage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
           margin: 0;
           margin-bottom: 10px; }
-          .homePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title, .searchPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title, .resultPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title, .profilePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title {
+          .homePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title, .homePage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox .title, .searchPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title, .searchPage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox .title, .resultPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title, .resultPage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox .title, .profilePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title, .profilePage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox .title {
             margin: 0;
             margin-bottom: 2px; }
-            .homePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title .icon, .searchPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title .icon, .resultPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title .icon, .profilePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title .icon {
+            .homePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title .icon, .homePage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox .title .icon, .searchPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title .icon, .searchPage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox .title .icon, .resultPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title .icon, .resultPage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox .title .icon, .profilePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title .icon, .profilePage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox .title .icon {
               height: 18px;
               width: 18px;
               margin-right: 8px;
               color: #999;
               text-align: center; }
-            .homePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title .text, .searchPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title .text, .resultPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title .text, .profilePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title .text {
+            .homePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title .text, .homePage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox .title .text, .searchPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title .text, .searchPage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox .title .text, .resultPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title .text, .resultPage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox .title .text, .profilePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox .title .text, .profilePage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox .title .text {
               font-size: 15px;
               line-height: 1.4;
               font-weight: 500;
               color: #333; }
-          .homePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox input, .homePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox textarea, .searchPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox input, .searchPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox textarea, .resultPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox input, .resultPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox textarea, .profilePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox input, .profilePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox textarea {
+          .homePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox input, .homePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox textarea, .homePage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox input, .homePage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox textarea, .searchPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox input, .searchPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox textarea, .searchPage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox input, .searchPage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox textarea, .resultPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox input, .resultPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox textarea, .resultPage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox input, .resultPage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox textarea, .profilePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox input, .profilePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox textarea, .profilePage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox input, .profilePage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox textarea {
             margin-left: 26px;
             width: 200%;
             padding: 3px 5px;
@@ -782,12 +784,12 @@ img {
             font-size: 13px;
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             width: 575px; }
-          .homePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox input, .searchPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox input, .resultPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox input, .profilePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox input {
+          .homePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox input, .homePage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox input, .searchPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox input, .searchPage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox input, .resultPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox input, .resultPage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox input, .profilePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox input, .profilePage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox input {
             padding-right: 24px; }
-          .homePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox textarea, .searchPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox textarea, .resultPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox textarea, .profilePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox textarea {
+          .homePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox textarea, .homePage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox textarea, .searchPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox textarea, .searchPage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox textarea, .resultPage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox textarea, .resultPage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox textarea, .profilePage .profileEditModal .modalFooter form .modalContent .contentBox .inputBox textarea, .profilePage .profilePhotoModal .modalFooter form .modalContent .contentBox .inputBox textarea {
             min-height: 60px;
             resize: vertical; }
-    .homePage .profileEditModal .modalFooter form .saveRow, .searchPage .profileEditModal .modalFooter form .saveRow, .resultPage .profileEditModal .modalFooter form .saveRow, .profilePage .profileEditModal .modalFooter form .saveRow {
+    .homePage .profileEditModal .modalFooter form .saveRow, .homePage .profilePhotoModal .modalFooter form .saveRow, .searchPage .profileEditModal .modalFooter form .saveRow, .searchPage .profilePhotoModal .modalFooter form .saveRow, .resultPage .profileEditModal .modalFooter form .saveRow, .resultPage .profilePhotoModal .modalFooter form .saveRow, .profilePage .profileEditModal .modalFooter form .saveRow, .profilePage .profilePhotoModal .modalFooter form .saveRow {
       float: right; }
 
 .homePage .modalSubmitButton, .searchPage .modalSubmitButton, .resultPage .modalSubmitButton, .profilePage .modalSubmitButton {
@@ -816,7 +818,7 @@ img {
   .homePage .modalSubmitButton:disabled:hover, .searchPage .modalSubmitButton:disabled:hover, .resultPage .modalSubmitButton:disabled:hover, .profilePage .modalSubmitButton:disabled:hover {
     border-color: #e2e2e2; }
 
-.homePage .displayRequestModal, .homePage .displayProfileEditModal, .searchPage .displayRequestModal, .searchPage .displayProfileEditModal, .resultPage .displayRequestModal, .resultPage .displayProfileEditModal, .profilePage .displayRequestModal, .profilePage .displayProfileEditModal {
+.homePage .displayRequestModal, .homePage .displayProfileEditModal, .homePage .displayProfilePhotoModal, .searchPage .displayRequestModal, .searchPage .displayProfileEditModal, .searchPage .displayProfilePhotoModal, .resultPage .displayRequestModal, .resultPage .displayProfileEditModal, .resultPage .displayProfilePhotoModal, .profilePage .displayRequestModal, .profilePage .displayProfileEditModal, .profilePage .displayProfilePhotoModal {
   display: block; }
 
 .homePage .contentWrapper, .searchPage .contentWrapper, .resultPage .contentWrapper, .profilePage .contentWrapper {
@@ -1252,6 +1254,27 @@ img {
       width: 140px;
       height: 140px;
       border-radius: 50%; }
+    .profilePage .contentWrapper .container .wideCol .bigProfileImgOverlay {
+      width: 140px;
+      height: 140px;
+      position: absolute; }
+      .profilePage .contentWrapper .container .wideCol .bigProfileImgOverlay:hover .editBar {
+        display: block; }
+      .profilePage .contentWrapper .container .wideCol .bigProfileImgOverlay .editBar {
+        display: none;
+        width: 140px;
+        margin-top: 120px;
+        text-align: center; }
+        .profilePage .contentWrapper .container .wideCol .bigProfileImgOverlay .editBar .editButton {
+          border-radius: 0 0 3px 3px;
+          background: rgba(0, 0, 0, 0.65);
+          width: 140px;
+          height: 20px;
+          color: white;
+          font-weight: 400;
+          font-size: 11px;
+          font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+          line-height: 20px; }
     .profilePage .contentWrapper .container .wideCol .name {
       font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
       font-weight: bold;

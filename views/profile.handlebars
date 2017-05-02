@@ -8,11 +8,19 @@
 
 <div class="profilePage">
   {{> modalProfileEdit }}
+  {{> modalProfilePhoto }}
   <div class="contentWrapper">
     <div class="container">
       <div class="wideCol">
         <div class="whole">
           <div class="left">
+            <div class="bigProfileImgOverlay">
+              <div class="editBar">
+                <div class="editButton underlineOnHover" onClick=openProfilePhotoModal()>
+                  Edit Photo
+                </div>
+              </div>
+            </div>
             <img id="profile-img" class="bigProfileImg" src="{{user.avatar}}?{{getTime}}"/>
           </div>
           <div class="right">
@@ -93,12 +101,6 @@
       </div>
     </div>
   </div>
-  <input id="profile-input" type="file" >
-  <div id="profile-crop-holder" style="height:200px; width:200px; display:none;">
-      <button id="profile-crop-submit" >Submit</button>
-      <img id="profile-crop-img" />
-  </div>
-
 </div>
 
 
