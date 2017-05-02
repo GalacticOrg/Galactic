@@ -1,5 +1,5 @@
 var bcrypt = require('bcrypt'),
-    User = require('../model/User.js'),
+    User = require('../model/user.js'),
     passport = require('passport'),
     assets = require('../../utils/assets');
 

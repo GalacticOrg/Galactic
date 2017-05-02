@@ -8,7 +8,7 @@
     "start": "npm run webpack & nodemon app.js && npm run sass",
     "webpack": "NODE_ENV=development webpack-dev-server --port 8090",
     "sass": "node_modules/node-sass/bin/node-sass --watch styles/ --output static/css/",
-    "prod": "NODE_ENV=production PORT=3000 ROOT_URL=http://localhost:3000 node server"
+    "prod": "NODE_ENV=production node app"
   },
   "dependencies": {
     "bcrypt": "~0.8.5",
@@ -35,7 +35,8 @@
     "sequelize": "~3.30.4",
     "superagent": "^3.5.2",
     "unfluff": "^1.1.0",
-    "url-parse": "^1.1.8"
+    "url-parse": "^1.1.8",
+    "forever": "^0.15.3"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -51,5 +52,8 @@
     "nodemon": "^1.11.0",
     "webpack": "^2.4.1",
     "webpack-dev-server": "^2.4.2"
+  },
+  "engines": {
+    "node": "6.10.2"
   }
 }

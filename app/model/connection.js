@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize'),
       connection = require('./sequelize.js'),
-      User = require('./User.js');
+      User = require('./user.js');
 
 const attributes = {
   id: {

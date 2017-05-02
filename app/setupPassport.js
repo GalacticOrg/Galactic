@@ -1,7 +1,7 @@
 var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     bcrypt = require('bcrypt'),
-    User = require('./model/User.js');
+    User = require('./model/user.js');
 
 module.exports = function (app) {
   app.use(passport.initialize());
