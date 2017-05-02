@@ -76,8 +76,10 @@ module.exports.requests = function (req, res) {
 
 
 module.exports.connections = function (req, res) {
+  const user = req.user;
   return res.render('requests', {
-    pages: []
+    pages: [],
+    user
   });
 };
 
@@ -97,6 +99,8 @@ module.exports.loadwwid = function (req, res, next, id) {
 module.exports.page = function (req, res) {
   const pageObj = req.page;
   const page = pageObj.toJSON();
+  const user = req.user;
+
   let destinations = null;
 
   pageObj.getUser().then(function (result){
@@ -119,12 +123,11 @@ module.exports.page = function (req, res) {
     });
     res.render('page', {
       page,
-      destinations
+      destinations,
+      user
     });
   });
-
 };
-
 
 module.exports.connect = function (req, res) {
   const page = req.page;
@@ -209,11 +212,13 @@ module.exports.pageValidate = function (req, res){
 
 module.exports.search = function (req, res) {
   const inputURI = req.query.q;
-
+  const user = req.user.toJSON();
+  console.log(user, 'useruser');
   if (inputURI === undefined || inputURI.length === 0){
     return res.render('search', {
       pages: [],
-      inputURI
+      inputURI,
+      user
     });
   }
 
@@ -232,7 +237,8 @@ module.exports.search = function (req, res) {
 
       return res.render('search', {
         pages,
-        inputURI
+        inputURI,
+        user
       });
     });
   } else {
@@ -241,13 +247,15 @@ module.exports.search = function (req, res) {
         return res.render('search', {
           pages: [],
           addURL: true,
-          inputURI
+          inputURI,
+          user
         });
       } else {
         pages = [result];
         return res.render('search', {
           pages,
-          inputURI
+          inputURI,
+          user
         });
       }
     });

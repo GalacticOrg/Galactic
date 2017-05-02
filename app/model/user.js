@@ -13,6 +13,7 @@ const attributes = {
     unique: true,
     validate: {
       is: /^[a-z0-9\_\-]+$/i,
+      len: [2,15]
     }
   },
   email: {
@@ -22,7 +23,8 @@ const attributes = {
     }
   },
   displayName: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    allowNull: false,
   },
   bio: {
     type: Sequelize.STRING
