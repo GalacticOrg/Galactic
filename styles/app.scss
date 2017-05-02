@@ -854,8 +854,91 @@ img {
     		cursor: pointer;
     		margin-right: 16px;
     	}
-  	}
+  	}  	
   }
+
+  .profileEditModal {
+  	.topBox {
+  		padding: 16px;
+			.title {
+				font-size: 19px;
+		    font-weight: bold;
+		    color: #333;
+		    border-radius: 4px 4px 0 0;
+			}
+			.subTitle {
+				font-size: 15px;
+		    line-height: 1.4;
+		    color: #999;
+			}
+  	}
+  	.modalFooter {
+  		justify-content: flex-start;
+	  	form {
+	  		width: 100%;
+		  	.modalContent {
+		  		padding: 0px;
+		  		justify-content: flex-start;
+		  		align-items: flex-start;
+			  	.contentBox {
+			  		display: flex;
+			  		flex-direction: column;
+			  		align-items: flex-start;
+			  		margin-bottom: 10px;
+			  		.inputBox {
+			  			display: flex;
+			  			flex-direction: column;
+			  			align-items: flex-start;
+			  			margin: 0;
+			  			margin-bottom: 10px;
+			  			.title {
+			  				margin: 0;
+			  				margin-bottom: 2px;
+			  				.icon {
+			  					height: 18px;
+			  					width: 18px;
+			  					margin-right: 8px;
+			  					color: #999;
+			  					text-align: center;
+			  				}
+			  				.text {
+	  					    font-size: 15px;
+    							line-height: 1.4;
+	  					    font-weight: 500;
+	  					    color: #333;
+			  				}
+			  			}
+			  			input, textarea {
+			  				margin-left: 26px;
+			  				width: 200%;
+  				    	padding: 3px 5px;
+  				    	box-sizing: border-box;
+						    border-radius: 3px;
+						    background: #fff;
+						    outline: 0;
+						    border: 1px solid #e2e2e2;
+						    box-shadow: inset 0 1px 1px rgba(200,200,200,0.3);
+						    font-size: 13px;
+						    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+						    width: 575px;
+			  			}
+			  			input {
+  				    	padding-right: 24px;
+			  			}
+			  			textarea {
+						    min-height: 60px;
+						    resize: vertical;
+			  			}
+			  		}
+			  	}
+		  	}
+		  	.saveRow {
+	  			float: right;
+	  		}
+	  	}
+  	}
+	}
+
   .modalSubmitButton {
     font-size: 15px;
     padding: 6px 8px;
@@ -1467,7 +1550,7 @@ img {
 						}
 						.text {
 					    color: #333;
-    					font-weight: 500;
+    					font-weight: 400;
 						}
 					}
 				}
