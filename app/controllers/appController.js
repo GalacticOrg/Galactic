@@ -1,5 +1,6 @@
 const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     Sequelize = require('sequelize'),
+    connection = require('../model/sequelize.js'),
     Jimp = require('jimp'),
     isValidURI = require('../../utils/pageparser').isValidURI,
     pageParse = require('../../utils/pageparser').pageParse,
@@ -71,6 +72,7 @@ const home = function (req, res) {
 module.exports.requests = function (req, res) {
   const limit = req.query.limit;
   const offset = req.query.offset;
+  const user = req.user.toJSON();
 
   let filters = {
     userId: { $ne:null }
@@ -87,18 +89,26 @@ module.exports.requests = function (req, res) {
   }).then(function (results){
     const pages = results
     return res.render('requests', {
-      pages
+      pages,
+      user
     });
   });
 };
 
 
 module.exports.connections = function (req, res) {
-  const user = req.user;
-  return res.render('requests', {
-    pages: [],
-    user
+
+  connection
+  .query('SELECT * FROM connection')
+  .then(function (result){
+    res.send(result);
   });
+
+  // const user = req.user;
+  // return res.render('requests', {
+  //   pages: [],
+  //   user
+  // });
 };
 
 module.exports.loadwwid = function (req, res, next, id) {
@@ -401,7 +411,6 @@ module.exports.updateProfile = function (req, res) {
                      res.redirect('/profile');
                    });
                  });
-
              }); // resize  Jimp
     });
 

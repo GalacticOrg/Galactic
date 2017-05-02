@@ -17,77 +17,7 @@
 				<div class="header_text">
 
 			{{#each pages}}
-				<div onClick="javascript:location.href='/page/{{wwUri}}'" class="feedBundle">
-					<div class="feedBundleMeta">
-						<span class="feedItemType">Feed Question</span>
-						<span class="bullet"> · </span>
-						<span class="topic">
-							<a>
-								Class Warfare
-							</a>
-						</span>
-						<span class="bullet"> · </span>
-						<span class="feedReason">
-							Topic you might like
-						</span>
-						<span class="bullet"> · </span>
-						<span class="timestamp">
-							<a>21m</a>
-						</span>
-					</div>
-					<div class="bundleTitle">
-						{{title}}
-					</div>
-					<div class="contentHeader">
-						<span class="imgWrapper">
-							<img src="/static/img/example_user.jpeg" class="userImg" />
-						</span>
-						<span class="layoutTextWrapper">
-							<div>
-								<span class="username">{{user.username}}</span><span class="userInfo">, Science Officer of the USS Enterprise
-								</span>
-							</div>
-							<div class="credibilityFacts feedBundleMeta">
-								<span class="timestamp">
-									<a>Connected 13h ago</a>
-								</span>
-								<span class="bullet"> · </span>
-								<span class="hoverUnderline">
-									<a>Requested by Eoin McMillan</a>
-								</span>
-							</div>
-						</span>
-					</div>
-					<div class="contentMain">
-						{{description}}
-					</div>
-					<div class="actionBar">
-						<span class="upvoteButton connectButton">
-							Upvote
-						</span>
-						<span class="downvote underlineOnHover">
-							Downvote
-						</span>
-						<span class="comments underlineOnHover">
-							Comments<span class="commentsTotal">10</span>
-						</span>
-						<div class="socialShare">
-							<span class="shareIcon">
-								<i class="fa fa-facebook-official" aria-hidden="true"></i>
-							</span>
-							<span class="shareIcon">
-								<i class="fa fa-twitter" aria-hidden="true"></i>
-							</span>
-							<span class="shareIcon">
-								<i class="fa fa-share-square-o" aria-hidden="true"></i>
-							</span>
-							<span class="shareIcon">
-								<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-							</span>
-						</div>
-					</div>
-				</div>
-
+				{{> homefeedrequest}}
 			{{/each}}
 			</div>
 		</div>
