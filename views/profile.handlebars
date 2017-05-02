@@ -13,7 +13,7 @@
       <div class="wideCol">
         <div class="whole">
           <div class="left">
-            <img class="bigProfileImg" src="{{user.avatar}}?{{getTime}}"/>
+            <img id="profile-img" class="bigProfileImg" src="{{user.avatar}}?{{getTime}}"/>
           </div>
           <div class="right">
             <div class="name editable">
@@ -89,10 +89,17 @@
             </span>
             <span class="text">{{timeAgo user.createdAt}}</span>
           </div>
+
         </div>
       </div>
     </div>
   </div>
+  <input id="profile-input" type="file" >
+  <div id="profile-crop-holder" style="height:200px; width:200px; display:none;">
+      <button id="profile-crop-submit" >Submit</button>
+      <img id="profile-crop-img" />
+  </div>
+
 </div>
 
 
