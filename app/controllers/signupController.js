@@ -12,9 +12,10 @@ module.exports.login  = function (req, res) {
 };
 
 module.exports.signup = function (req, res) {
-  var username = req.body.username;
-  var password = req.body.password;
-  var email = req.body.email;
+  const username = req.body.username,
+        password = req.body.password,
+        email = req.body.email,
+        displayName = req.body.displayName;
 
   if (!username || !password || !email) {
     req.flash('error', 'Please, fill in all the fields.');
@@ -28,6 +29,7 @@ module.exports.signup = function (req, res) {
     username: username,
     salt: salt,
     email: email,
+    displayName: displayName,
     password: hashedPassword
   };
 
@@ -37,7 +39,15 @@ module.exports.signup = function (req, res) {
       return res.redirect('/login');
     });
   }).catch(function (error) {
-    req.flash('error', 'Please, choose a different username.');
+    if (error){
+      const messages = error.errors.map(function(data){
+        return {
+          message: data.path+' : '+data.message,
+          type: 'error'
+        }
+      });
+      req.flash('errors', messages);
+    }
     res.redirect('/signup');
   });
 };
@@ -47,17 +57,3 @@ module.exports.authenticate = passport.authenticate('local', {
     failureRedirect: '/login',
     failureFlash: true
 });
-
-/**
- * Update
- */
-module.exports.updateImage = function (req, res) {
-
-  const images = req.files[0]
-    ? [req.files[0].path]
-    : [];
-    console.log(images);
-    res.send('yayay');
-    assets.upload;
-
-};
