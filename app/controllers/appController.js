@@ -97,11 +97,24 @@ module.exports.requests = function (req, res) {
 
 
 module.exports.connections = function (req, res) {
-
+  let connectionPages = [];
+  let desinationPages = [];
+  let userConnections = [];
   connection
-  .query('SELECT * FROM connection')
-  .then(function (result){
-    res.send(result);
+  .query('SELECT * FROM connection INNER JOIN pages ON "connectionPage" = pages.id')
+  .then(function (results){
+    connectionPages = results;
+    return connection.query('SELECT * FROM connection INNER JOIN pages ON "destinationPage" = pages.id');
+  }).then(function (results){
+    desinationPages = results;
+    return connection.query('SELECT *  FROM connection INNER JOIN users ON "userId" = users.id');
+  }).then(function (results){
+    userConnections = results;
+    res.send({
+      connectionPages,
+      desinationPages,
+      userConnections
+    });
   });
 
   // const user = req.user;
