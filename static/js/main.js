@@ -31,6 +31,42 @@ closeProfilePhotoModal = function() {
 dismissAlert = function() {
 	document.getElementById('alerts').remove()
 }
+
+setNav = function () {
+	const navElement = document.getElementById('appNav')
+	
+	if (navElement === null){ return false};
+
+	const navIndex = navElement.getAttribute('data-navIndex');
+	switch(navIndex) {
+    case 'home':
+        break;
+    case 'search':
+        break;
+    case 'requests':
+        document.getElementById('requestsNavButton').classList += ' currentPage';
+        break;
+    case 'connections':
+        document.getElementById('connectionsNavButton').classList += ' currentPage';
+        break;
+    case 'notifications':
+        document.getElementById('notificationsNavButton').classList += ' currentPage';
+    		break
+		case 'newpage':
+        document.getElementById('newpageNavButton').classList += ' currentPage';
+    		break
+		case 'profile':
+        document.getElementById('userNavButton').classList += ' currentPage';
+    		break
+    default:
+        ''
+	}
+}
+
+window.onload = function() {
+	setNav();
+}
+
 const tmplString = $('#validateTmpl').html()
 
 if (tmplString){
@@ -49,35 +85,4 @@ if (tmplString){
 		  },
 		});
 	}, 1500));
-}
-
-
-setNav = function () {
-	const navElement = document.getElementById('appNav')
-	if (navElement === null){ return false};
-
-	const navIndex = navElement.getAttribute('data-navIndex');
-	switch(navIndex) {
-    case 'home':
-        document.getElementById('requestsNavButton').classList += ' currentPage';
-        break;
-    case 'search':
-        document.getElementById('connectionsNavButton').classList += ' currentPage';
-        break;
-    case 'notifications':
-        document.getElementById('notificationsNavButton').classList += ' currentPage';
-    		break
-		case 'newpage':
-        document.getElementById('newpageNavButton').classList += ' currentPage';
-    		break
-		case 'user':
-        document.getElementById('userNavButton').classList += ' currentPage';
-    		break
-    default:
-        ''
-	}
-}
-
-window.onload = function() {
-	setNav();
 }
