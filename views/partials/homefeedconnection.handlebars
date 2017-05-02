@@ -1,78 +1,56 @@
-<div onClick="javascript:location.href='/page/{{wwUri}}'" class="feedBundle">
-	<div class="feedBundleMeta">
-		<span class="feedItemType">Connection</span>
-		<span class="bullet"> · </span>
-		<span class="topic">
-			<a>
-				CRISPR
-			</a>
-		</span>
-		<span class="bullet"> · </span>
-		<span class="feedReason">
-			Topic you might like
-		</span>
-		<span class="bullet"> · </span>
-		<span class="timestamp">
-			<a>{{timeAgo createdAt}}</a>
-		</span>
-	</div>
-	<div class="bundleTitle">
-		{{title}}
-	</div>
-	<div class="contentMain">
-		{{description}}
-	</div>
-
-	<div class="divider"></div>
-
-	<div class="centerAlign">
-		<div class="contentHeader">
-			<span class="imgWrapper">
-				<img src="{{userWhoMadeConnection.avatar}}" class="userImg" />
+<a href="javascript:location.href='/page/{{wwUri}}'">
+	<div class="feedBundle">
+		<div class="feedBundleMeta">
+			<span class="feedItemType">Connection</span>
+			<span class="bullet"> · </span>
+			<span class="timestamp">
+				{{timeAgo createdAt}}
 			</span>
-			<span class="layoutTextWrapper">
-				<div>
-					<span class="username">{{userWhoMadeConnection.displayName}}</span>{{#if userWhoMadeConnection.title}}<span class="userInfo">, {{userWhoMadeConnection.title}}</span>{{/if}}
-				</div>
-				<div class="credibilityFacts feedBundleMeta">
-					<span class="timestamp">
-						<a>Connected {{timeAgo connections.0.createdAt}}</a>
-					</span>
-					<span class="bullet"> · </span>
-					<span class="hoverUnderline">
-						<a>Requested by Eoin McMillan</a>
-					</span>
-				</div>
+		</div>
+		<div class="bundleTitle">
+			{{title}}
+		</div>
+		<div class="contentMain">
+			{{description}}
+		</div>
+
+		<div class="divider"></div>
+
+		<div class="centerAlign">
+			<div class="contentHeader">
+				<span class="imgWrapper">
+					<img src="{{userWhoMadeConnection.avatar}}" class="userImg" />
+				</span>
+				<span class="layoutTextWrapper">
+					<div class="userDetails">
+						<div class="username">{{userWhoMadeConnection.displayName}}</div>{{#if userWhoMadeConnection.title}}<div class="userInfo">, {{userWhoMadeConnection.title}}</div>{{/if}}
+					</div>
+					<div class="credibilityFacts feedBundleMeta">
+						<div class="timestamp">
+							Connected {{timeAgo connections.0.createdAt}}
+						</div>
+						<span class="bullet"> · </span>
+						<div class="requester hoverUnderline">
+							Requested by MISSING DATA FIELD
+						</div>
+					</div>
+				</span>
+			</div>
+		</div>
+		<div class="divider"></div>
+		<div class="bundleTitle">
+			{{connections.0.title}}
+		</div>
+		<div class="contentMain">
+			{{connections.0.description}}
+		</div>
+		<div class="actionBar">
+			<span class="connectButton">
+				Connect
+			</span>
+			<span class="connections underlineOnHover">
+				Connections<span class="connectionsTotal">{{connections.length}}</span>
 			</span>
 		</div>
 	</div>
-	<div class="divider"></div>
-	<div class="bundleTitle">
-		{{connections.0.title}}
-	</div>
-	<div class="contentMain">
-		{{connections.0.description}}
-	</div>
-	<div class="actionBar">
-		<span class="connectButton">
-			Connect
-		</span>
-		<span class="connections underlineOnHover">
-			Connections<span class="connectionsTotal">{{connections.length}}</span>
-		</span>
-		<div class="socialShare">
-			<span class="shareIcon">
-				<i class="fa fa-facebook-official" aria-hidden="true"></i>
-			</span>
-			<span class="shareIcon">
-				<i class="fa fa-twitter" aria-hidden="true"></i>
-			</span>
-			<span class="shareIcon">
-				<i class="fa fa-share-square-o" aria-hidden="true"></i>
-			</span>
-			<span class="shareIcon">
-				<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-			</span>
-		</div>
-	</div>
-</div>
+</a>

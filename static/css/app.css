@@ -43,6 +43,12 @@ img {
   text-decoration: underline;
   cursor: pointer; }
 
+.bullet {
+  min-width: 16px;
+  text-align: center;
+  color: #999;
+  font-size: 13px; }
+
 .wikiwebLogo {
   display: flex;
   align-self: center;
@@ -553,10 +559,9 @@ img {
       color: #2b6dad;
       cursor: pointer; }
   .feedBundle .contentHeader {
-    margin-top: 10px;
+    max-width: 500px;
     position: relative;
     min-height: 40px;
-    margin-bottom: 5px;
     font-size: 15px;
     line-height: 1.4;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
@@ -568,11 +573,40 @@ img {
         height: 40px;
         width: 40px; }
     .feedBundle .contentHeader .layoutTextWrapper {
-      float: left;
+      height: 45px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       font-size: 15px;
       font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
       color: #333;
       line-height: 1.2em; }
+      .feedBundle .contentHeader .layoutTextWrapper .userDetails {
+        display: flex;
+        flex-direction: row; }
+        .feedBundle .contentHeader .layoutTextWrapper .userDetails .username {
+          max-width: 50%;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          display: block;
+          overflow: hidden; }
+        .feedBundle .contentHeader .layoutTextWrapper .userDetails .userInfo {
+          max-width: 50%;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          display: block;
+          overflow: hidden; }
+      .feedBundle .contentHeader .layoutTextWrapper .credibilityFacts {
+        margin-top: 2px;
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+        text-overflow: ellipsis; }
+        .feedBundle .contentHeader .layoutTextWrapper .credibilityFacts .requester {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          display: block;
+          overflow: hidden; }
   .feedBundle .contentMain {
     font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
     font-size: 15px;
@@ -594,8 +628,10 @@ img {
     margin-left: 15%;
     margin-right: 15%; }
   .feedBundle .centerAlign {
-    margin-left: 20%;
-    margin-right: 15%; }
+    margin-bottom: -5px;
+    max-width: 100%;
+    display: flex;
+    justify-content: space-around; }
   .feedBundle .actionBar {
     font-size: 13px;
     margin-bottom: -16px;
@@ -988,11 +1024,23 @@ img {
           padding-top: 52px;
           font-family: 'q_serif',Georgia,Times,"Times New Roman",serif; }
           .homePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname, .searchPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname, .requestPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname, .resultPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname, .profilePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname {
+            max-width: 200px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            display: block;
+            overflow: hidden;
+            margin: auto;
             font-size: 16px;
             color: #333; }
             .homePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname a:hover, .searchPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname a:hover, .requestPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname a:hover, .resultPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname a:hover, .profilePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .fullname a:hover {
               cursor: pointer; }
           .homePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .title, .searchPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .title, .requestPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .title, .resultPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .title, .profilePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .title {
+            max-width: 200px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            display: block;
+            overflow: hidden;
+            margin: auto;
             margin-top: 2px;
             color: #999;
             font-size: 13px; }
