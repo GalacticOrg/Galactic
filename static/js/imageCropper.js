@@ -51,11 +51,11 @@ $('#profile-crop-submit').bind('click', function(){
 		xhr.send(formData);
 		elementCrop.croppie('destroy');
 		elementCropHolder.css('display', 'none');
+		closeProfilePhotoModal();
 		xhr.onload = function(){
 			setTimeout(function(){
 				profileImg.attr('src', profileImgSrc+'?'+Math.random());
 			},1000);
 		};
-
 	});
 })
