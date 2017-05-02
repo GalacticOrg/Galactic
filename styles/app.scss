@@ -709,14 +709,18 @@ img {
 				text-overflow: ellipsis;
 	    	.timestamp {}
 	    	.requester {
+	    		max-width: 300px;
   		    white-space: nowrap;
 			    text-overflow: ellipsis;
-			    // width: 100px;
 			    display: block;
 			    overflow: hidden;
 	    	}
 	    }
     }
+    .homeFeedRequest {
+    	margin-top: 5px;
+	  	height: 60px;
+	  }
   }
   .contentMain {
   	font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;

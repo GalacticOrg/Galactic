@@ -1,5 +1,3 @@
-{{!-- Yes, I am aware this file needs a refactor. Eoin --}}
-
 {{#if icon}}
 <div onClick="javascript:location.href='/page/{{wwUri}}'" class="feedBundle">
 	<div class="articleContentBox">
@@ -15,7 +13,7 @@
 				<span class="imgWrapper">
 					<img src="{{user.avatar}}" class="userImg" />
 				</span>
-				<span class="layoutTextWrapper">
+				<span class="layoutTextWrapper homeFeedRequest">
 					<div>
 						<span class="username underlineOnHover">{{user.displayName}}</span>{{#if user.title}}<span class="userInfo">, {{user.title}}</span>{{/if}}
 					</div>
@@ -34,7 +32,7 @@
 	<div class="bundleTitle">
 		{{title}}
 	</div>
-	<div class="contentMain">
+	<div class="contentMain" style="margin-top: -5px;">
 		{{description}}
 	</div>
 	<div class="actionBar">
@@ -74,12 +72,11 @@
 	</div>
 	<div class="contentHeader">
 		<span class="imgWrapper">
-			<img src="/static/img/example_profile.jpg" class="userImg" />
+			<img src={{user.avatar}} class="userImg" />
 		</span>
-		<span class="layoutTextWrapper">
+		<span class="layoutTextWrapper homeFeedRequest">
 			<div>
-				<span class="username">userId: {{userId}}</span><span class="userInfo">,
-				</span>
+				<span class="username">{{user.displayName}}</span>{{#if user.title}}<span class="userInfo">, {{user.title}}</span>{{/if}}
 			</div>
 			<div class="credibilityFacts feedBundleMeta">
 				<span class="timestamp">
@@ -88,7 +85,7 @@
 			</div>
 		</span>
 	</div>
-	<div class="contentMain">
+	<div class="contentMain" style="margin-top: -5px;">
 		{{description}}
 	</div>
 	<div class="actionBar">
@@ -96,7 +93,7 @@
 			Connect
 		</span>
 		<span class="connections underlineOnHover">
-			Connections<span class="connectionsTotal">10</span>
+			Connections<span class="connectionsTotal">{{connections.length}}</span>
 		</span>
 	</div>
 </div>
