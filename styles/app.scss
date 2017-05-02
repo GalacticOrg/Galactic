@@ -1488,6 +1488,34 @@ img {
 					height: 140px;
 					border-radius: 50%;
 				}
+				.bigProfileImgOverlay {
+					width: 140px;
+					height: 140px;
+					position: absolute;
+					z-index: 999;
+					&:hover {
+						.editBar {
+							display: block;
+						}
+					}
+					.editBar {
+						display: none;
+						width: 140px;
+						margin-top: 120px;
+						text-align: center;
+						.editButton {
+					    border-radius: 0 0 3px 3px;
+							background: rgba(0,0,0,0.65);
+							width: 140px;
+							height: 20px;
+							color: white;
+			        font-weight: 400;
+							font-size: 11px;
+    					font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+							line-height: 20px;
+						}
+					}
+				}
 				.name {
 					font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
 	        font-weight: bold;
