@@ -24,8 +24,7 @@ app.use(cookieParser());
 console.log(config, pgdb, 'pgdbpgdbpgdb')
 app.use(session({
   store: new pgSession({
-    pg : pg,
-    conString : pgdb, // Connect using something else than default DATABASE_URL env variable
+    pg : pg
   }),
   secret: sessionSecret,
   resave: false,
