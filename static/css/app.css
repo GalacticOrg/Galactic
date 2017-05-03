@@ -564,7 +564,8 @@ img {
     min-height: 40px;
     font-size: 15px;
     line-height: 1.4;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    display: flex; }
     .feedBundle .contentHeader .imgWrapper {
       float: left;
       width: 48px; }
