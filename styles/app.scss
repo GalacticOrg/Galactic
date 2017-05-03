@@ -142,7 +142,7 @@ img {
 	    line-height: 1.3;
 		  font-size: 15px;
 	    color: #262626;
-  		width: 100%; 
+  		width: 100%;
   		position: flex-start;
   		color: #333;
   	}
@@ -795,7 +795,7 @@ img {
 .profilePage {
 	width: 100%; //this is a hack solution to a bug.
 }
-.homePage, .searchPage, .requestPage, .resultPage, .profilePage {
+.homePage, .searchPage, .requestPage, .resultPage, .profilePage, .connectionPage {
 	.modalMask {
 		display: none;
 		height: 100%;
@@ -903,7 +903,7 @@ img {
     		cursor: pointer;
     		margin-right: 16px;
     	}
-  	}  	
+  	}
   }
 
   .profileEditModal, .profilePhotoModal {
@@ -1188,7 +1188,7 @@ img {
 	        height: 107px;
   		    border-bottom: 1px solid #e2e2e2;
 	        .profile_img_box {
-	        	position: absolute;	
+	        	position: absolute;
 	        	content: "";
 	        	margin: auto;
 	        	width: 220px;
@@ -1374,7 +1374,7 @@ img {
 		$line-height: 1.3;
 		-webkit-line-clamp: $nLines; /* number of lines to show */
 		max-height: $line-height*$nLines;       /* fallback */
-  	
+
   }
 	.descriptionText {
 		margin-top: 8px;

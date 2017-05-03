@@ -1,6 +1,6 @@
 const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     Sequelize = require('sequelize'),
-    connection = require('../model/sequelize.js'),
+    sequelizeConnection = require('../model/sequelize.js'),
     Jimp = require('jimp'),
     isValidURI = require('../../utils/pageparser').isValidURI,
     pageParse = require('../../utils/pageparser').pageParse,
@@ -97,31 +97,35 @@ module.exports.requests = function (req, res) {
 
 
 module.exports.connections = function (req, res) {
-  let connectionPages = [];
-  let desinationPages = [];
-  let userConnections = [];
-  connection
-  .query('SELECT * FROM connection INNER JOIN pages ON "connectionPage" = pages.id')
+  let pages,
+    destinations,
+    userConnections;
+  const user = req.user;
+
+  sequelizeConnection
+  .query('SELECT *, connection."userId", users.id, username, "displayName", avatar FROM connection INNER JOIN pages ON "connectionPage" = pages.id INNER JOIN users ON connection."userId" = users.id')
   .then(function (results){
-    connectionPages = results;
-    return connection.query('SELECT * FROM connection INNER JOIN pages ON "destinationPage" = pages.id');
+    pages = results[0];
+    return sequelizeConnection.query('SELECT * FROM connection INNER JOIN pages ON "destinationPage" = pages.id');
   }).then(function (results){
-    desinationPages = results;
-    return connection.query('SELECT *  FROM connection INNER JOIN users ON "userId" = users.id');
+    destinations = results[0];
+    return sequelizeConnection.query('SELECT users.id, username, "displayName", avatar FROM connection INNER JOIN users ON "userId" = users.id');
   }).then(function (results){
-    userConnections = results;
-    res.send({
-      connectionPages,
-      desinationPages,
-      userConnections
+    userConnections = results[0];
+    const connectons = pages.map(function (page, i){
+      const newPage = page;
+      newPage.connections = [destinations[i]];
+      newPage.userWhoMadeConnection =  userConnections[i];
+      return newPage;
+    });
+    return res.render('connections', {
+      connectons,
+      user
     });
   });
 
   // const user = req.user;
-  // return res.render('requests', {
-  //   pages: [],
-  //   user
-  // });
+
 };
 
 module.exports.loadwwid = function (req, res, next, id) {
