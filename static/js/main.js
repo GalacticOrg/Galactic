@@ -63,8 +63,28 @@ setNav = function () {
 	}
 }
 
+setSideBar = function () {
+	const curPageVals = window.location.href.split('?');
+	if (curPageVals[0] === "http://localhost:3000/" || curPageVals === "https://wikiweb.org/") {
+		if (curPageVals[1]){
+			if (curPageVals[1].includes('filter=requests')) {
+				console.log('requests')
+				document.getElementById('sidebarNewRequests').classList += ' nav_item_selected';
+			} else if (curPageVals[1].includes('filter=connections')) {
+				console.log('connections')
+				document.getElementById('sidebarNewConnections').classList += ' nav_item_selected';
+			} 
+		}
+		else {
+			console.log('homepage')
+			document.getElementById('sidebarTopStories').classList += ' nav_item_selected';
+		}
+	}
+}
+
 window.onload = function() {
 	setNav();
+	setSideBar();
 }
 
 const tmplString = $('#validateTmpl').html()
