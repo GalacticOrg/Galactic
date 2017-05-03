@@ -22,10 +22,10 @@ const express = require('express'),
 
 app.use(cookieParser());
 app.use(session({
-  store: new pgSession({
-    pg : pg,
-    conString : pgdb, // Connect using something else than default DATABASE_URL env variable
-  }),
+  // store: new pgSession({
+  //   pg : pg,
+  //   conString : pgdb, // Connect using something else than default DATABASE_URL env variable
+  // }),
   secret: sessionSecret,
   resave: false,
   saveUninitialized: true,
