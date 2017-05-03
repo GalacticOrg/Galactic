@@ -408,7 +408,7 @@ img {
   }
 }
 
-.loginPage {
+.loginPage, .signupPage {
 	.container {
 		padding-top: 10px;
 		padding-bottom: 10px;
@@ -419,6 +419,10 @@ img {
 			height: 50px;
 		}
 	}
+}
+
+.signupPage {
+	
 }
 
 #appNav {

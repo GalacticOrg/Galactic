@@ -351,12 +351,12 @@ img {
   padding: 32px;
   height: 130px; }
 
-.loginPage .container {
+.loginPage .container, .signupPage .container {
   padding-top: 10px;
   padding-bottom: 10px; }
-  .loginPage .container form {
+  .loginPage .container form, .signupPage .container form {
     border: 1px solid purple; }
-  .loginPage .container img {
+  .loginPage .container img, .signupPage .container img {
     height: 50px; }
 
 #appNav {
