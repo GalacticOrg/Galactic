@@ -8,6 +8,7 @@ const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     uploadBuffer = require('../../utils/assets').uploadBuffer,
     Page = require('../model/page.js'),
     User = require('../model/user.js'),
+    Connection = require('../model/connection.js'),
     Tag = require('../model/tag.js').tag,
     regexNYT = new RegExp('nyt.com|nytimes.com|newyorktimes.com');
 
@@ -21,7 +22,7 @@ const home = function (req, res) {
   const limit = req.query.limit;
   const offset = req.query.offset;
   let pages = null;
-  let feed = [];
+  let feed = null;
 
   const filter = req.query.filter;
 
@@ -61,14 +62,19 @@ const home = function (req, res) {
       }
       return newPage;
     });
+
+    return [Page.count({ where: { userId:user.id } }),Connection.count({ where: { userId:user.id } })]
+  }).spread(function (userPageCount, userConnectionCount){
+    console.log(userPageCount, userConnectionCount, 'userConnectionCountuserConnectionCount')
     res.render('home', {
       feed,
-      user
+      user,
+      userPageCount,
+      userConnectionCount
     });
   });
 };
 
-// @TODO Placeholders for connections and response
 module.exports.requests = function (req, res) {
   const limit = req.query.limit;
   const offset = req.query.offset;
