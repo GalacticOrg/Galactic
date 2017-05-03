@@ -10,7 +10,8 @@ const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     User = require('../model/user.js'),
     Connection = require('../model/connection.js'),
     Tag = require('../model/tag.js').tag,
-    regexNYT = new RegExp('nyt.com|nytimes.com|newyorktimes.com');
+    regexNYT = new RegExp('nyt.com|nytimes.com|newyorktimes.com'),
+    userAttibutrs = ['username', 'displayName', 'id', 'avatar'];
 
 const landing = function (req, res) {
   res.render('landing');
@@ -39,7 +40,7 @@ const home = function (req, res) {
   Page.findAll({
     limit: limit || 30,
     offset: offset || 0,
-    include:[{ model: User }, { model: Tag, as: 'tag' }, { model: Page, as: 'connections' }],
+    include:[{ model: User, attributes:userAttibutrs }, { model: Tag, as: 'tag' }, { model: Page, as: 'connections' }],
     order: [
       ['lastActivityAt', 'DESC']
     ],
@@ -74,7 +75,6 @@ const home = function (req, res) {
     });
   });
 };
-
 module.exports.requests = function (req, res) {
   const limit = req.query.limit;
   const offset = req.query.offset;
@@ -87,7 +87,7 @@ module.exports.requests = function (req, res) {
   Page.findAll({
     limit: limit || 30,
     offset: offset || 0,
-    include:[{ model: User }, { model: Tag, as: 'tag' }, { model: Page, as: 'connections' }],
+    include:[{ model: User, attributes:userAttibutrs }, { model: Tag, as: 'tag' }, { model: Page, as: 'connections' }],
     order: [
       ['lastActivityAt', 'DESC']
     ],
@@ -155,7 +155,7 @@ module.exports.page = function (req, res) {
   let destinations = null;
 
   pageObj.getUser().then(function (result){
-    page.user = result.toJSON();
+    page.user = result? result.toJSON(): null;
     return pageObj.getConnections();
   }).then(function (result){
     destinations = result;
@@ -217,6 +217,7 @@ module.exports.pageValidate = function (req, res){
         if (!result){
           let wwUri = article.headline.main.replace(new RegExp(' ', 'g'), '_');
           wwUri = wwUri.replace(new RegExp(/\W/, 'g'), '');
+          wwUri += '_' + new Date().getTime().toString(36);
           Page.create({
             title: article.headline.main,
             icon: 'http://www.nytimes.com/favicon.ico',
@@ -331,7 +332,6 @@ module.exports.new = function (req, res) {
       page.setUser(user).then(function (result){
         res.redirect('/page/' + result.wwUri);
       });
-
       diffBotAnalyze(page.pageUrl, function (err, article) {
         if (err){
           return console.log(page.id, err, '<--page.id, diffBotAnalyze failed');
@@ -366,7 +366,9 @@ module.exports.new = function (req, res) {
             const tag = array[0];
             const data = articleTags[i];
             page.addTag(tag, data).then(function (){
-              console.log('Save Successful');
+              // No Opp
+            }).catch(function (err){
+              console.log(err, tag + '<-- Tag Save Failed');
             });
           });
         });
