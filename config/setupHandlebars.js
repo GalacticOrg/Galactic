@@ -28,6 +28,9 @@ module.exports = function (app) {
       getTime: function(){
          return new Date().getTime();
       },
+      avatarNotNull: function(url){
+         return url === null ? '/static/img/default_avatar.jpg': url;
+      }
     }
   });
 

@@ -1,8 +1,8 @@
-const pgdb = process.env.pgdb || 'postgres://postgres:postgres@localhost:5432/wikiweb'
+const config  = require('../../config');
 
 const Sequelize = require('sequelize'),
     sequelize = new Sequelize(
-    pgdb,
+    config.DATABASE_URL,
     {
       logging: false
     });

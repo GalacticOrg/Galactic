@@ -39,7 +39,7 @@ module.exports.signup = function (req, res) {
       return res.redirect('/login');
     });
   }).catch(function (error) {
-    if (error){
+    if (error && error.errors){
       const messages = error.errors.map(function(data){
         return {
           message: data.path+' : '+data.message,
