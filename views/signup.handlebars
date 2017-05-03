@@ -7,7 +7,7 @@
   <div class="container">
     <form method="POST" action="/signup" class="form-signin">
       <img src="/static/img/logo.png" />
-      <a href="/login" style="color: #333; float: right;">Login</a> 
+      <a href="/login" style="color: #333; float: right;">Login</a>
       <h2 class="form-signin-heading">Please Sign Up</h2>
       <label for="inputUsername" class="sr-only">Username</label>
       <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" maxlength="15" required autofocus>
@@ -27,5 +27,6 @@
 </div>
 
 {{#section 'foot'}}
+<script type="application/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
 <script type="application/javascript" src="/static/js/main.js"></script>
 {{/section}}
