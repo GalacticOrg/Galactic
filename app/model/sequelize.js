@@ -5,7 +5,7 @@ const Sequelize = require('sequelize'),
     sequelize = new Sequelize(
     config.DATABASE_URL,
     {
-      logging: false
+      logging: false,
     });
 
 module.exports = sequelize;
