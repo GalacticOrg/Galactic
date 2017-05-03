@@ -3,13 +3,14 @@
 {{/section}}
 
 <div class="signupPage">
+  {{> messages }}
   <div class="container">
     <form method="POST" action="/signup" class="form-signin">
       <img src="/static/img/logo.png" />
+      <a href="/login" style="color: #333; float: right;">Login</a> 
       <h2 class="form-signin-heading">Please Sign Up</h2>
-      {{> messages }}
       <label for="inputUsername" class="sr-only">Username</label>
-      <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required autofocus>
+      <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" maxlength="15" required autofocus>
       <br />
       <label for="inputUsername" class="sr-only">Username</label>
       <input type="text" id="inputDisplayname" name="displayName" class="form-control" placeholder="Display Name" required>
@@ -24,3 +25,7 @@
     </form>
   </div>
 </div>
+
+{{#section 'foot'}}
+<script type="application/javascript" src="/static/js/main.js"></script>
+{{/section}}

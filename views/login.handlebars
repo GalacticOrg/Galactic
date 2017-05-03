@@ -6,6 +6,7 @@
   <div class="container">
     <form method="POST" action="/login" class="form-signin">
       <img src="/static/img/logo.png" />
+      <a href="/signup" style="float: right; color: #333;">Sign Up</a>
       <h2 class="form-signin-heading">Please log in</h2>
 
       {{#if errorMessage}}
@@ -20,3 +21,7 @@
     </form>
   </div>
 </div>
+
+{{#section 'foot'}}
+<script type="application/javascript" src="/static/js/main.js"></script>
+{{/section}}
