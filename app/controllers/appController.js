@@ -25,8 +25,6 @@ const home = function (req, res) {
   let pages = null;
   let feed = null;
 
-  console.log(limit)
-
   const filter = req.query.filter;
 
   let filters = {
@@ -337,7 +335,6 @@ module.exports.new = function (req, res) {
       page.setUser(user).then(function (result){
         res.redirect('/page/' + result.wwUri);
       });
-      console.log(page.pageUrl, 'pagepagepage')
       diffBotAnalyze(page.pageUrl, function (err, article) {
         if (err){
           return console.log(page.id, err, '<--page.id, diffBotAnalyze failed');

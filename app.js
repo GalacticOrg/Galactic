@@ -21,7 +21,6 @@ const express = require('express'),
     upload = require('multer')();
 
 app.use(cookieParser());
-console.log(config, pgdb, 'pgdbpgdbpgdb')
 app.use(session({
   store: new pgSession({
     pg : pg,
