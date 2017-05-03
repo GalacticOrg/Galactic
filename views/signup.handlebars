@@ -1,24 +1,31 @@
 {{#section 'head'}}
-    <link rel="stylesheet" href="static/styles/auth.css">
+    <link rel="stylesheet" href="/static/css/auth.css">
 {{/section}}
 
-<div class="container">
-  <form method="POST" action="/signup" class="form-signin">
-    <h2 class="form-signin-heading">Create an account</h2>
-
-    {{#if errorMessage}}
-      <div class="alert alert-danger">
-        {{errorMessage}}
-      </div>
-    {{/if}}
-    <label for="inputUsername" class="sr-only">Username</label>
-    <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required autofocus>
-    <br />
-    <label for="inputEmail" class="sr-only">Email</label>
-    <input type="email" id="inputEmail" name="email" class="form-control" placeholder="email" required>
-    <br />
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-  </form>
+<div class="signupPage">
+  {{> messages }}
+  <div class="container">
+    <form method="POST" action="/signup" class="form-signin">
+      <img src="/static/img/logo.png" />
+      <a href="/login" style="color: #333; float: right;">Login</a> 
+      <h2 class="form-signin-heading">Please Sign Up</h2>
+      <label for="inputUsername" class="sr-only">Username</label>
+      <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" maxlength="15" required autofocus>
+      <br />
+      <label for="inputUsername" class="sr-only">Username</label>
+      <input type="text" id="inputDisplayname" name="displayName" class="form-control" placeholder="Display Name" required>
+      <br />
+      <label for="inputEmail" class="sr-only">Email</label>
+      <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email" required>
+      <br />
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+      <br />
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    </form>
+  </div>
 </div>
+
+{{#section 'foot'}}
+<script type="application/javascript" src="/static/js/main.js"></script>
+{{/section}}

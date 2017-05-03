@@ -1,4 +1,4 @@
-{{> navbar navIndex='requests'}}
+{{> navbar navIndex='connections'}}
 
 {{#if errorMessage}}
 	<div style="top:70px; left:50px; position: absolute;" class="alert alert-danger">
@@ -6,7 +6,7 @@
 	</div>
 {{/if}}
 
-<div class="requestPage">
+<div class="connectionPage">
 
 	{{> modalRequest}}
 
@@ -16,8 +16,8 @@
 			<div class="section_header">
 				<div class="header_text">
 
-			{{#each pages}}
-				{{> homefeedrequest}}
+			{{#each connectons}}
+				{{> homefeedconnection}}
 			{{/each}}
 			</div>
 		</div>

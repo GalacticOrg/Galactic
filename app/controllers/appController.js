@@ -1,5 +1,6 @@
 const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     Sequelize = require('sequelize'),
+    sequelizeConnection = require('../model/sequelize.js'),
     Jimp = require('jimp'),
     isValidURI = require('../../utils/pageparser').isValidURI,
     pageParse = require('../../utils/pageparser').pageParse,
@@ -7,8 +8,10 @@ const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     uploadBuffer = require('../../utils/assets').uploadBuffer,
     Page = require('../model/page.js'),
     User = require('../model/user.js'),
+    Connection = require('../model/connection.js'),
     Tag = require('../model/tag.js').tag,
-    regexNYT = new RegExp('nyt.com|nytimes.com|newyorktimes.com');
+    regexNYT = new RegExp('nyt.com|nytimes.com|newyorktimes.com'),
+    userAttibutrs = ['username', 'displayName', 'id', 'avatar'];
 
 const landing = function (req, res) {
   res.render('landing');
@@ -17,10 +20,12 @@ const landing = function (req, res) {
 
 const home = function (req, res) {
   const user = req.user.toJSON();
-  const limit = req.query.limit;
-  const offset = req.query.limit;
+  const limit = req.query.limit || 30;
+  const offset = req.query.offset || 0;
   let pages = null;
-  let feed = [];
+  let feed = null;
+
+  console.log(limit)
 
   const filter = req.query.filter;
 
@@ -35,9 +40,9 @@ const home = function (req, res) {
   }
 
   Page.findAll({
-    limit: limit || 20,
-    offset: offset || 0,
-    include:[{ model: User }, { model: Tag, as: 'tag' }, { model: Page, as: 'connections' }],
+    limit: limit ,
+    offset: offset,
+    include:[{ model: User, attributes:userAttibutrs }, { model: Tag, as: 'tag' }, { model: Page, as: 'connections' }],
     order: [
       ['lastActivityAt', 'DESC']
     ],
@@ -60,25 +65,76 @@ const home = function (req, res) {
       }
       return newPage;
     });
+
+    return [Page.count({ where: { userId:user.id } }),Connection.count({ where: { userId:user.id } })]
+  }).spread(function (userPageCount, userConnectionCount){
     res.render('home', {
       feed,
+      user,
+      userPageCount,
+      userConnectionCount,
+      limit: limit + 30,
+      offset: offset + 30
+    });
+  });
+};
+module.exports.requests = function (req, res) {
+  const limit = req.query.limit;
+  const offset = req.query.offset;
+  const user = req.user.toJSON();
+
+  let filters = {
+    userId: { $ne:null }
+  };
+
+  Page.findAll({
+    limit: limit || 30,
+    offset: offset || 0,
+    include:[{ model: User, attributes:userAttibutrs }, { model: Tag, as: 'tag' }, { model: Page, as: 'connections' }],
+    order: [
+      ['lastActivityAt', 'DESC']
+    ],
+    where: filters
+  }).then(function (results){
+    const pages = results
+    return res.render('requests', {
+      pages,
       user
     });
   });
 };
 
-// @TODO Placeholders for connections and response
-module.exports.requests = function (req, res) {
-  return res.render('requests', {
-    pages: []
-  });
-};
-
 
 module.exports.connections = function (req, res) {
-  return res.render('requests', {
-    pages: []
+  let pages,
+    destinations,
+    userConnections;
+  const user = req.user;
+
+  sequelizeConnection
+  .query('SELECT *, connection."userId", users.id, username, "displayName", avatar FROM connection INNER JOIN pages ON "connectionPage" = pages.id INNER JOIN users ON connection."userId" = users.id')
+  .then(function (results){
+    pages = results[0];
+    return sequelizeConnection.query('SELECT * FROM connection INNER JOIN pages ON "destinationPage" = pages.id');
+  }).then(function (results){
+    destinations = results[0];
+    return sequelizeConnection.query('SELECT users.id, username, "displayName", avatar FROM connection INNER JOIN users ON "userId" = users.id');
+  }).then(function (results){
+    userConnections = results[0];
+    const connectons = pages.map(function (page, i){
+      const newPage = page;
+      newPage.connections = [destinations[i]];
+      newPage.userWhoMadeConnection =  userConnections[i];
+      return newPage;
+    });
+    return res.render('connections', {
+      connectons,
+      user
+    });
   });
+
+  // const user = req.user;
+
 };
 
 module.exports.loadwwid = function (req, res, next, id) {
@@ -97,10 +153,12 @@ module.exports.loadwwid = function (req, res, next, id) {
 module.exports.page = function (req, res) {
   const pageObj = req.page;
   const page = pageObj.toJSON();
+  const user = req.user;
+
   let destinations = null;
 
   pageObj.getUser().then(function (result){
-    page.user = result.toJSON();
+    page.user = result? result.toJSON(): null;
     return pageObj.getConnections();
   }).then(function (result){
     destinations = result;
@@ -119,12 +177,11 @@ module.exports.page = function (req, res) {
     });
     res.render('page', {
       page,
-      destinations
+      destinations,
+      user
     });
   });
-
 };
-
 
 module.exports.connect = function (req, res) {
   const page = req.page;
@@ -149,6 +206,12 @@ module.exports.connect = function (req, res) {
   });
 };
 
+function createWwUri (title){
+  let uri = title.replace(new RegExp(' ', 'g'), '_');
+  uri = uri.replace(new RegExp(/\W/, 'g'), '');
+  uri += '_' + new Date().getTime().toString(36);
+  return uri;
+}
 
 module.exports.pageValidate = function (req, res){
   const inputURI = req.query.q;
@@ -161,8 +224,7 @@ module.exports.pageValidate = function (req, res){
       const uri = article.web_url;
       Page.load(uri).then(function (result){
         if (!result){
-          let wwUri = article.headline.main.replace(new RegExp(' ', 'g'), '_');
-          wwUri = wwUri.replace(new RegExp(/\W/, 'g'), '');
+          let wwUri = createWwUri(article.headline.main);
           Page.create({
             title: article.headline.main,
             icon: 'http://www.nytimes.com/favicon.ico',
@@ -185,8 +247,7 @@ module.exports.pageValidate = function (req, res){
       const uri = article.canonicalLink || inputURI;
       Page.load(uri).then(function (result){
         if (!result){
-          let wwUri = article.title.replace(new RegExp(' ', 'g'), '_');
-          wwUri = wwUri.replace(new RegExp(/\W/, 'g'), '');
+          let wwUri = createWwUri(article.title)
           Page.create({
             text: article.text,
             title: article.title,
@@ -209,11 +270,12 @@ module.exports.pageValidate = function (req, res){
 
 module.exports.search = function (req, res) {
   const inputURI = req.query.q;
-
+  const user = req.user.toJSON();
   if (inputURI === undefined || inputURI.length === 0){
     return res.render('search', {
       pages: [],
-      inputURI
+      inputURI,
+      user
     });
   }
 
@@ -232,7 +294,8 @@ module.exports.search = function (req, res) {
 
       return res.render('search', {
         pages,
-        inputURI
+        inputURI,
+        user
       });
     });
   } else {
@@ -241,13 +304,15 @@ module.exports.search = function (req, res) {
         return res.render('search', {
           pages: [],
           addURL: true,
-          inputURI
+          inputURI,
+          user
         });
       } else {
         pages = [result];
         return res.render('search', {
           pages,
-          inputURI
+          inputURI,
+          user
         });
       }
     });
@@ -272,7 +337,7 @@ module.exports.new = function (req, res) {
       page.setUser(user).then(function (result){
         res.redirect('/page/' + result.wwUri);
       });
-
+      console.log(page.pageUrl, 'pagepagepage')
       diffBotAnalyze(page.pageUrl, function (err, article) {
         if (err){
           return console.log(page.id, err, '<--page.id, diffBotAnalyze failed');
@@ -307,7 +372,9 @@ module.exports.new = function (req, res) {
             const tag = array[0];
             const data = articleTags[i];
             page.addTag(tag, data).then(function (){
-              console.log('Save Successful');
+              // No Opp
+            }).catch(function (err){
+              console.log(err, tag + '<-- Tag Save Failed');
             });
           });
         });
@@ -375,7 +442,6 @@ module.exports.updateProfile = function (req, res) {
                      res.redirect('/profile');
                    });
                  });
-
              }); // resize  Jimp
     });
 

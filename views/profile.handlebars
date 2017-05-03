@@ -8,12 +8,20 @@
 
 <div class="profilePage">
   {{> modalProfileEdit }}
+  {{> modalProfilePhoto }}
   <div class="contentWrapper">
     <div class="container">
       <div class="wideCol">
         <div class="whole">
           <div class="left">
-            <img class="bigProfileImg" src="{{user.avatar}}?{{getTime}}"/>
+            <div class="bigProfileImgOverlay">
+              <div class="editBar">
+                <div class="editButton underlineOnHover" onClick=openProfilePhotoModal()>
+                  Edit Photo
+                </div>
+              </div>
+            </div>
+            <img id="profile-img" class="bigProfileImg" src="{{user.avatar}}?{{getTime}}"/>
           </div>
           <div class="right">
             <div class="name editable">

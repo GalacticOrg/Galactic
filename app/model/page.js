@@ -3,7 +3,8 @@ const Sequelize = require('sequelize'),
       User = require('./user.js'),
       Tag = require('./tag.js').tag,
       ItemTag = require('./tag.js').itemtag,
-      Connection = require('./connection.js');
+      Connection = require('./connection.js'),
+      userAttibutrs = ['username', 'displayName', 'id', 'avatar'];
 
 const attributes = {
   id: {
@@ -62,17 +63,6 @@ const options = {
     }
   },
   classMethods: {
-    feed: function (limit, offset){
-      return Page.findAll({
-        limit: limit || 20,
-        offset: offset || 0,
-        include:[{ model: User }, { model: Tag, as: 'tag' }, { model: Page, as: 'connections' }],
-        order: [
-          ['lastActivityAt', 'DESC']
-        ],
-        where:{ userId: { $ne:null } }
-      });
-    },
     search: function (searchString){
       const searchWordsArray = searchString.split(' ');
       const searchExpressionArray = searchWordsArray.map((item) => {
@@ -95,7 +85,7 @@ const options = {
         where:{
           pageUrl: { $iLike: '%' + url }
         },
-        include:[{ model: User }]
+        include:[{ model: User, attibutrs:userAttibutrs }]
       });
     },
     loadPage: function (pageUUID){

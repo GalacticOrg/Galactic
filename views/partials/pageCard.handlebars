@@ -23,13 +23,13 @@
 		{{/if}}
 	</div>
 	<div class="metaBar">
-		<a class="askQuestionButton" onClick=openRecommendationsModal()>
+		<a class="askQuestionButton" onClick=openConnectModal()>
 			<div class="connectButton">
 				Connect
 			</div>
 		</a>
 		<div class="resultMeta">
-			<span class="topic">
+			{{!-- <span class="topic">
 				<a>Topic</a>
 			</span>
 			<span class="bullet"> · </span>
@@ -39,14 +39,14 @@
 			<span class="bullet"> · </span>
 			<span class="topic">
 				<a>Topic</a>
-			</span>
+			</span> --}}
 		</div>
 		<div class="connector" title="First Connector">
 			<span class="imgWrapper">
-				<img class="connectorImg" src="/static/img/example_user.jpeg"/>
+				<img class="connectorImg" src="{{page.user.avatar}}"/>
 			</span>
 			<span class="username">
-				<a>{{page.userId}}</a>
+				{{page.user.displayName}}
 			</span>
 		</div>
 	</div>

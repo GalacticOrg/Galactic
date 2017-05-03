@@ -35,6 +35,7 @@ a {
 	text-decoration: none;
 	background: transparent;
 }
+a:visited { text-decoration: none; }
 
 img {
 	border: 0;
@@ -51,6 +52,13 @@ img {
 	}
 }
 
+.bullet {
+	min-width: 16px;
+	text-align: center;
+  color: #999;
+  font-size: 13px;
+}
+
 .wikiwebLogo {
 	display: flex;
 	align-self: center;
@@ -59,8 +67,8 @@ img {
   font-weight: 900;
   color: purple;
   width: 80px;
-  span {color: purple}
-  a {color: purple}
+  span { color: purple }
+  a { color: purple }
 }
 
 .loaderBox {
@@ -74,7 +82,7 @@ img {
 	  font-weight: 900;
 	  color: purple;
 	  width: 80px;
-	  span {color: purple}
+	  span { color: purple }
 	}
 	img {
 		padding-left: 20px;
@@ -82,7 +90,7 @@ img {
 	}
 }
 
-.connectButton {
+.connectButton, .moreButton {
 	margin-right: 12px;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -134,7 +142,7 @@ img {
 	    line-height: 1.3;
 		  font-size: 15px;
 	    color: #262626;
-  		width: 100%; 
+  		width: 100%;
   		position: flex-start;
   		color: #333;
   	}
@@ -400,7 +408,7 @@ img {
   }
 }
 
-.loginPage {
+.loginPage, .signupPage {
 	.container {
 		padding-top: 10px;
 		padding-bottom: 10px;
@@ -411,6 +419,10 @@ img {
 			height: 50px;
 		}
 	}
+}
+
+.signupPage {
+
 }
 
 #appNav {
@@ -521,19 +533,13 @@ img {
 	  .pageButtons {
 	  	margin-left: 8px;
 			display: flex;
-			color: #999;
 	    font-size: 14px;
     	font-weight: 500;
     	line-height: 50px;
+    	color: #999;
 	  	.pageButton {
 	  		display: flex;
   			align-items: center;
-  			.currentPage {
-	  			color: purple;
-	  			&:hover {
-	  				background-color: white;
-	  			}
-	  		}
 	  		&:hover {
 	  			background-color: #F4F4F4;
 	  			cursor: pointer;
@@ -547,6 +553,7 @@ img {
 	  				padding-left: 14px;
 	  			}
 	  			.text {
+	  				color: #999;
 	  				padding-left: 5px;
 	  				padding-right: 14px;
 	  			}
@@ -557,6 +564,17 @@ img {
 	  				padding-right: 8px;
 	  				padding-left: 7px;
 	  				margin-top: 6px;
+	  			}
+	  		}
+	  		.profileImgButton {
+					width: 130px;
+				}
+				.currentPage {
+	  			&:hover {
+	  				background-color: white;
+	  			}
+	  			.text {
+	  				color: purple;
 	  			}
 	  		}
 	  	}
@@ -645,13 +663,13 @@ img {
   	}
   }
   .contentHeader {
-    margin-top: 10px;
+  	max-width: 500px;
     position: relative;
     min-height: 40px;
-    margin-bottom: 5px;
     font-size: 15px;
     line-height: 1.4;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    display: flex;
     .imgWrapper {
     	float: left;
     	width: 48px;
@@ -662,14 +680,52 @@ img {
 	    }
 	  }
     .layoutTextWrapper {
-    	float: left;
+    	height: 45px;
+    	display: flex;
+    	flex-direction: column;
+    	justify-content: center;
     	font-size: 15px;
 	    font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
 	    color: #333;
 	    line-height: 1.2em;
-    	.username {}
-    	.userInfo {}
+	    .userDetails {
+	    	display: flex;
+	    	flex-direction: row;
+	    	.username {
+	    		max-width: 50%;
+	    		white-space: nowrap;
+			    text-overflow: ellipsis;
+			    display: block;
+			    overflow: hidden;
+	    	}
+	    	.userInfo {
+			    max-width: 50%;
+	    		white-space: nowrap;
+			    text-overflow: ellipsis;
+			    display: block;
+			    overflow: hidden;
+	    	}
+	    }
+	    .credibilityFacts {
+	    	margin-top: 2px;
+	    	display: flex;
+	    	flex-direction: row;
+	    	overflow: hidden;
+				text-overflow: ellipsis;
+	    	.timestamp {}
+	    	.requester {
+	    		max-width: 300px;
+  		    white-space: nowrap;
+			    text-overflow: ellipsis;
+			    display: block;
+			    overflow: hidden;
+	    	}
+	    }
     }
+    .homeFeedRequest {
+    	margin-top: 5px;
+	  	height: 60px;
+	  }
   }
   .contentMain {
   	font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
@@ -694,8 +750,10 @@ img {
 		margin-right: 15%;
 	}
 	.centerAlign {
-		margin-left: 20%;
-		margin-right: 15%;
+		margin-bottom: -5px;
+		max-width: 100%;
+		display: flex;
+		justify-content: space-around;
 	}
   .actionBar {
   	font-size: 13px;
@@ -746,7 +804,7 @@ img {
 .profilePage {
 	width: 100%; //this is a hack solution to a bug.
 }
-.homePage, .searchPage, .resultPage, .profilePage {
+.homePage, .searchPage, .requestPage, .resultPage, .profilePage, .connectionPage {
 	.modalMask {
 		display: none;
 		height: 100%;
@@ -756,7 +814,7 @@ img {
 		opacity: 0.75;
 		z-index: 2;
 	}
-  .requestModal, .profileEditModal {
+  .requestModal, .connectModal, .profileEditModal, .profilePhotoModal {
   	display: none;
   	margin: auto;
   	margin-top: 100px;
@@ -856,6 +914,92 @@ img {
     	}
   	}
   }
+
+  .profileEditModal, .profilePhotoModal {
+  	.topBox {
+  		padding: 16px;
+			.title {
+				font-size: 19px;
+		    font-weight: bold;
+		    color: #333;
+		    border-radius: 4px 4px 0 0;
+			}
+			.subTitle {
+				font-size: 15px;
+		    line-height: 1.4;
+		    color: #999;
+			}
+			input {
+				margin-top: 8px;
+			}
+  	}
+  	.modalFooter {
+  		justify-content: flex-start;
+	  	form {
+	  		width: 100%;
+		  	.modalContent {
+		  		padding: 0px;
+		  		justify-content: flex-start;
+		  		align-items: flex-start;
+			  	.contentBox {
+			  		display: flex;
+			  		flex-direction: column;
+			  		align-items: flex-start;
+			  		margin-bottom: 10px;
+			  		.inputBox {
+			  			display: flex;
+			  			flex-direction: column;
+			  			align-items: flex-start;
+			  			margin: 0;
+			  			margin-bottom: 10px;
+			  			.title {
+			  				margin: 0;
+			  				margin-bottom: 2px;
+			  				.icon {
+			  					height: 18px;
+			  					width: 18px;
+			  					margin-right: 8px;
+			  					color: #999;
+			  					text-align: center;
+			  				}
+			  				.text {
+	  					    font-size: 15px;
+    							line-height: 1.4;
+	  					    font-weight: 500;
+	  					    color: #333;
+			  				}
+			  			}
+			  			input, textarea {
+			  				margin-left: 26px;
+			  				width: 200%;
+  				    	padding: 3px 5px;
+  				    	box-sizing: border-box;
+						    border-radius: 3px;
+						    background: #fff;
+						    outline: 0;
+						    border: 1px solid #e2e2e2;
+						    box-shadow: inset 0 1px 1px rgba(200,200,200,0.3);
+						    font-size: 13px;
+						    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+						    width: 575px;
+			  			}
+			  			input {
+  				    	padding-right: 24px;
+			  			}
+			  			textarea {
+						    min-height: 60px;
+						    resize: vertical;
+			  			}
+			  		}
+			  	}
+		  	}
+		  	.saveRow {
+	  			float: right;
+	  		}
+	  	}
+  	}
+	}
+
   .modalSubmitButton {
     font-size: 15px;
     padding: 6px 8px;
@@ -884,7 +1028,7 @@ img {
 			border-color: rgb(226, 226, 226);
 		}
 	}
-  .displayRequestModal, .displayProfileEditModal {
+  .displayRequestModal, .displayConnectModal, .displayProfileEditModal, .displayProfilePhotoModal {
 		display: block;
 	}
 	.contentWrapper {
@@ -1053,7 +1197,7 @@ img {
 	        height: 107px;
   		    border-bottom: 1px solid #e2e2e2;
 	        .profile_img_box {
-	        	position: absolute;	
+	        	position: absolute;
 	        	content: "";
 	        	margin: auto;
 	        	width: 220px;
@@ -1071,6 +1215,12 @@ img {
 	        	padding-top: 52px;
 	        	font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
 	        	.fullname {
+	        		max-width: 200px;
+	        		white-space: nowrap;
+					    text-overflow: ellipsis;
+					    display: block;
+					    overflow: hidden;
+					    margin: auto;
 	        		font-size: 16px;
 	        		color: #333;
 	        		a:hover {
@@ -1078,9 +1228,18 @@ img {
 	        		}
 	        	}
 	        	.title {
+        		 	max-width: 200px;
+			    		white-space: nowrap;
+					    text-overflow: ellipsis;
+					    display: block;
+					    overflow: hidden;
+					    margin: auto;
 	        		margin-top: 2px;
 	        		color: #999;
 	    				font-size: 13px;
+	        	}
+	        	.incompleteProfile {
+	        		color: #999;
 	        	}
 	        }
 	    	}
@@ -1227,7 +1386,7 @@ img {
 		$line-height: 1.3;
 		-webkit-line-clamp: $nLines; /* number of lines to show */
 		max-height: $line-height*$nLines;       /* fallback */
-  	
+
   }
 	.descriptionText {
 		margin-top: 8px;
@@ -1405,6 +1564,33 @@ img {
 					height: 140px;
 					border-radius: 50%;
 				}
+				.bigProfileImgOverlay {
+					width: 140px;
+					height: 140px;
+					position: absolute;
+					&:hover {
+						.editBar {
+							display: block;
+						}
+					}
+					.editBar {
+						display: none;
+						width: 140px;
+						margin-top: 120px;
+						text-align: center;
+						.editButton {
+					    border-radius: 0 0 3px 3px;
+							background: rgba(0,0,0,0.65);
+							width: 140px;
+							height: 20px;
+							color: white;
+			        font-weight: 400;
+							font-size: 11px;
+    					font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+							line-height: 20px;
+						}
+					}
+				}
 				.name {
 					font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
 	        font-weight: bold;
@@ -1467,7 +1653,7 @@ img {
 						}
 						.text {
 					    color: #333;
-    					font-weight: 500;
+    					font-weight: 400;
 						}
 					}
 				}

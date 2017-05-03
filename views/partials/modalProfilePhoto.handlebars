@@ -1,0 +1,23 @@
+<div class="modalMask" id='modalMask' onclick=closeProfilePhotoModal()></div>
+<div class="profilePhotoModal" id='profilePhotoModal'>
+  <div class="topBox">
+    <div class="title">Edit Profile Info</div>
+    <input id="profile-input" type="file" >
+    <div id="profile-crop-holder" style="height:200px; width:200px; display:none; margin-bottom: 40px;">
+      <img id="profile-crop-img" />
+    </div>
+  </div>
+  <div class="modalFooter">
+    <div class="ProfilePhotoModalFooter" action="/profile" method="post" enctype="multipart/form-data" role="form">
+      <div class="modalContent">
+        <div class="closeButton" onclick=closeProfilePhotoModal()>
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="saveRow">
+        <div class="cancel underlineOnHover" onclick=closeProfilePhotoModal()>Cancel</div>
+        <button class="modalSubmitButton" id="profile-crop-submit" value="Save">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
