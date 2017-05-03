@@ -20,17 +20,27 @@ const express = require('express'),
     jsonParser = bodyParser.json(),
     upload = require('multer')();
 
-app.use(cookieParser());
-console.log(config, pgdb, 'pgdbpgdbpgdb')
+// app.use(cookieParser());
+// console.log(config, pgdb, 'pgdbpgdbpgdb')
+// app.use(session({
+//   store: new pgSession({
+//     pg : pg,
+//     conString : pgdb, // Connect using something else than default DATABASE_URL env variable
+//   }),
+//   secret: sessionSecret,
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: { maxAge: 360 * 24 * 60 * 60 * 1000 } // 360 days
+// }));
+
+// @TODO Hook of postgre database @jeffj
 app.use(session({
-  store: new pgSession({
-    pg : pg
-  }),
   secret: sessionSecret,
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 360 * 24 * 60 * 60 * 1000 } // 360 days
+  cookie: { secure: true }
 }));
+
 
 app.use('/static', express.static(__dirname + '/static'));
 
