@@ -265,7 +265,6 @@ module.exports.pageValidate = function (req, res){
 module.exports.search = function (req, res) {
   const inputURI = req.query.q;
   const user = req.user.toJSON();
-  console.log(user, 'useruser');
   if (inputURI === undefined || inputURI.length === 0){
     return res.render('search', {
       pages: [],
@@ -332,6 +331,7 @@ module.exports.new = function (req, res) {
       page.setUser(user).then(function (result){
         res.redirect('/page/' + result.wwUri);
       });
+      console.log(page.pageUrl, 'pagepagepage')
       diffBotAnalyze(page.pageUrl, function (err, article) {
         if (err){
           return console.log(page.id, err, '<--page.id, diffBotAnalyze failed');

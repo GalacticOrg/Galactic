@@ -3,6 +3,11 @@ openRecommendationsModal = function() {
 	document.getElementById('modalMask').className += " displayRequestModal";
 }
 
+openModalAndPostRecommendation = function() {
+	openRecommendationsModal();
+	makeRequest($( "#questionInput" ).val());
+}
+
 closeRecommendationsModal = function() {
 	document.getElementById('requestModal').classList.remove("displayRequestModal");
 	document.getElementById('modalMask').classList.remove("displayRequestModal");
@@ -44,7 +49,7 @@ dismissAlert = function() {
 
 setNav = function () {
 	const navElement = document.getElementById('appNav')
-	
+
 	if (navElement === null){ return false};
 
 	const navIndex = navElement.getAttribute('data-navIndex');
@@ -81,7 +86,7 @@ setSideBar = function () {
 				document.getElementById('sidebarNewRequests').classList += ' nav_item_selected';
 			} else if (curPageVals[1].includes('filter=connections')) {
 				document.getElementById('sidebarNewConnections').classList += ' nav_item_selected';
-			} 
+			}
 		}
 		else {
 			document.getElementById('sidebarTopStories').classList += ' nav_item_selected';
@@ -98,25 +103,27 @@ const tmplString = $('#validateTmpl').html();
 const invalidTmplString = $('#invalidTmpl').html();
 
 if (tmplString && invalidTmplString){
-	const templateValidate = Handlebars.compile(tmplString);
-	const templateInvalidate = Handlebars.compile(invalidTmplString);
-	const validateSec = $('#validateSection');
-	$( "#questionInput" ).bind('input propertychange', $.debounce(function() {
-		$.ajax({
-		  url: '/pagevalidate',
-		  data: {
-		    q: this.value
-		  },
-		  success: function( result ) {
-		  	if (result.title) {
-		  		$( "#questionPageId").val(result.id)
-					validateSec.html(templateValidate(result))
-					$('.modalSubmitButton').prop('disabled', false);
-		  	} else {
-					validateSec.html(templateInvalidate(result))
-		  		$('.modalSubmitButton').prop('disabled', true);
-		  	}
-		  },
-		});
-	}, 1500));
+	templateValidate = Handlebars.compile(tmplString);
+	templateInvalidate = Handlebars.compile(invalidTmplString);
+	validateSec = $('#validateSection');
+	$( "#questionInput" ).bind('input propertychange', $.debounce(function(){ makeRequest(this.value) }, 1500));
+}
+
+function makeRequest (value) {
+	$.ajax({
+		url: '/pagevalidate',
+		data: {
+			q: value
+		},
+		success: function( result ) {
+			if (result.title) {
+				$( "#questionPageId").val(result.id)
+				validateSec.html(templateValidate(result))
+				$('.modalSubmitButton').prop('disabled', false);
+			} else {
+				validateSec.html(templateInvalidate(result))
+				$('.modalSubmitButton').prop('disabled', true);
+			}
+		},
+	});
 }
