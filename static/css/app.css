@@ -1048,6 +1048,8 @@ img {
             margin-top: 2px;
             color: #999;
             font-size: 13px; }
+          .homePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .incompleteProfile, .searchPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .incompleteProfile, .requestPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .incompleteProfile, .resultPage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .incompleteProfile, .profilePage .contentWrapper .layout_3col_right .identityModule .actor .actor_info .incompleteProfile {
+            color: #999; }
       .homePage .contentWrapper .layout_3col_right .identityModule .stats, .searchPage .contentWrapper .layout_3col_right .identityModule .stats, .requestPage .contentWrapper .layout_3col_right .identityModule .stats, .resultPage .contentWrapper .layout_3col_right .identityModule .stats, .profilePage .contentWrapper .layout_3col_right .identityModule .stats {
         padding: 12px; }
         .homePage .contentWrapper .layout_3col_right .identityModule .stats .number, .searchPage .contentWrapper .layout_3col_right .identityModule .stats .number, .requestPage .contentWrapper .layout_3col_right .identityModule .stats .number, .resultPage .contentWrapper .layout_3col_right .identityModule .stats .number, .profilePage .contentWrapper .layout_3col_right .identityModule .stats .number {
