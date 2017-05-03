@@ -8,6 +8,16 @@ closeRecommendationsModal = function() {
 	document.getElementById('modalMask').classList.remove("displayRequestModal");
 }
 
+openConnectModal = function() {
+	document.getElementById('connectModal').className += " displayConnectModal";
+	document.getElementById('modalMask').className += " displayConnectModal";
+}
+
+closeConnectModal = function() {
+	document.getElementById('connectModal').classList.remove("displayConnectModal");
+	document.getElementById('modalMask').classList.remove("displayConnectModal");
+}
+
 openProfileEditModal = function() {
 	document.getElementById('profileEditModal').className += " displayProfileEditModal";
 	document.getElementById('modalMask').className += " displayProfileEditModal";
@@ -68,15 +78,12 @@ setSideBar = function () {
 	if (curPageVals[0] === "http://localhost:3000/" || curPageVals === "https://wikiweb.org/") {
 		if (curPageVals[1]){
 			if (curPageVals[1].includes('filter=requests')) {
-				console.log('requests')
 				document.getElementById('sidebarNewRequests').classList += ' nav_item_selected';
 			} else if (curPageVals[1].includes('filter=connections')) {
-				console.log('connections')
 				document.getElementById('sidebarNewConnections').classList += ' nav_item_selected';
 			} 
 		}
 		else {
-			console.log('homepage')
 			document.getElementById('sidebarTopStories').classList += ' nav_item_selected';
 		}
 	}
@@ -87,10 +94,12 @@ window.onload = function() {
 	setSideBar();
 }
 
-const tmplString = $('#validateTmpl').html()
+const tmplString = $('#validateTmpl').html();
+const invalidTmplString = $('#invalidTmpl').html();
 
-if (tmplString){
+if (tmplString && invalidTmplString){
 	const templateValidate = Handlebars.compile(tmplString);
+	const templateInvalidate = Handlebars.compile(invalidTmplString);
 	const validateSec = $('#validateSection');
 	$( "#questionInput" ).bind('input propertychange', $.debounce(function() {
 		$.ajax({
@@ -99,9 +108,14 @@ if (tmplString){
 		    q: this.value
 		  },
 		  success: function( result ) {
-				$( "#questionPageId").val(result.id)
-				validateSec.html(templateValidate(result))
-				$('.modalSubmitButton').prop('disabled', false);
+		  	if (result.title) {
+		  		$( "#questionPageId").val(result.id)
+					validateSec.html(templateValidate(result))
+					$('.modalSubmitButton').prop('disabled', false);
+		  	} else {
+					validateSec.html(templateInvalidate(result))
+		  		$('.modalSubmitButton').prop('disabled', true);
+		  	}
 		  },
 		});
 	}, 1500));
