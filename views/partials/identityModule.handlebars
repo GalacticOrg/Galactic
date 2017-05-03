@@ -11,8 +11,11 @@
 					<div class="fullname">
 						<a>{{user.displayName}}</a>
 					</div>
-					<div class="title">{{user.title}}
-					</div>
+					{{#if user.title}}
+					<div class="title">{{user.title}}</div>
+					{{else}}
+					<div class="title incompleteProfile">Complete Your Profile</div>
+					{{/if}}
 				</div>
 			</div>
 		<div class="stats">
