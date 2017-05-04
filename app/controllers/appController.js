@@ -10,7 +10,8 @@ const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     User = require('../model/user.js'),
     Connection = require('../model/connection.js'),
     Tag = require('../model/tag.js').tag,
-    regexNYT = new RegExp('nyt.com|nytimes.com|newyorktimes.com');
+    regexNYT = new RegExp('nyt.com|nytimes.com|newyorktimes.com'),
+    userAttibutrs = ['username', 'displayName', 'id', 'avatar'];
 
 const landing = function (req, res) {
   res.render('landing');
@@ -19,10 +20,12 @@ const landing = function (req, res) {
 
 const home = function (req, res) {
   const user = req.user.toJSON();
-  const limit = req.query.limit;
-  const offset = req.query.offset;
+  const limit = req.query.limit || 30;
+  const offset = req.query.offset || 0;
   let pages = null;
   let feed = null;
+
+  console.log(limit)
 
   const filter = req.query.filter;
 
@@ -37,9 +40,9 @@ const home = function (req, res) {
   }
 
   Page.findAll({
-    limit: limit || 30,
-    offset: offset || 0,
-    include:[{ model: User }, { model: Tag, as: 'tag' }, { model: Page, as: 'connections' }],
+    limit: limit ,
+    offset: offset,
+    include:[{ model: User, attributes:userAttibutrs }, { model: Tag, as: 'tag' }, { model: Page, as: 'connections' }],
     order: [
       ['lastActivityAt', 'DESC']
     ],
@@ -65,16 +68,16 @@ const home = function (req, res) {
 
     return [Page.count({ where: { userId:user.id } }),Connection.count({ where: { userId:user.id } })]
   }).spread(function (userPageCount, userConnectionCount){
-    console.log(userPageCount, userConnectionCount, 'userConnectionCountuserConnectionCount')
     res.render('home', {
       feed,
       user,
       userPageCount,
-      userConnectionCount
+      userConnectionCount,
+      limit: limit + 30,
+      offset: offset + 30
     });
   });
 };
-
 module.exports.requests = function (req, res) {
   const limit = req.query.limit;
   const offset = req.query.offset;
@@ -87,7 +90,7 @@ module.exports.requests = function (req, res) {
   Page.findAll({
     limit: limit || 30,
     offset: offset || 0,
-    include:[{ model: User }, { model: Tag, as: 'tag' }, { model: Page, as: 'connections' }],
+    include:[{ model: User, attributes:userAttibutrs }, { model: Tag, as: 'tag' }, { model: Page, as: 'connections' }],
     order: [
       ['lastActivityAt', 'DESC']
     ],
@@ -155,7 +158,7 @@ module.exports.page = function (req, res) {
   let destinations = null;
 
   pageObj.getUser().then(function (result){
-    page.user = result.toJSON();
+    page.user = result? result.toJSON(): null;
     return pageObj.getConnections();
   }).then(function (result){
     destinations = result;
@@ -203,6 +206,12 @@ module.exports.connect = function (req, res) {
   });
 };
 
+function createWwUri (title){
+  let uri = title.replace(new RegExp(' ', 'g'), '_');
+  uri = uri.replace(new RegExp(/\W/, 'g'), '');
+  uri += '_' + new Date().getTime().toString(36);
+  return uri;
+}
 
 module.exports.pageValidate = function (req, res){
   const inputURI = req.query.q;
@@ -215,8 +224,7 @@ module.exports.pageValidate = function (req, res){
       const uri = article.web_url;
       Page.load(uri).then(function (result){
         if (!result){
-          let wwUri = article.headline.main.replace(new RegExp(' ', 'g'), '_');
-          wwUri = wwUri.replace(new RegExp(/\W/, 'g'), '');
+          let wwUri = createWwUri(article.headline.main);
           Page.create({
             title: article.headline.main,
             icon: 'http://www.nytimes.com/favicon.ico',
@@ -239,8 +247,7 @@ module.exports.pageValidate = function (req, res){
       const uri = article.canonicalLink || inputURI;
       Page.load(uri).then(function (result){
         if (!result){
-          let wwUri = article.title.replace(new RegExp(' ', 'g'), '_');
-          wwUri = wwUri.replace(new RegExp(/\W/, 'g'), '');
+          let wwUri = createWwUri(article.title)
           Page.create({
             text: article.text,
             title: article.title,
@@ -264,7 +271,6 @@ module.exports.pageValidate = function (req, res){
 module.exports.search = function (req, res) {
   const inputURI = req.query.q;
   const user = req.user.toJSON();
-  console.log(user, 'useruser');
   if (inputURI === undefined || inputURI.length === 0){
     return res.render('search', {
       pages: [],
@@ -331,7 +337,7 @@ module.exports.new = function (req, res) {
       page.setUser(user).then(function (result){
         res.redirect('/page/' + result.wwUri);
       });
-
+      console.log(page.pageUrl, 'pagepagepage')
       diffBotAnalyze(page.pageUrl, function (err, article) {
         if (err){
           return console.log(page.id, err, '<--page.id, diffBotAnalyze failed');
@@ -366,7 +372,9 @@ module.exports.new = function (req, res) {
             const tag = array[0];
             const data = articleTags[i];
             page.addTag(tag, data).then(function (){
-              console.log('Save Successful');
+              // No Opp
+            }).catch(function (err){
+              console.log(err, tag + '<-- Tag Save Failed');
             });
           });
         });

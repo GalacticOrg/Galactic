@@ -25,7 +25,7 @@
 							<em>The link you have requested does not exist inside the WikiWeb. This means nobody has made recommendations for it yet. </em>
 						</div>
 						<div class="actionBar">
-							<a onClick=openRecommendationsModal() href="javascript:void()" class="connectButton">
+							<a onClick=openModalAndPostRecommendation() href="javascript:void()" class="connectButton">
 								Request Recommendations
 							</a>
 						</div>
@@ -50,5 +50,8 @@
 </div>
 {{#section 'foot'}}
 <!-- <script type="application/javascript" src="http://0.0.0.0:8090/js/home.js"></script> -->
+<script type="application/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
+<script type="application/javascript" src="/static/js/jquery.debounce-1.0.5.js"></script>
+<script type="application/javascript" src="/static/js/handlebars.js"></script>
 <script type="application/javascript" src="/static/js/main.js"></script>
 {{/section}}
