@@ -285,7 +285,20 @@ module.exports.search = function (req, res) {
   let pages = [];
   if ( !isValidURI(uri) ) {
     const searchString = inputURI;
-    Page.search(searchString).then(function (results){
+    const searchWordsArray = searchString.split(' ');
+    const searchExpressionArray = searchWordsArray.map((item) => {
+        return { $iLike: '%' + item + '%' };
+    });
+    return Page.findAll({
+      where:{
+        $or: [{
+          title:{ $or:searchExpressionArray }
+        },{
+          description:{ $or:searchExpressionArray }
+        }]
+      },
+      include:[{ model: User, attibutrs:userAttibutrs }, { model: Tag, as: 'tag' }, { model: Page, as: 'connections' }]
+    }).then(function (results){
       pages = results.map(function (result){
         return result.toJSON();
       });

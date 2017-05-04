@@ -63,21 +63,6 @@ const options = {
     }
   },
   classMethods: {
-    search: function (searchString){
-      const searchWordsArray = searchString.split(' ');
-      const searchExpressionArray = searchWordsArray.map((item) => {
-          return { $iLike: '%' + item + '%' };
-      });
-      return Page.findAll({
-        where:{
-          $or: [{
-            title:{ $or:searchExpressionArray }
-          },{
-            description:{ $or:searchExpressionArray }
-          }]
-        }
-      });
-    },
     load: function (url){
       //  Manual Join Q for refrence
       //  return connection.query('SELECT * FROM pages INNER JOIN connection ON "connectionPage" = pages.id INNER JOIN users ON connection."userId" = users.id;')
