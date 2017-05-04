@@ -1,11 +1,20 @@
+
+var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+var urlRegex = new RegExp(expression);
+
 openRecommendationsModal = function() {
 	document.getElementById('requestModal').className += " displayRequestModal";
 	document.getElementById('modalMask').className += " displayRequestModal";
 }
 
 openModalAndPostRecommendation = function() {
+	let val = $( "#questionInput" ).val();
+	if (val && val.match(urlRegex) ){
+		makeRequest(val);
+	} else{
+		$( "#questionInput" ).val('');
+	}
 	openRecommendationsModal();
-	makeRequest($( "#questionInput" ).val());
 }
 
 closeRecommendationsModal = function() {
