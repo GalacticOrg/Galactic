@@ -89,17 +89,14 @@ setNav = function () {
 
 setSideBar = function () {
 	const curPageVals = window.location.href.split('?');
-	if (curPageVals[0] === "http://localhost:3000/" || curPageVals === "https://wikiweb.org/") {
-		if (curPageVals[1]){
+	if (window.location.pathname === '/' && curPageVals[1]) {
 			if (curPageVals[1].includes('filter=requests')) {
 				document.getElementById('sidebarNewRequests').classList += ' nav_item_selected';
 			} else if (curPageVals[1].includes('filter=connections')) {
 				document.getElementById('sidebarNewConnections').classList += ' nav_item_selected';
 			}
-		}
-		else {
-			document.getElementById('sidebarTopStories').classList += ' nav_item_selected';
-		}
+	} else {
+		document.getElementById('sidebarTopStories').classList += ' nav_item_selected';
 	}
 }
 
