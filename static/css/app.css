@@ -79,7 +79,7 @@ img {
     padding-left: 20px;
     width: 50px; }
 
-.connectButton {
+.connectButton, .moreButton {
   margin-right: 12px;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -101,7 +101,7 @@ img {
   background: #f1f8fb;
   color: #2b6dad;
   border: 1px solid #bbcadc; }
-  .connectButton:hover {
+  .connectButton:hover, .moreButton:hover {
     border-color: #2b6dad; }
 
 .alerts {
