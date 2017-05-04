@@ -22,10 +22,10 @@ const express = require('express'),
 
 app.use(cookieParser());
 app.use(session({
-  // store: new pgSession({
-  //   pg : pg,
-  //   conString : pgdb
-  // }),
+  store: new pgSession({
+    pg : pg,
+    conString : pgdb
+  }),
   secret: sessionSecret,
   resave: false,
   saveUninitialized: true,
