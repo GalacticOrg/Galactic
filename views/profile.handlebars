@@ -21,7 +21,11 @@
                 </div>
               </div>
             </div>
+            {{#if user.avatar}}
             <img id="profile-img" class="bigProfileImg" src="{{user.avatar}}?{{getTime}}"/>
+            {{else}}
+            <img id="profile-img" class="bigProfileImg" src="/static/img/upload_profile_image.jpg"/>
+            {{/if}}
           </div>
           <div class="right">
             <div class="name editable">
