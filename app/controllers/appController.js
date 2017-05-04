@@ -71,8 +71,8 @@ const home = function (req, res) {
       user,
       userPageCount,
       userConnectionCount,
-      limit: limit + 30,
-      offset: offset + 30
+      limit: Number(limit) + 30,
+      offset: Number(offset) + 30
     });
   });
 };

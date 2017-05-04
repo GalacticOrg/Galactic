@@ -1,8 +1,8 @@
-const User = require('../../app/model/User.js'),
-      Page = require('../../app/model/Page.js'),
-      Connection = require('../../app/model/Connection.js'),
-      Tag = require('../../app/model/Tag.js').tag,
-      ItemTag = require('../../app/model/Tag.js').itemtag;
+const User = require('../../app/model/user.js'),
+      Page = require('../../app/model/page.js'),
+      Connection = require('../../app/model/connection.js'),
+      Tag = require('../../app/model/tag.js').tag,
+      ItemTag = require('../../app/model/tag.js').itemtag;
 
 
 module.exports = function (callback) {
