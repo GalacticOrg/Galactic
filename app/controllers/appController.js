@@ -14,7 +14,11 @@ const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     userAttibutrs = ['username', 'displayName', 'id', 'avatar'];
 
 const landing = function (req, res) {
-  res.render('landing');
+  Page.create({ title:new Date().getTime() })
+  .then(function (result){
+    res.send(result)
+  });
+  // res.render('landing');
 };
 
 
