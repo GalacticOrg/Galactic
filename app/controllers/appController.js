@@ -119,14 +119,14 @@ module.exports.connections = function (req, res) {
     return sequelizeConnection.query('SELECT users.id, username, "displayName", avatar FROM connection INNER JOIN users ON "userId" = users.id');
   }).then(function (results){
     userConnections = results[0];
-    const connectons = pages.map(function (page, i){
+    const connections = pages.map(function (page, i){
       const newPage = page;
       newPage.connections = [destinations[i]];
       newPage.userWhoMadeConnection =  userConnections[i];
       return newPage;
     });
     return res.render('connections', {
-      connectons,
+      connections,
       user
     });
   });
