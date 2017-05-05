@@ -22,6 +22,7 @@ module.exports = function(express) {
 
   router.post('/login', signupController.authenticate);
   router.get('/login', isNotAuthenticated, signupController.login);
+  
   router.get('/', appController.main);
 
   router.get('/pagevalidate', appController.pageValidate);
@@ -39,6 +40,7 @@ module.exports = function(express) {
   router.get('/page/:wwid', appController.page);
   router.post('/page/:wwid/connect', appController.connect);
 
+  router.get('/about', appController.about);
 
   router.get('/logout', function (req, res) {
     req.logout();

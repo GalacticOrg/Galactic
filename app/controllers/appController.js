@@ -17,6 +17,9 @@ const landing = function (req, res) {
   res.render('landing');
 };
 
+const about = function (req, res) {
+  res.render('about');
+};
 
 const home = function (req, res) {
   const user = req.user.toJSON();
@@ -407,6 +410,11 @@ module.exports.profile = function (req, res) {
   res.render('profile', {
     user
   });
+};
+
+module.exports.about = function (req, res) {
+  const user = req.user;
+  res.render('about');
 };
 
 module.exports.updateProfile = function (req, res) {
