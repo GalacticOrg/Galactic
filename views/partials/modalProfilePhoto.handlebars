@@ -7,8 +7,8 @@
       <img id="profile-crop-img" />
     </div>
   </div>
-  <div class="modalFooter">
-    <div class="ProfilePhotoModalFooter" action="/profile" method="post" enctype="multipart/form-data" role="form">
+  <div class="modalFooter" style="justify-content: flex-end; height: 30px;">
+    <div class="profilePhotoModalFooter" action="/profile" method="post" enctype="multipart/form-data" role="form">
       <div class="modalContent">
         <div class="closeButton" onclick=closeProfilePhotoModal()>
           <i class="fa fa-times" aria-hidden="true"></i>
@@ -16,7 +16,7 @@
       </div>
       <div class="saveRow">
         <div class="cancel underlineOnHover" onclick=closeProfilePhotoModal()>Cancel</div>
-        <button class="modalSubmitButton" id="profile-crop-submit" value="Save">Save</button>
+        <button class="modalSubmitButton" id="profile-crop-submit" value="Save" style="height: 30px;">Save</button>
       </div>
     </div>
   </div>
