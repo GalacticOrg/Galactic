@@ -153,10 +153,11 @@ module.exports.loadwwid = function (req, res, next, id) {
 
 module.exports.page = function (req, res) {
   const pageObj = req.page;
-  const page = pageObj.toJSON();
   const user = req.user;
 
+  let page = pageObj.toJSON();
   let destinations = null;
+  let destinationTags = null;
 
   pageObj.getUser().then(function (result){
     page.user = result? result.toJSON(): null;
@@ -167,19 +168,32 @@ module.exports.page = function (req, res) {
   }).then(function (results){
     page.tags = results.map(function (result){ return result.toJSON();});
     return destinations.map(function (destination){
+       return destination.getTag();
+    });
+  }).spread(function (results){
+    destinationTags = Array.prototype.slice.call(arguments);
+    destinations = destinations.map(function (result, i){
+      let connection = result.toJSON();
+      connection.tags = destinationTags[i];
+      return connection;
+    });
+  }).then(function (results){
+    return destinations.map(function (destination){
        return destination.connection.getUser();
     });
   }).spread(function (){
     const users = arguments;
     destinations = destinations.map(function (result, i){
-      let connection = result.toJSON();
+      let connection = result;
       connection.user = users[i].toJSON();
       return connection;
     });
+    const tags = destinationTags.concat(page.tags);
     res.render('page', {
       page,
       destinations,
-      user
+      user,
+      tags
     });
   });
 };
