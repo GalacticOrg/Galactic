@@ -188,8 +188,10 @@ module.exports.page = function (req, res) {
       connection.user = users[i].toJSON();
       return connection;
     });
-    const tags = destinationTags.concat(page.tags);
-    res.render('page', {
+    let tags = [].concat.apply([], destinationTags);
+    tags = tags.concat(page.tags);
+
+    res.render('page',{
       page,
       destinations,
       user,
@@ -262,7 +264,7 @@ module.exports.pageValidate = function (req, res){
       const uri = article.canonicalLink || inputURI;
       Page.load(uri).then(function (result){
         if (!result){
-          let wwUri = createWwUri(article.title)
+          let wwUri = createWwUri(article.title);
           Page.create({
             text: article.text,
             title: article.title,
@@ -356,59 +358,63 @@ module.exports.new = function (req, res) {
     }
   }).then(function (page){
     if (page === null){
-      return req.flash('errors', {
+      req.flash('errors', {
         message: 'Something Went Wrong. Please Try Again.',
         type: 'error'
       });
-      res.redirect('back');
+      return res.redirect('back');
     } else {
       page.setUser(user).then(function (result){
         res.redirect('/page/' + result.wwUri);
       });
-      diffBotAnalyze(page.pageUrl, function (err, article) {
-        if (err){
-          return console.log(page.id, err, '<--page.id, diffBotAnalyze failed');
-        }
-        const articleTags = article.tags;
-        return page.update({
-          text: article.text,
-          title: article.title,
-          author: article.author,
-          authorUrl: article.authorUrl,
-          type: article.type,
-          icon: article.icon,
-          pageUrl: article.resolvedPageUrl || article.pageUrl,
-          siteName: article.siteName,
-          humanLanguage: article.humanLanguage,
-          diffbotUri: article.diffbotUri,
-          videos: article.videos,
-          authors: article.authors,
-          images: article.images,
-          meta: article.meta,
-          description:  article.meta ? article.meta.description : ''
-        }).then(function (){
-          return articleTags.map(function (tag){
-            return Tag.findCreateFind({
-              where: { uri: tag.uri },
-              defaults: tag
-            });
-          });
-        }).spread(function (){
-          const spreadTag = Array.prototype.slice.call(arguments);
-          spreadTag.forEach(function (array, i){
-            const tag = array[0];
-            const data = articleTags[i];
-            page.addTag(tag, data).then(function (){
-              // No Opp
-            }).catch(function (err){
-              console.log(err, tag + '<-- Tag Save Failed');
-            });
-          });
-        });
-      });
+      pageParser(page)
     }
   });
 };
+
+function pageParser(page, cb){
+  diffBotAnalyze(page.pageUrl, function (err, article) {
+    if (err){
+      return console.log(page.id, err, '<--page.id, diffBotAnalyze failed');
+    }
+    const articleTags = article.tags;
+    return page.update({
+      text: article.text,
+      title: article.title,
+      author: article.author,
+      authorUrl: article.authorUrl,
+      type: article.type,
+      icon: article.icon,
+      pageUrl: article.resolvedPageUrl || article.pageUrl,
+      siteName: article.siteName,
+      humanLanguage: article.humanLanguage,
+      diffbotUri: article.diffbotUri,
+      videos: article.videos,
+      authors: article.authors,
+      images: article.images,
+      meta: article.meta,
+      description:  article.meta ? article.meta.description : ''
+    }).then(function (){
+      return articleTags.map(function (tag){
+        return Tag.findCreateFind({
+          where: { uri: tag.uri },
+          defaults: tag
+        });
+      });
+    }).spread(function (){
+      const spreadTag = Array.prototype.slice.call(arguments);
+      spreadTag.forEach(function (array, i){
+        const tag = array[0];
+        const data = articleTags[i];
+        page.addTag(tag, data).then(function (){
+          // No Opp
+        }).catch(function (err){
+          console.log(err, tag + '<-- Tag Save Failed');
+        });
+      });
+    });
+  });
+}
 
 module.exports.main = function (req, res) {
   if (req.isAuthenticated()){
@@ -443,11 +449,10 @@ module.exports.updateProfile = function (req, res) {
     });
   } else if ( image.mimetype === 'image/jpeg' ){
 
-    // open a file called "lenna.png"
     Jimp.read(image.buffer, function (err, lenna) {
         if (err) throw err;
-        lenna.resize(140, 140)            // resize
-             .quality(72)                 // set JPEG quality
+        lenna.resize(140, 140)
+             .quality(72)
              .getBuffer(image.mimetype, function (err, result){
                if (err) {
                 console.log(uid, err, '<--user id, Jimp profile pic failed, ');
