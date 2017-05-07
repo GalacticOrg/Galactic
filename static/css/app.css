@@ -586,7 +586,7 @@ img {
         display: flex;
         flex-direction: row; }
         .feedBundle .contentHeader .layoutTextWrapper .userDetails .username {
-          max-width: 50%;
+          max-width: 182.301px;
           white-space: nowrap;
           text-overflow: ellipsis;
           display: block;
@@ -1266,7 +1266,7 @@ img {
     .resultPage .metaBar .username:hover {
       text-decoration: underline; }
   .resultPage .metaBar .connector {
-    width: 40%;
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;

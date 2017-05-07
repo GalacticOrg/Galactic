@@ -1,11 +1,23 @@
 <a href="javascript:location.href='/page/{{wwUri}}'">
+	{{!-- {{toJSON this}} --}}
 	<div class="feedBundle">
 		<div class="feedBundleMeta">
-			<span class="feedItemType">Connection</span>
-			<span class="bullet"> · </span>
-			<span class="timestamp">
-				{{timeAgo createdAt}}
-			</span>
+			{{#if tag.0.label}}
+			<span class="topic">{{tag.0.label}}</span>
+				{{#if tag.1.label}}
+				<span class="bullet"> · </span>
+				{{/if}}
+			{{/if}}
+			{{#if tag.1.label}}
+			<span class="topic">{{tag.1.label}}</span>
+				{{#if tag.2.label}}
+				<span class="bullet"> · </span>
+				{{/if}}
+			{{/if}}
+			{{#if tag.2.label}}
+			<span class="topic">{{tag.2.label}}</span>
+			{{/if}}
+
 		</div>
 		<div class="bundleTitle">
 			{{title}}
@@ -23,15 +35,11 @@
 				</span>
 				<span class="layoutTextWrapper">
 					<div class="userDetails">
-						<div class="username">{{userWhoMadeConnection.displayName}}</div>{{#if userWhoMadeConnection.title}}<div class="userInfo">, {{userWhoMadeConnection.title}}</div>{{/if}}
+						<div class="username" style="max-width: 182.301px;">{{userWhoMadeConnection.displayName}}</div>{{#if userWhoMadeConnection.title}}<div class="userInfo">, {{userWhoMadeConnection.title}}</div>{{/if}}
 					</div>
 					<div class="credibilityFacts feedBundleMeta">
 						<div class="timestamp">
 							Connected {{timeAgo connections.0.createdAt}}
-						</div>
-						<span class="bullet"> · </span>
-						<div class="requester hoverUnderline">
-							Requested by {{user.displayName}}
 						</div>
 					</div>
 				</span>
@@ -46,7 +54,8 @@
 		</div>
 		<div class="actionBar">
 			<span class="connectButton">
-				Connect
+				Upvote 
+				{{!-- does nothing --}}
 			</span>
 			<span class="connections underlineOnHover">
 				Connections<span class="connectionsTotal">{{connections.length}}</span>

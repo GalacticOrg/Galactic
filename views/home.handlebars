@@ -1,4 +1,4 @@
-{{> navbar }}
+{{> navbar navIndex='home'}}
 {{> messages }}
 
 <div class="homePage">
@@ -14,21 +14,7 @@
 				<div class="pagedListItem top_stories" id="sidebarTopStories">
 					<ul>
 						<li>
-							<a href="/">Top Stories</a>
-						</li>
-					</ul>
-				</div>
-				<div class="pagedListItem new_requests" id="sidebarNewRequests">
-					<ul>
-						<li>
-							<a href="/?filter=requests">New Requests</a>
-						</li>
-					</ul>
-				</div>
-				<div class="pagedListItem new_connections" id="sidebarNewConnections">
-					<ul>
-						<li>
-							<a href="/?filter=connections">New Connections</a>
+							<a href="/">Recent Connections</a>
 						</li>
 					</ul>
 				</div>
@@ -41,29 +27,9 @@
 				</div>
 			</div>
 
-			<div class="addQuestionPrompt">
-				<div class='inner'>
-					<span class="nameWithPhoto">
-						<span>
-							<img class="profile_photo_img" src="{{avatarNotNull user.avatar}}" />
-						</span>
-						<span>
-							{{user.displayName}}
-						</span>
-					</span>
-				</div>
-				<a class="askQuestionButton" onClick=openRecommendationsModal()>
-					<div class="inner">
-						<span>What should be connected on the WikiWeb?</span>
-					</div>
-				</a>
-			</div>
-
 			{{#each feed}}
 				{{#if connections}}
 					{{> homefeedconnection}}
-				{{else}}
-					{{> homefeedrequest}}
 				{{/if}}
 			{{/each}}
 			<a href="/?limit={{limit}}&offset={{offset}}" class="moreButton" style="margin-top: 16px; width: 100px; background-color: purple; color: white; height: 30px; padding-top: 5px; border-color: purple;">More</a>
