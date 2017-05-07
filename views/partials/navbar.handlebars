@@ -19,21 +19,13 @@
 			></input>
 			<input id="navbarSearchButton" class="submitButton" type="submit" value="Submit"></input>
 		</form>
-		<div class="pageButtons">
-			<div class="pageButton">
-				<div class="buttonContents" id="requestsNavButton">
-					<span class="icon">
-						<i class="fa fa-hand-paper-o" aria-hidden="true"></i>
-					</span>
-					<a href="/requests" class="text">Requests</a>
-				</div>
-			</div>
+		<div class="pageButtons" style="width: 100%;">
 			<div class="pageButton">
 				<div class="buttonContents" id="connectionsNavButton">
 					<span class="icon">
 						<i class="fa fa-bullseye" aria-hidden="true"></i>
 					</span>
-					<a href="/connections" class="text">Connections</a>
+					<a href="/connections" class="text">Activity</a>
 				</div>
 			</div>
 			<div class="pageButton" style="cursor: not-allowed;">
@@ -46,7 +38,7 @@
 			</div>
 
 			{{#if user}}
-			<a href="/profile" class="pageButton">
+			<a href="/profile" class="pageButton" style="margin-left: 50px;">
 				<div class="buttonContents profileImgButton" id="userNavButton">
 					<span class="userImg">
 						<img src={{avatarNotNull user.avatar}} class="userImg" />
@@ -55,7 +47,7 @@
 				</div>
 			</a>
 			{{else}}
-			<a href="/login" class="pageButton">
+			<a href="/login" class="pageButton" style="margin-left: 50px;">
 				<div class="buttonContents profileImgButton" id="userNavButton">
 					<span class="userImg"></span> {{!-- blank --}}
 					<span class="text">Login</span>

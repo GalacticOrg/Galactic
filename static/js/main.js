@@ -64,6 +64,7 @@ setNav = function () {
 	const navIndex = navElement.getAttribute('data-navIndex');
 	switch(navIndex) {
     case 'home':
+    		document.getElementById('connectionsNavButton').classList += ' currentPage';
         break;
     case 'search':
         break;
