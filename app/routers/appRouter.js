@@ -22,13 +22,13 @@ module.exports = function(express) {
 
   router.post('/login', signupController.authenticate);
   router.get('/login', isNotAuthenticated, signupController.login);
-  
+
   router.get('/', appController.main);
 
   router.get('/pagevalidate', appController.pageValidate);
 
   router.get('/search', appController.search);
-  router.post('/new', isAuthenticated, appController.new);
+  router.post('/page/:wwid/new', isAuthenticated, appController.new);
 
   router.get('/connections', appController.connections);
   router.get('/requests', appController.requests);

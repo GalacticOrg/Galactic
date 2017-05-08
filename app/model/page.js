@@ -24,6 +24,10 @@ const attributes = {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
+  isParsed: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   text: {
     type: Sequelize.TEXT,
     length: 'long'

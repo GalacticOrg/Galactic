@@ -90,14 +90,15 @@ setNav = function () {
 
 setSideBar = function () {
 	const curPageVals = window.location.href.split('?');
+	const sidebarTopStories = document.getElementById('sidebarTopStories')
 	if (window.location.pathname === '/' && curPageVals[1]) {
 			if (curPageVals[1].includes('filter=requests')) {
 				document.getElementById('sidebarNewRequests').classList += ' nav_item_selected';
 			} else if (curPageVals[1].includes('filter=connections')) {
 				document.getElementById('sidebarNewConnections').classList += ' nav_item_selected';
 			}
-	} else {
-		document.getElementById('sidebarTopStories').classList += ' nav_item_selected';
+	} else if(sidebarTopStories) {
+		sidebarTopStories.classList += ' nav_item_selected';
 	}
 }
 
@@ -130,6 +131,18 @@ function makeRequest (value) {
 			} else {
 				validateSec.html(templateInvalidate(result))
 				$('.modalSubmitButton').prop('disabled', true);
+			}
+		},
+	});
+}
+const isParsed = $('#isParsed').is(":checked");
+if (location.search.search('pp=true') !== -1 && !isParsed){
+	$.ajax({
+		type: 'POST',
+		url: location.pathname + '/new',
+		success: function( result ) {
+			if (result.newParse === true){
+				window.location = location.href;
 			}
 		},
 	});

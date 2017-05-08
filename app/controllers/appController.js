@@ -31,7 +31,7 @@ const home = function (req, res) {
   const filter = req.query.filter;
 
   let filters = {
-    userId: { $ne:null }
+    //userId: { $ne:null }
   };
 
   if (filter === 'requests') {
@@ -66,7 +66,6 @@ const home = function (req, res) {
       }
       return newPage;
     });
-
     return [Page.count({ where: { userId:user.id } }),Connection.count({ where: { userId:user.id } })]
   }).spread(function (userPageCount, userConnectionCount){
     res.render('home', {
@@ -195,6 +194,7 @@ module.exports.page = function (req, res) {
       page,
       destinations,
       user,
+      connectionUsers:users,
       tags
     });
   });
@@ -232,11 +232,21 @@ function createWwUri (title){
 
 module.exports.pageValidate = function (req, res){
   const inputURI = req.query.q;
+  pageValidate(inputURI, function(err, result){
+    if (err){
+      return res.send(err);
+    } else {
+      res.send(result);
+    }
+  })
 
+};
+
+function pageValidate(inputURI, cb){
   if (regexNYT.test(inputURI)){
     pageParseNYT(inputURI.split('?')[0], function (err, article){
       if (err){
-        return res.send(err);
+        return cb(err);
       }
       const uri = article.web_url;
       Page.load(uri).then(function (result){
@@ -249,17 +259,17 @@ module.exports.pageValidate = function (req, res){
             description: article['lead_paragraph'],
             wwUri: wwUri
           }).then(function (createResult){
-            res.send(createResult);
+            cb(err, createResult);
           });
         } else {
-          res.send(result);
+          cb(err, result);
         }
       });
     });
   } else {
     pageParse(inputURI, function (err, article){
       if (err){
-        return res.send(err);
+        return cb(err);
       }
       const uri = article.canonicalLink || inputURI;
       Page.load(uri).then(function (result){
@@ -274,16 +284,15 @@ module.exports.pageValidate = function (req, res){
             description: article.description,
             wwUri: wwUri
           }).then(function (createResult){
-            res.send(createResult);
+            cb(err, createResult);
           });
         } else {
-          res.send(result);
+          cb(err, result);
         }
       });
     });
   }
-};
-
+}
 
 module.exports.search = function (req, res) {
   const inputURI = req.query.q;
@@ -331,11 +340,21 @@ module.exports.search = function (req, res) {
   } else {
     Page.load(uri).then(function (result){
       if (!result){
-        return res.render('search', {
-          pages: [],
-          addURL: true,
-          inputURI,
-          user
+        pageValidate(uri, function (err, result){
+          if (err){
+            req.flash('errors', {
+              message: 'Something Went Wrong. Please Try Again.',
+              type: 'error'
+            });
+            return res.render('search', {
+              pages,
+              inputURI,
+              user
+            });
+          } else {
+            res.redirect('/page/' + result.wwUri + '?pp=true');
+          }
+
         });
       } else {
         pages = [result];
@@ -350,32 +369,38 @@ module.exports.search = function (req, res) {
 };
 
 module.exports.new = function (req, res) {
-  const id = req.body.id;
+  //const id = req.body.id;
   const user = req.user;
-  Page.findOne({
-    where:{
-       id: id
-    }
-  }).then(function (page){
-    if (page === null){
-      req.flash('errors', {
-        message: 'Something Went Wrong. Please Try Again.',
-        type: 'error'
+  const page = req.page;
+  // Page.findOne({
+  //   where:{
+  //      id: id
+  //   }
+  // }).then(function (page){
+    if (page.isParsed === true){
+    //   req.flash('errors', {
+    //     message: 'Something Went Wrong. Please Try Again.',
+    //     type: 'error'
+    //   });
+      return res.send({
+        isParsed: true
       });
-      return res.redirect('back');
     } else {
-      page.setUser(user).then(function (result){
-        res.redirect('/page/' + result.wwUri);
+      pageParser(page, function (err){
+        res.send({
+          isParsed: true,
+          newParse: true,
+          page
+        });
       });
-      pageParser(page)
     }
-  });
+  // });
 };
 
-function pageParser(page, cb){
+function pageParser (page, cb){
   diffBotAnalyze(page.pageUrl, function (err, article) {
-    if (err){
-      return console.log(page.id, err, '<--page.id, diffBotAnalyze failed');
+    if (err || !article){
+      return console.log(page.id, err, article, '<--page.id, diffBotAnalyze failed');
     }
     const articleTags = article.tags;
     return page.update({
@@ -393,7 +418,8 @@ function pageParser(page, cb){
       authors: article.authors,
       images: article.images,
       meta: article.meta,
-      description:  article.meta ? article.meta.description : ''
+      description:  article.meta ? article.meta.description : '',
+      isParsed: true
     }).then(function (){
       return articleTags.map(function (tag){
         return Tag.findCreateFind({
@@ -403,15 +429,16 @@ function pageParser(page, cb){
       });
     }).spread(function (){
       const spreadTag = Array.prototype.slice.call(arguments);
-      spreadTag.forEach(function (array, i){
+      return spreadTag.map(function (array, i){
         const tag = array[0];
         const data = articleTags[i];
-        page.addTag(tag, data).then(function (){
-          // No Opp
-        }).catch(function (err){
-          console.log(err, tag + '<-- Tag Save Failed');
-        });
+        page.addTag(tag, data);
       });
+    }).spread(function (result){
+      cb(null, result);
+    }).catch(function (err){
+      console.log(err, '<-- parse error')
+      cb(err);
     });
   });
 }

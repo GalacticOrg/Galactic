@@ -11,6 +11,12 @@
 				</div>
 			</h3>
 			<div class="pagedList">
+				{{#if page.isParsed}}
+					<input hidden type="checkbox" id="isParsed" checked>
+				{{else}}
+					<p>Spinner</p>
+					<input hidden type="checkbox" id="isParsed">
+				{{/if}}
 				{{#each tags}}
 					<div class="pagedListItem top_stories">
 						<ul>
@@ -35,7 +41,9 @@
 			{{/if}}
 
 		</div>
-		<div class="layout_3col_right"></div>
+		<div class="layout_3col_right">
+			{{toJSON connectionUsers}}
+		</div>
 	</div>
 </div>
 
