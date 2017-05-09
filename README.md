@@ -19,6 +19,8 @@ cd into wikiweb-dot-org directory and run "node setup.js"
 Starting with your directory structure (e.g. /Applications/Postgres.app/Contents/Versions/9.6/bin/), run 
 "psql wikiweb < node_modules/connect-pg-simple/table.sql". The whole command, run from the wikiweb-dot-org directory, will look something like "/Applications/Postgres.app/Contents/Versions/9.6/bin/psql wikiweb < node_modules/connect-pg-simple/table.sql"
 
+e.g. /Applications/Postgres.app/Contents/Versions/9.6/bin/psql wikiweb < node_modules/connect-pg-simple/table.sql
+
 If run correctly, it should print
 CREATE TABLE 
 ALTER TABLE
