@@ -2,6 +2,7 @@ const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     Sequelize = require('sequelize'),
     sequelizeConnection = require('../model/sequelize.js'),
     Jimp = require('jimp'),
+    pareLinksHtml = require('../../utils/pageparser').pareLinksHtml,
     isValidURI = require('../../utils/pageparser').isValidURI,
     pageParse = require('../../utils/pageparser').pageParse,
     pageParseNYT = require('../../utils/pageparser').pageParseNYT,
@@ -78,6 +79,7 @@ const home = function (req, res) {
     });
   });
 };
+
 module.exports.requests = function (req, res) {
   const limit = req.query.limit;
   const offset = req.query.offset;
@@ -132,9 +134,6 @@ module.exports.connections = function (req, res) {
       user
     });
   });
-
-  // const user = req.user;
-
 };
 
 module.exports.loadwwid = function (req, res, next, id) {
@@ -394,7 +393,8 @@ module.exports.new = function (req, res) {
         isParsed: true
       });
     } else {
-      pageParser(page, function (err){
+      const getLinks = true;
+      pageParser(page.pageUrl, page, getLinks, function (err){
         res.send({
           isParsed: true,
           newParse: true,
@@ -405,49 +405,76 @@ module.exports.new = function (req, res) {
   // });
 };
 
-function pageParser (page, cb){
-  diffBotAnalyze(page.pageUrl, function (err, article) {
-    if (err || !article){
-      return console.log(page.id, err, article, '<--page.id, diffBotAnalyze failed');
+function pageParser (url, page, getLinks, cb){
+  diffBotAnalyze(url, function (err, article) {
+
+    if (err || !article || !article.title){
+      return console.log(err, article, '<--page.id, diffBotAnalyze failed');
     }
-    const articleTags = article.tags;
-    return page.update({
-      text: article.text,
-      title: article.title,
-      author: article.author,
-      authorUrl: article.authorUrl,
-      type: article.type,
-      icon: article.icon,
-      pageUrl: article.resolvedPageUrl || article.pageUrl,
-      siteName: article.siteName,
-      humanLanguage: article.humanLanguage,
-      diffbotUri: article.diffbotUri,
-      videos: article.videos,
-      authors: article.authors,
-      images: article.images,
-      meta: article.meta,
-      description:  article.meta ? article.meta.description : '',
-      isParsed: true
-    }).then(function (){
-      return articleTags.map(function (tag){
-        return Tag.findCreateFind({
-          where: { uri: tag.uri },
-          defaults: tag
+
+    Page.findOne({where:{
+      isParsed:{ $ne:false },
+      pageUrl: { $or: [article.resolvedPageUrl, article.pageUrl] }
+    } }).then(function (result){
+
+      if (result){
+        console.log('got result')
+        return cb(null, result);
+      }
+
+      if (article.html && getLinks){
+        const articleLinks = pareLinksHtml(article.html);
+        articleLinks.forEach(function (link){
+          const crawlLink = false;
+          const page = Page.build();
+          pageParser(link, page,  crawlLink, function(){
+            console.log(err, 'Got Recursive link')
+          });
         });
+      }
+
+      const articleTags = article.tags || [];
+      return page.update({
+        text: article.text,
+        html: article.html,
+        title: article.title,
+        author: article.author,
+        authorUrl: article.authorUrl,
+        type: article.type,
+        icon: article.icon,
+        pageUrl: article.resolvedPageUrl || article.pageUrl,
+        siteName: article.siteName,
+        humanLanguage: article.humanLanguage,
+        diffbotUri: article.diffbotUri,
+        videos: article.videos,
+        authors: article.authors,
+        images: article.images,
+        meta: article.meta,
+        description:  article.meta ? article.meta.description : '',
+        isParsed: true
+      }).then(function (){
+        return articleTags.map(function (tag){
+          return Tag.findCreateFind({
+            where: { uri: tag.uri },
+            defaults: tag
+          });
+        });
+      }).spread(function (){
+        const spreadTag = Array.prototype.slice.call(arguments);
+        return spreadTag.map(function (array, i){
+          const tag = array[0];
+          const data = articleTags[i];
+          page.addTag(tag, data);
+        });
+      }).spread(function (result){
+        cb(null, result);
+      }).catch(function (err){
+        console.log(err, '<-- parse error')
+        cb(err);
       });
-    }).spread(function (){
-      const spreadTag = Array.prototype.slice.call(arguments);
-      return spreadTag.map(function (array, i){
-        const tag = array[0];
-        const data = articleTags[i];
-        page.addTag(tag, data);
-      });
-    }).spread(function (result){
-      cb(null, result);
-    }).catch(function (err){
-      console.log(err, '<-- parse error')
-      cb(err);
-    });
+
+    });// end of find one
+
   });
 }
 
@@ -468,8 +495,12 @@ module.exports.profile = function (req, res) {
 };
 
 module.exports.about = function (req, res) {
-  const user = req.user;
-  res.render('about');
+
+  const page = Page.create();
+
+  res.send(typeof page.update)
+  // const user = req.user;
+  // res.render('about');
 };
 
 module.exports.updateProfile = function (req, res) {

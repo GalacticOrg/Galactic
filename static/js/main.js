@@ -152,7 +152,6 @@ $('.topicLink').each(function(){
 	if(this.dataset.label == getParameterByName('topic')){
 		$(this).css('font-weight','bolder')
 	}
-
 })
 
 function getParameterByName(name, url) {

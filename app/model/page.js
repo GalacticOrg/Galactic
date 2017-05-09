@@ -32,6 +32,10 @@ const attributes = {
     type: Sequelize.TEXT,
     length: 'long'
   },
+  html: {
+    type: Sequelize.TEXT,
+    length: 'long'
+  },
   title: { type: Sequelize.STRING },
   author: { type: Sequelize.STRING },
   authorUrl: { type: Sequelize.STRING },
@@ -91,5 +95,7 @@ const Page = connection.define('pages', attributes, options);
 
 Page.belongsTo(User);
 Page.belongsToMany(Page, { as: 'connections', foreignKey : 'connectionPage', otherKey:'destinationPage', through: Connection });
+Page.belongsToMany(Page, { as: 'links', foreignKey : 'linkFromPage', otherKey:'linkToPage', through: 'Links' });
+
 Page.belongsToMany(Tag, { as: 'tag', through: ItemTag });
 module.exports = Page;
