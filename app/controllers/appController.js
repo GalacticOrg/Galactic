@@ -158,6 +158,8 @@ module.exports.page = function (req, res) {
   let destinations = null;
   let destinationTags = null;
 
+  const topicFilter = req.query.topic;
+
   pageObj.getUser().then(function (result){
     page.user = result? result.toJSON(): null;
     return pageObj.getConnections();
@@ -176,12 +178,18 @@ module.exports.page = function (req, res) {
       connection.tags = destinationTags[i];
       return connection;
     });
+    if (topicFilter && topicFilter.length){
+      destinations = destinations.filter(function (connection){
+        return connection.tags.find(function (tag){ return tag.label.toLowerCase() === topicFilter.toLowerCase(); }) !== undefined;
+      });
+    }
+
   }).then(function (results){
     return destinations.map(function (destination){
-       return destination.connection.getUser();
+       return destination.connection.getUser(); // get rid of password here
     });
   }).spread(function (){
-    const users = arguments;
+    const users = Array.prototype.slice.call(arguments);
     destinations = destinations.map(function (result, i){
       let connection = result;
       connection.user = users[i].toJSON();
