@@ -156,7 +156,7 @@ module.exports.page = function (req, res) {
   let page = pageObj.toJSON();
   let destinations = null;
   let destinationTags = null;
-
+  let links = null;
   const topicFilter = req.query.topic;
 
   pageObj.getUser().then(function (result){
@@ -170,7 +170,7 @@ module.exports.page = function (req, res) {
     return destinations.map(function (destination){
        return destination.getTag();
     });
-  }).spread(function (results){
+  }).spread(function (){
     destinationTags = Array.prototype.slice.call(arguments);
     destinations = destinations.map(function (result, i){
       let connection = result.toJSON();
@@ -182,8 +182,10 @@ module.exports.page = function (req, res) {
         return connection.tags.find(function (tag){ return tag.label.toLowerCase() === topicFilter.toLowerCase(); }) !== undefined;
       });
     }
-
-  }).then(function (results){
+  }).then(function (){
+    return pageObj.getLinks();
+  }).then(function (){
+    links = Array.prototype.slice.call(arguments);
     return destinations.map(function (destination){
        return destination.connection.getUser(); // get rid of password here
     });
@@ -202,7 +204,8 @@ module.exports.page = function (req, res) {
       destinations,
       user,
       connectionUsers:users,
-      tags
+      tags,
+      links
     });
   });
 };
@@ -426,14 +429,17 @@ function pageParser (url, page, getLinks, cb){
         const articleLinks = pareLinksHtml(article.html);
         articleLinks.forEach(function (link){
           const crawlLink = false;
-          const page = Page.build();
-          pageParser(link, page,  crawlLink, function(){
-            console.log(err, 'Got Recursive link')
+          const newPage = Page.build();
+          pageParser(link, newPage,  crawlLink, function (err, result) {
+            if (err) return false;
+            page.addLink(newPage);
+            console.log('Link page Added')
           });
         });
       }
 
       const articleTags = article.tags || [];
+
       return page.update({
         text: article.text,
         html: article.html,
@@ -451,7 +457,8 @@ function pageParser (url, page, getLinks, cb){
         images: article.images,
         meta: article.meta,
         description:  article.meta ? article.meta.description : '',
-        isParsed: true
+        isParsed: true,
+        wwUri: page.wwUri || createWwUri(article.title)
       }).then(function (){
         return articleTags.map(function (tag){
           return Tag.findCreateFind({
@@ -496,9 +503,9 @@ module.exports.profile = function (req, res) {
 
 module.exports.about = function (req, res) {
 
-  const page = Page.create();
+  const page = Page.build();
 
-  res.send(typeof page.update)
+  res.send(typeof page.addLink)
   // const user = req.user;
   // res.render('about');
 };
