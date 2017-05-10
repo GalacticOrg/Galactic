@@ -1,5 +1,6 @@
 const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     Sequelize = require('sequelize'),
+    _ = require('lodash'),
     sequelizeConnection = require('../model/sequelize.js'),
     Jimp = require('jimp'),
     pareLinksHtml = require('../../utils/pageparser').pareLinksHtml,
@@ -197,12 +198,14 @@ module.exports.page = function (req, res) {
       return connection;
     });
     let tags = [].concat.apply([], destinationTags);
+      tags = _.uniqBy(tags, 'id');
 
+    let connectionUsers = _.uniqBy(users, 'id');
     res.render('page',{
       page,
       destinations,
       user,
-      connectionUsers:users,
+      connectionUsers,
       tags,
       links
     });
@@ -479,7 +482,6 @@ function pageParser (url, page, getLinks, cb){
         console.log(err, '<-- parse error')
         cb(err);
       });
-
     });// end of find one
 
   });
