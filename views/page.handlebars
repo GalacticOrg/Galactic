@@ -14,7 +14,9 @@
 				{{#if page.isParsed}}
 					<input hidden type="checkbox" id="isParsed" checked>
 				{{else}}
-					<p>Spinner</p>
+					<div style="width: 100%; text-align: center;">
+						<img src="/static/img/loading_dots.gif" style="width: 50px;" />
+					</div>
 					<input hidden type="checkbox" id="isParsed">
 				{{/if}}
 				{{#each tags}}
@@ -26,13 +28,6 @@
 						</ul>
 					</div>
 				{{/each}}
-			</div>
-			<div style="margin-top: 10px; width: 100%; color: white; text-align: center;">
-				<a class="askQuestionButton" onClick=openConnectModal()>
-					<div class="connectButton" style="width: 100%">
-						Add Connection
-					</div>
-				</a>
 			</div>
 		</div>
 		<div class="layout_3col_center">
@@ -50,20 +45,28 @@
 		</div>
 		<div class="layout_3col_right">
 			{{#if connectionUsers}}
-  			<div class="section_header" style="margin-bottom: 8px;">
-          <div class="header_text">
-            <span>Contributors</span>
-          </div>
-        </div>
-				{{#each connectionUsers}}
-				{{!-- {{toJSON this}} --}}
-				<div class="contributorsBox" title="{{this.displayName}}">
-					<span><img src="{{avatarNotNull this.avatar}}" style="height: 22px; width: 22px;" /></span>
-					<span>{{this.displayName}}</span>
+				<div style="margin-bottom: 10px;">
+	  			<div class="section_header" style="margin-bottom: 8px; margin-right: 50px;">
+	          <div class="header_text">
+	            <span>Contributors</span>
+	          </div>
+	        </div>
+					{{#each connectionUsers}}
+					{{!-- {{toJSON this}} --}}
+					<div class="contributorsBox" title="{{this.displayName}}">
+						<span><img src="{{avatarNotNull this.avatar}}" style="height: 22px; width: 22px;" /></span>
+						<span>{{this.displayName}}</span>
+					</div>
+					{{/each}}
 				</div>
-				{{/each}}
-				{{!-- {{toJSON connectionUsers}} --}}
 			{{/if}}
+			<div style="margin-bottom: 20px; width: 150px; color: white; text-align: center;">
+				<a class="askQuestionButton" onClick=openConnectModal()>
+					<div class="connectButton" style="width: 100%">
+						Add Connection
+					</div>
+				</a>
+			</div>
 		</div>
 	</div>
 </div>
