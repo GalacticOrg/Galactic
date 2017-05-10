@@ -151,6 +151,8 @@ if (location.search.search('pp=true') !== -1 && !isParsed){
 
 if (location.search.search('tagwait=') !== -1){
 	$('#tagwait').css('display','block');
+	$('#waitforresponse').css('display','none'); // items that need to be hidden while spinner spins.
+	$('.turnoffwhenloading').css('display','none'); // items that need to be hidden while spinner spins.
 	window.setTimeout(function(){
 		window.location = location.origin + location.pathname
 	},5000);
@@ -158,6 +160,8 @@ if (location.search.search('tagwait=') !== -1){
 
 if (location.search.search('tagwait=') !== -1 || location.search.search('pp=true') !== -1 ){
 	$('#connectwait').css('display','block');
+	$('#waitforresponse').css('display','none'); // items that need to be hidden while spinner spins.
+	$('.turnoffwhenloading').css('display','none'); // items that need to be hidden while spinner spins.
 }
 
 $('.topicLink').each(function(){
