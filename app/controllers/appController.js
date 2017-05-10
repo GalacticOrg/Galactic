@@ -185,7 +185,7 @@ module.exports.page = function (req, res) {
   }).then(function (){
     return pageObj.getLinks();
   }).then(function (){
-    links = Array.prototype.slice.call(arguments);
+    links = Array.prototype.slice.call(arguments)[0];
     return destinations.map(function (destination){
        return destination.connection.getUser(); // get rid of password here
     });
@@ -197,7 +197,6 @@ module.exports.page = function (req, res) {
       return connection;
     });
     let tags = [].concat.apply([], destinationTags);
-    tags = tags.concat(page.tags);
 
     res.render('page',{
       page,
@@ -412,7 +411,8 @@ function pageParser (url, page, getLinks, cb){
   diffBotAnalyze(url, function (err, article) {
 
     if (err || !article || !article.title){
-      return console.log(err, article, '<--page.id, diffBotAnalyze failed');
+      console.log(err, article, '<--page.id, diffBotAnalyze failed');
+      return cb('diffBotAnalyze failed')
     }
 
     Page.findOne({where:{
