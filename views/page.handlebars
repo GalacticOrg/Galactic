@@ -37,10 +37,14 @@
 					{{> pageConnection }}
 				{{/each}}
 			{{else}}
+				<div id="tagwait" style="width: 100%; text-align: center; display: none;">
+					<img src="/static/img/loading_dots.gif" style="width: 50px;" />
+				</div>
 				<div style="margin-top: 30px;">
 					<b>There are no connections to this page yet. Be the first to add one!</b>
 				</div>
 			{{/if}}
+
 			{{toJSON links}}
 
 		</div>

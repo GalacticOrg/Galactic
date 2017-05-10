@@ -142,10 +142,17 @@ if (location.search.search('pp=true') !== -1 && !isParsed){
 		url: location.pathname + '/new',
 		success: function( result ) {
 			if (result.newParse === true){
-				window.location = location.href;
+				window.location = location.origin + location.pathname+'?tagwait=5';
 			}
 		},
 	});
+}
+
+if (location.search.search('tagwait=') !== -1){
+	$('#tagwait').css('display','block')
+	window.setTimeout(function(){
+		window.location = location.origin + location.pathname
+	},5000);
 }
 
 $('.topicLink').each(function(){
