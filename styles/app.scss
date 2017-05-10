@@ -1292,7 +1292,7 @@ img {
 	    color: #333;
     	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     	font-weight: 400;
-    	line-height: 1.4; 
+    	line-height: 1.4;
 	    font-size: 15px;
     	overflow: hidden;
 			text-overflow: ellipsis;
@@ -1476,31 +1476,6 @@ img {
   	margin-top: 8px;
   	display: flex;
   	flex-direction: row;
-  	.resultMeta {
-  		width: 60%;
-  		display: flex;
-  		justify-content: flex-start;
-  		align-items: center;
-	  	color: #999;
-			font-size: 13px;
-	    text-align: left;
-	    .bullet {
-	    	min-width: 16px;
-	    	text-align: center;
-		    color: #999;
-		    font-size: 13px;
-	    }
-	    .hoverUnderline {
-	    	a:hover {
-	    		text-decoration: underline;
-	    	}
-	    }
-	    .topic {
-	    	a:hover {
-	    		text-decoration: underline;
-	    	}
-	    }
-	  }
 	  .username {
 	    overflow: hidden;
 			text-overflow: ellipsis;
@@ -1515,7 +1490,7 @@ img {
     	}
     }
 	  .connector {
-	  	width: 100%;
+	  	width: 45%;
 	  	display: flex;
 	  	justify-content: flex-end;
 	  	align-items: center;
@@ -1538,6 +1513,37 @@ img {
 		  	font-weight: 500;
 		  }
     }
+  	.topics {
+  		display: flex;
+			color: #999;
+			font-size: 13px;
+		  text-align: left;
+		  margin-bottom: 4px;
+		  width: 100%;
+		  align-items: center;
+		  line-height: 1.2em;
+		  .bullet {
+		    color: #999;
+		    font-size: 13px;
+		  }
+		  .feedItemType {}
+		  .hoverUnderline {
+		  	a:hover {
+		  		text-decoration: underline;
+		  	}
+		  }
+		  .topic {
+		  	a:hover {
+		  		text-decoration: underline;
+		  	}
+		  }
+		  .feedReason {}
+		  .timestamp {
+		  	a:hover {
+		  		text-decoration: underline;
+		  	}
+			}
+		}
   }
   .contributorsBox {
   	display: flex;

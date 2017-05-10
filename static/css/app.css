@@ -1070,9 +1070,10 @@ img {
   margin-top: 8px;
   padding-bottom: 8px; }
   .searchPage .noResultFound .titleURL {
+    color: #262626;
     font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
     font-weight: bold;
-    color: #262626;
+    line-height: 1.3;
     font-size: 18px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1083,11 +1084,12 @@ img {
     max-height: 2.6;
     /* fallback */ }
   .searchPage .noResultFound .descriptionText {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     margin-top: 8px;
     color: #333;
-    font-size: 15px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 400;
+    line-height: 1.4;
+    font-size: 15px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -1143,6 +1145,10 @@ img {
         width: 48px;
         height: 18px;
         width: 18px; }
+    .resultPage .articleContentBox .articleContent .atagBox {
+      width: 28px; }
+      .resultPage .articleContentBox .articleContent .atagBox i {
+        color: #666; }
 
 .resultPage .titleURL {
   font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
@@ -1245,23 +1251,6 @@ img {
   margin-top: 8px;
   display: flex;
   flex-direction: row; }
-  .resultPage .metaBar .resultMeta {
-    width: 60%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    color: #999;
-    font-size: 13px;
-    text-align: left; }
-    .resultPage .metaBar .resultMeta .bullet {
-      min-width: 16px;
-      text-align: center;
-      color: #999;
-      font-size: 13px; }
-    .resultPage .metaBar .resultMeta .hoverUnderline a:hover {
-      text-decoration: underline; }
-    .resultPage .metaBar .resultMeta .topic a:hover {
-      text-decoration: underline; }
   .resultPage .metaBar .username {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1274,7 +1263,7 @@ img {
     .resultPage .metaBar .username:hover {
       text-decoration: underline; }
   .resultPage .metaBar .connector {
-    width: 100%;
+    width: 45%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -1293,6 +1282,24 @@ img {
     .resultPage .metaBar .connector .atag {
       color: #999;
       font-weight: 500; }
+  .resultPage .metaBar .topics {
+    display: flex;
+    color: #999;
+    font-size: 13px;
+    text-align: left;
+    margin-bottom: 4px;
+    width: 100%;
+    align-items: center;
+    line-height: 1.2em; }
+    .resultPage .metaBar .topics .bullet {
+      color: #999;
+      font-size: 13px; }
+    .resultPage .metaBar .topics .hoverUnderline a:hover {
+      text-decoration: underline; }
+    .resultPage .metaBar .topics .topic a:hover {
+      text-decoration: underline; }
+    .resultPage .metaBar .topics .timestamp a:hover {
+      text-decoration: underline; }
 
 .resultPage .contributorsBox {
   display: flex;

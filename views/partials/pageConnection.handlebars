@@ -24,13 +24,22 @@
 			<div class="titleURL">
 				{{this.title}}
 			</div>
+			{{#if this.description}}
 			<div class="descriptionText">
 				{{this.description}}
 			</div>
+			{{/if}}
 		</div>
 	</div>
 
 	<div class="metaBar">
+		<div class="topics">
+			<span class="topic">Mischievous</span>
+				<span class="bullet"> · </span>
+			<span class="topic">Delicious</span>
+				<span class="bullet"> · </span>
+			<span class="topic">Exotic Highland Tea</span>
+		</div>
 		<div class="connector" title="First Connector">
 			{{#if user}}
 			<span class="imgWrapper">
