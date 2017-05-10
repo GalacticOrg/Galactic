@@ -1,29 +1,6 @@
 <div onClick="javascript:location.href='/page/{{wwUri}}'" class="feedBundle">
 	<div class="articleContentBox">
-		<div class="articleContent">
-			<div class="feedBundleMeta">
-				<span class="feedItemType">Request</span>
-				<span class="bullet"> · </span>
-				<span class="timestamp">
-					<a>{{timeAgo createdAt}}</a>
-				</span>
-			</div>
-			<div class="contentHeader">
-				<span class="imgWrapper">
-					<img src="{{avatarNotNull user.avatar}}" class="userImg" />
-				</span>
-				<span class="layoutTextWrapper homeFeedRequest">
-					<div>
-						<span class="username underlineOnHover">{{user.displayName}}</span>{{#if user.title}}<span class="userInfo">, {{user.title}}</span>{{/if}}
-					</div>
-					<div class="credibilityFacts feedBundleMeta">
-						<span class="timestamp">
-							Requested {{timeAgo createdAt}}
-						</span>
-					</div>
-				</span>
-			</div>
-		</div>
+
 		{{#if icon}}
 		<div class="articleImg">
 			<img src={{page.icon}}>
@@ -35,17 +12,6 @@
 	</div>
 	<div class="contentMain">
 		{{description}}
-	</div>
-	<div class="actionBar">
-		<span class="connectButton">
-			Connect
-		</span>
-		{{!-- WHAT IS THE FIELD HERE? . mceoin --}}
-		{{#if connections}}
-		<span class="connections underlineOnHover">
-			Connections<span class="connectionsTotal">{{connections.length}}</span>
-		</span>
-		{{/if}}
 	</div>
 </div>
 

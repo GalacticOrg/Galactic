@@ -29,7 +29,7 @@ module.exports = function (app) {
          return new Date().getTime();
       },
       avatarNotNull: function(url){
-         return url === null ? '/static/img/default_avatar.jpg': url;
+         return url === null ? '/static/img/default_avatar.png': url;
       }
     }
   });

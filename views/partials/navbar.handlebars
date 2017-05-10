@@ -15,7 +15,7 @@
 				id="email"
 				name="q"
 				value="{{inputURI}}"
-				placeholder="Search the WikiWeb"
+				placeholder="Search (paste URL)"
 			></input>
 			<input id="navbarSearchButton" class="submitButton" type="submit" value="Submit"></input>
 		</form>
@@ -39,7 +39,7 @@
 
 			{{#if user}}
 			<a href="/profile" class="pageButton" style="margin-left: 50px;">
-				<div class="buttonContents profileImgButton" id="userNavButton">
+				<div class="buttonContents profileImgButton" id="userNavButton" style="justify-content: flex-end;">
 					<span class="userImg">
 						<img src={{avatarNotNull user.avatar}} class="userImg" />
 					</span>
@@ -48,7 +48,7 @@
 			</a>
 			{{else}}
 			<a href="/login" class="pageButton" style="margin-left: 50px;">
-				<div class="buttonContents profileImgButton" id="userNavButton">
+				<div class="buttonContents profileImgButton" id="userNavButton" style="justify-content: flex-end;">
 					<span class="userImg"></span> {{!-- blank --}}
 					<span class="text">Login</span>
 				</div>

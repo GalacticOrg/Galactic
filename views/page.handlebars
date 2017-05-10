@@ -5,23 +5,25 @@
 	{{> messages}}
 	<div class="contentWrapper">
 		<div class="layout_3col_left">
-			<h3 class="title">
-				<div class="title_with_link">
-					Topics
-				</div>
-			</h3>
 			<div class="pagedList">
+				<h3 class="title">
+					<div class="title_with_link">
+						Topics
+					</div>
+				</h3>
 				{{#if page.isParsed}}
 					<input hidden type="checkbox" id="isParsed" checked>
 				{{else}}
-					<p>Spinner</p>
+					<div style="width: 100%; text-align: center;">
+						<img src="/static/img/loading_dots.gif" style="width: 50px;" />
+					</div>
 					<input hidden type="checkbox" id="isParsed">
 				{{/if}}
 				{{#each tags}}
 					<div class="pagedListItem top_stories">
 						<ul>
 							<li>
-								<a data-label="{{this.label}}" class="topicLink" href="?topic={{this.label}}">{{this.label}} (1)</a>
+								<a data-label="{{this.label}}" class="topicLink" href="?topic={{this.label}}">{{this.label}}</a>
 							</li>
 						</ul>
 					</div>
@@ -43,7 +45,28 @@
 
 		</div>
 		<div class="layout_3col_right">
-			{{toJSON connectionUsers}}
+			{{#if connectionUsers}}
+				<div style="margin-bottom: 10px;">
+	  			<div class="section_header" style="margin-bottom: 8px; margin-right: 50px;">
+	          <div class="header_text">
+	            <span>Contributors</span>
+	          </div>
+	        </div>
+					{{#each connectionUsers}}
+					<div class="contributorsBox" title="{{this.displayName}}">
+						<span><img src="{{avatarNotNull this.avatar}}" style="height: 22px; width: 22px;" /></span>
+						<span>{{this.displayName}}</span>
+					</div>
+					{{/each}}
+				</div>
+			{{/if}}
+			<div style="margin-bottom: 20px; width: 150px; color: white; text-align: center;">
+				<a class="askQuestionButton" onClick=openConnectModal()>
+					<div class="connectButton" style="width: 100%">
+						Add Connection
+					</div>
+				</a>
+			</div>
 		</div>
 	</div>
 </div>
