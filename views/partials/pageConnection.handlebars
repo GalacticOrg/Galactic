@@ -1,6 +1,21 @@
 <div onClick="javascript:location.href='/page/{{wwUri}}'" class="feedBundle pageConnection">
 	<div class="articleContentBox">
 		<div class="articleContent">
+			<div class="subBox">
+				{{#if this.icon}}
+				<div class="articleImg">
+					<img src={{this.icon}}>
+				</div>
+				{{/if}}
+				<div class="pageUrl">
+					<a href={{this.pageUrl}}>
+						<span>
+							<i class="fa fa-external-link" aria-hidden="true"></i>
+						</span>
+						<span>{{this.pageUrl}}</span>
+					</a>
+				</div>
+			</div>
 			<div class="titleURL">
 				{{this.title}}
 			</div>
@@ -8,11 +23,6 @@
 				{{this.description}}
 			</div>
 		</div>
-		{{#if this.icon}}
-		<div class="articleImg">
-			<img src={{this.icon}}>
-		</div>
-		{{/if}}
 	</div>
 
 	<div class="metaBar">

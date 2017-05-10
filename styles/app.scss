@@ -1338,15 +1338,19 @@ img {
   	flex-direction: row;
     .articleContent {
     	width: 100%;
-    }
-    .articleImg {
-    	justify-content: flex-end;
-    	width: 58px;
-    	img {
-    		padding-left: 10px;
-    		width: 48px;
-    		max-height: 60px;
+    	.subBox {
+    		display: flex;
+    		flex-direction: row;
+    		align-items: center;
     	}
+    	.articleImg {
+				width: 28px;
+	    	img {
+	    		width: 48px;
+	    		height: 18px;
+	    		width: 18px;
+	    	}
+	    }
     }
   }
 	.titleURL {

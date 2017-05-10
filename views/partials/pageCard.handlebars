@@ -1,25 +1,29 @@
 <div class="pageCard">
   <div class="articleContentBox">
   	<div class="articleContent">
+  		<div class="subBox">
+	  		{{#if page.icon}}
+	  		<a href={{page.pageUrl}}>
+					<div class="articleImg">
+						<img src={{page.icon}}>
+					</div>
+				</a>
+				{{/if}}
+				<div class="pageUrl">
+					<a href={{page.pageUrl}}>
+						<span>
+							<i class="fa fa-external-link" aria-hidden="true"></i>
+						</span>
+						<span>{{page.pageUrl}}</span>
+					</a>
+				</div>
+			</div>
 			<div class="titleURL">
 				{{page.title}}
-			</div>
-			<div class="pageUrl">
-				<a href={{page.pageUrl}}>
-					<span>
-						<i class="fa fa-external-link" aria-hidden="true"></i>
-					</span>
-					<span>{{page.pageUrl}}</span>
-				</a>
 			</div>
 			<div class="descriptionText">
 				{{page.description}}
 			</div>
 		</div>
-		{{#if page.icon}}
-		<div class="articleImg">
-			<img src={{page.icon}}>
-		</div>
-		{{/if}}
 	</div>
 </div>

@@ -1127,13 +1127,16 @@ img {
   flex-direction: row; }
   .resultPage .articleContentBox .articleContent {
     width: 100%; }
-  .resultPage .articleContentBox .articleImg {
-    justify-content: flex-end;
-    width: 58px; }
-    .resultPage .articleContentBox .articleImg img {
-      padding-left: 10px;
-      width: 48px;
-      max-height: 60px; }
+    .resultPage .articleContentBox .articleContent .subBox {
+      display: flex;
+      flex-direction: row;
+      align-items: center; }
+    .resultPage .articleContentBox .articleContent .articleImg {
+      width: 28px; }
+      .resultPage .articleContentBox .articleContent .articleImg img {
+        width: 48px;
+        height: 18px;
+        width: 18px; }
 
 .resultPage .titleURL {
   font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
