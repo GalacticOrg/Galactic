@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize'),
       connection = require('./sequelize.js'),
       User = require('./user.js'),
+      Links = require('./links.js'),
       Tag = require('./tag.js').tag,
       ItemTag = require('./tag.js').itemtag,
       Connection = require('./connection.js'),
@@ -29,6 +30,10 @@ const attributes = {
     defaultValue: false
   },
   text: {
+    type: Sequelize.TEXT,
+    length: 'long'
+  },
+  html: {
     type: Sequelize.TEXT,
     length: 'long'
   },
@@ -87,9 +92,12 @@ const options = {
   }
 };
 
+
 const Page = connection.define('pages', attributes, options);
 
 Page.belongsTo(User);
 Page.belongsToMany(Page, { as: 'connections', foreignKey : 'connectionPage', otherKey:'destinationPage', through: Connection });
+Page.belongsToMany(Page, { as: 'links', foreignKey : 'linkFromPage', otherKey:'linkToPage', through: Links });
+
 Page.belongsToMany(Tag, { as: 'tag', through: ItemTag });
 module.exports = Page;

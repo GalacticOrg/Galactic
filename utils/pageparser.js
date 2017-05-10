@@ -2,8 +2,9 @@
 
 const request = require('superagent'),
   config = require('../config'),
-  baseDiffBotBaseUri = config.DIFFBOT_URI,
   extractor = require('unfluff'),
+  cheerio = require('cheerio'),
+  baseDiffBotBaseUri = config.DIFFBOT_URI,
   diffBotVersion = config.DIFFBOT_API_VERISON,
   nytVersion = config.NYT_API_VERISON,
   tokenNyt = config.NYT_API_TOKEN,
@@ -12,6 +13,7 @@ const request = require('superagent'),
   diffBotApiUri = 'https://' + baseDiffBotBaseUri + '/' + diffBotVersion,
   nytApiUri = 'http://' + nytBaseUri + '/' + nytVersion,
   expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+
 
 module.exports.diffBotAnalyze = function (inputURI, cb){
   request
@@ -76,8 +78,19 @@ module.exports.pageParseNYT = function (inputURI, cb){
 };
 
 
+module.exports.pareLinksHtml = function (html){
+  const $ = cheerio.load(html);
+  const aTags = $('a');
+  let links = $(aTags).map(function (i, el){
+    return $(this).attr('href');
+  }).get();
+  console.log(links);
+  return links.filter(function (link){ return typeof link === 'string' && isValidURI(link); });
+};
 
 
-module.exports.isValidURI = function (uri){
+
+const isValidURI = function (uri){
   return new RegExp(expression).test(uri);
 }
+module.exports.isValidURI = isValidURI;
