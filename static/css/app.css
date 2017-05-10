@@ -1162,9 +1162,9 @@ img {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   /* number of lines to show */
-  max-height: 2.6;
+  max-height: 1.3;
   /* fallback */ }
   .resultPage .pageUrl a {
     color: #999; }
