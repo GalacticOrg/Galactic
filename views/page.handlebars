@@ -58,8 +58,14 @@
 	        </div>
 					{{#each connectionUsers}}
 					<div class="contributorsBox" title="{{this.displayName}}">
-						<span><img src="{{avatarNotNull this.avatar}}" style="height: 22px; width: 22px;" /></span>
-						<span>{{this.displayName}}</span>
+						<span>
+							<a href="https://twitter.com/{{this.username}}">
+								<img src="{{avatarNotNull this.avatar}}" style="height: 22px; width: 22px;" />
+							</a>
+						</span>
+						<span>
+							<a href="https://twitter.com/{{this.username}}" style="color: #666;">{{this.displayName}}</a>
+						</span>
 					</div>
 					{{/each}}
 				</div>
