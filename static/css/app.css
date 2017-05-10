@@ -1072,7 +1072,6 @@ img {
   .searchPage .noResultFound .titleURL {
     font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
     font-weight: bold;
-    line-height: 1.3;
     color: #262626;
     font-size: 18px;
     overflow: hidden;
@@ -1084,12 +1083,19 @@ img {
     max-height: 2.6;
     /* fallback */ }
   .searchPage .noResultFound .descriptionText {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     margin-top: 8px;
     color: #333;
     font-size: 15px;
-    line-height: 1.4;
     font-weight: 400;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    /* number of lines to show */
+    max-height: 2.6;
+    /* fallback */ }
   .searchPage .noResultFound .actionBar {
     font-size: 13px;
     margin-bottom: -16px;
@@ -1284,6 +1290,9 @@ img {
         border-radius: 50%;
         height: 22px;
         width: 22px; }
+    .resultPage .metaBar .connector .atag {
+      color: #999;
+      font-weight: 500; }
 
 .resultPage .contributorsBox {
   display: flex;

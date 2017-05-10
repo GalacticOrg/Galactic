@@ -8,12 +8,15 @@
 						<img src={{page.icon}}>
 					</div>
 				</a>
+				{{else}}
+				<a href={{page.pageUrl}}>
+					<div class="articleImg">
+						<i class="fa fa-external-link" aria-hidden="true"></i>
+					</div>
+				</a>
 				{{/if}}
 				<div class="pageUrl">
 					<a href={{page.pageUrl}}>
-						<span>
-							<i class="fa fa-external-link" aria-hidden="true"></i>
-						</span>
 						<span>{{page.pageUrl}}</span>
 					</a>
 				</div>
