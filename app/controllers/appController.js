@@ -519,7 +519,6 @@ module.exports.profile = function (req, res) {
 };
 
 module.exports.about = function (req, res) {
-  const user = req.user;
   res.render('about');
 };
 

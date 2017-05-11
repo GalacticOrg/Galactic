@@ -39,22 +39,26 @@
 		</div>
 		<div class="layout_3col_center">
 			{{> pageCard }}
-			{{#if destinations}}
-				{{#each destinations}}
+			{{#if destinations}} {{!-- user generated connection --}}
+				{{#each destinations}} 
 					{{> pageConnection }}
 				{{/each}}
 			{{else}}
 				<div id="tagwait" style="width: 100%; text-align: center; display: none;">
-					<img src="/static/img/loading_dots.gif" style="width: 50px;" />
-				</div>
-				<div id="waitforresponse" style="margin-top: 30px;">
-					<b>There are no connections to this page yet. Be the first to add one!</b>
+					<div style="margin-top: 20px; color: #666">
+						<em>Searching the WikiWeb for connections</em>
+					</div>
+					<img src="/static/img/oohLookAtMe.gif" style="margin-top: 20px;"/>
 				</div>
 			{{/if}}
-			{{#if links}}
+			{{#if links}} {{!-- a-tags --}}
 				{{#each links}}
 					{{> pageConnection }}
 				{{/each}}
+			{{else}}
+				<div id="waitforresponse" style="margin-top: 30px;">
+					<b>There are no connections to this page yet. Be the first to add one!</b>
+				</div>
 			{{/if}}
 			{{!-- {{toJSON links}} --}}
 
