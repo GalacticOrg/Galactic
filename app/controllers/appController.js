@@ -36,11 +36,11 @@ const home = function (req, res) {
     //userId: { $ne:null }
   };
 
-  if (filter === 'requests') {
-    filters.isConnected = { $not : true };
-  } else if (filter === 'connections'){
-    filters.isConnected = { $not : false };
-  }
+  //if (filter === 'requests') {
+  //  filters.isConnected = { $not : true };
+  // } else if (filter === 'connections'){
+  filters.isConnected = { $not : false };
+  // }
 
   Page.findAll({
     limit: limit ,
@@ -158,6 +158,7 @@ module.exports.page = function (req, res) {
   let destinations = null;
   let destinationTags = null;
   let links = null;
+  let linkTags = null;
   const topicFilter = req.query.topic;
 
   pageObj.getUser().then(function (result){
@@ -185,8 +186,23 @@ module.exports.page = function (req, res) {
     }
   }).then(function (){
     return pageObj.getLinks();
-  }).then(function (){
+  }).then(function(){
     links = Array.prototype.slice.call(arguments)[0];
+    return links.map(function(link){
+      return link.getTag();
+    });
+  }).spread(function (){
+    linkTags = Array.prototype.slice.call(arguments);
+    links = links.map(function (result, i){
+      let connection = result.toJSON();
+      connection.tags = linkTags[i];
+      return connection;
+    });
+    if (topicFilter && topicFilter.length){
+      links = links.filter(function (connection){
+        return connection.tags.find(function (tag){ return tag.label.toLowerCase() === topicFilter.toLowerCase(); }) !== undefined;
+      });
+    }
     return destinations.map(function (destination){
        return destination.connection.getUser(); // get rid of password here
     });
@@ -198,7 +214,7 @@ module.exports.page = function (req, res) {
       return connection;
     });
     let tags = [].concat.apply([], destinationTags);
-      tags = _.uniqBy(tags, 'id');
+        tags = destinationTags.concat.apply([], linkTags);
 
     let connectionUsers = _.uniqBy(users, 'id');
     res.render('page',{
@@ -250,8 +266,7 @@ module.exports.pageValidate = function (req, res){
     } else {
       res.send(result);
     }
-  })
-
+  });
 };
 
 function pageValidate(inputURI, cb){
@@ -366,15 +381,14 @@ module.exports.search = function (req, res) {
           } else {
             res.redirect('/page/' + result.wwUri + '?pp=true');
           }
-
         });
       } else {
-        pages = [result];
-        return res.render('search', {
-          pages,
-          inputURI,
-          user
-        });
+        res.redirect('/page/' + result.wwUri);
+        // return res.render('search', {
+        //   pages,
+        //   inputURI,
+        //   user
+        // });
       }
     });
   }
@@ -414,7 +428,7 @@ function pageParser (url, page, getLinks, cb){
   diffBotAnalyze(url, function (err, article) {
 
     if (err || !article || !article.title){
-      console.log(err, article, '<--page.id, diffBotAnalyze failed');
+      console.log(err, '<--page.id, diffBotAnalyze failed');
       return cb('diffBotAnalyze failed')
     }
 
@@ -424,7 +438,6 @@ function pageParser (url, page, getLinks, cb){
     } }).then(function (result){
 
       if (result){
-        console.log('got result')
         return cb(null, result);
       }
 
@@ -432,12 +445,14 @@ function pageParser (url, page, getLinks, cb){
         const articleLinks = pareLinksHtml(article.html);
         articleLinks.forEach(function (link){
           const crawlLink = false;
-          const newPage = Page.build();
-          pageParser(link, newPage,  crawlLink, function (err, result) {
-            if (err) return false;
-            page.addLink(newPage);
-            console.log('Link page Added')
+          Page.create().then(function (newPage){
+            pageParser(link, newPage,  crawlLink, function (err) {
+              if (err) return false;
+              page.addLink(newPage);
+              console.log('Link page Added');
+            });
           });
+
         });
       }
 
@@ -504,12 +519,8 @@ module.exports.profile = function (req, res) {
 };
 
 module.exports.about = function (req, res) {
-
-  const page = Page.build();
-
-  res.send(typeof page.addLink)
-  // const user = req.user;
-  // res.render('about');
+  const user = req.user;
+  res.render('about');
 };
 
 module.exports.updateProfile = function (req, res) {

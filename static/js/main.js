@@ -155,7 +155,7 @@ if (location.search.search('tagwait=') !== -1){
 	$('.turnoffwhenloading').css('display','none'); // items that need to be hidden while spinner spins.
 	window.setTimeout(function(){
 		window.location = location.origin + location.pathname
-	},5000);
+	},7000);
 }
 
 if (location.search.search('tagwait=') !== -1 || location.search.search('pp=true') !== -1 ){
@@ -164,8 +164,12 @@ if (location.search.search('tagwait=') !== -1 || location.search.search('pp=true
 	$('.turnoffwhenloading').css('display','none'); // items that need to be hidden while spinner spins.
 }
 
+const topicParamName = getParameterByName('topic')
+if (topicParamName ===null){
+	$('.topicLinkAll').css('font-weight','bolder')
+}
 $('.topicLink').each(function(){
-	if(this.dataset.label == getParameterByName('topic')){
+	if(this.dataset.label === topicParamName){
 		$(this).css('font-weight','bolder')
 	}
 })

@@ -13,21 +13,28 @@
 				</h3>
 				{{#if page.isParsed}}
 					<input hidden type="checkbox" id="isParsed" checked>
+					<div class="pagedListItem top_stories">
+						<ul>
+							<li>
+								<a data-label="wikiweball" class="topicLinkAll" href="javascript:void(null)" onClick="javascript:window.location=location.pathname">All</a>
+							</li>
+						</ul>
+					</div>
+					{{#each tags}}
+						<div class="pagedListItem top_stories">
+							<ul>
+								<li>
+									<a data-label="{{this.label}}" class="topicLink" href="?topic={{this.label}}">{{this.label}}</a>
+								</li>
+							</ul>
+						</div>
+					{{/each}}
 				{{else}}
 					<div style="width: 100%; text-align: center;">
 						<img src="/static/img/loading_dots.gif" style="width: 50px;" />
 					</div>
 					<input hidden type="checkbox" id="isParsed">
 				{{/if}}
-				{{#each tags}}
-					<div class="pagedListItem top_stories">
-						<ul>
-							<li>
-								<a data-label="{{this.label}}" class="topicLink" href="?topic={{this.label}}">{{this.label}}</a>
-							</li>
-						</ul>
-					</div>
-				{{/each}}
 			</div>
 		</div>
 		<div class="layout_3col_center">
