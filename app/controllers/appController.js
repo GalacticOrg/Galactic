@@ -456,8 +456,15 @@ function pageParser (url, page, getLinks, cb){
   diffBotAnalyze(url, function (err, article) {
 
     if (err || !article || !article.title){
-      console.log(err, '<--page.id, diffBotAnalyze failed');
-      return cb('diffBotAnalyze failed')
+      
+      return page.update({
+        isParsed: true
+      }).then(function(){
+        console.log(err, '<--page.id, diffBotAnalyze failed');
+        return cb('diffBotAnalyze failed')
+      });
+
+      
     }
 
     Page.findOne({where:{
