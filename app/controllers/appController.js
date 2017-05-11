@@ -465,9 +465,9 @@ function pageParser (url, page, getLinks, cb){
       pageUrl: { $or: [article.resolvedPageUrl, article.pageUrl] }
     } }).then(function (result){
 
-      if (result){
-        return cb(null, result);
-      }
+      // if (result){
+      //   return cb(null, result);
+      // }
 
       if (article.html && getLinks){
         const articleLinks = pareLinksHtml(article.html);

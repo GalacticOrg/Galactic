@@ -135,7 +135,7 @@ function makeRequest (value) {
 		},
 	});
 }
-// const isParsed = $('#isParsed').is(":checked");
+const isParsed = $('#isParsed').is(":checked");
 if (location.search.search('pp=true') !== -1){
 	$('#tagwait').css('display','block');
 	$.ajax({
