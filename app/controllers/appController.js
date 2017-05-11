@@ -187,9 +187,9 @@ module.exports.page = function (req, res) {
     }
   }).then(function (){
     return pageObj.getLinks();
-  }).then(function(){
+  }).then(function (){
     links = Array.prototype.slice.call(arguments)[0];
-    return links.map(function(link){
+    return links.map(function (link){
       return link.getTag();
     });
   }).spread(function (){
@@ -218,7 +218,7 @@ module.exports.page = function (req, res) {
         tags = destinationTags.concat.apply([], linkTags);
     let tagsUnique = _.uniqBy(tags, 'id');
 
-    tagsUnique = tagsUnique.map(function(data){
+    tagsUnique = tagsUnique.map(function (data){
       let tagUnique = data.toJSON();
       let count = 0;
       tags.forEach(function(tag){
@@ -262,10 +262,16 @@ module.exports.connect = function (req, res) {
       page.set({ lastActivityAt: Sequelize.fn('NOW'), isConnected: true }).save(),
       page.addConnection(destinationPage, { userId: user.id })
     ];
+    const getLinks = false;
+    pageParser(destinationPage.pageUrl, destinationPage, getLinks, function(err, result){
+      if (err){
+        console.log(err, 'destinationPage parse failed')
+      }
+    });
     return promsies;
-  }).then(function (){
+  }).then(function (){//parse
     const pageObj = page.toJSON();
-    res.redirect('/page/' + pageObj.wwUri);
+    res.redirect('/page/' + pageObj.wwUri + '?tagwait=5');
   });
 };
 
@@ -418,7 +424,6 @@ module.exports.search = function (req, res) {
 };
 
 module.exports.new = function (req, res) {
-  //const id = req.body.id;
   const user = req.user;
   const page = req.page;
   // Page.findOne({
@@ -426,15 +431,15 @@ module.exports.new = function (req, res) {
   //      id: id
   //   }
   // }).then(function (page){
-    if (page.isParsed === true){
-    //   req.flash('errors', {
-    //     message: 'Something Went Wrong. Please Try Again.',
-    //     type: 'error'
+    // if (page.isParsed === true && getLinks === false){
+    // //   req.flash('errors', {
+    // //     message: 'Something Went Wrong. Please Try Again.',
+    // //     type: 'error'
+    // //   });
+    //   return res.send({
+    //     isParsed: true
     //   });
-      return res.send({
-        isParsed: true
-      });
-    } else {
+    // } else {
       const getLinks = true;
       pageParser(page.pageUrl, page, getLinks, function (err){
         res.send({
@@ -443,7 +448,7 @@ module.exports.new = function (req, res) {
           page
         });
       });
-    }
+    // }
   // });
 };
 

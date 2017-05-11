@@ -1,4 +1,8 @@
+{{#if this.isParsed}}
+<div onClick="javascript:location.href='/page/{{wwUri}}?pp=true'" class="feedBundle pageConnection">
+{{else}}
 <div onClick="javascript:location.href='/page/{{wwUri}}'" class="feedBundle pageConnection">
+{{/if}}
 	<div class="articleContentBox">
 		<div class="articleContent">
 			<div class="subBox">
@@ -16,7 +20,7 @@
 				</a>
 				{{/if}}
 				<div class="pageUrl">
-					<a href={{this.pageUrl}}>
+					<a href="{{this.pageUrl}}">
 						<span>{{this.pageUrl}}</span>
 					</a>
 				</div>
@@ -63,6 +67,7 @@
 				</a>
 			</span>
 			{{else}}
+
 			<a href={{this.pageUrl}}>
 				<span class="atag">
 					&#60;&#97;&#47;&#62; {{!-- a tag --}}

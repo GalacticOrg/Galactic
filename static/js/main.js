@@ -135,8 +135,8 @@ function makeRequest (value) {
 		},
 	});
 }
-const isParsed = $('#isParsed').is(":checked");
-if (location.search.search('pp=true') !== -1 && !isParsed){
+// const isParsed = $('#isParsed').is(":checked");
+if (location.search.search('pp=true') !== -1){
 	$('#tagwait').css('display','block');
 	$.ajax({
 		type: 'POST',
@@ -144,6 +144,8 @@ if (location.search.search('pp=true') !== -1 && !isParsed){
 		success: function( result ) {
 			if (result.newParse === true){
 				window.location = location.origin + location.pathname+'?tagwait=5';
+			} else {
+				window.location = location.origin + location.pathname
 			}
 		},
 	});
