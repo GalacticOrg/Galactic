@@ -16,6 +16,9 @@ module.exports = function (app) {
       isLength: function(obj, len) {
         return obj === len;
       },
+      greaterThan: function(obj, len) {
+        return obj > len;
+      },
       doesEqual: function(a, b) {
         return a === b;
       },

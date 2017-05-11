@@ -13,7 +13,8 @@ const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     Connection = require('../model/connection.js'),
     Tag = require('../model/tag.js').tag,
     regexNYT = new RegExp('nyt.com|nytimes.com|newyorktimes.com'),
-    userAttibutrs = ['username', 'displayName', 'id', 'avatar'];
+    userAttibutrs = ['username', 'displayName', 'id', 'avatar'],
+    url = require('url');
 
 const landing = function (req, res) {
   res.render('landing');
@@ -215,6 +216,23 @@ module.exports.page = function (req, res) {
     });
     let tags = [].concat.apply([], destinationTags);
         tags = destinationTags.concat.apply([], linkTags);
+    let tagsUnique = _.uniqBy(tags, 'id');
+
+    tagsUnique = tagsUnique.map(function(data){
+      let tagUnique = data.toJSON();
+      let count = 0;
+      tags.forEach(function(tag){
+        if (tag.id === tagUnique.id){
+          count +=1;
+        }
+      })
+      tagUnique.count = count;
+      return tagUnique;
+    });
+
+    tagsUnique = _.sortBy(tagsUnique, function(obj) {
+        return -obj.count;
+    });
 
     let connectionUsers = _.uniqBy(users, 'id');
     res.render('page',{
@@ -222,7 +240,7 @@ module.exports.page = function (req, res) {
       destinations,
       user,
       connectionUsers,
-      tags,
+      tags: tagsUnique,
       links
     });
   });
@@ -302,10 +320,15 @@ function pageValidate(inputURI, cb){
       Page.load(uri).then(function (result){
         if (!result){
           let wwUri = createWwUri(article.title);
+          let favicon = article.favicon;
+          if (favicon && favicon.search('http://') === -1 || favicon.search('https://') === -1 ){
+            const urlObj = url.parse(uri);
+            favicon = 'http://' + urlObj.hostname + article.favicon;
+          }
           Page.create({
             text: article.text,
             title: article.title,
-            icon: article.favicon,
+            icon: favicon,
             pageUrl: uri,
             humanLanguage: article.lang,
             description: article.description,

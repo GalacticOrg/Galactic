@@ -24,7 +24,7 @@ module.exports.diffBotAnalyze = function (inputURI, cb){
       fields: 'links,sentiment,meta'
     })
     .timeout({
-      response: 30000,
+      response: 60000,
       deadline: 90000,
     })
     .set('Accept', 'application/json')
@@ -43,7 +43,7 @@ module.exports.pageParse = function (inputURI, cb){
   request
     .get(inputURI)
     .timeout({
-      response: 3000,
+      response: 6000,
       deadline: 10000
     })
     .end(function (err, res){
@@ -65,7 +65,7 @@ module.exports.pageParseNYT = function (inputURI, cb){
       fq: 'web_url:"' + inputURI + '"'
     })
     .timeout({
-      response: 3000,
+      response: 6000,
       deadline: 10000
     })
     .end(function (err, res){

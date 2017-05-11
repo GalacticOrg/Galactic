@@ -24,7 +24,11 @@
 						<div class="pagedListItem top_stories">
 							<ul>
 								<li>
-									<a data-label="{{this.label}}" class="topicLink" href="?topic={{this.label}}">{{this.label}}</a>
+									<a data-label="{{this.label}}" class="topicLink" href="?topic={{this.label}}">{{this.label}}
+										{{#if (greaterThan this.count 1)}}
+											({{this.count}})
+										{{/if}}
+									</a>
 								</li>
 							</ul>
 						</div>
@@ -40,7 +44,7 @@
 		<div class="layout_3col_center">
 			{{> pageCard }}
 			{{#if destinations}} {{!-- user generated connection --}}
-				{{#each destinations}} 
+				{{#each destinations}}
 					{{> pageConnection }}
 				{{/each}}
 			{{else}}
