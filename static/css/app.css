@@ -353,14 +353,16 @@ img {
                 line-height: 1.4;
                 opacity: 0.5; }
   .landingPage .container .footerNav {
-    display: block;
     padding: 16px;
     border-top: 1px solid #e2e2e2;
     background: #f7f7f7;
     word-wrap: break-word;
     color: #333;
     font-size: 13px;
-    text-align: center; }
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: space-around; }
     .landingPage .container .footerNav .navList {
       display: inline-block;
       text-align: center;

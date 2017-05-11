@@ -410,7 +410,7 @@ img {
     	}
     }
     .footerNav {
-    	display: block;
+    	// display: block;
 	    padding: 16px;
 	    border-top: 1px solid #e2e2e2;
 	    background: #f7f7f7;
@@ -418,6 +418,9 @@ img {
 	    color: #333;
 	    font-size: 13px;
 	    text-align: center;
+	    align-items: center;
+	    display: flex;
+	    justify-content: space-around;
 	    .navList {
         display: inline-block;
   	    text-align: center;
