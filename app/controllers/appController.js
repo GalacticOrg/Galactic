@@ -327,7 +327,7 @@ function pageValidate(inputURI, cb){
         if (!result){
           let wwUri = createWwUri(article.title);
           let favicon = article.favicon;
-          if (favicon && favicon.search('http://') === -1 || favicon.search('https://') === -1 ){
+          if (favicon && (favicon.search('http://') === -1 || favicon.search('https://') === -1) ){
             const urlObj = url.parse(uri);
             favicon = 'http://' + urlObj.hostname + article.favicon;
           }
