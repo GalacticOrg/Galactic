@@ -504,12 +504,7 @@ module.exports.profile = function (req, res) {
 };
 
 module.exports.about = function (req, res) {
-
-  const page = Page.build();
-
-  res.send(typeof page.addLink)
-  // const user = req.user;
-  // res.render('about');
+  res.render('about');
 };
 
 module.exports.updateProfile = function (req, res) {
