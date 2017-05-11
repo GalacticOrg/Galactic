@@ -34,11 +34,23 @@
 
 	<div class="metaBar">
 		<div class="topics">
-			<span class="topic">Mischievous</span>
+		{{#if this.tags}}
+			{{#if this.tags.0.label}}
+			<span class="topic">{{this.tags.0.label}}</span>
+				{{#if this.tags.1.label}}
 				<span class="bullet"> · </span>
-			<span class="topic">Delicious</span>
+				{{/if}}
+			{{/if}}
+			{{#if this.tags.1.label}}
+			<span class="topic">{{this.tags.1.label}}</span>
+				{{#if this.tags.2.label}}
 				<span class="bullet"> · </span>
-			<span class="topic">Exotic Highland Tea</span>
+				{{/if}}
+			{{/if}}
+			{{#if this.tags.2.label}}
+			<span class="topic">{{this.tags.2.label}}</span>
+			{{/if}}
+		{{/if}}
 		</div>
 		<div class="connector" title="First Connector">
 			{{#if user}}

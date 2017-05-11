@@ -1506,18 +1506,20 @@ img {
   }
   .pageConnection {
     color: #999;
-		font-size: 13px;
+	font-size: 13px;
     text-align: left;
     margin-left: -12px;
     padding-left: 12px;
     margin-right: -12px;
     padding-right: 12px;
     border-bottom: 1px solid #e2e2e2;
-    padding-bottom: 8px !important;
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
 
   .metaBar {
   	margin-top: 6px;
+  	margin-bottom: 1px;
   	display: flex;
   	flex-direction: row;
 	  .username {
