@@ -18,7 +18,12 @@
 			{{/if}}
 		</div>
 		<div class="bundleTitle">
-			{{title}}
+			{{#if icon}}
+				<span style="margin-right: 2px;">
+					<img src="{{icon}}" style="height: 18px; width: 18px; margin-bottom: -2px;"/>
+				</span>
+			{{/if}}
+			<span style="position: relative;">{{title}}</span>
 		</div>
 		<div class="contentMain">
 			{{description}}
