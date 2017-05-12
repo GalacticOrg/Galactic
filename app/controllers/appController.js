@@ -24,7 +24,7 @@ const about = function (req, res) {
   res.render('about');
 };
 
-const home = function (req, res) {
+module.exports.activity = function (req, res) {
   const user = req.user.toJSON();
   const limit = req.query.limit || 30;
   const offset = req.query.offset || 0;
@@ -71,7 +71,7 @@ const home = function (req, res) {
     });
     return [Page.count({ where: { userId:user.id } }),Connection.count({ where: { userId:user.id } })]
   }).spread(function (userPageCount, userConnectionCount){
-    res.render('home', {
+    res.render('activity', {
       feed,
       user,
       userPageCount,
@@ -215,7 +215,7 @@ module.exports.page = function (req, res) {
       return connection;
     });
     let tags = [].concat.apply([], destinationTags);
-        tags = destinationTags.concat.apply([], linkTags);
+        tags = tags.concat.apply([], linkTags);
     let tagsUnique = _.uniqBy(tags, 'id');
 
     tagsUnique = tagsUnique.map(function (data){
@@ -463,7 +463,7 @@ function pageParser (url, page, getLinks, cb){
     Page.findOne({where:{
       isParsed:{ $ne:false },
       pageUrl: { $or: [article.resolvedPageUrl, article.pageUrl] }
-    } }).then(function (result){
+    }}).then(function (result){
 
       if (result){
         return cb(null, result);
@@ -530,6 +530,12 @@ function pageParser (url, page, getLinks, cb){
   });
 }
 
+const home = function (req, res){
+  res.render('home', {
+
+  });
+};
+
 module.exports.main = function (req, res) {
   if (req.isAuthenticated()){
     home(req, res);
@@ -563,36 +569,36 @@ module.exports.updateProfile = function (req, res) {
   } else if ( image.mimetype === 'image/jpeg' ){
 
     Jimp.read(image.buffer, function (err, lenna) {
-        if (err) throw err;
-        lenna.resize(140, 140)
-             .quality(72)
-             .getBuffer(image.mimetype, function (err, result){
-               if (err) {
-                console.log(uid, err, '<--user id, Jimp profile pic failed, ');
-                req.flash('errors', {
-                   message: 'We had a problem. Please try again.',
-                   type: 'error'
-                 });
-                return res.redirect('back');
-               }
-               uploadBuffer(
-                 result,
-                 result.byteLength,
-                 uid,
-                 function (err, url){
-                   if (err){
-                     req.flash('errors', {
-                       message: 'Please choose a photo',
-                       type: 'error'
-                     });
-                     return res.redirect('back');
-                   }
-                   update.avatar = url;
-                   user.update(update).then(function (){
-                     res.redirect('/profile');
+      if (err) throw err;
+      lenna.resize(140, 140)
+           .quality(72)
+           .getBuffer(image.mimetype, function (err, result){
+             if (err) {
+              console.log(uid, err, '<--user id, Jimp profile pic failed, ');
+              req.flash('errors', {
+                 message: 'We had a problem. Please try again.',
+                 type: 'error'
+               });
+              return res.redirect('back');
+             }
+             uploadBuffer(
+               result,
+               result.byteLength,
+               uid,
+               function (err, url){
+                 if (err){
+                   req.flash('errors', {
+                     message: 'Please choose a photo',
+                     type: 'error'
                    });
+                   return res.redirect('back');
+                 }
+                 update.avatar = url;
+                 user.update(update).then(function (){
+                   res.redirect('/profile');
                  });
-             }); // resize  Jimp
+               });
+           }); // resize  Jimp
     });
 
   } else {

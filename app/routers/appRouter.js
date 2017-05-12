@@ -24,6 +24,7 @@ module.exports = function(express) {
   router.get('/login', isNotAuthenticated, signupController.login);
 
   router.get('/', appController.main);
+  router.get('/activity', appController.activity);
 
   router.get('/pagevalidate', appController.pageValidate);
 
