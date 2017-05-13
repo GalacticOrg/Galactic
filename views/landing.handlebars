@@ -1,22 +1,40 @@
-<div class="landingPage">
+<div class="landingPage homePage">
+	{{> messages }}
 	<div class="bgContainer">
 		<div class="bgImage"></div>
 	</div>
 	<div class="landingPageSignupForm">
 		<div class="container">
 			<div class="headline">
-				<h1>WikiWeb</h1>
-			  {{!-- <h2>A place to connect ideas and better navigate the web</h2> --}}
-			  <h2><em>The surf engine you've been waiting for.</em></h2>
+				<a href="/about">
+					<h1>WikiWeb</h1>
+				</a>
+			  <h2 style="margin-top: -25px;"><em>The surf engine you've been waiting for</em></h2>
 			</div>
-			
-			<div class="footerNav">
-				<ul class="navList">
-					<li><a href="/about">About</a></li>
-				</ul>
+			<div style="width: 100%; margin-top: 50px; margin-bottom: 20px;">
+				<form id="askform" class="searchBox" action="/search" method="get" style="margin: auto; padding-left: 60px;">
+					<input
+						type="text"
+						id="email"
+						name="q"
+						value="{{inputURI}}"
+						placeholder="Paste a URL to find similar web pages"
+						style="height: 45px; background-color: white;"
+					></input>
+					<input id="navbarSearchButton" class="submitButton" type="submit" value="🔍" style="height: 45px; width: 60px; font-size: 18px;"></input>
+				</form>
 			</div>
-
 		</div>
-		<img src="/static/img/connect_tree.png" style="height: 400px; margin-top: 50px; margin-left: 200px;"/>
+		<a href="/about">
+			<img src="/static/img/circle.png" style="height: 200px; margin-top: 50px; margin-left: 240px;"/>
+		</a>
 	</div>
 </div>
+
+{{#section 'foot'}}
+<!-- <script type="application/javascript" src="http://0.0.0.0:8090/js/home.js"></script> -->
+<script type="application/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
+<script type="application/javascript" src="/static/js/jquery.debounce-1.0.5.js"></script>
+<script type="application/javascript" src="/static/js/handlebars.js"></script>
+<script type="application/javascript" src="/static/js/main.js"></script>
+{{/section}}
