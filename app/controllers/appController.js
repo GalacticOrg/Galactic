@@ -7,6 +7,7 @@ const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     isValidURI = require('../../utils/pageparser').isValidURI,
     pageParse = require('../../utils/pageparser').pageParse,
     pageParseNYT = require('../../utils/pageparser').pageParseNYT,
+    mozLinksParse = require('../../utils/pageparser').mozLinks,
     uploadBuffer = require('../../utils/assets').uploadBuffer,
     Page = require('../model/page.js'),
     User = require('../model/user.js'),
@@ -18,10 +19,6 @@ const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
 
 const landing = function (req, res) {
   res.render('landing');
-};
-
-const about = function (req, res) {
-  res.render('about');
 };
 
 module.exports.activity = function (req, res) {
@@ -263,9 +260,9 @@ module.exports.connect = function (req, res) {
       page.addConnection(destinationPage, { userId: user.id })
     ];
     const getLinks = false;
-    pageParser(destinationPage.pageUrl, destinationPage, getLinks, function(err, result){
-      if (err){
-        console.log(err, 'destinationPage parse failed')
+    pageParser(destinationPage.pageUrl, destinationPage, getLinks, function (err, result){
+      if (err) {
+        console.log(err, 'destinationPage parse failed');
       }
     });
     return promsies;
@@ -463,11 +460,28 @@ function pageParser (url, page, getLinks, cb){
     Page.findOne({where:{
       isParsed:{ $ne:false },
       pageUrl: { $or: [article.resolvedPageUrl, article.pageUrl] }
-    }}).then(function (result){
+    } }).then(function (){
 
       // if (result){
       //   return cb(null, result);
       // }
+      mozLinksParse (article.pageUrl, function (err, links){
+        if (err || !links){
+          return console.log(err, 'Inbound links eror');
+        }
+        links.forEach(function (link){
+          const crawlLink = false;
+          Page.create().then(function (newPage){
+            const inputLink = 'https://' + link;
+            console.log(inputLink)
+            pageParser(inputLink, newPage,  crawlLink, function (err) {
+              if (err) return false;
+              page.addLink(newPage);
+              console.log('Response Link page Added');
+            });
+          });
+        });
+      });
 
       if (article.html && getLinks){
         const articleLinks = pareLinksHtml(article.html);
@@ -480,7 +494,6 @@ function pageParser (url, page, getLinks, cb){
               console.log('Link page Added');
             });
           });
-
         });
       }
 
@@ -553,7 +566,21 @@ module.exports.profile = function (req, res) {
 };
 
 module.exports.about = function (req, res) {
-  res.render('about');
+  mozLinksParse ('sfdevlabs.com', function (err, links){
+    links.forEach(function (link){
+      const crawlLink = false;
+      Page.create().then(function (newPage){
+        const inputLink = 'https://' + link;
+        console.log(inputLink)
+        pageParser(inputLink, newPage,  crawlLink, function (err) {
+          if (err) return false;
+          //page.addLink(newPage);
+          console.log('Link page Added');
+        });
+      });
+    });
+  });
+  //res.render('about');
 };
 
 module.exports.updateProfile = function (req, res) {
