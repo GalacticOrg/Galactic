@@ -17,7 +17,7 @@
 				value="{{inputURI}}"
 				placeholder="Search (paste URL)"
 			></input>
-			<input id="navbarSearchButton" class="submitButton" type="submit" value="Submit"></input>
+			<input id="navbarSearchButton" class="submitButton" type="submit" value="Search"></input>
 		</form>
 		<div class="pageButtons" style="width: 100%;">
 			<div class="pageButton">
@@ -25,20 +25,12 @@
 					<span class="icon">
 						<i class="fa fa-bullseye" aria-hidden="true"></i>
 					</span>
-					<a href="/" class="text">Activity</a>
+					<a href="/connections" class="text">Activity</a>
 				</div>
 			</div>
-			<div class="pageButton" style="cursor: not-allowed;">
-				<div class="buttonContents" id="notificationsNavButton">
-					<span class="icon">
-						<i class="fa fa-bell-o" aria-hidden="true"></i>
-					</span>
-					<span class="text">Notifications</span>
-				</div>
-			</div>
-
 			{{#if user}}
-			<a href="/profile" class="pageButton" style="margin-left: 50px;">
+			<div style="width: 100%;"></div>
+			<a href="/profile" class="pageButton" style="margin-right: 30px;">
 				<div class="buttonContents profileImgButton" id="userNavButton" style="justify-content: flex-end;">
 					<span class="userImg">
 						<img src={{avatarNotNull user.avatar}} class="userImg" />
