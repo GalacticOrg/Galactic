@@ -78,6 +78,14 @@
 				<div id="waitforresponse" style="margin-top: 30px;">
 					<b>There are no connections to this page yet. Be the first to add one!</b>
 				</div>
+				<a class="askQuestionButton" onClick=openConnectModal()>
+					<div class="connectButton turnoffwhenloading" style="margin-top: 20px; padding-left: 20px; padding-right: 20px;">
+						Add Connection
+					</div>
+					<div id="connectwait" style="width: 100%; text-align: center; display: none;">
+						<img src="/static/img/loading_dots.gif" style="width: 50px;" />
+					</div>
+				</a>
 				{{/if}}
 			{{/if}}
 			{{!-- {{toJSON links}} --}}
@@ -105,6 +113,7 @@
 					{{/each}}
 				</div>
 			{{/if}}
+			{{#if destinations}}
 			<div style="margin-bottom: 20px; width: 150px; color: white; text-align: center;">
 				<a class="askQuestionButton" onClick=openConnectModal()>
 					<div class="connectButton turnoffwhenloading" style="width: 100%">
@@ -115,6 +124,20 @@
 					</div>
 				</a>
 			</div>
+			{{else}}
+			 {{#if links}}
+				<div style="margin-bottom: 20px; width: 150px; color: white; text-align: center;">
+					<a class="askQuestionButton" onClick=openConnectModal()>
+						<div class="connectButton turnoffwhenloading" style="width: 100%">
+							Add Connection
+						</div>
+						<div id="connectwait" style="width: 100%; text-align: center; display: none;">
+							<img src="/static/img/loading_dots.gif" style="width: 50px;" />
+						</div>
+					</a>
+				</div>
+				{{/if}}
+			{{/if}}
 		</div>
 	</div>
 </div>
