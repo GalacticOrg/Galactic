@@ -1,5 +1,5 @@
 
-<div onClick="javascript:location.href='/page/{{wwUri}}?pp=true'" class="feedBundle pageConnection">
+<div class="feedBundle pageConnection">
 	<div class="articleContentBox">
 		<div class="articleContent">
 			<div class="subBox">
@@ -22,14 +22,16 @@
 					</a>
 				</div>
 			</div>
-			<div class="titleURL">
-				{{this.title}}
-			</div>
-			{{#if this.description}}
-			<div class="descriptionText">
-				{{this.description}}
-			</div>
-			{{/if}}
+			<a href="/page/{{wwUri}}?pp=true">
+				<div class="titleURL">
+					{{this.title}}
+				</div>
+				{{#if this.description}}
+				<div class="descriptionText">
+					{{this.description}}
+				</div>
+				{{/if}}
+			</a>
 		</div>
 	</div>
 
