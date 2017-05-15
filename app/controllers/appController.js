@@ -474,7 +474,7 @@ function pageParser (url, page, getLinks, cb){
       // }
       mozLinksParse (article.pageUrl, function (err, links){
         if (err || !links){
-          return console.log(err, 'Inbound links eror');
+          return console.log(err, 'Moz Inbound links eror');
         }
         links.forEach(function (link){
           const crawlLink = false;
