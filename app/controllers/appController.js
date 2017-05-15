@@ -17,6 +17,21 @@ const diffBotAnalyze = require('../../utils/pageparser').diffBotAnalyze,
     userAttibutrs = ['username', 'displayName', 'id', 'avatar'],
     url = require('url');
 
+    const isUriImage = function(uri) {
+        //make sure we remove any nasty GET params
+        uri = uri.split('?')[0];
+        //moving on, split the uri into parts that had dots before them
+        var parts = uri.split('.');
+        //get the last part ( should be the extension )
+        var extension = parts[parts.length-1];
+        //define some image types to test against
+        var imageTypes = ['jpg','jpeg','tiff','png','gif','bmp'];
+        //check if the extension matches anything in the list.
+        if(imageTypes.indexOf(extension) !== -1) {
+            return true;
+        }
+    };
+
 const landing = function (req, res) {
   res.render('landing');
 };
@@ -493,6 +508,9 @@ function pageParser (url, page, getLinks, cb){
       if (article.html && getLinks){
         const articleLinks = pareLinksHtml(article.html);
         articleLinks.forEach(function (link){
+          if (link && isUriImage(link)){
+            return console.log('Link is an image');
+          }
           const crawlLink = false;
           Page.create().then(function (newPage){
             pageParser(link, newPage,  crawlLink, function (err) {

@@ -20,7 +20,7 @@
 		<div class="bundleTitle">
 			{{#if icon}}
 				<span style="margin-right: 2px;">
-					<img src="{{icon}}" style="height: 18px; width: 18px; margin-bottom: -2px;"/>
+					<img src="{{icon}}" onerror="this.src = '/static/img/blank_icon.png';" style="height: 18px; width: 18px; margin-bottom: -2px;"/>
 				</span>
 			{{/if}}
 			<span style="position: relative;">{{title}}</span>
@@ -52,7 +52,7 @@
 		<div class="bundleTitle">
 			{{#if connections.0.icon}}
 				<span style="margin-right: 2px;">
-					<img src="{{avatarNotNull connections.0.icon}}" style="height: 18px; width: 18px; margin-bottom: -2px;"/>
+					<img src="{{avatarNotNull connections.0.icon}}" onerror="this.src = '/static/img/blank_icon.png';" style="height: 18px; width: 18px; margin-bottom: -2px;"/>
 				</span>
 			{{/if}}
 			<span>{{connections.0.title}}</span>
