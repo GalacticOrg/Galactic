@@ -157,7 +157,7 @@ if (location.search.search('tagwait=') !== -1){
 	$('.turnoffwhenloading').css('display','none'); // items that need to be hidden while spinner spins.
 	window.setTimeout(function(){
 		window.location = location.origin + location.pathname
-	},7000);
+	},10000);
 }
 
 if (location.search.search('tagwait=') !== -1 || location.search.search('pp=true') !== -1 ){
