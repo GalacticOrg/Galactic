@@ -968,6 +968,11 @@ img {
     float: left;
     min-height: 1px;
     margin-left: 180px; }
+    .homePage .contentWrapper .layout_3col_center .resultHelperCopy, .aboutPage .contentWrapper .layout_3col_center .resultHelperCopy, .searchPage .contentWrapper .layout_3col_center .resultHelperCopy, .requestPage .contentWrapper .layout_3col_center .resultHelperCopy, .resultPage .contentWrapper .layout_3col_center .resultHelperCopy, .profilePage .contentWrapper .layout_3col_center .resultHelperCopy, .connectionPage .contentWrapper .layout_3col_center .resultHelperCopy {
+      margin-top: 20px;
+      border-bottom: 1px solid #e2e2e2;
+      padding-bottom: 3px;
+      margin-bottom: 15px; }
     .homePage .contentWrapper .layout_3col_center .addQuestionPrompt, .aboutPage .contentWrapper .layout_3col_center .addQuestionPrompt, .searchPage .contentWrapper .layout_3col_center .addQuestionPrompt, .requestPage .contentWrapper .layout_3col_center .addQuestionPrompt, .resultPage .contentWrapper .layout_3col_center .addQuestionPrompt, .profilePage .contentWrapper .layout_3col_center .addQuestionPrompt, .connectionPage .contentWrapper .layout_3col_center .addQuestionPrompt {
       margin-top: 16px;
       margin-bottom: 0;
