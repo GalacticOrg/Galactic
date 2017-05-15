@@ -10,10 +10,51 @@ const request = require('superagent'),
   tokenNyt = config.NYT_API_TOKEN,
   nytBaseUri = config.NYT_SEARCH_API_URI,
   tokenDiffbot = config.DIFFBOT_TOKEN,
+  mozAccessId = config.MOZACCESSID,
+  mozsig = config.MOZSIG,
   diffBotApiUri = 'https://' + baseDiffBotBaseUri + '/' + diffBotVersion,
   nytApiUri = 'http://' + nytBaseUri + '/' + nytVersion,
+  seomozUrl = 'https://lsapi.seomoz.com/linkscape/links',
   expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
 
+
+// ?SourceCols=4
+// &Scope=page_to_page
+// &Sort=page_authority
+// &Limit=20
+
+module.exports.mozLinks = function (inputURI, cb){
+  console.log(mozsig, mozAccessId);
+  request
+    .get(seomozUrl + '/stamen.com')
+    .auth('mozscape-28051f6de4', '5d727b77bf4519abe0ed79b1ac59aa2c')
+    .query({
+      Scope: 'page_to_page',
+      Sort: 'page_authority',
+      Limit: 20,
+      SourceCols: '4'
+    })
+    .timeout({
+      response: 60000,
+      deadline: 90000
+    })
+    .set('Accept', 'application/json')
+    .end(function (err, res){
+      if (err){
+        return cb(err);
+      }
+      const sites = JSON.parse(res.text);
+      const links = sites.map(function (site){ return site.uu;});
+      cb(null, links);
+      // if (err || res.body.error) {
+      //   const message = err || res.body.error;
+      //   cb(message);
+      // } else {
+      //   const result = res.body.objects[0]
+      //   cb(null, result);
+      // }
+    });
+};
 
 module.exports.diffBotAnalyze = function (inputURI, cb){
   request

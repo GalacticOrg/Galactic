@@ -1,47 +1,33 @@
-{{> navbar navIndex='home'}}
-{{> messages }}
-
-<div class="homePage">
-	{{> modalRequest }}
-	<div class="contentWrapper">
-		<div class="layout_3col_left">
-			<h3 class="title">
-				<div class="title_with_link">
-					Feeds
-				</div>
-			</h3>
-			<div class="pagedList">
-				<div class="pagedListItem top_stories" id="sidebarTopStories">
-					<ul>
-						<li>
-							<a href="/">Recent Connections</a>
-						</li>
-					</ul>
-				</div>
+<div class="landingPage homePage">
+	{{> messages }}
+	<div class="bgContainer">
+		<div class="bgImage"></div>
+	</div>
+	<div class="landingPageSignupForm">
+		<div class="container">
+			<div class="headline">
+				<a href="/about">
+					<h1>WikiWeb</h1>
+				</a>
+			  <h2 style="margin-top: -25px;"><em>The surf engine you've been waiting for</em></h2>
+			</div>
+			<div style="width: 100%; margin-top: 50px; margin-bottom: 20px;">
+				<form id="askform" class="searchBox" action="/search" method="get" style="margin: auto; padding-left: 60px;">
+					<input
+						type="text"
+						id="email"
+						name="q"
+						value="{{inputURI}}"
+						placeholder="Paste a URL to find similar web pages"
+						style="height: 45px; background-color: white;"
+					></input>
+					<input id="navbarSearchButton" class="submitButton" type="submit" value="🔍" style="height: 45px; width: 60px; font-size: 18px;"></input>
+				</form>
 			</div>
 		</div>
-		<div class="layout_3col_center">
-			<div class="section_header">
-				<div class="header_text">
-					<span>Recent Connections</span>
-				</div>
-			</div>
-
-			{{#each feed}}
-				{{#if connections}}
-					{{> homefeedconnection}}
-				{{/if}}
-			{{/each}}
-			<a href="/?limit={{limit}}&offset={{offset}}" class="moreButton" style="margin-top: 16px; width: 100px; background-color: purple; color: white; height: 30px; padding-top: 5px; border-color: purple;">More</a>
-
-		</div>
-
-			<div class="layout_3col_right">
-				{{#if user}}
-				{{> identityModule}}
-				{{/if}}
-			</div>
-		</div>
+		<a href="/about">
+			<img src="/static/img/circle.png" style="height: 200px; margin-top: 50px; margin-left: 240px;"/>
+		</a>
 	</div>
 </div>
 

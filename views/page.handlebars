@@ -60,9 +60,12 @@
 					{{> pageConnection }}
 				{{/each}}
 			{{else}}
+				{{#if destinations}}
+				{{else}}
 				<div id="waitforresponse" style="margin-top: 30px;">
 					<b>There are no connections to this page yet. Be the first to add one!</b>
 				</div>
+				{{/if}}
 			{{/if}}
 			{{!-- {{toJSON links}} --}}
 
