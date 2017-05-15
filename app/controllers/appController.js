@@ -364,7 +364,8 @@ function pageValidate(inputURI, cb){
 
 module.exports.search = function (req, res) {
   const inputURI = req.query.q;
-  const user = req.user.toJSON();
+  const user = req.user ? req.user.toJSON(): {};
+
   if (inputURI === undefined || inputURI.length === 0){
     return res.render('search', {
       pages: [],
@@ -593,7 +594,7 @@ module.exports.profile = function (req, res) {
 module.exports.about = function (req, res) {
   res.render('about');
 };
-
+toJSON
 module.exports.updateProfile = function (req, res) {
   const image = req.file;
   const user = req.user;
