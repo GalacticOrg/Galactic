@@ -253,7 +253,7 @@ module.exports.page = function (req, res) {
     tagsUnique = _.sortBy(tagsUnique, function(obj) {
         return -obj.count;
     });
-
+    links = _.uniq(links, 'id');
     let connectionUsers = _.uniqBy(users, 'id');
     res.render('page',{
       page,
@@ -466,15 +466,13 @@ module.exports.new = function (req, res) {
   //   return res.redirect('back');
   // }
   //
-  console.log('idid')
-  console.log(id, 'idid')
+
 
   Page.findOne({
     where:{
        id: id
     }
   }).then(function (page){
-    console.log(page, 'page page')
     if (page.isParsed === true){
     //   req.flash('errors', {
     //     message: 'Something Went Wrong. Please Try Again.',
@@ -555,7 +553,7 @@ function pageParser (url, page, getLinks, cb){
       }
 
       const articleTags = article.tags || [];
-
+      const newIsParsedStatus = getLinks;
       return page.update({
         text: article.text,
         html: article.html,
@@ -573,7 +571,7 @@ function pageParser (url, page, getLinks, cb){
         images: article.images,
         meta: article.meta,
         description:  article.meta ? article.meta.description : '',
-        isParsed: true,
+        isParsed: newIsParsedStatus,
         wwUri: page.wwUri || createWwUri(article.title)
       }).then(function (){
         return articleTags.map(function (tag){
