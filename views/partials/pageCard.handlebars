@@ -5,7 +5,7 @@
 	  		{{#if page.icon}}
 	  		<a href={{page.pageUrl}}>
 					<div class="articleImg">
-						<img src={{page.icon}} onerror="this.style = 'display:none;';"/>
+						<img src={{page.icon}} onerror="this.src = '/static/img/blank_icon.png';"/>
 					</div>
 				</a>
 				{{else}}
