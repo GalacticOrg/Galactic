@@ -116,7 +116,7 @@ module.exports.connections = function (req, res) {
   .query('SELECT *, connection."userId", users.id, username, "displayName", avatar FROM connection INNER JOIN pages ON "connectionPage" = pages.id INNER JOIN users ON connection."userId" = users.id')
   .then(function (results){
     pages = results[0];
-    return sequelizeConnection.query('SELECT * FROM connection INNER JOIN pages ON "destinationPage" = pages.id');
+    return sequelizeConnection.query('SELECT * FROM connection INNER JOIN pages ON "destinationPage" = pages.id ORDER BY "lastActivityAt" DESC');
   }).then(function (results){
     destinations = results[0];
     return sequelizeConnection.query('SELECT users.id, username, "displayName", avatar FROM connection INNER JOIN users ON "userId" = users.id');
@@ -472,23 +472,23 @@ function pageParser (url, page, getLinks, cb){
       // if (result){
       //   return cb(null, result);
       // }
-      mozLinksParse (article.pageUrl, function (err, links){
-        if (err || !links){
-          return console.log(err, 'Moz Inbound links eror');
-        }
-        links.forEach(function (link){
-          const crawlLink = false;
-          Page.create().then(function (newPage){
-            const inputLink = 'https://' + link;
-            console.log(inputLink)
-            pageParser(inputLink, newPage,  crawlLink, function (err) {
-              if (err) return false;
-              page.addLink(newPage);
-              console.log('Response Link page Added');
-            });
-          });
-        });
-      });
+      // mozLinksParse (article.pageUrl, function (err, links){
+      //   if (err || !links){
+      //     return console.log(err, 'Moz Inbound links eror');
+      //   }
+      //   links.forEach(function (link){
+      //     const crawlLink = false;
+      //     Page.create().then(function (newPage){
+      //       const inputLink = 'https://' + link;
+      //       console.log(inputLink)
+      //       pageParser(inputLink, newPage,  crawlLink, function (err) {
+      //         if (err) return false;
+      //         page.addLink(newPage);
+      //         console.log('Response Link page Added');
+      //       });
+      //     });
+      //   });
+      // });
 
       if (article.html && getLinks){
         const articleLinks = pareLinksHtml(article.html);
