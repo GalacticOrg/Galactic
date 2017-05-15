@@ -41,7 +41,10 @@ module.exports.mozLinks = function (inputURI, cb){
     .set('Accept', 'application/json')
     .end(function (err, res){
       if (err){
-        return cb(err);
+        return cb({
+          status:err.status,
+          message: 'Moz Failed'
+        });
       }
       const sites = JSON.parse(res.text);
       const links = sites.map(function (site){ return site.uu;});
@@ -92,8 +95,14 @@ module.exports.pageParse = function (inputURI, cb){
         cb(err);
       } else {
         const text = res.text;
-        const data = extractor(text);
-        cb(null, data);
+        if ( typeof text !== 'string' ){
+          return cb({
+            message: 'No Text returned'
+          });
+        } else {
+          const data = extractor(text);
+          cb(null, data);
+        }
       }
     });
 };

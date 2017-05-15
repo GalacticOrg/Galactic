@@ -453,7 +453,7 @@ function pageParser (url, page, getLinks, cb){
   diffBotAnalyze(url, function (err, article) {
 
     if (err || !article || !article.title){
-      
+
       return page.update({
         isParsed: true
       }).then(function(){
@@ -461,7 +461,7 @@ function pageParser (url, page, getLinks, cb){
         return cb('diffBotAnalyze failed')
       });
 
-      
+
     }
 
     Page.findOne({where:{
@@ -474,7 +474,7 @@ function pageParser (url, page, getLinks, cb){
       // }
       mozLinksParse (article.pageUrl, function (err, links){
         if (err || !links){
-          return console.log(err, 'Inbound links eror');
+          return console.log(err, 'Moz Inbound links eror');
         }
         links.forEach(function (link){
           const crawlLink = false;
@@ -573,21 +573,7 @@ module.exports.profile = function (req, res) {
 };
 
 module.exports.about = function (req, res) {
-  mozLinksParse ('sfdevlabs.com', function (err, links){
-    links.forEach(function (link){
-      const crawlLink = false;
-      Page.create().then(function (newPage){
-        const inputLink = 'https://' + link;
-        console.log(inputLink)
-        pageParser(inputLink, newPage,  crawlLink, function (err) {
-          if (err) return false;
-          //page.addLink(newPage);
-          console.log('Link page Added');
-        });
-      });
-    });
-  });
-  //res.render('about');
+  res.render('about');
 };
 
 module.exports.updateProfile = function (req, res) {
