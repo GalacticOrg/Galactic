@@ -17,7 +17,6 @@ const request = require('superagent'),
   seomozUrl = 'https://lsapi.seomoz.com/linkscape/links',
   expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
 
-
 // ?SourceCols=4
 // &Scope=page_to_page
 // &Sort=page_authority
@@ -138,9 +137,8 @@ module.exports.pareLinksHtml = function (html){
   return links.filter(function (link){ return typeof link === 'string' && isValidURI(link); });
 };
 
-
-
 const isValidURI = function (uri){
   return new RegExp(expression).test(uri);
 }
+
 module.exports.isValidURI = isValidURI;

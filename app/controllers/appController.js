@@ -127,6 +127,14 @@ module.exports.connections = function (req, res) {
     userConnections;
   const user = req.user;
 
+  if ( !user){
+    req.flash('errors', {
+       message: 'Please log in to add a connection.',
+       type: 'warning'
+     });
+    return res.redirect('back');
+  }
+
   sequelizeConnection
   .query('SELECT *, connection."userId", users.id, username, "displayName", avatar FROM connection INNER JOIN pages ON "connectionPage" = pages.id INNER JOIN users ON connection."userId" = users.id')
   .then(function (results){
@@ -139,7 +147,7 @@ module.exports.connections = function (req, res) {
     userConnections = results[0];
     const connections = pages.map(function (page, i){
       const newPage = page;
-      newPage.connections = [destinations[i]];
+      newPage.ions = [destinations[i]];
       newPage.userWhoMadeConnection =  userConnections[i];
       return newPage;
     });
@@ -235,9 +243,9 @@ module.exports.page = function (req, res) {
       let count = 0;
       tags.forEach(function(tag){
         if (tag.id === tagUnique.id){
-          count +=1;
+          count += 1;
         }
-      })
+      });
       tagUnique.count = count;
       return tagUnique;
     });
@@ -266,6 +274,14 @@ module.exports.connect = function (req, res) {
     req.flash('errors', {
       message: 'Something Went Wrong. Please Try Again.',
       type: 'error'
+    });
+    return res.redirect('/page/' + page.wwUri);
+  }
+
+  if ( user === undefined ) {
+    req.flash('errors', {
+      message: 'Oops! Please login or signup to add a connection',
+      type: 'warning'
     });
     return res.redirect('/page/' + page.wwUri);
   }
@@ -380,6 +396,7 @@ module.exports.search = function (req, res) {
   }
   uri += inputURI;
   let pages = [];
+  console.log(uri, 'uri')
   if ( !isValidURI(uri) ) {
     const searchString = inputURI;
     const searchWordsArray = searchString.split(' ');
@@ -420,6 +437,7 @@ module.exports.search = function (req, res) {
               inputURI,
               user
             });
+            res.redirect('/page/' + result.wwUri + '?pp=true');
           } else {
             res.redirect('/page/' + result.wwUri + '?pp=true');
           }
@@ -439,20 +457,33 @@ module.exports.search = function (req, res) {
 module.exports.new = function (req, res) {
   const user = req.user;
   const page = req.page;
-  // Page.findOne({
-  //   where:{
-  //      id: id
-  //   }
-  // }).then(function (page){
-    // if (page.isParsed === true && getLinks === false){
-    // //   req.flash('errors', {
-    // //     message: 'Something Went Wrong. Please Try Again.',
-    // //     type: 'error'
-    // //   });
-    //   return res.send({
-    //     isParsed: true
+  const id = page.id;
+  // if ( !user){
+  //   req.flash('errors', {
+  //      message: 'Please log in to add a connection.',
+  //      type: 'warning'
+  //    });
+  //   return res.redirect('back');
+  // }
+  //
+  console.log('idid')
+  console.log(id, 'idid')
+
+  Page.findOne({
+    where:{
+       id: id
+    }
+  }).then(function (page){
+    console.log(page, 'page page')
+    if (page.isParsed === true){
+    //   req.flash('errors', {
+    //     message: 'Something Went Wrong. Please Try Again.',
+    //     type: 'error'
     //   });
-    // } else {
+      return res.send({
+        isParsed: true
+      });
+    } else {
       const getLinks = true;
       pageParser(page.pageUrl, page, getLinks, function (err){
         res.send({
@@ -461,8 +492,8 @@ module.exports.new = function (req, res) {
           page
         });
       });
-    // }
-  // });
+    }
+  });
 };
 
 function pageParser (url, page, getLinks, cb){

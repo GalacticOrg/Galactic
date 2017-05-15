@@ -63,7 +63,7 @@
       </div>
       <div style="justify-content: flex-end">
         {{#if icon}}
-        <img style="height: 32px; margin-left: 10px;" src="{{icon}}" />
+        <img style="height: 32px; margin-left: 10px;" src="{{icon}}" onerror="this.src = '/static/img/blank_icon.png';" />
         {{/if}}
       </div>
     </div>
