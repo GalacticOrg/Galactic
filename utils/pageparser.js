@@ -95,7 +95,6 @@ module.exports.pageParse = function (inputURI, cb){
         cb(err);
       } else {
         const text = res.text;
-        console.log(text)
         if ( typeof text !== 'string' ){
           return cb({
             message: 'No Text returned'
