@@ -95,8 +95,15 @@ module.exports.pageParse = function (inputURI, cb){
         cb(err);
       } else {
         const text = res.text;
-        const data = extractor(text);
-        cb(null, data);
+        console.log(text)
+        if ( typeof text !== 'string' ){
+          return cb({
+            message: 'No Text returned'
+          });
+        } else {
+          const data = extractor(text);
+          cb(null, data);
+        }
       }
     });
 };
