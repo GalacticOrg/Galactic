@@ -41,7 +41,10 @@ module.exports.mozLinks = function (inputURI, cb){
     .set('Accept', 'application/json')
     .end(function (err, res){
       if (err){
-        return cb(err);
+        return cb({
+          status:err.status,
+          message: 'Moz Failed'
+        });
       }
       const sites = JSON.parse(res.text);
       const links = sites.map(function (site){ return site.uu;});
