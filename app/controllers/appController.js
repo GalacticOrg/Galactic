@@ -594,7 +594,7 @@ module.exports.profile = function (req, res) {
 module.exports.about = function (req, res) {
   res.render('about');
 };
-toJSON
+
 module.exports.updateProfile = function (req, res) {
   const image = req.file;
   const user = req.user;
