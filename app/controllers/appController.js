@@ -147,7 +147,7 @@ module.exports.connections = function (req, res) {
     userConnections = results[0];
     const connections = pages.map(function (page, i){
       const newPage = page;
-      newPage.ions = [destinations[i]];
+      newPage.connections = [destinations[i]];
       newPage.userWhoMadeConnection =  userConnections[i];
       return newPage;
     });
