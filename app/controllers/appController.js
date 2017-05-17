@@ -253,8 +253,7 @@ module.exports.page = function (req, res) {
     tagsUnique = _.sortBy(tagsUnique, function(obj) {
         return -obj.count;
     });
-    links = _.uniq(links, 'id');
-    let connectionUsers = _.uniqBy(users, 'id');
+    let connectionUsers = _.uniqBy(users, 'wwUri');
     res.render('page',{
       page,
       destinations,
@@ -466,7 +465,6 @@ module.exports.new = function (req, res) {
   //   return res.redirect('back');
   // }
   //
-
 
   Page.findOne({
     where:{
