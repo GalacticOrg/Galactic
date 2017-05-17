@@ -253,7 +253,7 @@ module.exports.page = function (req, res) {
     tagsUnique = _.sortBy(tagsUnique, function(obj) {
         return -obj.count;
     });
-    links = _.uniqBy(links, 'wwUri');
+    links = _.uniqBy(links, 'pageLink');
     let connectionUsers = _.uniqBy(users, 'id');
     res.render('page',{
       page,
